@@ -11,6 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+/* ADMIN ROUTE */
+Route::get('/admin', 'AdminsController@index');
