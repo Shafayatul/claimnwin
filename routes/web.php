@@ -13,4 +13,9 @@
 
 
 /* ADMIN ROUTE */
+Route::get('/', 'AdminsController@index');
 Route::get('/admin', 'AdminsController@index');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
