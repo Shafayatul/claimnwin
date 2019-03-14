@@ -13,7 +13,7 @@
 
 
 /* ADMIN ROUTE */
-Route::get('/', 'AdminsController@index');
+
 Route::get('/admin', 'AdminsController@index');
 
 Auth::routes();
@@ -23,3 +23,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('airlines', 'AirlinesController');
 
 Route::resource('airports', 'AirportsController');
+
+Route::get('/', 'AdminsController@index');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
