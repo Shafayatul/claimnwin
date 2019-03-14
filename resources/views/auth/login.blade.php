@@ -50,7 +50,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 							<div class="forgot-grid">
 								<label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i></i>Remember me</label>
 								<div class="forgot">
-									<a href="#">forgot password?</a>
+									<a href="{{ URL::to('password/reset') }}">forgot password?</a>
 								</div>
 								<div class="clearfix"> </div>
 							</div>
