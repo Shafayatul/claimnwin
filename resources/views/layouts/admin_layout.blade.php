@@ -45,20 +45,23 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 </head>
 <body class="cbp-spmenu-push">
 	<div class="main-content">
+
 		<!--side_menu starts-->
-		@include('layouts.includes.admin_sidebar')
+			@include('layouts.includes.admin_sidebar')
 		<!--side_menu ends-->
 
 		<!-- header-starts -->
-		@include('layouts.includes.admin_topbar')
+			@include('layouts.includes.admin_topbar')
 		<!-- //header-ends -->
+
 		<!-- main content start-->
 
-	<!--footer-->
-	<div class="footer">
-	   <p>&copy; 2018 Glance Design Dashboard. All Rights Reserved | Design by <a href="https://w3layouts.com/" target="_blank">w3layouts</a></p>
-	</div>
+		<!-- main content ends-->
+
+		<!--footer-->
+			@include('layouts.includes.admin_footer')
     <!--//footer-->
+
 	</div>
 
 	<!-- new added graphs chart js-->
