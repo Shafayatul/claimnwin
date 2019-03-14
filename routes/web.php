@@ -21,3 +21,5 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('airlines', 'AirlinesController');
+
+Route::resource('airports', 'AirportsController');

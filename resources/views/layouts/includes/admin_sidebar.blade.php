@@ -32,8 +32,8 @@
               <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="grids.html"><i class="fa fa-angle-right"></i> Add Airport</a></li>
-                <li><a href="media.html"><i class="fa fa-angle-right"></i> Manage Airport</a></li>
+              <li><a href="{{URL::to('/airports/create')}}"><i class="fa fa-angle-right"></i> Add Airport</a></li>
+                <li><a href="{{URL::to('/airports')}}"><i class="fa fa-angle-right"></i> Manage Airport</a></li>
               </ul>
             </li>
             <li class="treeview">
