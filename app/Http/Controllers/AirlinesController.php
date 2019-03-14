@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Auth;
 use App\Airline;
 use Illuminate\Http\Request;
+use Countries;
 
 class AirlinesController extends Controller
 {
@@ -40,8 +41,9 @@ class AirlinesController extends Controller
         } else {
             $airlines = Airline::latest()->paginate($perPage);
         }
-
-        return view('airlines.index', compact('airlines'));
+        $country = Countries::getList('en', 'json');
+        $country=json_decode($country, true);
+        return view('airlines.index', compact('country','airlines'));
     }
 
     /**
@@ -51,7 +53,9 @@ class AirlinesController extends Controller
      */
     public function create()
     {
-        return view('airlines.create');
+        $country = Countries::getList('en', 'json');
+        $country=json_decode($country, true);
+        return view('airlines.create',compact('country'));
     }
 
     /**
@@ -81,8 +85,9 @@ class AirlinesController extends Controller
     public function show($id)
     {
         $airline = Airline::findOrFail($id);
-
-        return view('airlines.show', compact('airline'));
+        $country = Countries::getList('en', 'json');
+        $country=json_decode($country, true);
+        return view('airlines.show', compact('airline','country'));
     }
 
     /**
@@ -95,8 +100,9 @@ class AirlinesController extends Controller
     public function edit($id)
     {
         $airline = Airline::findOrFail($id);
-
-        return view('airlines.edit', compact('airline'));
+        $country = Countries::getList('en', 'json');
+        $country=json_decode($country, true);
+        return view('airlines.edit', compact('airline','country'));
     }
 
     /**

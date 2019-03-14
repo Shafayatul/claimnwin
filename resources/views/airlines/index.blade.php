@@ -10,7 +10,7 @@
         <div class="form-body">
             <div class="card">
                 <div class="card-body">
-                  {!! Form::open(['method' => 'GET', 'url' => '/airlines', 'class' => 'form-inline my-2 my-lg-0 float-right', 'role' => 'search']) !!}
+                  {{-- {!! Form::open(['method' => 'GET', 'url' => '/airlines', 'class' => 'form-inline my-2 my-lg-0 float-right', 'role' => 'search']) !!}
                   <div class="row">
                     <div class="col-md-2">
                       <div class="input-group">
@@ -49,15 +49,18 @@
                   {!! Form::close() !!}
 
                     <br />
-                    <br />
+                    <br /> --}}
                     <div class="table-responsive">
                         <table class="table table-borderless">
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>User Id</th>
                                     <th>Name</th>
+                                    <th>Iata Code</th>
                                     <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Country</th>
+                                    <th>Status</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -65,9 +68,16 @@
                                 @foreach($airlines as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item->user_id }}</td>
                                     <td>{{ $item->name }}</td>
+                                    <td>{{ $item->iata_code }}</td>
                                     <td>{{ $item->email }}</td>
+                                    <td>{{ $item->phone }}</td>
+                                    <td>{{ $country[$item->country] }}</td>
+                                    @if($item->status == 1)
+                                    <td>Enabled</td>
+                                    @else
+                                    <td>Disabled</td>
+                                    @endif
                                     <td>
                                         <a href="{{ url('/airlines/' . $item->id) }}" title="View Airline"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
                                         <a href="{{ url('/airlines/' . $item->id . '/edit') }}" title="Edit Airline"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
@@ -76,7 +86,7 @@
                                         'url' => ['/airlines', $item->id],
                                         'style' => 'display:inline'
                                         ]) !!}
-                                        {!! Form::button('<i class="fa fa-trash-o" aria-hidden="true"></i> Delete', array(
+                                        {!! Form::button('<i class="fa fa-trash" aria-hidden="true"></i> Delete', array(
                                         'type' => 'submit',
                                         'class' => 'btn btn-danger btn-sm',
                                         'title' => 'Delete Airline',

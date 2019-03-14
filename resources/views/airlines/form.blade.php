@@ -43,7 +43,7 @@
   <div class="col-md-6 grid_box1">
     <div class="form-group {{ $errors->has('country') ? 'has-error' : ''}}">
         {!! Form::label('country', 'Country', ['class' => 'control-label']) !!}
-        {!! Form::text('country', null, ('' == 'required') ? ['class' => 'form-control', 'required' => 'required'] : ['class' => 'form-control']) !!}
+        {!! Form::select('country',$country, null, ('' == 'required') ? ['class' => 'form-control', 'required' => 'required'] : ['class' => 'form-control']) !!}
         {!! $errors->first('country', '<p class="help-block">:message</p>') !!}
     </div>
   </div>
