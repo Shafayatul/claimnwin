@@ -1,4 +1,3 @@
-<!--side_menu starts-->
 <div class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
   <!--left-fixed -navigation-->
   <aside class="sidebar-left">
@@ -82,4 +81,3 @@
     </nav>
   </aside>
 </div>
-<!--side_menu ends-->
