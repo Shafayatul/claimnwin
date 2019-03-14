@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
+use Auth;
 use App\Airline;
 use Illuminate\Http\Request;
 
@@ -63,10 +63,10 @@ class AirlinesController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         $requestData = $request->all();
-        
-        Airline::create($requestData);
+
+        Airline::create($requestData + ['user_id' => Auth::user()->id]);
 
         return redirect('airlines')->with('flash_message', 'Airline added!');
     }
@@ -109,9 +109,9 @@ class AirlinesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+
         $requestData = $request->all();
-        
+
         $airline = Airline::findOrFail($id);
         $airline->update($requestData);
 
