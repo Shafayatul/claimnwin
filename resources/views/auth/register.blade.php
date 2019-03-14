@@ -44,21 +44,22 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 				<h2 class="title1">SignUp Here</h2>
 				<div class="sign-up-row widget-shadow">
 					<h5>Personal Information :</h5>
-				<form action="#" method="post">
+				<form action="{{ route('register') }}" method="post">
+					{{ csrf_field() }}
 					<div class="sign-u">
 								<input type="text" name="name" placeholder="Name" required="">
 						<div class="clearfix"> </div>
 					</div>
 					<div class="sign-u">
-								<input type="email" placeholder="Email Address" required="">
+								<input type="email" name="email" placeholder="Email Address" required="">
 						<div class="clearfix"> </div>
 					</div>
 					<div class="sign-u">
-								<input type="password" placeholder="Password" required="">
+								<input type="password" name="password" placeholder="Password" required="">
 						<div class="clearfix"> </div>
 					</div>
 					<div class="sign-u">
-								<input type="password" placeholder="Confirm Password" required="">
+								<input type="password" name="password_confirmation" placeholder="Confirm Password" required="">
 						</div>
 						<div class="clearfix"> </div>
 					<div class="sub_home">

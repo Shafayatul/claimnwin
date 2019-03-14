@@ -19,7 +19,7 @@
                             </ul>
                         @endif
 
-                        {!! Form::open(['url' => '/airlines', 'class' => 'form-horizontal', 'files' => true]) !!}
+                        {!! Form::open(['url' => '/airlines', 'files' => true]) !!}
 
                         @include ('airlines.form', ['formMode' => 'create'])
 
