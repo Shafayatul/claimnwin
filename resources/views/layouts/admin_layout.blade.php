@@ -49,7 +49,11 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 		<!-- //header-ends -->
 
 		<!-- main content start-->
-			@yield('main_content')
+		<div id="page-wrapper">
+			<div class="main-page">
+				@yield('main_content')
+			</div>
+		</div>
 		<!-- main content ends-->
 
 		<!--footer-->
