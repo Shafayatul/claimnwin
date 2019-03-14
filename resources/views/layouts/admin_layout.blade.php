@@ -49,7 +49,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 		<!-- //header-ends -->
 
 		<!-- main content start-->
-
+			@yield('main_content')
 		<!-- main content ends-->
 
 		<!--footer-->
