@@ -1,77 +1,89 @@
-@extends('layouts.app')
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Glance Design Dashboard an Admin Panel Category Flat Bootstrap Responsive Website Template | Home :: w3layouts</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Glance Design Dashboard Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+<!-- Bootstrap Core CSS -->
+<link href="{{ asset('admin_asset/css/bootstrap.css')}}" rel='stylesheet' type='text/css' />
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
-                        @csrf
+<!-- Custom CSS -->
+<link href="{{ asset('admin_asset/css/style.css')}}" rel='stylesheet' type='text/css' />
 
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+<!-- font-awesome icons CSS -->
+<link href="{{ asset('admin_asset/css/font-awesome.css')}}" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<!-- //font-awesome icons CSS-->
 
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
+<!-- side nav css file -->
+<link href='{{ asset('admin_asset/css/SidebarNav.min.css')}}' media='all' rel='stylesheet' type='text/css'/>
+<!-- //side nav css file -->
 
-                                @if ($errors->has('name'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+ <!-- js-->
+<script src="{{ asset('admin_asset/js/jquery-1.11.1.min.js')}}"></script>
+<script src="{{ asset('admin_asset/js/modernizr.custom.js')}}"></script>
 
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+<!--webfonts-->
+<link href="//fonts.googleapis.com/css?family=PT+Sans:400,400i,700,700i&amp;subset=cyrillic,cyrillic-ext,latin-ext" rel="stylesheet">
+<!--//webfonts-->
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
+<!-- Metis Menu -->
+<script src="{{ asset('admin_asset/js/metisMenu.min.js')}}"></script>
+<script src="{{ asset('admin_asset/js/custom.js')}}"></script>
+<link href="{{ asset('admin_asset/css/custom.css')}}" rel="stylesheet">
 
-                                @if ($errors->has('email'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+</head>
+<body class="cbp-spmenu-push">
+	<div class="main-content">
+    <div id="page-wrapper" style="margin: 0px;">
+			<div class="main-page signup-page">
+				<h2 class="title1">SignUp Here</h2>
+				<div class="sign-up-row widget-shadow">
+					<h5>Personal Information :</h5>
+				<form action="#" method="post">
+					<div class="sign-u">
+								<input type="text" name="name" placeholder="Name" required="">
+						<div class="clearfix"> </div>
+					</div>
+					<div class="sign-u">
+								<input type="email" placeholder="Email Address" required="">
+						<div class="clearfix"> </div>
+					</div>
+					<div class="sign-u">
+								<input type="password" placeholder="Password" required="">
+						<div class="clearfix"> </div>
+					</div>
+					<div class="sign-u">
+								<input type="password" placeholder="Confirm Password" required="">
+						</div>
+						<div class="clearfix"> </div>
+					<div class="sub_home">
+							<input type="submit" value="Submit">
+						<div class="clearfix"> </div>
+					</div>
+					<div class="registration">
+						Already Registered.
+						<a class="" href="{{ URL::to('/login') }}">
+							Login
+						</a>
+					</div>
+				</form>
+				</div>
+			</div>
+		</div>
+  </div>
 
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+  <script src="{{ asset('admin_asset/js/scripts.js')}}"></script>
+  <!--//scrolling js-->
+  <!-- for index page weekly sales java script -->
+  <script src="{{ asset('admin_asset/js/SimpleChart.js')}}"></script>
+  <!-- Bootstrap Core JavaScript -->
+   <script src="{{ asset('admin_asset/js/bootstrap.js')}}"> </script>
+  <!-- //Bootstrap Core JavaScript -->
 
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-@endsection
+</body>
+</html>
