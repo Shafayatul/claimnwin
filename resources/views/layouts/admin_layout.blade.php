@@ -1,9 +1,3 @@
-<!--
-Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -63,8 +57,6 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
     <!--//footer-->
 
 	</div>
-
-	<!-- new added graphs chart js-->
 
     <script src="{{ asset('admin_asset/js/Chart.bundle.js')}}"></script>
     <script src="{{ asset('admin_asset/js/utils.js')}}"></script>
