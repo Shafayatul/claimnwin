@@ -30,3 +30,4 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('currency', 'CurrencyController');
+Route::resource('bank-accounts', 'BankAccountsController');

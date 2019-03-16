@@ -37,29 +37,29 @@
               </ul>
             </li>
             <li class="treeview">
-              <a href="#">
-              <i class="fa fa-envelope"></i>
-              <span>Manage Claim</span>
-              <i class="fa fa-angle-left pull-right"></i>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href="grids.html"><i class="fa fa-angle-right"></i> Add Claim</a></li>
-                <li><a href="media.html"><i class="fa fa-angle-right"></i> Manage Claim</a></li>
-              </ul>
+            <a href="#">
+            <i class="fa fa-university"></i>
+            <span>Bank Accounts</span>
+            <i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="treeview-menu">
+            <li><a href="{{URL::to('/bank-accounts/create')}}"><i class="fa fa-angle-right"></i> Add Bank Account</a></li>
+                <li><a href="{{URL::to('/bank-accounts')}}"><i class="fa fa-angle-right"></i> Manage Bank Account</a></li>
+            </ul>
             </li>
             {{-- <li><a href="login.html"><i class="fa fa-money-check-alt"></i> Manage Currency</a></li> --}}
             <li class="treeview">
-                    <a href="#">
-                    <i class="fa fa-money-check-alt"></i>
-                    <span>Currency</span>
-                    <i class="fa fa-angle-left pull-right"></i>
-                    </a>
-                    <ul class="treeview-menu">
-                    <li><a href="{{URL::to('/currency/create')}}"><i class="fa fa-angle-right"></i> Add Currency</a></li>
-                      <li><a href="{{URL::to('/currency')}}"><i class="fa fa-angle-right"></i> Manage Currency</a></li>
-                    </ul>
-                  </li>
-            <li><a href="login.html"><i class="fa fa-university"></i> Manage Bank Account</a></li>
+            <a href="#">
+            <i class="fa fa-money-check-alt"></i>
+            <span>Currency</span>
+            <i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="treeview-menu">
+            <li><a href="{{URL::to('/currency/create')}}"><i class="fa fa-angle-right"></i> Add Currency</a></li>
+                <li><a href="{{URL::to('/currency')}}"><i class="fa fa-angle-right"></i> Manage Currency</a></li>
+            </ul>
+            </li>
+            {{-- <li><a href="login.html"><i class="fa fa-university"></i> Manage Bank Account</a></li> --}}
             <li><a href="login.html"><i class="fa fa-bell"></i> Manage Reminders</a></li>
             <li class="treeview">
               <a href="#">

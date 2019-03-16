@@ -5,13 +5,12 @@
 <div class="forms">
     <div class="form-grids row widget-shadow" data-example-id="basic-forms">
         <div class="form-title">
-            <h4>Edit Currency</h4>
+            <h4>Edit BankAccount</h4>
         </div>
         <div class="form-body">
                 <div class="card">
-                    {{-- <div class="card-header">Edit Currency #{{ $currency->id }}</div>
                     <div class="card-body">
-                        <a href="{{ url('/currency') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
+                        {{-- <a href="{{ url('/bank-accounts') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
                         <br />
                         <br /> --}}
 
@@ -23,13 +22,13 @@
                             </ul>
                         @endif
 
-                        {!! Form::model($currency, [
+                        {!! Form::model($bankaccount, [
                             'method' => 'PATCH',
-                            'url' => ['/currency', $currency->id],
+                            'url' => ['/bank-accounts', $bankaccount->id],
                             'files' => true
                         ]) !!}
 
-                        @include ('currency.form', ['formMode' => 'edit'])
+                        @include ('bank-accounts.form', ['formMode' => 'edit'])
 
                         {!! Form::close() !!}
 
