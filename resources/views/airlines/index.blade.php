@@ -10,33 +10,33 @@
         <div class="form-body">
             <div class="card">
                 <div class="card-body">
-                  {{-- {!! Form::open(['method' => 'GET', 'url' => '/airlines', 'class' => 'form-inline my-2 my-lg-0 float-right', 'role' => 'search']) !!}
+                  {!! Form::open(['method' => 'GET', 'url' => '/airlines', 'class' => 'form-inline my-2 my-lg-0 float-right', 'role' => 'search']) !!}
                   <div class="row">
                     <div class="col-md-2">
                       <div class="input-group">
-                          <input type="text" class="form-control" name="name" placeholder="Name" value="{{ request('search') }}">
+                          <input type="text" class="form-control" name="search" placeholder="Name" value="{{ request('search') }}">
+                      </div>
+                    </div>
+                    {{-- <div class="col-md-2">
+                      <div class="input-group">
+                          <input type="text" class="form-control" name="search" placeholder="Email" value="{{ request('search') }}">
                       </div>
                     </div>
                     <div class="col-md-2">
                       <div class="input-group">
-                          <input type="text" class="form-control" name="email" placeholder="Email" value="{{ request('search') }}">
+                          <input type="text" class="form-control" name="search" placeholder="Phone" value="{{ request('search') }}">
                       </div>
                     </div>
                     <div class="col-md-2">
                       <div class="input-group">
-                          <input type="text" class="form-control" name="phone" placeholder="Phone" value="{{ request('search') }}">
+                          <input type="text" class="form-control" name="search" placeholder="Iata-Code" value="{{ request('search') }}">
                       </div>
                     </div>
                     <div class="col-md-2">
                       <div class="input-group">
-                          <input type="text" class="form-control" name="iata_code" placeholder="Iata-Code" value="{{ request('search') }}">
+                          <input type="text" class="form-control" name="search" placeholder="Country" value="{{ request('search') }}">
                       </div>
-                    </div>
-                    <div class="col-md-2">
-                      <div class="input-group">
-                          <input type="text" class="form-control" name="country" placeholder="Country" value="{{ request('search') }}">
-                      </div>
-                    </div>
+                    </div> --}}
                     <div class="col-md-2">
                       <span class="input-group-append">
                           <button class="btn btn-secondary" type="submit">
@@ -49,7 +49,7 @@
                   {!! Form::close() !!}
 
                     <br />
-                    <br /> --}}
+                    <br />
                     <div class="table-responsive">
                         <table class="table table-borderless">
                             <thead>

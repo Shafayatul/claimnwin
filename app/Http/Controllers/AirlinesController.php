@@ -19,9 +19,11 @@ class AirlinesController extends Controller
     public function index(Request $request)
     {
         $keyword = $request->get('search');
+
         $perPage = 25;
 
         if (!empty($keyword)) {
+            
             $airlines = Airline::where('user_id', 'LIKE', "%$keyword%")
                 ->orWhere('name', 'LIKE', "%$keyword%")
                 ->orWhere('email', 'LIKE', "%$keyword%")

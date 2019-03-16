@@ -17,26 +17,26 @@
                                 <div class="form-group mb-n">
                                 <div class="row">
 
-                                    <div class="col-md-3 grid_box1">
-                                        <label class="control-label">Name</label>
-                                        <input type="text" name="search" class="form-control1">
+                                    <div class="col-md-10 grid_box1">
+                                    <label class="control-label">Name</label>
+                                    <input type="text" name="search" class="form-control1" value="{{ request('search') }}">
                                     </div>
-                                    <div class="col-md-2 grid_box1">
+                                    {{-- <div class="col-md-2 grid_box1">
                                         <label class="control-label">Iata Code</label>
-                                        <input type="text" name="search" class="form-control1">
+                                        <input type="text" name="search" class="form-control1" value="{{ $request('search') }}">
                                     </div>
                                     <div class="col-md-2 grid_box1">
                                         <label class="control-label">3 Digit Code</label>
-                                        <input type="text" name="search" class="form-control1">
+                                        <input type="text" name="search" class="form-control1" value="{{ $request('search') }}">
                                     </div>
                                     <div class="col-md-2 grid_box1">
                                         <label class="control-label">Continents</label>
-                                        <input type="text" name="search" class="form-control1">
+                                        <input type="text" name="search" class="form-control1" value="{{ $request('search') }}">
                                     </div>
                                     <div class="col-md-2 grid_box1">
                                         <label class="control-label">Country</label>
-                                        <input type="text" name="search" class="form-control1">
-                                    </div>
+                                        <input type="text" name="search" class="form-control1" value="{{ $request('search') }}">
+                                    </div> --}}
                                     <div class="col-md-1">
                                         <label class="control-label"></label>
                                         <input type="submit" class="btn btn-success">
