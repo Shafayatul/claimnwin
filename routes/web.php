@@ -12,6 +12,11 @@
 */
 
 
+/*----FrontEnd Route----*/
+Route::get('/','WelcomeController@index');
+
+Route::get('/signup','WelcomeController@signup')->name('signup');
+
 /* ADMIN ROUTE */
 
 Route::get('/admin', 'AdminsController@index');
@@ -24,7 +29,7 @@ Route::resource('airlines', 'AirlinesController');
 
 Route::resource('airports', 'AirportsController');
 
-Route::get('/', 'AdminsController@index');
+// Route::get('/', 'AdminsController@index');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

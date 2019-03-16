@@ -41,11 +41,11 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 	<div class="main-content">
 
 		<!--side_menu starts-->
-			@include('layouts.includes.admin_sidebar')
+			@include('layouts.includes.admin.admin_sidebar')
 		<!--side_menu ends-->
 
 		<!-- header-starts -->
-			@include('layouts.includes.admin_topbar')
+			@include('layouts.includes.admin.admin_topbar')
 		<!-- //header-ends -->
 
 		<!-- main content start-->
@@ -57,7 +57,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 		<!-- main content ends-->
 
 		<!--footer-->
-			@include('layouts.includes.admin_footer')
+			@include('layouts.includes.admin.admin_footer')
     <!--//footer-->
 
 	</div>
