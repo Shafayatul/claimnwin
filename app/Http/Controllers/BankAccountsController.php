@@ -64,7 +64,7 @@ class BankAccountsController extends Controller
 
         $requestData = $request->all();
 
-        BankAccount::create($requestData+ ['user_id' => Auth::user()->id]);
+        BankAccount::create($requestData + ['user_id' => Auth::user()->id]);
 
         return redirect('bank-accounts/create')->with('success', 'BankAccount added!');
     }
