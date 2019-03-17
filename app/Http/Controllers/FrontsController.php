@@ -31,4 +31,9 @@ class FrontsController extends Controller
       return view('frontEnd.claim.flight_delay');
   }
 
+  public function flight_cancellation()
+  {
+      return view('frontEnd.claim.flight_cancellation');
+  }
+
 }
