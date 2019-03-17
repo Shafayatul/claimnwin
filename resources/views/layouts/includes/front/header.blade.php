@@ -28,11 +28,11 @@
                     <li><a href="#"><img src="{{asset('front_asset/')}}/img/flag.png" alt="Flag"></a></li>
                   </ul>
                 </li>
-            <li class="login"><a href="#">
+            <li class="login"><a href="{{ route('user/login') }}">
                     <img src="{{asset('front_asset/')}}/img/lock.png" alt="lock icon">
                     login
                 </a></li>
-            <li class="signup"><a href="{{route('signup')}}">sign up</a></li>
+            <li class="signup"><a href="{{route('user/signup')}}">sign up</a></li>
               </ul>
               <ul class="nav navbar-nav navbar-right text-uppercase main-menu">
                 <li><a href="#">faq</a></li>

@@ -11,7 +11,7 @@
 <div class="signup_login_form">
 
     <div class="omb_login">
-        <h3 class="omb_authTitle">Signup</h3>
+        <h3 class="omb_authTitle">Login</h3>
         <div class="row omb_socialButtons">
             <div class="col-xs-6 col-sm-6">
                 <a href="#" class="btn btn-lg btn-block omb_btn-facebook">
@@ -40,27 +40,12 @@
                 <div class="col-xs-12 col-sm-12">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fas fa-user"></i></span>
-                        <input type="text" class="form-control" name="username" placeholder="Name">
-                    </div>
-                    <span class="help-block"></span>
-                    <div class="input-group">
-                        <span class="input-group-addon"><i class="fas fa-user"></i></span>
                         <input type="text" class="form-control" name="username" placeholder="Email address">
                     </div>
                     <span class="help-block"></span>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-xs-12 col-sm-12">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-lock"></i></span>
                         <input type="password" class="form-control" name="password" placeholder="Password">
-                    </div>
-                    <span class="help-block"></span>
-                    <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                        <input type="password" class="form-control" name="password" placeholder="Confirm Password">
                     </div>
                     <span class="help-block"></span>
                 </div>

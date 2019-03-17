@@ -15,7 +15,8 @@
 /*----FrontEnd Route----*/
 Route::get('/','WelcomeController@index');
 
-Route::get('/signup','WelcomeController@signup')->name('signup');
+Route::get('user/signup','WelcomeController@user_signup')->name('user/signup');
+Route::get('/user/login','WelcomeController@user_login')->name('user/login');
 
 /* ADMIN ROUTE */
 
