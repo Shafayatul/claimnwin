@@ -15,4 +15,10 @@ class FrontsController extends Controller
   {
       return view('frontEnd.login');
   }
+
+  public function claim()
+  {
+      return view('frontEnd.claim');
+  }
+
 }

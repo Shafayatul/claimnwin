@@ -18,7 +18,8 @@ Route::get('/','WelcomeController@index');
 Route::get('user/signup','FrontsController@user_signup')->name('user/signup');
 Route::get('/user/login','FrontsController@user_login')->name('user/login');
 
-
+// claim
+Route::get('/claim','FrontsController@claim')->name('claim');
 
 /* ADMIN ROUTE */
 
