@@ -67,7 +67,7 @@
             </div>
             <div class="row text-center">
               <div class="col-xs-12 col-sm-12">
-                  <button class="btn btn-lg btn-primary" type="submit">Login</button>
+                  <button class="btn btn-lg btn-primary" type="submit">Signup</button>
               </div>
             </div>
 
