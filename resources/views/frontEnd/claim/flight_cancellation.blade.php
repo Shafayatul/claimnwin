@@ -1310,8 +1310,8 @@
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
 
   <!-- <script src="js/section.js"></script> -->
-  <script src="{{('front_asset/claim/flight_delay/js/custom.js')}}"></script>
-  <script src="{{('front_asset/claim/flight_delay/js/select.js')}}"></script>
+  <script src="{{('front_asset/claim/flight_cancellation/js/custom.js')}}"></script>
+  <script src="{{('front_asset/claim/flight_cancellation/js/select.js')}}"></script>
 
   <script>
    $(document).ready(function(){

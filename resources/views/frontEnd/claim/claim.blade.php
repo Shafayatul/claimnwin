@@ -51,7 +51,7 @@
       </div>
       <div class="row">
         <div class="col-md-4 text-center">
-          <a href="#">
+          <a href="{{ route('delay-luggage') }}">
             <div class="claim_child_div_wrapper">
               <div class="claim_child_div">
                 <div class="svg_icon_claim">
