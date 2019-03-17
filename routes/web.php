@@ -21,6 +21,7 @@ Route::get('/user/login','FrontsController@user_login')->name('user/login');
 // claim
 Route::get('/claim','FrontsController@claim')->name('claim');
 Route::get('/missed-connection','FrontsController@missed_connection')->name('missed-connection');
+Route::get('/flight-delay','FrontsController@flight_delay')->name('flight-delay');
 
 /* ADMIN ROUTE */
 

@@ -26,4 +26,9 @@ class FrontsController extends Controller
       return view('frontEnd.claim.missed_connection');
   }
 
+  public function flight_delay()
+  {
+      return view('frontEnd.claim.flight_delay');
+  }
+
 }
