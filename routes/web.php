@@ -15,8 +15,10 @@
 /*----FrontEnd Route----*/
 Route::get('/','WelcomeController@index');
 
-Route::get('user/signup','WelcomeController@user_signup')->name('user/signup');
-Route::get('/user/login','WelcomeController@user_login')->name('user/login');
+Route::get('user/signup','FrontsController@user_signup')->name('user/signup');
+Route::get('/user/login','FrontsController@user_login')->name('user/login');
+
+
 
 /* ADMIN ROUTE */
 
@@ -31,9 +33,6 @@ Route::resource('airlines', 'AirlinesController');
 Route::resource('airports', 'AirportsController');
 
 // Route::get('/', 'AdminsController@index');
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('currency', 'CurrencyController');
 Route::resource('bank-accounts', 'BankAccountsController');
