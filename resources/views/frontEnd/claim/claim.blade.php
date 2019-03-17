@@ -65,7 +65,7 @@
           </a>
         </div>
         <div class="col-md-4 text-center">
-          <a href="#">
+          <a href="{{ route('lost-luggage') }}">
             <div class="claim_child_div">
               <div class="svg_icon_claim">
                 <svg id="icon-luggage" viewBox="0 0 32 32" width="40%" height="40%">
