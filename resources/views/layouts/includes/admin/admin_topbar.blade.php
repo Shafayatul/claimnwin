@@ -190,7 +190,12 @@
             <li> <a href="#"><i class="fa fa-cog"></i> Settings</a> </li>
             <li> <a href="#"><i class="fa fa-user"></i> My Account</a> </li>
             <li> <a href="#"><i class="fa fa-suitcase"></i> Profile</a> </li>
-            <li> <a href="#"><i class="fa fa-sign-out-alt"></i> Logout</a> </li>
+            <li>
+                <a href="{{ route('logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-sign-out-alt"></i> Logout</a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
+            </li>
           </ul>
         </li>
       </ul>

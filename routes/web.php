@@ -18,6 +18,8 @@ Route::get('/','WelcomeController@index');
 Route::get('user/signup','FrontsController@user_signup')->name('user/signup');
 Route::get('/user/login','FrontsController@user_login')->name('user/login');
 
+Route::get('/user-home','UserPanelController@index');
+
 
 
 /* ADMIN ROUTE */
@@ -38,3 +40,6 @@ Route::resource('currency', 'CurrencyController');
 Route::resource('bank-accounts', 'BankAccountsController');
 
 Route::resource('reminders', 'RemindersController');
+
+Route::get('socialauth/{provider}','SocialAuthController@redirectToProvider');
+Route::get('socialauth/{provider}/callback','SocialAuthController@handleProviderCallback');
