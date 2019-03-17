@@ -40,9 +40,15 @@ class FrontsController extends Controller
   {
       return view('frontEnd.claim.delay_luggage');
   }
+
   public function lost_luggage()
   {
       return view('frontEnd.claim.lost_luggage');
+  }
+
+  public function denied_boarding()
+  {
+      return view('frontEnd.claim.denied_boarding');
   }
 
 }

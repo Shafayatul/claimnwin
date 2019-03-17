@@ -25,6 +25,7 @@ Route::get('/flight-delay','FrontsController@flight_delay')->name('flight-delay'
 Route::get('/flight-cancellation','FrontsController@flight_cancellation')->name('flight-cancellation');
 Route::get('/delay-luggage','FrontsController@delay_luggage')->name('delay-luggage');
 Route::get('/lost-luggage','FrontsController@lost_luggage')->name('lost-luggage');
+Route::get('/denied-boarding','FrontsController@denied_boarding')->name('denied-boarding');
 
 /* ADMIN ROUTE */
 
