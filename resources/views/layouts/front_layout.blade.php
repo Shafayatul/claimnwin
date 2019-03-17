@@ -5,7 +5,7 @@
         <title>Claim'n Win</title>
         <link rel="shortcut icon" href="img/favicon.png">
         @include('layouts.includes.front.all-css')
-
+        @yield('header-script')
 
   </head>
 
@@ -17,9 +17,11 @@
 		@yield('content')
 
 		@include('layouts.includes.front.footer')
+
 	</div>
 	<!-- page-wrapper end -->
 	@include('layouts.includes.front.all-js')
+  @yield('footer-script')
     </body>
 
 </html>

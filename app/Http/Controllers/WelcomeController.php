@@ -10,9 +10,4 @@ class WelcomeController extends Controller
     {
         return view('layouts.home.home');
     }
-
-    public function signup()
-    {
-        return view('frontEnd.signup');
-    }
 }

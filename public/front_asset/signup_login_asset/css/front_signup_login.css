@@ -1,0 +1,109 @@
+.signup_login_form
+{
+  width: 75%;
+  padding: 3% 15%;
+  margin: 50px auto;
+  border: 1px solid #cecece;
+  -webkit-box-shadow: 0 8px 6px -6px black;
+	   -moz-box-shadow: 0 8px 6px -6px black;
+	        box-shadow: 4px 8px 16px -9px black;
+
+}
+
+.omb_forgotPwd
+{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+@media (min-width: 768px) {
+    .omb_row-sm-offset-3 div:first-child[class*="col-"] {
+        margin-left: 25%;
+    }
+}
+
+.omb_login .omb_authTitle {
+    text-align: center;
+	line-height: 300%;
+}
+
+.omb_login .omb_socialButtons a {
+	color: white; // In yourUse @body-bg
+	opacity:0.9;
+}
+.omb_login .omb_socialButtons a:hover {
+    color: white;
+	opacity:1;
+}
+.omb_login .omb_socialButtons .omb_btn-facebook {background: #3b5998;}
+.omb_login .omb_socialButtons .omb_btn-twitter {background: #00aced;}
+.omb_login .omb_socialButtons .omb_btn-google {background: #c32f10;}
+
+
+.omb_login .omb_loginOr {
+	position: relative;
+	font-size: 1.5em;
+	color: #aaa;
+	margin-top: 1em;
+	margin-bottom: 1em;
+	padding-top: 0.5em;
+	padding-bottom: 0.5em;
+}
+.omb_login .omb_loginOr .omb_hrOr {
+	background-color: #cdcdcd;
+	height: 1px;
+	margin-top: 0px !important;
+	margin-bottom: 0px !important;
+}
+.omb_login .omb_loginOr .omb_spanOr {
+	display: block;
+	position: absolute;
+	left: 50%;
+	top: -0.6em;
+	margin-left: -1.5em;
+	background-color: white;
+	width: 3em;
+	text-align: center;
+}
+
+.omb_login .omb_loginForm .input-group.i {
+	width: 2em;
+}
+.omb_login .omb_loginForm  .help-block {
+    color: red;
+}
+
+@media only screen and (max-width: 400px) {
+  .omb_forgotPwd a{
+    font-size: 10px;
+  }
+  .remember_me_media{
+    font-size: 10px;
+  }
+
+  .signup_login_form
+  {
+    width: 95%;
+    padding: 2% 10%;
+  }
+}
+
+@media (min-width: 401px) and (max-width: 767px) {
+
+  .signup_login_form
+  {
+    width: 90%;
+    padding: 2% 10%;
+  }
+
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+
+  .signup_login_form
+  {
+    width: 85%;
+    padding: 2% 15%;
+  }
+
+}
