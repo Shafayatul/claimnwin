@@ -15,4 +15,5 @@ class FrontsController extends Controller
   {
       return view('frontEnd.login');
   }
+
 }

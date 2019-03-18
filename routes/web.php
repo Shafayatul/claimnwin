@@ -21,6 +21,14 @@ Route::get('/user/login','FrontsController@user_login')->name('user/login');
 Route::get('/user-home','UserPanelController@index');
 
 
+// claim
+Route::get('/claim','ClaimsController@claim')->name('claim');
+Route::get('/missed-connection','ClaimsController@missed_connection')->name('missed-connection');
+Route::get('/flight-delay','ClaimsController@flight_delay')->name('flight-delay');
+Route::get('/flight-cancellation','ClaimsController@flight_cancellation')->name('flight-cancellation');
+Route::get('/delay-luggage','ClaimsController@delay_luggage')->name('delay-luggage');
+Route::get('/lost-luggage','ClaimsController@lost_luggage')->name('lost-luggage');
+Route::get('/denied-boarding','ClaimsController@denied_boarding')->name('denied-boarding');
 
 /* ADMIN ROUTE */
 
