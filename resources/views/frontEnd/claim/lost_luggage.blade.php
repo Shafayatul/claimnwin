@@ -11,6 +11,9 @@
 
 @section('content')
   <div class="wrapper">
+    <div class="form_h2">
+      <h2 class="text-center">Lost Luggage</h2>
+    </div>
       <form action="">
         <!-- .................................STEP 1 STARTS............................. -->
         <div class="single_step" id="step_1">
@@ -80,7 +83,7 @@
           </div>
 
 
-          <div class="common_row">
+          {{-- <div class="common_row">
             <div class="parent_div">
               <div class="total_info_div">
                 <div class="no_risk_child_div info_icon">
@@ -91,7 +94,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> --}}
 
 
           <div class="parent_div">
@@ -554,15 +557,15 @@
                   </thead>
                   <tbody>
                     <tr>
-                      <td class="align-baseline">Clothing</td>
-                      <td>
+                      <td class="align-middle">Clothing</td>
+                      <td class="align-middle">
                         <div class="row">
                           <div class="col-md-6">
                             <input type="text" class="common_input price_input" id="common_input price_input" placeholder="1234">
                           </div>
                           <div class="col-md-6">
                             <div class="select_reason_class">
-                              <select class="custom-select">
+                              <select class="form-control custom_select">
                                 <option selected>Open this select menu</option>
                                 <option value="1">One</option>
                                 <option value="2">Two</option>
@@ -572,7 +575,7 @@
                           </div>
                         </div>
                       </td>
-                      <td>
+                      <td class="align-middle">
                         <div class="input-group yes_no_center">
                           <div id="radioBtn" class="btn-group">
                             <a class="btn btn-primary btn-sm active" data-toggle="accommodation_radio" data-title="Y">YES</a>
@@ -591,7 +594,7 @@
                           </div>
                           <div class="col-md-6">
                             <div class="select_reason_class">
-                              <select class="custom-select">
+                              <select class="form-control custom_select">
                                 <option selected>Open this select menu</option>
                                 <option value="1">One</option>
                                 <option value="2">Two</option>
@@ -620,7 +623,7 @@
                           </div>
                           <div class="col-md-6">
                             <div class="select_reason_class">
-                              <select class="custom-select">
+                              <select class="form-control custom_select">
                                 <option selected>Open this select menu</option>
                                 <option value="1">One</option>
                                 <option value="2">Two</option>
@@ -641,12 +644,15 @@
                       </td>
                     </tr>
                     <tr>
-                      <td colspan="2">Total Claim:</td>
+                      <td>Total Claim:</td>
                       <td>
                         <div class="row">
-                          <div class="col-md-12">
+                          <div class="col-md-6" >
+                            <input type="text" class="common_input price_input" id="common_input price_input" placeholder="1234">
+                          </div>
+                          <div class="col-md-6">
                             <div class="select_reason_class">
-                              <select class="custom-select">
+                              <select class="form-control custom_select">
                                 <option selected>Open this select menu</option>
                                 <option value="1">One</option>
                                 <option value="2">Two</option>
@@ -656,6 +662,7 @@
                           </div>
                         </div>
                       </td>
+                      <td></td>
                     </tr>
                   </tbody>
                 </table>
@@ -672,135 +679,190 @@
             <div class="parent_div">
               <div class="table_field">
                 <table class="table text-center">
-                  <thead>
-                    <tr>
-                      <th scope="col">Expense</th>
-                      <th scope="col">Amount</th>
-                      <th scope="col">Receipt</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td class="align-baseline">Clothing</td>
-                      <td>
-                        <div class="row">
-                          <div class="col-md-6">
-                            <input type="text" class="common_input price_input" id="common_input price_input" placeholder="1234">
-                          </div>
-                          <div class="col-md-6">
-                            <div class="select_reason_class">
-                              <select class="custom-select">
-                                <option selected>Open this select menu</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                              </select>
-                            </div>
+                  <tr>
+                    <th scope="col">Expense</th>
+                    <td class="align-baseline">Accommodation</td>
+                  </tr>
+                  <tr>
+                    <th scope="col">Amount</th>
+                    <td>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <input type="text" class="common_input price_input" id="common_input price_input" placeholder="1234">
+                        </div>
+                        <div class="col-md-6">
+                          <div class="select_reason_class">
+                            <select class="form-control custom_select">
+                              <option selected>Open this select menu</option>
+                              <option value="1">One</option>
+                              <option value="2">Two</option>
+                              <option value="3">Three</option>
+                            </select>
                           </div>
                         </div>
-                      </td>
-                      <td>
-                        <div class="input-group yes_no_center">
-                          <div id="radioBtn" class="btn-group">
-                            <a class="btn btn-primary btn-sm active" data-toggle="accommodation_radio" data-title="Y">YES</a>
-                            <a class="btn btn-primary btn-sm notActive" data-toggle="accommodation_radio" data-title="N">NO</a>
-                          </div>
-                          <input type="hidden" name="happy" id="happy">
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="bootstrap_table_tr_lower_thin_border">
+                    <th scope="col">Receipt</th>
+                    <td>
+                      <div class="input-group yes_no_center">
+                        <div id="radioBtn" class="btn-group">
+                          <a class="btn btn-primary btn-sm active" data-toggle="happy" data-title="Y">YES</a>
+                          <a class="btn btn-primary btn-sm notActive" data-toggle="happy" data-title="N">NO</a>
                         </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="align-baseline">Toiletries</td>
-                      <td>
-                        <div class="row">
-                          <div class="col-md-6">
-                            <input type="text" class="common_input price_input" id="common_input price_input" placeholder="1234">
-                          </div>
-                          <div class="col-md-6">
-                            <div class="select_reason_class">
-                              <select class="custom-select">
-                                <option selected>Open this select menu</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                              </select>
-                            </div>
-                          </div>
+                        <input type="hidden" name="happy" id="happy">
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="col">Expense</th>
+                    <td class="align-baseline">Transportation</td>
+                  </tr>
+                  <tr>
+                    <th scope="col">Amount</th>
+                    <td>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <input type="text" class="common_input price_input" id="common_input price_input" placeholder="1234">
                         </div>
-                      </td>
-                      <td>
-                        <div class="input-group yes_no_center">
-                          <div id="radioBtn" class="btn-group">
-                            <a class="btn btn-primary btn-sm active" data-toggle="transportation_radio" data-title="Y">YES</a>
-                            <a class="btn btn-primary btn-sm notActive" data-toggle="transportation_radio" data-title="N">NO</a>
-                          </div>
-                          <input type="hidden" name="happy" id="happy">
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="align-baseline">Other</td>
-                      <td>
-                        <div class="row">
-                          <div class="col-md-6">
-                            <input type="text" class="common_input price_input" id="common_input price_input" placeholder="1234">
-                          </div>
-                          <div class="col-md-6">
-                            <div class="select_reason_class">
-                              <select class="custom-select">
-                                <option selected>Open this select menu</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                              </select>
-                            </div>
+                        <div class="col-md-6">
+                          <div class="select_reason_class">
+                            <select class="form-control custom_select">
+                              <option selected>Open this select menu</option>
+                              <option value="1">One</option>
+                              <option value="2">Two</option>
+                              <option value="3">Three</option>
+                            </select>
                           </div>
                         </div>
-                      </td>
-                      <td>
-                        <div class="input-group yes_no_center">
-                          <div id="radioBtn" class="btn-group">
-                            <a class="btn btn-primary btn-sm active" data-toggle="food_radio" data-title="Y">YES</a>
-                            <a class="btn btn-primary btn-sm notActive" data-toggle="food_radio" data-title="N">NO</a>
-                          </div>
-                          <input type="hidden" name="happy" id="happy">
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="bootstrap_table_tr_lower_thin_border">
+                    <th scope="col">Receipt</th>
+                    <td>
+                      <div class="input-group yes_no_center">
+                        <div id="radioBtn" class="btn-group">
+                          <a class="btn btn-primary btn-sm active" data-toggle="happy" data-title="Y">YES</a>
+                          <a class="btn btn-primary btn-sm notActive" data-toggle="happy" data-title="N">NO</a>
                         </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td colspan="2">Total Claim:</td>
-                      <td>
-                        <div class="row">
-                          <div class="col-md-12">
-                            <div class="select_reason_class">
-                              <select class="custom-select">
-                                <option selected>Open this select menu</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                              </select>
-                            </div>
+                        <input type="hidden" name="happy" id="happy">
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="col">Expense</th>
+                    <td class="align-baseline">Food</td>
+                  </tr>
+                  <tr>
+                    <th scope="col">Amount</th>
+                    <td>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <input type="text" class="common_input price_input" id="common_input price_input" placeholder="1234">
+                        </div>
+                        <div class="col-md-6">
+                          <div class="select_reason_class">
+                            <select class="form-control custom_select">
+                              <option selected>Open this select menu</option>
+                              <option value="1">One</option>
+                              <option value="2">Two</option>
+                              <option value="3">Three</option>
+                            </select>
                           </div>
                         </div>
-                      </td>
-                    </tr>
-                  </tbody>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="bootstrap_table_tr_lower_thin_border">
+                    <th scope="col">Receipt</th>
+                    <td>
+                      <div class="input-group yes_no_center">
+                        <div id="radioBtn" class="btn-group">
+                          <a class="btn btn-primary btn-sm active" data-toggle="happy" data-title="Y">YES</a>
+                          <a class="btn btn-primary btn-sm notActive" data-toggle="happy" data-title="N">NO</a>
+                        </div>
+                        <input type="hidden" name="happy" id="happy">
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="col">Expense</th>
+                    <td class="align-baseline">Others</td>
+                  </tr>
+                  <tr>
+                    <th scope="col">Amount</th>
+                    <td>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <input type="text" class="common_input price_input" id="common_input price_input" placeholder="1234">
+                        </div>
+                        <div class="col-md-6">
+                          <div class="select_reason_class">
+                            <select class="form-control custom_select">
+                              <option selected>Open this select menu</option>
+                              <option value="1">One</option>
+                              <option value="2">Two</option>
+                              <option value="3">Three</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="bootstrap_table_tr_lower_thin_border">
+                    <th scope="col">Receipt</th>
+                    <td>
+                      <div class="input-group yes_no_center">
+                        <div id="radioBtn" class="btn-group">
+                          <a class="btn btn-primary btn-sm active" data-toggle="happy" data-title="Y">YES</a>
+                          <a class="btn btn-primary btn-sm notActive" data-toggle="happy" data-title="N">NO</a>
+                        </div>
+                        <input type="hidden" name="happy" id="happy">
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Total Claim:</td>
+                    <td colspan="2">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <input type="text" class="common_input price_input" id="common_input price_input" placeholder="1234">
+                        </div>
+                        <div class="col-md-6">
+                          <div class="select_reason_class">
+                            <select class="form-control custom_select">
+                              <option selected>Open this select menu</option>
+                              <option value="1">One</option>
+                              <option value="2">Two</option>
+                              <option value="3">Three</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
                 </table>
               </div>
             </div>
           </div>
 
-
           <div class="common_row">
             <div class="form_h3">
               <h3>Sign permission to handle claim</h3>
             </div>
-            <div class="parent_div">
+            <div class="form-check">
+              <label>
+                <input type="checkbox" name="check" checked> <span class="label-text">Write your signature below as it appears on your ID. It's required by airlines to collect the compensation for you. By signing you agree with the Assignment Form and Price List</span>
+              </label>
+            </div>
+            {{-- <div class="parent_div">
               <div class="custom-control custom-checkbox">
                 <input type="checkbox" class="custom-control-input" id="customCheck1">
                 <label class="custom-control-label" for="customCheck1">Write your signature below as it appears on your ID. It's required by airlines to collect the compensation for you. By signing you agree with the Assignment Form and Price List</label>
               </div>
-            </div>
+            </div> --}}
           </div>
 
           <div class="common_row">
@@ -824,7 +886,7 @@
         .................................................................... -->
 
           <!-- ...................................................................
-                                  STEP 8 ENDSSTEP 9 STARTS
+                                  STEP 9 STARTS
         .................................................................... -->
 
         <div class="single_step" id="step_7" style="display:none;">
@@ -836,7 +898,7 @@
               <h4>If we gather more information, we can handle your claim faster.</h4>
             </div>
             <div class="select_reason_class">
-              <select class="custom-select">
+              <select class="form-control custom_select">
                 <option selected>Open this select menu</option>
                 <option value="1">Google</option>
                 <option value="2">Friends</option>
