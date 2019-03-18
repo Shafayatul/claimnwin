@@ -11,6 +11,9 @@
 
 @section('content')
   <div class="wrapper">
+    <div class="form_h2">
+      <h2 class="text-center">Flight Delay</h2>
+    </div>
       <form action="">
         <!-- .................................STEP 1 STARTS............................. -->
         <div class="single_step" id="step_1">
@@ -80,7 +83,7 @@
           </div>
 
 
-          <div class="common_row">
+          {{-- <div class="common_row">
             <div class="parent_div">
               <div class="total_info_div">
                 <div class="no_risk_child_div info_icon">
@@ -91,7 +94,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> --}}
 
 
           <div class="common_row">
@@ -167,7 +170,7 @@
             </div>
             <div class="parent_div">
               <div class="airline_reason_select_div">
-                <select class="custom-select">
+                <select class="form-control custom_select">
                   <option selected>Please select</option>
                   <option value="1">One</option>
                   <option value="2">Two</option>
@@ -316,7 +319,7 @@
             </div>
           </div>
 
-          <div class="common_row">
+          {{-- <div class="common_row">
             <div class="parent_div">
               <div class="total_info_div">
                 <div class="no_risk_child_div info_icon">
@@ -327,7 +330,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> --}}
 
 
 
@@ -406,7 +409,7 @@
                 </div>
                 <div class="child_price_currency_div">
                   <div class="select_reason_class">
-                    <select class="custom-select">
+                    <select class="form-control custom_select">
                       <option selected>Currency</option>
                       <option value="1">EUR</option>
                       <option value="2">USD</option>
@@ -449,7 +452,7 @@
                 </div>
                 <div class="child_price_currency_div">
                   <div class="select_reason_class">
-                    <select class="custom-select">
+                    <select class="form-control custom_select">
                       <option selected>Currency</option>
                       <option value="1">EUR</option>
                       <option value="2">USD</option>
@@ -469,19 +472,19 @@
                 </div>
               </div>
               <div class="parent_div">
-                <div class="child_accommodation">
+                <div class="child_accommodation child_accommodation_first_div">
                   <label class="container_radio label_child_accommodation">I did not spend anything
                     <input type="radio" class="common_input" id="common_input input_accomodation_not_spend" name="input_accomodation" value="1">
                     <span class="checkmark"></span>
                   </label>
                 </div>
-                <div class="child_accommodation">
+                <div class="child_accommodation child_accommodation_second_div">
                   <label class="container_radio label_child_accommodation">I had expenses but I have not kept the invoices
                     <input type="radio" class="common_input" id="common_input input_accomodation_no_invoice" name="input_accomodation" value="2">
                     <span class="checkmark"></span>
                   </label>
                 </div>
-                <div class="child_accommodation">
+                <div class="child_accommodation child_accommodation_third_div">
                   <label class="container_radio label_child_accommodation">I had expenses and kept the invoices
                     <input type="radio" class="common_input" id="common_input input_accomodation_has_invoice" name="input_accomodation" value="3">
                     <span class="checkmark"></span>
@@ -516,7 +519,7 @@
                             </div>
                             <div class="col-md-6">
                               <div class="select_reason_class">
-                                <select class="custom-select">
+                                <select class="form-control custom_select">
                                   <option selected>Open this select menu</option>
                                   <option value="1">One</option>
                                   <option value="2">Two</option>
@@ -545,7 +548,7 @@
                             </div>
                             <div class="col-md-6">
                               <div class="select_reason_class">
-                                <select class="custom-select">
+                                <select class="form-control custom_select">
                                   <option selected>Open this select menu</option>
                                   <option value="1">One</option>
                                   <option value="2">Two</option>
@@ -574,7 +577,7 @@
                             </div>
                             <div class="col-md-6">
                               <div class="select_reason_class">
-                                <select class="custom-select">
+                                <select class="form-control custom_select">
                                   <option selected>Open this select menu</option>
                                   <option value="1">One</option>
                                   <option value="2">Two</option>
@@ -603,7 +606,7 @@
                             </div>
                             <div class="col-md-6">
                               <div class="select_reason_class">
-                                <select class="custom-select">
+                                <select class="form-control custom_select">
                                   <option selected>Open this select menu</option>
                                   <option value="1">One</option>
                                   <option value="2">Two</option>
@@ -651,7 +654,7 @@
                           </div>
                           <div class="col-md-6">
                             <div class="select_reason_class">
-                              <select class="custom-select">
+                              <select class="form-control custom_select">
                                 <option selected>Open this select menu</option>
                                 <option value="1">One</option>
                                 <option value="2">Two</option>
@@ -687,7 +690,7 @@
                           </div>
                           <div class="col-md-6">
                             <div class="select_reason_class">
-                              <select class="custom-select">
+                              <select class="form-control custom_select">
                                 <option selected>Open this select menu</option>
                                 <option value="1">One</option>
                                 <option value="2">Two</option>
@@ -723,7 +726,7 @@
                           </div>
                           <div class="col-md-6">
                             <div class="select_reason_class">
-                              <select class="custom-select">
+                              <select class="form-control custom_select">
                                 <option selected>Open this select menu</option>
                                 <option value="1">One</option>
                                 <option value="2">Two</option>
@@ -759,7 +762,7 @@
                           </div>
                           <div class="col-md-6">
                             <div class="select_reason_class">
-                              <select class="custom-select">
+                              <select class="form-control custom_select">
                                 <option selected>Open this select menu</option>
                                 <option value="1">One</option>
                                 <option value="2">Two</option>
@@ -1109,10 +1112,15 @@
               <h3>Sign permission to handle claim</h3>
             </div>
             <div class="parent_div">
-              <div class="custom-control custom-checkbox">
+              <div class="form-check">
+      					<label>
+      						<input type="checkbox" name="check" checked> <span class="label-text">Write your signature below as it appears on your ID. It's required by airlines to collect the compensation for you. By signing you agree with the Assignment Form and Price List</span>
+      					</label>
+      				</div>
+              {{-- <div class="custom-control custom-checkbox">
                 <input type="checkbox" class="custom-control-input" id="customCheck1">
                 <label class="custom-control-label" for="customCheck1">Write your signature below as it appears on your ID. It's required by airlines to collect the compensation for you. By signing you agree with the Assignment Form and Price List</label>
-              </div>
+              </div> --}}
             </div>
           </div>
 
@@ -1149,7 +1157,7 @@
               <h4>If we gather more information, we can handle your claim faster.</h4>
             </div>
             <div class="select_reason_class">
-              <select class="custom-select">
+              <select class="form-control custom_select">
                 <option selected>Open this select menu</option>
                 <option value="1">Google</option>
                 <option value="2">Friends</option>

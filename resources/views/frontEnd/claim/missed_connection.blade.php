@@ -384,7 +384,7 @@
             </div>
           </div>
 
-          <div class="common_row">
+          {{-- <div class="common_row">
             <div class="parent_div">
               <div class="total_info_div">
                 <div class="no_risk_child_div info_icon">
@@ -395,7 +395,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> --}}
 
           <div class="common_row">
             <div class="total_button_div">

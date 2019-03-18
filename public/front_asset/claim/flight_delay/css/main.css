@@ -147,13 +147,23 @@ label
   margin-bottom: 20px;
   padding: 10px 0px;
 }
+.form_h2 h2
+{
+  color: #536273;
+  padding: 0px;
+  margin: 0 0 8px;
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 32px;
+  padding-bottom: 30px;
+}
 .form_h3 h3
 {
   color: #536273;
   padding: 0px;
   margin: 0 0 8px;
   font-size: 24px;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 32px;
   padding-bottom: 10px;
 }
@@ -423,6 +433,28 @@ label
 {
   font-size: 12px;
 }
+.child_accommodation_first_div
+{
+  width: 25%;
+  float: left;
+}
+.child_accommodation_second_div
+{
+  width: 40%;
+  float: left;
+}
+.child_accommodation_third_div
+{
+  width: 35%;
+  float: left;
+}
+.custom_select
+{
+  border-radius: 0px;
+  padding: 10px;
+  height: auto;
+}
+
 .total_delay_flight
 {
   font-size: 16px;
@@ -882,7 +914,7 @@ label
     width: 100%;
     margin-top: 20px;
   }
-  .child_accommodation
+  .ommodation
   {
     width: 100%;
     border: 1px solid #DAE2EB;
@@ -1126,6 +1158,204 @@ label
     .table_show_on_small_screen
     {
       display: block;
+    }
+
+  }
+
+  /* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 768 TO 1024 XXXXXXXXXXXXXXXXXXXXXXXXXXXX*/
+
+  @media (min-width: 1025px) and (max-width: 1195px) {
+
+    .common_row
+    {
+      margin-bottom: 12px;
+      padding: 7px 0px;
+    }
+    .common_input
+    {
+      height: 40px;
+    }
+    .form_h3 h3
+    {
+      font-size: 21px;
+      padding-bottom: 5px;
+    }
+    .form_h4 h4
+    {
+      font-size: 16px;
+    }
+    .two_child_div_left
+    {
+      width: 49%;
+      display: block;
+    }
+    .two_child_div_right
+    {
+      width: 49%;
+      display: block;
+    }
+    .two_child_radio_div
+    {
+      padding: 8px;
+    }
+
+    .child_div input
+    {
+      width: 86%;
+    }
+    .checkmark
+    {
+      top: 3px;
+      left: 5px;
+      height: 20px;
+      width: 20px;
+    }
+    .container_radio .checkmark:after
+    {
+      top: 6px;
+      left: 6px;
+    }
+    .add_connection
+    {
+      margin-top: 10px;
+      margin-bottom: 0px;
+      padding: 0 10px;
+    }
+    /* .add_connection i
+    {
+      font-size: 15px;
+      padding-top: 5px;
+      padding-bottom: 5px;
+    } */
+    .remove_property, .remove_reference, .remove_other_reference
+    {
+      margin-top: 0px !important;
+      margin-bottom: 10px;
+    }
+    .remove_property i, .remove_reference i, .remove_other_reference i
+    {
+      font-size: 18px;
+      padding-top: 11px;
+      padding-bottom: 10px;
+    }
+    .info_icon
+    {
+      width: 15%;
+      padding-top: 2px;
+    }
+    .info_icon i
+    {
+      font-size: 20px;
+    }
+    .info_text
+    {
+      width: 85%;
+      font-size: 15px;
+      padding-left: 5px;
+      padding-top: 0px
+    }
+    .single_button_child_div
+    {
+      width: 50%;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .continue_button
+    {
+      font-size: 17px;
+      padding: 15px 19px;
+      min-height: 45px;
+    }
+    .fa-plane
+    {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+    .airports_involved
+    {
+      width: 100%;
+      border: 1px solid #DAE2EB;
+      border-top: none;
+      padding: 10px;
+    }
+
+    .airports_involved:first-child
+    {
+      border-top: 1px solid #DAE2EB;
+    }
+    .single_child_radio_div
+    {
+      padding: 10px;
+    }
+    .container_radio
+    {
+      font-size: 14px;
+    }
+    .total_delay_flight, .total_delay_flight_2
+    {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #DAE2EB;
+      border-top: none;
+    }
+    .total_delay_flight:first-child, .total_delay_flight_2:first-child
+    {
+      border-top: 1px solid #DAE2EB;
+    }
+    .select_reason
+    {
+      width: 100%;
+    }
+    .airline_reason_select_div
+    {
+      width: 50%;
+    }
+    .total_button_div
+    {
+      width: 100%;
+    }
+    .two_button_child_div_right
+    {
+      text-align: right;
+    }
+    .previous_button
+    {
+      font-size: 17px;
+      padding: 15px 19px;
+      min-height: 45px;
+    }
+    .left_div
+    {
+      width: 100%;
+    }
+    .right_div
+    {
+      width: 100%;
+      margin-top: 20px;
+    }
+    .child_accommodation
+    {
+      width: 100%;
+      border: 1px solid #DAE2EB;
+      border-top: none;
+      padding: 10px;
+    }
+    .child_accommodation:first-child
+    {
+      border: 1px solid #DAE2EB;
+    }
+    .email_div
+    {
+      width: 100%;
+    }
+    .price_currency_div
+    {
+      width: 100%;
+    }
+    .select_currency_class
+    {
+      height: 40px;
+      padding: 0px 16px;
     }
 
   }
