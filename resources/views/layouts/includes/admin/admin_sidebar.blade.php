@@ -59,6 +59,18 @@
                 <li><a href="{{URL::to('/currency')}}"><i class="fa fa-angle-right"></i> Manage Currency</a></li>
             </ul>
             </li>
+
+            <li class="treeview">
+            <a href="#">
+            <i class="fa fa-money-check-alt"></i>
+            <span>Role</span>
+            <i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="treeview-menu">
+            <li><a href="{{url('/admin/role/create')}}"><i class="fa fa-angle-right"></i> Add Role</a></li>
+            <li><a href="{{url('/admin/role')}}"><i class="fa fa-angle-right"></i> Role List</a></li>
+            </ul>
+            </li>
             {{-- <li><a href="login.html"><i class="fa fa-university"></i> Manage Bank Account</a></li> --}}
             <li><a href="login.html"><i class="fa fa-bell"></i> Manage Reminders</a></li>
             <li class="treeview">
@@ -68,8 +80,7 @@
               <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="grids.html"><i class="fa fa-angle-right"></i> Manager Users</a></li>
-                <li><a href="media.html"><i class="fa fa-angle-right"></i> Manage Pending Users</a></li>
+              <li><a href="{{route('role.assign')}}"><i class="fa fa-angle-right"></i>User List</a></li>
               </ul>
             </li>
             <li><a href="login.html"><i class="fa fa-pie-chart"></i> Manage Affiliation Report</a></li>

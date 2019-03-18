@@ -46,8 +46,18 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 					<div class="login-body">
 						<form action="{{url('/login')}}" method="post">
 							{{ csrf_field() }}
-							<input type="email" class="user" name="email" placeholder="Enter Your Email" required="">
-							<input type="password" name="password" class="lock" placeholder="Password" required="">
+                            <input type="email" class="user{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" placeholder="Enter Your Email" required="">
+                            @if ($errors->has('email'))
+                            <span class="invalid-feedback" role="alert">
+                                <strong style="color: red;">{{ $errors->first('email') }}</strong>
+                            </span>
+                            @endif
+                            <input type="password" name="password" class="lock{{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="Password" required="">
+                            @if ($errors->has('password'))
+                            <span class="invalid-feedback" role="alert">
+                                <strong style="color: red;">{{ $errors->first('password') }}</strong>
+                            </span>
+                            @endif
 							<div class="forgot-grid">
 								<label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i></i>Remember me</label>
 								<div class="forgot">

@@ -14,7 +14,7 @@
         <h3 class="omb_authTitle">Login</h3>
         <div class="row omb_socialButtons">
             <div class="col-xs-6 col-sm-6">
-                <a href="#" class="btn btn-lg btn-block omb_btn-facebook">
+                <a href="{{url('socialauth/facebook')}}" class="btn btn-lg btn-block omb_btn-facebook">
                     <i class="fab fa-facebook-f"></i>
                     <span class="hidden-sm  hidden-xs">Facebook</span>
                 </a>
@@ -35,18 +35,31 @@
         </div>
 
 
-        <form class="omb_loginForm" action="" autocomplete="off" method="POST">
+    <form class="omb_loginForm" action="{{route('login')}}" autocomplete="off" method="POST">
+        {{csrf_field()}}
             <div class="row">
                 <div class="col-xs-12 col-sm-12">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fas fa-user"></i></span>
-                        <input type="text" class="form-control" name="username" placeholder="Email address">
+                        <input type="text" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" placeholder="Email address" required>
+
                     </div>
-                    <span class="help-block"></span>
+                    @if ($errors->has('email'))
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('email') }}</strong>
+                        </span>
+                    @endif
+                     <span class="help-block"></span>
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                        <input type="password" class="form-control" name="password" placeholder="Password">
+                        <input type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" placeholder="Password" required>
+
                     </div>
+                    @if ($errors->has('password'))
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('password') }}</strong>
+                        </span>
+                    @endif
                     <span class="help-block"></span>
                 </div>
             </div>

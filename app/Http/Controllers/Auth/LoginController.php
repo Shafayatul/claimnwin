@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Auth;
+use App\User;
+
 
 class LoginController extends Controller
 {
@@ -35,5 +38,18 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    /**
+     * Check user's role and redirect user based on their role
+     * @return
+     */
+    public function authenticated()
+    {
+        if(auth()->user()->hasRole('Admin')){
+            return redirect('/home');
+        }else{
+            return redirect('/user-home');
+        }
     }
 }

@@ -16,7 +16,7 @@ class SocialAuthController extends Controller
 
     public function handleProviderCallback($provider)
     {
-        
+
         $user = Socialite::driver($provider)->user();
         $authUser = User::where(['provider_id' => $user->id])->first();
         if($authUser){
@@ -28,10 +28,12 @@ class SocialAuthController extends Controller
         $authUser->email           = $user->email;
         $authUser->provider        = $provider;
         $authUser->provider_id     = $user->id;
-        $authUser->password        = Hash::make(rand(100000,100000000));
+        $authUser->password        = Hash::make('12345678');
 
         $authUser->save();
-
+        if($authUser){
+            $authUser->syncRoles('User');
+        }
         auth()->login($authUser);
 
         return redirect('/user-home');

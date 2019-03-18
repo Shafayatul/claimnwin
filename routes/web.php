@@ -43,3 +43,15 @@ Route::resource('reminders', 'RemindersController');
 
 Route::get('socialauth/{provider}','SocialAuthController@redirectToProvider');
 Route::get('socialauth/{provider}/callback','SocialAuthController@handleProviderCallback');
+
+Route::post('user/signup','UserPanelController@userSignup')->name('user/signup');
+
+Route::post('/admin/assignRole',  'RoleController@assignRole');
+Route::get('/admin/datatable/role_assign', 'RoleController@datatable_user_role');
+Route::get('/admin/role/assign',  'RoleController@assign')->name('role.assign');
+Route::resource('/admin/role',  'RoleController');
+
+Route::get('/user-info/{id}', 'UserManageController@editUserinfo');
+Route::post('/update-user-info', 'UserManageController@updateUserInfo')->name('update-user-info');
+Route::delete('/user-delete/{id}', 'UserManageController@destroy');
+

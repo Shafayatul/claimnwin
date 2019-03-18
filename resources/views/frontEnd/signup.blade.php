@@ -14,13 +14,13 @@
         <h3 class="omb_authTitle">Signup</h3>
         <div class="row omb_socialButtons">
             <div class="col-xs-6 col-sm-6">
-                <a href="#" class="btn btn-lg btn-block omb_btn-facebook">
+            <a href="{{url('socialauth/facebook')}}" class="btn btn-lg btn-block omb_btn-facebook">
                     <i class="fab fa-facebook-f"></i>
                     <span class="hidden-sm  hidden-xs">Facebook</span>
                 </a>
             </div>
             <div class="col-xs-6 col-sm-6">
-                <a href="#" class="btn btn-lg btn-block omb_btn-google">
+                <a href="{{url('socialauth/google')}}" class="btn btn-lg btn-block omb_btn-google">
                     <i class="fab fa-google-plus-g"></i>
                     <span class="hidden-sm hidden-xs">Google+</span>
                 </a>
@@ -34,18 +34,19 @@
             </div>
         </div>
 
-
-        <form class="omb_loginForm" action="" autocomplete="off" method="POST">
+    @include('layouts.includes.partial.alert')
+    <form class="omb_loginForm" action="{{route('user/signup')}}" autocomplete="off" method="POST">
+        @csrf
             <div class="row">
                 <div class="col-xs-12 col-sm-12">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fas fa-user"></i></span>
-                        <input type="text" class="form-control" name="username" placeholder="Name">
+                        <input type="text" class="form-control" name="name" placeholder="Name" required>
                     </div>
                     <span class="help-block"></span>
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fas fa-user"></i></span>
-                        <input type="text" class="form-control" name="username" placeholder="Email address">
+                        <input type="text" class="form-control" name="email" placeholder="Email address" required>
                     </div>
                     <span class="help-block"></span>
                 </div>
@@ -55,12 +56,12 @@
                 <div class="col-xs-12 col-sm-12">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                        <input type="password" class="form-control" name="password" placeholder="Password">
+                        <input type="password" class="form-control" name="password" placeholder="Password" required>
                     </div>
                     <span class="help-block"></span>
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                        <input type="password" class="form-control" name="password" placeholder="Confirm Password">
+                        <input type="password" class="form-control" name="confirm_password" placeholder="Confirm Password" required>
                     </div>
                     <span class="help-block"></span>
                 </div>
