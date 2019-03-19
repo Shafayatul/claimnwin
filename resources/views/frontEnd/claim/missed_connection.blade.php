@@ -83,6 +83,26 @@
             </div>
           </div>
 
+          <div class="common_row">
+            <div class="form_h3">
+              <h3>Select the flight that didn’t go as planned</h3>
+            </div>
+            <div class="form_h4">
+              <h4>If your flight was disrupted several times, select <span class="form_h4_span">the first segment in which the disruption occurred.</span></h4>
+            </div>
+            <div class="parent_div">
+              <div class="single_child_radio_div">
+                <label class="container_radio">New York (JFK)<i class="fas fa-plane"></i>London (LHR)
+                  <input type="radio" class="common_input" id="common_input flight_did_not_on_planned_radio" name="flight_did_not_on_planned_radio" value="1">
+                  <span class="checkmark"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+
+
+
           {{-- <div class="common_row">
             <div class="parent_div">
               <div class="total_info_div">
@@ -112,22 +132,7 @@
                                   STEP 2 STARTS
         .................................................................... -->
         <div class="single_step" id="step_2" style="display:none;">
-          <div class="common_row">
-            <div class="form_h3">
-              <h3>Select the flight that didn’t go as planned</h3>
-            </div>
-            <div class="form_h4">
-              <h4>If your flight was disrupted several times, select <span class="form_h4_span">the first segment in which the disruption occurred.</span></h4>
-            </div>
-            <div class="parent_div">
-              <div class="single_child_radio_div">
-                <label class="container_radio">New York (JFK)<i class="fas fa-plane"></i>London (LHR)
-                  <input type="radio" class="common_input" id="common_input flight_did_not_on_planned_radio" name="flight_did_not_on_planned_radio" value="1">
-                  <span class="checkmark"></span>
-                </label>
-              </div>
-            </div>
-          </div>
+
           <div class="common_row show_if_flight_did_not_go_planned">
             <div class="parent_div">
               <div class="form_h3">

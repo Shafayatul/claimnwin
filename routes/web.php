@@ -63,3 +63,5 @@ Route::get('/user-info/{id}', 'UserManageController@editUserinfo');
 Route::post('/update-user-info', 'UserManageController@updateUserInfo')->name('update-user-info');
 Route::delete('/user-delete/{id}', 'UserManageController@destroy');
 
+
+Route::resource('connections', 'ConnectionsController');
