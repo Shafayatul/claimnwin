@@ -37,6 +37,7 @@ class CreateClaimsTable extends Migration
             $table->string('correspondence_travel_doc_file')->nullable();
             $table->string('correspondence_proof_of_expense_file')->nullable();
             $table->string('correspondence_others_file')->nullable();
+            $table->string('claim_table_type')->nullable();
             $table->timestamps();
             });
     }

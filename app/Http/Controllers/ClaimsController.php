@@ -84,6 +84,7 @@ class ClaimsController extends Controller
                 ->orWhere('correspondence_travel_doc_file', 'LIKE', "%$keyword%")
                 ->orWhere('correspondence_proof_of_expense_file', 'LIKE', "%$keyword%")
                 ->orWhere('correspondence_others_file', 'LIKE', "%$keyword%")
+                ->orWhere('claim_table_type', 'LIKE', "%$keyword%")
                 ->latest()->paginate($perPage);
         } else {
             $claims = Claim::latest()->paginate($perPage);
