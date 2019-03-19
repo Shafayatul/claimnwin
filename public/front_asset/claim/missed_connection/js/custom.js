@@ -4,7 +4,7 @@ $(document).ready(function(){
 
     var keyCount = 0;
     $("#add_connection").click(function(){
-    $("<div class='child_div' style='margin-top: 10px;' id='property_remove_"+keyCount+"'><input  style='width: 75%; float: left; margin-right: 10px; margin-bottom: 0px; margin-top: 0px;' type='text' class='common_input' name='meta_key[]'/> <button type='button' class='remove_property' id='"+keyCount+"' style='float: none;margin-left: 5px;margin-top: 2px;'><i class='fas fa-minus-circle'></i></button></div>").appendTo("#property");
+    $("<div class='child_div' style='margin-top: 10px;' id='property_remove_"+keyCount+"'><input  style='width: 75%; float: left; margin-right: 10px; margin-bottom: 0px; margin-top: 0px;' type='text' class='common_input connection' id='connection' name='connection[]'/> <button type='button' class='remove_property' id='"+keyCount+"' style='float: none;margin-left: 5px;margin-top: 2px;'><i class='fas fa-minus-circle'></i></button></div>").appendTo("#property");
     });
 
     $(document).on('click','.remove_property',function(){
@@ -63,13 +63,13 @@ $(document).ready(function(){
 
 
 
-    $("#connection").hide();
+    $("#connection_div").hide();
 
-    $("input[name=did_fly_radio]:radio").click(function() {
-      if($(this).attr("value")=="1") {
-        $("#connection").show(500);
+    $("input[name=is_direct_flight]:radio").click(function() {
+      if($(this).attr("value")=="is_direct_flight_yes") {
+        $("#connection_div").show(500);
       }else{
-        $("#connection").hide(500);
+        $("#connection_div").hide(500);
       }
     });
 
@@ -77,7 +77,7 @@ $(document).ready(function(){
     /* --------- Delayed Button ----------- */
     $(".show_if_flight_did_not_go_planned").hide();
 
-    $("input[name=flight_did_not_on_planned_radio]:radio").click(function() {
+    $("input[name=selected_connection_id]:radio").click(function() {
       if($(this).attr("value")=="1") {
         $(".show_if_flight_did_not_go_planned").show(500);
       }else{
@@ -85,84 +85,86 @@ $(document).ready(function(){
       }
     });
 
-    $(".show_on_delayed_flight").hide();
-    $(".show_on_canceled_flight").hide();
-    $(".show_on_total_delay_radio_selected").hide();
+    $(".show_on_what_happened_to_the_flight_selected").hide();
+    // $(".show_on_canceled_flight").hide();
+    $(".show_on_total_delay_selected").hide();
 
-    $("input[name=what_happened_flight_radio]:radio").click(function() {
-      if($(this).attr("value")=="1") {
-          $(".show_on_delayed_flight").show(500);
-          $(".show_on_canceled_flight").hide();
-          $(".show_on_total_delay_radio_selected").hide();
-      }else if ($(this).attr("value")=="2") {
-          $(".show_on_delayed_flight").hide(500);
-          $(".show_on_canceled_flight").show(500);
-          $(".show_on_total_delay_radio_selected").hide();
-      }else if ($(this).attr("value")=="3") {
-        $(".show_on_delayed_flight").hide(500);
-        $(".show_on_canceled_flight").show(500);
-        $(".show_on_total_delay_radio_selected").hide();
+    $("input[name=what_happened_to_the_flight]:radio").click(function() {
+      if($(this).attr("value")=="delayed_flight") {
+          $(".show_on_what_happened_to_the_flight_selected").show(500);
+          // $(".show_on_canceled_flight").hide();
+          $(".show_on_total_delay_selected").hide();
+      }else if ($(this).attr("value")=="canceled_flight") {
+          $(".show_on_what_happened_to_the_flight_selected").show(500);
+          // $(".show_on_canceled_flight").show(500);
+          $(".show_on_total_delay_selected").hide();
+      }else if ($(this).attr("value")=="denied_boarding") {
+        $(".show_on_what_happened_to_the_flight_selected").show(500);
+        // $(".show_on_canceled_flight").show(500);
+        $(".show_on_total_delay_selected").hide();
       }
     });
 
-    $("input[name=total_delay_radio]:radio").click(function() {
-    if($(this).attr("value")=="1") {
-      $(".show_on_total_delay_radio_selected").show(500);
-    }else if ($(this).attr("value")=="2") {
-      $(".show_on_total_delay_radio_selected").show(500);
-    }else if ($(this).attr("value")=="3") {
-      $(".show_on_total_delay_radio_selected").show(500);
-    }else if ($(this).attr("value")=="4") {
-      $(".show_on_total_delay_radio_selected").show(500);
+    $("input[name=total_delay]:radio").click(function() {
+    if($(this).attr("value")=="less_than_3_hours") {
+      $(".show_on_total_delay_selected").show(500);
+    }else if ($(this).attr("value")=="3_to_8_hours") {
+      $(".show_on_total_delay_selected").show(500);
+    }else if ($(this).attr("value")=="more_than_8_hours") {
+      $(".show_on_total_delay_selected").show(500);
+    }else if ($(this).attr("value")=="never_arrived") {
+      $(".show_on_total_delay_selected").show(500);
     }else{
-      $(".show_on_total_delay_radio_selected").hide();
+      $(".show_on_total_delay_selected").hide();
     }
     });
 
 
-    $(".show_on_rerouted_no").hide();
+    $(".show_on_is_rerouted_no").hide();
     $(".accommodation").hide();
-    $("input[name=rerouted_radio]:radio").click(function() {
-      if($(this).attr("value")=="1") {
-          $(".show_on_rerouted_no").hide(500);
+    $("input[name=is_rerouted]:radio").click(function() {
+      if($(this).attr("value")=="is_rerouted_yes") {
+          $(".show_on_is_rerouted_no").hide(500);
+          $(".show_on_is_obtained_full_reimbursement_no").hide(500);
           $(".accommodation").show(500);
-      }else if ($(this).attr("value")=="2") {
-          $(".show_on_rerouted_no").show(500);
+      }else if ($(this).attr("value")=="is_rerouted_no") {
+          $(".show_on_is_rerouted_no").show(500);
           $(".accommodation").hide();
       }else {
-          $(".show_on_rerouted_no").hide(500);
+          $(".show_on_is_rerouted_no").hide(500);
+          $(".show_on_is_obtained_full_reimbursement_no").hide(500);
           $(".accommodation").hide();
       }
     });
 
 
-    $(".show_on_full_reimbursement_radio_no").hide();
+    $(".show_on_is_obtained_full_reimbursement_no").hide();
 
-    $("input[name=full_reimbursement_radio]:radio").click(function() {
-      if($(this).attr("value")=="1") {
-        $(".show_on_full_reimbursement_radio_no").hide(500);
+    $("input[name=is_obtained_full_reimbursement]:radio").click(function() {
+      if($(this).attr("value")=="is_obtained_full_reimbursement_yes") {
+        $(".show_on_is_obtained_full_reimbursement_no").hide(500);
         $(".accommodation").show(500);
-      }else if ($(this).attr("value")=="2") {
-        $(".show_on_full_reimbursement_radio_no").show(500);
+      }else if ($(this).attr("value")=="is_obtained_full_reimbursement_no") {
+        $(".show_on_is_obtained_full_reimbursement_no").show(500);
         $(".accommodation").hide();
       }else {
-        $(".show_on_full_reimbursement_radio_no").hide(500);
+        $(".show_on_is_obtained_full_reimbursement_no").hide(500);
         $(".accommodation").hide();
       }
     });
 
 
-    $(".rerouting_flight_radio_yes").hide();
+    $(".show_on_is_paid_for_rerouting_yes").hide();
 
-    $("input[name=rerouting_flight_radio]:radio").click(function() {
-      if($(this).attr("value")=="1") {
-        $(".rerouting_flight_radio_yes").show(500);
+    $("input[name=is_paid_for_rerouting]:radio").click(function() {
+      if($(this).attr("value")=="is_paid_for_rerouting_yes") {
+        $(".show_on_is_paid_for_rerouting_yes").show(500);
         $(".accommodation").hide();
-      }else if ($(this).attr("value")=="2") {
-        $(".rerouting_flight_radio_yes").hide(500);
+      }else if ($(this).attr("value")=="is_paid_for_rerouting_no") {
+        $(".show_on_is_paid_for_rerouting_yes").hide(500);
         $(".accommodation").show(500);
       }else {
-        $(".rerouting_flight_radio_yes").hide(500);
+        $(".show_on_is_paid_for_rerouting_yes").hide(500);
         $(".accommodation").show(500);
       }
     });
@@ -192,12 +194,12 @@ $(document).ready(function(){
 });
 
       /* Booking Reference   */
-      $(".show_on_booking_reference_radio_yes").hide();
-      $("input[name=booking_reference_radio]:radio").click(function() {
-        if($(this).attr("value")=="1") {
-          $(".show_on_booking_reference_radio_yes").show(500);
-        }else if ($(this).attr("value")=="2") {
-          $(".show_on_booking_reference_radio_yes").hide(500);
+      $(".show_on_is_booking_reference_yes").hide();
+      $("input[name=is_booking_reference]:radio").click(function() {
+        if($(this).attr("value")=="is_booking_reference_yes") {
+          $(".show_on_is_booking_reference_yes").show(500);
+        }else if ($(this).attr("value")=="is_booking_reference_no") {
+          $(".show_on_is_booking_reference_yes").hide(500);
         }
       });
 
@@ -221,7 +223,7 @@ $(document).ready(function(){
       $("#other_reference_remove_"+id).remove();
       });
 
-    
+
         document.querySelector("html").classList.add('js');
 /*----------First FIle--------------------*/
   var fileInput  = document.querySelector( "#my-file-0" ),
@@ -259,7 +261,7 @@ button1.addEventListener( "click", function( event ) {
 fileInput1.addEventListener( "change", function( event ) {
   the_return1.innerHTML = this.value;
 });
-      
+
 
 /*----------Thrid FIle--------------------*/
 
@@ -299,6 +301,6 @@ fileInput3.addEventListener( "change", function( event ) {
 the_return3.innerHTML = this.value;
 });
 
-      
+
 
 });

@@ -26,18 +26,18 @@
             <div class="parent_div">
               <div class="two_child_div_left">
                 <div class="label_field">
-                  <label for="departure_airport">DEPARTURE AIRPORT</label>
+                  <label for="departed_from">DEPARTED FROM: </label>
                 </div>
                 <div class="input_field">
-                  <input type="text" class="common_input departure_airport" id="common_input departure_airport" placeholder="e.g. New York or JFK">
+                  <input type="text" class="common_input departed_from" id="common_input departed_from" name="departed_from" placeholder="e.g. New York or JFK">
                 </div>
               </div>
               <div class="two_child_div_right">
                 <div class="label_field">
-                  <label for="arrival_airport">ARRIVAL AIRPORT</label>
+                  <label for="final_destination">FINAL DESTINATION: </label>
                 </div>
                 <div class="input_field">
-                  <input type="text" class="common_input arrival_airport" id="common_input arrival_airport" placeholder="e.g. London or LHR">
+                  <input type="text" class="common_input final_destination" id="common_input final_destination" name="final_destination" placeholder="e.g. London or LHR">
                 </div>
               </div>
             </div>
@@ -53,26 +53,26 @@
             <div class="parent_div">
               <div class="two_child_radio_div first_child">
                 <label class="container_radio">Yes
-                  <input class="common_input" type="radio" id="common_input did_fly_radio_yes" name="did_fly_radio" value="1">
+                  <input class="common_input" type="radio" id="common_input is_direct_flight_yes" name="is_direct_flight" value="is_direct_flight_yes">
                   <span class="checkmark"></span>
                 </label>
               </div>
               <div class="two_child_radio_div">
                 <label class="container_radio">No
-                  <input class="common_input" type="radio" id="common_input did_fly_radio_no" name="did_fly_radio" value="2">
+                  <input class="common_input" type="radio" id="common_input is_direct_flight_no" name="is_direct_flight" value="is_direct_flight_no">
                   <span class="checkmark"></span>
                 </label>
               </div>
             </div>
           </div>
 
-          <div class="common_row" id="connection">
+          <div class="common_row" id="connection_div">
             <div class="form_h3">
               <h3>Where did you have connections?</h3>
             </div>
             <div class="parent_div">
               <div class="child_div">
-                <input type="text" class="common_input" id="common_input stop_airport" placeholder="e.g. London or LHR">
+                <input type="text" class="common_input connection" id="common_input connection" name="connection[]" placeholder="e.g. London or LHR">
               </div>
               <div class="property" id="property">
 
@@ -93,7 +93,7 @@
             <div class="parent_div">
               <div class="single_child_radio_div">
                 <label class="container_radio">New York (JFK)<i class="fas fa-plane"></i>London (LHR)
-                  <input type="radio" class="common_input" id="common_input flight_did_not_on_planned_radio" name="flight_did_not_on_planned_radio" value="1">
+                  <input type="radio" class="common_input" id="common_input selected_connection_id" name="selected_connection_id" value="1">
                   <span class="checkmark"></span>
                 </label>
               </div>
@@ -145,25 +145,25 @@
             <div class="parent_div">
               <div class="airports_involved">
                 <label class="container_radio">Delayed flight
-                  <input type="radio" class="common_input" id="common_input delayed_flight" name="what_happened_flight_radio" value="1">
+                  <input type="radio" class="common_input" id="common_input delayed_flight" name="what_happened_to_the_flight" value="delayed_flight">
                   <span class="checkmark"></span>
                 </label>
               </div>
               <div class="airports_involved">
                 <label class="container_radio">Canceled flight
-                  <input type="radio" class="common_input" id="common_input canceled_flight" name="what_happened_flight_radio" value="2">
+                  <input type="radio" class="common_input" id="common_input canceled_flight" name="what_happened_to_the_flight" value="canceled_flight">
                   <span class="checkmark"></span>
                 </label>
               </div>
               <div class="airports_involved">
                 <label class="container_radio">Denied boarding
-                  <input type="radio" class="common_input" id="common_input denied_boarding" name="what_happened_flight_radio" value="3">
+                  <input type="radio" class="common_input" id="common_input denied_boarding" name="what_happened_to_the_flight" value="denied_boarding">
                   <span class="checkmark"></span>
                 </label>
               </div>
             </div>
           </div>
-          <div class="common_row show_on_delayed_flight">
+          <div class="common_row show_on_what_happened_to_the_flight_selected">
             <div class="parent_div">
               <div class="form_h3">
                 <h3>What was the total delay once you arrived at Tel Aviv-Yafo (TLV)?</h3>
@@ -172,31 +172,32 @@
             <div class="parent_div">
               <div class="total_delay_flight">
                 <label class="container_radio">Less than 3 hours
-                  <input type="radio" class="common_input" id="common_input total_delay_radio" name="total_delay_radio" value="1">
+                  <input type="radio" class="common_input" id="common_input less_than_3_hours" name="total_delay" value="less_than_3_hours">
                   <span class="checkmark"></span>
                 </label>
               </div>
               <div class="total_delay_flight">
                 <label class="container_radio">3-8 hours
-                  <input type="radio" class="common_input" id="common_input total_delay_radio" name="total_delay_radio" value="2">
+                  <input type="radio" class="common_input" id="common_input 3_to_8_hours" name="total_delay" value="3_to_8_hours">
                   <span class="checkmark"></span>
                 </label>
               </div>
               <div class="total_delay_flight">
                 <label class="container_radio">more than 8 hours
-                  <input type="radio" class="common_input" id="common_input total_delay_radio" name="total_delay_radio" value="3">
+                  <input type="radio" class="common_input" id="common_input more_than_8_hours" name="total_delay" value="more_than_8_hours">
                   <span class="checkmark"></span>
                 </label>
               </div>
               <div class="total_delay_flight">
                 <label class="container_radio">Never arrived
-                  <input type="radio" class="common_input" id="common_input total_delay_radio" name="total_delay_radio" value="4">
+                  <input type="radio" class="common_input" id="common_input never_arrived" name="total_delay" value="never_arrived">
                   <span class="checkmark"></span>
                 </label>
               </div>
             </div>
           </div>
-          <div class="common_row show_on_canceled_flight">
+
+          {{-- <div class="common_row show_on_canceled_flight">
             <div class="parent_div">
               <div class="form_h3">
                 <h3>What happened to the flight?</h3>
@@ -234,8 +235,9 @@
                 </label>
               </div>
             </div>
-          </div>
-          <div class="common_row show_on_total_delay_radio_selected">
+          </div> --}}
+
+          <div class="common_row show_on_total_delay_selected">
             <div class="parent_div">
               <div class="form_h3">
                 <h3>What did the airline say was the reason?</h3>
@@ -243,11 +245,15 @@
             </div>
             <div class="parent_div">
               <div class="airline_reason_select_div">
-                <select class="form-control custom_select">
-                  <option selected>Please select</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
+                <select class="form-control custom_select" name="reason">
+                  <option hidden>Please select</option>
+                  <option value="technical_problem">Technical problem</option>
+                  <option value="bad_weather_conditions">Bad weather conditions</option>
+                  <option value="influence_by_other_flights">Influence by other flights</option>
+                  <option value="issues_with_airport">Issues with airport</option>
+                  <option value="strike">Strike</option>
+                  <option value="no_reason_given">No reason given</option>
+                  <option value="donot_remember">Don't remember</option>
                 </select>
               </div>
             </div>
@@ -298,10 +304,10 @@
               <div class="single_child_div">
                 <div class="left_div">
                   <div class="label_field">
-                    <label for="departure_airport">AIRLINE</label>
+                    <label for="airline">AIRLINE</label>
                   </div>
                   <div class="input_field">
-                    <input type="text" class="common_input departure_airport" id="common_input departure_airport" placeholder="e.g. New York or JFK">
+                    <input type="text" class="common_input airline" id="common_input airline" name="airline[]" placeholder="e.g. New York or JFK">
                   </div>
                 </div>
                 <div class="right_div">
@@ -312,12 +318,12 @@
                     <div class="two_input_field">
                       <div class="child_two_input_field_left">
                         <div class="input_field">
-                          <input type="text" class="common_input flight_code" id="common_input flight_code" placeholder="">
+                          <input type="text" class="common_input flight_code" id="common_input flight_code" name="flight_code[]" placeholder="">
                         </div>
                       </div>
                       <div class="child_two_input_field_right">
                         <div class="input_field">
-                          <input type="text" class="common_input flight_number" id="common_input flight_number" placeholder="1234">
+                          <input type="text" class="common_input flight_number" id="common_input flight_number" name="flight_number[]" placeholder="1234">
                         </div>
                       </div>
 
@@ -329,7 +335,7 @@
                     </div>
                     <div class="two_input_field">
                       <div class="input_field">
-                        <input type="text" class="common_input departure_airport" id="common_input departure_airport date" name="date" placeholder="e.g. New York or JFK">
+                        <input type="text" class="common_input departure_airport date" id="common_input departure_airport date" name="departure_date" placeholder="e.g. New York or JFK">
                       </div>
                     </div>
                   </div>
@@ -338,7 +344,7 @@
             </div>
           </div>
 
-          <div class="common_row">
+          {{-- <div class="common_row">
             <div class="parent_div">
               <div class="single_child_div">
                 <div class="arrival_to_destination_text_div">
@@ -380,14 +386,14 @@
                     </div>
                     <div class="two_input_field">
                       <div class="input_field">
-                        <input type="text" class="common_input departure_airport" id="common_input departure_airport date" name="date" placeholder="e.g. New York or JFK">
+                        <input type="text" class="common_input departure_airport date" id="common_input departure_airport date" name="date" placeholder="e.g. New York or JFK">
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+          </div> --}}
 
           {{-- <div class="common_row">
             <div class="parent_div">
@@ -433,52 +439,52 @@
             <div class="parent_div">
               <div class="two_child_radio_div first_child">
                 <label class="container_radio">Yes
-                  <input class="common_input" type="radio" id="common_input rerouted_radio_yes" name="rerouted_radio" value="1">
+                  <input class="common_input" type="radio" id="common_input is_rerouted_yes" name="is_rerouted" value="is_rerouted_yes">
                   <span class="checkmark"></span>
                 </label>
               </div>
               <div class="two_child_radio_div">
                 <label class="container_radio">No
-                  <input class="common_input" type="radio" id="common_input rerouted_radio_no" name="rerouted_radio" value="2">
+                  <input class="common_input" type="radio" id="common_input is_rerouted_no" name="is_rerouted" value="is_rerouted_no">
                   <span class="checkmark"></span>
                 </label>
               </div>
             </div>
           </div>
 
-          <div class="common_row show_on_rerouted_no">
+          <div class="common_row show_on_is_rerouted_no">
             <div class="parent_div">
               <div class="form_h4">
                 <h4>Did you obtain a full reimbursement of your original ticket?</h4>
               </div>
               <div class="two_child_radio_div first_child">
                 <label class="container_radio">Yes
-                  <input class="common_input" type="radio" id="common_input full_reimbursement_radio_yes" name="full_reimbursement_radio" value="1">
+                  <input class="common_input" type="radio" id="common_input is_obtained_full_reimbursement_yes" name="is_obtained_full_reimbursement" value="is_obtained_full_reimbursement_yes">
                   <span class="checkmark"></span>
                 </label>
               </div>
               <div class="two_child_radio_div">
                 <label class="container_radio">No
-                  <input class="common_input" type="radio" id="common_input full_reimbursement_radio_no" name="full_reimbursement_radio" value="2">
+                  <input class="common_input" type="radio" id="common_input is_obtained_full_reimbursement_no" name="is_obtained_full_reimbursement" value="is_obtained_full_reimbursement_no">
                   <span class="checkmark"></span>
                 </label>
               </div>
             </div>
           </div>
 
-          <div class="common_row show_on_full_reimbursement_radio_no">
+          <div class="common_row show_on_is_obtained_full_reimbursement_no">
             <div class="form_h4">
               <h4>Tell us the price of the original ticket</h4>
             </div>
             <div class="parent_div">
               <div class="price_currency_div">
                 <div class="child_price_currency_div">
-                  <input type="text" class="common_input price_input" id="common_input price_input" placeholder="Ex. 1234">
+                  <input type="text" class="common_input ticket_price" id="common_input ticket_price" name="ticket_price" placeholder="Ex. 1234">
                 </div>
                 <div class="child_price_currency_div">
                   <div class="select_reason_class">
-                    <select class="form-control custom_select">
-                      <option selected>Currency</option>
+                    <select class="form-control custom_select" name="ticket_currency">
+                      <option hidden>Select currency</option>
                       <option value="1">EUR</option>
                       <option value="2">USD</option>
                       <option value="3">ILS</option>
@@ -489,39 +495,39 @@
             </div>
           </div>
 
-          <div class="common_row show_on_full_reimbursement_radio_no">
+          <div class="common_row show_on_is_obtained_full_reimbursement_no">
             <div class="parent_div">
               <div class="form_h4">
                 <h4>Did you pay for your re-routing flight?</h4>
               </div>
               <div class="two_child_radio_div first_child">
                 <label class="container_radio">Yes
-                  <input class="common_input" type="radio" id="common_input rerouting_flight_radio_yes" name="rerouting_flight_radio" value="1">
+                  <input class="common_input" type="radio" id="common_input is_paid_for_rerouting_yes" name="is_paid_for_rerouting" value="is_paid_for_rerouting_yes">
                   <span class="checkmark"></span>
                 </label>
               </div>
               <div class="two_child_radio_div">
                 <label class="container_radio">No
-                  <input class="common_input" type="radio" id="common_input rerouting_flight_radio_no" name="rerouting_flight_radio" value="2">
+                  <input class="common_input" type="radio" id="common_input is_paid_for_rerouting_no" name="is_paid_for_rerouting" value="is_paid_for_rerouting_no">
                   <span class="checkmark"></span>
                 </label>
               </div>
             </div>
           </div>
 
-          <div class="common_row rerouting_flight_radio_yes">
+          <div class="common_row show_on_is_paid_for_rerouting_yes">
             <div class="form_h4">
               <h4>Tell us the price of the re-routing ticket for all passengersTell us the price of the original ticket</h4>
             </div>
             <div class="parent_div">
               <div class="price_currency_div">
                 <div class="child_price_currency_div">
-                  <input type="text" class="common_input price_input" id="common_input price_input" placeholder="Ex. 1234">
+                  <input type="text" class="common_input ticket_price" id="common_input ticket_price" name="ticket_price" placeholder="Ex. 1234">
                 </div>
                 <div class="child_price_currency_div">
                   <div class="select_reason_class">
-                    <select class="form-control custom_select">
-                      <option selected>Currency</option>
+                    <select class="form-control custom_select" name="ticket_currency">
+                      <option hidden>Currency</option>
                       <option value="1">EUR</option>
                       <option value="2">USD</option>
                       <option value="3">ILS</option>
@@ -542,19 +548,19 @@
               <div class="parent_div">
                 <div class="child_accommodation child_accommodation_first_div">
                   <label class="container_radio label_child_accommodation">I did not spend anything
-                    <input type="radio" class="common_input" id="common_input input_accomodation_not_spend" name="input_accomodation" value="1">
+                    <input type="radio" class="common_input" id="common_input not_spend" name="is_spend_on_accomodation" value="not_spend">
                     <span class="checkmark"></span>
                   </label>
                 </div>
                 <div class="child_accommodation child_accommodation_second_div">
                   <label class="container_radio label_child_accommodation">I had expenses but I have not kept the invoices
-                    <input type="radio" class="common_input" id="common_input input_accomodation_no_invoice" name="input_accomodation" value="2">
+                    <input type="radio" class="common_input" id="common_input no_invoice" name="is_spend_on_accomodation" value="no_invoice">
                     <span class="checkmark"></span>
                   </label>
                 </div>
                 <div class="child_accommodation child_accommodation_third_div">
                   <label class="container_radio label_child_accommodation">I had expenses and kept the invoices
-                    <input type="radio" class="common_input" id="common_input input_accomodation_has_invoice" name="input_accomodation" value="3">
+                    <input type="radio" class="common_input" id="common_input has_invoice" name="is_spend_on_accomodation" value="has_invoice">
                     <span class="checkmark"></span>
                   </label>
                 </div>
@@ -583,15 +589,15 @@
                         <td>
                           <div class="row">
                             <div class="col-md-6">
-                              <input type="text" class="common_input price_input" id="common_input price_input" placeholder="1234">
+                              <input type="text" class="common_input amount" id="common_input amount" name="amount" placeholder="1234">
                             </div>
                             <div class="col-md-6">
                               <div class="select_reason_class">
-                                <select class="form-control custom_select">
-                                  <option selected>Open this select menu</option>
-                                  <option value="1">One</option>
-                                  <option value="2">Two</option>
-                                  <option value="3">Three</option>
+                                <select class="form-control custom_select" name="currency">
+                                  <option hidden>Currency</option>
+                                  <option value="1">EUR</option>
+                                  <option value="2">USD</option>
+                                  <option value="3">ILS</option>
                                 </select>
                               </div>
                             </div>
@@ -612,15 +618,15 @@
                         <td>
                           <div class="row">
                             <div class="col-md-6">
-                              <input type="text" class="common_input price_input" id="common_input price_input" placeholder="1234">
+                              <input type="text" class="common_input amount" id="common_input amount" name="amount" placeholder="1234">
                             </div>
                             <div class="col-md-6">
                               <div class="select_reason_class">
-                                <select class="form-control custom_select">
-                                  <option selected>Open this select menu</option>
-                                  <option value="1">One</option>
-                                  <option value="2">Two</option>
-                                  <option value="3">Three</option>
+                                <select class="form-control custom_select" name="currency">
+                                  <option hidden>Currency</option>
+                                  <option value="1">EUR</option>
+                                  <option value="2">USD</option>
+                                  <option value="3">ILS</option>
                                 </select>
                               </div>
                             </div>
@@ -641,15 +647,15 @@
                         <td>
                           <div class="row">
                             <div class="col-md-6">
-                              <input type="text" class="common_input price_input" id="common_input price_input" placeholder="1234">
+                              <input type="text" class="common_input amount" id="common_input amount" name="amount" placeholder="1234">
                             </div>
                             <div class="col-md-6">
                               <div class="select_reason_class">
-                                <select class="form-control custom_select">
-                                  <option selected>Open this select menu</option>
-                                  <option value="1">One</option>
-                                  <option value="2">Two</option>
-                                  <option value="3">Three</option>
+                                <select class="form-control custom_select" name="currency">
+                                  <option hidden>Currency</option>
+                                  <option value="1">EUR</option>
+                                  <option value="2">USD</option>
+                                  <option value="3">ILS</option>
                                 </select>
                               </div>
                             </div>
@@ -670,15 +676,15 @@
                         <td>
                           <div class="row">
                             <div class="col-md-6">
-                              <input type="text" class="common_input price_input" id="common_input price_input" placeholder="1234">
+                              <input type="text" class="common_input amount" id="common_input amount" name="amount" placeholder="1234">
                             </div>
                             <div class="col-md-6">
                               <div class="select_reason_class">
-                                <select class="form-control custom_select">
-                                  <option selected>Open this select menu</option>
-                                  <option value="1">One</option>
-                                  <option value="2">Two</option>
-                                  <option value="3">Three</option>
+                                <select class="form-control custom_select" name="currency">
+                                  <option hidden>Currency</option>
+                                  <option value="1">EUR</option>
+                                  <option value="2">USD</option>
+                                  <option value="3">ILS</option>
                                 </select>
                               </div>
                             </div>
@@ -718,15 +724,15 @@
                       <td>
                         <div class="row">
                           <div class="col-md-6">
-                            <input type="text" class="common_input price_input" id="common_input price_input" placeholder="1234">
+                            <input type="text" class="common_input amount" id="common_input amount" name="amount" placeholder="1234">
                           </div>
                           <div class="col-md-6">
                             <div class="select_reason_class">
-                              <select class="custom-select">
-                                <option selected>Open this select menu</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                              <select class="form-control custom_select" name="currency">
+                                <option hidden>Currency</option>
+                                <option value="1">EUR</option>
+                                <option value="2">USD</option>
+                                <option value="3">ILS</option>
                               </select>
                             </div>
                           </div>
@@ -754,15 +760,15 @@
                       <td>
                         <div class="row">
                           <div class="col-md-6">
-                            <input type="text" class="common_input price_input" id="common_input price_input" placeholder="1234">
+                            <input type="text" class="common_input amount" id="common_input amount" name="amount" placeholder="1234">
                           </div>
                           <div class="col-md-6">
                             <div class="select_reason_class">
-                              <select class="form-control custom_select">
-                                <option selected>Open this select menu</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                              <select class="form-control custom_select" name="currency">
+                                <option hidden>Currency</option>
+                                <option value="1">EUR</option>
+                                <option value="2">USD</option>
+                                <option value="3">ILS</option>
                               </select>
                             </div>
                           </div>
@@ -790,15 +796,15 @@
                       <td>
                         <div class="row">
                           <div class="col-md-6">
-                            <input type="text" class="common_input price_input" id="common_input price_input" placeholder="1234">
+                            <input type="text" class="common_input amount" id="common_input amount" name="amount" placeholder="1234">
                           </div>
                           <div class="col-md-6">
                             <div class="select_reason_class">
-                              <select class="custom-select">
-                                <option selected>Open this select menu</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                              <select class="form-control custom_select" name="currency">
+                                <option hidden>Currency</option>
+                                <option value="1">EUR</option>
+                                <option value="2">USD</option>
+                                <option value="3">ILS</option>
                               </select>
                             </div>
                           </div>
@@ -826,15 +832,15 @@
                       <td>
                         <div class="row">
                           <div class="col-md-6">
-                            <input type="text" class="common_input price_input" id="common_input price_input" placeholder="1234">
+                            <input type="text" class="common_input amount" id="common_input amount" name="amount" placeholder="1234">
                           </div>
                           <div class="col-md-6">
                             <div class="select_reason_class">
-                              <select class="form-control custom_select">
-                                <option selected>Open this select menu</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                              <select class="form-control custom_select" name="currency">
+                                <option hidden>Currency</option>
+                                <option value="1">EUR</option>
+                                <option value="2">USD</option>
+                                <option value="3">ILS</option>
                               </select>
                             </div>
                           </div>
@@ -944,46 +950,46 @@
             <div class="parent_div">
               <div class="two_child_div_left">
                 <div class="label_field">
-                  <label for="departure_airport">FIRST NAME</label>
+                  <label for="first_name">FIRST NAME</label>
                 </div>
                 <div class="input_field">
-                  <input type="text" class="common_input departure_airport" id="common_input departure_airport" placeholder="e.g. New York or JFK">
+                  <input type="text" class="common_input first_name" id="common_input first_name" name="first_name" placeholder="e.g. New York or JFK">
                 </div>
               </div>
               <div class="two_child_div_right">
                 <div class="label_field">
-                  <label for="arrival_airport">LAST NAME</label>
+                  <label for="last_name">LAST NAME</label>
                 </div>
                 <div class="input_field">
-                  <input type="text" class="common_input arrival_airport" id="common_input arrival_airport" placeholder="e.g. London or LHR">
+                  <input type="text" class="common_input last_name" id="common_input last_name" name="last_name" placeholder="e.g. London or LHR">
                 </div>
               </div>
             </div>
             <div class="parent_div">
               <div class="two_child_div_left">
                 <div class="label_field">
-                  <label for="departure_airport">ADDRESS</label>
+                  <label for="address">ADDRESS</label>
                 </div>
                 <div class="input_field">
-                  <input type="text" class="common_input departure_airport" id="common_input departure_airport" placeholder="e.g. New York or JFK">
+                  <input type="text" class="common_input address" id="common_input address" name="address" placeholder="e.g. New York or JFK">
                 </div>
               </div>
               <div class="two_child_div_right">
                 <div class="label_field">
-                  <label for="arrival_airport">POST CODE</label>
+                  <label for="post_code">POST CODE</label>
                 </div>
                 <div class="input_field">
-                  <input type="text" class="common_input arrival_airport" id="common_input arrival_airport" placeholder="e.g. London or LHR">
+                  <input type="text" class="common_input post_code" id="common_input post_code" name="post_code" placeholder="e.g. London or LHR">
                 </div>
               </div>
             </div>
             <div class="parent_div">
               <div class="two_child_div_left">
                 <div class="label_field">
-                  <label for="departure_airport">DATE OF BIRTH</label>
+                  <label for="date_of_birth">DATE OF BIRTH</label>
                 </div>
                 <div class="input_field">
-                  <input type="text" class="common_input departure_airport" id="common_input departure_airport date" name="date" placeholder="e.g. New York or JFK">
+                  <input type="text" class="common_input date_of_birth date" id="common_input date_of_birth" name="date_of_birth" placeholder="1/1/1990">
                 </div>
               </div>
             </div>
@@ -996,18 +1002,18 @@
             <div class="parent_div">
               <div class="two_child_radio_div first_child">
                 <label class="container_radio">Yes
-                  <input class="common_input" type="radio" id="common_input booking_reference_radio_yes" name="booking_reference_radio" value="1">
+                  <input class="common_input" type="radio" id="common_input is_booking_reference_yes" name="is_booking_reference" value="is_booking_reference_yes">
                   <span class="checkmark"></span>
                 </label>
               </div>
               <div class="two_child_radio_div">
                 <label class="container_radio">Later
-                  <input class="common_input" type="radio" id="common_input booking_reference_radio_no" name="booking_reference_radio" value="2">
+                  <input class="common_input" type="radio" id="common_input is_booking_reference_no" name="is_booking_reference" value="is_booking_reference_no">
                   <span class="checkmark"></span>
                 </label>
               </div>
             </div>
-            <div class="parent_div show_on_booking_reference_radio_yes">
+            <div class="parent_div show_on_is_booking_reference_yes">
               <div class="add_booking_reference_div" id="add_booking_reference_div">
                 <div class="child_div" style="margin-top: 10px;" id="reference_remove">
                   <input style="width: 50%; float: left; margin-right: 10px; margin-bottom: 0px; margin-top: 0px;" type="text" class="common_input" name="meta_key[]" />
@@ -1054,54 +1060,54 @@
             <div class="parent_div">
               <div class="two_child_div_left">
                 <div class="label_field">
-                  <label for="departure_airport">FIRST NAME</label>
+                  <label for="first_name">FIRST NAME</label>
                 </div>
                 <div class="input_field">
-                  <input type="text" class="common_input departure_airport" id="common_input departure_airport" placeholder="e.g. New York or JFK">
+                  <input type="text" class="common_input first_name" id="common_input first_name" name="first_name" placeholder="e.g. New York or JFK">
                 </div>
               </div>
               <div class="two_child_div_right">
                 <div class="label_field">
-                  <label for="arrival_airport">LAST NAME</label>
+                  <label for="last_name">LAST NAME</label>
                 </div>
                 <div class="input_field">
-                  <input type="text" class="common_input arrival_airport" id="common_input arrival_airport" placeholder="e.g. London or LHR">
+                  <input type="text" class="common_input last_name" id="common_input last_name" name="last_name" placeholder="e.g. London or LHR">
                 </div>
               </div>
             </div>
             <div class="parent_div">
               <div class="two_child_div_left">
                 <div class="label_field">
-                  <label for="departure_airport">DATE OF BIRTH</label>
+                  <label for="date_of_birth">DATE OF BIRTH</label>
                 </div>
                 <div class="input_field">
-                  <input type="text" class="common_input departure_airport" id="common_input departure_airport date" name="date" placeholder="e.g. New York or JFK">
+                  <input type="text" class="common_input date_of_birth date" id="common_input date_of_birth date" name="date_of_birth" placeholder="e.g. New York or JFK">
                 </div>
               </div>
               <div class="two_child_div_right">
                 <div class="label_field">
-                  <label for="departure_airport">EMAIL ADDRESS</label>
+                  <label for="email">EMAIL ADDRESS</label>
                 </div>
                 <div class="input_field">
-                  <input type="text" class="common_input departure_airport" id="common_input departure_airport" placeholder="e.g. New York or JFK">
+                  <input type="text" class="common_input email" id="common_input email" name="email" placeholder="e.g. New York or JFK">
                 </div>
               </div>
             </div>
             <div class="parent_div">
               <div class="two_child_div_left">
                 <div class="label_field">
-                  <label for="departure_airport">ADDRESS</label>
+                  <label for="address">ADDRESS</label>
                 </div>
                 <div class="input_field">
-                  <input type="text" class="common_input departure_airport" id="common_input departure_airport" placeholder="e.g. New York or JFK">
+                  <input type="text" class="common_input address" id="common_input address" name="address" placeholder="e.g. New York or JFK">
                 </div>
               </div>
               <div class="two_child_div_right">
                 <div class="label_field">
-                  <label for="arrival_airport">POST CODE</label>
+                  <label for="post_code">POST CODE</label>
                 </div>
                 <div class="input_field">
-                  <input type="text" class="common_input arrival_airport" id="common_input arrival_airport" placeholder="e.g. London or LHR">
+                  <input type="text" class="common_input post_code" id="common_input post_code" name="post_code" placeholder="e.g. London or LHR">
                 </div>
               </div>
             </div>
@@ -1174,7 +1180,7 @@
             <div class="parent_div">
               <div class="form-check">
       					<label>
-      						<input type="checkbox" name="check" checked> <span class="label-text">Write your signature below as it appears on your ID. It's required by airlines to collect the compensation for you. By signing you agree with the Assignment Form and Price List</span>
+      						<input type="checkbox" name="is_signed_permission" checked> <span class="label-text">Write your signature below as it appears on your ID. It's required by airlines to collect the compensation for you. By signing you agree with the Assignment Form and Price List</span>
       					</label>
       				</div>
               {{-- <div class="custom-control custom-checkbox">
@@ -1216,8 +1222,8 @@
               <h4>If we gather more information, we can handle your claim faster.</h4>
             </div>
             <div class="select_reason_class">
-              <select class="form-control custom_select">
-                <option selected>Open this select menu</option>
+              <select class="form-control custom_select" class="hear_from_where">
+                <option hidden>Open this select menu</option>
                 <option value="1">Google</option>
                 <option value="2">Friends</option>
                 <option value="3">Social media</option>
@@ -1268,7 +1274,7 @@
             </div>
             <div class="parent_div">
               <div class="form-group">
-                <textarea class="form-control" rows="5" id="comment" placeholder="Additional Information"></textarea>
+                <textarea class="form-control" rows="5" id="comment" name="text" placeholder="Additional Information"></textarea>
               </div>
             </div>
           </div>
@@ -1279,7 +1285,7 @@
                 <div class="col-md-8">ID copies, including travel companions’ if applicable</div>
                 <div class="col-md-4">
                   <div class="input-file-container col-centered">
-                    <input class="input-file" id="my-file-0" type="file">
+                    <input class="input-file" id="my-file-0" type="file" name="correspondence_ids_file">
                     <label tabindex="0" for="my-file" class="input-file-trigger" id="input-file-trigger-0">Select a file...</label>
                   </div>
                   <p class="file-return" id="file-return-0"></p>
@@ -1291,7 +1297,7 @@
                 <div class="col-md-8">Travel documents (reservation, ticket or boarding passes)</div>
                 <div class="col-md-4">
                   <div class="input-file-container col-centered">
-                    <input class="input-file" id="my-file-1" type="file">
+                    <input class="input-file" id="my-file-1" type="file" name="correspondence_travel_doc_file">
                     <label tabindex="0" for="my-file" class="input-file-trigger" id="input-file-trigger-1">Select a file...</label>
                   </div>
                   <p class="file-return" id="file-return-1"></p>
@@ -1303,7 +1309,7 @@
                 <div class="col-md-8">Proof of expenses (store/online receipts, detailed bank statements) if applicable</div>
                 <div class="col-md-4">
                   <div class="input-file-container col-centered">
-                    <input class="input-file" id="my-file-2" type="file">
+                    <input class="input-file" id="my-file-2" type="file" name="correspondence_proof_of_expense_file">
                     <label tabindex="0" for="my-file" class="input-file-trigger" id="input-file-trigger-2">Select a file...</label>
                   </div>
                   <p class="file-return" id="file-return-2"></p>
@@ -1315,7 +1321,7 @@
                 <div class="col-md-8">Other</div>
                 <div class="col-md-4">
                   <div class="input-file-container col-centered">
-                    <input class="input-file" id="my-file-3" type="file">
+                    <input class="input-file" id="my-file-3" type="file" name="correspondence_others_file">
                     <label tabindex="0" for="my-file" class="input-file-trigger" id="input-file-trigger-3">Select a file...</label>
                   </div>
                   <p class="file-return" id="file-return-3"></p>
@@ -1358,7 +1364,7 @@
   <script src="{{('front_asset/claim/missed_connection/js/custom.js')}}"></script>
   <script>
     $(document).ready(function() {
-      var date_input = $('input[name="date"]'); //our date input has the name "date"
+      var date_input = $('.date'); //our date input has the name "date"
       var options = {
         format: 'mm/dd/yyyy',
         endDate: '+0d',
