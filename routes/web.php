@@ -65,3 +65,4 @@ Route::delete('/user-delete/{id}', 'UserManageController@destroy');
 
 
 Route::resource('connections', 'ConnectionsController');
+Route::resource('itinerary-details', 'ItineraryDetailsController');
