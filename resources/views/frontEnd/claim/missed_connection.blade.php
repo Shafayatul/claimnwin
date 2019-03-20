@@ -79,7 +79,7 @@
               </div>
             </div>
             <div class="parent_div">
-              <button type="button" name="button" id="add_connection" class="add_connection"><i class="fas fa-plus"></i></button>
+              <button type="button" name="button" id="add_connection" class="add_connection" ><i class="fas fa-plus"></i></button>
             </div>
           </div>
 
@@ -245,8 +245,8 @@
             </div>
             <div class="parent_div">
               <div class="airline_reason_select_div">
-                <select class="form-control custom_select" name="reason">
-                  <option hidden>Please select</option>
+                <select class="form-control custom_select reason" name="reason">
+                  <option value="" hidden>Please select</option>
                   <option value="technical_problem">Technical problem</option>
                   <option value="bad_weather_conditions">Bad weather conditions</option>
                   <option value="influence_by_other_flights">Influence by other flights</option>
@@ -335,7 +335,7 @@
                     </div>
                     <div class="two_input_field">
                       <div class="input_field">
-                        <input type="text" class="common_input departure_airport date" id="common_input departure_airport date" name="departure_date" placeholder="e.g. New York or JFK">
+                        <input type="text" class="common_input departure_airport date" id="common_input departure_airport date" name="departure_date[]" placeholder="e.g. New York or JFK">
                       </div>
                     </div>
                   </div>
@@ -479,11 +479,11 @@
             <div class="parent_div">
               <div class="price_currency_div">
                 <div class="child_price_currency_div">
-                  <input type="text" class="common_input ticket_price" id="common_input ticket_price" name="ticket_price" placeholder="Ex. 1234">
+                  <input type="text" class="common_input ticket_price" id="common_input ticket_price_original_ticket" name="ticket_price_original_ticket" placeholder="Ex. 1234">
                 </div>
                 <div class="child_price_currency_div">
                   <div class="select_reason_class">
-                    <select class="form-control custom_select" name="ticket_currency">
+                    <select class="form-control custom_select" name="ticket_currency_original_ticket">
                       <option hidden>Select currency</option>
                       <option value="1">EUR</option>
                       <option value="2">USD</option>
@@ -522,11 +522,11 @@
             <div class="parent_div">
               <div class="price_currency_div">
                 <div class="child_price_currency_div">
-                  <input type="text" class="common_input ticket_price" id="common_input ticket_price" name="ticket_price" placeholder="Ex. 1234">
+                  <input type="text" class="common_input ticket_price" id="common_input ticket_price_rerouting" name="ticket_price" placeholder="Ex. 1234">
                 </div>
                 <div class="child_price_currency_div">
                   <div class="select_reason_class">
-                    <select class="form-control custom_select" name="ticket_currency">
+                    <select class="form-control custom_select" name="ticket_currency_rerouting">
                       <option hidden>Currency</option>
                       <option value="1">EUR</option>
                       <option value="2">USD</option>
@@ -589,11 +589,11 @@
                         <td>
                           <div class="row">
                             <div class="col-md-6">
-                              <input type="text" class="common_input amount" id="common_input amount" name="amount" placeholder="1234">
+                              <input type="text" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
                             </div>
                             <div class="col-md-6">
                               <div class="select_reason_class">
-                                <select class="form-control custom_select" name="currency">
+                                <select class="form-control custom_select" name="expense_currency[]">
                                   <option hidden>Currency</option>
                                   <option value="1">EUR</option>
                                   <option value="2">USD</option>
@@ -609,7 +609,7 @@
                               <a class="btn btn-primary btn-sm active" data-toggle="accommodation_radio" data-title="Y">YES</a>
                               <a class="btn btn-primary btn-sm notActive" data-toggle="accommodation_radio" data-title="N">NO</a>
                             </div>
-                            <input type="hidden" name="happy" id="happy">
+                            <input type="hidden" name="expense_is_receipt[]" id="happy">
                           </div>
                         </td>
                       </tr>
@@ -618,11 +618,11 @@
                         <td>
                           <div class="row">
                             <div class="col-md-6">
-                              <input type="text" class="common_input amount" id="common_input amount" name="amount" placeholder="1234">
+                              <input type="text" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
                             </div>
                             <div class="col-md-6">
                               <div class="select_reason_class">
-                                <select class="form-control custom_select" name="currency">
+                                <select class="form-control custom_select" name="expense_currency[]">
                                   <option hidden>Currency</option>
                                   <option value="1">EUR</option>
                                   <option value="2">USD</option>
@@ -638,7 +638,7 @@
                               <a class="btn btn-primary btn-sm active" data-toggle="transportation_radio" data-title="Y">YES</a>
                               <a class="btn btn-primary btn-sm notActive" data-toggle="transportation_radio" data-title="N">NO</a>
                             </div>
-                            <input type="hidden" name="happy" id="happy">
+                            <input type="hidden" name="expense_is_receipt[]" id="happy">
                           </div>
                         </td>
                       </tr>
@@ -647,11 +647,11 @@
                         <td>
                           <div class="row">
                             <div class="col-md-6">
-                              <input type="text" class="common_input amount" id="common_input amount" name="amount" placeholder="1234">
+                              <input type="text" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
                             </div>
                             <div class="col-md-6">
                               <div class="select_reason_class">
-                                <select class="form-control custom_select" name="currency">
+                                <select class="form-control custom_select" name="expense_currency[]">
                                   <option hidden>Currency</option>
                                   <option value="1">EUR</option>
                                   <option value="2">USD</option>
@@ -667,7 +667,7 @@
                               <a class="btn btn-primary btn-sm active" data-toggle="food_radio" data-title="Y">YES</a>
                               <a class="btn btn-primary btn-sm notActive" data-toggle="food_radio" data-title="N">NO</a>
                             </div>
-                            <input type="hidden" name="happy" id="happy">
+                            <input type="hidden" name="expense_is_receipt[]" id="happy">
                           </div>
                         </td>
                       </tr>
@@ -676,11 +676,11 @@
                         <td>
                           <div class="row">
                             <div class="col-md-6">
-                              <input type="text" class="common_input amount" id="common_input amount" name="amount" placeholder="1234">
+                              <input type="text" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
                             </div>
                             <div class="col-md-6">
                               <div class="select_reason_class">
-                                <select class="form-control custom_select" name="currency">
+                                <select class="form-control custom_select" name="expense_currency[]">
                                   <option hidden>Currency</option>
                                   <option value="1">EUR</option>
                                   <option value="2">USD</option>
@@ -696,7 +696,7 @@
                               <a class="btn btn-primary btn-sm active" data-toggle="others_radio" data-title="Y">YES</a>
                               <a class="btn btn-primary btn-sm notActive" data-toggle="others_radio" data-title="N">NO</a>
                             </div>
-                            <input type="hidden" name="happy" id="happy">
+                            <input type="hidden" name="expense_is_receipt[]" id="happy">
                           </div>
                         </td>
                       </tr>
@@ -724,11 +724,11 @@
                       <td>
                         <div class="row">
                           <div class="col-md-6">
-                            <input type="text" class="common_input amount" id="common_input amount" name="amount" placeholder="1234">
+                            <input type="text" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
                           </div>
                           <div class="col-md-6">
                             <div class="select_reason_class">
-                              <select class="form-control custom_select" name="currency">
+                              <select class="form-control custom_select" name="expense_currency[]">
                                 <option hidden>Currency</option>
                                 <option value="1">EUR</option>
                                 <option value="2">USD</option>
@@ -747,7 +747,7 @@
                             <a class="btn btn-primary btn-sm active" data-toggle="happy" data-title="Y">YES</a>
                             <a class="btn btn-primary btn-sm notActive" data-toggle="happy" data-title="N">NO</a>
                           </div>
-                          <input type="hidden" name="happy" id="happy">
+                          <input type="hidden" name="expense_is_receipt[]" id="happy">
                         </div>
                       </td>
                     </tr>
@@ -760,11 +760,11 @@
                       <td>
                         <div class="row">
                           <div class="col-md-6">
-                            <input type="text" class="common_input amount" id="common_input amount" name="amount" placeholder="1234">
+                            <input type="text" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
                           </div>
                           <div class="col-md-6">
                             <div class="select_reason_class">
-                              <select class="form-control custom_select" name="currency">
+                              <select class="form-control custom_select" name="expense_currency[]">
                                 <option hidden>Currency</option>
                                 <option value="1">EUR</option>
                                 <option value="2">USD</option>
@@ -783,7 +783,7 @@
                             <a class="btn btn-primary btn-sm active" data-toggle="happy" data-title="Y">YES</a>
                             <a class="btn btn-primary btn-sm notActive" data-toggle="happy" data-title="N">NO</a>
                           </div>
-                          <input type="hidden" name="happy" id="happy">
+                          <input type="hidden" name="expense_is_receipt[]" id="happy">
                         </div>
                       </td>
                     </tr>
@@ -796,11 +796,11 @@
                       <td>
                         <div class="row">
                           <div class="col-md-6">
-                            <input type="text" class="common_input amount" id="common_input amount" name="amount" placeholder="1234">
+                            <input type="text" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
                           </div>
                           <div class="col-md-6">
                             <div class="select_reason_class">
-                              <select class="form-control custom_select" name="currency">
+                              <select class="form-control custom_select" name="expense_currency[]">
                                 <option hidden>Currency</option>
                                 <option value="1">EUR</option>
                                 <option value="2">USD</option>
@@ -819,7 +819,7 @@
                             <a class="btn btn-primary btn-sm active" data-toggle="happy" data-title="Y">YES</a>
                             <a class="btn btn-primary btn-sm notActive" data-toggle="happy" data-title="N">NO</a>
                           </div>
-                          <input type="hidden" name="happy" id="happy">
+                          <input type="hidden" name="expense_is_receipt[]" id="happy">
                         </div>
                       </td>
                     </tr>
@@ -832,11 +832,11 @@
                       <td>
                         <div class="row">
                           <div class="col-md-6">
-                            <input type="text" class="common_input amount" id="common_input amount" name="amount" placeholder="1234">
+                            <input type="text" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
                           </div>
                           <div class="col-md-6">
                             <div class="select_reason_class">
-                              <select class="form-control custom_select" name="currency">
+                              <select class="form-control custom_select" name="expense_currency[]">
                                 <option hidden>Currency</option>
                                 <option value="1">EUR</option>
                                 <option value="2">USD</option>
@@ -855,7 +855,7 @@
                             <a class="btn btn-primary btn-sm active" data-toggle="happy" data-title="Y">YES</a>
                             <a class="btn btn-primary btn-sm notActive" data-toggle="happy" data-title="N">NO</a>
                           </div>
-                          <input type="hidden" name="happy" id="happy">
+                          <input type="hidden" name="expense_is_receipt[]" id="happy">
                         </div>
                       </td>
                     </tr>
@@ -867,10 +867,10 @@
             <div class="common_row">
               <div class="email_div">
                 <div class="label_field">
-                  <label for="departure_airport">Please enter your email address</label>
+                  <label for="email_address">Please enter your email address</label>
                 </div>
                 <div class="input_field">
-                  <input type="text" class="common_input departure_airport" id="common_input departure_airport" placeholder="e.g. New York or JFK">
+                  <input type="text" class="common_input email_address" id="common_input email_address" name="email_address" placeholder="e.g. New York or JFK">
                 </div>
               </div>
             </div>
@@ -953,7 +953,7 @@
                   <label for="first_name">FIRST NAME</label>
                 </div>
                 <div class="input_field">
-                  <input type="text" class="common_input first_name" id="common_input first_name" name="first_name" placeholder="e.g. New York or JFK">
+                  <input type="text" class="common_input first_name" id="common_input first_name" name="first_name[]" placeholder="e.g. New York or JFK">
                 </div>
               </div>
               <div class="two_child_div_right">
@@ -961,7 +961,7 @@
                   <label for="last_name">LAST NAME</label>
                 </div>
                 <div class="input_field">
-                  <input type="text" class="common_input last_name" id="common_input last_name" name="last_name" placeholder="e.g. London or LHR">
+                  <input type="text" class="common_input last_name" id="common_input last_name" name="last_name[]" placeholder="e.g. London or LHR">
                 </div>
               </div>
             </div>
@@ -971,7 +971,7 @@
                   <label for="address">ADDRESS</label>
                 </div>
                 <div class="input_field">
-                  <input type="text" class="common_input address" id="common_input address" name="address" placeholder="e.g. New York or JFK">
+                  <input type="text" class="common_input address" id="common_input address" name="address[]" placeholder="e.g. New York or JFK">
                 </div>
               </div>
               <div class="two_child_div_right">
@@ -979,7 +979,7 @@
                   <label for="post_code">POST CODE</label>
                 </div>
                 <div class="input_field">
-                  <input type="text" class="common_input post_code" id="common_input post_code" name="post_code" placeholder="e.g. London or LHR">
+                  <input type="text" class="common_input post_code" id="common_input post_code" name="post_code[]" placeholder="e.g. London or LHR">
                 </div>
               </div>
             </div>
@@ -989,7 +989,7 @@
                   <label for="date_of_birth">DATE OF BIRTH</label>
                 </div>
                 <div class="input_field">
-                  <input type="text" class="common_input date_of_birth date" id="common_input date_of_birth" name="date_of_birth" placeholder="1/1/1990">
+                  <input type="text" class="common_input date_of_birth date" id="common_input date_of_birth" name="date_of_birth[]" placeholder="1/1/1990">
                 </div>
               </div>
             </div>
@@ -1002,28 +1002,40 @@
             <div class="parent_div">
               <div class="two_child_radio_div first_child">
                 <label class="container_radio">Yes
-                  <input class="common_input" type="radio" id="common_input is_booking_reference_yes" name="is_booking_reference" value="is_booking_reference_yes">
+                  <input class="common_input passenger_is_booking_checkbox" type="radio" count="1" id="common_input is_booking_reference_yes" name="is_booking_reference" value="1">
                   <span class="checkmark"></span>
                 </label>
               </div>
               <div class="two_child_radio_div">
                 <label class="container_radio">Later
-                  <input class="common_input" type="radio" id="common_input is_booking_reference_no" name="is_booking_reference" value="is_booking_reference_no">
+                  <input class="common_input passenger_is_booking_checkbox" type="radio" count="1" id="common_input is_booking_reference_no" name="is_booking_reference" value="0">
                   <span class="checkmark"></span>
                 </label>
               </div>
             </div>
-            <div class="parent_div show_on_is_booking_reference_yes">
-              <div class="add_booking_reference_div" id="add_booking_reference_div">
+            <div class="parent_div show_on_is_booking_reference_yes_1" style="display:none">
+              <div class="add_booking_reference_div" id="add_booking_reference_div_1">
                 <div class="child_div" style="margin-top: 10px;" id="reference_remove">
-                  <input style="width: 50%; float: left; margin-right: 10px; margin-bottom: 0px; margin-top: 0px;" type="text" class="common_input" name="meta_key[]" />
-                  <button type="button" class="remove_reference" id="remove_reference" style="float: none; margin-left: 5px;margin-top: 2px;">
-                    <i class="fas fa-minus-circle"></i>
-                  </button>
+                  <input style="width: 50%; float: left; margin-right: 10px; margin-bottom: 0px; margin-top: 0px;" type="text" class="common_input meta_key" name="meta_key[]" />
                 </div>
               </div>
             </div>
           </div>
+
+          <div class="show_on_click_add_another_passenger">
+
+
+          </div>
+
+          <div class="common_row">
+            <div class="parent_div">
+              <button type="button" name="button" id="add_another_passenger" class="add_another_passenger"><i class="fas fa-plus"></i> Add Another Passenger</button>
+            </div>
+          </div>
+
+
+
+
 
           <div class="common_row">
             <div class="total_button_div">
@@ -1044,108 +1056,26 @@
         <!-- ...................................................................
                                   STEP 6 ENDS
         .................................................................... -->
+
         <!-- ...................................................................
                                   STEP 7 STARTS
         .................................................................... -->
 
         <div class="single_step" id="step_7" style="display:none;">
-
           <div class="common_row">
             <div class="form_h3">
-              <h3>Passenger details</h3>
-            </div>
-            <div class="form_h4">
-              <h4>Make sure to type your name as it appears on your flight ticket.</h4>
+              <h3>Sign permission to handle claim</h3>
             </div>
             <div class="parent_div">
-              <div class="two_child_div_left">
-                <div class="label_field">
-                  <label for="first_name">FIRST NAME</label>
-                </div>
-                <div class="input_field">
-                  <input type="text" class="common_input first_name" id="common_input first_name" name="first_name" placeholder="e.g. New York or JFK">
-                </div>
-              </div>
-              <div class="two_child_div_right">
-                <div class="label_field">
-                  <label for="last_name">LAST NAME</label>
-                </div>
-                <div class="input_field">
-                  <input type="text" class="common_input last_name" id="common_input last_name" name="last_name" placeholder="e.g. London or LHR">
-                </div>
-              </div>
-            </div>
-            <div class="parent_div">
-              <div class="two_child_div_left">
-                <div class="label_field">
-                  <label for="date_of_birth">DATE OF BIRTH</label>
-                </div>
-                <div class="input_field">
-                  <input type="text" class="common_input date_of_birth date" id="common_input date_of_birth date" name="date_of_birth" placeholder="e.g. New York or JFK">
-                </div>
-              </div>
-              <div class="two_child_div_right">
-                <div class="label_field">
-                  <label for="email">EMAIL ADDRESS</label>
-                </div>
-                <div class="input_field">
-                  <input type="text" class="common_input email" id="common_input email" name="email" placeholder="e.g. New York or JFK">
-                </div>
-              </div>
-            </div>
-            <div class="parent_div">
-              <div class="two_child_div_left">
-                <div class="label_field">
-                  <label for="address">ADDRESS</label>
-                </div>
-                <div class="input_field">
-                  <input type="text" class="common_input address" id="common_input address" name="address" placeholder="e.g. New York or JFK">
-                </div>
-              </div>
-              <div class="two_child_div_right">
-                <div class="label_field">
-                  <label for="post_code">POST CODE</label>
-                </div>
-                <div class="input_field">
-                  <input type="text" class="common_input post_code" id="common_input post_code" name="post_code" placeholder="e.g. London or LHR">
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="common_row">
-            <div class="form_h3">
-              <h3>Passenger details</h3>
-            </div>
-            <div class="form_h4">
-              <h4>A booking reference is a code used by airlines to keep track of individual reservations. You can find your booking reference on your e-ticket or on any emails or documents you received from the airline after booking your trip.
-                This code will most often be six digits, including both letters and numbers (for example: DF87G3, REDYYD, L5W4NW). Please make sure you don’t include spaces.
-                For help locating your booking please contact our customer service department. (add link to contact us page)
-              </h4>
-            </div>
-            <div class="parent_div">
-              <div class="two_child_radio_div first_child">
-                <label class="container_radio">Yes
-                  <input class="common_input" type="radio" id="common_input other_booking_reference_radio_yes" name="other_booking_reference_radio" value="1">
-                  <span class="checkmark"></span>
-                </label>
-              </div>
-              <div class="two_child_radio_div">
-                <label class="container_radio">Later
-                  <input class="common_input" type="radio" id="common_input other_booking_reference_radio_no" name="other_booking_reference_radio" value="2">
-                  <span class="checkmark"></span>
-                </label>
-              </div>
-            </div>
-            <div class="parent_div show_on_other_booking_reference_radio_yes">
-              <div class="add_other_booking_reference_div" id="add_other_booking_reference_div">
-                <div class="child_div" style="margin-top: 10px;" id="other_reference_remove_div">
-                  <input style="width: 50%; float: left; margin-right: 10px; margin-bottom: 0px; margin-top: 0px;" type="text" class="common_input" name="meta_key[]" />
-                  <button type="button" class="remove_other_reference" id="remove_other_reference" style="float: none; margin-left: 5px;margin-top: 2px;">
-                    <i class="fas fa-minus-circle"></i>
-                  </button>
-                </div>
-              </div>
+              <div class="form-check">
+      					<label>
+      						<input type="checkbox" name="is_signed_permission" checked> <span class="label-text">Write your signature below as it appears on your ID. It's required by airlines to collect the compensation for you. By signing you agree with the Assignment Form and Price List</span>
+      					</label>
+      				</div>
+              {{-- <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="customCheck1">
+                <label class="custom-control-label" for="customCheck1">Write your signature below as it appears on your ID. It's required by airlines to collect the compensation for you. By signing you agree with the Assignment Form and Price List</label>
+              </div> --}}
             </div>
           </div>
 
@@ -1173,47 +1103,6 @@
         .................................................................... -->
 
         <div class="single_step" id="step_8" style="display:none;">
-          <div class="common_row">
-            <div class="form_h3">
-              <h3>Sign permission to handle claim</h3>
-            </div>
-            <div class="parent_div">
-              <div class="form-check">
-      					<label>
-      						<input type="checkbox" name="is_signed_permission" checked> <span class="label-text">Write your signature below as it appears on your ID. It's required by airlines to collect the compensation for you. By signing you agree with the Assignment Form and Price List</span>
-      					</label>
-      				</div>
-              {{-- <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="customCheck1">
-                <label class="custom-control-label" for="customCheck1">Write your signature below as it appears on your ID. It's required by airlines to collect the compensation for you. By signing you agree with the Assignment Form and Price List</label>
-              </div> --}}
-            </div>
-          </div>
-
-          <div class="common_row">
-            <div class="total_button_div">
-              <div class="two_button_child_div_left">
-                <div class="continue_button_div">
-                  <button type="button" class="continue_button" id="continue_8" name="button">Continue <i class="fas fa-arrow-right"></i></button>
-                </div>
-              </div>
-              <div class="two_button_child_div_right">
-                <div class="previous_button_div">
-                  <button type="button" class="previous_button pull-left" id="previous_button" name="button">Previous <i class="fas fa-arrow-left"></i></button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- ...................................................................
-                                  STEP 8 ENDS
-        .................................................................... -->
-        <!-- ...................................................................
-                                  STEP 9 STARTS
-        .................................................................... -->
-
-        <div class="single_step" id="step_9" style="display:none;">
           <div class="common_row">
             <div class="form_h3">
               <h3>Optional: Additional information</h3>
@@ -1347,7 +1236,7 @@
 
         </div>
         <!-- ...................................................................
-                                  STEP 9 ENDS
+                                  STEP 8 ENDS
         .................................................................... -->
       </form>
     </div>
