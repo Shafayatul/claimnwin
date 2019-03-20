@@ -13,7 +13,7 @@
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="sidebar-menu">
-            <li class="header">MAIN NAVIGATION</li>
+            {{-- <li class="header">MAIN NAVIGATION</li> --}}
             <li class="treeview">
               <a href="#">
               <i class="fa fa-laptop"></i>
@@ -106,6 +106,18 @@
               <ul class="treeview-menu">
               <li><a href="{{URL::to('/next-step/create')}}"><i class="fa fa-angle-right"></i> Add Next Step</a></li>
               <li><a href="{{URL::to('/next-step')}}"><i class="fa fa-angle-right"></i> Manage Next Step</a></li>
+              </ul>
+            </li>
+
+            <li class="treeview">
+              <a href="#">
+              <i class="fa fa-cog"></i>
+              <span>Settings</span>
+              <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+              <li><a href="{{URL::to('/settings/create')}}"><i class="fa fa-angle-right"></i> Add Settings</a></li>
+              <li><a href="{{URL::to('/settings')}}"><i class="fa fa-angle-right"></i> Manage Settings</a></li>
               </ul>
             </li>
             {{-- <li class="treeview">

@@ -71,3 +71,4 @@ Route::resource('passengers', 'PassengersController');
 Route::resource('claims', 'ClaimsController');
 Route::resource('claim-status', 'ClaimStatusController');
 Route::resource('next-step', 'NextStepController');
+Route::resource('settings', 'SettingsController');
