@@ -1,0 +1,67 @@
+/* Remove the navbar's default margin-bottom and rounded borders */
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+
+    /* Add a gray background color and some padding to the footer */
+    footer {
+      background-color: #f2f2f2;
+      padding: 25px;
+    }
+
+    .menu{
+
+        border:none;
+        border-bottom: 1px solid #e7e7e7;
+    }
+
+    .menu_navbar{
+        background-color: white;
+        border:none;
+    }
+
+    .menu_brand{
+        color: black!important;
+    }
+
+    /* .menu_nav li a{
+        color: #65718b !important;
+    }
+    */
+
+    .menu_nav li a:hover{
+        color: #26cfa2 !important;
+    }
+
+     .navbar-nav>.open>a{
+        color: #65718b !important;
+     }
+
+    .navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:focus, .navbar-inverse .navbar-nav>.open>a:hover {
+        color: #26cfa2 !important;
+        background-color: white!important;
+    }
+    .active{
+        background-color: none!important;
+    }
+
+    .navbar-nav>li>.dropdown-menu{
+        border-top: 3px solid #26cfa2!important;
+    }
+
+    .menu_nav img{
+        width: 20px;
+    }
+
+    .country_img{
+        margin-right: 5px;
+    }
+
+    .navbar-inverse .navbar-toggle .icon-bar{
+        background-color: black;
+    }
+
+    .navbar-inverse .navbar-toggle:focus, .navbar-inverse .navbar-toggle:hover{
+        background-color: white;
+    }

@@ -11,7 +11,7 @@ class UserPanelController extends Controller
 {
     public function index()
     {
-        return 'Hello';
+        return view('frontEnd.user.user_panel');
     }
 
     public function userSignup(Request $request)
