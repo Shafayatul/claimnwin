@@ -20,7 +20,9 @@ $(document).ready(function(){
     });
 
     function check_next_step(){
+      console.log("check_next_step() func");
       if (step==1) {
+
         $("#continue_1").removeClass('active_button');
         if (($("input[name='departed_from']").val() != "") && ($("input[name='final_destination']").val() != "") && ($("input[name='is_direct_flight']").is(':checked')) && ($("input[name='selected_connection_id']").is(':checked') )  ) {
           if ($("input[name='is_direct_flight']:checked").val() == 'is_direct_flight_yes') {
@@ -43,6 +45,28 @@ $(document).ready(function(){
             return true;
           }
         }
+
+      }else if (step == 2) {
+
+        $("#continue_2").removeClass('active_button');
+        if (($("input[name='what_happened_to_the_flight']").is(':checked')) && ($("input[name='total_delay']").is(':checked') ) && ($(".reason").val() != "" )  ) {
+          console.log($(".reason").val());
+          $("#continue_2").addClass('active_button');
+          return true;
+        }
+
+      }else if (step == 3) {
+
+        $("#continue_3").removeClass('active_button');
+        var is_step_three = false;
+        var x=0;
+        $("input[name='airline']").each(function(){
+          console.log($("input[name='airline']")[0].val());
+
+          x++;
+        });
+
+
       }
 
 
@@ -50,7 +74,7 @@ $(document).ready(function(){
 
     }
 
-    $(document).on("change", "input", function() {
+    $(document).on("change", "input, select", function() {
       check_next_step();
     });
 

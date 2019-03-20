@@ -245,8 +245,8 @@
             </div>
             <div class="parent_div">
               <div class="airline_reason_select_div">
-                <select class="form-control custom_select" name="reason">
-                  <option hidden>Please select</option>
+                <select class="form-control custom_select reason" name="reason">
+                  <option value="" hidden>Please select</option>
                   <option value="technical_problem">Technical problem</option>
                   <option value="bad_weather_conditions">Bad weather conditions</option>
                   <option value="influence_by_other_flights">Influence by other flights</option>
@@ -335,7 +335,7 @@
                     </div>
                     <div class="two_input_field">
                       <div class="input_field">
-                        <input type="text" class="common_input departure_airport date" id="common_input departure_airport date" name="departure_date" placeholder="e.g. New York or JFK">
+                        <input type="text" class="common_input departure_airport date" id="common_input departure_airport date" name="departure_date[]" placeholder="e.g. New York or JFK">
                       </div>
                     </div>
                   </div>
