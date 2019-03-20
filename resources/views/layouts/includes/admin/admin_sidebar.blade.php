@@ -88,12 +88,24 @@
             <li class="treeview">
               <a href="#">
               <i class="fa fa-cog"></i>
-              <span>Manage Claim Status</span>
+              <span>Claim Status</span>
               <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
               <li><a href="{{URL::to('/claim-status/create')}}"><i class="fa fa-angle-right"></i> Add Claim Status</a></li>
               <li><a href="{{URL::to('/claim-status')}}"><i class="fa fa-angle-right"></i> Manage claim Status</a></li>
+              </ul>
+            </li>
+
+            <li class="treeview">
+              <a href="#">
+              <i class="fa fa-cog"></i>
+              <span>Next Step</span>
+              <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+              <li><a href="{{URL::to('/next-step/create')}}"><i class="fa fa-angle-right"></i> Add Next Step</a></li>
+              <li><a href="{{URL::to('/next-step')}}"><i class="fa fa-angle-right"></i> Manage Next Step</a></li>
               </ul>
             </li>
             {{-- <li class="treeview">
