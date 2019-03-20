@@ -88,6 +88,17 @@
             <li class="treeview">
               <a href="#">
               <i class="fa fa-cog"></i>
+              <span>Manage Claim Status</span>
+              <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+              <li><a href="{{URL::to('/claim-status/create')}}"><i class="fa fa-angle-right"></i> Add Claim Status</a></li>
+              <li><a href="{{URL::to('/claim-status')}}"><i class="fa fa-angle-right"></i> Manage claim Status</a></li>
+              </ul>
+            </li>
+            {{-- <li class="treeview">
+              <a href="#">
+              <i class="fa fa-cog"></i>
               <span>Manage Settings</span>
               <i class="fa fa-angle-left pull-right"></i>
               </a>
@@ -96,7 +107,7 @@
                 <li><a href="media.html"><i class="fa fa-angle-right"></i> Manage claim Status</a></li>
                 <li><a href="media.html"><i class="fa fa-angle-right"></i> Manage Next Step</a></li>
               </ul>
-            </li>
+            </li> --}}
           </ul>
         </div>
         <!-- /.navbar-collapse -->
