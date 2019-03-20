@@ -18,10 +18,50 @@ $(document).ready(function(){
       $('.single_step').hide();
       $("#step_" + step).show();
     });
+
+    function check_next_step(){
+      if (step==1) {
+        $("#continue_1").removeClass('active_button');
+        if (($("input[name='departed_from']").val() != "") && ($("input[name='final_destination']").val() != "") && ($("input[name='is_direct_flight']").is(':checked')) && ($("input[name='selected_connection_id']").is(':checked') )  ) {
+          if ($("input[name='is_direct_flight']:checked").val() == 'is_direct_flight_yes') {
+
+            var is_connection_empty = true;
+
+            $(".connection").each(function(){
+              if ($(this).val() != "") {
+                is_connection_empty = false;
+              }
+            });
+
+            if (!is_connection_empty) {
+              $("#continue_1").addClass('active_button');
+              return true;
+            }
+
+          }else{
+            $("#continue_1").addClass('active_button');
+            return true;
+          }
+        }
+      }
+
+
+      return false;
+
+    }
+
+    $(document).on("change", "input", function() {
+      check_next_step();
+    });
+
+
     function next(){
-      step++;
-      $('.single_step').hide();
-      $("#step_" + step).show();
+      if (check_next_step()) {
+        step++;
+        $('.single_step').hide();
+        $("#step_" + step).show();
+      }
+
     }
 
     $("#continue_1").click(function() {
@@ -182,6 +222,27 @@ $(document).ready(function(){
       }
     });
 
+    /* Add Another Passenger */
+    var passengerCnt = 2;
+    function add_new_passenger(){
+
+      var passengerHtml = '<div class="total_another_passenger_div"><div class="common_row"><div class="parent_div"><div class="two_child_div_left"><div class="form_h3"><h3>Another Passenger details</h3></div></div><div class="two_child_div_right text-right"><button type="button" class="remove_another_passenger" id="remove_another_passenger" style="float: none; margin-left: 5px;margin-top: 2px;"><i class="fas fa-minus-circle"></i>Cancel</button></div></div><div class="form_h4"><h4>Make sure to type your name as it appears on your flight ticket.</h4></div><div class="parent_div"><div class="two_child_div_left"><div class="label_field"><label for="first_name">FIRST NAME</label></div><div class="input_field"><input type="text" class="common_input first_name" id="common_input first_name" name="first_name[]" placeholder="e.g. New York or JFK"></div></div><div class="two_child_div_right"><div class="label_field"><label for="last_name">LAST NAME</label></div><div class="input_field"><input type="text" class="common_input last_name" id="common_input last_name" name="last_name[]" placeholder="e.g. London or LHR"></div></div></div><div class="parent_div"><div class="two_child_div_left"><div class="label_field"><label for="address">ADDRESS</label></div><div class="input_field"><input type="text" class="common_input address" id="common_input address" name="address[]" placeholder="e.g. New York or JFK"></div></div><div class="two_child_div_right"><div class="label_field"><label for="post_code">POST CODE</label></div><div class="input_field"><input type="text" class="common_input post_code" id="common_input post_code" name="post_code[]" placeholder="e.g. London or LHR"></div></div></div><div class="parent_div"><div class="two_child_div_left"><div class="label_field"><label for="date_of_birth">DATE OF BIRTH</label></div><div class="input_field"><input type="text" class="common_input date_of_birth date" id="common_input date_of_birth" name="date_of_birth[]" placeholder="1/1/1990"></div></div></div></div><div class="common_row"><div class="form_h3"><h3>What’s your booking reference?</h3></div><div class="parent_div"><div class="two_child_radio_div first_child"><label class="container_radio">Yes<input class="common_input passenger_is_booking_checkbox" type="radio" count="'+passengerCnt+'" id="common_input is_booking_reference_yes" name="is_booking_reference" value="1"><span class="checkmark"></span></label></div><div class="two_child_radio_div"><label class="container_radio">Later<input class="common_input passenger_is_booking_checkbox" type="radio" count="'+passengerCnt+'" id="common_input is_booking_reference_no" name="is_booking_reference" value="0"><span class="checkmark"></span></label></div></div><div class="parent_div show_on_is_booking_reference_yes_'+passengerCnt+'" style="display:none"><div class="add_booking_reference_div" id="add_booking_reference_div_1"><div class="child_div" style="margin-top: 10px;" id="reference_remove"><input style="width: 50%; float: left; margin-right: 10px; margin-bottom: 0px; margin-top: 0px;" type="text" class="common_input meta_key" name="meta_key[]" /></div></div></div></div> </div>';
+
+      return passengerHtml;
+    }
+
+
+    $("#add_another_passenger").click(function(){
+      passengerCnt++;
+      $('.show_on_click_add_another_passenger').append(add_new_passenger());
+        $(document).on("click", "#remove_another_passenger", function() {
+         $(this).closest('.total_another_passenger_div').remove();
+        });
+    });
+
+
+
+
 
     /* Yes No Radio Buttom */
     $('#radioBtn a').on('click', function(){
@@ -191,26 +252,29 @@ $(document).ready(function(){
 
     $('a[data-toggle="'+tog+'"]').not('[data-title="'+sel+'"]').removeClass('active').addClass('notActive');
     $('a[data-toggle="'+tog+'"][data-title="'+sel+'"]').removeClass('notActive').addClass('active');
-});
+    });
 
       /* Booking Reference   */
-      $(".show_on_is_booking_reference_yes").hide();
-      $("input[name=is_booking_reference]:radio").click(function() {
-        if($(this).attr("value")=="is_booking_reference_yes") {
-          $(".show_on_is_booking_reference_yes").show(500);
-        }else if ($(this).attr("value")=="is_booking_reference_no") {
-          $(".show_on_is_booking_reference_yes").hide(500);
+      $(document).on('change', '.passenger_is_booking_checkbox', function(){
+        var count = $(this).attr('count');
+        if($(this).attr("value")=="1") {
+          $(".show_on_is_booking_reference_yes_"+count).show(500);
+        }else if ($(this).attr("value")=="0") {
+          $(".show_on_is_booking_reference_yes_"+count).hide(500);
         }
       });
 
-      $(document).on('click','.remove_reference',function(){
-        var id = $(this).attr('id');
-      $("#reference_remove_"+id).remove();
-      });
+
+
+
+
+      /* Remove Booking Reference   */
+
+
 
       /* Other Booking Reference   */
         $(".show_on_other_booking_reference_radio_yes").hide();
-      $("input[name=other_booking_reference_radio]:radio").click(function() {
+        $("input[name=other_booking_reference_radio]:radio").click(function() {
         if($(this).attr("value")=="1") {
           $(".show_on_other_booking_reference_radio_yes").show(500);
         }else if ($(this).attr("value")=="2") {
