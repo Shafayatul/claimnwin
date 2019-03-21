@@ -36,6 +36,20 @@
                 <li><a href="{{URL::to('/airports')}}"><i class="fa fa-angle-right"></i> Manage Airport</a></li>
               </ul>
             </li>
+
+            <li class="treeview">
+            <a href="#">
+            <i class="fa fa-money-check-alt"></i>
+            <span>Claim</span>
+            <i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="treeview-menu">
+            <li><a href="{{url('/manage-claim')}}"><i class="fa fa-angle-right"></i> Manage Claim</a></li>
+            <li><a href="#"><i class="fa fa-angle-right"></i> Manage Unfinished Claim</a></li>
+            <li><a href="#"><i class="fa fa-angle-right"></i> Manage Fills Claim</a></li>
+            </ul>
+            </li>
+
             <li class="treeview">
             <a href="#">
             <i class="fa fa-university"></i>

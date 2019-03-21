@@ -65,3 +65,33 @@
     .navbar-inverse .navbar-toggle:focus, .navbar-inverse .navbar-toggle:hover{
         background-color: white;
     }
+
+    .left_row{
+        border-bottom: 0px;
+    }
+
+    .left_row li{
+        display: block!important;
+        float: none!important;
+    }
+
+    .cus_pan_heading{
+        padding: 0px!important;
+        padding-top: 5px!important;
+    }
+    .cus_pan_heading p{
+        background-color: whitesmoke;
+        color: red;
+        font-weight: unset!important;
+        font-size: 11px;
+        width: 45%;
+        margin-left: 28%;
+        margin-right: 28%;
+        padding: 0px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+    }
+    .cus_pan_heading h5{
+        color: white;
+        font-size: 15px;
+    }
