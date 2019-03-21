@@ -522,7 +522,7 @@
             <div class="parent_div">
               <div class="price_currency_div">
                 <div class="child_price_currency_div">
-                  <input type="text" class="common_input ticket_price" id="common_input ticket_price_rerouting" name="ticket_price" placeholder="Ex. 1234">
+                  <input type="text" class="common_input ticket_price" id="common_input ticket_price_rerouting" name="ticket_price_rerouting" placeholder="Ex. 1234">
                 </div>
                 <div class="child_price_currency_div">
                   <div class="select_reason_class">
@@ -585,7 +585,9 @@
                     </thead>
                     <tbody>
                       <tr>
-                        <td class="align-baseline">Accommodation</td>
+                        <td class="align-baseline">Accommodation
+                          <input type="hidden" value="accommodation" class="common_input expense_name" id="common_input expense_name" name="expense_name[]">
+                        </td>
                         <td>
                           <div class="row">
                             <div class="col-md-6">
@@ -604,17 +606,18 @@
                           </div>
                         </td>
                         <td>
-                          <div class="input-group yes_no_center">
-                            <div id="radioBtn" class="btn-group">
-                              <a class="btn btn-primary btn-sm active" data-toggle="accommodation_radio" data-title="Y">YES</a>
-                              <a class="btn btn-primary btn-sm notActive" data-toggle="accommodation_radio" data-title="N">NO</a>
-                            </div>
-                            <input type="hidden" name="expense_is_receipt[]" id="happy">
+                          <div class="group">
+                            <input id="Radio1" name="Radios1" type="radio" value="First Option" checked="checked">
+                            <label class="label" for="Radio1">Yes</label>
+                            <input id="Radio2" name="Radios1" type="radio" value="Other Option" >
+                            <label class="center label" for="Radio2">No</label>
                           </div>
                         </td>
                       </tr>
                       <tr>
-                        <td class="align-baseline">Transportation</td>
+                        <td class="align-baseline">Transportation
+                          <input type="hidden" value="transportation" class="common_input expense_name" id="common_input expense_name" name="expense_name[]">
+                        </td>
                         <td>
                           <div class="row">
                             <div class="col-md-6">
@@ -634,16 +637,20 @@
                         </td>
                         <td>
                           <div class="input-group yes_no_center">
-                            <div id="radioBtn" class="btn-group">
-                              <a class="btn btn-primary btn-sm active" data-toggle="transportation_radio" data-title="Y">YES</a>
-                              <a class="btn btn-primary btn-sm notActive" data-toggle="transportation_radio" data-title="N">NO</a>
+                            <div class="group">
+                              <input id="Radio1" name="Radios2" type="radio" value="First Option" checked="checked">
+                              <label class="label" for="Radio1">Yes</label>
+                              <input id="Radio2" name="Radios2" type="radio" value="Other Option" >
+                              <label class="center label" for="Radio2">No</label>
                             </div>
-                            <input type="hidden" name="expense_is_receipt[]" id="happy">
+
                           </div>
                         </td>
                       </tr>
                       <tr>
-                        <td class="align-baseline">Food</td>
+                        <td class="align-baseline">Food
+                          <input type="hidden" value="food" class="common_input expense_name" id="common_input expense_name" name="expense_name[]">
+                        </td>
                         <td>
                           <div class="row">
                             <div class="col-md-6">
@@ -663,16 +670,19 @@
                         </td>
                         <td>
                           <div class="input-group yes_no_center">
-                            <div id="radioBtn" class="btn-group">
-                              <a class="btn btn-primary btn-sm active" data-toggle="food_radio" data-title="Y">YES</a>
-                              <a class="btn btn-primary btn-sm notActive" data-toggle="food_radio" data-title="N">NO</a>
+                            <div class="group">
+                              <input id="Radio1" name="Radios3" type="radio" value="First Option" checked="checked">
+                              <label class="label" for="Radio1">Yes</label>
+                              <input id="Radio2" name="Radios3" type="radio" value="Other Option" >
+                              <label class="center label" for="Radio2">No</label>
                             </div>
-                            <input type="hidden" name="expense_is_receipt[]" id="happy">
                           </div>
                         </td>
                       </tr>
                       <tr>
-                        <td class="align-baseline">Other</td>
+                        <td class="align-baseline">Other
+                          <input type="hidden" value="other" class="common_input expense_name" id="common_input expense_name" name="expense_name[]">
+                        </td>
                         <td>
                           <div class="row">
                             <div class="col-md-6">
@@ -692,11 +702,12 @@
                         </td>
                         <td>
                           <div class="input-group yes_no_center">
-                            <div id="radioBtn" class="btn-group">
-                              <a class="btn btn-primary btn-sm active" data-toggle="others_radio" data-title="Y">YES</a>
-                              <a class="btn btn-primary btn-sm notActive" data-toggle="others_radio" data-title="N">NO</a>
+                            <div class="group">
+                              <input id="Radio1" name="Radios4" type="radio" value="First Option" checked="checked">
+                              <label class="label" for="Radio1">Yes</label>
+                              <input id="Radio2" name="Radios4" type="radio" value="Other Option" >
+                              <label class="center label" for="Radio2">No</label>
                             </div>
-                            <input type="hidden" name="expense_is_receipt[]" id="happy">
                           </div>
                         </td>
                       </tr>
@@ -743,11 +754,12 @@
                       <th scope="col">Receipt</th>
                       <td>
                         <div class="input-group yes_no_center">
-                          <div id="radioBtn" class="btn-group">
-                            <a class="btn btn-primary btn-sm active" data-toggle="happy" data-title="Y">YES</a>
-                            <a class="btn btn-primary btn-sm notActive" data-toggle="happy" data-title="N">NO</a>
+                          <div class="group">
+                            <input id="Radio1" name="Radios1" type="radio" value="First Option" checked="checked">
+                            <label class="label" for="Radio1">Yes</label>
+                            <input id="Radio2" name="Radios1" type="radio" value="Other Option" >
+                            <label class="center label" for="Radio2">No</label>
                           </div>
-                          <input type="hidden" name="expense_is_receipt[]" id="happy">
                         </div>
                       </td>
                     </tr>
@@ -779,11 +791,12 @@
                       <th scope="col">Receipt</th>
                       <td>
                         <div class="input-group yes_no_center">
-                          <div id="radioBtn" class="btn-group">
-                            <a class="btn btn-primary btn-sm active" data-toggle="happy" data-title="Y">YES</a>
-                            <a class="btn btn-primary btn-sm notActive" data-toggle="happy" data-title="N">NO</a>
+                          <div class="group">
+                            <input id="Radio1" name="Radios2" type="radio" value="First Option" checked="checked">
+                            <label class="label" for="Radio1">Yes</label>
+                            <input id="Radio2" name="Radios2" type="radio" value="Other Option" >
+                            <label class="center label" for="Radio2">No</label>
                           </div>
-                          <input type="hidden" name="expense_is_receipt[]" id="happy">
                         </div>
                       </td>
                     </tr>
@@ -815,11 +828,12 @@
                       <th scope="col">Receipt</th>
                       <td>
                         <div class="input-group yes_no_center">
-                          <div id="radioBtn" class="btn-group">
-                            <a class="btn btn-primary btn-sm active" data-toggle="happy" data-title="Y">YES</a>
-                            <a class="btn btn-primary btn-sm notActive" data-toggle="happy" data-title="N">NO</a>
+                          <div class="group">
+                            <input id="Radio1" name="Radios3" type="radio" value="First Option" checked="checked">
+                            <label class="label" for="Radio1">Yes</label>
+                            <input id="Radio2" name="Radios3" type="radio" value="Other Option" >
+                            <label class="center label" for="Radio2">No</label>
                           </div>
-                          <input type="hidden" name="expense_is_receipt[]" id="happy">
                         </div>
                       </td>
                     </tr>
@@ -851,11 +865,12 @@
                       <th scope="col">Receipt</th>
                       <td>
                         <div class="input-group yes_no_center">
-                          <div id="radioBtn" class="btn-group">
-                            <a class="btn btn-primary btn-sm active" data-toggle="happy" data-title="Y">YES</a>
-                            <a class="btn btn-primary btn-sm notActive" data-toggle="happy" data-title="N">NO</a>
+                          <div class="group">
+                            <input id="Radio1" name="Radios4" type="radio" value="First Option" checked="checked">
+                            <label class="label" for="Radio1">Yes</label>
+                            <input id="Radio2" name="Radios4" type="radio" value="Other Option" >
+                            <label class="center label" for="Radio2">No</label>
                           </div>
-                          <input type="hidden" name="expense_is_receipt[]" id="happy">
                         </div>
                       </td>
                     </tr>
@@ -1002,13 +1017,13 @@
             <div class="parent_div">
               <div class="two_child_radio_div first_child">
                 <label class="container_radio">Yes
-                  <input class="common_input passenger_is_booking_checkbox" type="radio" count="1" id="common_input is_booking_reference_yes" name="is_booking_reference" value="1">
+                  <input class="common_input passenger_is_booking_checkbox" type="radio" count="1" id="common_input is_booking_reference_yes" name="is_booking_reference" value="is_booking_reference_yes">
                   <span class="checkmark"></span>
                 </label>
               </div>
               <div class="two_child_radio_div">
                 <label class="container_radio">Later
-                  <input class="common_input passenger_is_booking_checkbox" type="radio" count="1" id="common_input is_booking_reference_no" name="is_booking_reference" value="0">
+                  <input class="common_input passenger_is_booking_checkbox" type="radio" count="1" id="common_input is_booking_reference_no" name="is_booking_reference" value="is_booking_reference_no">
                   <span class="checkmark"></span>
                 </label>
               </div>
@@ -1016,7 +1031,7 @@
             <div class="parent_div show_on_is_booking_reference_yes_1" style="display:none">
               <div class="add_booking_reference_div" id="add_booking_reference_div_1">
                 <div class="child_div" style="margin-top: 10px;" id="reference_remove">
-                  <input style="width: 50%; float: left; margin-right: 10px; margin-bottom: 0px; margin-top: 0px;" type="text" class="common_input meta_key" name="meta_key[]" />
+                  <input style="width: 50%; float: left; margin-right: 10px; margin-bottom: 0px; margin-top: 0px;" type="text" class="common_input booking_reference_field_input" id="booking_reference_field_input" name="booking_reference_field_input[]" />
                 </div>
               </div>
             </div>

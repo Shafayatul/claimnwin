@@ -59,6 +59,69 @@ label
   margin-bottom: 0px;
 }
 
+
+
+
+
+.group {
+    border: 2px solid #121212;
+    height: 36px;
+    width: 136px;
+    border-radius: 5px;
+    background: #222;
+    background-clip: border-box;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+    /* hide the inputs */
+    opacity: 0;
+    display: none;
+    margin: 0;
+}
+
+/* style your lables/button */
+input[type="radio"] + .label{
+    /* keep pointer so that you get the little hand showing when you are on a button */
+    cursor: pointer !important;
+    /* the following are the styles */
+    float: left !important;
+    padding: 10px 24px !important;
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.7), 0 0 0 hsla(208.12, 44.44%, 85.88%, 0) !important;
+    color: #fff !important;
+    font-weight: bold !important;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.2), 0 6px 10px -1px rgba(0,0,0,0.6) !important;
+    background: -moz-linear-gradient(top, #37373d 0%, #222228 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#37373d), color-stop(100%,#222228)) !important; /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #37373d 0%,#222228 100%) !important; /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #37373d 0%,#222228 100%) !important; /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #37373d 0%,#222228 100%) !important; /* IE10+ */
+    background: linear-gradient(to bottom, #37373d 0%,#222228 100%) !important; /* W3C */
+}
+
+input[type="radio"]:checked + .label{
+    /* style for the checked/selected state */
+    text-shadow: 0 0 10px hsla(208.12, 44.44%, 85.88%, 1) !important;
+    color: #fff !important;
+    box-shadow: inset 0 2px 3px rgba(0,0,0,0.4), inset 0 0 4px 4px rgba(0,0,0,0.1) !important;
+    background: -moz-linear-gradient(top, #313137 0%, #1e1e24 100%) !important; /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#313137), color-stop(100%,#1e1e24)) !important; /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #313137 0%,#1e1e24 100%) !important; /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #313137 0%,#1e1e24 100%) !important; /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #313137 0%,#1e1e24 100%) !important; /* IE10+ */
+    background: linear-gradient(to bottom, #3aff87 0%,#1e1e24 100%) !important; /* W3C */
+}
+
+.group > .label {
+    border-radius: 2px !important;
+}
+
+.center {
+    border-left: 1px solid #121212;
+    border-right: 1px solid #121212;
+}
+
+
 /* Customize the label (the container) */
 .container_radio
 {
@@ -697,10 +760,7 @@ label
   height: 45px;
 }
 
-#radioBtn .notActive{
-    color: #3276b1;
-    background-color: #fff;
-}
+
 .table td, .table th {
     padding: .75rem;
     vertical-align: baseline;

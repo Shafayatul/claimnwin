@@ -7,6 +7,7 @@ $(document).ready(function(){
     $("<div class='child_div' style='margin-top: 10px;' id='property_remove_"+keyCount+"'><input  style='width: 75%; float: left; margin-right: 10px; margin-bottom: 0px; margin-top: 0px;' type='text' class='common_input connection' id='connection' name='connection[]'/> <button type='button' class='remove_property' id='"+keyCount+"' style='float: none;margin-left: 5px;margin-top: 2px;'><i class='fas fa-minus-circle'></i></button></div>").appendTo("#property");
     });
 
+
     $(document).on('click','.remove_property',function(){
       var id = $(this).attr('id');
     $("#property_remove_"+id).remove();
@@ -58,20 +59,222 @@ $(document).ready(function(){
       }else if (step == 3) {
 
         $("#continue_3").removeClass('active_button');
-        var is_step_three = false;
-        var x=0;
-        $("input[name='airline']").each(function(){
-          console.log($("input[name='airline']")[0].val());
-
-          x++;
+        var step_three_airline = false;
+        var step_three_flight_number = false;
+        var step_three_departure_date = false;
+        $("input[name^='airline']").each(function(){
+          if ($(this).val() != "") {
+            step_three_airline = true;
+            console.log($(this).val());
+          }else {
+            step_three_airline = false;
+          }
         });
 
+        $("input[name^='flight_number']").each(function(){
+          if ($(this).val() != "") {
+            step_three_flight_number = true;
+            console.log($(this).val());
+          }else {
+            step_three_flight_number = false;
+          }
+        });
+
+        $("input[name^='departure_date']").each(function(){
+          if ($(this).val() != "") {
+            step_three_departure_date = true;
+            console.log($(this).val());
+          }else {
+            step_three_departure_date = false;
+          }
+        });
+
+        if (step_three_airline == true && step_three_flight_number == true && step_three_departure_date == true) {
+          $("#continue_3").addClass('active_button');
+          return true;
+        }
+      }else if (step == 4) {
+        $("#continue_4").removeClass('active_button');
+        var spend_on_accommodation = false;
+        var expenses_table = false;
+        var email_address = false;
+
+        if (($("input[name='is_spend_on_accomodation']").is(':checked')))
+        {
+          console.log($('input[name=is_spend_on_accomodation]:checked').val());
+          spend_on_accommodation = true;
+        }else
+        {
+          spend_on_accommodation = false;
+        }
+
+        if ($("input[name^='expense_name']").val() != "" && $("input[name^='expense_price']").val() != "" && $("input[name^='expense_currency']").val() != "")
+        {
+          expenses_table = true;
+        }else
+        {
+          expenses_table = false;
+        }
+
+        if ($("input[name='email_address']").val() != "")
+        {
+          console.log($("input[name='email_address']").val());
+          email_address = true;
+        }else
+        {
+          email_address = false;
+        }
+
+        if (($("input[name='is_rerouted']").is(':checked')))
+        {
+          // console.log($('input[name=is_rerouted]:checked').val());
+
+          if ($('input[name=is_rerouted]:checked').val() == 'is_rerouted_yes')
+          {
+            console.log($('input[name=is_rerouted]:checked').val());
+            if (spend_on_accommodation == true && expenses_table == true && email_address == true)
+            {
+              $("#continue_4").addClass('active_button');
+              $("#continue_5").addClass('active_button');
+              return true;
+            }else
+            {
+              return false;
+            }
+          }else if ($('input[name=is_rerouted]:checked').val() == 'is_rerouted_no')
+          {
+            console.log($('input[name=is_rerouted]:checked').val());
+            if (($("input[name='is_obtained_full_reimbursement']").is(':checked')))
+            {
+              console.log($('input[name=is_obtained_full_reimbursement]:checked').val());
+              if ($('input[name=is_obtained_full_reimbursement]:checked').val() == 'is_obtained_full_reimbursement_yes')
+              {
+                console.log('reimbursement YESSS ar moddhe dhukhse');
+                if (spend_on_accommodation == true && expenses_table == true && email_address == true)
+                {
+                  $("#continue_4").addClass('active_button');
+                  $("#continue_5").addClass('active_button');
+                  return true;
+                }else
+                {
+                  return false;
+                }
+              }else if ($('input[name=is_obtained_full_reimbursement]:checked').val() == 'is_obtained_full_reimbursement_no')
+              {
+                console.log('reimbursement NOOOO ar moddhe dhukhse');
+                if (($("input[name='ticket_price_original_ticket']").val() != "") && ($(".ticket_currency_original_ticket").val() != "" ) && ($("input[name='is_paid_for_rerouting']").is(':checked')))
+                {
+                  if ($('input[name=is_paid_for_rerouting]:checked').val() == 'is_paid_for_rerouting_yes') {
+                    console.log('rerouting paid YESSSS ar moddhe dhukse');
+                      if (($("input[name='ticket_price_rerouting']").val() != "") && ($("input[name='ticket_currency_rerouting']").val() != ""))
+                      {
+                        console.log('rerouting ticket price and currency paise');
+                        $("#continue_4").addClass('active_button');
+                        $("#continue_5").addClass('active_button');
+                        return true;
+                      }
+                    }else if ($('input[name=is_paid_for_rerouting]:checked').val() == 'is_paid_for_rerouting_no')
+                    {
+                      console.log('rerouting paid NOOOO ar moddhe dhukse');
+                      if (spend_on_accommodation == true && expenses_table == true && email_address == true)
+                      {
+                        $("#continue_4").addClass('active_button');
+                        $("#continue_5").addClass('active_button');
+                        return true;
+                      }else
+                      {
+                        return false;
+                      }
+                    }
+                }else
+                {
+                  return false;
+                }
+              }
+            }else
+            {
+              return false;
+            }
+          }
+        }else
+        {
+          return false;
+        }
+      }else if (step == 5) {
+        return true;
+      }else if (step == 6) {
+        $("#continue_6").removeClass('active_button');
+
+        var first_name = false;
+        var last_name = false;
+        var address = false;
+        var post_code = false;
+        var date_of_birth = false;
+
+        $("input[name^='first_name']").each(function(){
+          if ($(this).val() != "") {
+            console.log($(this).val());
+            first_name = true;
+          }else {
+            first_name = false;
+          }
+        });
+        $("input[name^='last_name']").each(function(){
+          if ($(this).val() != "") {
+            console.log($(this).val());
+            last_name = true;
+          }else {
+            last_name = false;
+          }
+        });
+        $("input[name^='address']").each(function(){
+          if ($(this).val() != "") {
+            console.log($(this).val());
+            address = true;
+          }else {
+            address = false;
+          }
+        });
+        $("input[name^='post_code']").each(function(){
+          if ($(this).val() != "") {
+            console.log($(this).val());
+            post_code = true;
+          }else {
+            post_code = false;
+          }
+        });
+        $("input[name^='date_of_birth']").each(function(){
+          if ($(this).val() != "") {
+            date_of_birth = true;
+            console.log($(this).val());
+          }else {
+            date_of_birth = false;
+          }
+        });
+
+        if (first_name == true && last_name == true && address == true && post_code == true && date_of_birth == true) {
+          if (($("input[name='is_booking_reference']").is(':checked'))){
+            if ($('input[name=is_booking_reference]:checked').val() == 'is_booking_reference_yes'){
+              $("input[name^='booking_reference_field_input']").each(function(){
+                if ($(this).val() != "") {
+                  console.log($(this).val());
+                  $("#continue_6").addClass('active_button');
+                  return true;
+                }else {
+                  return false;
+                }
+              });
+            }else if ($('input[name=is_booking_reference]:checked').val() == 'is_booking_reference_no'){
+              $("#continue_6").addClass('active_button');
+              return true;
+            }
+          }
+        }else {
+          return false;
+        }
 
       }
-
-
       return false;
-
     }
 
     $(document).on("change", "input, select", function() {
@@ -250,7 +453,7 @@ $(document).ready(function(){
     var passengerCnt = 2;
     function add_new_passenger(){
 
-      var passengerHtml = '<div class="total_another_passenger_div"><div class="common_row"><div class="parent_div"><div class="two_child_div_left"><div class="form_h3"><h3>Another Passenger details</h3></div></div><div class="two_child_div_right text-right"><button type="button" class="remove_another_passenger" id="remove_another_passenger" style="float: none; margin-left: 5px;margin-top: 2px;"><i class="fas fa-minus-circle"></i>Cancel</button></div></div><div class="form_h4"><h4>Make sure to type your name as it appears on your flight ticket.</h4></div><div class="parent_div"><div class="two_child_div_left"><div class="label_field"><label for="first_name">FIRST NAME</label></div><div class="input_field"><input type="text" class="common_input first_name" id="common_input first_name" name="first_name[]" placeholder="e.g. New York or JFK"></div></div><div class="two_child_div_right"><div class="label_field"><label for="last_name">LAST NAME</label></div><div class="input_field"><input type="text" class="common_input last_name" id="common_input last_name" name="last_name[]" placeholder="e.g. London or LHR"></div></div></div><div class="parent_div"><div class="two_child_div_left"><div class="label_field"><label for="address">ADDRESS</label></div><div class="input_field"><input type="text" class="common_input address" id="common_input address" name="address[]" placeholder="e.g. New York or JFK"></div></div><div class="two_child_div_right"><div class="label_field"><label for="post_code">POST CODE</label></div><div class="input_field"><input type="text" class="common_input post_code" id="common_input post_code" name="post_code[]" placeholder="e.g. London or LHR"></div></div></div><div class="parent_div"><div class="two_child_div_left"><div class="label_field"><label for="date_of_birth">DATE OF BIRTH</label></div><div class="input_field"><input type="text" class="common_input date_of_birth date" id="common_input date_of_birth" name="date_of_birth[]" placeholder="1/1/1990"></div></div></div></div><div class="common_row"><div class="form_h3"><h3>What’s your booking reference?</h3></div><div class="parent_div"><div class="two_child_radio_div first_child"><label class="container_radio">Yes<input class="common_input passenger_is_booking_checkbox" type="radio" count="'+passengerCnt+'" id="common_input is_booking_reference_yes" name="is_booking_reference" value="1"><span class="checkmark"></span></label></div><div class="two_child_radio_div"><label class="container_radio">Later<input class="common_input passenger_is_booking_checkbox" type="radio" count="'+passengerCnt+'" id="common_input is_booking_reference_no" name="is_booking_reference" value="0"><span class="checkmark"></span></label></div></div><div class="parent_div show_on_is_booking_reference_yes_'+passengerCnt+'" style="display:none"><div class="add_booking_reference_div" id="add_booking_reference_div_1"><div class="child_div" style="margin-top: 10px;" id="reference_remove"><input style="width: 50%; float: left; margin-right: 10px; margin-bottom: 0px; margin-top: 0px;" type="text" class="common_input meta_key" name="meta_key[]" /></div></div></div></div> </div>';
+      var passengerHtml = '<div class="total_another_passenger_div"><div class="common_row"><div class="parent_div"><div class="two_child_div_left"><div class="form_h3"><h3>Another Passenger details</h3></div></div><div class="two_child_div_right text-right"><button type="button" class="remove_another_passenger" id="remove_another_passenger" style="float: none; margin-left: 5px;margin-top: 2px;"><i class="fas fa-minus-circle"></i>Cancel</button></div></div><div class="form_h4"><h4>Make sure to type your name as it appears on your flight ticket.</h4></div><div class="parent_div"><div class="two_child_div_left"><div class="label_field"><label for="first_name">FIRST NAME</label></div><div class="input_field"><input type="text" class="common_input first_name" id="common_input first_name" name="first_name[]" placeholder="e.g. New York or JFK"></div></div><div class="two_child_div_right"><div class="label_field"><label for="last_name">LAST NAME</label></div><div class="input_field"><input type="text" class="common_input last_name" id="common_input last_name" name="last_name[]" placeholder="e.g. London or LHR"></div></div></div><div class="parent_div"><div class="two_child_div_left"><div class="label_field"><label for="address">EMAIL ADDRESS</label></div><div class="input_field"><input type="email" class="common_input additional_email_address" id="common_input additional_email_address" name="additional_email_address[]" placeholder="e.g. abc@efg.ijk"></div></div><div class="two_child_div_right"><div class="label_field"><label for="post_code">POST CODE</label></div><div class="input_field"><input type="text" class="common_input post_code" id="common_input post_code" name="post_code[]" placeholder="e.g. London or LHR"></div></div></div><div class="parent_div"><div class="two_child_div_left"><div class="label_field"><label for="date_of_birth">DATE OF BIRTH</label></div><div class="input_field"><input type="text" class="common_input date_of_birth date" id="common_input date_of_birth" name="date_of_birth[]" placeholder="1/1/1990"></div></div></div></div><div class="common_row"><div class="form_h3"><h3>What’s your booking reference?</h3></div><div class="parent_div"><div class="two_child_radio_div first_child"><label class="container_radio">Yes<input class="common_input passenger_is_booking_checkbox" type="radio" count="'+passengerCnt+'" id="common_input is_booking_reference_yes" name="is_booking_reference" value="1"><span class="checkmark"></span></label></div><div class="two_child_radio_div"><label class="container_radio">Later<input class="common_input passenger_is_booking_checkbox" type="radio" count="'+passengerCnt+'" id="common_input is_booking_reference_no" name="is_booking_reference" value="0"><span class="checkmark"></span></label></div></div><div class="parent_div show_on_is_booking_reference_yes_'+passengerCnt+'" style="display:none"><div class="add_booking_reference_div" id="add_booking_reference_div_1"><div class="child_div" style="margin-top: 10px;" id="reference_remove"><input style="width: 50%; float: left; margin-right: 10px; margin-bottom: 0px; margin-top: 0px;" type="text" class="common_input meta_key" name="meta_key[]" /></div></div></div></div> </div>';
 
       return passengerHtml;
     }
@@ -281,9 +484,9 @@ $(document).ready(function(){
       /* Booking Reference   */
       $(document).on('change', '.passenger_is_booking_checkbox', function(){
         var count = $(this).attr('count');
-        if($(this).attr("value")=="1") {
+        if($(this).attr("value")=="is_booking_reference_yes") {
           $(".show_on_is_booking_reference_yes_"+count).show(500);
-        }else if ($(this).attr("value")=="0") {
+        }else if ($(this).attr("value")=="is_booking_reference_no") {
           $(".show_on_is_booking_reference_yes_"+count).hide(500);
         }
       });
