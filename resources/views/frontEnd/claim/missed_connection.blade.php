@@ -1084,7 +1084,7 @@
             <div class="parent_div">
               <div class="form-check">
       					<label>
-      						<input type="checkbox" name="is_signed_permission" checked> <span class="label-text">Write your signature below as it appears on your ID. It's required by airlines to collect the compensation for you. By signing you agree with the Assignment Form and Price List</span>
+      						<input type="checkbox" name="is_signed_permission"> <span class="label-text">Write your signature below as it appears on your ID. It's required by airlines to collect the compensation for you. By signing you agree with the Assignment Form and Price List</span>
       					</label>
       				</div>
               {{-- <div class="custom-control custom-checkbox">
@@ -1158,7 +1158,7 @@
             </div>
           </div>
 
-          <div class="common_row show_if_contacted_airline">
+          {{-- <div class="common_row show_if_contacted_airline">
             <div class="parent_div">
               <div class="form_h4">
                 <h4>Please upload all correspondence</h4>
@@ -1167,7 +1167,7 @@
                 <input type="file" class="form-control-file" id="exampleFormControlFile1">
               </div>
             </div>
-          </div>
+          </div> --}}
 
           <div class="common_row">
             <div class="form_h3">
@@ -1183,7 +1183,7 @@
             </div>
           </div>
 
-          <div class="common_row">
+          <div class="common_row show_if_contacted_airline">
             <div class="document_submit_div">
               <div class="row">
                 <div class="col-md-8">ID copies, including travel companions’ if applicable</div>
@@ -1266,7 +1266,7 @@
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
   <script src="{{('front_asset/claim/missed_connection/js/custom.js')}}"></script>
-  <script>
+  {{-- <script>
     $(document).ready(function() {
       var date_input = $('.date'); //our date input has the name "date"
       var options = {
@@ -1277,5 +1277,5 @@
       };
       date_input.datepicker(options);
     })
-  </script>
+  </script> --}}
 @endsection
