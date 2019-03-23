@@ -72,8 +72,7 @@ label
     background-clip: border-box;
 }
 
-input[type="radio"],
-input[type="checkbox"] {
+input[type="radio"] {
     /* hide the inputs */
     opacity: 0;
     display: none;
