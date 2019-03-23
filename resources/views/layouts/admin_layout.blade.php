@@ -18,6 +18,12 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 <!-- font-awesome icons CSS -->
 <link href="{{ asset('admin_asset/css/font-awesome.css')}}" rel="stylesheet">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<!-- Include CSS for icons. -->
+{{-- <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" /> --}}
+
+<!-- Include Editor style. -->
+<link href="https://cdn.jsdelivr.net/npm/froala-editor@2.9.0/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
+<link href="https://cdn.jsdelivr.net/npm/froala-editor@2.9.0/css/froala_style.min.css" rel="stylesheet" type="text/css" />
 <!-- //font-awesome icons CSS-->
 
 <!-- side nav css file -->
@@ -106,7 +112,8 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 	<!-- for index page weekly sales java script -->
 	<script src="{{ asset('admin_asset/js/SimpleChart.js')}}"></script>
 
-
+<!-- Include Editor JS files. -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/froala-editor@2.9.0/js/froala_editor.pkgd.min.js"></script>
 
 	<!-- Bootstrap Core JavaScript -->
    <script src="{{ asset('admin_asset/js/bootstrap.js')}}"> </script>

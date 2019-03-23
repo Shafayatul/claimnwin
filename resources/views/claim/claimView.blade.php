@@ -360,10 +360,42 @@
                                                                                             <td><input type="text" name="" id="" placeholder="Filter"></td>
                                                                                             <td><input type="text" name="" id="" placeholder="Filter"></td>
                                                                                             <td><input type="text" name="" id="" placeholder="Filter"></td>
-                                                                                            <td><input type="text" name="" id="" placeholder="Filter"></td>
-                                                                                            <td><input type="text" name="" id="" placeholder="Filter"></td>
+                                                                                            <td>
+                                                                                                <select name="" id="" class="form-control">
+                                                                                                    <option value="">All</option>
+                                                                                                    <option value="">Lugguage-lost</option>
+                                                                                                    <option value="">Lugguage-damaged</option>
+                                                                                                    <option value="">Fight delay</option>
+                                                                                                </select>
+                                                                                            </td>
+                                                                                            <td>
+                                                                                                <select name="" id="" class="form-control">
+                                                                                                    <option value="">All</option>
+                                                                                                    <option value="">Passenger</option>
+                                                                                                    <option value="">Initial Assessment</option>
+                                                                                                </select>
+                                                                                            </td>
                                                                                             <td><input type="text" name="" id="" placeholder="Filter"></td>
                                                                                             <td></td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td>claim_file_jsagdhsagjd</td>
+                                                                                            <td>14-03-2019</td>
+                                                                                            <td><input type="text" name="" id=""></td>
+                                                                                            <td>pdf</td>
+                                                                                            <td>
+                                                                                                <select name="" id="" class="form-control">
+                                                                                                    <option value="">All</option>
+                                                                                                    <option value="">Lugguage-lost</option>
+                                                                                                    <option value="">Lugguage-damaged</option>
+                                                                                                    <option value="">Fight delay</option>
+                                                                                                </select>
+                                                                                            </td>
+                                                                                            <td>Passenger</td>
+                                                                                            <td>05/03/2019</td>
+                                                                                            <td>
+                                                                                                <input type="checkbox" name="" id="">
+                                                                                            </td>
                                                                                         </tr>
                                                                                     </tbody>
                                                                                 </table>
@@ -375,28 +407,303 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="tab-pane" id="claim_eligib" role="tabpanel">.6..</div>
+                                                    <div class="tab-pane" id="claim_eligib" role="tabpanel">
+                                                        <div class="row">
+                                                            <div class="col-lg-12">
+                                                                <div class="panel panel-default">
+                                                                    <div class="panel-heading">
+                                                                        <i class="fa fa-comments"></i> Claim Eligibility
+                                                                    </div>
+                                                                    <!-- /.panel-heading -->
+                                                                    <div class="panel-body">
+                                                                        <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+
+                                                                            <tbody>
+                                                                                <tr class="odd gradeX">
+                                                                                    <th>Claim ID</th>
+                                                                                    <td>100276</td>
+                                                                                </tr>
+                                                                                <tr class="odd gradeX">
+                                                                                    <th>Have you complained direct to the airline writing?</th>
+                                                                                    <td>yes</td>
+                                                                                </tr>
+                                                                                <tr class="odd gradeX">
+                                                                                    <th>Has the airline provided their final response?</th>
+                                                                                    <td>yes</td>
+                                                                                </tr>
+                                                                                <tr class="odd gradeX">
+                                                                                    <th>What date did you complain to the airline?</th>
+                                                                                    <td>00/00/0000</td>
+                                                                                </tr>
+                                                                                <tr class="odd gradeX">
+                                                                                    <th>Did they reject your complain?</th>
+                                                                                    <td>yes</td>
+                                                                                </tr>
+                                                                                <tr class="odd gradeX">
+                                                                                    <th>Have you reject the final response?</th>
+                                                                                    <td>yes</td>
+                                                                                </tr>
+                                                                                <tr class="odd gradeX">
+                                                                                    <th>Airline response</th>
+                                                                                    <td></td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                    <!-- /.panel-body -->
+                                                                </div>
+                                                                <!-- /.panel -->
+                                                            </div>
+                                                            <!-- /.col-lg-12 -->
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
 
                                     <div role="tabpanel" class="tab-pane" id="messaging" aria-labelledby="messaging-tab">
-                                        <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid.
-                                            Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee.
-                                            Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia yr, vero magna velit sapiente labore stumptown.
-                                            Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel.
-                                            Art party scenester stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.
-                                        </p>
+                                        <div class="row">
+
+                                            <div class="col-md-2" style="margin-top: 10px;">
+                                                <h4 class="compose bg-primary">Compose</h4>
+                                                <ul class="nav nav-tabs left_row" id="myTab" role="tablist">
+                                                    <li class="nav-item active">
+                                                        <a class="nav-link active" data-toggle="tab" href="#conversation" role="tab" aria-controls="conversation">Coversation</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" data-toggle="tab" href="#inbox" role="tab" aria-controls="inbox">Inbox</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" data-toggle="tab" href="#sent" role="tab" aria-controls="settings">Sent</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" data-toggle="tab" href="#case_history" role="tab" aria-controls="settings">Case History</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" data-toggle="tab" href="#note_phone" role="tab" aria-controls="settings">Notes & Phone Call</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-md-10" style="margin-top: 10px;">
+                                                <div class="tab-content">
+                                                <!-------------------Conversation----------------------->
+                                                <div class="tab-pane active" id="conversation" role="tabpanel">
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <div class="panel panel-default">
+                                                                {{-- <div class="panel-heading">
+                                                                    <i class="fa fa-comments"></i> Conversation
+                                                                </div> --}}
+                                                                <!-- /.panel-heading -->
+                                                                <div class="panel-body">
+                                                                    <table width="100%" class="table table-striped table-borderless" id="dataTables-example">
+                                                                        <thead>
+                                                                            <th>From</th>
+                                                                            <th>Subject</th>
+                                                                            <th>Message</th>
+                                                                            <th>Date</th>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="width: 330px;">Pre Investigation</td>
+                                                                                <td style="width: 330px;">2 to 3(NP)</td>
+                                                                                <td style="width: 200px; overflow:hidden; word-break:break-all;">
+                                                                                    kjshjkdfshjkhfdkjhbdkjgjkghtfduighfduygfdsjgdfjhudfgjdsfgjhufgjdfsghujgjhgsjhgjhgdf.
+                                                                                </td>
+                                                                                <td>23/03/2019</td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                                <!-- /.panel-body -->
+                                                            </div>
+                                                            <!-- /.panel -->
+                                                        </div>
+                                                        <!-- /.col-lg-12 -->
+                                                    </div>
+                                                </div>
+                                                <!---------------------End Conversation------------------->
+                                                <!---------------------Inbox------------------------------>
+                                                <div class="tab-pane" id="inbox" role="tabpanel">
+
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <div class="panel panel-default">
+                                                                <div class="panel-heading">
+                                                                    <i class="fa fa-comments"></i> Inbox
+                                                                </div>
+                                                                <!-- /.panel-heading -->
+                                                                <div class="panel-body">
+                                                                    <table width="100%" class="table table-striped table-borderless" id="dataTables-example">
+                                                                        <thead>
+                                                                            <th>From</th>
+                                                                            <th>(Role) Message Subject</th>
+                                                                            <th>Received</th>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td><input type="checkbox" name="" id=""> Dipto Shome</td>
+                                                                                <td>2 to 3(NP)</td>
+                                                                                <td>23/03/2019</td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                                <!-- /.panel-body -->
+                                                            </div>
+                                                            <!-- /.panel -->
+                                                        </div>
+                                                        <!-- /.col-lg-12 -->
+                                                    </div>
+                                                </div>
+                                            <!---------------------End Inbox------------------------------>
+                                            <!---------------------Sent------------------------------>
+                                            <div class="tab-pane" id="sent" role="tabpanel">
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <div class="panel panel-default">
+                                                            <div class="panel-heading">
+                                                                <i class="fa fa-comments"></i> Sent
+                                                            </div>
+                                                                <!-- /.panel-heading -->
+                                                            <div class="panel-body">
+                                                                <table width="100%" class="table table-striped table-borderless" id="dataTables-example">
+                                                                    <thead>
+                                                                        <th>To</th>
+                                                                        <th>(Role) Message Subject</th>
+                                                                        <th>Received</th>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td><input type="checkbox" name="" id=""> Dipto Shome</td>
+                                                                            <td>2 to 3(NP)</td>
+                                                                            <td>23/03/2019</td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                                    <!-- /.panel-body -->
+                                                        </div>
+                                                                <!-- /.panel -->
+                                                    </div>
+                                                            <!-- /.col-lg-12 -->
+                                                </div>
+                                            </div>
+                                            <!------------------------------End Sent------------------------->
+                                            <!---------------------Case History------------------------------>
+                                            <div class="tab-pane" id="case_history" role="tabpanel">
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <div class="panel panel-default">
+                                                            <div class="panel-heading">
+                                                                <i class="fa fa-comments"></i> Case History
+                                                            </div>
+                                                                <!-- /.panel-heading -->
+                                                            <div class="panel-body">
+
+                                                            </div>
+                                                                    <!-- /.panel-body -->
+                                                        </div>
+                                                                <!-- /.panel -->
+                                                    </div>
+                                                            <!-- /.col-lg-12 -->
+                                                </div>
+
+                                            </div>
+                                            <!------------------------------End Case History------------------------->
+                                            <!---------------------Note & Phone Call------------------------------>
+                                            <div class="tab-pane" id="note_phone" role="tabpanel">
+                                                        <div class="row">
+                                                            <div class="col-lg-12">
+                                                            <div class="panel panel-default">
+                                                            <div class="panel-heading">
+                                                                <i class="fa fa-comments"></i> Note & Phone Call
+                                                            </div>
+                                                                    <!-- /.panel-heading -->
+                                                            <div class="panel-body">
+                                                                <div class="row">
+                                                                    <div class="col-md-12">
+                                                                    <form action="{{route('save-note')}}" method="post" class="form-horizontal" enctype="multipart/form-data">
+                                                                            {{ csrf_field() }}
+
+                                                                            <div class="form-group">
+                                                                                <label for="note" class="control-label col-md-3">Note:</label>
+                                                                                <div class="col-md-9">
+                                                                                    <textarea name="note" id="note" rows="3" class="form-control" required></textarea>
+                                                                                <input type="hidden" name="claim_id" value="100276">
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="form-group">
+                                                                                <label for="note" class="control-label col-md-3">Select Note Source/Ref.:</label>
+                                                                                <div class="col-md-9">
+                                                                                <select name="note_status" id="note_status" class="form-control">
+                                                                                    <option value="1">Emails From Airline</option>
+                                                                                    <option value="2">Emails From Passenger</option>
+                                                                                    <option value="3">Phone Calls</option>
+                                                                                </select>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="form-group">
+                                                                                <label for="note" class="control-label col-md-3">Airline Referance:</label>
+                                                                                <div class="col-md-9">
+                                                                                <input type="text" name="airline_ref" class="form-control" placeholder="Airline Referance">
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="form-group">
+                                                                                <div class="col-md-6 col-md-offset-3">
+                                                                                    <button type="submit" class="btn btn-primary btn-sm"> Create Note</button>
+                                                                                </div>
+                                                                            </div>
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+                                                                <hr>
+                                                                <div class="row">
+                                                                    <div class="col-md-12">
+
+                                                                            <ul class="timeline">
+                                                                                <li class="time-label"> <span class="bg-red"> 23 Mar 19 </span> </li>
+                                                                                <li> <i class="fa  fa-angle-double-right bg-blue"></i>
+                                                                                <div class="timeline-item"> <span class="time"><i class="fa fa-clock-o"></i> 08:25:55 am</span>
+                                                                                    <h3 class="timeline-header"><a href="#">Admin</a> created a note via <span class="label label-success">Emails From Airline</span></h3>
+                                                                                    <div class="timeline-body"><p><br></p>				   				   </div>
+                                                                                </div>
+                                                                                </li>
+
+                                                                                <li class="time-label"><span class="bg-red"> 28 Jan 19 </span> </li>
+                                                                                <li> <i class="fa  fa-angle-double-right bg-blue"></i>
+                                                                                <div class="timeline-item"> <span class="time"><i class="fa fa-clock-o"></i> 11:17:51 am</span>
+                                                                                    <h3 class="timeline-header"><a href="#">Admin</a> created a note via <span class="label label-success">Emails From Airline</span></h3>
+                                                                                    <div class="timeline-body"><p><br></p></div>
+                                                                                </div>
+                                                                                </li>
+                                                                            </ul>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                                    <!-- /.panel-body -->
+                                                        </div>
+                                                                <!-- /.panel -->
+                                                    </div>
+                                                    <!-- /.col-lg-12 -->
+                                                </div>
+
+                                            </div>
+                                            <!------------------------------End Note & Phone Call------------------------->
+                                            </div>
+                                        </div>
                                     </div>
+                                </div>
                                     <div role="tabpanel" class="tab-pane" id="airline_response" aria-labelledby="airline_response-tab">
-                                        <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid.
-                                        </p>
+
                                     </div>
                                     <div role="tabpanel" class="tab-pane" id="customer_final_comm" aria-labelledby="customer_final_comm-tab">
-                                        <p>
-                                            Food truck fixie locavore,
-                                        </p>
+
                                     </div>
                                 </div>
                             </div>
@@ -407,4 +714,9 @@
         </div>
     </div>
 </div>
+{{-- <script>
+$(function() {
+    $('#note').froalaEditor()
+});
+</script> --}}
 @endsection

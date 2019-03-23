@@ -45,8 +45,8 @@
             </a>
             <ul class="treeview-menu">
             <li><a href="{{url('/manage-claim')}}"><i class="fa fa-angle-right"></i> Manage Claim</a></li>
-            <li><a href="#"><i class="fa fa-angle-right"></i> Manage Unfinished Claim</a></li>
-            <li><a href="#"><i class="fa fa-angle-right"></i> Manage Fills Claim</a></li>
+            <li><a href="{{url('/manage-unfinished-claim')}}"><i class="fa fa-angle-right"></i> Manage Unfinished Claim</a></li>
+            <li><a href="{{url('/manage-fills-claim')}}"><i class="fa fa-angle-right"></i> Manage Fills Claim</a></li>
             </ul>
             </li>
 

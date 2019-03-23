@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -75,3 +77,10 @@ Route::resource('settings', 'SettingsController');
 
 Route::get('/manage-claim', 'ClaimBackController@index');
 Route::get('/claim-view', 'ClaimBackController@claimView');
+Route::get('/manage-unfinished-claim', 'ClaimBackController@manageUnfinishedClaim');
+Route::get('/unfinished-claim-view', 'ClaimBackController@unfinishedClaimView');
+Route::get('/manage-fills-claim', 'ClaimBackController@manageFillsClaim');
+Route::get('/fills-claim-view', 'ClaimBackController@fillsClaimView');
+
+Route::resource('notes', 'NotesController');
+Route::post('/save-note', 'NotesController@store')->name('save-note');
