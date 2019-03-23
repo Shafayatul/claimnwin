@@ -110,7 +110,6 @@ input[type="radio"]:checked + .label{
     background: -ms-linear-gradient(top, #313137 0%,#1e1e24 100%) !important; /* IE10+ */
     background: linear-gradient(to bottom, #3aff87 0%,#1e1e24 100%) !important; /* W3C */
 }
-
 .group > .label {
     border-radius: 2px !important;
 }

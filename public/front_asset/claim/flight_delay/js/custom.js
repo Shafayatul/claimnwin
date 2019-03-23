@@ -25,7 +25,7 @@ $(document).ready(function(){
       if (step==1) {
 
         $("#continue_1").removeClass('active_button');
-        if (($("input[name='departed_from']").val() != "") && ($("input[name='final_destination']").val() != "") && ($("input[name='is_direct_flight']").is(':checked')) && ($("input[name='selected_connection_id']").is(':checked') )  ) {
+        if (($("input[name='departed_from']").val() != "") && ($("input[name='final_destination']").val() != "") && ($("input[name='is_direct_flight']").is(':checked')) ) {
           if ($("input[name='is_direct_flight']:checked").val() == 'is_direct_flight_yes') {
 
             var is_connection_empty = true;
@@ -50,7 +50,7 @@ $(document).ready(function(){
       }else if (step == 2) {
 
         $("#continue_2").removeClass('active_button');
-        if (($("input[name='what_happened_to_the_flight']").is(':checked')) && ($("input[name='total_delay']").is(':checked') ) && ($(".reason").val() != "" )  ) {
+        if (($("input[name='total_delay']").is(':checked') ) && ($(".reason").val() != "" )  ) {
           console.log($(".reason").val());
           $("#continue_2").addClass('active_button');
           return true;
@@ -125,14 +125,7 @@ $(document).ready(function(){
           email_address = false;
         }
 
-        if (($("input[name='is_rerouted']").is(':checked')))
-        {
-          // console.log($('input[name=is_rerouted]:checked').val());
-
-          if ($('input[name=is_rerouted]:checked').val() == 'is_rerouted_yes')
-          {
-            console.log($('input[name=is_rerouted]:checked').val());
-            if (spend_on_accommodation == true && expenses_table == true && email_address == true)
+        if (spend_on_accommodation == true && expenses_table == true && email_address == true)
             {
               $("#continue_4").addClass('active_button');
               $("#continue_5").addClass('active_button');
@@ -141,66 +134,83 @@ $(document).ready(function(){
             {
               return false;
             }
-          }else if ($('input[name=is_rerouted]:checked').val() == 'is_rerouted_no')
-          {
-            console.log($('input[name=is_rerouted]:checked').val());
-            if (($("input[name='is_obtained_full_reimbursement']").is(':checked')))
-            {
-              console.log($('input[name=is_obtained_full_reimbursement]:checked').val());
-              if ($('input[name=is_obtained_full_reimbursement]:checked').val() == 'is_obtained_full_reimbursement_yes')
-              {
-                console.log('reimbursement YESSS ar moddhe dhukhse');
-                if (spend_on_accommodation == true && expenses_table == true && email_address == true)
-                {
-                  $("#continue_4").addClass('active_button');
-                  $("#continue_5").addClass('active_button');
-                  return true;
-                }else
-                {
-                  return false;
-                }
-              }else if ($('input[name=is_obtained_full_reimbursement]:checked').val() == 'is_obtained_full_reimbursement_no')
-              {
-                console.log('reimbursement NOOOO ar moddhe dhukhse');
-                if (($("input[name='ticket_price_original_ticket']").val() != "") && ($(".ticket_currency_original_ticket").val() != "" ) && ($("input[name='is_paid_for_rerouting']").is(':checked')))
-                {
-                  if ($('input[name=is_paid_for_rerouting]:checked').val() == 'is_paid_for_rerouting_yes') {
-                    console.log('rerouting paid YESSSS ar moddhe dhukse');
-                      if (($("input[name='ticket_price_rerouting']").val() != "") && ($("input[name='ticket_currency_rerouting']").val() != ""))
-                      {
-                        console.log('rerouting ticket price and currency paise');
-                        $("#continue_4").addClass('active_button');
-                        $("#continue_5").addClass('active_button');
-                        return true;
-                      }
-                    }else if ($('input[name=is_paid_for_rerouting]:checked').val() == 'is_paid_for_rerouting_no')
-                    {
-                      console.log('rerouting paid NOOOO ar moddhe dhukse');
-                      if (spend_on_accommodation == true && expenses_table == true && email_address == true)
-                      {
-                        $("#continue_4").addClass('active_button');
-                        $("#continue_5").addClass('active_button');
-                        return true;
-                      }else
-                      {
-                        return false;
-                      }
-                    }
-                }else
-                {
-                  return false;
-                }
-              }
-            }else
-            {
-              return false;
-            }
-          }
-        }else
-        {
-          return false;
-        }
-      }else if (step == 5) {
+
+        // if (($("input[name='is_rerouted']").is(':checked')))
+        // {
+        //   // console.log($('input[name=is_rerouted]:checked').val());
+        //
+        //   if ($('input[name=is_rerouted]:checked').val() == 'is_rerouted_yes')
+        //   {
+        //     console.log($('input[name=is_rerouted]:checked').val());
+        //     if (spend_on_accommodation == true && expenses_table == true && email_address == true)
+        //     {
+        //       $("#continue_4").addClass('active_button');
+        //       $("#continue_5").addClass('active_button');
+        //       return true;
+        //     }else
+        //     {
+        //       return false;
+        //     }
+        //   }else if ($('input[name=is_rerouted]:checked').val() == 'is_rerouted_no')
+        //   {
+        //     console.log($('input[name=is_rerouted]:checked').val());
+        //     if (($("input[name='is_obtained_full_reimbursement']").is(':checked')))
+        //     {
+        //       console.log($('input[name=is_obtained_full_reimbursement]:checked').val());
+        //       if ($('input[name=is_obtained_full_reimbursement]:checked').val() == 'is_obtained_full_reimbursement_yes')
+        //       {
+        //         console.log('reimbursement YESSS ar moddhe dhukhse');
+        //         if (spend_on_accommodation == true && expenses_table == true && email_address == true)
+        //         {
+        //           $("#continue_4").addClass('active_button');
+        //           $("#continue_5").addClass('active_button');
+        //           return true;
+        //         }else
+        //         {
+        //           return false;
+        //         }
+        //       }else if ($('input[name=is_obtained_full_reimbursement]:checked').val() == 'is_obtained_full_reimbursement_no')
+        //       {
+        //         console.log('reimbursement NOOOO ar moddhe dhukhse');
+        //         if (($("input[name='ticket_price_original_ticket']").val() != "") && ($(".ticket_currency_original_ticket").val() != "" ) && ($("input[name='is_paid_for_rerouting']").is(':checked')))
+        //         {
+        //           if ($('input[name=is_paid_for_rerouting]:checked').val() == 'is_paid_for_rerouting_yes') {
+        //             console.log('rerouting paid YESSSS ar moddhe dhukse');
+        //               if (($("input[name='ticket_price_rerouting']").val() != "") && ($("input[name='ticket_currency_rerouting']").val() != ""))
+        //               {
+        //                 console.log('rerouting ticket price and currency paise');
+        //                 $("#continue_4").addClass('active_button');
+        //                 $("#continue_5").addClass('active_button');
+        //                 return true;
+        //               }
+        //             }else if ($('input[name=is_paid_for_rerouting]:checked').val() == 'is_paid_for_rerouting_no')
+        //             {
+        //               console.log('rerouting paid NOOOO ar moddhe dhukse');
+        //               if (spend_on_accommodation == true && expenses_table == true && email_address == true)
+        //               {
+        //                 $("#continue_4").addClass('active_button');
+        //                 $("#continue_5").addClass('active_button');
+        //                 return true;
+        //               }else
+        //               {
+        //                 return false;
+        //               }
+        //             }
+        //         }else
+        //         {
+        //           return false;
+        //         }
+        //       }
+        //     }else
+        //     {
+        //       return false;
+        //     }
+        //   }
+        // }else
+        // {
+        //   return false;
+        // }
+      }else if (step == 5){
         return true;
       }else if (step == 6) {
         $("#continue_6").removeClass('active_button');
@@ -305,7 +315,6 @@ $(document).ready(function(){
         $('.single_step').hide();
         $("#step_" + step).show();
       }
-
     }
 
     $("#continue_1").click(function() {
@@ -359,35 +368,31 @@ $(document).ready(function(){
 
 
     /* --------- Delayed Button ----------- */
-    $(".show_if_flight_did_not_go_planned").hide();
+    // $(".show_if_flight_did_not_go_planned").hide();
+    //
+    // $("input[name=selected_connection_id]:radio").click(function() {
+    //   if($(this).attr("value")=="1") {
+    //     $(".show_if_flight_did_not_go_planned").show(500);
+    //   }else{
+    //     $(".show_if_flight_did_not_go_planned").hide(500);
+    //   }
+    // });
 
-    $("input[name=selected_connection_id]:radio").click(function() {
-      if($(this).attr("value")=="1") {
-        $(".show_if_flight_did_not_go_planned").show(500);
-      }else{
-        $(".show_if_flight_did_not_go_planned").hide(500);
-      }
-    });
-
-    $(".show_on_what_happened_to_the_flight_selected").hide();
-    // $(".show_on_canceled_flight").hide();
-    $(".show_on_total_delay_selected").hide();
-
-    $("input[name=what_happened_to_the_flight]:radio").click(function() {
-      if($(this).attr("value")=="delayed_flight") {
-          $(".show_on_what_happened_to_the_flight_selected").show(500);
-          // $(".show_on_canceled_flight").hide();
-          $(".show_on_total_delay_selected").hide();
-      }else if ($(this).attr("value")=="canceled_flight") {
-          $(".show_on_what_happened_to_the_flight_selected").show(500);
-          // $(".show_on_canceled_flight").show(500);
-          $(".show_on_total_delay_selected").hide();
-      }else if ($(this).attr("value")=="denied_boarding") {
-        $(".show_on_what_happened_to_the_flight_selected").show(500);
-        // $(".show_on_canceled_flight").show(500);
-        $(".show_on_total_delay_selected").hide();
-      }
-    });
+    // $(".show_on_what_happened_to_the_flight_selected").hide();
+    // $(".show_on_total_delay_selected").hide();
+    //
+    // $("input[name=what_happened_to_the_flight]:radio").click(function() {
+    //   if($(this).attr("value")=="delayed_flight") {
+    //       $(".show_on_what_happened_to_the_flight_selected").show(500);
+    //       $(".show_on_total_delay_selected").hide();
+    //   }else if ($(this).attr("value")=="canceled_flight") {
+    //       $(".show_on_what_happened_to_the_flight_selected").show(500);
+    //       $(".show_on_total_delay_selected").hide();
+    //   }else if ($(this).attr("value")=="denied_boarding") {
+    //     $(".show_on_what_happened_to_the_flight_selected").show(500);
+    //     $(".show_on_total_delay_selected").hide();
+    //   }
+    // });
 
     $("input[name=total_delay]:radio").click(function() {
     if($(this).attr("value")=="less_than_3_hours") {
@@ -404,22 +409,22 @@ $(document).ready(function(){
     });
 
 
-    $(".show_on_is_rerouted_no").hide();
-    $(".accommodation").hide();
-    $("input[name=is_rerouted]:radio").click(function() {
-      if($(this).attr("value")=="is_rerouted_yes") {
-          $(".show_on_is_rerouted_no").hide(500);
-          $(".show_on_is_obtained_full_reimbursement_no").hide(500);
-          $(".accommodation").show(500);
-      }else if ($(this).attr("value")=="is_rerouted_no") {
-          $(".show_on_is_rerouted_no").show(500);
-          $(".accommodation").hide();
-      }else {
-          $(".show_on_is_rerouted_no").hide(500);
-          $(".show_on_is_obtained_full_reimbursement_no").hide(500);
-          $(".accommodation").hide();
-      }
-    });
+    // $(".show_on_is_rerouted_no").hide();
+    // $(".accommodation").hide();
+    // $("input[name=is_rerouted]:radio").click(function() {
+    //   if($(this).attr("value")=="is_rerouted_yes") {
+    //       $(".show_on_is_rerouted_no").hide(500);
+    //       $(".show_on_is_obtained_full_reimbursement_no").hide(500);
+    //       $(".accommodation").show(500);
+    //   }else if ($(this).attr("value")=="is_rerouted_no") {
+    //       $(".show_on_is_rerouted_no").show(500);
+    //       $(".accommodation").hide();
+    //   }else {
+    //       $(".show_on_is_rerouted_no").hide(500);
+    //       $(".show_on_is_obtained_full_reimbursement_no").hide(500);
+    //       $(".accommodation").hide();
+    //   }
+    // });
 
 
     $(".show_on_is_obtained_full_reimbursement_no").hide();

@@ -5,14 +5,14 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
   {{-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> --}}
-<link rel="stylesheet" type="text/css" href="{{ asset('front_asset/') }}/claim/missed_connection/css/main.css">
+<link rel="stylesheet" type="text/css" href="{{ asset('front_asset/') }}/claim/flight_delay/css/main.css">
 <!--===============================================================================================-->
 @endsection
 
 @section('content')
   <div class="wrapper">
     <div class="form_h2">
-      <h2 class="text-center">Flight Delay</h2>
+      <h2 class="text-center">Missed Connection</h2>
     </div>
       <form action="">
         <!-- ...................................................................
@@ -45,7 +45,7 @@
 
           <div class="common_row">
             <div class="form_h3">
-              <h3>Where did you fly?</h3>
+              <h3>Were any other airports involved in this trip?</h3>
             </div>
             <div class="form_h4">
               <h4>If your trip was not a direct flight, let us know.</h4>
@@ -68,7 +68,7 @@
 
           <div class="common_row" id="connection_div">
             <div class="form_h3">
-              <h3>Where did you have connections?</h3>
+              <h3>What airports were involved?</h3>
             </div>
             <div class="parent_div">
               <div class="child_div">
@@ -83,7 +83,7 @@
             </div>
           </div>
 
-          <div class="common_row">
+          {{-- <div class="common_row">
             <div class="form_h3">
               <h3>Select the flight that didn’t go as planned</h3>
             </div>
@@ -98,7 +98,7 @@
                 </label>
               </div>
             </div>
-          </div>
+          </div> --}}
 
 
 
@@ -133,7 +133,7 @@
         .................................................................... -->
         <div class="single_step" id="step_2" style="display:none;">
 
-          <div class="common_row show_if_flight_did_not_go_planned">
+          {{-- <div class="common_row show_if_flight_did_not_go_planned">
             <div class="parent_div">
               <div class="form_h3">
                 <h3>What happened to the flight?</h3>
@@ -162,7 +162,7 @@
                 </label>
               </div>
             </div>
-          </div>
+          </div> --}}
           <div class="common_row show_on_what_happened_to_the_flight_selected">
             <div class="parent_div">
               <div class="form_h3">
@@ -428,11 +428,11 @@
                                   STEP 3 ENDS
         .................................................................... -->
         <!-- ...................................................................
-                                  STEP 4 STARTS
+                                  STEP 4 STARTS NOT PRESENT HERE
         .................................................................... -->
 
         <div class="single_step" id="step_4" style="display:none;">
-          <div class="common_row">
+          {{-- <div class="common_row">
             <div class="form_h4">
               <h4>Were you rerouted to your final destination?</h4>
             </div>
@@ -450,9 +450,9 @@
                 </label>
               </div>
             </div>
-          </div>
+          </div> --}}
 
-          <div class="common_row show_on_is_rerouted_no">
+          {{-- <div class="common_row show_on_is_rerouted_no">
             <div class="parent_div">
               <div class="form_h4">
                 <h4>Did you obtain a full reimbursement of your original ticket?</h4>
@@ -470,9 +470,9 @@
                 </label>
               </div>
             </div>
-          </div>
+          </div> --}}
 
-          <div class="common_row show_on_is_obtained_full_reimbursement_no">
+          {{-- <div class="common_row show_on_is_obtained_full_reimbursement_no">
             <div class="form_h4">
               <h4>Tell us the price of the original ticket</h4>
             </div>
@@ -493,9 +493,9 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> --}}
 
-          <div class="common_row show_on_is_obtained_full_reimbursement_no">
+          {{-- <div class="common_row show_on_is_obtained_full_reimbursement_no">
             <div class="parent_div">
               <div class="form_h4">
                 <h4>Did you pay for your re-routing flight?</h4>
@@ -513,9 +513,9 @@
                 </label>
               </div>
             </div>
-          </div>
+          </div> --}}
 
-          <div class="common_row show_on_is_paid_for_rerouting_yes">
+          {{-- <div class="common_row show_on_is_paid_for_rerouting_yes">
             <div class="form_h4">
               <h4>Tell us the price of the re-routing ticket for all passengersTell us the price of the original ticket</h4>
             </div>
@@ -536,7 +536,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> --}}
 
           <div class="accommodation">
             <div class="common_row">
@@ -607,10 +607,10 @@
                         </td>
                         <td>
                           <div class="group">
-                            <input id="Radio1" name="Radios1" type="radio" value="First Option" checked="checked">
-                            <label class="label" for="Radio1">Yes</label>
-                            <input id="Radio2" name="Radios1" type="radio" value="Other Option" >
-                            <label class="center label" for="Radio2">No</label>
+                            <input id="is_receipt_accommodation_yes" name="is_receipt_accommodation" type="radio" value="Yes" checked="checked">
+                            <label class="label" for="is_receipt_accommodation_yes">Yes</label>
+                            <input id="is_receipt_accommodation_no" name="is_receipt_accommodation" type="radio" value="No" >
+                            <label class="center label" for="is_receipt_accommodation_no">No</label>
                           </div>
                         </td>
                       </tr>
@@ -638,10 +638,10 @@
                         <td>
                           <div class="input-group yes_no_center">
                             <div class="group">
-                              <input id="Radio1" name="Radios2" type="radio" value="First Option" checked="checked">
-                              <label class="label" for="Radio1">Yes</label>
-                              <input id="Radio2" name="Radios2" type="radio" value="Other Option" >
-                              <label class="center label" for="Radio2">No</label>
+                              <input id="is_receipt_transportation_yes" name="is_receipt_transportation" type="radio" value="Yes" checked="checked">
+                              <label class="label" for="is_receipt_transportation_yes">Yes</label>
+                              <input id="is_receipt_transportation_no" name="is_receipt_transportation" type="radio" value="No" >
+                              <label class="center label" for="is_receipt_transportation_no">No</label>
                             </div>
 
                           </div>
@@ -671,10 +671,10 @@
                         <td>
                           <div class="input-group yes_no_center">
                             <div class="group">
-                              <input id="Radio1" name="Radios3" type="radio" value="First Option" checked="checked">
-                              <label class="label" for="Radio1">Yes</label>
-                              <input id="Radio2" name="Radios3" type="radio" value="Other Option" >
-                              <label class="center label" for="Radio2">No</label>
+                              <input id="is_receipt_food_yes" name="is_receipt_food" type="radio" value="Yes" checked="checked">
+                              <label class="label" for="is_receipt_food_yes">Yes</label>
+                              <input id="is_receipt_food_no" name="is_receipt_food" type="radio" value="No" >
+                              <label class="center label" for="is_receipt_food_no">No</label>
                             </div>
                           </div>
                         </td>
@@ -703,10 +703,10 @@
                         <td>
                           <div class="input-group yes_no_center">
                             <div class="group">
-                              <input id="Radio1" name="Radios4" type="radio" value="First Option" checked="checked">
-                              <label class="label" for="Radio1">Yes</label>
-                              <input id="Radio2" name="Radios4" type="radio" value="Other Option" >
-                              <label class="center label" for="Radio2">No</label>
+                              <input id="is_receipt_others_yes" name="is_receipt_others" type="radio" value="Yes" checked="checked">
+                              <label class="label" for="is_receipt_others_yes">Yes</label>
+                              <input id="is_receipt_others_no" name="is_receipt_others" type="radio" value="No" >
+                              <label class="center label" for="is_receipt_others_no">No</label>
                             </div>
                           </div>
                         </td>
@@ -753,13 +753,11 @@
                     <tr class="bootstrap_table_tr_lower_thin_border">
                       <th scope="col">Receipt</th>
                       <td>
-                        <div class="input-group yes_no_center">
-                          <div class="group">
-                            <input id="Radio1" name="Radios1" type="radio" value="First Option" checked="checked">
-                            <label class="label" for="Radio1">Yes</label>
-                            <input id="Radio2" name="Radios1" type="radio" value="Other Option" >
-                            <label class="center label" for="Radio2">No</label>
-                          </div>
+                        <div class="group">
+                          <input id="is_receipt_accommodation_yes_mobile" name="is_receipt_accommodation_mobile" type="radio" value="Yes" checked="checked">
+                          <label class="label" for="is_receipt_accommodation_yes_mobile">Yes</label>
+                          <input id="is_receipt_accommodation_no_mobile" name="is_receipt_accommodation_mobile" type="radio" value="No" >
+                          <label class="center label" for="is_receipt_accommodation_no_mobile">No</label>
                         </div>
                       </td>
                     </tr>
@@ -792,11 +790,12 @@
                       <td>
                         <div class="input-group yes_no_center">
                           <div class="group">
-                            <input id="Radio1" name="Radios2" type="radio" value="First Option" checked="checked">
-                            <label class="label" for="Radio1">Yes</label>
-                            <input id="Radio2" name="Radios2" type="radio" value="Other Option" >
-                            <label class="center label" for="Radio2">No</label>
+                            <input id="is_receipt_transportation_yes_mobile" name="is_receipt_transportation_mobile" type="radio" value="Yes" checked="checked">
+                            <label class="label" for="is_receipt_transportation_yes_mobile">Yes</label>
+                            <input id="is_receipt_transportation_no_mobile" name="is_receipt_transportation_mobile" type="radio" value="No" >
+                            <label class="center label" for="is_receipt_transportation_no_mobile">No</label>
                           </div>
+
                         </div>
                       </td>
                     </tr>
@@ -829,10 +828,10 @@
                       <td>
                         <div class="input-group yes_no_center">
                           <div class="group">
-                            <input id="Radio1" name="Radios3" type="radio" value="First Option" checked="checked">
-                            <label class="label" for="Radio1">Yes</label>
-                            <input id="Radio2" name="Radios3" type="radio" value="Other Option" >
-                            <label class="center label" for="Radio2">No</label>
+                            <input id="is_receipt_food_yes_mobile" name="is_receipt_food_mobile" type="radio" value="Yes" checked="checked">
+                            <label class="label" for="is_receipt_food_yes_mobile">Yes</label>
+                            <input id="is_receipt_food_no_mobile" name="is_receipt_food_mobile" type="radio" value="No" >
+                            <label class="center label" for="is_receipt_food_no_mobile">No</label>
                           </div>
                         </div>
                       </td>
@@ -866,10 +865,10 @@
                       <td>
                         <div class="input-group yes_no_center">
                           <div class="group">
-                            <input id="Radio1" name="Radios4" type="radio" value="First Option" checked="checked">
-                            <label class="label" for="Radio1">Yes</label>
-                            <input id="Radio2" name="Radios4" type="radio" value="Other Option" >
-                            <label class="center label" for="Radio2">No</label>
+                            <input id="is_receipt_others_yes_mobile" name="is_receipt_others_mobile" type="radio" value="Yes" checked="checked">
+                            <label class="label" for="is_receipt_others_yes_mobile">Yes</label>
+                            <input id="is_receipt_others_no_mobile" name="is_receipt_others_mobile" type="radio" value="No" >
+                            <label class="center label" for="is_receipt_others_no_mobile">No</label>
                           </div>
                         </div>
                       </td>
@@ -1265,7 +1264,7 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
-  <script src="{{('front_asset/claim/missed_connection/js/custom.js')}}"></script>
+  <script src="{{('front_asset/claim/flight_delay/js/custom.js')}}"></script>
   {{-- <script>
     $(document).ready(function() {
       var date_input = $('.date'); //our date input has the name "date"
