@@ -286,12 +286,10 @@ $(document).ready(function(){
         $("#continue_7").removeClass('active_button');
         if (($("input[name='is_signed_permission']").is(':checked'))){
           $("#continue_7").addClass('active_button');
+          $("#continue_8").addClass('active_button');
           return true;
         }
-        
-      }else if (step == 8) {
-        $("#continue_8").addClass('active_button');
-        return true;
+
       }
       return false;
     }
@@ -481,12 +479,21 @@ $(document).ready(function(){
     $("#add_another_passenger").click(function(){
       passengerCnt++;
       $('.show_on_click_add_another_passenger').append(add_new_passenger());
-        $(document).on("click", "#remove_another_passenger", function() {
-         $(this).closest('.total_another_passenger_div').remove();
-        });
+      var date_input = $('.date'); //our date input has the name "date"
+      var options = {
+        format: 'mm/dd/yyyy',
+        endDate: '+0d',
+        todayHighlight: true,
+        autoclose: true,
+      };
+      date_input.datepicker(options);
+
+
     });
 
-
+    $(document).on("click", ".remove_another_passenger", function() {
+     $(this).closest('.total_another_passenger_div').remove();
+    });
 
 
 
@@ -611,6 +618,13 @@ fileInput3.addEventListener( "change", function( event ) {
 the_return3.innerHTML = this.value;
 });
 
-
+var date_input = $('.date'); //our date input has the name "date"
+var options = {
+  format: 'mm/dd/yyyy',
+  endDate: '+0d',
+  todayHighlight: true,
+  autoclose: true,
+};
+date_input.datepicker(options);
 
 });

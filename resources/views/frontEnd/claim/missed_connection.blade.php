@@ -1266,7 +1266,7 @@
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
   <script src="{{('front_asset/claim/missed_connection/js/custom.js')}}"></script>
-  <script>
+  {{-- <script>
     $(document).ready(function() {
       var date_input = $('.date'); //our date input has the name "date"
       var options = {
@@ -1277,5 +1277,5 @@
       };
       date_input.datepicker(options);
     })
-  </script>
+  </script> --}}
 @endsection
