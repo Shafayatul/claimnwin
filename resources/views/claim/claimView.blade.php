@@ -69,6 +69,7 @@
                                     <li role="presentation"><a href="#messaging" role="tab" id="messaging-tab" data-toggle="tab" aria-controls="messaging" aria-expanded="true"><i class="fa fa-envelope" aria-hidden="true"></i> Messaging</a></li>
                                     <li role="presentation"><a href="#airline_response" role="tab" id="airline_response-tab" data-toggle="tab" aria-controls="airline_response" aria-expanded="true"><i class="fa fa-info-circle" aria-hidden="true"></i> Airline Response</a></li>
                                     <li role="presentation"><a href="#customer_final_comm" role="tab" id="customer_final_comm-tab" data-toggle="tab" aria-controls="customer_final_comm" aria-expanded="true"><i class="fa fa-info-circle" aria-hidden="true"></i> Customer Final Comments</a></li>
+                                    <li role="presentation"><a href="#reminder" role="tab" id="reminder-tab" data-toggle="tab" aria-controls="reminder" aria-expanded="true"><i class="fa fa-bell" aria-hidden="true"></i> Reminders</a></li>
 
                                 </ul>
                                 <div id="myTabContent" class="tab-content">
@@ -704,6 +705,103 @@
                                     </div>
                                     <div role="tabpanel" class="tab-pane" id="customer_final_comm" aria-labelledby="customer_final_comm-tab">
 
+                                    </div>
+                                    <div role="tabpanel" class="tab-pane" id="reminder" aria-labelledby="reminder-tab">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <br>
+                                                    <button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#myModal">Reminder</button>
+                                                    <div id="myModal" class="modal fade" role="dialog">
+                                                    <div class="modal-dialog">
+
+                                                        <!-- Modal content-->
+                                                        <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                            <h4 class="modal-title">Set Reminder</h4>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                        <form action="{{route('reminder-create')}}" method="post">
+                                                                {{ csrf_field() }}
+                                                           <div class="row">
+                                                               <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputEmail1">Reminder Date</label>
+                                                                        <input type="date" name="callback_date" class="form-control" id="exampleInputEmail1"  placeholder="Enter email">
+                                                                        <input type="hidden" name="claim_id" value="100276">
+                                                                    </div>
+                                                               </div>
+
+                                                               <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputEmail1">Reminder Time</label>
+                                                                        <input type="time" name="callback_time" class="form-control" id="exampleInputEmail1"  placeholder="Enter email">
+                                                                    </div>
+                                                               </div>
+
+                                                           </div>
+
+                                                           <div class="row">
+                                                                <div class="col-md-12">
+                                                                     <div class="form-group">
+                                                                         <label for="exampleInputEmail1" class="control-label">Note</label>
+                                                                         <textarea name="note" class="form-control" id="exampleInputEmail1" cols="30" rows="3"></textarea>
+                                                                     </div>
+                                                                </div>
+
+                                                            </div>
+
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <button type="submit" class="btn btn-success">Reminder</button>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                        </div>
+                                                        <div class="modal-footer">
+
+                                                        </div>
+                                                        </div>
+
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="table-responsive">
+                                                        <table class="table table-bordered table-hover ">
+                                                            <thead>
+                                                                <th>CLAIM ID</th>
+                                                                <th>CLAIM STATUS</th>
+                                                                <th>CALL REMINDER</th>
+                                                                <th>SNOOZE</th>
+                                                                <th>STATUS</th>
+                                                                <th>NOTES</th>
+                                                                <th>Action</th>
+                                                            </thead>
+                                                            <tbody>
+                                                                @foreach($reminders as $item)
+                                                                <tr>
+                                                                    <td>{{$item->claim_id}}</td>
+                                                                    <td>claim document sent</td>
+                                                                    <td>{{$item->callback_date.' '.$item->callback_time}}</td>
+                                                                    <td>{{$item->snooze}}</td>
+                                                                    <td>{{$item->status}}</td>
+                                                                    <td>{{$item->note}}</td>
+                                                                    <td>
+                                                                    <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i> view</a>
+                                                                        <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> Edit</a>
+                                                                        <a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Delete</a>
+                                                                    </td>
+                                                                </tr>
+                                                                @endforeach
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
                                     </div>
                                 </div>
                             </div>

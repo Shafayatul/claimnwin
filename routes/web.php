@@ -50,6 +50,7 @@ Route::resource('currency', 'CurrencyController');
 Route::resource('bank-accounts', 'BankAccountsController');
 
 Route::resource('reminders', 'RemindersController');
+Route::post('/reminder-create', 'RemindersController@store')->name('reminder-create');
 
 Route::get('socialauth/{provider}','SocialAuthController@redirectToProvider');
 Route::get('socialauth/{provider}/callback','SocialAuthController@handleProviderCallback');

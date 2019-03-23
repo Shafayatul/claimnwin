@@ -58,10 +58,9 @@ class RemindersController extends Controller
     {
 
         $requestData = $request->all();
+        Reminder::create($requestData + ['user_id' => Auth::user()->id] + ['status' => 'Reminders']);
 
-        Reminder::create($requestData + ['user_id' => Auth::user()->id]);
-
-        return redirect('reminders')->with('success', 'Reminder added!');
+        return redirect('/claim-view')->with('success', 'Reminder added!');
     }
 
     /**

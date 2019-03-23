@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Note;
+use App\Reminder;
 
 class ClaimBackController extends Controller
 {
@@ -15,7 +16,8 @@ class ClaimBackController extends Controller
     public function claimView()
     {
         $notes = Note::latest()->paginate(6);
-        return view('claim.claimView',compact('notes'));
+        $reminders=Reminder::latest()->paginate(6);
+        return view('claim.claimView',compact('notes','reminders'));
     }
 
     public function manageUnfinishedClaim()
