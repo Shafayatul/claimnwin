@@ -12,7 +12,7 @@
 @section('content')
   <div class="wrapper">
     <div class="form_h2">
-      <h2 class="text-center">Missed Connection</h2>
+      <h2 class="text-center">Flight Delay</h2>
     </div>
       <form action="">
         <!-- ...................................................................
@@ -428,7 +428,7 @@
                                   STEP 3 ENDS
         .................................................................... -->
         <!-- ...................................................................
-                                  STEP 4 STARTS NOT PRESENT HERE
+                                  STEP 4 STARTS
         .................................................................... -->
 
         <div class="single_step" id="step_4" style="display:none;">
