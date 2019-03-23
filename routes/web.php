@@ -22,9 +22,10 @@ Route::get('/user-home','UserPanelController@index');
 
 
 // claim
+Route::post('/claim','ClaimsController@store');
 Route::get('/claim','ClaimsController@claim')->name('claim');
 Route::get('/missed-connection','ClaimsController@missed_connection')->name('missed-connection');
-Route::post('/missed-connection','ClaimsController@store');
+
 Route::get('/flight-delay','ClaimsController@flight_delay')->name('flight-delay');
 Route::get('/flight-cancellation','ClaimsController@flight_cancellation')->name('flight-cancellation');
 Route::get('/delay-luggage','ClaimsController@delay_luggage')->name('delay-luggage');
