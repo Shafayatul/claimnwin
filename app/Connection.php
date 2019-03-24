@@ -25,7 +25,7 @@ class Connection extends Model
      *
      * @var array
      */
-    protected $fillable = ['claim_id', 'connection'];
+    protected $fillable = ['claim_id', 'airport_id'];
 
     
 }

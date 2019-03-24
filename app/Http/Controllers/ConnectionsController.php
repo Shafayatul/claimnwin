@@ -22,7 +22,7 @@ class ConnectionsController extends Controller
 
         if (!empty($keyword)) {
             $connections = Connection::where('claim_id', 'LIKE', "%$keyword%")
-                ->orWhere('connection', 'LIKE', "%$keyword%")
+                ->orWhere('airport_id', 'LIKE', "%$keyword%")
                 ->latest()->paginate($perPage);
         } else {
             $connections = Connection::latest()->paginate($perPage);
