@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 
 use App\Claim;
 use App\Airport;
+use App\Airline;
 use Illuminate\Http\Request;
 
 class ClaimsController extends Controller
@@ -30,7 +31,18 @@ class ClaimsController extends Controller
         }
         $airport_object = rtrim($airport_object, ',');
         $airport_object .= ']';
-        return view('frontEnd.claim.missed_connection', compact('airport_object'));
+
+        $airlines = Airline::select('name', 'iata_code')->get()->toArray();
+        $airline_object = '[';
+        foreach ($airlines as $airline) {
+            $airline_object .= "['".$airline['name']."', '".$airline['iata_code']."'],";
+        }
+        $airline_object = rtrim($airline_object, ',');
+        $airline_object .= ']';
+
+
+
+        return view('frontEnd.claim.missed_connection', compact('airport_object', 'airline_object'));
    }
 
    public function flight_delay()

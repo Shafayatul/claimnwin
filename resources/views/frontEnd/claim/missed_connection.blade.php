@@ -29,7 +29,7 @@
                   <label for="departed_from">DEPARTED FROM: </label>
                 </div>
                 <div class="input_field">
-                  <input type="text" class="auto-complete common_input departed_from" id="advanced-demo common_input departed_from" name="departed_from" placeholder="e.g. New York or JFK">
+                  <input type="text" class="auto_airport_complete common_input departed_from" id="advanced-demo common_input departed_from" name="departed_from" placeholder="e.g. New York or JFK">
                 </div>
               </div>
               <div class="two_child_div_right">
@@ -37,7 +37,7 @@
                   <label for="final_destination">FINAL DESTINATION: </label>
                 </div>
                 <div class="input_field">
-                  <input type="text" class="auto-complete common_input final_destination" id="common_input final_destination" name="final_destination" placeholder="e.g. London or LHR">
+                  <input type="text" class="auto_airport_complete common_input final_destination" id="common_input final_destination" name="final_destination" placeholder="e.g. London or LHR">
                 </div>
               </div>
             </div>
@@ -72,7 +72,7 @@
             </div>
             <div class="parent_div">
               <div class="child_div">
-                <input type="text" class="auto-complete common_input connection" id="common_input connection" name="connection[]" placeholder="e.g. London or LHR">
+                <input type="text" class="auto_airport_complete common_input connection" id="common_input connection" name="connection[]" placeholder="e.g. London or LHR">
               </div>
               <div class="property" id="property">
 
@@ -292,121 +292,10 @@
             </div>
           </div>
 
-          <div class="common_row">
-            <div class="parent_div">
-              <div class="single_child_div">
-                <div class="arrival_to_destination_text_div">
-                  <span class="arrival_to_destination_text_span">New Chitose Airport, Sapporo (CTS)<i class="fas fa-plane"></i>New Chitose Airport, Sapporo (CTS)</span>
-                </div>
-              </div>
-            </div>
-            <div class="parent_div">
-              <div class="single_child_div">
-                <div class="left_div">
-                  <div class="label_field">
-                    <label for="airline">AIRLINE</label>
-                  </div>
-                  <div class="input_field">
-                    <input type="text" class="common_input airline" id="common_input airline" name="airline[]" placeholder="e.g. New York or JFK">
-                  </div>
-                </div>
-                <div class="right_div">
-                  <div class="flight_number_div">
-                    <div class="label_field">
-                      <label for="departure_airport">FLIGHT NO.</label>
-                    </div>
-                    <div class="two_input_field">
-                      <div class="child_two_input_field_left">
-                        <div class="input_field">
-                          <input type="text" class="common_input flight_code" id="common_input flight_code" name="flight_code[]" placeholder="">
-                        </div>
-                      </div>
-                      <div class="child_two_input_field_right">
-                        <div class="input_field">
-                          <input type="text" class="common_input flight_number" id="common_input flight_number" name="flight_number[]" placeholder="1234">
-                        </div>
-                      </div>
-
-                    </div>
-                  </div>
-                  <div class="departure_date_div">
-                    <div class="label_field">
-                      <label for="departure_airport">DEPARTURE DATE</label>
-                    </div>
-                    <div class="two_input_field">
-                      <div class="input_field">
-                        <input type="text" class="common_input departure_airport date" id="common_input departure_airport date" name="departure_date[]" placeholder="e.g. New York or JFK">
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div class="itinerary_flight_element">
+            {{-- code from JS --}}
           </div>
 
-          {{-- <div class="common_row">
-            <div class="parent_div">
-              <div class="single_child_div">
-                <div class="arrival_to_destination_text_div">
-                  <span class="arrival_to_destination_text_span">New Chitose Airport, Sapporo (CTS)<i class="fas fa-plane"></i>New Chitose Airport, Sapporo (CTS)</span>
-                </div>
-              </div>
-            </div>
-            <div class="parent_div">
-              <div class="single_child_div">
-                <div class="left_div">
-                  <div class="label_field">
-                    <label for="departure_airport">AIRLINE</label>
-                  </div>
-                  <div class="input_field">
-                    <input type="text" class="common_input departure_airport" id="common_input departure_airport" placeholder="e.g. New York or JFK">
-                  </div>
-                </div>
-                <div class="right_div">
-                  <div class="flight_number_div">
-                    <div class="label_field">
-                      <label for="departure_airport">FLIGHT NO.</label>
-                    </div>
-                    <div class="two_input_field">
-                      <div class="child_two_input_field_left">
-                        <div class="input_field">
-                          <input type="text" class="common_input flight_code" id="common_input flight_code" placeholder="">
-                        </div>
-                      </div>
-                      <div class="child_two_input_field_right">
-                        <div class="input_field">
-                          <input type="text" class="common_input flight_number" id="common_input flight_number" placeholder="1234">
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="departure_date_div">
-                    <div class="label_field">
-                      <label for="departure_airport">DEPARTURE DATE</label>
-                    </div>
-                    <div class="two_input_field">
-                      <div class="input_field">
-                        <input type="text" class="common_input departure_airport date" id="common_input departure_airport date" name="date" placeholder="e.g. New York or JFK">
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div> --}}
-
-          {{-- <div class="common_row">
-            <div class="parent_div">
-              <div class="total_info_div">
-                <div class="no_risk_child_div info_icon">
-                  <i class="fas fa-info-circle"></i>
-                </div>
-                <div class="no_risk_child_div info_text">
-                  No risk. Submitting a claim is absolutely <span class="free_of_charge">free of charge.</span>
-                </div>
-              </div>
-            </div>
-          </div> --}}
 
           <div class="common_row">
             <div class="total_button_div">
@@ -1260,9 +1149,9 @@
 
 @section('footer-script')
   <script type="text/javascript">
-      auto_complete();
-      function auto_complete(){
-        $('.auto-complete').autoComplete({
+      auto_airport_complete();
+      function auto_airport_complete(){
+        $('.auto_airport_complete').autoComplete({
             minChars: 3,
             source: function(term, suggest){
                 term = term.toLowerCase();
@@ -1280,6 +1169,28 @@
             onSelect: function(e, term, item){
                 // console.log('Item "'+item.data('langname')+' ('+item.data('lang')+')" selected by '+(e.type == 'keydown' ? 'pressing enter or tab' : 'mouse click')+'.');
                 $(':focus').val(item.data('langname')+' ('+item.data('lang')+')').attr('iata-code',item.data('lang'));
+            }
+        });     
+      }
+      auto_airline_complete();
+      function auto_airline_complete(){
+        $('.auto_airline_complete').autoComplete({
+            minChars: 3,
+            source: function(term, suggest){
+                term = term.toLowerCase();
+                var choices = {!! $airline_object !!};
+                var suggestions = [];
+                for (i=0;i<choices.length;i++)
+                    if (~(choices[i][0]+' '+choices[i][1]).toLowerCase().indexOf(term)) suggestions.push(choices[i]);
+                suggest(suggestions);
+            },
+            renderItem: function (item, search){
+                search = search.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+                var re = new RegExp("(" + search.split(' ').join('|') + ")", "gi");
+                return '<div class="autocomplete-suggestion" data-langname="'+item[0]+'" data-lang="'+item[1]+'" data-val="'+search+'"> '+item[0].replace(re, "<b>$1</b>")+'</div>';
+            },
+            onSelect: function(e, term, item){
+                $(':focus').val(item.data('langname')).attr('iata_code',item.data('lang'));
             }
         });     
       }
