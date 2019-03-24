@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Claim;
 use App\Airport;
 use App\Airline;
+use App\Connection;
 use Illuminate\Http\Request;
 
 class ClaimsController extends Controller
@@ -124,18 +125,26 @@ class ClaimsController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Returns id from a name+iata-code Ex. London Dubai Airport (LON)
      *
-     * @param \Illuminate\Http\Request $request
+     * @param string Ex. London Dubai Airport (LON)
      *
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @return integer Ex. 2
      */
+    public function get_airport_id_name_and_iata_code($sting){
+        $iata_code =  rtrim(substr($sting, strrpos($sting,"(")+1), ')'); // LON
+        return Airport::WHERE('iata_code', $iata_code)->first()->id;
+    }
+    public function get_airline_id_name_and_iata_code($sting){
+        $iata_code =  rtrim(substr($sting, strrpos($sting,"(")+1), ')'); // LON
+        return Airline::WHERE('iata_code', $iata_code)->first()->id;
+    }
+    
     public function store(Request $request)
     {
-
         dd($request);
-        echo $departed_from = rtrim(substr($request->departed_from, strrpos($request->departed_from,"(")+1), ')');
-        echo $final_destination = rtrim(substr($request->final_destination, strrpos($request->final_destination,"(")+1), ')');
+        $departed_from_id = $this->get_airport_id_name_and_iata_code($request->departed_from);
+        $final_destination_id = $this->get_airport_id_name_and_iata_code($request->final_destination);
 
         if ($request->is_direct_flight == 'is_direct_flight_no') {
             $is_direct_flight = 0;
@@ -143,6 +152,58 @@ class ClaimsController extends Controller
             $is_direct_flight = 1;
         }
 
+        $what_happened_to_the_flight = $request->what_happened_to_the_flight;
+        $total_delay = $request->total_delay;
+        $reason = $request->reason;
+
+        if ($request->is_rerouted == "is_rerouted_no") {
+            $is_rerouted = 0;
+        }else{
+            $is_rerouted = 1;
+        }
+        if ($request->is_obtained_full_reimbursement == "is_obtained_full_reimbursement_no") {
+            $is_obtained_full_reimbursement = 0;
+        }else{
+            $is_obtained_full_reimbursement = 1;
+        }
+        $ticket_price = $request->ticket_price_original_ticket;
+        $ticket_currency = $request->ticket_currency_original_ticket;
+
+        if ($request->is_paid_for_rerouting == "is_paid_for_rerouting_yes") {
+            $is_paid_for_rerouting = 1;
+        }else{
+            $is_paid_for_rerouting = 0;
+        }
+        $rerouted_ticket_price = $request->ticket_price_rerouting;
+        $rerouted_ticket_currency = $request->ticket_currency_rerouting;
+
+        $email = $request->email_address;
+
+
+        
+// 1. connect table insert
+// "connection" => array:1 [▼
+// 0 => null
+// ]
+
+// 2. demo56_itinerary_details insert
+// "airline" => array:1 [▶]
+// "flight_code" => array:1 [▶]
+// "flight_number" => array:1 [▶]
+// "departure_date" => array:1 [▶]
+
+// 3. demo56_expenses
+// "expense_name" => array:4 [▶]
+// "expense_price" => array:8 [▶]
+// "expense_currency" => array:8 [▶]
+// "is_receipt_accommodation" => "Yes"
+// "is_receipt_transportation" => "Yes"
+// "is_receipt_food" => "Yes"
+// "is_receipt_others" => "Yes"
+// "is_receipt_accommodation_mobile" => "Yes"
+// "is_receipt_transportation_mobile" => "Yes"
+// "is_receipt_food_mobile" => "Yes"
+// "is_receipt_others_mobile" => "Yes"
 
 
         // $requestData = $request->all();

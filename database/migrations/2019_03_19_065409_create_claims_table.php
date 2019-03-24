@@ -26,6 +26,8 @@ class CreateClaimsTable extends Migration
             $table->boolean('is_obtain_full_reimbursement')->nullable();
             $table->string('ticket_price')->nullable();
             $table->string('ticket_currency')->nullable();
+            $table->string('rerouted_ticket_price')->nullable();
+            $table->string('rerouted_ticket_currency')->nullable();
             $table->boolean('is_paid_for_rerouting')->nullable();
             $table->boolean('is_spend_on_accommodation')->nullable();
             $table->boolean('is_signed_permission')->nullable();
