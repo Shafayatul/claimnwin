@@ -93,64 +93,7 @@
                     </div>
                 </div>
             </div>
-
-            <div class="common_row">
-                <div class="form_h3">
-                    <h3>Were any other airports involved in this trip?</h3>
-                </div>
-                <div class="form_h4">
-                    <h4>If your trip was not a direct flight, let us know.</h4>
-                </div>
-                <div class="parent_div">
-                    <div class="two_child_radio_div first_child">
-                        <label class="container_radio">Yes
-                            <input class="common_input" type="radio" id="common_input is_direct_flight_yes" name="is_direct_flight" value="is_direct_flight_yes">
-                            <span class="checkmark"></span>
-                        </label>
-                    </div>
-                    <div class="two_child_radio_div">
-                        <label class="container_radio">No
-                            <input class="common_input" type="radio" id="common_input is_direct_flight_no" name="is_direct_flight" value="is_direct_flight_no">
-                            <span class="checkmark"></span>
-                        </label>
-                    </div>
-                </div>
-            </div>
-
-            <div class="common_row" id="connection_div">
-                <div class="form_h3">
-                    <h3>What airports were involved?</h3>
-                </div>
-                <div class="parent_div">
-                    <div class="child_div">
-                        <input type="text" class="common_input connection" id="common_input connection" name="connection[]" placeholder="e.g. London or LHR">
-                    </div>
-                    <div class="property" id="property">
-
-                    </div>
-                </div>
-                <div class="parent_div">
-                    <button type="button" name="button" id="add_connection" class="add_connection"><i class="fas fa-plus"></i></button>
-                </div>
-            </div>
-
-            <div class="common_row">
-                <div class="form_h3">
-                    <h3>Select the flight that didn’t go as planned</h3>
-                </div>
-                <div class="form_h4">
-                    <h4>If your flight was disrupted several times, select <span class="form_h4_span">the first segment in which the disruption occurred.</span></h4>
-                </div>
-                <div class="parent_div">
-                    <div class="single_child_radio_div">
-                        <label class="container_radio">New York (JFK)<i class="fas fa-plane"></i>London (LHR)
-                            <input type="radio" class="common_input" id="common_input selected_connection_id" name="selected_connection_id" value="1">
-                            <span class="checkmark"></span>
-                        </label>
-                    </div>
-                </div>
-            </div>
-
+            
             <div class="parent_div">
                 <div class="form_h3">
                     <h3>Itinerary details for your disrupted flight</h3>

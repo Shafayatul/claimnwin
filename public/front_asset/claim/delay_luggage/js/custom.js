@@ -44,37 +44,8 @@ $(document).ready(function(){
 
         $("#continue_2").removeClass('active_button');
 
-        var where_did_you_fly = false;
-        var is_direct_flight_yes = false;
-        var is_direct_flight_no = false;
-        var is_selected_connection_id = false;
-
         if (($("input[name='departed_from']").val() != "") && ($("input[name='final_destination']").val() != "")) {
           where_did_you_fly = true;
-
-        }
-
-        if (where_did_you_fly) {
-          if (($("input[name='is_direct_flight']").is(':checked'))) {
-            if ($("input[name='is_direct_flight']:checked").val() == 'is_direct_flight_yes'){
-              $(".connection").each(function(){
-                if ($(this).val() != "") {
-                  is_direct_flight_yes = true;
-                }
-              });
-            }else if ($("input[name='is_direct_flight']:checked").val() == 'is_direct_flight_no') {
-              is_direct_flight_no = true;
-            }
-          }
-        }
-
-        if (is_direct_flight_yes == true || is_direct_flight_no == true) {
-          if (($("input[name='selected_connection_id']").is(':checked'))) {
-            is_selected_connection_id = true;
-          }
-        }
-
-        if (is_selected_connection_id) {
           var step_two_airline = true;
           var step_two_flight_number = true;
           var step_two_departure_date = true;
@@ -105,6 +76,7 @@ $(document).ready(function(){
           }else {
             return false;
           }
+
         }
 
       }else if (step == 3) {
@@ -269,15 +241,15 @@ $(document).ready(function(){
 
 
 
-    $("#connection_div").hide();
-
-    $("input[name=is_direct_flight]:radio").click(function() {
-      if($(this).attr("value")=="is_direct_flight_yes") {
-        $("#connection_div").show(500);
-      }else{
-        $("#connection_div").hide(500);
-      }
-    });
+    // $("#connection_div").hide();
+    //
+    // $("input[name=is_direct_flight]:radio").click(function() {
+    //   if($(this).attr("value")=="is_direct_flight_yes") {
+    //     $("#connection_div").show(500);
+    //   }else{
+    //     $("#connection_div").hide(500);
+    //   }
+    // });
 
 
     /* --------- Delayed Button ----------- */
