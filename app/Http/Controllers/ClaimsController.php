@@ -41,8 +41,6 @@ class ClaimsController extends Controller
         $airline_object = rtrim($airline_object, ',');
         $airline_object .= ']';
 
-
-
         return view('frontEnd.claim.missed_connection', compact('airport_object', 'airline_object'));
    }
 

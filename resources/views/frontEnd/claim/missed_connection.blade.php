@@ -906,19 +906,19 @@
             <div class="parent_div">
               <div class="two_child_radio_div first_child">
                 <label class="container_radio">Yes
-                  <input class="common_input passenger_is_booking_checkbox" type="radio" count="1" id="common_input is_booking_reference_yes" name="is_booking_reference[0]" value="is_booking_reference_yes">
+                  <input class="common_input passenger_is_booking_checkbox" type="radio" count="0" id="common_input is_booking_reference_yes" name="is_booking_reference[0]" value="is_booking_reference_yes">
                   <span class="checkmark"></span>
                 </label>
               </div>
               <div class="two_child_radio_div">
                 <label class="container_radio">Later
-                  <input class="common_input passenger_is_booking_checkbox" type="radio" count="1" id="common_input is_booking_reference_no" name="is_booking_reference[0]" value="is_booking_reference_no">
+                  <input class="common_input passenger_is_booking_checkbox" type="radio" count="0" id="common_input is_booking_reference_no" name="is_booking_reference[0]" value="is_booking_reference_no" checked>
                   <span class="checkmark"></span>
                 </label>
               </div>
             </div>
-            <div class="parent_div show_on_is_booking_reference_yes_1" style="display:none">
-              <div class="add_booking_reference_div" id="add_booking_reference_div_1">
+            <div class="parent_div show_on_is_booking_reference_yes_0" style="display:none">
+              <div class="add_booking_reference_div" id="add_booking_reference_div_0">
                 <div class="child_div" style="margin-top: 10px;" id="reference_remove">
                   <input style="width: 50%; float: left; margin-right: 10px; margin-bottom: 0px; margin-top: 0px;" type="text" class="common_input booking_reference_field_input" id="booking_reference_field_input" name="booking_reference_field_input[]" />
                 </div>
