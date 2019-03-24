@@ -16,7 +16,7 @@
                             <div class="panel bg-dark ">
                                 <div class="panel-heading cus_pan_heading">
                                     <p class="text-center">Claim Id</p>
-                                    <h5 class="text-center">100276</h5>
+                                <h5 class="text-center">{{$claim->id}}</h5>
                                 </div>
                             </div>
                         </div>
@@ -24,7 +24,7 @@
                             <div class="panel" style="background-color: #4894a5;">
                                 <div class="panel-heading cus_pan_heading">
                                     <p class="text-center">Passenger</p>
-                                    <h5 class="text-center">Dipto Shome</h5>
+                                    <h5 class="text-center">{{$claim->first_name.' '.$claim->last_name}}</h5>
                                 </div>
                             </div>
                         </div>
@@ -32,7 +32,7 @@
                             <div class="panel" style="background-color: #006057;">
                                 <div class="panel-heading cus_pan_heading">
                                     <p class="text-center">Airline</p>
-                                    <h5 class="text-center">Norwegian</h5>
+                                    <h5 class="text-center">{{$claim->airline}}</h5>
                                 </div>
                             </div>
                         </div>
@@ -56,7 +56,7 @@
                             <div class="panel" style="background-color: #486f84;">
                                 <div class="panel-heading cus_pan_heading">
                                     <p class="text-center">Claim Category</p>
-                                    <h5 class="text-center">Delay</h5>
+                                <h5 class="text-center">{{$claim->claim_table_type}}</h5>
                                 </div>
                             </div>
                         </div>
@@ -113,7 +113,7 @@
                                                                                 <tbody>
                                                                                     <tr class="odd gradeX">
                                                                                         <th>Claim ID</th>
-                                                                                        <td>#000370</td>
+                                                                                    <td>{{$claim->id}}</td>
                                                                                     </tr>
                                                                                     <tr class="odd gradeX">
                                                                                         <th>Passenger Representative</th>
@@ -121,7 +121,7 @@
                                                                                     </tr>
                                                                                     <tr class="odd gradeX">
                                                                                         <th>Passenger Full Name</th>
-                                                                                        <td>Dipto Shome</td>
+                                                                                        <td>{{$claim->first_name.' '.$claim->last_name}}</td>
                                                                                     </tr>
                                                                                     <tr class="odd gradeX">
                                                                                         <th>Passenger Tel</th>
@@ -129,43 +129,43 @@
                                                                                     </tr>
                                                                                     <tr class="odd gradeX">
                                                                                         <th>Passenger Email</th>
-                                                                                        <td></td>
+                                                                                        <td>{{$claim->email}}</td>
                                                                                     </tr>
                                                                                     <tr class="odd gradeX">
                                                                                         <th>Passenger Address</th>
-                                                                                        <td>..</td>
+                                                                                        <td>{{$claim->address}}</td>
                                                                                     </tr>
                                                                                     <tr class="odd gradeX">
                                                                                         <th>Claim Referance Number</th>
-                                                                                        <td>190101-000744</td>
+                                                                                    <td>{{$claim->booking_refernece}}</td>
                                                                                     </tr>
                                                                                     <tr class="odd gradeX">
                                                                                         <th>Claim Create Date</th>
-                                                                                        <td>22/03/2019</td>
+                                                                                    <td>{{Carbon\Carbon::parse($claim->created_at)->format('d-m-Y')}}</td>
                                                                                     </tr>
                                                                                     <tr class="odd gradeX">
                                                                                         <th>Next Action Date</th>
-                                                                                        <td>22/07/2019</td>
+                                                                                        <td>{{Carbon\Carbon::parse()->format('d-m-Y')}}</td>
                                                                                     </tr>
                                                                                     <tr class="odd gradeX">
                                                                                         <th>Member Name</th>
-                                                                                        <td>Norwegian</td>
+                                                                                        <td></td>
                                                                                     </tr>
                                                                                     <tr class="odd gradeX">
                                                                                         <th>Claim Status</th>
-                                                                                        <td>Determination Started</td>
+                                                                                        <td></td>
                                                                                     </tr>
                                                                                     <tr class="odd gradeX">
                                                                                         <th>Claim With</th>
-                                                                                        <td>AD</td>
+                                                                                        <td></td>
                                                                                     </tr>
                                                                                     <tr class="odd gradeX">
                                                                                         <th>Claim Type</th>
-                                                                                        <td>Delay</td>
+                                                                                        <td>{{$claim->claim_table_type}}</td>
                                                                                     </tr>
                                                                                     <tr class="odd gradeX">
                                                                                         <th>Legacy Case</th>
-                                                                                        <td>No</td>
+                                                                                        <td></td>
                                                                                     </tr>
                                                                                     <tr class="odd gradeX">
                                                                                         <th>Claim Closed Date</th>
@@ -173,11 +173,11 @@
                                                                                     </tr>
                                                                                     <tr class="odd gradeX">
                                                                                         <th>Claim Summary</th>
-                                                                                        <td>I am seeking 600.00 Euro compensation per passenger under EC Regulation 261/2004.</td>
+                                                                                        <td></td>
                                                                                     </tr>
                                                                                     <tr class="odd gradeX">
                                                                                         <th>Claim Outcome</th>
-                                                                                        <td>1200.00 Euro</td>
+                                                                                        <td></td>
                                                                                     </tr>
                                                                                 </tbody>
                                                                             </table>
@@ -203,47 +203,47 @@
                                                                             <tbody>
                                                                                 <tr class="odd gradeX">
                                                                                     <th>Claim ID</th>
-                                                                                    <td>#000370</td>
+                                                                                <td>{{$claim->id}}</td>
                                                                                 </tr>
                                                                                 <tr class="odd gradeX">
                                                                                     <th>Date Of Disrupted</th>
-                                                                                    <td>00/00/0000</td>
+                                                                                <td>{{$claim->departure_date}}</td>
                                                                                 </tr>
                                                                                 <tr class="odd gradeX">
                                                                                     <th>Scheduled Date & Time Of Departure</th>
-                                                                                    <td>14/08/2018 17:05</td>
+                                                                                    <td></td>
                                                                                 </tr>
                                                                                 <tr class="odd gradeX">
                                                                                     <th>Airline</th>
-                                                                                    <td>Norwegian</td>
+                                                                                <td>{{$claim->airline}}</td>
                                                                                 </tr>
                                                                                 <tr class="odd gradeX">
                                                                                     <th>Number Of Flight Journey</th>
-                                                                                    <td>1</td>
+                                                                                <td>{{$flightCount}}</td>
                                                                                 </tr>
                                                                                 <tr class="odd gradeX">
                                                                                     <th>Departure Airport</th>
-                                                                                    <td>London Gatwick Airport - United Kingdom</td>
+                                                                                    <td>{{$claim->departed_from_id}}</td>
                                                                                 </tr>
                                                                                 <tr class="odd gradeX">
                                                                                     <th>Destination Airport</th>
-                                                                                    <td>John F.Kennedy International Airport - United States</td>
+                                                                                    <td>{{$claim->final_destination_id}}</td>
                                                                                 </tr>
                                                                                 <tr class="odd gradeX">
                                                                                     <th>Flight Number</th>
-                                                                                    <td>DI 7015</td>
+                                                                                <td>{{$claim->airline.' '.$claim->flight_number}}</td>
                                                                                 </tr>
                                                                                 <tr class="odd gradeX">
                                                                                     <th>Booking Ref</th>
-                                                                                    <td>PIJAY5</td>
+                                                                                    <td>{{$claim->booking_refernece}}</td>
                                                                                 </tr>
                                                                                 <tr class="odd gradeX">
                                                                                     <th>Scheduled Date & Time Of Departure</th>
-                                                                                    <td>14/08/2018 20:05</td>
+                                                                                    <td></td>
                                                                                 </tr>
                                                                                 <tr class="odd gradeX">
                                                                                     <th>Actual Date & Time Of Arrival</th>
-                                                                                    <td>15/08/2018 00:05</td>
+                                                                                    <td></td>
                                                                                 </tr>
                                                                             </tbody>
                                                                         </table>
@@ -269,43 +269,43 @@
                                                                             <tbody>
                                                                                 <tr class="odd gradeX">
                                                                                     <th>What reason was given for the delay</th>
-                                                                                    <td>Security issues</td>
+                                                                                <td>{{$claim->reason}}</td>
                                                                                 </tr>
                                                                                 <tr class="odd gradeX">
                                                                                     <th>Do you dispute the reason</th>
-                                                                                    <td>No</td>
+                                                                                    <td></td>
                                                                                 </tr>
                                                                                 <tr class="odd gradeX">
                                                                                     <th>Refreshments</th>
-                                                                                    <td>No</td>
+                                                                                <td>{{$claim->is_obtain_full_reimbursement}}</td>
                                                                                 </tr>
                                                                                 <tr class="odd gradeX">
                                                                                     <th>Telephone Call</th>
-                                                                                    <td>No</td>
+                                                                                    <td></td>
                                                                                 </tr>
                                                                                 <tr class="odd gradeX">
                                                                                     <th>If delayed overnight - Hotel accomodation</th>
-                                                                                    <td>No</td>
+                                                                                    <td></td>
                                                                                 </tr>
                                                                                 <tr class="odd gradeX">
                                                                                     <th>If applicable - transport between the airport and hote</th>
-                                                                                    <td>No</td>
+                                                                                    <td></td>
                                                                                 </tr>
                                                                                 <tr class="odd gradeX">
                                                                                     <th>Did you incur any such expenditure</th>
-                                                                                    <td>No</td>
+                                                                                    <td></td>
                                                                                 </tr>
                                                                                 <tr class="odd gradeX">
                                                                                     <th>Have you received any compensation (money/vouchers) already?</th>
-                                                                                    <td>No</td>
+                                                                                    <td></td>
                                                                                 </tr>
                                                                                 <tr class="odd gradeX">
                                                                                     <th>Number of passengers:</th>
-                                                                                    <td>2</td>
+                                                                                <td>{{$passCount}}</td>
                                                                                 </tr>
                                                                                 <tr class="odd gradeX">
                                                                                     <th>Passengers Name</th>
-                                                                                    <td>Dipto Shome Sajal Kundu</td>
+                                                                                <td>{{$claim->first_name.' '.$claim->last_name}}</td>
                                                                                 </tr>
                                                                             </tbody>
                                                                         </table>
@@ -422,27 +422,27 @@
                                                                             <tbody>
                                                                                 <tr class="odd gradeX">
                                                                                     <th>Claim ID</th>
-                                                                                    <td>100276</td>
+                                                                                <td>{{$claim->id}}</td>
                                                                                 </tr>
                                                                                 <tr class="odd gradeX">
                                                                                     <th>Have you complained direct to the airline writing?</th>
-                                                                                    <td>yes</td>
+                                                                                    <td></td>
                                                                                 </tr>
                                                                                 <tr class="odd gradeX">
                                                                                     <th>Has the airline provided their final response?</th>
-                                                                                    <td>yes</td>
+                                                                                    <td></td>
                                                                                 </tr>
                                                                                 <tr class="odd gradeX">
                                                                                     <th>What date did you complain to the airline?</th>
-                                                                                    <td>00/00/0000</td>
+                                                                                    <td></td>
                                                                                 </tr>
                                                                                 <tr class="odd gradeX">
                                                                                     <th>Did they reject your complain?</th>
-                                                                                    <td>yes</td>
+                                                                                    <td></td>
                                                                                 </tr>
                                                                                 <tr class="odd gradeX">
                                                                                     <th>Have you reject the final response?</th>
-                                                                                    <td>yes</td>
+                                                                                    <td></td>
                                                                                 </tr>
                                                                                 <tr class="odd gradeX">
                                                                                     <th>Airline response</th>
@@ -791,10 +791,162 @@
                                                                     <td>{{$item->status}}</td>
                                                                     <td>{{$item->note}}</td>
                                                                     <td>
-                                                                    <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i> view</a>
-                                                                        <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> Edit</a>
-                                                                        <a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Delete</a>
-                                                                    </td>
+                                                                        <a type="button" data-toggle="modal" class="btn btn-sm btn-primary" title="View Reminder" data-target="#reminder-model-{{$item->id}}"><i class="fa fa-eye" aria-hidden="true"></i> View</a>
+                                                                        {{--View modal --}}
+                                                                        <div id="reminder-model-{{$item->id}}" class="modal fade" role="dialog">
+                                                                                <?php
+                                                                                    $claim=DB::table('claims')
+                                                                                    ->join('passengers','claims.id','passengers.claim_id')
+                                                                                    ->join('itinerary_details','claims.id','itinerary_details.claim_id')
+                                                                                    ->where('claims.id',$item->id)
+                                                                                ->first();
+                                                                                $passengers = DB::table('passengers')->where('claim_id',$item->id)->get();
+                                                                                ?>
+                                                                                    <div class="modal-dialog">
+
+                                                                                    <!-- Modal content-->
+                                                                                    <div class="modal-content">
+                                                                                        <div class="modal-header">
+                                                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                                        <a href="#" class="btn btn-sm btn-success">Dismiss</a>
+                                                                                        <a href="#" class="btn btn-sm btn-success">Reschedule</a>
+                                                                                        <a href="#" class="btn btn-sm btn-success">Snooze</a>
+                                                                                        <a href="#" class="btn btn-sm btn-success">Mark as done</a>
+                                                                                        <a href="#" class="btn btn-sm btn-primary">View Claim</a>
+                                                                                        </div>
+                                                                                        <div class="modal-body">
+                                                                                            <div class="row">
+                                                                                                <div class="col-md-12">
+                                                                                                <p style="font-weight:bold;">DEPARTED FROM: <span style="font-weight:normal;">{{$claim->departed_from_id}}</span></p>
+                                                                                                        <p style="font-weight:bold;">FINAL DESTINATION: <span style="font-weight:normal;">{{$claim->final_destination_id}}</span></p>
+                                                                                                        <p style="font-weight:bold;">Did you have any connecting flights?: <span style="font-weight:normal;"></span></p>
+                                                                                                <p style="font-weight:bold;">What happened to the flight?:  <span style="font-weight:normal;">{{$claim->what_happened_to_the_flight}}</span></p>
+                                                                                                        <p style="font-weight:bold;">Date of missed connection:  <span style="font-weight:normal;"></span></p>
+                                                                                                        <p style="font-weight:bold;">Airline:  <span style="font-weight:normal;">{{$claim->airline}}</span></p>
+                                                                                                        <p style="font-weight:bold;">Flight no:  <span style="font-weight:normal;">{{$claim->flight_number}}</span></p>
+                                                                                                        <p style="font-weight:bold;">Departure date:  <span style="font-weight:normal;">{{$claim->departure_date}}</span></p>
+                                                                                                        <hr>
+                                                                                                        <div class="row">
+                                                                                                            <div class="col-md-8">
+                                                                                                                <h4 style="font-weight:bold;">Passenger List</h4>
+                                                                                                                <table class="table table-borderless table-hover">
+                                                                                                                    <thead>
+                                                                                                                        <th style="font-weight:bold;">First Name</th>
+                                                                                                                        <th style="font-weight:bold;">Last Name</th>
+                                                                                                                        <th style="font-weight:bold;">Ticket No</th>
+                                                                                                                    </thead>
+                                                                                                                    <tbody>
+                                                                                                                        @foreach($passengers as $pass)
+                                                                                                                        <tr>
+                                                                                                                            <td>{{$pass->first_name}}</td>
+                                                                                                                            <td>{{$pass->last_name}}</td>
+                                                                                                                            <td></td>
+                                                                                                                        </tr>
+                                                                                                                        @endforeach
+                                                                                                                    </tbody>
+                                                                                                                </table>
+                                                                                                            </div>
+                                                                                                            <div class="col-md-4">
+                                                                                                                <h4 style="font-weight:bold;">Other Documents</h4>
+                                                                                                                <div class="list-group">
+                                                                                                                <a href="#" class="list-group-item">{{$claim->correspondence_others_file}}</a>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                        <p style="font-weight:bold;">Status:  <span style="font-weight:normal;"></span></p>
+                                                                                                        <hr>
+                                                                                                        <p style="font-weight:bold;">DEPARTURE COUNTRY: <span style="font-weight:normal;"></span></p>
+                                                                                                        <p style="font-weight:bold;">ARRIVAL COUNTRY: <span style="font-weight:normal;"></span></p>
+                                                                                                        <p style="font-weight:bold;">DEPARTURE CONTINENTS: <span style="font-weight:normal;"></span></p>
+                                                                                                        <p style="font-weight:bold;">ARRIVAL CONTINENTS: <span style="font-weight:normal;"></span></p>
+                                                                                                        <p style="font-weight:bold;">AIRLINE CONTINENTS: <span style="font-weight:normal;"></span></p>
+                                                                                                        <p style="font-weight:bold;">DISTANCE:  <span style="font-weight:normal;"></span></p>
+                                                                                                        <p style="font-weight:bold;">COMPENSATION AMOUNT:  <span style="font-weight:normal;"></span></p>
+
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="modal-footer">
+                                                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                    </div>
+                                                                                </div>
+                                                                        <!--------------------End View Modal-------------------->
+                                                                        <a  type="button" data-toggle="modal" title="Edit Reminder" class="btn btn-sm btn-dark reminder-edit-view" data-target="#reminder-edit-model-{{$item->id}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
+                                                                                <!--------------------Edit Modal-------------------->
+                                                                                <div id="reminder-edit-model-{{$item->id}}" class="modal fade" role="dialog">
+                                                                                        <div class="modal-dialog">
+
+                                                                                            <!-- Modal content-->
+                                                                                            <div class="modal-content">
+                                                                                            <div class="modal-header">
+                                                                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                                                <h4 class="modal-title">Set Reminder</h4>
+                                                                                            </div>
+                                                                                            <div class="modal-body">
+                                                                                            <form action="{{route('update-reminder')}}" method="post">
+                                                                                                    {{ csrf_field() }}
+                                                                                            <div class="row">
+                                                                                                <div class="col-md-6">
+                                                                                                        <div class="form-group">
+                                                                                                            <label for="exampleInputEmail1">Reminder Date</label>
+                                                                                                        <input type="date" name="callback_date" class="form-control" id="exampleInputEmail1" value="{{$item->callback_date}}"  placeholder="Enter email">
+                                                                                                            <input type="hidden" name="id" value="{{$item->id}}">
+                                                                                                        </div>
+                                                                                                </div>
+
+                                                                                                <div class="col-md-6">
+                                                                                                        <div class="form-group">
+                                                                                                            <label for="exampleInputEmail1">Reminder Time</label>
+                                                                                                            <input type="time" name="callback_time" class="form-control" value="{{$item->callback_time}}" id="exampleInputEmail1"  placeholder="Enter email">
+                                                                                                        </div>
+                                                                                                </div>
+
+                                                                                            </div>
+
+                                                                                            <div class="row">
+                                                                                                    <div class="col-md-12">
+                                                                                                        <div class="form-group">
+                                                                                                            <label for="exampleInputEmail1" class="control-label">Note</label>
+                                                                                                        <textarea name="note" class="form-control" id="exampleInputEmail1" cols="30" rows="3">{{$item->note}}</textarea>
+                                                                                                        </div>
+                                                                                                    </div>
+
+                                                                                                </div>
+
+                                                                                                <div class="row">
+                                                                                                    <div class="col-md-12">
+                                                                                                        <button type="submit" class="btn btn-success">Reminder</button>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </form>
+                                                                                            </div>
+                                                                                            <div class="modal-footer">
+
+                                                                                            </div>
+                                                                                            </div>
+
+                                                                                        </div>
+                                                                                        </div>
+                                                                                <!--------------------End Edit Modal----------------->
+
+
+
+
+                                                                                {!! Form::open([
+                                                                                    'method'=>'DELETE',
+                                                                                    'url' => ['/reminders-delete/', $item->id],
+                                                                                    'style' => 'display:inline'
+                                                                                ]) !!}
+                                                                                    {!! Form::button('<i class="fa fa-trash" aria-hidden="true"></i> Delete', array(
+                                                                                            'type' => 'submit',
+                                                                                            'class' => 'btn btn-danger btn-sm',
+                                                                                            'title' => 'Delete Reminder',
+                                                                                            'onclick'=>'return confirm("Confirm delete?")'
+                                                                                    )) !!}
+                                                                                {!! Form::close() !!}                                                                    </td>
                                                                 </tr>
                                                                 @endforeach
                                                             </tbody>

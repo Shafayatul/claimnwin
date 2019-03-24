@@ -86,7 +86,7 @@
             </ul>
             </li>
             {{-- <li><a href="login.html"><i class="fa fa-university"></i> Manage Bank Account</a></li> --}}
-            <li><a href="login.html"><i class="fa fa-bell"></i> Manage Reminders</a></li>
+        <li><a href="{{url('/reminders')}}"><i class="fa fa-bell"></i> Manage Reminders</a></li>
             <li class="treeview">
               <a href="#">
               <i class="fa fa-users"></i>

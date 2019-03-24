@@ -70,7 +70,7 @@
                                     <table class="table table-borderless">
                                         <thead>
                                             <tr>
-                                                <th>#</th>
+
                                                 <th>CLAIM ID</th>
                                                 <th>NAME</th>
                                                 <th>DEPATED/FINAL DESTINATION</th>
@@ -80,31 +80,33 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            @foreach($claims as $row)
                                             <tr>
-                                                <td>1</td>
-                                            <td><a href="{{url('/claim-view')}}">#000370</a></td>
+
+                                            <td><a href="{{url('/claim-view/'.$row->id)}}">{{$row->id}}</a></td>
                                                 <td>
-                                                    DIPTO
+                                                        {{$row->first_name.' '.$row->last_name}}
                                                     <br>
-                                                    <a href="#">Ref By Claims Win</a>
+                                                    <a href="#"></a>
                                                 </td>
                                                 <td>
-                                                    John F Kennedy International Airport, New York (JFK)<br/>
-                                                    London Heathrow Airport, London (LHR)
+                                                        {{$row->departed_from_id}}<br/>
+                                                        {{$row->final_destination_id}}
                                                 </td>
                                                 <td>
-                                                    Missed connection
+                                                    {{$row->claim_table_type}}
                                                 </td>
                                                 <td>
-                                                    BA CityFlyer (CJ)<br/>
-                                                    652
+                                                    {{$row->airline}}<br/>
+                                                    {{$row->flight_number}}
                                                 </td>
                                                 <td>
-                                                    <a href="#" class="btn btn-sm btn-primary">Details</a>
+                                                    <a href="{{url('/claim-view/'.$row->id)}}" class="btn btn-sm btn-primary">Details</a>
                                                     <a href="#" class="btn btn-sm btn-danger">Delete</a>
                                                 </td>
 
                                             </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
                                     <div class="pagination-wrapper">  </div>

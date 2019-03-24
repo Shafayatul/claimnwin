@@ -99,11 +99,11 @@ class RemindersController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
 
         $requestData = $request->all();
-
+        $id = $request->id;
         $reminder = Reminder::findOrFail($id);
         $reminder->update($requestData + ['user_id' => Auth::user()->id]);
 

@@ -5,19 +5,32 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Note;
 use App\Reminder;
+use App\Claim;
+use DB;
 
 class ClaimBackController extends Controller
 {
     public function index(Request $request)
     {
-        return view('claim.manage_claim');
+        $claims=DB::table('claims')
+            ->join('passengers','claims.id','passengers.claim_id')
+            ->join('itinerary_details','claims.id','itinerary_details.claim_id')
+        ->paginate(6);
+        return view('claim.manage_claim',compact('claims'));
     }
 
-    public function claimView()
+    public function claimView($id)
     {
-        $notes = Note::latest()->paginate(6);
-        $reminders=Reminder::latest()->paginate(6);
-        return view('claim.claimView',compact('notes','reminders'));
+        // $notes = Note::latest()->paginate(6);
+        $reminders=Reminder::where('claim_id',$id)->get();
+        $claim=DB::table('claims')
+            ->join('passengers','claims.id','passengers.claim_id')
+            ->join('itinerary_details','claims.id','itinerary_details.claim_id')
+            ->where('claims.id',$id)
+        ->first();
+        $flightCount=DB::table('itinerary_details')->where('claim_id',$id)->count();
+        $passCount=DB::table('passengers')->where('claim_id',$id)->count();
+        return view('claim.claimView',compact('reminders','claim','flightCount','passCount'));
     }
 
     public function manageUnfinishedClaim()
