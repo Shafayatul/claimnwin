@@ -134,6 +134,19 @@
               <li><a href="{{URL::to('/settings')}}"><i class="fa fa-angle-right"></i> Manage Settings</a></li>
               </ul>
             </li>
+
+            <li class="treeview">
+                    <a href="#">
+                    <i class="fa fa-cog"></i>
+                    <span>Tickets</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                    <li><a href="{{URL::to('/tickets/create')}}"><i class="fa fa-angle-right"></i> Create Tickets</a></li>
+                    <li><a href="{{URL::to('/tickets')}}"><i class="fa fa-angle-right"></i> Manage Tickets</a></li>
+                    </ul>
+                  </li>
+
             {{-- <li class="treeview">
               <a href="#">
               <i class="fa fa-cog"></i>

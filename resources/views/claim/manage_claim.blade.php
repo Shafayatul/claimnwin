@@ -13,59 +13,23 @@
 
                             <div class="card-body">
 
-                                        {!! Form::open(['method' => 'GET', 'url' => '/', 'class' => 'form-inline my-2 my-lg-0 float-right', 'role' => 'search'])  !!}
+                                        {{-- {!! Form::open(['method' => 'GET', 'url' => '/', 'class' => 'form-inline my-2 my-lg-0 float-right', 'role' => 'search'])  !!}
                                         <div class="form-group mb-n">
                                         <div class="row">
 
-                                            <div class="col-md-2 grid_box1">
+                                            <div class="col-md-11 grid_box1">
                                             <label class="control-label">Claim Id</label>
                                             <input type="text" name="search" class="form-control1" value="">
                                             </div>
-                                            <div class="col-md-2 grid_box1">
-                                                <label class="control-label">First Name</label>
-                                                <input type="text" name="search" class="form-control1" value="">
-                                            </div>
-                                            <div class="col-md-2 grid_box1">
-                                                <label class="control-label">Airline</label>
-                                                <input type="text" name="search" class="form-control1" value="">
-                                            </div>
-                                            <div class="col-md-2 grid_box1">
-                                                <label class="control-label">Flight No</label>
-                                                <input type="text" name="search" class="form-control1" value="">
-                                            </div>
-                                            <div class="col-md-2 grid_box1">
-                                                <label class="control-label">Claim Type</label>
-                                                <input type="text" name="search" class="form-control1" value="">
-                                            </div>
-                                            <div class="col-md-2 grid_box1">
-                                                <label class="control-label">Phone</label>
-                                                <input type="text" name="search" class="form-control1" value="">
-                                            </div>
-                                            <div class="clearfix"> </div>
-                                        </div>
-                                        <div class="row">
-
-                                                <div class="col-md-2 grid_box1">
-                                                <label class="control-label">Email</label>
-                                                <input type="text" name="search" class="form-control1" value="">
-                                                </div>
-                                                <div class="col-md-1 grid_box1">
-                                                    <label class="control-label text-center">OR</label>
-                                                </div>
-                                                <div class="col-md-2 grid_box1">
-                                                    <label class="control-label">Airline Reference</label>
-                                                    <input type="text" name="search" class="form-control1" value="">
-                                                </div>
-                                                <div class="col-md-1">
+                                            <div class="col-md-1">
                                                     <label class="control-label"></label>
                                                     <input type="submit" class="btn btn-success" value="Search">
                                                 </div>
-                                                <div class="clearfix"> </div>
-                                            </div>
-
+                                            <div class="clearfix"> </div>
+                                        </div>
                                     </div>
 
-                                        {!! Form::close() !!}
+                                        {!! Form::close() !!} --}}
                                 <div class=" table-responsive">
                                     <table class="table table-borderless">
                                         <thead>

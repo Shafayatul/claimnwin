@@ -23,7 +23,7 @@
                                             </div>
                                             <div class="col-md-2 grid_box1">
                                                 <label class="control-label">Reminder Status</label>
-                                                <select name="search" id="" class="form-control">
+                                                <select name="search" id="" class="form-control1">
                                                     <option value="Mark as done">Mark as done</option>
                                                     <option value="Dismiss">Dismiss</option>
                                                     <option value="Reschedule">Reschedule</option>

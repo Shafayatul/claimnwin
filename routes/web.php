@@ -87,3 +87,6 @@ Route::get('/fills-claim-view', 'ClaimBackController@fillsClaimView');
 
 Route::resource('notes', 'NotesController');
 Route::post('/save-note', 'NotesController@store')->name('save-note');
+
+Route::resource('tickets', 'TicketsController');
+Route::resource('ticket-notes', 'TicketNotesController');
