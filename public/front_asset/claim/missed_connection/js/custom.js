@@ -4,7 +4,8 @@ $(document).ready(function(){
 
     var keyCount = 0;
     $("#add_connection").click(function(){
-    $("<div class='child_div' style='margin-top: 10px;' id='property_remove_"+keyCount+"'><input  style='width: 75%; float: left; margin-right: 10px; margin-bottom: 0px; margin-top: 0px;' type='text' class='common_input connection' id='connection' name='connection[]'/> <button type='button' class='remove_property' id='"+keyCount+"' style='float: none;margin-left: 5px;margin-top: 2px;'><i class='fas fa-minus-circle'></i></button></div>").appendTo("#property");
+      $("<div class='child_div' style='margin-top: 10px;' id='property_remove_"+keyCount+"'><input  style='width: 75%; float: left; margin-right: 10px; margin-bottom: 0px; margin-top: 0px;' type='text' class='auto-complete common_input connection' id='connection' name='connection[]'/> <button type='button' class='remove_property' id='"+keyCount+"' style='float: none;margin-left: 5px;margin-top: 2px;'><i class='fas fa-minus-circle'></i></button></div>").appendTo("#property");
+      auto_complete();
     });
 
 
@@ -20,12 +21,60 @@ $(document).ready(function(){
       $("#step_" + step).show();
     });
 
+
+    /**
+    * flight list dynamic checkbox
+    */
+      $(document).on('change', "input[name='departed_from'], input[name='final_destination'], input[name='is_direct_flight'], .connection", function(){
+         if ($("input[name='is_direct_flight']:checked").val() == 'is_direct_flight_yes') {
+            var is_connection_empty = true;
+            $(".connection").each(function(){
+              if ($(this).val() != "") {
+                is_connection_empty = false;
+              }
+            });
+            if (!is_connection_empty) {
+              flight_list_checkbox_html('multiple');
+            }
+          }else{
+            flight_list_checkbox_html('single');
+          }
+      });
+
+    function flight_list_checkbox_html(type){
+      console.log(type);
+      if (type=='single') {
+
+        var html = '<div class="single_child_radio_div"><label class="container_radio">'+$("input[name='departed_from']").val()+'<i class="fas fa-plane"></i>'+$("input[name='final_destination']").val()+'<input type="radio" class="common_input" id="common_input selected_connection_id" name="selected_connection_id" value="1"><span class="checkmark"></span></label></div>';
+        $('.parent_div_check_list').html(html);
+
+      }else if (type=='multiple') {
+
+        var airport_array_temp = new Array();
+        airport_array_temp.push($("input[name='departed_from']").val());
+        $(".connection").each(function(){
+          if ($(this).val() != "") {
+            airport_array_temp.push($(this).val());
+          }
+        });
+        airport_array_temp.push($("input[name='final_destination']").val());
+
+        var html='';
+        for (var i = 0; i < airport_array_temp.length-1; i++) {
+          j=i+1;
+          html += '<div class="single_child_radio_div"><label class="container_radio">'+airport_array_temp[i]+'<i class="fas fa-plane"></i>'+airport_array_temp[j]+'<input type="radio" class="common_input" id="common_input selected_connection_id" name="selected_connection_id" value="1"><span class="checkmark"></span></label></div>';
+        }
+        $('.parent_div_check_list').html(html);
+      }
+    }
+
+
     function check_next_step(){
       console.log("check_next_step() func");
       if (step==1) {
 
         $("#continue_1").removeClass('active_button');
-        if (($("input[name='departed_from']").val() != "") && ($("input[name='final_destination']").val() != "") && ($("input[name='is_direct_flight']").is(':checked')) && ($("input[name='selected_connection_id']").is(':checked') )  ) {
+        if (($("input[name='departed_from']").val() != "") && ($("input[name='final_destination']").val() != "") && ($("input[name='is_direct_flight']").is(':checked')) ) {
           if ($("input[name='is_direct_flight']:checked").val() == 'is_direct_flight_yes') {
 
             var is_connection_empty = true;
@@ -35,15 +84,19 @@ $(document).ready(function(){
                 is_connection_empty = false;
               }
             });
-
             if (!is_connection_empty) {
-              $("#continue_1").addClass('active_button');
-              return true;
+              if ($("input[name='selected_connection_id']").is(':checked') ) {
+                $("#continue_1").addClass('active_button');
+                return true;                
+              }
             }
 
           }else{
-            $("#continue_1").addClass('active_button');
-            return true;
+            
+            if ($("input[name='selected_connection_id']").is(':checked') ) {
+              $("#continue_1").addClass('active_button');
+              return true;                
+            }
           }
         }
 
@@ -359,15 +412,15 @@ $(document).ready(function(){
 
 
     /* --------- Delayed Button ----------- */
-    $(".show_if_flight_did_not_go_planned").hide();
+    // $(".show_if_flight_did_not_go_planned").hide();
 
-    $("input[name=selected_connection_id]:radio").click(function() {
-      if($(this).attr("value")=="1") {
-        $(".show_if_flight_did_not_go_planned").show(500);
-      }else{
-        $(".show_if_flight_did_not_go_planned").hide(500);
-      }
-    });
+    // $("input[name=selected_connection_id]:radio").click(function() {
+    //   if($(this).attr("value")=="1") {
+    //     $(".show_if_flight_did_not_go_planned").show(500);
+    //   }else{
+    //     $(".show_if_flight_did_not_go_planned").hide(500);
+    //   }
+    // });
 
     $(".show_on_what_happened_to_the_flight_selected").hide();
     // $(".show_on_canceled_flight").hide();

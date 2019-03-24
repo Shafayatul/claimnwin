@@ -59,7 +59,7 @@
               </div>
               <div class="two_child_radio_div">
                 <label class="container_radio">No
-                  <input class="common_input" type="radio" id="common_input is_direct_flight_no" name="is_direct_flight" value="is_direct_flight_no">
+                  <input class="common_input" type="radio" id="common_input is_direct_flight_no" name="is_direct_flight" value="is_direct_flight_no" checked>
                   <span class="checkmark"></span>
                 </label>
               </div>
@@ -90,13 +90,13 @@
             <div class="form_h4">
               <h4>If your flight was disrupted several times, select <span class="form_h4_span">the first segment in which the disruption occurred.</span></h4>
             </div>
-            <div class="parent_div">
-              <div class="single_child_radio_div">
+            <div class="parent_div parent_div_check_list">
+              {{-- <div class="single_child_radio_div">
                 <label class="container_radio">New York (JFK)<i class="fas fa-plane"></i>London (LHR)
                   <input type="radio" class="common_input" id="common_input selected_connection_id" name="selected_connection_id" value="1">
                   <span class="checkmark"></span>
                 </label>
-              </div>
+              </div> --}}
             </div>
           </div>
 
@@ -133,7 +133,7 @@
         .................................................................... -->
         <div class="single_step" id="step_2" style="display:none;">
 
-          <div class="common_row show_if_flight_did_not_go_planned">
+          <div class="common_row {{-- show_if_flight_did_not_go_planned --}}">
             <div class="parent_div">
               <div class="form_h3">
                 <h3>What happened to the flight?</h3>
@@ -1259,36 +1259,40 @@
 
 
 @section('footer-script')
+  <script type="text/javascript">
+      auto_complete();
+      function auto_complete(){
+        $('.auto-complete').autoComplete({
+            minChars: 3,
+            source: function(term, suggest){
+                term = term.toLowerCase();
+                var choices = {!! $airport_object !!};
+                var suggestions = [];
+                for (i=0;i<choices.length;i++)
+                    if (~(choices[i][0]+' '+choices[i][1]).toLowerCase().indexOf(term)) suggestions.push(choices[i]);
+                suggest(suggestions);
+            },
+            renderItem: function (item, search){
+                search = search.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+                var re = new RegExp("(" + search.split(' ').join('|') + ")", "gi");
+                return '<div class="autocomplete-suggestion" data-langname="'+item[0]+'" data-lang="'+item[1]+'" data-val="'+search+'"> '+item[0].replace(re, "<b>$1</b>")+'</div>';
+            },
+            onSelect: function(e, term, item){
+                // console.log('Item "'+item.data('langname')+' ('+item.data('lang')+')" selected by '+(e.type == 'keydown' ? 'pressing enter or tab' : 'mouse click')+'.');
+                $(':focus').val(item.data('langname')+' ('+item.data('lang')+')').attr('iata-code',item.data('lang'));
+            }
+        });     
+      }
+                           
+  </script>
+
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
   <script src="{{('front_asset/claim/missed_connection/js/custom.js')}}"></script>
 
 
-  <script type="text/javascript">
-    $(document).ready(function(){
-                   
-            $('.auto-complete').autoComplete({
-                minChars: 3,
-                source: function(term, suggest){
-                    term = term.toLowerCase();
-                    var choices = {!! $airport_object !!};
-                    var suggestions = [];
-                    for (i=0;i<choices.length;i++)
-                        if (~(choices[i][0]+' '+choices[i][1]).toLowerCase().indexOf(term)) suggestions.push(choices[i]);
-                    suggest(suggestions);
-                },
-                renderItem: function (item, search){
-                    search = search.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
-                    var re = new RegExp("(" + search.split(' ').join('|') + ")", "gi");
-                    return '<div class="autocomplete-suggestion" data-langname="'+item[0]+'" data-lang="'+item[1]+'" data-val="'+search+'"> '+item[0].replace(re, "<b>$1</b>")+'</div>';
-                },
-                onSelect: function(e, term, item){
-                    // console.log('Item "'+item.data('langname')+' ('+item.data('lang')+')" selected by '+(e.type == 'keydown' ? 'pressing enter or tab' : 'mouse click')+'.');
-                    $(':focus').val(item.data('langname')+' ('+item.data('lang')+')');
-                }
-            });                   
-    });
-  </script>
+
 
 @endsection
