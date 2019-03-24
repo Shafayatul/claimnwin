@@ -59,6 +59,67 @@ label
   margin-bottom: 0px;
 }
 
+
+
+
+
+.group {
+    border: 2px solid #121212;
+    height: 36px;
+    width: 136px;
+    border-radius: 5px;
+    background: #222;
+    background-clip: border-box;
+}
+
+input[type="radio"] {
+    /* hide the inputs */
+    opacity: 0;
+    display: none;
+    margin: 0;
+}
+
+/* style your lables/button */
+input[type="radio"] + .label{
+    /* keep pointer so that you get the little hand showing when you are on a button */
+    cursor: pointer !important;
+    /* the following are the styles */
+    float: left !important;
+    padding: 10px 24px !important;
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.7), 0 0 0 hsla(208.12, 44.44%, 85.88%, 0) !important;
+    color: #fff !important;
+    font-weight: bold !important;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.2), 0 6px 10px -1px rgba(0,0,0,0.6) !important;
+    background: -moz-linear-gradient(top, #37373d 0%, #222228 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#37373d), color-stop(100%,#222228)) !important; /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #37373d 0%,#222228 100%) !important; /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #37373d 0%,#222228 100%) !important; /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #37373d 0%,#222228 100%) !important; /* IE10+ */
+    background: linear-gradient(to bottom, #37373d 0%,#222228 100%) !important; /* W3C */
+}
+
+input[type="radio"]:checked + .label{
+    /* style for the checked/selected state */
+    text-shadow: 0 0 10px hsla(208.12, 44.44%, 85.88%, 1) !important;
+    color: #fff !important;
+    box-shadow: inset 0 2px 3px rgba(0,0,0,0.4), inset 0 0 4px 4px rgba(0,0,0,0.1) !important;
+    background: -moz-linear-gradient(top, #313137 0%, #1e1e24 100%) !important; /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#313137), color-stop(100%,#1e1e24)) !important; /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #313137 0%,#1e1e24 100%) !important; /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #313137 0%,#1e1e24 100%) !important; /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #313137 0%,#1e1e24 100%) !important; /* IE10+ */
+    background: linear-gradient(to bottom, #3aff87 0%,#1e1e24 100%) !important; /* W3C */
+}
+.group > .label {
+    border-radius: 2px !important;
+}
+
+.center {
+    border-left: 1px solid #121212;
+    border-right: 1px solid #121212;
+}
+
+
 /* Customize the label (the container) */
 .container_radio
 {
@@ -220,6 +281,7 @@ label
   font-size: 16px;
   font-weight: 200;
   /* font-family: 'Source Sans Pro',sans-serif; */
+  /* font-family: 'Poppins', sans-serif; */
   align-items: center;
   border: 1px solid #DAE2EB;
   padding: 14px 32px 16px 16px;
@@ -233,6 +295,7 @@ label
   font-size: 16px;
   font-weight: 200;
   /* font-family: 'Source Sans Pro',sans-serif; */
+  /* font-family: 'Poppins', sans-serif; */
   align-items: center;
   box-sizing: content-box;
   border: 1px solid #DAE2EB;
@@ -272,6 +335,7 @@ label
 
 .add_connection {
     /* font-family: 'Source Sans Pro',sans-serif; */
+    /* font-family: 'Poppins', sans-serif; */
     border: 0;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
@@ -295,6 +359,34 @@ label
   padding-top: 10px;
   padding-bottom: 10px;
 }
+
+.add_another_passenger
+{
+  border: 0;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+  background-color: #13DA93;
+  color: #FFF;
+  min-height: 32px;
+  padding: 0 16px;
+  letter-spacing: 1px;
+  -webkit-appearance: button;
+  cursor: pointer;
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+.add_another_passenger i
+{
+  font-size: 15px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 10px;
+}
+
 .continue_button {
     pointer-events: auto;
     cursor: pointer;
@@ -355,6 +447,7 @@ label
 .remove_property, .remove_reference, .remove_other_reference
 {
   /* font-family: 'Source Sans Pro',sans-serif; */
+  /* font-family: 'Poppins', sans-serif; */
   border: 0;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
@@ -378,6 +471,44 @@ label
   padding-bottom: 10px;
 }
 
+.remove_another_passenger
+{
+  border: 0;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+  background-color: #f98787;
+  color: #FFF;
+  min-height: 32px;
+  padding: 0 16px;
+  letter-spacing: 1px;
+  -webkit-appearance: button;
+  cursor: pointer;
+  margin-top: 16px;
+  margin-bottom: 8px;
+}
+
+.remove_another_passenger i
+{
+  font-size: 15px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 10px;
+}
+
+.active_button
+{
+  opacity: 1.3 !important;
+}
+
+.total_another_passenger_div
+{
+  padding-top: 20px;
+  border-top: 1px solid #cecece;
+}
+
 .fa-plane
 {
   padding-left: 25px;
@@ -392,6 +523,7 @@ label
     font-size: 16px;
     font-weight: 200;
     /* font-family: 'Source Sans Pro',sans-serif; */
+    /* font-family: 'Poppins', sans-serif; */
     align-items: center;
     border: 1px solid #DAE2EB;
     padding: 14px 10px 16px 10px;
@@ -412,6 +544,13 @@ label
   border-right: 1px solid #DAE2EB;
 }
 
+.custom_select
+{
+  border-radius: 0px;
+  padding: 10px;
+  height: auto;
+}
+
 .child_accommodation
 {
   border: 1px solid #DAE2EB;
@@ -419,8 +558,6 @@ label
   color: #798899;
   background-color: #FFF;
   margin: 0px;
-  width: 33.3%;
-  float: left;
 }
 .child_accommodation
 {
@@ -434,17 +571,27 @@ label
 {
   font-size: 12px;
 }
-.custom_select
+.child_accommodation_first_div
 {
-  border-radius: 0px;
-  padding: 10px;
-  height: auto;
+  width: 25%;
+  float: left;
+}
+.child_accommodation_second_div
+{
+  width: 40%;
+  float: left;
+}
+.child_accommodation_third_div
+{
+  width: 35%;
+  float: left;
 }
 .total_delay_flight
 {
   font-size: 16px;
   font-weight: 200;
   /* font-family: 'Source Sans Pro',sans-serif; */
+  /* font-family: 'Poppins', sans-serif; */
   align-items: center;
   border: 1px solid #DAE2EB;
   padding: 14px 10px 16px 10px;
@@ -460,6 +607,7 @@ label
   font-size: 16px;
   font-weight: 200;
   /* font-family: 'Source Sans Pro',sans-serif; */
+  /* font-family: 'Poppins', sans-serif; */
   align-items: center;
   border: 1px solid #DAE2EB;
   padding: 14px 10px 16px 10px;
@@ -610,10 +758,7 @@ label
   height: 45px;
 }
 
-#radioBtn .notActive{
-    color: #3276b1;
-    background-color: #fff;
-}
+
 .table td, .table th {
     padding: .75rem;
     vertical-align: baseline;
@@ -708,7 +853,6 @@ label
 {
   border-bottom: 2px solid #8e8e8e;
 }
-
 .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th
 {
     padding: .75rem;
@@ -795,6 +939,8 @@ label
     padding-top: 5px;
     padding-bottom: 5px;
   }
+
+
   .remove_property, .remove_reference, .remove_other_reference
   {
     margin-top: 0px !important;
