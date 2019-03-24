@@ -133,11 +133,23 @@ class ClaimsController extends Controller
     public function store(Request $request)
     {
 
-        $requestData = $request->all();
+        dd($request);
+        echo $departed_from = rtrim(substr($request->departed_from, strrpos($request->departed_from,"(")+1), ')');
+        echo $final_destination = rtrim(substr($request->final_destination, strrpos($request->final_destination,"(")+1), ')');
 
-        Claim::create($requestData);
+        if ($request->is_direct_flight == 'is_direct_flight_no') {
+            $is_direct_flight = 0;
+        }else{
+            $is_direct_flight = 1;
+        }
 
-        return redirect('claims')->with('flash_message', 'Claim added!');
+
+
+        // $requestData = $request->all();
+
+        // Claim::create($requestData);
+
+        // return redirect('claims')->with('flash_message', 'Claim added!');
     }
 
     /**

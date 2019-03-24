@@ -14,7 +14,8 @@
     <div class="form_h2">
       <h2 class="text-center">Missed Connection</h2>
     </div>
-      <form action="">
+      <form action="{{url('/claim')}}" method="post">
+        @csrf
         <!-- ...................................................................
                                   STEP 1 STARTS
         .................................................................... -->
@@ -1126,7 +1127,7 @@
             <div class="total_button_div">
               <div class="two_button_child_div_left">
                 <div class="continue_button_div">
-                  <button type="button" class="continue_button" id="continue_8" name="button">Continue <i class="fas fa-arrow-right"></i></button>
+                  <button type="submit" class="continue_button" id="continue_8" name="button">Continue <i class="fas fa-arrow-right"></i></button>
                 </div>
               </div>
               <div class="two_button_child_div_right">

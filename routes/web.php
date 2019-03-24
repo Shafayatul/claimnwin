@@ -77,3 +77,5 @@ Route::resource('settings', 'SettingsController');
 
 Route::get('/manage-claim', 'ClaimBackController@index');
 Route::get('/claim-view', 'ClaimBackController@claimView');
+
+Route::resource('connections', 'ConnectionsController');
