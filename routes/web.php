@@ -90,3 +90,5 @@ Route::post('/save-note', 'NotesController@store')->name('save-note');
 
 Route::resource('tickets', 'TicketsController');
 Route::resource('ticket-notes', 'TicketNotesController');
+Route::post('/ticket-description', 'TicketNotesController@ticketDescriptionSave')->name('ticket-description');
+Route::get('/close-ticket/{id}', 'TicketsController@closeTicket');

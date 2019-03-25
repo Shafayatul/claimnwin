@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\TicketNote;
 use Illuminate\Http\Request;
 
+
 class TicketNotesController extends Controller
 {
     /**
@@ -15,6 +16,17 @@ class TicketNotesController extends Controller
      *
      * @return \Illuminate\View\View
      */
+
+    public function ticketDescriptionSave(Request $request)
+    {
+        $requestData = $request->all();
+
+        TicketNote::create($requestData);
+        return redirect('tickets')->with('success', 'TicketNote added!');
+    }
+
+
+
     public function index(Request $request)
     {
         $keyword = $request->get('search');
@@ -50,9 +62,9 @@ class TicketNotesController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         $requestData = $request->all();
-        
+
         TicketNote::create($requestData);
 
         return redirect('ticket-notes')->with('flash_message', 'TicketNote added!');
@@ -96,9 +108,9 @@ class TicketNotesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+
         $requestData = $request->all();
-        
+
         $ticketnote = TicketNote::findOrFail($id);
         $ticketnote->update($requestData);
 

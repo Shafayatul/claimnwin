@@ -62,11 +62,6 @@ class TicketsController extends Controller
             $ticket = Ticket::create($requestData + ['status' => '1']);
             TicketNote::create(['ticket_id' => $ticket->id, 'description' => $request->description]);
         }
-
-
-
-
-
         return redirect('tickets')->with('flash_message', 'Ticket added!');
     }
 
@@ -79,9 +74,9 @@ class TicketsController extends Controller
      */
     public function show($id)
     {
-        $ticket = Ticket::findOrFail($id);
-
-        return view('tickets.show', compact('ticket'));
+            $ticket  = Ticket::findOrFail($id);
+        $ticket_notes = TicketNote::where('ticket_id',$ticket->id)->get();
+        return view('tickets.show', compact('ticket','ticket_notes'));
     }
 
     /**
@@ -129,5 +124,13 @@ class TicketsController extends Controller
         Ticket::destroy($id);
 
         return redirect('tickets')->with('flash_message', 'Ticket deleted!');
+    }
+
+    public function closeTicket($id)
+    {
+        $ticket = Ticket::findOrfail($id);
+        $ticket->status = 3;
+        $ticket->save();
+        return redirect('tickets')->with('success', 'Ticket Closed!');
     }
 }
