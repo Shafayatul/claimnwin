@@ -18,7 +18,7 @@ class CreateClaimsTable extends Migration
             $table->string('departed_from_id')->nullable();
             $table->string('final_destination_id')->nullable();
             $table->boolean('is_direct_flight')->nullable();
-            $table->string('selected_connection_id')->nullable();
+            $table->string('selected_connection_iata_codes')->nullable();
             $table->string('what_happened_to_the_flight')->nullable();
             $table->string('total_delay')->nullable();
             $table->string('reason')->nullable();

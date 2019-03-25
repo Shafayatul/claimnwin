@@ -768,14 +768,15 @@
               </div>
             </div>
 
-            <div class="common_row">
-              <div class="email_div">
-                <div class="label_field">
-                  <label for="email_address">Please enter your email address</label>
-                </div>
-                <div class="input_field">
-                  <input type="text" class="common_input email_address" id="common_input email_address" name="email_address" placeholder="e.g. New York or JFK">
-                </div>
+          </div>
+
+          <div class="common_row">
+            <div class="email_div">
+              <div class="label_field">
+                <label for="email_address">Please enter your email address</label>
+              </div>
+              <div class="input_field">
+                <input type="text" class="common_input email_address" id="common_input email_address" name="email_address" placeholder="e.g. New York or JFK">
               </div>
             </div>
           </div>
@@ -1015,8 +1016,8 @@
               <h4>If we gather more information, we can handle your claim faster.</h4>
             </div>
             <div class="select_reason_class">
-              <select class="form-control custom_select" class="hear_from_where" name="hear_from_where">
-                <option hidden>Open this select menu</option>
+              <select class="form-control custom_select" class="here_from_where" name="here_from_where">
+                <option hidden value="">Open this select menu</option>
                 <option value="Google">Google</option>
                 <option value="Friends">Friends</option>
                 <option value="Social media">Social media</option>

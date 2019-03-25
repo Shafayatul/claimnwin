@@ -145,7 +145,7 @@ class ClaimsController extends Controller
     
     public function store(Request $request)
     {
-
+        dd($request);
         $departed_from_id = $this->get_airport_id_name_and_iata_code($request->departed_from);
         $final_destination_id = $this->get_airport_id_name_and_iata_code($request->final_destination);
 
@@ -197,19 +197,21 @@ class ClaimsController extends Controller
 
 
         // create new user
-        // $user = new User();
-        // $user->password = Hash::make('the-password-of-choice');
-        // $user->email = $email;
-        // $user->name = $email;
-        // $user->save();
+        $user = User::create(
+            [
+             'name'             => $email,
+             'email'            => $email,
+             'password'         => Hash::make($request->password)
+            ]);
+
 
         // create claim
         $claim = new Claim();
-        $claim->user_id                                 = '2';
+        $claim->user_id                                 = $user->id;
         $claim->departed_from_id                        = $departed_from_id;
         $claim->final_destination_id                    = $final_destination_id;
         $claim->is_direct_flight                        = $is_direct_flight;
-        // $claim->selected_connection_id                  = $selected_connection_id; --later
+        $claim->selected_connection_iata_codes          = $request->selected_connection_iata_codes;
         $claim->what_happened_to_the_flight             = $what_happened_to_the_flight;
         $claim->total_delay                             = $total_delay;
         $claim->reason                                  = $reason;
@@ -221,7 +223,7 @@ class ClaimsController extends Controller
         $claim->rerouted_ticket_currency                = $rerouted_ticket_currency;
         $claim->is_paid_for_rerouting                   = $is_paid_for_rerouting;
 
-        $claim->spend_on_accommodation                   = $spend_on_accommodation;
+        $claim->spend_on_accommodation                  = $spend_on_accommodation;
         $claim->here_from_where                         = $here_from_where;
         $claim->is_contacted_airline                    = $is_contacted_airline;
         $claim->what_happened                           = $what_happened;
@@ -237,23 +239,25 @@ class ClaimsController extends Controller
         // create connect
 
         foreach ($request->connection as $con) {
-            $connection             = new Connection();
-            $connection->claim_id   = $claim->id;
-            $connection->airport_id = $this->get_airport_id_name_and_iata_code($con);
-            $connection->save();
+            if ($con != "") {
+                $connection             = new Connection();
+                $connection->claim_id   = $claim->id;
+                $connection->airport_id = $this->get_airport_id_name_and_iata_code($con);
+                $connection->save();
+            }
         }
 
         // create ininerary detail
         $cnt = 0;
         foreach ($request->flight_code as $single_flight_code) {
-
-            $itineraryDetail                    = new ItineraryDetail();
-            $itineraryDetail->claim_id          = $claim->id;
-            $itineraryDetail->flight_number     = $request->flight_number[$cnt];
-            $itineraryDetail->departure_date    = $request->departure_date[$cnt];
-            $itineraryDetail->airline_id        = Airline::where('iata_code', $single_flight_code)->first()->id;
-            $itineraryDetail->save();
-
+            if ($single_flight_code != "") {
+                $itineraryDetail                    = new ItineraryDetail();
+                $itineraryDetail->claim_id          = $claim->id;
+                $itineraryDetail->flight_number     = $request->flight_number[$cnt];
+                $itineraryDetail->departure_date    = $request->departure_date[$cnt];
+                $itineraryDetail->airline_id        = Airline::where('iata_code', $single_flight_code)->first()->id;
+                $itineraryDetail->save();
+            }
             $cnt++;
         }
 
@@ -273,15 +277,8 @@ class ClaimsController extends Controller
         }
 
 
-        echo "done";
 
-
-
-        // $requestData = $request->all();
-
-        // Claim::create($requestData);
-
-        // return redirect('claims')->with('flash_message', 'Claim added!');
+        return redirect('claims')->with('flash_message', 'Claim added!');
     }
 
     /**

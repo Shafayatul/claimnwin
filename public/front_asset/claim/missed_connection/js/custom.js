@@ -92,25 +92,30 @@ $(document).ready(function(){
     function flight_list_checkbox_html(type){
       itinerary_details_for_your_disrupted_flight_html(type);
       if (type=='single') {
-
-        var html = '<div class="single_child_radio_div"><label class="container_radio">'+$("input[name='departed_from']").val()+'<i class="fas fa-plane"></i>'+$("input[name='final_destination']").val()+'<input type="radio" class="common_input" id="common_input selected_connection_id" name="selected_connection_id" value="1"><span class="checkmark"></span></label></div>';
+        var value = $("input[name='departed_from']").attr('iata-code')+'-'+$("input[name='final_destination']").attr('iata-code');
+        var html = '<div class="single_child_radio_div"><label class="container_radio">'+$("input[name='departed_from']").val()+'<i class="fas fa-plane"></i>'+$("input[name='final_destination']").val()+'<input type="radio" class="common_input" id="common_input selected_connection_iata_codes" name="selected_connection_iata_codes" value="'+value+'"><span class="checkmark"></span></label></div>';
         $('.parent_div_check_list').html(html);
 
       }else if (type=='multiple') {
 
         var airport_array_temp = new Array();
+        var airport_array_iata_code_temp = new Array();
         airport_array_temp.push($("input[name='departed_from']").val());
+        airport_array_iata_code_temp.push($("input[name='departed_from']").attr('iata-code'));
         $(".connection").each(function(){
           if ($(this).val() != "") {
             airport_array_temp.push($(this).val());
+            airport_array_iata_code_temp.push($(this).attr('iata-code'));
           }
         });
         airport_array_temp.push($("input[name='final_destination']").val());
+        airport_array_iata_code_temp.push($("input[name='final_destination']").attr('iata-code'));
 
         var html='';
         for (var i = 0; i < airport_array_temp.length-1; i++) {
           j=i+1;
-          html += '<div class="single_child_radio_div"><label class="container_radio">'+airport_array_temp[i]+'<i class="fas fa-plane"></i>'+airport_array_temp[j]+'<input type="radio" class="common_input" id="common_input selected_connection_id" name="selected_connection_id" value="1"><span class="checkmark"></span></label></div>';
+          var value = airport_array_temp[i]+'-'+airport_array_temp[j];
+          html += '<div class="single_child_radio_div"><label class="container_radio">'+airport_array_temp[i]+'<i class="fas fa-plane"></i>'+airport_array_temp[j]+'<input type="radio" class="common_input" id="common_input selected_connection_iata_codes" name="selected_connection_iata_codes" value="'+value+'"><span class="checkmark"></span></label></div>';
         }
         $('.parent_div_check_list').html(html);
       }
@@ -133,7 +138,7 @@ $(document).ready(function(){
               }
             });
             if (!is_connection_empty) {
-              if ($("input[name='selected_connection_id']").is(':checked') ) {
+              if ($("input[name='selected_connection_iata_codes']").is(':checked') ) {
                 $("#continue_1").addClass('active_button');
                 return true;                
               }
@@ -141,7 +146,7 @@ $(document).ready(function(){
 
           }else{
             
-            if ($("input[name='selected_connection_id']").is(':checked') ) {
+            if ($("input[name='selected_connection_iata_codes']").is(':checked') ) {
               $("#continue_1").addClass('active_button');
               return true;                
             }
@@ -196,9 +201,16 @@ $(document).ready(function(){
         }
       }else if (step == 4) {
         $("#continue_4").removeClass('active_button');
+
+        // special necessary email
+        if ($("input[name='email_address']").val() == "")
+        {
+          return false;
+        }
+
+
         var spend_on_accommodation = false;
         var expenses_table = false;
-        var email_address = false;
 
         if (($("input[name='is_spend_on_accomodation']").is(':checked')))
         {
@@ -217,14 +229,7 @@ $(document).ready(function(){
           expenses_table = false;
         }
 
-        if ($("input[name='email_address']").val() != "")
-        {
-          console.log($("input[name='email_address']").val());
-          email_address = true;
-        }else
-        {
-          email_address = false;
-        }
+
 
         if (($("input[name='is_rerouted']").is(':checked')))
         {
@@ -233,7 +238,7 @@ $(document).ready(function(){
           if ($('input[name=is_rerouted]:checked').val() == 'is_rerouted_yes')
           {
             console.log($('input[name=is_rerouted]:checked').val());
-            if (spend_on_accommodation == true && expenses_table == true && email_address == true)
+            if (spend_on_accommodation == true && expenses_table == true)
             {
               $("#continue_4").addClass('active_button');
               $("#continue_5").addClass('active_button');
@@ -251,7 +256,7 @@ $(document).ready(function(){
               if ($('input[name=is_obtained_full_reimbursement]:checked').val() == 'is_obtained_full_reimbursement_yes')
               {
                 console.log('reimbursement YESSS ar moddhe dhukhse');
-                if (spend_on_accommodation == true && expenses_table == true && email_address == true)
+                if (spend_on_accommodation == true && expenses_table == true)
                 {
                   $("#continue_4").addClass('active_button');
                   $("#continue_5").addClass('active_button');
@@ -277,7 +282,7 @@ $(document).ready(function(){
                     }else if ($('input[name=is_paid_for_rerouting]:checked').val() == 'is_paid_for_rerouting_no')
                     {
                       console.log('rerouting paid NOOOO ar moddhe dhukse');
-                      if (spend_on_accommodation == true && expenses_table == true && email_address == true)
+                      if (spend_on_accommodation == true && expenses_table == true)
                       {
                         $("#continue_4").addClass('active_button');
                         $("#continue_5").addClass('active_button');
@@ -447,7 +452,7 @@ $(document).ready(function(){
     /* --------- Delayed Button ----------- */
     // $(".show_if_flight_did_not_go_planned").hide();
 
-    // $("input[name=selected_connection_id]:radio").click(function() {
+    // $("input[name=selected_connection_iata_codes]:radio").click(function() {
     //   if($(this).attr("value")=="1") {
     //     $(".show_if_flight_did_not_go_planned").show(500);
     //   }else{
