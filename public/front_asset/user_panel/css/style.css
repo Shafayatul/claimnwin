@@ -1,0 +1,397 @@
+/* Remove the navbar's default margin-bottom and rounded borders */
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Times New Roman", Times, serif;
+      font-size: 16px;
+    }
+
+    h1,h2 {
+      margin: 0px;
+    }
+
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+
+    /* Add a gray background color and some padding to the footer */
+    footer {
+      border-top: 1px solid #e7e7e7;
+      background-color: #f2f2f2;
+    }
+
+    .menu{
+
+        border:none;
+        border-bottom: 1px solid #e7e7e7;
+    }
+
+    .menu_navbar{
+        background-color: white;
+        border:none;
+    }
+
+    .menu_brand{
+        color: black!important;
+    }
+
+    /* .menu_nav li a{
+        color: #65718b !important;
+    }
+    */
+
+    .menu_nav li a:hover{
+        color: #26cfa2 !important;
+    }
+
+     .navbar-nav>.open>a{
+        color: #65718b !important;
+     }
+
+    .navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:focus, .navbar-inverse .navbar-nav>.open>a:hover {
+        color: #26cfa2 !important;
+        background-color: white!important;
+    }
+    .active{
+        background-color: none!important;
+    }
+
+    .navbar-nav>li>.dropdown-menu{
+        border-top: 3px solid #26cfa2!important;
+    }
+
+    .menu_nav img{
+        width: 20px;
+    }
+
+    .country_img{
+        margin-right: 5px;
+    }
+
+    .navbar-inverse .navbar-toggle .icon-bar{
+        background-color: black;
+    }
+
+    .navbar-inverse .navbar-toggle:focus, .navbar-inverse .navbar-toggle:hover{
+        background-color: white;
+    }
+
+    .left_row{
+        border-bottom: 0px;
+    }
+
+    .left_row li{
+        display: block!important;
+        float: none!important;
+    }
+
+    .cus_pan_heading{
+        padding: 0px!important;
+        padding-top: 5px!important;
+    }
+    .cus_pan_heading p{
+        background-color: whitesmoke;
+        color: red;
+        font-weight: unset!important;
+        font-size: 11px;
+        width: 45%;
+        margin-left: 28%;
+        margin-right: 28%;
+        padding: 0px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+    }
+    .cus_pan_heading h5{
+        color: white;
+        font-size: 15px;
+    }
+
+    .parent_div {
+      margin-top: 10px;
+      margin-bottom: 10px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+
+    .bold_span
+    {
+      font-weight: bold;
+    }
+
+    .underline_row {
+      width : 100%;
+      border : 1px solid #b7b7b7;
+    }
+
+    .message_underline_row {
+      width : 60%;
+      margin: 0 auto;
+      border : 2px solid #b7b7b7;
+    }
+
+    .document_underline_row {
+      width : 100%;
+      border : 1px solid #e7e7e7;
+      margin-top: 20px;
+    }
+
+    .claim_options_ul_li {
+      width: 20%;
+    }
+
+    .claim_options ul li a i {
+      padding-right: 5px;
+    }
+
+    .claim_options ul li a {
+      color : #929292;
+    }
+
+    .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
+      color: #13DA93;
+      cursor: default;
+      background-color: #fff;
+      border: none;
+      border-bottom: 2px solid #13DA93;
+    }
+
+    .wrapper {
+      padding: 20px 0px;
+    }
+
+    .claim_status_refresh_icon i {
+      padding: 40px 0px 20px 0px;
+      font-size: 60px;
+      color: #feba3a;
+    }
+
+    .message_icon i {
+      padding: 40px 0px 20px 0px;
+      font-size: 40px;
+      color: #13DA93;
+    }
+
+    .claim_status_refresh_text p {
+      color: #feba3a;
+      font-size: 20px;
+    }
+
+    .claim_status_message p {
+      font-size: 18px;
+      color: #929292;
+    }
+
+    .message_text p {
+      font-size: 22px;
+      color: #929292;
+      font-weight: bold;
+      padding-bottom: 40px;
+    }
+
+    .claim_status_box_message {
+      width: 40%;
+      margin: 0 auto;
+      margin-top: 40px;
+      border : 1px solid #929292;
+      border-radius: 5px;
+    }
+
+    .claim_status_box_message p {
+      color: #929292;
+      margin: 10px 0px;
+    }
+
+    /* TimeLine CSS Starts */
+
+    ul.timeline {
+    list-style-type: none;
+    position: relative;
+}
+ul.timeline:before {
+    content: ' ';
+    background: #d4d9df;
+    display: inline-block;
+    position: absolute;
+    left: 29px;
+    bottom: 15px;
+    width: 2px;
+    height: 100%;
+    z-index: 400;
+}
+ul.timeline > li {
+    margin: 20px 0;
+    padding-left: 20px;
+}
+ul.timeline > li:before {
+    content: ' ';
+    background: white;
+    display: inline-block;
+    position: absolute;
+    border-radius: 50%;
+    border: 3px solid #22c0e8;
+    left: 20px;
+    width: 20px;
+    height: 20px;
+    z-index: 400;
+}
+
+/* TimeLine CSS End */
+
+table thead tr th:first-child {
+  width: 80%;
+}
+
+.compensation_table_background {
+  background-color: #efefef;
+}
+
+.compensation_table_result_row {
+  background-color: #13DA93;
+  color: #fff;
+}
+
+.defandant_title {
+  padding: 10px 0px;
+}
+
+.defandant_body {
+  padding: 10px 0px;
+}
+
+/* TEXTAREA STARTS*/
+
+.user_message {
+  width: 60%;
+  margin: 20px auto;
+}
+
+.user_message i {
+  position: absolute;
+  top: 10%;
+  left: -5%;
+}
+
+.user_message_form {
+  position: relative;
+}
+
+.user_message_form button {
+  background-color: transparent;
+  border: none;
+  color: #929292;
+}
+
+.user_message textarea {
+  width: 100%;
+  border: none;
+  overflow: auto;
+  outline: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  resize: none; /*remove the resize handle on the bottom right*/
+}
+
+/* TEXTAREA ENDS */
+
+.input-file-container {
+  position: relative;
+  width: 225px;
+  margin: 0 auto;
+}
+.js .input-file-trigger {
+  display: block;
+  padding: 14px 45px;
+  background: #39D2B4;
+  color: #fff;
+  font-size: 1em;
+  transition: all .4s;
+  cursor: pointer;
+}
+.js .input-file {
+  position: absolute;
+  top: 0; left: 0;
+  width: 225px;
+  opacity: 0;
+  padding: 14px 0;
+  cursor: pointer;
+}
+.js .input-file:hover + .input-file-trigger,
+.js .input-file:focus + .input-file-trigger,
+.js .input-file-trigger:hover,
+.js .input-file-trigger:focus {
+  background: #34495E;
+  color: #39D2B4;
+}
+
+.file-return {
+  margin: 0;
+}
+.file-return:not(:empty) {
+  margin: 1em 0;
+}
+.js .file-return {
+  font-style: italic;
+  font-size: .9em;
+  font-weight: bold;
+}
+.js .file-return:not(:empty):before {
+  content: "Selected file: ";
+  font-style: normal;
+  font-weight: normal;
+}
+
+/* Useless styles, just for demo styles */
+
+
+.txtcenter {
+  margin-top: 4em;
+  font-size: .9em;
+  text-align: center;
+  color: #aaa;
+}
+.copy {
+  margin-top: 2em;
+}
+.copy a {
+  text-decoration: none;
+  color: #1ABC9C;
+}
+
+
+
+/* .............................................................................
+   .............................................................................
+  RESPONSIVE MEDIA QUERY
+  ..............................................................................
+  ............................................................................*/
+
+
+  /* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 320 TO 480 XXXXXXXXXXXXXXXXXXXXXXXXXXXX*/
+
+@media (min-width: 320px) and (max-width: 480px) {
+  body {
+    font-size: 14px;
+  }
+  table thead tr th:first-child {
+    width: 65%;
+  }
+}
+
+
+
+
+
+/* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 320 TO 480 XXXXXXXXXXXXXXXXXXXXXXXXXXXX*/
+
+@media (min-width: 481px) and (max-width: 600px) {
+body {
+  font-size: 15px;
+}
+table thead tr th:first-child {
+  width: 70%;
+}
+}

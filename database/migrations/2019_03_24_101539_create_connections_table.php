@@ -15,9 +15,9 @@ class CreateConnectionsTable extends Migration
         Schema::create('connections', function (Blueprint $table) {
             $table->increments('id');
             $table->string('claim_id')->nullable();
-            $table->string('connection')->nullable();
+            $table->string('airport_id')->nullable();
             $table->timestamps();
-            });
+        });
     }
 
     /**

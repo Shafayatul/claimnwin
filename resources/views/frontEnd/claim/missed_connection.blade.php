@@ -14,7 +14,8 @@
     <div class="form_h2">
       <h2 class="text-center">Missed Connection</h2>
     </div>
-      <form action="">
+      <form action="{{url('/claim')}}" method="post">
+        @csrf
         <!-- ...................................................................
                                   STEP 1 STARTS
         .................................................................... -->
@@ -29,7 +30,7 @@
                   <label for="departed_from">DEPARTED FROM: </label>
                 </div>
                 <div class="input_field">
-                  <input type="text" class="common_input departed_from" id="common_input departed_from" name="departed_from" placeholder="e.g. New York or JFK">
+                  <input type="text" class="auto_airport_complete common_input departed_from" id="advanced-demo common_input departed_from" name="departed_from" placeholder="e.g. New York or JFK">
                 </div>
               </div>
               <div class="two_child_div_right">
@@ -37,7 +38,7 @@
                   <label for="final_destination">FINAL DESTINATION: </label>
                 </div>
                 <div class="input_field">
-                  <input type="text" class="common_input final_destination" id="common_input final_destination" name="final_destination" placeholder="e.g. London or LHR">
+                  <input type="text" class="auto_airport_complete common_input final_destination" id="common_input final_destination" name="final_destination" placeholder="e.g. London or LHR">
                 </div>
               </div>
             </div>
@@ -59,7 +60,7 @@
               </div>
               <div class="two_child_radio_div">
                 <label class="container_radio">No
-                  <input class="common_input" type="radio" id="common_input is_direct_flight_no" name="is_direct_flight" value="is_direct_flight_no">
+                  <input class="common_input" type="radio" id="common_input is_direct_flight_no" name="is_direct_flight" value="is_direct_flight_no" checked>
                   <span class="checkmark"></span>
                 </label>
               </div>
@@ -72,7 +73,7 @@
             </div>
             <div class="parent_div">
               <div class="child_div">
-                <input type="text" class="common_input connection" id="common_input connection" name="connection[]" placeholder="e.g. London or LHR">
+                <input type="text" class="auto_airport_complete common_input connection" id="common_input connection" name="connection[]" placeholder="e.g. London or LHR">
               </div>
               <div class="property" id="property">
 
@@ -90,13 +91,13 @@
             <div class="form_h4">
               <h4>If your flight was disrupted several times, select <span class="form_h4_span">the first segment in which the disruption occurred.</span></h4>
             </div>
-            <div class="parent_div">
-              <div class="single_child_radio_div">
+            <div class="parent_div parent_div_check_list">
+              {{-- <div class="single_child_radio_div">
                 <label class="container_radio">New York (JFK)<i class="fas fa-plane"></i>London (LHR)
                   <input type="radio" class="common_input" id="common_input selected_connection_id" name="selected_connection_id" value="1">
                   <span class="checkmark"></span>
                 </label>
-              </div>
+              </div> --}}
             </div>
           </div>
 
@@ -133,7 +134,7 @@
         .................................................................... -->
         <div class="single_step" id="step_2" style="display:none;">
 
-          <div class="common_row show_if_flight_did_not_go_planned">
+          <div class="common_row {{-- show_if_flight_did_not_go_planned --}}">
             <div class="parent_div">
               <div class="form_h3">
                 <h3>What happened to the flight?</h3>
@@ -292,121 +293,10 @@
             </div>
           </div>
 
-          <div class="common_row">
-            <div class="parent_div">
-              <div class="single_child_div">
-                <div class="arrival_to_destination_text_div">
-                  <span class="arrival_to_destination_text_span">New Chitose Airport, Sapporo (CTS)<i class="fas fa-plane"></i>New Chitose Airport, Sapporo (CTS)</span>
-                </div>
-              </div>
-            </div>
-            <div class="parent_div">
-              <div class="single_child_div">
-                <div class="left_div">
-                  <div class="label_field">
-                    <label for="airline">AIRLINE</label>
-                  </div>
-                  <div class="input_field">
-                    <input type="text" class="common_input airline" id="common_input airline" name="airline[]" placeholder="e.g. New York or JFK">
-                  </div>
-                </div>
-                <div class="right_div">
-                  <div class="flight_number_div">
-                    <div class="label_field">
-                      <label for="departure_airport">FLIGHT NO.</label>
-                    </div>
-                    <div class="two_input_field">
-                      <div class="child_two_input_field_left">
-                        <div class="input_field">
-                          <input type="text" class="common_input flight_code" id="common_input flight_code" name="flight_code[]" placeholder="">
-                        </div>
-                      </div>
-                      <div class="child_two_input_field_right">
-                        <div class="input_field">
-                          <input type="text" class="common_input flight_number" id="common_input flight_number" name="flight_number[]" placeholder="1234">
-                        </div>
-                      </div>
-
-                    </div>
-                  </div>
-                  <div class="departure_date_div">
-                    <div class="label_field">
-                      <label for="departure_airport">DEPARTURE DATE</label>
-                    </div>
-                    <div class="two_input_field">
-                      <div class="input_field">
-                        <input type="text" class="common_input departure_airport date" id="common_input departure_airport date" name="departure_date[]" placeholder="e.g. New York or JFK">
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div class="itinerary_flight_element">
+            {{-- code from JS --}}
           </div>
 
-          {{-- <div class="common_row">
-            <div class="parent_div">
-              <div class="single_child_div">
-                <div class="arrival_to_destination_text_div">
-                  <span class="arrival_to_destination_text_span">New Chitose Airport, Sapporo (CTS)<i class="fas fa-plane"></i>New Chitose Airport, Sapporo (CTS)</span>
-                </div>
-              </div>
-            </div>
-            <div class="parent_div">
-              <div class="single_child_div">
-                <div class="left_div">
-                  <div class="label_field">
-                    <label for="departure_airport">AIRLINE</label>
-                  </div>
-                  <div class="input_field">
-                    <input type="text" class="common_input departure_airport" id="common_input departure_airport" placeholder="e.g. New York or JFK">
-                  </div>
-                </div>
-                <div class="right_div">
-                  <div class="flight_number_div">
-                    <div class="label_field">
-                      <label for="departure_airport">FLIGHT NO.</label>
-                    </div>
-                    <div class="two_input_field">
-                      <div class="child_two_input_field_left">
-                        <div class="input_field">
-                          <input type="text" class="common_input flight_code" id="common_input flight_code" placeholder="">
-                        </div>
-                      </div>
-                      <div class="child_two_input_field_right">
-                        <div class="input_field">
-                          <input type="text" class="common_input flight_number" id="common_input flight_number" placeholder="1234">
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="departure_date_div">
-                    <div class="label_field">
-                      <label for="departure_airport">DEPARTURE DATE</label>
-                    </div>
-                    <div class="two_input_field">
-                      <div class="input_field">
-                        <input type="text" class="common_input departure_airport date" id="common_input departure_airport date" name="date" placeholder="e.g. New York or JFK">
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div> --}}
-
-          {{-- <div class="common_row">
-            <div class="parent_div">
-              <div class="total_info_div">
-                <div class="no_risk_child_div info_icon">
-                  <i class="fas fa-info-circle"></i>
-                </div>
-                <div class="no_risk_child_div info_text">
-                  No risk. Submitting a claim is absolutely <span class="free_of_charge">free of charge.</span>
-                </div>
-              </div>
-            </div>
-          </div> --}}
 
           <div class="common_row">
             <div class="total_button_div">
@@ -485,9 +375,9 @@
                   <div class="select_reason_class">
                     <select class="form-control custom_select" name="ticket_currency_original_ticket">
                       <option hidden>Select currency</option>
-                      <option value="1">EUR</option>
-                      <option value="2">USD</option>
-                      <option value="3">ILS</option>
+                      @foreach($currencies as $key => $val)
+                        <option value="{{$key}}">{{$val}}</option>
+                      @endforeach
                     </select>
                   </div>
                 </div>
@@ -528,9 +418,9 @@
                   <div class="select_reason_class">
                     <select class="form-control custom_select" name="ticket_currency_rerouting">
                       <option hidden>Currency</option>
-                      <option value="1">EUR</option>
-                      <option value="2">USD</option>
-                      <option value="3">ILS</option>
+                      @foreach($currencies as $key => $val)
+                        <option value="{{$key}}">{{$val}}</option>
+                      @endforeach
                     </select>
                   </div>
                 </div>
@@ -548,19 +438,19 @@
               <div class="parent_div">
                 <div class="child_accommodation child_accommodation_first_div">
                   <label class="container_radio label_child_accommodation">I did not spend anything
-                    <input type="radio" class="common_input" id="common_input not_spend" name="is_spend_on_accomodation" value="not_spend">
+                    <input type="radio" class="common_input" id="common_input not_spend" name="is_spend_on_accommodation" value="I did not spend anything">
                     <span class="checkmark"></span>
                   </label>
                 </div>
                 <div class="child_accommodation child_accommodation_second_div">
                   <label class="container_radio label_child_accommodation">I had expenses but I have not kept the invoices
-                    <input type="radio" class="common_input" id="common_input no_invoice" name="is_spend_on_accomodation" value="no_invoice">
+                    <input type="radio" class="common_input" id="common_input no_invoice" name="is_spend_on_accommodation" value="I had expenses but I have not kept the invoices">
                     <span class="checkmark"></span>
                   </label>
                 </div>
                 <div class="child_accommodation child_accommodation_third_div">
                   <label class="container_radio label_child_accommodation">I had expenses and kept the invoices
-                    <input type="radio" class="common_input" id="common_input has_invoice" name="is_spend_on_accomodation" value="has_invoice">
+                    <input type="radio" class="common_input" id="common_input has_invoice" name="is_spend_on_accommodation" value="I had expenses and kept the invoices">
                     <span class="checkmark"></span>
                   </label>
                 </div>
@@ -597,9 +487,9 @@
                               <div class="select_reason_class">
                                 <select class="form-control custom_select" name="expense_currency[]">
                                   <option hidden>Currency</option>
-                                  <option value="1">EUR</option>
-                                  <option value="2">USD</option>
-                                  <option value="3">ILS</option>
+                                  @foreach($currencies as $key => $val)
+                                    <option value="{{$key}}">{{$val}}</option>
+                                  @endforeach
                                 </select>
                               </div>
                             </div>
@@ -607,9 +497,9 @@
                         </td>
                         <td>
                           <div class="group">
-                            <input id="is_receipt_accommodation_yes" name="is_receipt_accommodation" type="radio" value="Yes" checked="checked">
+                            <input id="is_receipt_accommodation_yes" name="expense_is_receipt[0]" type="radio" value="Yes" checked="checked">
                             <label class="label" for="is_receipt_accommodation_yes">Yes</label>
-                            <input id="is_receipt_accommodation_no" name="is_receipt_accommodation" type="radio" value="No" >
+                            <input id="is_receipt_accommodation_no" name="expense_is_receipt[0]" type="radio" value="No" >
                             <label class="center label" for="is_receipt_accommodation_no">No</label>
                           </div>
                         </td>
@@ -627,9 +517,9 @@
                               <div class="select_reason_class">
                                 <select class="form-control custom_select" name="expense_currency[]">
                                   <option hidden>Currency</option>
-                                  <option value="1">EUR</option>
-                                  <option value="2">USD</option>
-                                  <option value="3">ILS</option>
+                                  @foreach($currencies as $key => $val)
+                                    <option value="{{$key}}">{{$val}}</option>
+                                  @endforeach
                                 </select>
                               </div>
                             </div>
@@ -638,9 +528,9 @@
                         <td>
                           <div class="input-group yes_no_center">
                             <div class="group">
-                              <input id="is_receipt_transportation_yes" name="is_receipt_transportation" type="radio" value="Yes" checked="checked">
+                              <input id="is_receipt_transportation_yes" name="expense_is_receipt[1]" type="radio" value="Yes" checked="checked">
                               <label class="label" for="is_receipt_transportation_yes">Yes</label>
-                              <input id="is_receipt_transportation_no" name="is_receipt_transportation" type="radio" value="No" >
+                              <input id="is_receipt_transportation_no" name="expense_is_receipt[1]" type="radio" value="No" >
                               <label class="center label" for="is_receipt_transportation_no">No</label>
                             </div>
 
@@ -660,9 +550,9 @@
                               <div class="select_reason_class">
                                 <select class="form-control custom_select" name="expense_currency[]">
                                   <option hidden>Currency</option>
-                                  <option value="1">EUR</option>
-                                  <option value="2">USD</option>
-                                  <option value="3">ILS</option>
+                                  @foreach($currencies as $key => $val)
+                                    <option value="{{$key}}">{{$val}}</option>
+                                  @endforeach
                                 </select>
                               </div>
                             </div>
@@ -671,9 +561,9 @@
                         <td>
                           <div class="input-group yes_no_center">
                             <div class="group">
-                              <input id="is_receipt_food_yes" name="is_receipt_food" type="radio" value="Yes" checked="checked">
+                              <input id="is_receipt_food_yes" name="expense_is_receipt[2]" type="radio" value="Yes" checked="checked">
                               <label class="label" for="is_receipt_food_yes">Yes</label>
-                              <input id="is_receipt_food_no" name="is_receipt_food" type="radio" value="No" >
+                              <input id="is_receipt_food_no" name="expense_is_receipt[2]" type="radio" value="No" >
                               <label class="center label" for="is_receipt_food_no">No</label>
                             </div>
                           </div>
@@ -692,9 +582,9 @@
                               <div class="select_reason_class">
                                 <select class="form-control custom_select" name="expense_currency[]">
                                   <option hidden>Currency</option>
-                                  <option value="1">EUR</option>
-                                  <option value="2">USD</option>
-                                  <option value="3">ILS</option>
+                                  @foreach($currencies as $key => $val)
+                                    <option value="{{$key}}">{{$val}}</option>
+                                  @endforeach
                                 </select>
                               </div>
                             </div>
@@ -703,9 +593,9 @@
                         <td>
                           <div class="input-group yes_no_center">
                             <div class="group">
-                              <input id="is_receipt_others_yes" name="is_receipt_others" type="radio" value="Yes" checked="checked">
+                              <input id="is_receipt_others_yes" name="expense_is_receipt[3]" type="radio" value="Yes" checked="checked">
                               <label class="label" for="is_receipt_others_yes">Yes</label>
-                              <input id="is_receipt_others_no" name="is_receipt_others" type="radio" value="No" >
+                              <input id="is_receipt_others_no" name="expense_is_receipt[3]" type="radio" value="No" >
                               <label class="center label" for="is_receipt_others_no">No</label>
                             </div>
                           </div>
@@ -741,9 +631,9 @@
                             <div class="select_reason_class">
                               <select class="form-control custom_select" name="expense_currency[]">
                                 <option hidden>Currency</option>
-                                <option value="1">EUR</option>
-                                <option value="2">USD</option>
-                                <option value="3">ILS</option>
+                                @foreach($currencies as $key => $val)
+                                  <option value="{{$key}}">{{$val}}</option>
+                                @endforeach
                               </select>
                             </div>
                           </div>
@@ -754,9 +644,9 @@
                       <th scope="col">Receipt</th>
                       <td>
                         <div class="group">
-                          <input id="is_receipt_accommodation_yes_mobile" name="is_receipt_accommodation_mobile" type="radio" value="Yes" checked="checked">
+                          <input id="is_receipt_accommodation_yes_mobile" name="expense_is_receipt[0]" type="radio" value="Yes" checked="checked">
                           <label class="label" for="is_receipt_accommodation_yes_mobile">Yes</label>
-                          <input id="is_receipt_accommodation_no_mobile" name="is_receipt_accommodation_mobile" type="radio" value="No" >
+                          <input id="is_receipt_accommodation_no_mobile" name="expense_is_receipt[0]" type="radio" value="No" >
                           <label class="center label" for="is_receipt_accommodation_no_mobile">No</label>
                         </div>
                       </td>
@@ -776,9 +666,9 @@
                             <div class="select_reason_class">
                               <select class="form-control custom_select" name="expense_currency[]">
                                 <option hidden>Currency</option>
-                                <option value="1">EUR</option>
-                                <option value="2">USD</option>
-                                <option value="3">ILS</option>
+                                @foreach($currencies as $key => $val)
+                                  <option value="{{$key}}">{{$val}}</option>
+                                @endforeach
                               </select>
                             </div>
                           </div>
@@ -790,9 +680,9 @@
                       <td>
                         <div class="input-group yes_no_center">
                           <div class="group">
-                            <input id="is_receipt_transportation_yes_mobile" name="is_receipt_transportation_mobile" type="radio" value="Yes" checked="checked">
+                            <input id="is_receipt_transportation_yes_mobile" name="expense_is_receipt[1]" type="radio" value="Yes" checked="checked">
                             <label class="label" for="is_receipt_transportation_yes_mobile">Yes</label>
-                            <input id="is_receipt_transportation_no_mobile" name="is_receipt_transportation_mobile" type="radio" value="No" >
+                            <input id="is_receipt_transportation_no_mobile" name="expense_is_receipt[1]" type="radio" value="No" >
                             <label class="center label" for="is_receipt_transportation_no_mobile">No</label>
                           </div>
 
@@ -814,9 +704,9 @@
                             <div class="select_reason_class">
                               <select class="form-control custom_select" name="expense_currency[]">
                                 <option hidden>Currency</option>
-                                <option value="1">EUR</option>
-                                <option value="2">USD</option>
-                                <option value="3">ILS</option>
+                                @foreach($currencies as $key => $val)
+                                  <option value="{{$key}}">{{$val}}</option>
+                                @endforeach
                               </select>
                             </div>
                           </div>
@@ -828,9 +718,9 @@
                       <td>
                         <div class="input-group yes_no_center">
                           <div class="group">
-                            <input id="is_receipt_food_yes_mobile" name="is_receipt_food_mobile" type="radio" value="Yes" checked="checked">
+                            <input id="is_receipt_food_yes_mobile" name="expense_is_receipt[2]" type="radio" value="Yes" checked="checked">
                             <label class="label" for="is_receipt_food_yes_mobile">Yes</label>
-                            <input id="is_receipt_food_no_mobile" name="is_receipt_food_mobile" type="radio" value="No" >
+                            <input id="is_receipt_food_no_mobile" name="expense_is_receipt[2]" type="radio" value="No" >
                             <label class="center label" for="is_receipt_food_no_mobile">No</label>
                           </div>
                         </div>
@@ -851,9 +741,9 @@
                             <div class="select_reason_class">
                               <select class="form-control custom_select" name="expense_currency[]">
                                 <option hidden>Currency</option>
-                                <option value="1">EUR</option>
-                                <option value="2">USD</option>
-                                <option value="3">ILS</option>
+                                @foreach($currencies as $key => $val)
+                                  <option value="{{$key}}">{{$val}}</option>
+                                @endforeach
                               </select>
                             </div>
                           </div>
@@ -865,9 +755,9 @@
                       <td>
                         <div class="input-group yes_no_center">
                           <div class="group">
-                            <input id="is_receipt_others_yes_mobile" name="is_receipt_others_mobile" type="radio" value="Yes" checked="checked">
+                            <input id="is_receipt_others_yes_mobile" name="expense_is_receipt[3]" type="radio" value="Yes" checked="checked">
                             <label class="label" for="is_receipt_others_yes_mobile">Yes</label>
-                            <input id="is_receipt_others_no_mobile" name="is_receipt_others_mobile" type="radio" value="No" >
+                            <input id="is_receipt_others_no_mobile" name="expense_is_receipt[3]" type="radio" value="No" >
                             <label class="center label" for="is_receipt_others_no_mobile">No</label>
                           </div>
                         </div>
@@ -878,14 +768,15 @@
               </div>
             </div>
 
-            <div class="common_row">
-              <div class="email_div">
-                <div class="label_field">
-                  <label for="email_address">Please enter your email address</label>
-                </div>
-                <div class="input_field">
-                  <input type="text" class="common_input email_address" id="common_input email_address" name="email_address" placeholder="e.g. New York or JFK">
-                </div>
+          </div>
+
+          <div class="common_row">
+            <div class="email_div">
+              <div class="label_field">
+                <label for="email_address">Please enter your email address</label>
+              </div>
+              <div class="input_field">
+                <input type="text" class="common_input email_address" id="common_input email_address" name="email_address" placeholder="e.g. New York or JFK">
               </div>
             </div>
           </div>
@@ -1016,19 +907,19 @@
             <div class="parent_div">
               <div class="two_child_radio_div first_child">
                 <label class="container_radio">Yes
-                  <input class="common_input passenger_is_booking_checkbox" type="radio" count="1" id="common_input is_booking_reference_yes" name="is_booking_reference" value="is_booking_reference_yes">
+                  <input class="common_input passenger_is_booking_checkbox" type="radio" count="0" id="common_input is_booking_reference_yes" name="is_booking_reference[0]" value="is_booking_reference_yes">
                   <span class="checkmark"></span>
                 </label>
               </div>
               <div class="two_child_radio_div">
                 <label class="container_radio">Later
-                  <input class="common_input passenger_is_booking_checkbox" type="radio" count="1" id="common_input is_booking_reference_no" name="is_booking_reference" value="is_booking_reference_no">
+                  <input class="common_input passenger_is_booking_checkbox" type="radio" count="0" id="common_input is_booking_reference_no" name="is_booking_reference[0]" value="is_booking_reference_no" checked>
                   <span class="checkmark"></span>
                 </label>
               </div>
             </div>
-            <div class="parent_div show_on_is_booking_reference_yes_1" style="display:none">
-              <div class="add_booking_reference_div" id="add_booking_reference_div_1">
+            <div class="parent_div show_on_is_booking_reference_yes_0" style="display:none">
+              <div class="add_booking_reference_div" id="add_booking_reference_div_0">
                 <div class="child_div" style="margin-top: 10px;" id="reference_remove">
                   <input style="width: 50%; float: left; margin-right: 10px; margin-bottom: 0px; margin-top: 0px;" type="text" class="common_input booking_reference_field_input" id="booking_reference_field_input" name="booking_reference_field_input[]" />
                 </div>
@@ -1082,10 +973,10 @@
             </div>
             <div class="parent_div">
               <div class="form-check">
-      					<label>
-      						<input type="checkbox" name="is_signed_permission"> <span class="label-text">Write your signature below as it appears on your ID. It's required by airlines to collect the compensation for you. By signing you agree with the Assignment Form and Price List</span>
-      					</label>
-      				</div>
+                <label>
+                  <input type="checkbox" name="is_signed_permission"> <span class="label-text">Write your signature below as it appears on your ID. It's required by airlines to collect the compensation for you. By signing you agree with the Assignment Form and Price List</span>
+                </label>
+              </div>
               {{-- <div class="custom-control custom-checkbox">
                 <input type="checkbox" class="custom-control-input" id="customCheck1">
                 <label class="custom-control-label" for="customCheck1">Write your signature below as it appears on your ID. It's required by airlines to collect the compensation for you. By signing you agree with the Assignment Form and Price List</label>
@@ -1125,14 +1016,14 @@
               <h4>If we gather more information, we can handle your claim faster.</h4>
             </div>
             <div class="select_reason_class">
-              <select class="form-control custom_select" class="hear_from_where">
-                <option hidden>Open this select menu</option>
-                <option value="1">Google</option>
-                <option value="2">Friends</option>
-                <option value="3">Social media</option>
-                <option value="4">Tv</option>
-                <option value="5">Article or blog</option>
-                <option value="6">Others</option>
+              <select class="form-control custom_select" class="here_from_where" name="here_from_where">
+                <option hidden value="">Open this select menu</option>
+                <option value="Google">Google</option>
+                <option value="Friends">Friends</option>
+                <option value="Social media">Social media</option>
+                <option value="Tv">Tv</option>
+                <option value="Article or blog">Article or blog</option>
+                <option value="Others">Others</option>
               </select>
             </div>
           </div>
@@ -1150,7 +1041,7 @@
               </div>
               <div class="two_child_radio_div">
                 <label class="container_radio">No
-                  <input class="common_input" type="radio" id="common_input is_contacted_airline_no" name="is_contacted_airline" value="2">
+                  <input class="common_input" type="radio" id="common_input is_contacted_airline_no" name="is_contacted_airline" value="0" checked>
                   <span class="checkmark"></span>
                 </label>
               </div>
@@ -1177,7 +1068,7 @@
             </div>
             <div class="parent_div">
               <div class="form-group">
-                <textarea class="form-control" rows="5" id="comment" name="text" placeholder="Additional Information"></textarea>
+                <textarea class="form-control" rows="5" id="comment" name="what_happened" placeholder="Additional Information"></textarea>
               </div>
             </div>
           </div>
@@ -1233,11 +1124,13 @@
             </div>
           </div>
 
+          <input type="type" name="claim_table_type" value="missed_connection">
+
           <div class="common_row">
             <div class="total_button_div">
               <div class="two_button_child_div_left">
                 <div class="continue_button_div">
-                  <button type="button" class="continue_button" id="continue_8" name="button">Continue <i class="fas fa-arrow-right"></i></button>
+                  <button type="submit" class="continue_button" id="continue_8" name="button">Continue <i class="fas fa-arrow-right"></i></button>
                 </div>
               </div>
               <div class="two_button_child_div_right">
@@ -1259,22 +1152,62 @@
 
 
 @section('footer-script')
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script type="text/javascript">
+      auto_airport_complete();
+      function auto_airport_complete(){
+        $('.auto_airport_complete').autoComplete({
+            minChars: 3,
+            source: function(term, suggest){
+                term = term.toLowerCase();
+                var choices = {!! $airport_object !!};
+                var suggestions = [];
+                for (i=0;i<choices.length;i++)
+                    if (~(choices[i][0]+' '+choices[i][1]).toLowerCase().indexOf(term)) suggestions.push(choices[i]);
+                suggest(suggestions);
+            },
+            renderItem: function (item, search){
+                search = search.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+                var re = new RegExp("(" + search.split(' ').join('|') + ")", "gi");
+                return '<div class="autocomplete-suggestion" data-langname="'+item[0]+'" data-lang="'+item[1]+'" data-val="'+search+'"> '+item[0].replace(re, "<b>$1</b>")+'</div>';
+            },
+            onSelect: function(e, term, item){
+                // console.log('Item "'+item.data('langname')+' ('+item.data('lang')+')" selected by '+(e.type == 'keydown' ? 'pressing enter or tab' : 'mouse click')+'.');
+                $(':focus').val(item.data('langname')+' ('+item.data('lang')+')').attr('iata-code',item.data('lang'));
+            }
+        });     
+      }
+      auto_airline_complete();
+      function auto_airline_complete(){
+        $('.auto_airline_complete').autoComplete({
+            minChars: 3,
+            source: function(term, suggest){
+                term = term.toLowerCase();
+                var choices = {!! $airline_object !!};
+                var suggestions = [];
+                for (i=0;i<choices.length;i++)
+                    if (~(choices[i][0]+' '+choices[i][1]).toLowerCase().indexOf(term)) suggestions.push(choices[i]);
+                suggest(suggestions);
+            },
+            renderItem: function (item, search){
+                search = search.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+                var re = new RegExp("(" + search.split(' ').join('|') + ")", "gi");
+                return '<div class="autocomplete-suggestion" data-langname="'+item[0]+'" data-lang="'+item[1]+'" data-val="'+search+'"> '+item[0].replace(re, "<b>$1</b>")+'</div>';
+            },
+            onSelect: function(e, term, item){
+                $(':focus').val(item.data('langname')).attr('iata_code',item.data('lang'));
+            }
+        });     
+      }
+                           
+  </script>
+
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
   <script src="{{('front_asset/claim/missed_connection/js/custom.js')}}"></script>
-  {{-- <script>
-    $(document).ready(function() {
-      var date_input = $('.date'); //our date input has the name "date"
-      var options = {
-        format: 'mm/dd/yyyy',
-        endDate: '+0d',
-        todayHighlight: true,
-        autoclose: true,
-      };
-      date_input.datepicker(options);
-    })
-  </script> --}}
+
+
+
+
 @endsection

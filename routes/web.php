@@ -24,8 +24,10 @@ Route::get('/user-home','UserPanelController@index');
 
 
 // claim
+Route::post('/claim','ClaimsController@store');
 Route::get('/claim','ClaimsController@claim')->name('claim');
 Route::get('/missed-connection','ClaimsController@missed_connection')->name('missed-connection');
+
 Route::get('/flight-delay','ClaimsController@flight_delay')->name('flight-delay');
 Route::get('/flight-cancellation','ClaimsController@flight_cancellation')->name('flight-cancellation');
 Route::get('/delay-luggage','ClaimsController@delay_luggage')->name('delay-luggage');
@@ -79,6 +81,7 @@ Route::resource('next-step', 'NextStepController');
 Route::resource('settings', 'SettingsController');
 
 Route::get('/manage-claim', 'ClaimBackController@index');
+
 Route::get('/claim-view/{id}', 'ClaimBackController@claimView');
 Route::get('/manage-unfinished-claim', 'ClaimBackController@manageUnfinishedClaim');
 Route::get('/unfinished-claim-view', 'ClaimBackController@unfinishedClaimView');

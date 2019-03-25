@@ -5,7 +5,15 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use Hash;
+use App\User;
+use App\ItineraryDetail;
 use App\Claim;
+use App\Connection;
+use App\Currency;
+use App\Airport;
+use App\Airline;
+use App\Expense;
 use Illuminate\Http\Request;
 
 class ClaimsController extends Controller
@@ -22,7 +30,26 @@ class ClaimsController extends Controller
 
    public function missed_connection()
    {
-       return view('frontEnd.claim.missed_connection');
+        $airports = Airport::select('name', 'iata_code')->get()->toArray();
+        $airport_object = '[';
+        foreach ($airports as $airport) {
+            $airport_object .= "['".$airport['name']."', '".$airport['iata_code']."'],";
+        }
+        $airport_object = rtrim($airport_object, ',');
+        $airport_object .= ']';
+
+        $airlines = Airline::select('name', 'iata_code')->get()->toArray();
+        $airline_object = '[';
+        foreach ($airlines as $airline) {
+            $airline_object .= "['".$airline['name']."', '".$airline['iata_code']."'],";
+        }
+        $airline_object = rtrim($airline_object, ',');
+        $airline_object .= ']';
+
+        $currencies = Currency::pluck('code','id');
+
+
+        return view('frontEnd.claim.missed_connection', compact('airport_object', 'airline_object', 'currencies'));
    }
 
    public function flight_delay()
@@ -104,20 +131,156 @@ class ClaimsController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Returns id from a name+iata-code Ex. London Dubai Airport (LON)
      *
-     * @param \Illuminate\Http\Request $request
+     * @param string Ex. London Dubai Airport (LON)
      *
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @return integer Ex. 2
      */
+    public function get_airport_id_name_and_iata_code($sting){
+        $iata_code =  rtrim(substr($sting, strrpos($sting,"(")+1), ')'); // LON
+        return Airport::WHERE('iata_code', $iata_code)->first()->id;
+    }
+    public function get_airline_id_name_and_iata_code($sting){
+        $iata_code =  rtrim(substr($sting, strrpos($sting,"(")+1), ')'); // LON
+        return Airline::WHERE('iata_code', $iata_code)->first()->id;
+    }
+    
     public function store(Request $request)
     {
+        $departed_from_id = $this->get_airport_id_name_and_iata_code($request->departed_from);
+        $final_destination_id = $this->get_airport_id_name_and_iata_code($request->final_destination);
 
-        $requestData = $request->all();
+        if ($request->is_direct_flight == 'is_direct_flight_no') {
+            $is_direct_flight = 0;
+        }else{
+            $is_direct_flight = 1;
+        }
 
-        Claim::create($requestData);
+        $what_happened_to_the_flight = $request->what_happened_to_the_flight;
+        $total_delay = $request->total_delay;
+        $reason = $request->reason;
 
-        return redirect('claims')->with('flash_message', 'Claim added!');
+        if ($request->is_rerouted == "is_rerouted_no") {
+            $is_rerouted = 0;
+        }else{
+            $is_rerouted = 1;
+        }
+        if ($request->is_obtained_full_reimbursement == "is_obtained_full_reimbursement_no") {
+            $is_obtain_full_reimbursement = 0;
+        }else{
+            $is_obtain_full_reimbursement = 1;
+        }
+        $ticket_price = $request->ticket_price_original_ticket;
+        $ticket_currency = $request->ticket_currency_original_ticket;
+
+        if ($request->is_paid_for_rerouting == "is_paid_for_rerouting_yes") {
+            $is_paid_for_rerouting = 1;
+        }else{
+            $is_paid_for_rerouting = 0;
+        }
+        $rerouted_ticket_price = $request->ticket_price_rerouting;
+        $rerouted_ticket_currency = $request->ticket_currency_rerouting;
+
+        $email = $request->email_address;
+        
+
+        if (isset($request->is_spend_on_accommodation)) {
+            $spend_on_accommodation = $request->is_spend_on_accommodation;
+        }else{
+            $spend_on_accommodation = 'I did not spend anything';
+        }
+
+        $here_from_where = $request->here_from_where;
+        $is_contacted_airline = $request->is_contacted_airline;
+        $what_happened = $request->what_happened;
+        $claim_table_type = $request->claim_table_type;
+
+
+
+        // create new user
+        $user = User::create(
+            [
+             'name'             => $email,
+             'email'            => $email,
+             'password'         => Hash::make($request->password)
+            ]);
+
+
+        // create claim
+        $claim = new Claim();
+        $claim->user_id                                 = $user->id;
+        $claim->departed_from_id                        = $departed_from_id;
+        $claim->final_destination_id                    = $final_destination_id;
+        $claim->is_direct_flight                        = $is_direct_flight;
+        $claim->selected_connection_iata_codes          = $request->selected_connection_iata_codes;
+        $claim->what_happened_to_the_flight             = $what_happened_to_the_flight;
+        $claim->total_delay                             = $total_delay;
+        $claim->reason                                  = $reason;
+        $claim->is_rerouted                             = $is_rerouted;
+        $claim->is_obtain_full_reimbursement            = $is_obtain_full_reimbursement;
+        $claim->ticket_price                            = $ticket_price;
+        $claim->ticket_currency                         = $ticket_currency;
+        $claim->rerouted_ticket_price                   = $rerouted_ticket_price;
+        $claim->rerouted_ticket_currency                = $rerouted_ticket_currency;
+        $claim->is_paid_for_rerouting                   = $is_paid_for_rerouting;
+
+        $claim->spend_on_accommodation                  = $spend_on_accommodation;
+        $claim->here_from_where                         = $here_from_where;
+        $claim->is_contacted_airline                    = $is_contacted_airline;
+        $claim->what_happened                           = $what_happened;
+
+        $claim->correspondence_ids_file                 = "";
+        $claim->correspondence_travel_doc_file          = "";
+        $claim->correspondence_proof_of_expense_file    = "";
+        $claim->correspondence_others_file              = "";
+
+        $claim->claim_table_type                        = $claim_table_type;
+        $claim->save();
+
+        // create connect
+
+        foreach ($request->connection as $con) {
+            if ($con != "") {
+                $connection             = new Connection();
+                $connection->claim_id   = $claim->id;
+                $connection->airport_id = $this->get_airport_id_name_and_iata_code($con);
+                $connection->save();
+            }
+        }
+
+        // create ininerary detail
+        $cnt = 0;
+        foreach ($request->flight_code as $single_flight_code) {
+            if ($single_flight_code != "") {
+                $itineraryDetail                    = new ItineraryDetail();
+                $itineraryDetail->claim_id          = $claim->id;
+                $itineraryDetail->flight_number     = $request->flight_number[$cnt];
+                $itineraryDetail->departure_date    = $request->departure_date[$cnt];
+                $itineraryDetail->airline_id        = Airline::where('iata_code', $single_flight_code)->first()->id;
+                $itineraryDetail->save();
+            }
+            $cnt++;
+        }
+
+        // create expenses
+        $cnt = 0;
+        foreach ($request->expense_name as $single_expense_name) {
+
+            $expense                    = new Expense();
+            $expense->claim_id          = $claim->id;
+            $expense->name              = $request->expense_name[$cnt];
+            $expense->amount            = $request->expense_price[$cnt];
+            $expense->currency          = $request->expense_currency[$cnt];
+            $expense->is_receipt        = $request->expense_is_receipt[$cnt]; 
+            $expense->save();
+
+            $cnt++;
+        }
+
+        return 'Done';
+
+        // return redirect('claims')->with('flash_message', 'Claim added!');
     }
 
     /**

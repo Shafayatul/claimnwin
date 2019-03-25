@@ -15,7 +15,7 @@ class CreateItineraryDetailsTable extends Migration
         Schema::create('itinerary_details', function (Blueprint $table) {
             $table->increments('id');
             $table->string('claim_id')->nullable();
-            $table->string('airline')->nullable();
+            $table->string('airline_id')->nullable();
             $table->string('flight_number')->nullable();
             $table->string('departure_date')->nullable();
             $table->timestamps();
