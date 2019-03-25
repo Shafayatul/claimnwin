@@ -10,6 +10,7 @@ use App\User;
 use App\ItineraryDetail;
 use App\Claim;
 use App\Connection;
+use App\Currency;
 use App\Airport;
 use App\Airline;
 use App\Expense;
@@ -45,8 +46,10 @@ class ClaimsController extends Controller
         $airline_object = rtrim($airline_object, ',');
         $airline_object .= ']';
 
+        $currencies = Currency::pluck('code','id');
 
-        return view('frontEnd.claim.missed_connection', compact('airport_object', 'airline_object'));
+
+        return view('frontEnd.claim.missed_connection', compact('airport_object', 'airline_object', 'currencies'));
    }
 
    public function flight_delay()
@@ -145,7 +148,6 @@ class ClaimsController extends Controller
     
     public function store(Request $request)
     {
-        dd($request);
         $departed_from_id = $this->get_airport_id_name_and_iata_code($request->departed_from);
         $final_destination_id = $this->get_airport_id_name_and_iata_code($request->final_destination);
 
@@ -276,9 +278,9 @@ class ClaimsController extends Controller
             $cnt++;
         }
 
+        return 'Done';
 
-
-        return redirect('claims')->with('flash_message', 'Claim added!');
+        // return redirect('claims')->with('flash_message', 'Claim added!');
     }
 
     /**

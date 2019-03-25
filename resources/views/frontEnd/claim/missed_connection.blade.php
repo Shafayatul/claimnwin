@@ -375,9 +375,9 @@
                   <div class="select_reason_class">
                     <select class="form-control custom_select" name="ticket_currency_original_ticket">
                       <option hidden>Select currency</option>
-                      <option value="1">EUR</option>
-                      <option value="2">USD</option>
-                      <option value="3">ILS</option>
+                      @foreach($currencies as $key => $val)
+                        <option value="{{$key}}">{{$val}}</option>
+                      @endforeach
                     </select>
                   </div>
                 </div>
@@ -418,9 +418,9 @@
                   <div class="select_reason_class">
                     <select class="form-control custom_select" name="ticket_currency_rerouting">
                       <option hidden>Currency</option>
-                      <option value="1">EUR</option>
-                      <option value="2">USD</option>
-                      <option value="3">ILS</option>
+                      @foreach($currencies as $key => $val)
+                        <option value="{{$key}}">{{$val}}</option>
+                      @endforeach
                     </select>
                   </div>
                 </div>
@@ -487,9 +487,9 @@
                               <div class="select_reason_class">
                                 <select class="form-control custom_select" name="expense_currency[]">
                                   <option hidden>Currency</option>
-                                  <option value="1">EUR</option>
-                                  <option value="2">USD</option>
-                                  <option value="3">ILS</option>
+                                  @foreach($currencies as $key => $val)
+                                    <option value="{{$key}}">{{$val}}</option>
+                                  @endforeach
                                 </select>
                               </div>
                             </div>
@@ -517,9 +517,9 @@
                               <div class="select_reason_class">
                                 <select class="form-control custom_select" name="expense_currency[]">
                                   <option hidden>Currency</option>
-                                  <option value="1">EUR</option>
-                                  <option value="2">USD</option>
-                                  <option value="3">ILS</option>
+                                  @foreach($currencies as $key => $val)
+                                    <option value="{{$key}}">{{$val}}</option>
+                                  @endforeach
                                 </select>
                               </div>
                             </div>
@@ -550,9 +550,9 @@
                               <div class="select_reason_class">
                                 <select class="form-control custom_select" name="expense_currency[]">
                                   <option hidden>Currency</option>
-                                  <option value="1">EUR</option>
-                                  <option value="2">USD</option>
-                                  <option value="3">ILS</option>
+                                  @foreach($currencies as $key => $val)
+                                    <option value="{{$key}}">{{$val}}</option>
+                                  @endforeach
                                 </select>
                               </div>
                             </div>
@@ -582,9 +582,9 @@
                               <div class="select_reason_class">
                                 <select class="form-control custom_select" name="expense_currency[]">
                                   <option hidden>Currency</option>
-                                  <option value="1">EUR</option>
-                                  <option value="2">USD</option>
-                                  <option value="3">ILS</option>
+                                  @foreach($currencies as $key => $val)
+                                    <option value="{{$key}}">{{$val}}</option>
+                                  @endforeach
                                 </select>
                               </div>
                             </div>
@@ -631,9 +631,9 @@
                             <div class="select_reason_class">
                               <select class="form-control custom_select" name="expense_currency[]">
                                 <option hidden>Currency</option>
-                                <option value="1">EUR</option>
-                                <option value="2">USD</option>
-                                <option value="3">ILS</option>
+                                @foreach($currencies as $key => $val)
+                                  <option value="{{$key}}">{{$val}}</option>
+                                @endforeach
                               </select>
                             </div>
                           </div>
@@ -666,9 +666,9 @@
                             <div class="select_reason_class">
                               <select class="form-control custom_select" name="expense_currency[]">
                                 <option hidden>Currency</option>
-                                <option value="1">EUR</option>
-                                <option value="2">USD</option>
-                                <option value="3">ILS</option>
+                                @foreach($currencies as $key => $val)
+                                  <option value="{{$key}}">{{$val}}</option>
+                                @endforeach
                               </select>
                             </div>
                           </div>
@@ -704,9 +704,9 @@
                             <div class="select_reason_class">
                               <select class="form-control custom_select" name="expense_currency[]">
                                 <option hidden>Currency</option>
-                                <option value="1">EUR</option>
-                                <option value="2">USD</option>
-                                <option value="3">ILS</option>
+                                @foreach($currencies as $key => $val)
+                                  <option value="{{$key}}">{{$val}}</option>
+                                @endforeach
                               </select>
                             </div>
                           </div>
@@ -741,9 +741,9 @@
                             <div class="select_reason_class">
                               <select class="form-control custom_select" name="expense_currency[]">
                                 <option hidden>Currency</option>
-                                <option value="1">EUR</option>
-                                <option value="2">USD</option>
-                                <option value="3">ILS</option>
+                                @foreach($currencies as $key => $val)
+                                  <option value="{{$key}}">{{$val}}</option>
+                                @endforeach
                               </select>
                             </div>
                           </div>
@@ -1068,7 +1068,7 @@
             </div>
             <div class="parent_div">
               <div class="form-group">
-                <textarea class="form-control" rows="5" id="comment" name="text" placeholder="Additional Information"></textarea>
+                <textarea class="form-control" rows="5" id="comment" name="what_happened" placeholder="Additional Information"></textarea>
               </div>
             </div>
           </div>
