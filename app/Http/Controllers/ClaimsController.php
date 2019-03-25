@@ -140,7 +140,6 @@ class ClaimsController extends Controller
     
     public function store(Request $request)
     {
-        dd($request);
         $departed_from_id = $this->get_airport_id_name_and_iata_code($request->departed_from);
         $final_destination_id = $this->get_airport_id_name_and_iata_code($request->final_destination);
 
@@ -176,6 +175,19 @@ class ClaimsController extends Controller
         $rerouted_ticket_currency = $request->ticket_currency_rerouting;
 
         $email = $request->email_address;
+
+
+        // create new user
+
+
+        // create claim
+
+        // create connect
+
+        // create ininerary detail
+
+        // create expenses
+
 
 
         
