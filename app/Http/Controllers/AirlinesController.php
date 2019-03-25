@@ -23,7 +23,7 @@ class AirlinesController extends Controller
         $perPage = 25;
 
         if (!empty($keyword)) {
-            
+
             $airlines = Airline::where('user_id', 'LIKE', "%$keyword%")
                 ->orWhere('name', 'LIKE', "%$keyword%")
                 ->orWhere('email', 'LIKE', "%$keyword%")
@@ -74,7 +74,7 @@ class AirlinesController extends Controller
 
         Airline::create($requestData + ['user_id' => Auth::user()->id]);
 
-        return redirect('airlines')->with('flash_message', 'Airline added!');
+        return redirect('airlines/create')->with('success', 'Airline added!');
     }
 
     /**
@@ -123,7 +123,7 @@ class AirlinesController extends Controller
         $airline = Airline::findOrFail($id);
         $airline->update($requestData);
 
-        return redirect('airlines')->with('flash_message', 'Airline updated!');
+        return redirect('airlines')->with('success', 'Airline updated!');
     }
 
     /**
@@ -137,6 +137,6 @@ class AirlinesController extends Controller
     {
         Airline::destroy($id);
 
-        return redirect('airlines')->with('flash_message', 'Airline deleted!');
+        return redirect('airlines')->with('success', 'Airline deleted!');
     }
 }
