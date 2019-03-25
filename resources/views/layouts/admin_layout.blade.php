@@ -11,6 +11,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 
 <!-- Bootstrap Core CSS -->
 <link href="{{ asset('admin_asset/css/bootstrap.css')}}" rel='stylesheet' type='text/css' />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
 
 <!-- Custom CSS -->
 <link href="{{ asset('admin_asset/css/style.css')}}" rel='stylesheet' type='text/css' />
@@ -34,6 +35,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 <script src="{{ asset('admin_asset/js/jquery-1.11.1.min.js')}}"></script>
 <script src="{{ asset('admin_asset/js/modernizr.custom.js')}}"></script>
 
+
 <!--webfonts-->
 <link href="//fonts.googleapis.com/css?family=PT+Sans:400,400i,700,700i&amp;subset=cyrillic,cyrillic-ext,latin-ext" rel="stylesheet">
 <!--//webfonts-->
@@ -43,6 +45,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 <script src="{{ asset('admin_asset/js/custom.js')}}"></script>
 <link href="{{ asset('admin_asset/css/custom.css')}}" rel="stylesheet">
 <link href="{{ asset('front_asset/user_panel/style.css')}}" rel="stylesheet">
+
 @yield('header-css')
 
 </head>
@@ -118,7 +121,11 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 
 	<!-- Bootstrap Core JavaScript -->
    <script src="{{ asset('admin_asset/js/bootstrap.js')}}"> </script>
-	<!-- //Bootstrap Core JavaScript -->
+    <!-- //Bootstrap Core JavaScript -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
     @yield('footer-script')
 </body>
 </html>
