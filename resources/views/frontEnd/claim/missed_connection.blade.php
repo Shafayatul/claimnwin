@@ -465,7 +465,7 @@
               </div>
               <div class="parent_div">
                 <div class="table_field">
-<table class="table text-center">
+                  <table class="table text-center">
                     <thead>
                       <tr>
                         <th scope="col">Expense</th>
@@ -497,9 +497,9 @@
                         </td>
                         <td>
                           <div class="group">
-                            <input id="is_receipt_accommodation_yes" name="is_receipt_accommodation" type="radio" value="Yes" checked="checked">
+                            <input id="is_receipt_accommodation_yes" name="expense_is_receipt[0]" type="radio" value="Yes" checked="checked">
                             <label class="label" for="is_receipt_accommodation_yes">Yes</label>
-                            <input id="is_receipt_accommodation_no" name="is_receipt_accommodation" type="radio" value="No" >
+                            <input id="is_receipt_accommodation_no" name="expense_is_receipt[0]" type="radio" value="No" >
                             <label class="center label" for="is_receipt_accommodation_no">No</label>
                           </div>
                         </td>
@@ -528,9 +528,9 @@
                         <td>
                           <div class="input-group yes_no_center">
                             <div class="group">
-                              <input id="is_receipt_transportation_yes" name="is_receipt_transportation" type="radio" value="Yes" checked="checked">
+                              <input id="is_receipt_transportation_yes" name="expense_is_receipt[1]" type="radio" value="Yes" checked="checked">
                               <label class="label" for="is_receipt_transportation_yes">Yes</label>
-                              <input id="is_receipt_transportation_no" name="is_receipt_transportation" type="radio" value="No" >
+                              <input id="is_receipt_transportation_no" name="expense_is_receipt[1]" type="radio" value="No" >
                               <label class="center label" for="is_receipt_transportation_no">No</label>
                             </div>
 
@@ -561,9 +561,9 @@
                         <td>
                           <div class="input-group yes_no_center">
                             <div class="group">
-                              <input id="is_receipt_food_yes" name="is_receipt_food" type="radio" value="Yes" checked="checked">
+                              <input id="is_receipt_food_yes" name="expense_is_receipt[2]" type="radio" value="Yes" checked="checked">
                               <label class="label" for="is_receipt_food_yes">Yes</label>
-                              <input id="is_receipt_food_no" name="is_receipt_food" type="radio" value="No" >
+                              <input id="is_receipt_food_no" name="expense_is_receipt[2]" type="radio" value="No" >
                               <label class="center label" for="is_receipt_food_no">No</label>
                             </div>
                           </div>
@@ -593,9 +593,9 @@
                         <td>
                           <div class="input-group yes_no_center">
                             <div class="group">
-                              <input id="is_receipt_others_yes" name="is_receipt_others" type="radio" value="Yes" checked="checked">
+                              <input id="is_receipt_others_yes" name="expense_is_receipt[3]" type="radio" value="Yes" checked="checked">
                               <label class="label" for="is_receipt_others_yes">Yes</label>
-                              <input id="is_receipt_others_no" name="is_receipt_others" type="radio" value="No" >
+                              <input id="is_receipt_others_no" name="expense_is_receipt[3]" type="radio" value="No" >
                               <label class="center label" for="is_receipt_others_no">No</label>
                             </div>
                           </div>
@@ -644,9 +644,9 @@
                       <th scope="col">Receipt</th>
                       <td>
                         <div class="group">
-                          <input id="is_receipt_accommodation_yes_mobile" name="is_receipt_accommodation_mobile" type="radio" value="Yes" checked="checked">
+                          <input id="is_receipt_accommodation_yes_mobile" name="expense_is_receipt[0]" type="radio" value="Yes" checked="checked">
                           <label class="label" for="is_receipt_accommodation_yes_mobile">Yes</label>
-                          <input id="is_receipt_accommodation_no_mobile" name="is_receipt_accommodation_mobile" type="radio" value="No" >
+                          <input id="is_receipt_accommodation_no_mobile" name="expense_is_receipt[0]" type="radio" value="No" >
                           <label class="center label" for="is_receipt_accommodation_no_mobile">No</label>
                         </div>
                       </td>
@@ -680,9 +680,9 @@
                       <td>
                         <div class="input-group yes_no_center">
                           <div class="group">
-                            <input id="is_receipt_transportation_yes_mobile" name="is_receipt_transportation_mobile" type="radio" value="Yes" checked="checked">
+                            <input id="is_receipt_transportation_yes_mobile" name="expense_is_receipt[1]" type="radio" value="Yes" checked="checked">
                             <label class="label" for="is_receipt_transportation_yes_mobile">Yes</label>
-                            <input id="is_receipt_transportation_no_mobile" name="is_receipt_transportation_mobile" type="radio" value="No" >
+                            <input id="is_receipt_transportation_no_mobile" name="expense_is_receipt[1]" type="radio" value="No" >
                             <label class="center label" for="is_receipt_transportation_no_mobile">No</label>
                           </div>
 
@@ -718,9 +718,9 @@
                       <td>
                         <div class="input-group yes_no_center">
                           <div class="group">
-                            <input id="is_receipt_food_yes_mobile" name="is_receipt_food_mobile" type="radio" value="Yes" checked="checked">
+                            <input id="is_receipt_food_yes_mobile" name="expense_is_receipt[2]" type="radio" value="Yes" checked="checked">
                             <label class="label" for="is_receipt_food_yes_mobile">Yes</label>
-                            <input id="is_receipt_food_no_mobile" name="is_receipt_food_mobile" type="radio" value="No" >
+                            <input id="is_receipt_food_no_mobile" name="expense_is_receipt[2]" type="radio" value="No" >
                             <label class="center label" for="is_receipt_food_no_mobile">No</label>
                           </div>
                         </div>
@@ -755,9 +755,9 @@
                       <td>
                         <div class="input-group yes_no_center">
                           <div class="group">
-                            <input id="is_receipt_others_yes_mobile" name="is_receipt_others_mobile" type="radio" value="Yes" checked="checked">
+                            <input id="is_receipt_others_yes_mobile" name="expense_is_receipt[3]" type="radio" value="Yes" checked="checked">
                             <label class="label" for="is_receipt_others_yes_mobile">Yes</label>
-                            <input id="is_receipt_others_no_mobile" name="is_receipt_others_mobile" type="radio" value="No" >
+                            <input id="is_receipt_others_no_mobile" name="expense_is_receipt[3]" type="radio" value="No" >
                             <label class="center label" for="is_receipt_others_no_mobile">No</label>
                           </div>
                         </div>

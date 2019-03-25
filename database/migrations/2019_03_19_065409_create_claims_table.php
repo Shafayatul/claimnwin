@@ -30,7 +30,6 @@ class CreateClaimsTable extends Migration
             $table->string('rerouted_ticket_currency')->nullable();
             $table->boolean('is_paid_for_rerouting')->nullable();
             $table->boolean('is_spend_on_accommodation')->nullable();
-            $table->boolean('is_signed_permission')->nullable();
             $table->string('here_from_where')->nullable();
             $table->string('here_from_other')->nullable();
             $table->boolean('is_contacted_airline')->nullable();

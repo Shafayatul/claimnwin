@@ -1,5 +1,13 @@
 $(document).ready(function(){
 
+    /*HIDE MOBILE TABLE*/
+    if($(window).width() > 768){
+      $('.table_show_on_small_screen').remove();
+    }else{
+      $('.show_on_is_obtained_full_reimbursement_no').remove();
+    }
+
+
 
 
     var keyCount = 0;

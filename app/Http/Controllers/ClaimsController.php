@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use Hash;
+use App\User;
 use App\Claim;
 use App\Airport;
 use App\Airline;
@@ -140,6 +142,7 @@ class ClaimsController extends Controller
     
     public function store(Request $request)
     {
+        dd($request);
         $departed_from_id = $this->get_airport_id_name_and_iata_code($request->departed_from);
         $final_destination_id = $this->get_airport_id_name_and_iata_code($request->final_destination);
 
@@ -159,9 +162,9 @@ class ClaimsController extends Controller
             $is_rerouted = 1;
         }
         if ($request->is_obtained_full_reimbursement == "is_obtained_full_reimbursement_no") {
-            $is_obtained_full_reimbursement = 0;
+            $is_obtain_full_reimbursement = 0;
         }else{
-            $is_obtained_full_reimbursement = 1;
+            $is_obtain_full_reimbursement = 1;
         }
         $ticket_price = $request->ticket_price_original_ticket;
         $ticket_currency = $request->ticket_currency_original_ticket;
@@ -177,10 +180,52 @@ class ClaimsController extends Controller
         $email = $request->email_address;
 
 
-        // create new user
 
+
+
+
+
+
+
+
+
+        // create new user
+        $user = new User();
+        $user->password = Hash::make('the-password-of-choice');
+        $user->email = $email;
+        $user->name = $email;
+        $user->save();
 
         // create claim
+        $claim = new Claim();
+        $claim->user_id                                 = $user->id;
+        $claim->departed_from_id                        = $departed_from_id;
+        $claim->final_destination_id                    = $final_destination_id;
+        $claim->is_direct_flight                        = $is_direct_flight;
+        // $claim->selected_connection_id                  = $selected_connection_id; --later
+        $claim->what_happened_to_the_flight             = $what_happened_to_the_flight;
+        $claim->total_delay                             = $total_delay;
+        $claim->reason                                  = $reason;
+        $claim->is_rerouted                             = $is_rerouted;
+        $claim->is_obtain_full_reimbursement            = $is_obtain_full_reimbursement;
+        $claim->ticket_price                            = $ticket_price;
+        $claim->ticket_currency                         = $ticket_currency;
+        $claim->rerouted_ticket_price                   = $rerouted_ticket_price;
+        $claim->rerouted_ticket_currency                = $rerouted_ticket_currency;
+        $claim->is_paid_for_rerouting                   = $is_paid_for_rerouting;
+
+        $claim->is_spend_on_accommodation               = $is_spend_on_accommodation;
+        $claim->is_signed_permission                    = $is_signed_permission;
+        $claim->here_from_where                         = $here_from_where;
+        $claim->here_from_other                         = $here_from_other;
+        $claim->is_contacted_airline                    = $is_contacted_airline;
+        $claim->what_happened                           = $what_happened;
+        $claim->correspondence_ids_file                 = $correspondence_ids_file;
+        $claim->correspondence_travel_doc_file          = $correspondence_travel_doc_file;
+        $claim->correspondence_proof_of_expense_file    = $correspondence_proof_of_expense_file;
+        $claim->correspondence_others_file              = $correspondence_others_file;
+        $claim->claim_table_type                        = $claim_table_type;
+        $claim->save();
 
         // create connect
 
