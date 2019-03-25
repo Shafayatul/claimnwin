@@ -15,58 +15,9 @@
         <h2 class="text-center">Lost Luggage</h2>
     </div>
     <form action="">
+
         <!-- ...................................................................
                                   STEP 1 STARTS
-        .................................................................... -->
-        {{-- <div class="single_step" id="step_1">
-
-            <div class="common_row">
-                <div class="form_h3">
-                    <h3>Have you already written to the airline</h3>
-                </div>
-                <div class="parent_div">
-                    <div class="two_child_radio_div first_child">
-                        <label class="container_radio">Yes
-                            <input class="common_input" type="radio" id="common_input already_written_airline_yes" name="already_written_airline" value="1">
-                            <span class="checkmark"></span>
-                        </label>
-                    </div>
-                    <div class="two_child_radio_div">
-                        <label class="container_radio">No
-                            <input class="common_input" type="radio" id="common_input already_written_airline_no" name="already_written_airline" value="2">
-                            <span class="checkmark"></span>
-                        </label>
-                    </div>
-                </div>
-            </div>
-
-            <div class="common_row" id="written_airline_connection">
-                <div class="form_h3">
-                    <h3>What date did you write to the airline?</h3>
-                </div>
-                <div class="parent_div">
-                    <div class="child_div">
-                        <input type="text" name="written_airline_date" class="common_input date" id="common_input datepicker written_airline_date" placeholder="e.g. London or LHR">
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="common_row">
-                <div class="parent_div">
-                    <div class="single_button_child_div">
-                        <button type="button" class="continue_button" id="continue_1" name="button">Continue <i class="fas fa-arrow-right"></i></button>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
-
-        <!-- ...................................................................
-                                 STEP 1 ENDS
-       .................................................................... -->
-
-        <!-- ...................................................................
-                                  STEP 1 STARTS NEW
         .................................................................... -->
         <div class="single_step" id="step_1">
 
@@ -464,7 +415,7 @@
                             <tbody>
                                 <tr>
                                     <td class="align-middle">Clothing
-                                      <input type="hidden" value="accommodation" class="common_input expense_name" id="common_input expense_name" name="expense_name[]">
+                                        <input type="hidden" value="accommodation" class="common_input expense_name" id="common_input expense_name" name="expense_name[]">
                                     </td>
                                     <td class="align-middle">
                                         <div class="row">
@@ -494,7 +445,7 @@
                                 </tr>
                                 <tr>
                                     <td class="align-baseline">Toiletries
-                                      <input type="hidden" value="accommodation" class="common_input expense_name" id="common_input expense_name" name="expense_name[]">
+                                        <input type="hidden" value="accommodation" class="common_input expense_name" id="common_input expense_name" name="expense_name[]">
                                     </td>
                                     <td>
                                         <div class="row">
@@ -524,7 +475,7 @@
                                 </tr>
                                 <tr>
                                     <td class="align-baseline">Others
-                                      <input type="hidden" value="accommodation" class="common_input expense_name" id="common_input expense_name" name="expense_name[]">
+                                        <input type="hidden" value="accommodation" class="common_input expense_name" id="common_input expense_name" name="expense_name[]">
                                     </td>
                                     <td>
                                         <div class="row">
@@ -591,7 +542,7 @@
                             <tr>
                                 <th scope="col">Expense</th>
                                 <td class="align-baseline">Clothing
-                                  <input type="hidden" value="accommodation" class="common_input expense_name" id="common_input expense_name" name="expense_name[]">
+                                    <input type="hidden" value="accommodation" class="common_input expense_name" id="common_input expense_name" name="expense_name[]">
                                 </td>
                             </tr>
                             <tr>
@@ -628,7 +579,7 @@
                             <tr>
                                 <th scope="col">Expense</th>
                                 <td class="align-baseline">Toiletries
-                                  <input type="hidden" value="accommodation" class="common_input expense_name" id="common_input expense_name" name="expense_name[]">
+                                    <input type="hidden" value="accommodation" class="common_input expense_name" id="common_input expense_name" name="expense_name[]">
                                 </td>
                             </tr>
                             <tr>
@@ -665,7 +616,7 @@
                             <tr>
                                 <th scope="col">Expense</th>
                                 <td class="align-baseline">Others
-                                  <input type="hidden" value="accommodation" class="common_input expense_name" id="common_input expense_name" name="expense_name[]">
+                                    <input type="hidden" value="accommodation" class="common_input expense_name" id="common_input expense_name" name="expense_name[]">
                                 </td>
                             </tr>
                             <tr>
@@ -726,194 +677,163 @@
 
 
             <div class="common_row">
-              <div class="form_h3">
-                <h3>Sign permission to handle claim</h3>
-              </div>
-              <div class="parent_div">
-                <div class="form-check">
-        					<label>
-        						<input type="checkbox" name="is_signed_permission"> <span class="label-text">Write your signature below as it appears on your ID. It's required by airlines to collect the compensation for you. By signing you agree with the Assignment Form and Price List</span>
-        					</label>
-        				</div>
-              </div>
-            </div>
-
-                <div class="common_row">
-                    <div class="total_button_div">
-                        <div class="two_button_child_div_left">
-                            <div class="continue_button_div">
-                                <button type="button" class="continue_button" id="continue_6" name="button">Continue <i class="fas fa-arrow-right"></i></button>
-                            </div>
-                        </div>
-                        <div class="two_button_child_div_right">
-                            <div class="previous_button_div">
-                                <button type="button" class="previous_button pull-left" id="previous_button" name="button">Previous <i class="fas fa-arrow-left"></i></button>
-                            </div>
-                        </div>
+                <div class="form_h3">
+                    <h3>Sign permission to handle claim</h3>
+                </div>
+                <div class="parent_div">
+                    <div class="form-check">
+                        <label>
+                            <input type="checkbox" name="is_signed_permission"> <span class="label-text">Write your signature below as it appears on your ID. It's required by airlines to collect the compensation for you. By signing you agree with
+                                the Assignment Form and Price List</span>
+                        </label>
                     </div>
                 </div>
             </div>
 
-            <!-- ...................................................................
+            <div class="common_row">
+                <div class="total_button_div">
+                    <div class="two_button_child_div_left">
+                        <div class="continue_button_div">
+                            <button type="button" class="continue_button" id="continue_6" name="button">Continue <i class="fas fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+                    <div class="two_button_child_div_right">
+                        <div class="previous_button_div">
+                            <button type="button" class="previous_button pull-left" id="previous_button" name="button">Previous <i class="fas fa-arrow-left"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ...................................................................
                                   STEP 6 ENDS
         .................................................................... -->
-            <!-- ...................................................................
+        <!-- ...................................................................
                                   STEP 7 STARTS
         .................................................................... -->
 
-            <div class="single_step" id="step_7" style="display:none;">
-                <div class="common_row">
-                    <div class="form_h3">
-                        <h3>Optional: Additional information</h3>
-                    </div>
-                    <div class="form_h4">
-                        <h4>If we gather more information, we can handle your claim faster.</h4>
-                    </div>
-                    <div class="select_reason_class">
-                        <select class="form-control custom_select" class="hear_from_where">
-                            <option hidden>Open this select menu</option>
-                            <option value="1">Google</option>
-                            <option value="2">Friends</option>
-                            <option value="3">Social media</option>
-                            <option value="4">Tv</option>
-                            <option value="5">Article or blog</option>
-                            <option value="6">Others</option>
-                        </select>
-                    </div>
+        <div class="single_step" id="step_7" style="display:none;">
+            <div class="common_row">
+                <div class="form_h3">
+                    <h3>Optional: Additional information</h3>
                 </div>
-
-                {{-- <div class="common_row">
-                    <div class="form_h4">
-                        <h4>Have you contacted the airline regarding this claim?</h4>
-                    </div>
-                    <div class="parent_div">
-                        <div class="two_child_radio_div first_child">
-                            <label class="container_radio">Yes
-                                <input class="common_input" type="radio" id="common_input is_contacted_airline_yes" name="is_contacted_airline" value="1">
-                                <span class="checkmark"></span>
-                            </label>
-                        </div>
-                        <div class="two_child_radio_div">
-                            <label class="container_radio">No
-                                <input class="common_input" type="radio" id="common_input is_contacted_airline_no" name="is_contacted_airline" value="2">
-                                <span class="checkmark"></span>
-                            </label>
-                        </div>
-                    </div>
-                </div> --}}
-
-                {{-- <div class="common_row show_if_contacted_airline">
-            <div class="parent_div">
-              <div class="form_h4">
-                <h4>Please upload all correspondence</h4>
-              </div>
-              <div class="form-group">
-                <input type="file" class="form-control-file" id="exampleFormControlFile1">
-              </div>
+                <div class="form_h4">
+                    <h4>If we gather more information, we can handle your claim faster.</h4>
+                </div>
+                <div class="select_reason_class">
+                    <select class="form-control custom_select" class="hear_from_where">
+                        <option hidden>Open this select menu</option>
+                        <option value="1">Google</option>
+                        <option value="2">Friends</option>
+                        <option value="3">Social media</option>
+                        <option value="4">Tv</option>
+                        <option value="5">Article or blog</option>
+                        <option value="6">Others</option>
+                    </select>
+                </div>
             </div>
-          </div> --}}
 
-                <div class="common_row">
-                    <div class="form_h3">
-                        <h3>Tell us what happened</h3>
-                    </div>
-                    <div class="form_h4">
-                        <h4>Please provide any information that may help us process your claim quickly.</h4>
-                    </div>
-                    <div class="parent_div">
-                        <div class="form-group">
-                            <textarea class="form-control" rows="5" id="comment" name="text" placeholder="Additional Information"></textarea>
-                        </div>
+            <div class="common_row">
+                <div class="form_h3">
+                    <h3>Tell us what happened</h3>
+                </div>
+                <div class="form_h4">
+                    <h4>Please provide any information that may help us process your claim quickly.</h4>
+                </div>
+                <div class="parent_div">
+                    <div class="form-group">
+                        <textarea class="form-control" rows="5" id="comment" name="text" placeholder="Additional Information"></textarea>
                     </div>
                 </div>
-
-                <div class="common_row show_if_contacted_airline">
-                    <div class="document_submit_div">
-                        <div class="row">
-                            <div class="col-md-8">ID copies, including travel companions’ if applicable</div>
-                            <div class="col-md-4">
-                                <div class="input-file-container col-centered">
-                                    <input class="input-file" id="my-file-0" type="file" name="correspondence_ids_file">
-                                    <label tabindex="0" for="my-file" class="input-file-trigger" id="input-file-trigger-0">Select a file...</label>
-                                </div>
-                                <p class="file-return" id="file-return-0"></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="document_submit_div">
-                        <div class="row">
-                            <div class="col-md-8">Travel documents (reservation, ticket or boarding passes)</div>
-                            <div class="col-md-4">
-                                <div class="input-file-container col-centered">
-                                    <input class="input-file" id="my-file-1" type="file" name="correspondence_travel_doc_file">
-                                    <label tabindex="0" for="my-file" class="input-file-trigger" id="input-file-trigger-1">Select a file...</label>
-                                </div>
-                                <p class="file-return" id="file-return-1"></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="document_submit_div">
-                        <div class="row">
-                            <div class="col-md-8">Proof of expenses (store/online receipts, detailed bank statements) if applicable</div>
-                            <div class="col-md-4">
-                                <div class="input-file-container col-centered">
-                                    <input class="input-file" id="my-file-2" type="file" name="correspondence_proof_of_expense_file">
-                                    <label tabindex="0" for="my-file" class="input-file-trigger" id="input-file-trigger-2">Select a file...</label>
-                                </div>
-                                <p class="file-return" id="file-return-2"></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="document_submit_div">
-                        <div class="row">
-                            <div class="col-md-8">Property irregularity report (received in the airport when reporting missing baggage)</div>
-                            <div class="col-md-4">
-                                <div class="input-file-container col-centered">
-                                    <input class="input-file" id="my-file-4" type="file" name="correspondence_property_irregularity_report">
-                                    <label tabindex="0" for="my-file" class="input-file-trigger" id="input-file-trigger-4">Select a file...</label>
-                                </div>
-                                <p class="file-return" id="file-return-4"></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="document_submit_div">
-                        <div class="row">
-                            <div class="col-md-8">Other</div>
-                            <div class="col-md-4">
-                                <div class="input-file-container col-centered">
-                                    <input class="input-file" id="my-file-3" type="file" name="correspondence_others_file">
-                                    <label tabindex="0" for="my-file" class="input-file-trigger" id="input-file-trigger-3">Select a file...</label>
-                                </div>
-                                <p class="file-return" id="file-return-3"></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="common_row">
-                    <div class="total_button_div">
-                        <div class="two_button_child_div_left">
-                            <div class="continue_button_div">
-                                <button type="button" class="continue_button" id="continue_7" name="button">Continue <i class="fas fa-arrow-right"></i></button>
-                            </div>
-                        </div>
-                        <div class="two_button_child_div_right">
-                            <div class="previous_button_div">
-                                <button type="button" class="previous_button pull-left" id="previous_button" name="button">Previous <i class="fas fa-arrow-left"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
             </div>
-            <!-- ...................................................................
+
+            <div class="common_row show_if_contacted_airline">
+                <div class="document_submit_div">
+                    <div class="row">
+                        <div class="col-md-8">ID copies, including travel companions’ if applicable</div>
+                        <div class="col-md-4">
+                            <div class="input-file-container col-centered">
+                                <input class="input-file" id="my-file-0" type="file" name="correspondence_ids_file">
+                                <label tabindex="0" for="my-file" class="input-file-trigger" id="input-file-trigger-0">Select a file...</label>
+                            </div>
+                            <p class="file-return" id="file-return-0"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="document_submit_div">
+                    <div class="row">
+                        <div class="col-md-8">Travel documents (reservation, ticket or boarding passes)</div>
+                        <div class="col-md-4">
+                            <div class="input-file-container col-centered">
+                                <input class="input-file" id="my-file-1" type="file" name="correspondence_travel_doc_file">
+                                <label tabindex="0" for="my-file" class="input-file-trigger" id="input-file-trigger-1">Select a file...</label>
+                            </div>
+                            <p class="file-return" id="file-return-1"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="document_submit_div">
+                    <div class="row">
+                        <div class="col-md-8">Proof of expenses (store/online receipts, detailed bank statements) if applicable</div>
+                        <div class="col-md-4">
+                            <div class="input-file-container col-centered">
+                                <input class="input-file" id="my-file-2" type="file" name="correspondence_proof_of_expense_file">
+                                <label tabindex="0" for="my-file" class="input-file-trigger" id="input-file-trigger-2">Select a file...</label>
+                            </div>
+                            <p class="file-return" id="file-return-2"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="document_submit_div">
+                    <div class="row">
+                        <div class="col-md-8">Property irregularity report (received in the airport when reporting missing baggage)</div>
+                        <div class="col-md-4">
+                            <div class="input-file-container col-centered">
+                                <input class="input-file" id="my-file-4" type="file" name="correspondence_property_irregularity_report">
+                                <label tabindex="0" for="my-file" class="input-file-trigger" id="input-file-trigger-4">Select a file...</label>
+                            </div>
+                            <p class="file-return" id="file-return-4"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="document_submit_div">
+                    <div class="row">
+                        <div class="col-md-8">Other</div>
+                        <div class="col-md-4">
+                            <div class="input-file-container col-centered">
+                                <input class="input-file" id="my-file-3" type="file" name="correspondence_others_file">
+                                <label tabindex="0" for="my-file" class="input-file-trigger" id="input-file-trigger-3">Select a file...</label>
+                            </div>
+                            <p class="file-return" id="file-return-3"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="common_row">
+                <div class="total_button_div">
+                    <div class="two_button_child_div_left">
+                        <div class="continue_button_div">
+                            <button type="button" class="continue_button" id="continue_7" name="button">Continue <i class="fas fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+                    <div class="two_button_child_div_right">
+                        <div class="previous_button_div">
+                            <button type="button" class="previous_button pull-left" id="previous_button" name="button">Previous <i class="fas fa-arrow-left"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- ...................................................................
                                   STEP 7 ENDS
         .................................................................... -->
     </form>
 </div>
 
 @endsection
-
 
 @section('footer-script')
 {{-- <script src="h ttps://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> --}}
@@ -922,17 +842,5 @@
 <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
 <script src="{{('front_asset/claim/lost_luggage/js/custom.js')}}"></script>
-{{-- <script>
-    $(document).ready(function() {
-      var date_input = $('.date'); //our date input has the name "date"
-      var options = {
-        format: 'mm/dd/yyyy',
-        endDate: '+0d',
-        todayHighlight: true,
-        autoclose: true,
-      };
-      date_input.datepicker(options);
-    })
-  </script> --}}
 
 @endsection
