@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -48,6 +50,9 @@ Route::resource('currency', 'CurrencyController');
 Route::resource('bank-accounts', 'BankAccountsController');
 
 Route::resource('reminders', 'RemindersController');
+Route::post('/reminder-create', 'RemindersController@store')->name('reminder-create');
+Route::post('/update-reminder', 'RemindersController@update')->name('update-reminder');
+Route::delete('/reminders-delete/{id}','RemindersController@destroy');
 
 Route::get('socialauth/{provider}','SocialAuthController@redirectToProvider');
 Route::get('socialauth/{provider}/callback','SocialAuthController@handleProviderCallback');
@@ -74,4 +79,14 @@ Route::resource('next-step', 'NextStepController');
 Route::resource('settings', 'SettingsController');
 
 Route::get('/manage-claim', 'ClaimBackController@index');
-Route::get('/claim-view', 'ClaimBackController@claimView');
+Route::get('/claim-view/{id}', 'ClaimBackController@claimView');
+Route::get('/manage-unfinished-claim', 'ClaimBackController@manageUnfinishedClaim');
+Route::get('/unfinished-claim-view', 'ClaimBackController@unfinishedClaimView');
+Route::get('/manage-fills-claim', 'ClaimBackController@manageFillsClaim');
+Route::get('/fills-claim-view', 'ClaimBackController@fillsClaimView');
+
+Route::resource('notes', 'NotesController');
+Route::post('/save-note', 'NotesController@store')->name('save-note');
+
+Route::resource('tickets', 'TicketsController');
+Route::resource('ticket-notes', 'TicketNotesController');

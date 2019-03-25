@@ -16,7 +16,7 @@
                             <div class="panel bg-dark ">
                                 <div class="panel-heading cus_pan_heading">
                                     <p class="text-center">Claim Id</p>
-                                    <h5 class="text-center">100276</h5>
+                                <h5 class="text-center">{{$claim->id}}</h5>
                                 </div>
                             </div>
                         </div>
@@ -24,7 +24,7 @@
                             <div class="panel" style="background-color: #4894a5;">
                                 <div class="panel-heading cus_pan_heading">
                                     <p class="text-center">Passenger</p>
-                                    <h5 class="text-center">Dipto Shome</h5>
+                                    <h5 class="text-center">{{$claim->first_name.' '.$claim->last_name}}</h5>
                                 </div>
                             </div>
                         </div>
@@ -32,7 +32,7 @@
                             <div class="panel" style="background-color: #006057;">
                                 <div class="panel-heading cus_pan_heading">
                                     <p class="text-center">Airline</p>
-                                    <h5 class="text-center">Norwegian</h5>
+                                    <h5 class="text-center">{{$claim->airline}}</h5>
                                 </div>
                             </div>
                         </div>
@@ -56,7 +56,7 @@
                             <div class="panel" style="background-color: #486f84;">
                                 <div class="panel-heading cus_pan_heading">
                                     <p class="text-center">Claim Category</p>
-                                    <h5 class="text-center">Delay</h5>
+                                <h5 class="text-center">{{$claim->claim_table_type}}</h5>
                                 </div>
                             </div>
                         </div>
@@ -69,6 +69,7 @@
                                     <li role="presentation"><a href="#messaging" role="tab" id="messaging-tab" data-toggle="tab" aria-controls="messaging" aria-expanded="true"><i class="fa fa-envelope" aria-hidden="true"></i> Messaging</a></li>
                                     <li role="presentation"><a href="#airline_response" role="tab" id="airline_response-tab" data-toggle="tab" aria-controls="airline_response" aria-expanded="true"><i class="fa fa-info-circle" aria-hidden="true"></i> Airline Response</a></li>
                                     <li role="presentation"><a href="#customer_final_comm" role="tab" id="customer_final_comm-tab" data-toggle="tab" aria-controls="customer_final_comm" aria-expanded="true"><i class="fa fa-info-circle" aria-hidden="true"></i> Customer Final Comments</a></li>
+                                    <li role="presentation"><a href="#reminder" role="tab" id="reminder-tab" data-toggle="tab" aria-controls="reminder" aria-expanded="true"><i class="fa fa-bell" aria-hidden="true"></i> Reminders</a></li>
 
                                 </ul>
                                 <div id="myTabContent" class="tab-content">
@@ -112,7 +113,7 @@
                                                                                 <tbody>
                                                                                     <tr class="odd gradeX">
                                                                                         <th>Claim ID</th>
-                                                                                        <td>#000370</td>
+                                                                                    <td>{{$claim->id}}</td>
                                                                                     </tr>
                                                                                     <tr class="odd gradeX">
                                                                                         <th>Passenger Representative</th>
@@ -120,7 +121,7 @@
                                                                                     </tr>
                                                                                     <tr class="odd gradeX">
                                                                                         <th>Passenger Full Name</th>
-                                                                                        <td>Dipto Shome</td>
+                                                                                        <td>{{$claim->first_name.' '.$claim->last_name}}</td>
                                                                                     </tr>
                                                                                     <tr class="odd gradeX">
                                                                                         <th>Passenger Tel</th>
@@ -128,43 +129,43 @@
                                                                                     </tr>
                                                                                     <tr class="odd gradeX">
                                                                                         <th>Passenger Email</th>
-                                                                                        <td></td>
+                                                                                        <td>{{$claim->email}}</td>
                                                                                     </tr>
                                                                                     <tr class="odd gradeX">
                                                                                         <th>Passenger Address</th>
-                                                                                        <td>..</td>
+                                                                                        <td>{{$claim->address}}</td>
                                                                                     </tr>
                                                                                     <tr class="odd gradeX">
                                                                                         <th>Claim Referance Number</th>
-                                                                                        <td>190101-000744</td>
+                                                                                    <td>{{$claim->booking_refernece}}</td>
                                                                                     </tr>
                                                                                     <tr class="odd gradeX">
                                                                                         <th>Claim Create Date</th>
-                                                                                        <td>22/03/2019</td>
+                                                                                    <td>{{Carbon\Carbon::parse($claim->created_at)->format('d-m-Y')}}</td>
                                                                                     </tr>
                                                                                     <tr class="odd gradeX">
                                                                                         <th>Next Action Date</th>
-                                                                                        <td>22/07/2019</td>
+                                                                                        <td>{{Carbon\Carbon::parse()->format('d-m-Y')}}</td>
                                                                                     </tr>
                                                                                     <tr class="odd gradeX">
                                                                                         <th>Member Name</th>
-                                                                                        <td>Norwegian</td>
+                                                                                        <td></td>
                                                                                     </tr>
                                                                                     <tr class="odd gradeX">
                                                                                         <th>Claim Status</th>
-                                                                                        <td>Determination Started</td>
+                                                                                        <td></td>
                                                                                     </tr>
                                                                                     <tr class="odd gradeX">
                                                                                         <th>Claim With</th>
-                                                                                        <td>AD</td>
+                                                                                        <td></td>
                                                                                     </tr>
                                                                                     <tr class="odd gradeX">
                                                                                         <th>Claim Type</th>
-                                                                                        <td>Delay</td>
+                                                                                        <td>{{$claim->claim_table_type}}</td>
                                                                                     </tr>
                                                                                     <tr class="odd gradeX">
                                                                                         <th>Legacy Case</th>
-                                                                                        <td>No</td>
+                                                                                        <td></td>
                                                                                     </tr>
                                                                                     <tr class="odd gradeX">
                                                                                         <th>Claim Closed Date</th>
@@ -172,11 +173,11 @@
                                                                                     </tr>
                                                                                     <tr class="odd gradeX">
                                                                                         <th>Claim Summary</th>
-                                                                                        <td>I am seeking 600.00 Euro compensation per passenger under EC Regulation 261/2004.</td>
+                                                                                        <td></td>
                                                                                     </tr>
                                                                                     <tr class="odd gradeX">
                                                                                         <th>Claim Outcome</th>
-                                                                                        <td>1200.00 Euro</td>
+                                                                                        <td></td>
                                                                                     </tr>
                                                                                 </tbody>
                                                                             </table>
@@ -202,47 +203,47 @@
                                                                             <tbody>
                                                                                 <tr class="odd gradeX">
                                                                                     <th>Claim ID</th>
-                                                                                    <td>#000370</td>
+                                                                                <td>{{$claim->id}}</td>
                                                                                 </tr>
                                                                                 <tr class="odd gradeX">
                                                                                     <th>Date Of Disrupted</th>
-                                                                                    <td>00/00/0000</td>
+                                                                                <td>{{$claim->departure_date}}</td>
                                                                                 </tr>
                                                                                 <tr class="odd gradeX">
                                                                                     <th>Scheduled Date & Time Of Departure</th>
-                                                                                    <td>14/08/2018 17:05</td>
+                                                                                    <td></td>
                                                                                 </tr>
                                                                                 <tr class="odd gradeX">
                                                                                     <th>Airline</th>
-                                                                                    <td>Norwegian</td>
+                                                                                <td>{{$claim->airline}}</td>
                                                                                 </tr>
                                                                                 <tr class="odd gradeX">
                                                                                     <th>Number Of Flight Journey</th>
-                                                                                    <td>1</td>
+                                                                                <td>{{$flightCount}}</td>
                                                                                 </tr>
                                                                                 <tr class="odd gradeX">
                                                                                     <th>Departure Airport</th>
-                                                                                    <td>London Gatwick Airport - United Kingdom</td>
+                                                                                    <td>{{$claim->departed_from_id}}</td>
                                                                                 </tr>
                                                                                 <tr class="odd gradeX">
                                                                                     <th>Destination Airport</th>
-                                                                                    <td>John F.Kennedy International Airport - United States</td>
+                                                                                    <td>{{$claim->final_destination_id}}</td>
                                                                                 </tr>
                                                                                 <tr class="odd gradeX">
                                                                                     <th>Flight Number</th>
-                                                                                    <td>DI 7015</td>
+                                                                                <td>{{$claim->airline.' '.$claim->flight_number}}</td>
                                                                                 </tr>
                                                                                 <tr class="odd gradeX">
                                                                                     <th>Booking Ref</th>
-                                                                                    <td>PIJAY5</td>
+                                                                                    <td>{{$claim->booking_refernece}}</td>
                                                                                 </tr>
                                                                                 <tr class="odd gradeX">
                                                                                     <th>Scheduled Date & Time Of Departure</th>
-                                                                                    <td>14/08/2018 20:05</td>
+                                                                                    <td></td>
                                                                                 </tr>
                                                                                 <tr class="odd gradeX">
                                                                                     <th>Actual Date & Time Of Arrival</th>
-                                                                                    <td>15/08/2018 00:05</td>
+                                                                                    <td></td>
                                                                                 </tr>
                                                                             </tbody>
                                                                         </table>
@@ -268,43 +269,43 @@
                                                                             <tbody>
                                                                                 <tr class="odd gradeX">
                                                                                     <th>What reason was given for the delay</th>
-                                                                                    <td>Security issues</td>
+                                                                                <td>{{$claim->reason}}</td>
                                                                                 </tr>
                                                                                 <tr class="odd gradeX">
                                                                                     <th>Do you dispute the reason</th>
-                                                                                    <td>No</td>
+                                                                                    <td></td>
                                                                                 </tr>
                                                                                 <tr class="odd gradeX">
                                                                                     <th>Refreshments</th>
-                                                                                    <td>No</td>
+                                                                                <td>{{$claim->is_obtain_full_reimbursement}}</td>
                                                                                 </tr>
                                                                                 <tr class="odd gradeX">
                                                                                     <th>Telephone Call</th>
-                                                                                    <td>No</td>
+                                                                                    <td></td>
                                                                                 </tr>
                                                                                 <tr class="odd gradeX">
                                                                                     <th>If delayed overnight - Hotel accomodation</th>
-                                                                                    <td>No</td>
+                                                                                    <td></td>
                                                                                 </tr>
                                                                                 <tr class="odd gradeX">
                                                                                     <th>If applicable - transport between the airport and hote</th>
-                                                                                    <td>No</td>
+                                                                                    <td></td>
                                                                                 </tr>
                                                                                 <tr class="odd gradeX">
                                                                                     <th>Did you incur any such expenditure</th>
-                                                                                    <td>No</td>
+                                                                                    <td></td>
                                                                                 </tr>
                                                                                 <tr class="odd gradeX">
                                                                                     <th>Have you received any compensation (money/vouchers) already?</th>
-                                                                                    <td>No</td>
+                                                                                    <td></td>
                                                                                 </tr>
                                                                                 <tr class="odd gradeX">
                                                                                     <th>Number of passengers:</th>
-                                                                                    <td>2</td>
+                                                                                <td>{{$passCount}}</td>
                                                                                 </tr>
                                                                                 <tr class="odd gradeX">
                                                                                     <th>Passengers Name</th>
-                                                                                    <td>Dipto Shome Sajal Kundu</td>
+                                                                                <td>{{$claim->first_name.' '.$claim->last_name}}</td>
                                                                                 </tr>
                                                                             </tbody>
                                                                         </table>
@@ -360,10 +361,42 @@
                                                                                             <td><input type="text" name="" id="" placeholder="Filter"></td>
                                                                                             <td><input type="text" name="" id="" placeholder="Filter"></td>
                                                                                             <td><input type="text" name="" id="" placeholder="Filter"></td>
-                                                                                            <td><input type="text" name="" id="" placeholder="Filter"></td>
-                                                                                            <td><input type="text" name="" id="" placeholder="Filter"></td>
+                                                                                            <td>
+                                                                                                <select name="" id="" class="form-control">
+                                                                                                    <option value="">All</option>
+                                                                                                    <option value="">Lugguage-lost</option>
+                                                                                                    <option value="">Lugguage-damaged</option>
+                                                                                                    <option value="">Fight delay</option>
+                                                                                                </select>
+                                                                                            </td>
+                                                                                            <td>
+                                                                                                <select name="" id="" class="form-control">
+                                                                                                    <option value="">All</option>
+                                                                                                    <option value="">Passenger</option>
+                                                                                                    <option value="">Initial Assessment</option>
+                                                                                                </select>
+                                                                                            </td>
                                                                                             <td><input type="text" name="" id="" placeholder="Filter"></td>
                                                                                             <td></td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td>claim_file_jsagdhsagjd</td>
+                                                                                            <td>14-03-2019</td>
+                                                                                            <td><input type="text" name="" id=""></td>
+                                                                                            <td>pdf</td>
+                                                                                            <td>
+                                                                                                <select name="" id="" class="form-control">
+                                                                                                    <option value="">All</option>
+                                                                                                    <option value="">Lugguage-lost</option>
+                                                                                                    <option value="">Lugguage-damaged</option>
+                                                                                                    <option value="">Fight delay</option>
+                                                                                                </select>
+                                                                                            </td>
+                                                                                            <td>Passenger</td>
+                                                                                            <td>05/03/2019</td>
+                                                                                            <td>
+                                                                                                <input type="checkbox" name="" id="">
+                                                                                            </td>
                                                                                         </tr>
                                                                                     </tbody>
                                                                                 </table>
@@ -375,28 +408,552 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="tab-pane" id="claim_eligib" role="tabpanel">.6..</div>
+                                                    <div class="tab-pane" id="claim_eligib" role="tabpanel">
+                                                        <div class="row">
+                                                            <div class="col-lg-12">
+                                                                <div class="panel panel-default">
+                                                                    <div class="panel-heading">
+                                                                        <i class="fa fa-comments"></i> Claim Eligibility
+                                                                    </div>
+                                                                    <!-- /.panel-heading -->
+                                                                    <div class="panel-body">
+                                                                        <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+
+                                                                            <tbody>
+                                                                                <tr class="odd gradeX">
+                                                                                    <th>Claim ID</th>
+                                                                                <td>{{$claim->id}}</td>
+                                                                                </tr>
+                                                                                <tr class="odd gradeX">
+                                                                                    <th>Have you complained direct to the airline writing?</th>
+                                                                                    <td></td>
+                                                                                </tr>
+                                                                                <tr class="odd gradeX">
+                                                                                    <th>Has the airline provided their final response?</th>
+                                                                                    <td></td>
+                                                                                </tr>
+                                                                                <tr class="odd gradeX">
+                                                                                    <th>What date did you complain to the airline?</th>
+                                                                                    <td></td>
+                                                                                </tr>
+                                                                                <tr class="odd gradeX">
+                                                                                    <th>Did they reject your complain?</th>
+                                                                                    <td></td>
+                                                                                </tr>
+                                                                                <tr class="odd gradeX">
+                                                                                    <th>Have you reject the final response?</th>
+                                                                                    <td></td>
+                                                                                </tr>
+                                                                                <tr class="odd gradeX">
+                                                                                    <th>Airline response</th>
+                                                                                    <td></td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                    <!-- /.panel-body -->
+                                                                </div>
+                                                                <!-- /.panel -->
+                                                            </div>
+                                                            <!-- /.col-lg-12 -->
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
 
                                     <div role="tabpanel" class="tab-pane" id="messaging" aria-labelledby="messaging-tab">
-                                        <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid.
-                                            Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee.
-                                            Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia yr, vero magna velit sapiente labore stumptown.
-                                            Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel.
-                                            Art party scenester stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.
-                                        </p>
+                                        <div class="row">
+
+                                            <div class="col-md-2" style="margin-top: 10px;">
+                                                <h4 class="compose bg-primary">Compose</h4>
+                                                <ul class="nav nav-tabs left_row" id="myTab" role="tablist">
+                                                    <li class="nav-item active">
+                                                        <a class="nav-link active" data-toggle="tab" href="#conversation" role="tab" aria-controls="conversation">Coversation</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" data-toggle="tab" href="#inbox" role="tab" aria-controls="inbox">Inbox</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" data-toggle="tab" href="#sent" role="tab" aria-controls="settings">Sent</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" data-toggle="tab" href="#case_history" role="tab" aria-controls="settings">Case History</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" data-toggle="tab" href="#note_phone" role="tab" aria-controls="settings">Notes & Phone Call</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-md-10" style="margin-top: 10px;">
+                                                <div class="tab-content">
+                                                <!-------------------Conversation----------------------->
+                                                <div class="tab-pane active" id="conversation" role="tabpanel">
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <div class="panel panel-default">
+                                                                {{-- <div class="panel-heading">
+                                                                    <i class="fa fa-comments"></i> Conversation
+                                                                </div> --}}
+                                                                <!-- /.panel-heading -->
+                                                                <div class="panel-body">
+                                                                    <table width="100%" class="table table-striped table-borderless" id="dataTables-example">
+                                                                        <thead>
+                                                                            <th>From</th>
+                                                                            <th>Subject</th>
+                                                                            <th>Message</th>
+                                                                            <th>Date</th>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="width: 330px;">Pre Investigation</td>
+                                                                                <td style="width: 330px;">2 to 3(NP)</td>
+                                                                                <td style="width: 200px; overflow:hidden; word-break:break-all;">
+                                                                                    kjshjkdfshjkhfdkjhbdkjgjkghtfduighfduygfdsjgdfjhudfgjdsfgjhufgjdfsghujgjhgsjhgjhgdf.
+                                                                                </td>
+                                                                                <td>23/03/2019</td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                                <!-- /.panel-body -->
+                                                            </div>
+                                                            <!-- /.panel -->
+                                                        </div>
+                                                        <!-- /.col-lg-12 -->
+                                                    </div>
+                                                </div>
+                                                <!---------------------End Conversation------------------->
+                                                <!---------------------Inbox------------------------------>
+                                                <div class="tab-pane" id="inbox" role="tabpanel">
+
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <div class="panel panel-default">
+                                                                <div class="panel-heading">
+                                                                    <i class="fa fa-comments"></i> Inbox
+                                                                </div>
+                                                                <!-- /.panel-heading -->
+                                                                <div class="panel-body">
+                                                                    <table width="100%" class="table table-striped table-borderless" id="dataTables-example">
+                                                                        <thead>
+                                                                            <th>From</th>
+                                                                            <th>(Role) Message Subject</th>
+                                                                            <th>Received</th>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td><input type="checkbox" name="" id=""> Dipto Shome</td>
+                                                                                <td>2 to 3(NP)</td>
+                                                                                <td>23/03/2019</td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                                <!-- /.panel-body -->
+                                                            </div>
+                                                            <!-- /.panel -->
+                                                        </div>
+                                                        <!-- /.col-lg-12 -->
+                                                    </div>
+                                                </div>
+                                            <!---------------------End Inbox------------------------------>
+                                            <!---------------------Sent------------------------------>
+                                            <div class="tab-pane" id="sent" role="tabpanel">
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <div class="panel panel-default">
+                                                            <div class="panel-heading">
+                                                                <i class="fa fa-comments"></i> Sent
+                                                            </div>
+                                                                <!-- /.panel-heading -->
+                                                            <div class="panel-body">
+                                                                <table width="100%" class="table table-striped table-borderless" id="dataTables-example">
+                                                                    <thead>
+                                                                        <th>To</th>
+                                                                        <th>(Role) Message Subject</th>
+                                                                        <th>Received</th>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td><input type="checkbox" name="" id=""> Dipto Shome</td>
+                                                                            <td>2 to 3(NP)</td>
+                                                                            <td>23/03/2019</td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                                    <!-- /.panel-body -->
+                                                        </div>
+                                                                <!-- /.panel -->
+                                                    </div>
+                                                            <!-- /.col-lg-12 -->
+                                                </div>
+                                            </div>
+                                            <!------------------------------End Sent------------------------->
+                                            <!---------------------Case History------------------------------>
+                                            <div class="tab-pane" id="case_history" role="tabpanel">
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <div class="panel panel-default">
+                                                            <div class="panel-heading">
+                                                                <i class="fa fa-comments"></i> Case History
+                                                            </div>
+                                                                <!-- /.panel-heading -->
+                                                            <div class="panel-body">
+
+                                                            </div>
+                                                                    <!-- /.panel-body -->
+                                                        </div>
+                                                                <!-- /.panel -->
+                                                    </div>
+                                                            <!-- /.col-lg-12 -->
+                                                </div>
+
+                                            </div>
+                                            <!------------------------------End Case History------------------------->
+                                            <!---------------------Note & Phone Call------------------------------>
+                                            <div class="tab-pane" id="note_phone" role="tabpanel">
+                                                        <div class="row">
+                                                            <div class="col-lg-12">
+                                                            <div class="panel panel-default">
+                                                            <div class="panel-heading">
+                                                                <i class="fa fa-comments"></i> Note & Phone Call
+                                                            </div>
+                                                                    <!-- /.panel-heading -->
+                                                            <div class="panel-body">
+                                                                <div class="row">
+                                                                    <div class="col-md-12">
+                                                                    <form action="{{route('save-note')}}" method="post" class="form-horizontal" enctype="multipart/form-data">
+                                                                            {{ csrf_field() }}
+
+                                                                            <div class="form-group">
+                                                                                <label for="note" class="control-label col-md-3">Note:</label>
+                                                                                <div class="col-md-9">
+                                                                                    <textarea name="note" id="note" rows="3" class="form-control" required></textarea>
+                                                                                <input type="hidden" name="claim_id" value="100276">
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="form-group">
+                                                                                <label for="note" class="control-label col-md-3">Select Note Source/Ref.:</label>
+                                                                                <div class="col-md-9">
+                                                                                <select name="note_status" id="note_status" class="form-control">
+                                                                                    <option value="1">Emails From Airline</option>
+                                                                                    <option value="2">Emails From Passenger</option>
+                                                                                    <option value="3">Phone Calls</option>
+                                                                                </select>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="form-group">
+                                                                                <label for="note" class="control-label col-md-3">Airline Referance:</label>
+                                                                                <div class="col-md-9">
+                                                                                <input type="text" name="airline_ref" class="form-control" placeholder="Airline Referance">
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="form-group">
+                                                                                <div class="col-md-6 col-md-offset-3">
+                                                                                    <button type="submit" class="btn btn-primary btn-sm"> Create Note</button>
+                                                                                </div>
+                                                                            </div>
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+                                                                <hr>
+                                                                <div class="row">
+                                                                    <div class="col-md-12">
+
+                                                                            <ul class="timeline">
+                                                                                <li class="time-label"> <span class="bg-red"> 23 Mar 19 </span> </li>
+                                                                                <li> <i class="fa  fa-angle-double-right bg-blue"></i>
+                                                                                <div class="timeline-item"> <span class="time"><i class="fa fa-clock-o"></i> 08:25:55 am</span>
+                                                                                    <h3 class="timeline-header"><a href="#">Admin</a> created a note via <span class="label label-success">Emails From Airline</span></h3>
+                                                                                    <div class="timeline-body"><p><br></p>				   				   </div>
+                                                                                </div>
+                                                                                </li>
+
+                                                                                <li class="time-label"><span class="bg-red"> 28 Jan 19 </span> </li>
+                                                                                <li> <i class="fa  fa-angle-double-right bg-blue"></i>
+                                                                                <div class="timeline-item"> <span class="time"><i class="fa fa-clock-o"></i> 11:17:51 am</span>
+                                                                                    <h3 class="timeline-header"><a href="#">Admin</a> created a note via <span class="label label-success">Emails From Airline</span></h3>
+                                                                                    <div class="timeline-body"><p><br></p></div>
+                                                                                </div>
+                                                                                </li>
+                                                                            </ul>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                                    <!-- /.panel-body -->
+                                                        </div>
+                                                                <!-- /.panel -->
+                                                    </div>
+                                                    <!-- /.col-lg-12 -->
+                                                </div>
+
+                                            </div>
+                                            <!------------------------------End Note & Phone Call------------------------->
+                                            </div>
+                                        </div>
                                     </div>
+                                </div>
                                     <div role="tabpanel" class="tab-pane" id="airline_response" aria-labelledby="airline_response-tab">
-                                        <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid.
-                                        </p>
+
                                     </div>
                                     <div role="tabpanel" class="tab-pane" id="customer_final_comm" aria-labelledby="customer_final_comm-tab">
-                                        <p>
-                                            Food truck fixie locavore,
-                                        </p>
+
+                                    </div>
+                                    <div role="tabpanel" class="tab-pane" id="reminder" aria-labelledby="reminder-tab">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <br>
+                                                    <button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#myModal">Reminder</button>
+                                                    <div id="myModal" class="modal fade" role="dialog">
+                                                    <div class="modal-dialog">
+
+                                                        <!-- Modal content-->
+                                                        <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                            <h4 class="modal-title">Set Reminder</h4>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                        <form action="{{route('reminder-create')}}" method="post">
+                                                                {{ csrf_field() }}
+                                                           <div class="row">
+                                                               <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputEmail1">Reminder Date</label>
+                                                                        <input type="date" name="callback_date" class="form-control" id="exampleInputEmail1"  placeholder="Enter email">
+                                                                        <input type="hidden" name="claim_id" value="100276">
+                                                                    </div>
+                                                               </div>
+
+                                                               <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputEmail1">Reminder Time</label>
+                                                                        <input type="time" name="callback_time" class="form-control" id="exampleInputEmail1"  placeholder="Enter email">
+                                                                    </div>
+                                                               </div>
+
+                                                           </div>
+
+                                                           <div class="row">
+                                                                <div class="col-md-12">
+                                                                     <div class="form-group">
+                                                                         <label for="exampleInputEmail1" class="control-label">Note</label>
+                                                                         <textarea name="note" class="form-control" id="exampleInputEmail1" cols="30" rows="3"></textarea>
+                                                                     </div>
+                                                                </div>
+
+                                                            </div>
+
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <button type="submit" class="btn btn-success">Reminder</button>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                        </div>
+                                                        <div class="modal-footer">
+
+                                                        </div>
+                                                        </div>
+
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="table-responsive">
+                                                        <table class="table table-bordered table-hover ">
+                                                            <thead>
+                                                                <th>CLAIM ID</th>
+                                                                <th>CLAIM STATUS</th>
+                                                                <th>CALL REMINDER</th>
+                                                                <th>SNOOZE</th>
+                                                                <th>STATUS</th>
+                                                                <th>NOTES</th>
+                                                                <th>Action</th>
+                                                            </thead>
+                                                            <tbody>
+                                                                @foreach($reminders as $item)
+                                                                <tr>
+                                                                    <td>{{$item->claim_id}}</td>
+                                                                    <td>claim document sent</td>
+                                                                    <td>{{$item->callback_date.' '.$item->callback_time}}</td>
+                                                                    <td>{{$item->snooze}}</td>
+                                                                    <td>{{$item->status}}</td>
+                                                                    <td>{{$item->note}}</td>
+                                                                    <td>
+                                                                        <a type="button" data-toggle="modal" class="btn btn-sm btn-primary" title="View Reminder" data-target="#reminder-model-{{$item->id}}"><i class="fa fa-eye" aria-hidden="true"></i> View</a>
+                                                                        {{--View modal --}}
+                                                                        <div id="reminder-model-{{$item->id}}" class="modal fade" role="dialog">
+                                                                                <?php
+                                                                                    $claim=DB::table('claims')
+                                                                                    ->join('passengers','claims.id','passengers.claim_id')
+                                                                                    ->join('itinerary_details','claims.id','itinerary_details.claim_id')
+                                                                                    ->where('claims.id',$item->id)
+                                                                                ->first();
+                                                                                $passengers = DB::table('passengers')->where('claim_id',$item->id)->get();
+                                                                                ?>
+                                                                                    <div class="modal-dialog">
+
+                                                                                    <!-- Modal content-->
+                                                                                    <div class="modal-content">
+                                                                                        <div class="modal-header">
+                                                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                                        <a href="#" class="btn btn-sm btn-success">Dismiss</a>
+                                                                                        <a href="#" class="btn btn-sm btn-success">Reschedule</a>
+                                                                                        <a href="#" class="btn btn-sm btn-success">Snooze</a>
+                                                                                        <a href="#" class="btn btn-sm btn-success">Mark as done</a>
+                                                                                        <a href="#" class="btn btn-sm btn-primary">View Claim</a>
+                                                                                        </div>
+                                                                                        <div class="modal-body">
+                                                                                            <div class="row">
+                                                                                                <div class="col-md-12">
+                                                                                                <p style="font-weight:bold;">DEPARTED FROM: <span style="font-weight:normal;">{{$claim->departed_from_id}}</span></p>
+                                                                                                        <p style="font-weight:bold;">FINAL DESTINATION: <span style="font-weight:normal;">{{$claim->final_destination_id}}</span></p>
+                                                                                                        <p style="font-weight:bold;">Did you have any connecting flights?: <span style="font-weight:normal;"></span></p>
+                                                                                                <p style="font-weight:bold;">What happened to the flight?:  <span style="font-weight:normal;">{{$claim->what_happened_to_the_flight}}</span></p>
+                                                                                                        <p style="font-weight:bold;">Date of missed connection:  <span style="font-weight:normal;"></span></p>
+                                                                                                        <p style="font-weight:bold;">Airline:  <span style="font-weight:normal;">{{$claim->airline}}</span></p>
+                                                                                                        <p style="font-weight:bold;">Flight no:  <span style="font-weight:normal;">{{$claim->flight_number}}</span></p>
+                                                                                                        <p style="font-weight:bold;">Departure date:  <span style="font-weight:normal;">{{$claim->departure_date}}</span></p>
+                                                                                                        <hr>
+                                                                                                        <div class="row">
+                                                                                                            <div class="col-md-8">
+                                                                                                                <h4 style="font-weight:bold;">Passenger List</h4>
+                                                                                                                <table class="table table-borderless table-hover">
+                                                                                                                    <thead>
+                                                                                                                        <th style="font-weight:bold;">First Name</th>
+                                                                                                                        <th style="font-weight:bold;">Last Name</th>
+                                                                                                                        <th style="font-weight:bold;">Ticket No</th>
+                                                                                                                    </thead>
+                                                                                                                    <tbody>
+                                                                                                                        @foreach($passengers as $pass)
+                                                                                                                        <tr>
+                                                                                                                            <td>{{$pass->first_name}}</td>
+                                                                                                                            <td>{{$pass->last_name}}</td>
+                                                                                                                            <td></td>
+                                                                                                                        </tr>
+                                                                                                                        @endforeach
+                                                                                                                    </tbody>
+                                                                                                                </table>
+                                                                                                            </div>
+                                                                                                            <div class="col-md-4">
+                                                                                                                <h4 style="font-weight:bold;">Other Documents</h4>
+                                                                                                                <div class="list-group">
+                                                                                                                <a href="#" class="list-group-item">{{$claim->correspondence_others_file}}</a>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                        <p style="font-weight:bold;">Status:  <span style="font-weight:normal;"></span></p>
+                                                                                                        <hr>
+                                                                                                        <p style="font-weight:bold;">DEPARTURE COUNTRY: <span style="font-weight:normal;"></span></p>
+                                                                                                        <p style="font-weight:bold;">ARRIVAL COUNTRY: <span style="font-weight:normal;"></span></p>
+                                                                                                        <p style="font-weight:bold;">DEPARTURE CONTINENTS: <span style="font-weight:normal;"></span></p>
+                                                                                                        <p style="font-weight:bold;">ARRIVAL CONTINENTS: <span style="font-weight:normal;"></span></p>
+                                                                                                        <p style="font-weight:bold;">AIRLINE CONTINENTS: <span style="font-weight:normal;"></span></p>
+                                                                                                        <p style="font-weight:bold;">DISTANCE:  <span style="font-weight:normal;"></span></p>
+                                                                                                        <p style="font-weight:bold;">COMPENSATION AMOUNT:  <span style="font-weight:normal;"></span></p>
+
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="modal-footer">
+                                                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                    </div>
+                                                                                </div>
+                                                                        <!--------------------End View Modal-------------------->
+                                                                        <a  type="button" data-toggle="modal" title="Edit Reminder" class="btn btn-sm btn-dark reminder-edit-view" data-target="#reminder-edit-model-{{$item->id}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
+                                                                                <!--------------------Edit Modal-------------------->
+                                                                                <div id="reminder-edit-model-{{$item->id}}" class="modal fade" role="dialog">
+                                                                                        <div class="modal-dialog">
+
+                                                                                            <!-- Modal content-->
+                                                                                            <div class="modal-content">
+                                                                                            <div class="modal-header">
+                                                                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                                                <h4 class="modal-title">Set Reminder</h4>
+                                                                                            </div>
+                                                                                            <div class="modal-body">
+                                                                                            <form action="{{route('update-reminder')}}" method="post">
+                                                                                                    {{ csrf_field() }}
+                                                                                            <div class="row">
+                                                                                                <div class="col-md-6">
+                                                                                                        <div class="form-group">
+                                                                                                            <label for="exampleInputEmail1">Reminder Date</label>
+                                                                                                        <input type="date" name="callback_date" class="form-control" id="exampleInputEmail1" value="{{$item->callback_date}}"  placeholder="Enter email">
+                                                                                                            <input type="hidden" name="id" value="{{$item->id}}">
+                                                                                                        </div>
+                                                                                                </div>
+
+                                                                                                <div class="col-md-6">
+                                                                                                        <div class="form-group">
+                                                                                                            <label for="exampleInputEmail1">Reminder Time</label>
+                                                                                                            <input type="time" name="callback_time" class="form-control" value="{{$item->callback_time}}" id="exampleInputEmail1"  placeholder="Enter email">
+                                                                                                        </div>
+                                                                                                </div>
+
+                                                                                            </div>
+
+                                                                                            <div class="row">
+                                                                                                    <div class="col-md-12">
+                                                                                                        <div class="form-group">
+                                                                                                            <label for="exampleInputEmail1" class="control-label">Note</label>
+                                                                                                        <textarea name="note" class="form-control" id="exampleInputEmail1" cols="30" rows="3">{{$item->note}}</textarea>
+                                                                                                        </div>
+                                                                                                    </div>
+
+                                                                                                </div>
+
+                                                                                                <div class="row">
+                                                                                                    <div class="col-md-12">
+                                                                                                        <button type="submit" class="btn btn-success">Reminder</button>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </form>
+                                                                                            </div>
+                                                                                            <div class="modal-footer">
+
+                                                                                            </div>
+                                                                                            </div>
+
+                                                                                        </div>
+                                                                                        </div>
+                                                                                <!--------------------End Edit Modal----------------->
+
+
+
+
+                                                                                {!! Form::open([
+                                                                                    'method'=>'DELETE',
+                                                                                    'url' => ['/reminders-delete/', $item->id],
+                                                                                    'style' => 'display:inline'
+                                                                                ]) !!}
+                                                                                    {!! Form::button('<i class="fa fa-trash" aria-hidden="true"></i> Delete', array(
+                                                                                            'type' => 'submit',
+                                                                                            'class' => 'btn btn-danger btn-sm',
+                                                                                            'title' => 'Delete Reminder',
+                                                                                            'onclick'=>'return confirm("Confirm delete?")'
+                                                                                    )) !!}
+                                                                                {!! Form::close() !!}                                                                    </td>
+                                                                </tr>
+                                                                @endforeach
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
                                     </div>
                                 </div>
                             </div>
@@ -407,4 +964,9 @@
         </div>
     </div>
 </div>
+{{-- <script>
+$(function() {
+    $('#note').froalaEditor()
+});
+</script> --}}
 @endsection

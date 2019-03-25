@@ -5,11 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\Reminder;
+use App\TicketNote;
 use Illuminate\Http\Request;
-use Auth;
 
-class RemindersController extends Controller
+class TicketNotesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -22,19 +21,14 @@ class RemindersController extends Controller
         $perPage = 25;
 
         if (!empty($keyword)) {
-            $reminders = Reminder::where('user_id', 'LIKE', "%$keyword%")
-                ->orWhere('claim_id', 'LIKE', "%$keyword%")
-                ->orWhere('callback_date', 'LIKE', "%$keyword%")
-                ->orWhere('callback_time', 'LIKE', "%$keyword%")
-                ->orWhere('note', 'LIKE', "%$keyword%")
-                ->orWhere('status', 'LIKE', "%$keyword%")
-                ->orWhere('snooze', 'LIKE', "%$keyword%")
+            $ticketnotes = TicketNote::where('ticket_id', 'LIKE', "%$keyword%")
+                ->orWhere('description', 'LIKE', "%$keyword%")
                 ->latest()->paginate($perPage);
         } else {
-            $reminders = Reminder::latest()->paginate($perPage);
+            $ticketnotes = TicketNote::latest()->paginate($perPage);
         }
 
-        return view('reminders.index', compact('reminders'));
+        return view('ticket-notes.index', compact('ticketnotes'));
     }
 
     /**
@@ -44,7 +38,7 @@ class RemindersController extends Controller
      */
     public function create()
     {
-        return view('reminders.create');
+        return view('ticket-notes.create');
     }
 
     /**
@@ -56,11 +50,12 @@ class RemindersController extends Controller
      */
     public function store(Request $request)
     {
-
+        
         $requestData = $request->all();
-        Reminder::create($requestData + ['user_id' => Auth::user()->id] + ['status' => 'Reminders']);
+        
+        TicketNote::create($requestData);
 
-        return redirect('/claim-view')->with('success', 'Reminder added!');
+        return redirect('ticket-notes')->with('flash_message', 'TicketNote added!');
     }
 
     /**
@@ -72,9 +67,9 @@ class RemindersController extends Controller
      */
     public function show($id)
     {
-        $reminder = Reminder::findOrFail($id);
+        $ticketnote = TicketNote::findOrFail($id);
 
-        return view('reminders.show', compact('reminder'));
+        return view('ticket-notes.show', compact('ticketnote'));
     }
 
     /**
@@ -86,9 +81,9 @@ class RemindersController extends Controller
      */
     public function edit($id)
     {
-        $reminder = Reminder::findOrFail($id);
+        $ticketnote = TicketNote::findOrFail($id);
 
-        return view('reminders.edit', compact('reminder'));
+        return view('ticket-notes.edit', compact('ticketnote'));
     }
 
     /**
@@ -99,15 +94,15 @@ class RemindersController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
-
+        
         $requestData = $request->all();
-        $id = $request->id;
-        $reminder = Reminder::findOrFail($id);
-        $reminder->update($requestData + ['user_id' => Auth::user()->id]);
+        
+        $ticketnote = TicketNote::findOrFail($id);
+        $ticketnote->update($requestData);
 
-        return redirect('reminders')->with('success', 'Reminder updated!');
+        return redirect('ticket-notes')->with('flash_message', 'TicketNote updated!');
     }
 
     /**
@@ -119,8 +114,8 @@ class RemindersController extends Controller
      */
     public function destroy($id)
     {
-        Reminder::destroy($id);
+        TicketNote::destroy($id);
 
-        return redirect('reminders')->with('success', 'Reminder deleted!');
+        return redirect('ticket-notes')->with('flash_message', 'TicketNote deleted!');
     }
 }
