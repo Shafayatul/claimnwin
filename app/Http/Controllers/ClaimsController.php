@@ -7,10 +7,12 @@ use App\Http\Controllers\Controller;
 
 use Hash;
 use App\User;
+use App\ItineraryDetail;
 use App\Claim;
+use App\Connection;
 use App\Airport;
 use App\Airline;
-use App\Connection;
+use App\Expense;
 use Illuminate\Http\Request;
 
 class ClaimsController extends Controller
@@ -42,6 +44,7 @@ class ClaimsController extends Controller
         }
         $airline_object = rtrim($airline_object, ',');
         $airline_object .= ']';
+
 
         return view('frontEnd.claim.missed_connection', compact('airport_object', 'airline_object'));
    }
@@ -142,7 +145,7 @@ class ClaimsController extends Controller
     
     public function store(Request $request)
     {
-        dd($request);
+
         $departed_from_id = $this->get_airport_id_name_and_iata_code($request->departed_from);
         $final_destination_id = $this->get_airport_id_name_and_iata_code($request->final_destination);
 
@@ -178,27 +181,31 @@ class ClaimsController extends Controller
         $rerouted_ticket_currency = $request->ticket_currency_rerouting;
 
         $email = $request->email_address;
+        
 
+        if (isset($request->is_spend_on_accommodation)) {
+            $spend_on_accommodation = $request->is_spend_on_accommodation;
+        }else{
+            $spend_on_accommodation = 'I did not spend anything';
+        }
 
-
-
-
-
-
-
+        $here_from_where = $request->here_from_where;
+        $is_contacted_airline = $request->is_contacted_airline;
+        $what_happened = $request->what_happened;
+        $claim_table_type = $request->claim_table_type;
 
 
 
         // create new user
-        $user = new User();
-        $user->password = Hash::make('the-password-of-choice');
-        $user->email = $email;
-        $user->name = $email;
-        $user->save();
+        // $user = new User();
+        // $user->password = Hash::make('the-password-of-choice');
+        // $user->email = $email;
+        // $user->name = $email;
+        // $user->save();
 
         // create claim
         $claim = new Claim();
-        $claim->user_id                                 = $user->id;
+        $claim->user_id                                 = '2';
         $claim->departed_from_id                        = $departed_from_id;
         $claim->final_destination_id                    = $final_destination_id;
         $claim->is_direct_flight                        = $is_direct_flight;
@@ -214,51 +221,60 @@ class ClaimsController extends Controller
         $claim->rerouted_ticket_currency                = $rerouted_ticket_currency;
         $claim->is_paid_for_rerouting                   = $is_paid_for_rerouting;
 
-        $claim->is_spend_on_accommodation               = $is_spend_on_accommodation;
-        $claim->is_signed_permission                    = $is_signed_permission;
+        $claim->spend_on_accommodation                   = $spend_on_accommodation;
         $claim->here_from_where                         = $here_from_where;
-        $claim->here_from_other                         = $here_from_other;
         $claim->is_contacted_airline                    = $is_contacted_airline;
         $claim->what_happened                           = $what_happened;
-        $claim->correspondence_ids_file                 = $correspondence_ids_file;
-        $claim->correspondence_travel_doc_file          = $correspondence_travel_doc_file;
-        $claim->correspondence_proof_of_expense_file    = $correspondence_proof_of_expense_file;
-        $claim->correspondence_others_file              = $correspondence_others_file;
+
+        $claim->correspondence_ids_file                 = "";
+        $claim->correspondence_travel_doc_file          = "";
+        $claim->correspondence_proof_of_expense_file    = "";
+        $claim->correspondence_others_file              = "";
+
         $claim->claim_table_type                        = $claim_table_type;
         $claim->save();
 
         // create connect
 
+        foreach ($request->connection as $con) {
+            $connection             = new Connection();
+            $connection->claim_id   = $claim->id;
+            $connection->airport_id = $this->get_airport_id_name_and_iata_code($con);
+            $connection->save();
+        }
+
         // create ininerary detail
+        $cnt = 0;
+        foreach ($request->flight_code as $single_flight_code) {
+
+            $itineraryDetail                    = new ItineraryDetail();
+            $itineraryDetail->claim_id          = $claim->id;
+            $itineraryDetail->flight_number     = $request->flight_number[$cnt];
+            $itineraryDetail->departure_date    = $request->departure_date[$cnt];
+            $itineraryDetail->airline_id        = Airline::where('iata_code', $single_flight_code)->first()->id;
+            $itineraryDetail->save();
+
+            $cnt++;
+        }
 
         // create expenses
+        $cnt = 0;
+        foreach ($request->expense_name as $single_expense_name) {
+
+            $expense                    = new Expense();
+            $expense->claim_id          = $claim->id;
+            $expense->name              = $request->expense_name[$cnt];
+            $expense->amount            = $request->expense_price[$cnt];
+            $expense->currency          = $request->expense_currency[$cnt];
+            $expense->is_receipt        = $request->expense_is_receipt[$cnt]; 
+            $expense->save();
+
+            $cnt++;
+        }
 
 
+        echo "done";
 
-        
-// 1. connect table insert
-// "connection" => array:1 [▼
-// 0 => null
-// ]
-
-// 2. demo56_itinerary_details insert
-// "airline" => array:1 [▶]
-// "flight_code" => array:1 [▶]
-// "flight_number" => array:1 [▶]
-// "departure_date" => array:1 [▶]
-
-// 3. demo56_expenses
-// "expense_name" => array:4 [▶]
-// "expense_price" => array:8 [▶]
-// "expense_currency" => array:8 [▶]
-// "is_receipt_accommodation" => "Yes"
-// "is_receipt_transportation" => "Yes"
-// "is_receipt_food" => "Yes"
-// "is_receipt_others" => "Yes"
-// "is_receipt_accommodation_mobile" => "Yes"
-// "is_receipt_transportation_mobile" => "Yes"
-// "is_receipt_food_mobile" => "Yes"
-// "is_receipt_others_mobile" => "Yes"
 
 
         // $requestData = $request->all();

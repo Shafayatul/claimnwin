@@ -438,19 +438,19 @@
               <div class="parent_div">
                 <div class="child_accommodation child_accommodation_first_div">
                   <label class="container_radio label_child_accommodation">I did not spend anything
-                    <input type="radio" class="common_input" id="common_input not_spend" name="is_spend_on_accomodation" value="not_spend">
+                    <input type="radio" class="common_input" id="common_input not_spend" name="is_spend_on_accommodation" value="I did not spend anything">
                     <span class="checkmark"></span>
                   </label>
                 </div>
                 <div class="child_accommodation child_accommodation_second_div">
                   <label class="container_radio label_child_accommodation">I had expenses but I have not kept the invoices
-                    <input type="radio" class="common_input" id="common_input no_invoice" name="is_spend_on_accomodation" value="no_invoice">
+                    <input type="radio" class="common_input" id="common_input no_invoice" name="is_spend_on_accommodation" value="I had expenses but I have not kept the invoices">
                     <span class="checkmark"></span>
                   </label>
                 </div>
                 <div class="child_accommodation child_accommodation_third_div">
                   <label class="container_radio label_child_accommodation">I had expenses and kept the invoices
-                    <input type="radio" class="common_input" id="common_input has_invoice" name="is_spend_on_accomodation" value="has_invoice">
+                    <input type="radio" class="common_input" id="common_input has_invoice" name="is_spend_on_accommodation" value="I had expenses and kept the invoices">
                     <span class="checkmark"></span>
                   </label>
                 </div>
@@ -1015,14 +1015,14 @@
               <h4>If we gather more information, we can handle your claim faster.</h4>
             </div>
             <div class="select_reason_class">
-              <select class="form-control custom_select" class="hear_from_where">
+              <select class="form-control custom_select" class="hear_from_where" name="hear_from_where">
                 <option hidden>Open this select menu</option>
-                <option value="1">Google</option>
-                <option value="2">Friends</option>
-                <option value="3">Social media</option>
-                <option value="4">Tv</option>
-                <option value="5">Article or blog</option>
-                <option value="6">Others</option>
+                <option value="Google">Google</option>
+                <option value="Friends">Friends</option>
+                <option value="Social media">Social media</option>
+                <option value="Tv">Tv</option>
+                <option value="Article or blog">Article or blog</option>
+                <option value="Others">Others</option>
               </select>
             </div>
           </div>
@@ -1040,7 +1040,7 @@
               </div>
               <div class="two_child_radio_div">
                 <label class="container_radio">No
-                  <input class="common_input" type="radio" id="common_input is_contacted_airline_no" name="is_contacted_airline" value="2">
+                  <input class="common_input" type="radio" id="common_input is_contacted_airline_no" name="is_contacted_airline" value="0" checked>
                   <span class="checkmark"></span>
                 </label>
               </div>
@@ -1122,6 +1122,8 @@
               </div>
             </div>
           </div>
+
+          <input type="type" name="claim_table_type" value="missed_connection">
 
           <div class="common_row">
             <div class="total_button_div">
