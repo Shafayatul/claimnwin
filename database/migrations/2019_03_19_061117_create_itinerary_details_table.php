@@ -17,6 +17,7 @@ class CreateItineraryDetailsTable extends Migration
             $table->string('claim_id')->nullable();
             $table->string('airline_id')->nullable();
             $table->string('flight_number')->nullable();
+            $table->string('flight_segment')->nullable();
             $table->string('departure_date')->nullable();
             $table->timestamps();
             });
