@@ -40,7 +40,6 @@ class ClaimsController extends Controller
    public function missed_connection()
    {
 
-        return $this->calculaion(4, 5, 'more_than_8_hours', 'DUB-LON', 5);
 
         $airports = Airport::select('name', 'iata_code')->get()->toArray();
         $airport_object = '[';
@@ -238,6 +237,7 @@ class ClaimsController extends Controller
         $is_contacted_airline = $request->is_contacted_airline;
         $what_happened = $request->what_happened;
         $claim_table_type = $request->claim_table_type;
+        $selected_connection_iata_codes = $request->selected_connection_iata_codes;
 
 
 
@@ -246,7 +246,7 @@ class ClaimsController extends Controller
             [
              'name'             => $email,
              'email'            => $email,
-             'password'         => Hash::make($request->password)
+             'password'         => Hash::make($email)
             ]);
 
 
@@ -256,7 +256,7 @@ class ClaimsController extends Controller
         $claim->departed_from_id                        = $departed_from_id;
         $claim->final_destination_id                    = $final_destination_id;
         $claim->is_direct_flight                        = $is_direct_flight;
-        $claim->selected_connection_iata_codes          = $request->selected_connection_iata_codes;
+        $claim->selected_connection_iata_codes          = $selected_connection_iata_codes;
         $claim->what_happened_to_the_flight             = $what_happened_to_the_flight;
         $claim->total_delay                             = $total_delay;
         $claim->reason                                  = $reason;
@@ -347,15 +347,21 @@ class ClaimsController extends Controller
         }
 
 
-        return $this->calculaion($departed_from_id, $final_destination_id, $total_delay, $selected_connection_iata_codes, $claim_id);
+        $amount = $this->missed_calculaion($departed_from_id, $final_destination_id, $total_delay, $selected_connection_iata_codes, $claim->id);
 
-        return 'Done';
+        // return 'Done';
+        if(auth()->attempt(['email' => $email, 'password' => $email])){
+            // Mail::to($user->email)->send(new Welcome($user));
+            return view('frontEnd.claim.success',compact('amount'));
+        }else{
+          return "not working";
+        }
 
-        // return redirect('claims')->with('flash_message', 'Claim added!');
+        
     }
 
 
-    public function calculaion($departed_from_id, $final_destination_id, $total_delay, $selected_connection_iata_codes, $claim_id){
+    public function missed_calculaion($departed_from_id, $final_destination_id, $total_delay, $selected_connection_iata_codes, $claim_id){
 
         $airline_id = ItineraryDetail::WHERE('claim_id', $claim_id)->WHERE('flight_segment', $selected_connection_iata_codes)->first()->airline_id;
 
@@ -375,7 +381,7 @@ class ClaimsController extends Controller
             if (in_array($final_destination->country, $this->europe_countries)) {
 
                 if ($total_delay == "less_than_3_hours") {
-                  return 'Not eligible for compensation';
+                  return false;
                 }else{
                   if ($distance < 1500) {
                     return '250 EUR';
@@ -392,7 +398,7 @@ class ClaimsController extends Controller
               //Europe Airline
               if (in_array($airline->country, $this->europe_countries)) {
                 if ($total_delay == "less_than_3_hours") {
-                  return 'Not eligible for compensation';
+                  return false;
                 }else{
                   if ($distance < 1500) {
                     return '250 EUR';
@@ -433,7 +439,7 @@ class ClaimsController extends Controller
             }else{
 
               if ($total_delay == "less_than_3_hours") {
-                return 'Not eligible for compensation';
+                return false;
               }else{
                 if ($distance < 1500) {
                   return '250 EUR';
@@ -447,8 +453,8 @@ class ClaimsController extends Controller
             }
 
 
-        // started from israel
-        }elseif ($final_destination->country == "IL") {
+          // started from israel
+          }elseif ($final_destination->country == "IL") {
             // israel to europe
             if (in_array($final_destination->country, $this->europe_countries)) {
               // europe airline
@@ -485,7 +491,7 @@ class ClaimsController extends Controller
                     return '3080 ILS';
                   }
                 }else{
-                  return 'Not eligible for compensation';
+                  return false;
                 }
               }
               
@@ -500,7 +506,7 @@ class ClaimsController extends Controller
                   return '3080 ILS';
                 }
               }else{
-                return 'Not eligible for compensation';
+                return false;
               }
             }
 
@@ -512,7 +518,7 @@ class ClaimsController extends Controller
               // europe airline
               if (in_array($airline->country, $this->europe_countries)) {
                 if ($total_delay == "less_than_3_hours") {
-                  return 'Not eligible for compensation';
+                  return false;
                 }else{
                   if ($distance < 1500) {
                     return '250 EUR';
@@ -523,7 +529,7 @@ class ClaimsController extends Controller
                   }
                 } 
               }else{
-                return 'Not eligible for compensation';
+                return false;
               }
 
             // other country to israel
@@ -537,14 +543,12 @@ class ClaimsController extends Controller
                   return '3080 ILS';
                 }
               }else{
-                return 'Not eligible for compensation';
+                return false;
               }
             }
+          }
+          return false;
         }
-
-
-
-    }
 
     /**
      * Display the specified resource.
