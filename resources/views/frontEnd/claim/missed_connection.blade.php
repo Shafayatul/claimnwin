@@ -898,6 +898,7 @@
                 </div>
               </div>
             </div>
+            <input type="hidden" name="additional_email_address[]" value="none">
           </div>
 
           <div class="common_row">

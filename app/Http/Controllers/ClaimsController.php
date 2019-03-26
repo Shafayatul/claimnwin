@@ -40,9 +40,7 @@ class ClaimsController extends Controller
    public function missed_connection()
    {
 
-        // $country = Countries::getList('en', 'json');
-        // $country=json_decode($country, true);
-        // dd($country);
+        return $this->calculaion(4, 5, 'more_than_8_hours', 'DUB-LON', 5);
 
         $airports = Airport::select('name', 'iata_code')->get()->toArray();
         $airport_object = '[';
@@ -309,7 +307,7 @@ class ClaimsController extends Controller
                 $passenger->address = $request->address[$cnt];
                 $passenger->post_code = $request->post_code[$cnt];
                 $passenger->date_of_birth = $request->date_of_birth[$cnt];
-                $passenger->email = $passenger_email[$cnt];
+                $passenger->email = $passenger_email;
                 $passenger->is_booking_reference = $request->is_booking_reference[$cnt];
                 $passenger->booking_refernece = $request->booking_reference_field_input[$cnt];
                 $passenger->save();
@@ -349,7 +347,7 @@ class ClaimsController extends Controller
         }
 
 
-        // $this->calculaion($departed_from_id, $final_destination_id);
+        return $this->calculaion($departed_from_id, $final_destination_id, $total_delay, $selected_connection_iata_codes, $claim_id);
 
         return 'Done';
 
@@ -357,29 +355,94 @@ class ClaimsController extends Controller
     }
 
 
-    public function calculaion($departed_from_id, $final_destination_id, $total_delay){
+    public function calculaion($departed_from_id, $final_destination_id, $total_delay, $selected_connection_iata_codes, $claim_id){
+
+        $airline_id = ItineraryDetail::WHERE('claim_id', $claim_id)->WHERE('flight_segment', $selected_connection_iata_codes)->first()->airline_id;
+
+        $airline = Airline::WHERE('id', $airline_id)->first();
+
 
         $departed_from = Airport::WHERE('id', $departed_from_id)->first();
         $final_destination = Airport::WHERE('id', $final_destination_id)->first();
 
+
+        $distance = $this->distance($departed_from->latitude, $departed_from->longitude, $final_destination->latitude, $final_destination->longitude, 'K');
+
         // stated from Europe
-        if (in_array($departed_from->country, $europe_countries)) {
+        if (in_array($departed_from->country, $this->europe_countries)) {
 
             // europe to europe
-            if (in_array($final_destination->country, $europe_countries)) {
+            if (in_array($final_destination->country, $this->europe_countries)) {
 
                 if ($total_delay == "less_than_3_hours") {
-                    // *** 
+                  return 'Not eligible for compensation';
                 }else{
-                    // ***
-
-                }
+                  if ($distance < 1500) {
+                    return '250 EUR';
+                  }elseif ($distance <= 3500) {
+                    return '400 EUR';
+                  }else{
+                    return '600 EUR';
+                  }
+                } 
 
             // europe to israel
             }elseif($final_destination->country == "IL"){
 
+              //Europe Airline
+              if (in_array($airline->country, $this->europe_countries)) {
+                if ($total_delay == "less_than_3_hours") {
+                  return 'Not eligible for compensation';
+                }else{
+                  if ($distance < 1500) {
+                    return '250 EUR';
+                  }elseif ($distance <= 3500) {
+                    return '400 EUR';
+                  }else{
+                    return '600 EUR';
+                  }
+                } 
+
+              // non europe airline
+              }else{
+
+                if ($total_delay == "3_to_8_hours") {
+                  if ($distance < 1500) {
+                    return '250 EUR';
+                  }elseif ($distance <= 3500) {
+                    return '400 EUR';
+                  }else{
+                    return '600 EUR';
+                  }
+                }elseif($total_delay == "more_than_8_hours"){
+                  if ($distance < 2000) {
+                    return '1250 ILS';
+                  }elseif ($distance <= 3500) {
+                    return '2000 ILS';
+                  }elseif ($distance <= 4500) {
+                    return '600 EUR';
+                  }else{
+                    return '3080 ILS';
+                  }
+                }
+
+              }
+
+
             // europe to other country
             }else{
+
+              if ($total_delay == "less_than_3_hours") {
+                return 'Not eligible for compensation';
+              }else{
+                if ($distance < 1500) {
+                  return '250 EUR';
+                }elseif ($distance <= 3500) {
+                  return '400 EUR';
+                }else{
+                  return '600 EUR';
+                }
+              } 
 
             }
 
@@ -387,24 +450,95 @@ class ClaimsController extends Controller
         // started from israel
         }elseif ($final_destination->country == "IL") {
             // israel to europe
-            if (in_array($final_destination->country, $europe_countries)) {
-              
-            // israel to europe
-            }else{
+            if (in_array($final_destination->country, $this->europe_countries)) {
+              // europe airline
+              if (in_array($airline->country, $this->europe_countries)) {
 
+                if ($total_delay == "3_to_8_hours") {
+                  if ($distance < 1500) {
+                    return '250 EUR';
+                  }elseif ($distance <= 3500) {
+                    return '400 EUR';
+                  }else{
+                    return '600 EUR';
+                  }
+                }elseif($total_delay == "more_than_8_hours"){
+                  if ($distance < 2000) {
+                    return '1250 ILS';
+                  }elseif ($distance <= 3500) {
+                    return '2000 ILS';
+                  }elseif ($distance <= 4500) {
+                    return '600 EUR';
+                  }else{
+                    return '3080 ILS';
+                  }
+                }
+
+              // israel airline
+              }elseif ($airline->country == "IL") {
+                if ($total_delay == "more_than_8_hours") {
+                  if ($distance < 2000) {
+                    return '1250 ILS';
+                  }elseif ($distance <= 4500) {
+                    return '2000 ILS';
+                  }else{
+                    return '3080 ILS';
+                  }
+                }else{
+                  return 'Not eligible for compensation';
+                }
+              }
+              
+            // israel to other
+            }else{
+              if ($total_delay == "more_than_8_hours") {
+                if ($distance < 2000) {
+                  return '1250 ILS';
+                }elseif ($distance <= 4500) {
+                  return '2000 ILS';
+                }else{
+                  return '3080 ILS';
+                }
+              }else{
+                return 'Not eligible for compensation';
+              }
             }
 
-        // started from other country
-        }else{
+          // started from other country
+          }else{
 
             // other country to europe
-            if (in_array($final_destination->country, $europe_countries)) {
-              
+            if (in_array($final_destination->country, $this->europe_countries)) {
+              // europe airline
+              if (in_array($airline->country, $this->europe_countries)) {
+                if ($total_delay == "less_than_3_hours") {
+                  return 'Not eligible for compensation';
+                }else{
+                  if ($distance < 1500) {
+                    return '250 EUR';
+                  }elseif ($distance <= 3500) {
+                    return '400 EUR';
+                  }else{
+                    return '600 EUR';
+                  }
+                } 
+              }else{
+                return 'Not eligible for compensation';
+              }
 
             // other country to israel
             }elseif($final_destination->country == "IL"){
-
-            
+              if ($total_delay == "more_than_8_hours") {
+                if ($distance < 2000) {
+                  return '1250 ILS';
+                }elseif ($distance <= 4500) {
+                  return '2000 ILS';
+                }else{
+                  return '3080 ILS';
+                }
+              }else{
+                return 'Not eligible for compensation';
+              }
             }
         }
 

@@ -392,6 +392,8 @@ $(document).ready(function(){
       return false;
     }
 
+
+
     $(document).on("change", "input, select, radio", function() {
       check_next_step();
     });
@@ -508,7 +510,9 @@ $(document).ready(function(){
       if($(this).attr("value")=="1") {
           $(".show_on_is_rerouted_no").hide(500);
           $(".show_on_is_obtained_full_reimbursement_no").hide(500);
+          $(".show_on_is_paid_for_rerouting_yes").hide(500);
           $(".accommodation").show(500);
+
       }else if ($(this).attr("value")=="0") {
           $(".show_on_is_rerouted_no").show(500);
           $(".accommodation").hide();
@@ -581,6 +585,7 @@ $(document).ready(function(){
 
     $(document).on("click", ".remove_another_passenger", function() {
      $(this).closest('.total_another_passenger_div').remove();
+     check_next_step();
     });
 
 
