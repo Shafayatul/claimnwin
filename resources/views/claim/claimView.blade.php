@@ -32,7 +32,7 @@
                             <div class="panel" style="background-color: #006057;">
                                 <div class="panel-heading cus_pan_heading">
                                     <p class="text-center">Airline</p>
-                                    <h5 class="text-center">{{$claim->airline}}</h5>
+                                    <h5 class="text-center">{{$claim->name}}</h5>
                                 </div>
                             </div>
                         </div>
@@ -215,7 +215,7 @@
                                                                                 </tr>
                                                                                 <tr class="odd gradeX">
                                                                                     <th>Airline</th>
-                                                                                <td>{{$claim->airline}}</td>
+                                                                                <td>{{$claim->name}}</td>
                                                                                 </tr>
                                                                                 <tr class="odd gradeX">
                                                                                     <th>Number Of Flight Journey</th>
@@ -223,15 +223,15 @@
                                                                                 </tr>
                                                                                 <tr class="odd gradeX">
                                                                                     <th>Departure Airport</th>
-                                                                                    <td>{{$claim->departed_from_id}}</td>
+                                                                                    <td>{{$departed->departed_name}}</td>
                                                                                 </tr>
                                                                                 <tr class="odd gradeX">
                                                                                     <th>Destination Airport</th>
-                                                                                    <td>{{$claim->final_destination_id}}</td>
+                                                                                    <td>{{$final_destination->destination_name}}</td>
                                                                                 </tr>
                                                                                 <tr class="odd gradeX">
                                                                                     <th>Flight Number</th>
-                                                                                <td>{{$claim->airline.' '.$claim->flight_number}}</td>
+                                                                                <td>{{$claim->name.' '.$claim->flight_number}}</td>
                                                                                 </tr>
                                                                                 <tr class="odd gradeX">
                                                                                     <th>Booking Ref</th>
@@ -339,6 +339,7 @@
                                                                         <div class="panel panel-default">
                                                                             <!-- /.panel-heading -->
                                                                             <div class="panel-body">
+                                                                            <a href="{{URL::to('/letter-before-action/'.$claim->id)}}" class="btn btn-success btn-sm">Download Pdf</a>
                                                                                 <div class="table-responsive">
 
 

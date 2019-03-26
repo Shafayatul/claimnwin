@@ -97,3 +97,5 @@ Route::post('/ticket-description', 'TicketNotesController@ticketDescriptionSave'
 Route::get('/close-ticket/{id}', 'TicketsController@closeTicket');
 
 Route::resource('flights', 'FlightsController');
+
+Route::get('/letter-before-action/{id}', 'PdfController@letterBeforeActionView');

@@ -53,16 +53,18 @@
                                                     <br>
                                                     <a href="#"></a>
                                                 </td>
+
                                                 <td>
-                                                        {{$row->departed_from_id}}<br/>
-                                                        {{$row->final_destination_id}}
+                                                        {{$airport[$row->departed_from_id]}}<br/>
+
+                                                        {{$airport[$row->final_destination_id]}}
                                                 </td>
+
                                                 <td>
                                                     {{$row->claim_table_type}}
                                                 </td>
                                                 <td>
-                                                    {{$row->airline}}<br/>
-                                                    {{$row->flight_number}}
+                                                    {{$airline[1]}}
                                                 </td>
                                                 <td>
                                                     <a href="{{url('/claim-view/'.$row->id)}}" class="btn btn-sm btn-primary">Details</a>
