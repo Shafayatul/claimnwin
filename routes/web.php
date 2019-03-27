@@ -21,6 +21,7 @@ Route::get('user/signup','FrontsController@user_signup')->name('user/signup');
 Route::get('/user/login','FrontsController@user_login')->name('user/login');
 
 Route::get('/user-home','UserPanelController@index');
+Route::get('/user-my-claim','UserPanelController@user_my_claim');
 
 
 // claim
