@@ -17,10 +17,10 @@
     </div>
     <div class="row">
         <div class="col-md-6 grid-box1">
-            <div class="form-group {{ $errors->has('scheduled_departure_time') ? 'has-error' : ''}}">
-                {!! Form::label('scheduled_departure_time', 'Scheduled Departure Time', ['class' => 'control-label']) !!}
-                {!! Form::text('scheduled_departure_time', null, ('' == 'required') ? ['class' => 'form-control scheduled_departure_time', 'required' => 'required'] : ['class' => 'form-control scheduled_departure_time']) !!}
-                {!! $errors->first('scheduled_departure_time', '<p class="help-block">:message</p>') !!}
+            <div class="form-group {{ $errors->has('scheduled_departure_time_and_date') ? 'has-error' : ''}}">
+                {!! Form::label('scheduled_departure_time_and_date', 'Scheduled Departure Time', ['class' => 'control-label']) !!}
+                {!! Form::text('scheduled_departure_time_and_date', null, ('' == 'required') ? ['class' => 'form-control datepicker', 'required' => 'required'] : ['class' => 'form-control datepicker']) !!}
+                {!! $errors->first('scheduled_departure_time_and_date', '<p class="help-block">:message</p>') !!}
             </div>
         </div>
         <div class="col-md-6">

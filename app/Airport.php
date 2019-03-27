@@ -25,7 +25,7 @@ class Airport extends Model
      *
      * @var array
      */
-    protected $fillable = ['user_id', 'name', 'iata_code', '3_digit_code', 'country', 'continent', 'sub_continent', 'latitude', 'longitude'];
+    protected $fillable = ['user_id', 'name', 'iata_code', 'icao_code', 'country', 'municipality', 'home_link','wikipedia_link','type', 'latitude', 'longitude'];
 
-    
+
 }
