@@ -114,7 +114,27 @@ class ClaimsController extends Controller
 
    public function delay_luggage()
    {
-       return view('frontEnd.claim.delay_luggage');
+
+        $airports = Airport::select('name', 'iata_code')->get()->toArray();
+        $airport_object = '[';
+        foreach ($airports as $airport) {
+            $airport_object .= "['".$airport['name']."', '".$airport['iata_code']."'],";
+        }
+        $airport_object = rtrim($airport_object, ',');
+        $airport_object .= ']';
+
+        $airlines = Airline::select('name', 'iata_code')->get()->toArray();
+        $airline_object = '[';
+        foreach ($airlines as $airline) {
+            $airline_object .= "['".$airline['name']."', '".$airline['iata_code']."'],";
+        }
+        $airline_object = rtrim($airline_object, ',');
+        $airline_object .= ']';
+
+        $currencies = Currency::pluck('code','id');
+
+
+       return view('frontEnd.claim.delay_luggage', compact('airport_object', 'airline_object', 'currencies'));
    }
 
    public function lost_luggage()
