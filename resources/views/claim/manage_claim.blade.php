@@ -64,7 +64,8 @@
                                                     {{$row->claim_table_type}}
                                                 </td>
                                                 <td>
-                                                    {{$airline[1]}}
+                                                    {{$airline[$claim_and_airline_array[$row->id]['airline_id']]}}
+                                                    {{-- {{$airline[$claim_and_airline_array[$row->id]['airline_id']]}} --}}
                                                 </td>
                                                 <td>
                                                     <a href="{{url('/claim-view/'.$row->id)}}" class="btn btn-sm btn-primary">Details</a>

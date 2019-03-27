@@ -25,7 +25,7 @@ class FlightsController extends Controller
             $flights = Flight::where('user_id', 'LIKE', "%$keyword%")
                 ->orWhere('flight_no', 'LIKE', "%$keyword%")
                 ->orWhere('date', 'LIKE', "%$keyword%")
-                ->orWhere('scheduled_departure_time', 'LIKE', "%$keyword%")
+                ->orWhere('scheduled_departure_time_and_date', 'LIKE', "%$keyword%")
                 ->orWhere('actual_departure_time_and_date', 'LIKE', "%$keyword%")
                 ->orWhere('scheduled_arrival_time_and_date', 'LIKE', "%$keyword%")
                 ->orWhere('actual_arrival_time_and_date', 'LIKE', "%$keyword%")

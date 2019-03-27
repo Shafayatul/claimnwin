@@ -47,7 +47,7 @@
                                 </tr>
                                 <tr>
                                     <th> Scheduled Departure Time </th>
-                                    <td> {{ $flight->scheduled_departure_time }} </td>
+                                    <td> {{ $flight->scheduled_departure_time_and_date }} </td>
                                 </tr>
                                 <tr>
                                     <th> Scheduled Arrival Time And Date </th>
