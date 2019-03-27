@@ -38,6 +38,10 @@
                                         <td> {{ $airline->name }} </td>
                                     </tr>
                                     <tr>
+                                        <th> Alias </th>
+                                        <td> {{ $airline->alias }} </td>
+                                    </tr>
+                                    <tr>
                                         <th> Iata Code </th>
                                         <td> {{ $airline->iata_code }} </td>
                                     </tr>
@@ -52,15 +56,6 @@
                                     <tr>
                                         <th>Phone</th>
                                         <td> {{ $airline->phone }} </td>
-                                    </tr>
-                                    <tr>
-                                        <th> Ability </th>
-                                        <td> {{ $airline->ability }} </td>
-                                    </tr>
-
-                                    <tr>
-                                        <th> Sub Name </th>
-                                        <td> {{ $airline->sub_name }} </td>
                                     </tr>
                                     <tr>
                                         <th> Address 1 </th>

@@ -57,6 +57,8 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Name</th>
+                                    <th>Alias</th>
+                                    <th>Iata Code</th>
                                     <th>Iata Code</th>
                                     <th>Email</th>
                                     <th>Phone</th>
@@ -70,7 +72,9 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $item->name }}</td>
+                                    <td>{{ $item->alias }}</td>
                                     <td>{{ $item->iata_code }}</td>
+                                    <td>{{ $item->icao_code }}</td>
                                     <td>{{ $item->email }}</td>
                                     <td>{{ $item->phone }}</td>
                                     <td>{{ $country[$item->country] }}</td>

@@ -17,10 +17,12 @@ class CreateAirportsTable extends Migration
             $table->string('user_id')->nullable();
             $table->string('name')->nullable();
             $table->string('iata_code')->nullable();
-            $table->string('three_digit_code')->nullable();
+            $table->string('icao_code')->nullable();
+            $table->string('type')->nullable();
             $table->string('country')->nullable();
-            $table->string('continent')->nullable();
-            $table->string('sub_continent')->nullable();
+            $table->string('municipality')->nullable();
+            $table->string('home_link')->nullable();
+            $table->string('wikipedia_link')->nullable();
             $table->string('latitude')->nullable();
             $table->string('longitude')->nullable();
             $table->timestamps();

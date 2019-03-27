@@ -27,12 +27,14 @@ class AirportsController extends Controller
             $airports = Airport::where('user_id', 'LIKE', "%$keyword%")
                 ->orWhere('name', 'LIKE', "%$keyword%")
                 ->orWhere('iata_code', 'LIKE', "%$keyword%")
-                ->orWhere('three_digit_code', 'LIKE', "%$keyword%")
+                ->orWhere('icao_code', 'LIKE', "%$keyword%")
                 ->orWhere('country', 'LIKE', "%$keyword%")
-                ->orWhere('continent', 'LIKE', "%$keyword%")
-                ->orWhere('sub_continent', 'LIKE', "%$keyword%")
+                ->orWhere('municipality', 'LIKE', "%$keyword%")
+                ->orWhere('type', 'LIKE', "%$keyword%")
                 ->orWhere('latitude', 'LIKE', "%$keyword%")
                 ->orWhere('longitude', 'LIKE', "%$keyword%")
+                ->orWhere('home_link', 'LIKE', "%$keyword%")
+                ->orWhere('wikipedia_link', 'LIKE', "%$keyword%")
                 ->latest()->paginate($perPage);
         } else {
             $airports = Airport::latest()->paginate($perPage);

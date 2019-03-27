@@ -20,7 +20,7 @@
                             'url' => ['airports', $airport->id],
                             'style' => 'display:inline'
                         ]) !!}
-                            {!! Form::button('<i class="fa fa-trash-o" aria-hidden="true"></i> Delete', array(
+                            {!! Form::button('<i class="fa fa-trash" aria-hidden="true"></i> Delete', array(
                                     'type' => 'submit',
                                     'class' => 'btn btn-danger btn-sm',
                                     'title' => 'Delete Airport',
@@ -42,20 +42,36 @@
                                         <td> {{ $airport->iata_code }} </td>
                                     </tr>
                                     <tr>
+                                        <th> ICAO Code </th>
+                                        <td> {{ $airport->icao_code }} </td>
+                                    </tr>
+                                    <tr>
                                         <th> Country </th>
                                         <td> {{ $country[$airport->country] }} </td>
                                     </tr>
                                     <tr>
-                                        <th> 3 Digit Code </th>
-                                        <td> {{ $airport->three_digit_code }} </td>
+                                        <th> Muncipility </th>
+                                        <td> {{ $airport->municipality }} </td>
                                     </tr>
                                     <tr>
-                                        <th> Continents </th>
-                                        <td> {{ $airport->continent }} </td>
+                                        <th> Type </th>
+                                        <td> {{ $airport->type }} </td>
                                     </tr>
                                     <tr>
-                                        <th> Sub Continents </th>
-                                        <td> {{ $airport->sub_continent }} </td>
+                                        <th> Longitude </th>
+                                        <td> {{ $airport->longitude }} </td>
+                                    </tr>
+                                    <tr>
+                                        <th> Latitude </th>
+                                        <td> {{ $airport->latitude }} </td>
+                                    </tr>
+                                    <tr>
+                                        <th> Home Link </th>
+                                        <td> {{ $airport->home_link }} </td>
+                                    </tr>
+                                    <tr>
+                                        <th> Wikipedia Link </th>
+                                        <td> {{ $airport->wikipedia_link }} </td>
                                     </tr>
                                 </tbody>
                             </table>
