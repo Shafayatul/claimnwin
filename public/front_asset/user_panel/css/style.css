@@ -16,7 +16,7 @@ margin-bottom: 0;
 border-radius: 0;
 }
 
-/ Add a gray background color and some padding to the footer /
+/* Add a gray background color and some padding to the footer */
 footer {
 border-top: 1px solid #e7e7e7;
 background-color: #f2f2f2;
@@ -83,18 +83,18 @@ border-bottom: 0px;
 }
 
 .left_row li{
-display: block!important;
-float: none!important;
+display: block !important;
+float: none !important;
 }
 
 .cus_pan_heading{
-padding: 0px!important;
-padding-top: 5px!important;
+padding: 0px !important;
+padding-top: 5px !important;
 }
 .cus_pan_heading p{
 background-color: whitesmoke;
 color: red;
-font-weight: unset!important;
+font-weight: unset !important;
 font-size: 11px;
 width: 45%;
 margin-left: 28%;
@@ -203,7 +203,7 @@ color: #929292;
 margin: 10px 0px;
 }
 
-/ TimeLine CSS Starts /
+/* TimeLine CSS Starts */
 
 ul.timeline {
 list-style-type: none;
@@ -237,7 +237,7 @@ height: 20px;
 z-index: 400;
 }
 
-/ TimeLine CSS End /
+/* TimeLine CSS End */
 
 table thead tr th:first-child {
 width: 80%;
@@ -294,7 +294,7 @@ box-shadow: none;
 resize: none; /*remove the resize handle on the bottom right*/
 }
 
-/ TEXTAREA ENDS /
+/* TEXTAREA ENDS */
 
 .input-file-container {
 position: relative;
@@ -343,7 +343,7 @@ font-style: normal;
 font-weight: normal;
 }
 
-/ Useless styles, just for demo styles /
+/* Useless styles, just for demo styles */
 
 
 .txtcenter {
