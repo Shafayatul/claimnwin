@@ -230,22 +230,6 @@
             </div>
 
             <div class="common_row">
-                <div class="form_h3 text-center">
-                    <h3>CONGRATULATIONS!!!</h3>
-                </div>
-                <div class="form_show_message_paragraph">
-                    <p>
-                        Congratulations! you are eligible for a refund of expenses incurred.
-                        You are eligible to a refund of up to 1350 EUR (Show on screen the amount
-                        in the currency converted according to passengers IP) per passenger.
-                    </p>
-                    <p>
-                        In the case of luggage delays, airlines are only required to refund, if proof of purchases are submitted.
-                    </p>
-                </div>
-            </div>
-
-            <div class="common_row">
                 <div class="total_button_div">
                     <div class="two_button_child_div_left">
                         <div class="continue_button_div">
@@ -264,11 +248,52 @@
         <!-- ...................................................................
                                   STEP 4 ENDS
         .................................................................... -->
+
         <!-- ...................................................................
-                                  STEP 5 STARTS
+                                  STEP 5 STARTS NEW
+        .................................................................... -->
+        <div class="single_step" id="step_5" style="display:none;">
+        <div class="common_row">
+            <div class="form_h3 text-center">
+                <h3>CONGRATULATIONS!!!</h3>
+            </div>
+            <div class="form_show_message_paragraph">
+                <p>
+                    Congratulations! you are eligible for a refund of expenses incurred.
+                    You are eligible to a refund of up to 1350 EUR (Show on screen the amount
+                    in the currency converted according to passengers IP) per passenger.
+                </p>
+                <p>
+                    In the case of luggage delays, airlines are only required to refund, if proof of purchases are submitted.
+                </p>
+            </div>
+        </div>
+
+        <div class="common_row">
+            <div class="total_button_div">
+                <div class="two_button_child_div_left">
+                    <div class="continue_button_div">
+                        <button type="button" class="continue_button" id="continue_5" name="button">Continue <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+                <div class="two_button_child_div_right">
+                    <div class="previous_button_div">
+                        <button type="button" class="previous_button pull-left" id="previous_button" name="button">Previous <i class="fas fa-arrow-left"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+
+        <!-- ...................................................................
+                                  STEP 5 ENDS
         .................................................................... -->
 
-        <div class="single_step" id="step_5" style="display:none;">
+        <!-- ...................................................................
+                                  STEP 6 STARTS
+        .................................................................... -->
+
+        <div class="single_step" id="step_6" style="display:none;">
             <div class="common_row">
                 <div class="form_h3">
                     <h3>Passenger details</h3>
@@ -331,13 +356,13 @@
                 <div class="parent_div">
                     <div class="two_child_radio_div first_child">
                         <label class="container_radio">Yes
-                            <input class="common_input passenger_is_booking_checkbox" type="radio" count="1" id="common_input is_booking_reference_yes" name="is_booking_reference" value="is_booking_reference_yes">
+                            <input class="common_input passenger_is_booking_checkbox" type="radio" count="1" id="common_input is_booking_reference_yes" name="is_booking_reference" value="1">
                             <span class="checkmark"></span>
                         </label>
                     </div>
                     <div class="two_child_radio_div">
                         <label class="container_radio">Later
-                            <input class="common_input passenger_is_booking_checkbox" type="radio" count="1" id="common_input is_booking_reference_no" name="is_booking_reference" value="is_booking_reference_no">
+                            <input class="common_input passenger_is_booking_checkbox" type="radio" count="1" id="common_input is_booking_reference_no" name="is_booking_reference" value="0">
                             <span class="checkmark"></span>
                         </label>
                     </div>
@@ -362,15 +387,11 @@
                 </div>
             </div>
 
-
-
-
-
             <div class="common_row">
                 <div class="total_button_div">
                     <div class="two_button_child_div_left">
                         <div class="continue_button_div">
-                            <button type="button" class="continue_button" id="continue_5" name="button">Continue <i class="fas fa-arrow-right"></i></button>
+                            <button type="button" class="continue_button" id="continue_6" name="button">Continue <i class="fas fa-arrow-right"></i></button>
                         </div>
                     </div>
                     <div class="two_button_child_div_right">
@@ -383,14 +404,14 @@
         </div>
 
         <!-- ...................................................................
-                                  STEP 5 ENDS
+                                  STEP 6 ENDS
         .................................................................... -->
 
         <!-- ...................................................................
-                                  STEP 6 STARTS
+                                  STEP 7 STARTS
         .................................................................... -->
 
-        <div class="single_step" id="step_6" style="display:none;">
+        <div class="single_step" id="step_7" style="display:none;">
             <div class="common_row table_show_on_large_screen">
                 <div class="parent_div">
                     <div class="form_h3">
@@ -694,7 +715,7 @@
                 <div class="total_button_div">
                     <div class="two_button_child_div_left">
                         <div class="continue_button_div">
-                            <button type="button" class="continue_button" id="continue_6" name="button">Continue <i class="fas fa-arrow-right"></i></button>
+                            <button type="button" class="continue_button" id="continue_7" name="button">Continue <i class="fas fa-arrow-right"></i></button>
                         </div>
                     </div>
                     <div class="two_button_child_div_right">
@@ -707,13 +728,13 @@
         </div>
 
         <!-- ...................................................................
-                                  STEP 6 ENDS
+                                  STEP 7 ENDS
         .................................................................... -->
         <!-- ...................................................................
-                                  STEP 7 STARTS
+                                  STEP 8 STARTS
         .................................................................... -->
 
-        <div class="single_step" id="step_7" style="display:none;">
+        <div class="single_step" id="step_8" style="display:none;">
             <div class="common_row">
                 <div class="form_h3">
                     <h3>Optional: Additional information</h3>
@@ -815,7 +836,7 @@
                 <div class="total_button_div">
                     <div class="two_button_child_div_left">
                         <div class="continue_button_div">
-                            <button type="button" class="continue_button" id="continue_7" name="button">Continue <i class="fas fa-arrow-right"></i></button>
+                            <button type="button" class="continue_button" id="continue_8" name="button">Continue <i class="fas fa-arrow-right"></i></button>
                         </div>
                     </div>
                     <div class="two_button_child_div_right">
@@ -828,7 +849,7 @@
 
         </div>
         <!-- ...................................................................
-                                  STEP 7 ENDS
+                                  STEP 8 ENDS
         .................................................................... -->
     </form>
 </div>

@@ -14,7 +14,7 @@
     <div class="form_h2">
       <h2 class="text-center">Missed Connection</h2>
     </div>
-      <form action="{{url('/claim')}}" method="post">
+      <form action="{{url('/claim')}}" method="post" id="step-form">
         @csrf
         <!-- ...................................................................
                                   STEP 1 STARTS

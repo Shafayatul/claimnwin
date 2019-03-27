@@ -14,7 +14,8 @@
     <div class="form_h2">
         <h2 class="text-center">Flight Delay</h2>
     </div>
-    <form action="">
+      <form action="{{url('/claim')}}" method="post" id="step-form">
+        @csrf
         <!-- ...................................................................
                                   STEP 1 STARTS
         .................................................................... -->
@@ -24,22 +25,22 @@
                     <h3>Where did you fly?</h3>
                 </div>
                 <div class="parent_div">
-                    <div class="two_child_div_left">
-                        <div class="label_field">
-                            <label for="departed_from">DEPARTED FROM: </label>
-                        </div>
-                        <div class="input_field">
-                            <input type="text" class="common_input departed_from" id="common_input departed_from" name="departed_from" placeholder="e.g. New York or JFK">
-                        </div>
+                  <div class="two_child_div_left">
+                    <div class="label_field">
+                      <label for="departed_from">DEPARTED FROM: </label>
                     </div>
-                    <div class="two_child_div_right">
-                        <div class="label_field">
-                            <label for="final_destination">FINAL DESTINATION: </label>
-                        </div>
-                        <div class="input_field">
-                            <input type="text" class="common_input final_destination" id="common_input final_destination" name="final_destination" placeholder="e.g. London or LHR">
-                        </div>
+                    <div class="input_field">
+                      <input type="text" class="auto_airport_complete common_input departed_from" id="advanced-demo common_input departed_from" name="departed_from" placeholder="e.g. New York or JFK">
                     </div>
+                  </div>
+                  <div class="two_child_div_right">
+                    <div class="label_field">
+                      <label for="final_destination">FINAL DESTINATION: </label>
+                    </div>
+                    <div class="input_field">
+                      <input type="text" class="auto_airport_complete common_input final_destination" id="common_input final_destination" name="final_destination" placeholder="e.g. London or LHR">
+                    </div>
+                  </div>
                 </div>
             </div>
 
@@ -53,13 +54,13 @@
                 <div class="parent_div">
                     <div class="two_child_radio_div first_child">
                         <label class="container_radio">Yes
-                            <input class="common_input" type="radio" id="common_input is_direct_flight_yes" name="is_direct_flight" value="is_direct_flight_yes">
+                            <input class="common_input" type="radio" id="common_input is_direct_flight_yes" name="is_direct_flight" value="1">
                             <span class="checkmark"></span>
                         </label>
                     </div>
                     <div class="two_child_radio_div">
                         <label class="container_radio">No
-                            <input class="common_input" type="radio" id="common_input is_direct_flight_no" name="is_direct_flight" value="is_direct_flight_no">
+                            <input class="common_input" type="radio" id="common_input is_direct_flight_no" name="is_direct_flight" value="0">
                             <span class="checkmark"></span>
                         </label>
                     </div>
@@ -71,9 +72,9 @@
                     <h3>What airports were involved?</h3>
                 </div>
                 <div class="parent_div">
-                    <div class="child_div">
-                        <input type="text" class="common_input connection" id="common_input connection" name="connection[]" placeholder="e.g. London or LHR">
-                    </div>
+                      <div class="child_div">
+                        <input type="text" class="auto_airport_complete common_input connection" id="common_input connection" name="connection[]" placeholder="e.g. London or LHR">
+                      </div>
                     <div class="property" id="property">
 
                     </div>
@@ -188,57 +189,9 @@
                 </div>
             </div>
 
-            <div class="common_row">
-                <div class="parent_div">
-                    <div class="single_child_div">
-                        <div class="arrival_to_destination_text_div">
-                            <span class="arrival_to_destination_text_span">New Chitose Airport, Sapporo (CTS)<i class="fas fa-plane"></i>New Chitose Airport, Sapporo (CTS)</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="parent_div">
-                    <div class="single_child_div">
-                        <div class="left_div">
-                            <div class="label_field">
-                                <label for="airline">AIRLINE</label>
-                            </div>
-                            <div class="input_field">
-                                <input type="text" class="common_input airline" id="common_input airline" name="airline[]" placeholder="e.g. New York or JFK">
-                            </div>
-                        </div>
-                        <div class="right_div">
-                            <div class="flight_number_div">
-                                <div class="label_field">
-                                    <label for="departure_airport">FLIGHT NO.</label>
-                                </div>
-                                <div class="two_input_field">
-                                    <div class="child_two_input_field_left">
-                                        <div class="input_field">
-                                            <input type="text" class="common_input flight_code" id="common_input flight_code" name="flight_code[]" placeholder="">
-                                        </div>
-                                    </div>
-                                    <div class="child_two_input_field_right">
-                                        <div class="input_field">
-                                            <input type="text" class="common_input flight_number" id="common_input flight_number" name="flight_number[]" placeholder="1234">
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="departure_date_div">
-                                <div class="label_field">
-                                    <label for="departure_airport">DEPARTURE DATE</label>
-                                </div>
-                                <div class="two_input_field">
-                                    <div class="input_field">
-                                        <input type="text" class="common_input departure_airport date" id="common_input departure_airport date" name="departure_date[]" placeholder="e.g. New York or JFK">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+          <div class="itinerary_flight_element">
+            {{-- code from JS --}}
+          </div>
 
             <div class="common_row">
                 <div class="total_button_div">
@@ -293,316 +246,317 @@
                     </div>
                 </div>
 
-                <div class="common_row table_show_on_large_screen">
-                    <div class="parent_div">
-                        <div class="form_h4 text-center">
-                            <h4>Tell us about your expenses.</h4>
-                        </div>
-                    </div>
-                    <div class="parent_div">
-                        <div class="table_field">
-                            <table class="table text-center">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Expense</th>
-                                        <th scope="col">Amount</th>
-                                        <th scope="col">Receipt</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td class="align-baseline">Accommodation
-                                            <input type="hidden" value="accommodation" class="common_input expense_name" id="common_input expense_name" name="expense_name[]">
-                                        </td>
-                                        <td>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <input type="text" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="select_reason_class">
-                                                        <select class="form-control custom_select" name="expense_currency[]">
-                                                            <option hidden>Currency</option>
-                                                            <option value="1">EUR</option>
-                                                            <option value="2">USD</option>
-                                                            <option value="3">ILS</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="group">
-                                                <input id="is_receipt_accommodation_yes" name="is_receipt_accommodation" type="radio" value="Yes" checked="checked">
-                                                <label class="label" for="is_receipt_accommodation_yes">Yes</label>
-                                                <input id="is_receipt_accommodation_no" name="is_receipt_accommodation" type="radio" value="No">
-                                                <label class="center label" for="is_receipt_accommodation_no">No</label>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="align-baseline">Transportation
-                                            <input type="hidden" value="transportation" class="common_input expense_name" id="common_input expense_name" name="expense_name[]">
-                                        </td>
-                                        <td>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <input type="text" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="select_reason_class">
-                                                        <select class="form-control custom_select" name="expense_currency[]">
-                                                            <option hidden>Currency</option>
-                                                            <option value="1">EUR</option>
-                                                            <option value="2">USD</option>
-                                                            <option value="3">ILS</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="input-group yes_no_center">
-                                                <div class="group">
-                                                    <input id="is_receipt_transportation_yes" name="is_receipt_transportation" type="radio" value="Yes" checked="checked">
-                                                    <label class="label" for="is_receipt_transportation_yes">Yes</label>
-                                                    <input id="is_receipt_transportation_no" name="is_receipt_transportation" type="radio" value="No">
-                                                    <label class="center label" for="is_receipt_transportation_no">No</label>
-                                                </div>
 
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="align-baseline">Food
-                                            <input type="hidden" value="food" class="common_input expense_name" id="common_input expense_name" name="expense_name[]">
-                                        </td>
-                                        <td>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <input type="text" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="select_reason_class">
-                                                        <select class="form-control custom_select" name="expense_currency[]">
-                                                            <option hidden>Currency</option>
-                                                            <option value="1">EUR</option>
-                                                            <option value="2">USD</option>
-                                                            <option value="3">ILS</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="input-group yes_no_center">
-                                                <div class="group">
-                                                    <input id="is_receipt_food_yes" name="is_receipt_food" type="radio" value="Yes" checked="checked">
-                                                    <label class="label" for="is_receipt_food_yes">Yes</label>
-                                                    <input id="is_receipt_food_no" name="is_receipt_food" type="radio" value="No">
-                                                    <label class="center label" for="is_receipt_food_no">No</label>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="align-baseline">Other
-                                            <input type="hidden" value="other" class="common_input expense_name" id="common_input expense_name" name="expense_name[]">
-                                        </td>
-                                        <td>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <input type="text" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="select_reason_class">
-                                                        <select class="form-control custom_select" name="expense_currency[]">
-                                                            <option hidden>Currency</option>
-                                                            <option value="1">EUR</option>
-                                                            <option value="2">USD</option>
-                                                            <option value="3">ILS</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="input-group yes_no_center">
-                                                <div class="group">
-                                                    <input id="is_receipt_others_yes" name="is_receipt_others" type="radio" value="Yes" checked="checked">
-                                                    <label class="label" for="is_receipt_others_yes">Yes</label>
-                                                    <input id="is_receipt_others_no" name="is_receipt_others" type="radio" value="No">
-                                                    <label class="center label" for="is_receipt_others_no">No</label>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+            <div class="common_row table_show_on_large_screen">
+              <div class="parent_div">
+                <div class="form_h4 text-center">
+                  <h4>Tell us about your expenses.</h4>
                 </div>
+              </div>
+              <div class="parent_div">
+                <div class="table_field">
+                  <table class="table text-center">
+                    <thead>
+                      <tr>
+                        <th scope="col">Expense</th>
+                        <th scope="col">Amount</th>
+                        <th scope="col">Receipt</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="align-baseline">Accommodation
+                          <input type="hidden" value="accommodation" class="common_input expense_name" id="common_input expense_name" name="expense_name[]">
+                        </td>
+                        <td>
+                          <div class="row">
+                            <div class="col-md-6">
+                              <input type="text" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
+                            </div>
+                            <div class="col-md-6">
+                              <div class="select_reason_class">
+                                <select class="form-control custom_select" name="expense_currency[]">
+                                  <option hidden>Currency</option>
+                                  @foreach($currencies as $key => $val)
+                                    <option value="{{$key}}">{{$val}}</option>
+                                  @endforeach
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <div class="group">
+                            <input id="is_receipt_accommodation_yes" name="expense_is_receipt[0]" type="radio" value="1" checked="checked">
+                            <label class="label" for="is_receipt_accommodation_yes">Yes</label>
+                            <input id="is_receipt_accommodation_no" name="expense_is_receipt[0]" type="radio" value="0" >
+                            <label class="center label" for="is_receipt_accommodation_no">No</label>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="align-baseline">Transportation
+                          <input type="hidden" value="transportation" class="common_input expense_name" id="common_input expense_name" name="expense_name[]">
+                        </td>
+                        <td>
+                          <div class="row">
+                            <div class="col-md-6">
+                              <input type="text" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
+                            </div>
+                            <div class="col-md-6">
+                              <div class="select_reason_class">
+                                <select class="form-control custom_select" name="expense_currency[]">
+                                  <option hidden>Currency</option>
+                                  @foreach($currencies as $key => $val)
+                                    <option value="{{$key}}">{{$val}}</option>
+                                  @endforeach
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <div class="input-group yes_no_center">
+                            <div class="group">
+                              <input id="is_receipt_transportation_yes" name="expense_is_receipt[1]" type="radio" value="1" checked="checked">
+                              <label class="label" for="is_receipt_transportation_yes">Yes</label>
+                              <input id="is_receipt_transportation_no" name="expense_is_receipt[1]" type="radio" value="0" >
+                              <label class="center label" for="is_receipt_transportation_no">No</label>
+                            </div>
 
-                <div class="common_row table_show_on_small_screen">
-                    <div class="parent_div">
-                        <div class="form_h4 text-center">
-                            <h4>Tell us about your expenses.</h4>
-                        </div>
-                    </div>
-                    <div class="parent_div">
-                        <div class="table_field">
-                            <table class="table text-center">
-                                <tr>
-                                    <th scope="col">Expense</th>
-                                    <td class="align-baseline">Accommodation</td>
-                                </tr>
-                                <tr>
-                                    <th scope="col">Amount</th>
-                                    <td>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <input type="text" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="select_reason_class">
-                                                    <select class="form-control custom_select" name="expense_currency[]">
-                                                        <option hidden>Currency</option>
-                                                        <option value="1">EUR</option>
-                                                        <option value="2">USD</option>
-                                                        <option value="3">ILS</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr class="bootstrap_table_tr_lower_thin_border">
-                                    <th scope="col">Receipt</th>
-                                    <td>
-                                        <div class="group">
-                                            <input id="is_receipt_accommodation_yes_mobile" name="is_receipt_accommodation_mobile" type="radio" value="Yes" checked="checked">
-                                            <label class="label" for="is_receipt_accommodation_yes_mobile">Yes</label>
-                                            <input id="is_receipt_accommodation_no_mobile" name="is_receipt_accommodation_mobile" type="radio" value="No">
-                                            <label class="center label" for="is_receipt_accommodation_no_mobile">No</label>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="col">Expense</th>
-                                    <td class="align-baseline">Transportation</td>
-                                </tr>
-                                <tr>
-                                    <th scope="col">Amount</th>
-                                    <td>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <input type="text" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="select_reason_class">
-                                                    <select class="form-control custom_select" name="expense_currency[]">
-                                                        <option hidden>Currency</option>
-                                                        <option value="1">EUR</option>
-                                                        <option value="2">USD</option>
-                                                        <option value="3">ILS</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr class="bootstrap_table_tr_lower_thin_border">
-                                    <th scope="col">Receipt</th>
-                                    <td>
-                                        <div class="input-group yes_no_center">
-                                            <div class="group">
-                                                <input id="is_receipt_transportation_yes_mobile" name="is_receipt_transportation_mobile" type="radio" value="Yes" checked="checked">
-                                                <label class="label" for="is_receipt_transportation_yes_mobile">Yes</label>
-                                                <input id="is_receipt_transportation_no_mobile" name="is_receipt_transportation_mobile" type="radio" value="No">
-                                                <label class="center label" for="is_receipt_transportation_no_mobile">No</label>
-                                            </div>
-
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="col">Expense</th>
-                                    <td class="align-baseline">Food</td>
-                                </tr>
-                                <tr>
-                                    <th scope="col">Amount</th>
-                                    <td>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <input type="text" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="select_reason_class">
-                                                    <select class="form-control custom_select" name="expense_currency[]">
-                                                        <option hidden>Currency</option>
-                                                        <option value="1">EUR</option>
-                                                        <option value="2">USD</option>
-                                                        <option value="3">ILS</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr class="bootstrap_table_tr_lower_thin_border">
-                                    <th scope="col">Receipt</th>
-                                    <td>
-                                        <div class="input-group yes_no_center">
-                                            <div class="group">
-                                                <input id="is_receipt_food_yes_mobile" name="is_receipt_food_mobile" type="radio" value="Yes" checked="checked">
-                                                <label class="label" for="is_receipt_food_yes_mobile">Yes</label>
-                                                <input id="is_receipt_food_no_mobile" name="is_receipt_food_mobile" type="radio" value="No">
-                                                <label class="center label" for="is_receipt_food_no_mobile">No</label>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="col">Expense</th>
-                                    <td class="align-baseline">Others</td>
-                                </tr>
-                                <tr>
-                                    <th scope="col">Amount</th>
-                                    <td>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <input type="text" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="select_reason_class">
-                                                    <select class="form-control custom_select" name="expense_currency[]">
-                                                        <option hidden>Currency</option>
-                                                        <option value="1">EUR</option>
-                                                        <option value="2">USD</option>
-                                                        <option value="3">ILS</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr class="bootstrap_table_tr_lower_thin_border">
-                                    <th scope="col">Receipt</th>
-                                    <td>
-                                        <div class="input-group yes_no_center">
-                                            <div class="group">
-                                                <input id="is_receipt_others_yes_mobile" name="is_receipt_others_mobile" type="radio" value="Yes" checked="checked">
-                                                <label class="label" for="is_receipt_others_yes_mobile">Yes</label>
-                                                <input id="is_receipt_others_no_mobile" name="is_receipt_others_mobile" type="radio" value="No">
-                                                <label class="center label" for="is_receipt_others_no_mobile">No</label>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="align-baseline">Food
+                          <input type="hidden" value="food" class="common_input expense_name" id="common_input expense_name" name="expense_name[]">
+                        </td>
+                        <td>
+                          <div class="row">
+                            <div class="col-md-6">
+                              <input type="text" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
+                            </div>
+                            <div class="col-md-6">
+                              <div class="select_reason_class">
+                                <select class="form-control custom_select" name="expense_currency[]">
+                                  <option hidden>Currency</option>
+                                  @foreach($currencies as $key => $val)
+                                    <option value="{{$key}}">{{$val}}</option>
+                                  @endforeach
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <div class="input-group yes_no_center">
+                            <div class="group">
+                              <input id="is_receipt_food_yes" name="expense_is_receipt[2]" type="radio" value="1" checked="checked">
+                              <label class="label" for="is_receipt_food_yes">Yes</label>
+                              <input id="is_receipt_food_no" name="expense_is_receipt[2]" type="radio" value="0" >
+                              <label class="center label" for="is_receipt_food_no">No</label>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="align-baseline">Other
+                          <input type="hidden" value="other" class="common_input expense_name" id="common_input expense_name" name="expense_name[]">
+                        </td>
+                        <td>
+                          <div class="row">
+                            <div class="col-md-6">
+                              <input type="text" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
+                            </div>
+                            <div class="col-md-6">
+                              <div class="select_reason_class">
+                                <select class="form-control custom_select" name="expense_currency[]">
+                                  <option hidden>Currency</option>
+                                  @foreach($currencies as $key => $val)
+                                    <option value="{{$key}}">{{$val}}</option>
+                                  @endforeach
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <div class="input-group yes_no_center">
+                            <div class="group">
+                              <input id="is_receipt_others_yes" name="expense_is_receipt[3]" type="radio" value="1" checked="checked">
+                              <label class="label" for="is_receipt_others_yes">Yes</label>
+                              <input id="is_receipt_others_no" name="expense_is_receipt[3]" type="radio" value="0" >
+                              <label class="center label" for="is_receipt_others_no">No</label>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
+              </div>
+            </div>
+
+            <div class="common_row table_show_on_small_screen">
+              <div class="parent_div">
+                <div class="form_h4 text-center">
+                  <h4>Tell us about your expenses.</h4>
+                </div>
+              </div>
+              <div class="parent_div">
+                <div class="table_field">
+                  <table class="table text-center">
+                    <tr>
+                      <th scope="col">Expense</th>
+                      <td class="align-baseline">Accommodation</td>
+                    </tr>
+                    <tr>
+                      <th scope="col">Amount</th>
+                      <td>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <input type="text" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
+                          </div>
+                          <div class="col-md-6">
+                            <div class="select_reason_class">
+                              <select class="form-control custom_select" name="expense_currency[]">
+                                <option hidden>Currency</option>
+                                @foreach($currencies as $key => $val)
+                                  <option value="{{$key}}">{{$val}}</option>
+                                @endforeach
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr class="bootstrap_table_tr_lower_thin_border">
+                      <th scope="col">Receipt</th>
+                      <td>
+                        <div class="group">
+                          <input id="is_receipt_accommodation_yes_mobile" name="expense_is_receipt[0]" type="radio" value="1" checked="checked">
+                          <label class="label" for="is_receipt_accommodation_yes_mobile">Yes</label>
+                          <input id="is_receipt_accommodation_no_mobile" name="expense_is_receipt[0]" type="radio" value="0" >
+                          <label class="center label" for="is_receipt_accommodation_no_mobile">No</label>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="col">Expense</th>
+                      <td class="align-baseline">Transportation</td>
+                    </tr>
+                    <tr>
+                      <th scope="col">Amount</th>
+                      <td>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <input type="text" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
+                          </div>
+                          <div class="col-md-6">
+                            <div class="select_reason_class">
+                              <select class="form-control custom_select" name="expense_currency[]">
+                                <option hidden>Currency</option>
+                                @foreach($currencies as $key => $val)
+                                  <option value="{{$key}}">{{$val}}</option>
+                                @endforeach
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr class="bootstrap_table_tr_lower_thin_border">
+                      <th scope="col">Receipt</th>
+                      <td>
+                        <div class="input-group yes_no_center">
+                          <div class="group">
+                            <input id="is_receipt_transportation_yes_mobile" name="expense_is_receipt[1]" type="radio" value="1" checked="checked">
+                            <label class="label" for="is_receipt_transportation_yes_mobile">Yes</label>
+                            <input id="is_receipt_transportation_no_mobile" name="expense_is_receipt[1]" type="radio" value="0" >
+                            <label class="center label" for="is_receipt_transportation_no_mobile">No</label>
+                          </div>
+
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="col">Expense</th>
+                      <td class="align-baseline">Food</td>
+                    </tr>
+                    <tr>
+                      <th scope="col">Amount</th>
+                      <td>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <input type="text" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
+                          </div>
+                          <div class="col-md-6">
+                            <div class="select_reason_class">
+                              <select class="form-control custom_select" name="expense_currency[]">
+                                <option hidden>Currency</option>
+                                @foreach($currencies as $key => $val)
+                                  <option value="{{$key}}">{{$val}}</option>
+                                @endforeach
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr class="bootstrap_table_tr_lower_thin_border">
+                      <th scope="col">Receipt</th>
+                      <td>
+                        <div class="input-group yes_no_center">
+                          <div class="group">
+                            <input id="is_receipt_food_yes_mobile" name="expense_is_receipt[2]" type="radio" value="1" checked="checked">
+                            <label class="label" for="is_receipt_food_yes_mobile">Yes</label>
+                            <input id="is_receipt_food_no_mobile" name="expense_is_receipt[2]" type="radio" value="0" >
+                            <label class="center label" for="is_receipt_food_no_mobile">No</label>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="col">Expense</th>
+                      <td class="align-baseline">Others</td>
+                    </tr>
+                    <tr>
+                      <th scope="col">Amount</th>
+                      <td>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <input type="text" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
+                          </div>
+                          <div class="col-md-6">
+                            <div class="select_reason_class">
+                              <select class="form-control custom_select" name="expense_currency[]">
+                                <option hidden>Currency</option>
+                                @foreach($currencies as $key => $val)
+                                  <option value="{{$key}}">{{$val}}</option>
+                                @endforeach
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr class="bootstrap_table_tr_lower_thin_border">
+                      <th scope="col">Receipt</th>
+                      <td>
+                        <div class="input-group yes_no_center">
+                          <div class="group">
+                            <input id="is_receipt_others_yes_mobile" name="expense_is_receipt[3]" type="radio" value="1" checked="checked">
+                            <label class="label" for="is_receipt_others_yes_mobile">Yes</label>
+                            <input id="is_receipt_others_no_mobile" name="expense_is_receipt[3]" type="radio" value="0" >
+                            <label class="center label" for="is_receipt_others_no_mobile">No</label>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
 
                 <div class="common_row">
                     <div class="email_div">
@@ -681,113 +635,118 @@
         .................................................................... -->
 
         <div class="single_step" id="step_6" style="display:none;">
-            <div class="common_row">
-                <div class="form_h3">
-                    <h3>Passenger details</h3>
-                </div>
-                <div class="form_h4">
-                    <h4>Make sure to type your name as it appears on your flight ticket.</h4>
-                </div>
-                <div class="parent_div">
-                    <div class="two_child_div_left">
-                        <div class="label_field">
-                            <label for="first_name">FIRST NAME</label>
-                        </div>
-                        <div class="input_field">
-                            <input type="text" class="common_input first_name" id="common_input first_name" name="first_name[]" placeholder="e.g. New York or JFK">
-                        </div>
-                    </div>
-                    <div class="two_child_div_right">
-                        <div class="label_field">
-                            <label for="last_name">LAST NAME</label>
-                        </div>
-                        <div class="input_field">
-                            <input type="text" class="common_input last_name" id="common_input last_name" name="last_name[]" placeholder="e.g. London or LHR">
-                        </div>
-                    </div>
-                </div>
-                <div class="parent_div">
-                    <div class="two_child_div_left">
-                        <div class="label_field">
-                            <label for="address">ADDRESS</label>
-                        </div>
-                        <div class="input_field">
-                            <input type="text" class="common_input address" id="common_input address" name="address[]" placeholder="e.g. New York or JFK">
-                        </div>
-                    </div>
-                    <div class="two_child_div_right">
-                        <div class="label_field">
-                            <label for="post_code">POST CODE</label>
-                        </div>
-                        <div class="input_field">
-                            <input type="text" class="common_input post_code" id="common_input post_code" name="post_code[]" placeholder="e.g. London or LHR">
-                        </div>
-                    </div>
-                </div>
-                <div class="parent_div">
-                    <div class="two_child_div_left">
-                        <div class="label_field">
-                            <label for="date_of_birth">DATE OF BIRTH</label>
-                        </div>
-                        <div class="input_field">
-                            <input type="text" class="common_input date_of_birth date" id="common_input date_of_birth" name="date_of_birth[]" placeholder="1/1/1990">
-                        </div>
-                    </div>
-                </div>
+          <div class="common_row">
+            <div class="form_h3">
+              <h3>Passenger details</h3>
             </div>
-
-            <div class="common_row">
-                <div class="form_h3">
-                    <h3>What’s your booking reference?</h3>
-                </div>
-                <div class="parent_div">
-                    <div class="two_child_radio_div first_child">
-                        <label class="container_radio">Yes
-                            <input class="common_input passenger_is_booking_checkbox" type="radio" count="1" id="common_input is_booking_reference_yes" name="is_booking_reference" value="is_booking_reference_yes">
-                            <span class="checkmark"></span>
-                        </label>
-                    </div>
-                    <div class="two_child_radio_div">
-                        <label class="container_radio">Later
-                            <input class="common_input passenger_is_booking_checkbox" type="radio" count="1" id="common_input is_booking_reference_no" name="is_booking_reference" value="is_booking_reference_no">
-                            <span class="checkmark"></span>
-                        </label>
-                    </div>
-                </div>
-                <div class="parent_div show_on_is_booking_reference_yes_1" style="display:none">
-                    <div class="add_booking_reference_div" id="add_booking_reference_div_1">
-                        <div class="child_div" style="margin-top: 10px;" id="reference_remove">
-                            <input style="width: 50%; float: left; margin-right: 10px; margin-bottom: 0px; margin-top: 0px;" type="text" class="common_input booking_reference_field_input" id="booking_reference_field_input" name="booking_reference_field_input[]" />
-                        </div>
-                    </div>
-                </div>
+            <div class="form_h4">
+              <h4>Make sure to type your name as it appears on your flight ticket.</h4>
             </div>
-
-            <div class="show_on_click_add_another_passenger">
-
-
-            </div>
-
-            <div class="common_row">
-                <div class="parent_div">
-                    <button type="button" name="button" id="add_another_passenger" class="add_another_passenger"><i class="fas fa-plus"></i> Add Another Passenger</button>
+            <div class="parent_div">
+              <div class="two_child_div_left">
+                <div class="label_field">
+                  <label for="first_name">FIRST NAME</label>
                 </div>
-            </div>
-
-            <div class="common_row">
-                <div class="total_button_div">
-                    <div class="two_button_child_div_left">
-                        <div class="continue_button_div">
-                            <button type="button" class="continue_button" id="continue_6" name="button">Continue <i class="fas fa-arrow-right"></i></button>
-                        </div>
-                    </div>
-                    <div class="two_button_child_div_right">
-                        <div class="previous_button_div">
-                            <button type="button" class="previous_button pull-left" id="previous_button" name="button">Previous <i class="fas fa-arrow-left"></i></button>
-                        </div>
-                    </div>
+                <div class="input_field">
+                  <input type="text" class="common_input first_name" id="common_input first_name" name="first_name[]" placeholder="e.g. New York or JFK">
                 </div>
+              </div>
+              <div class="two_child_div_right">
+                <div class="label_field">
+                  <label for="last_name">LAST NAME</label>
+                </div>
+                <div class="input_field">
+                  <input type="text" class="common_input last_name" id="common_input last_name" name="last_name[]" placeholder="e.g. London or LHR">
+                </div>
+              </div>
             </div>
+            <div class="parent_div">
+              <div class="two_child_div_left">
+                <div class="label_field">
+                  <label for="address">ADDRESS</label>
+                </div>
+                <div class="input_field">
+                  <input type="text" class="common_input address" id="common_input address" name="address[]" placeholder="e.g. New York or JFK">
+                </div>
+              </div>
+              <div class="two_child_div_right">
+                <div class="label_field">
+                  <label for="post_code">POST CODE</label>
+                </div>
+                <div class="input_field">
+                  <input type="text" class="common_input post_code" id="common_input post_code" name="post_code[]" placeholder="e.g. London or LHR">
+                </div>
+              </div>
+            </div>
+            <div class="parent_div">
+              <div class="two_child_div_left">
+                <div class="label_field">
+                  <label for="date_of_birth">DATE OF BIRTH</label>
+                </div>
+                <div class="input_field">
+                  <input type="text" class="common_input date_of_birth date" id="common_input date_of_birth" name="date_of_birth[]" placeholder="1/1/1990">
+                </div>
+              </div>
+            </div>
+            <input type="hidden" name="additional_email_address[]" value="none">
+          </div>
+
+          <div class="common_row">
+            <div class="form_h3">
+              <h3>What’s your booking reference?</h3>
+            </div>
+            <div class="parent_div">
+              <div class="two_child_radio_div first_child">
+                <label class="container_radio">Yes
+                  <input class="common_input passenger_is_booking_checkbox" type="radio" count="0" id="common_input is_booking_reference_yes" name="is_booking_reference[0]" value="1">
+                  <span class="checkmark"></span>
+                </label>
+              </div>
+              <div class="two_child_radio_div">
+                <label class="container_radio">Later
+                  <input class="common_input passenger_is_booking_checkbox" type="radio" count="0" id="common_input is_booking_reference_no" name="is_booking_reference[0]" value="0" checked>
+                  <span class="checkmark"></span>
+                </label>
+              </div>
+            </div>
+            <div class="parent_div show_on_is_booking_reference_yes_0" style="display:none">
+              <div class="add_booking_reference_div" id="add_booking_reference_div_0">
+                <div class="child_div" style="margin-top: 10px;" id="reference_remove">
+                  <input style="width: 50%; float: left; margin-right: 10px; margin-bottom: 0px; margin-top: 0px;" type="text" class="common_input booking_reference_field_input" id="booking_reference_field_input" name="booking_reference_field_input[]" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="show_on_click_add_another_passenger">
+
+
+          </div>
+
+          <div class="common_row">
+            <div class="parent_div">
+              <button type="button" name="button" id="add_another_passenger" class="add_another_passenger"><i class="fas fa-plus"></i> Add Another Passenger</button>
+            </div>
+          </div>
+
+
+
+
+
+          <div class="common_row">
+            <div class="total_button_div">
+              <div class="two_button_child_div_left">
+                <div class="continue_button_div">
+                  <button type="button" class="continue_button" id="continue_6" name="button">Continue <i class="fas fa-arrow-right"></i></button>
+                </div>
+              </div>
+              <div class="two_button_child_div_right">
+                <div class="previous_button_div">
+                  <button type="button" class="previous_button pull-left" id="previous_button" name="button">Previous <i class="fas fa-arrow-left"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         <!-- ...................................................................
@@ -870,7 +829,7 @@
                     </div>
                     <div class="two_child_radio_div">
                         <label class="container_radio">No
-                            <input class="common_input" type="radio" id="common_input is_contacted_airline_no" name="is_contacted_airline" value="2">
+                            <input class="common_input" type="radio" id="common_input is_contacted_airline_no" name="is_contacted_airline" value="0">
                             <span class="checkmark"></span>
                         </label>
                     </div>
@@ -968,10 +927,56 @@
 
 
 @section('footer-script')
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script type="text/javascript">
+      auto_airport_complete();
+      function auto_airport_complete(){
+        $('.auto_airport_complete').autoComplete({
+            minChars: 3,
+            source: function(term, suggest){
+                term = term.toLowerCase();
+                var choices = {!! $airport_object !!};
+                var suggestions = [];
+                for (i=0;i<choices.length;i++)
+                    if (~(choices[i][0]+' '+choices[i][1]).toLowerCase().indexOf(term)) suggestions.push(choices[i]);
+                suggest(suggestions);
+            },
+            renderItem: function (item, search){
+                search = search.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+                var re = new RegExp("(" + search.split(' ').join('|') + ")", "gi");
+                return '<div class="autocomplete-suggestion" data-langname="'+item[0]+'" data-lang="'+item[1]+'" data-val="'+search+'"> '+item[0].replace(re, "<b>$1</b>")+'</div>';
+            },
+            onSelect: function(e, term, item){
+                // console.log('Item "'+item.data('langname')+' ('+item.data('lang')+')" selected by '+(e.type == 'keydown' ? 'pressing enter or tab' : 'mouse click')+'.');
+                $(':focus').val(item.data('langname')+' ('+item.data('lang')+')').attr('iata-code',item.data('lang'));
+            }
+        });     
+      }
+      auto_airline_complete();
+      function auto_airline_complete(){
+        $('.auto_airline_complete').autoComplete({
+            minChars: 3,
+            source: function(term, suggest){
+                term = term.toLowerCase();
+                var choices = {!! $airline_object !!};
+                var suggestions = [];
+                for (i=0;i<choices.length;i++)
+                    if (~(choices[i][0]+' '+choices[i][1]).toLowerCase().indexOf(term)) suggestions.push(choices[i]);
+                suggest(suggestions);
+            },
+            renderItem: function (item, search){
+                search = search.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+                var re = new RegExp("(" + search.split(' ').join('|') + ")", "gi");
+                return '<div class="autocomplete-suggestion" data-langname="'+item[0]+'" data-lang="'+item[1]+'" data-val="'+search+'"> '+item[0].replace(re, "<b>$1</b>")+'</div>';
+            },
+            onSelect: function(e, term, item){
+                $(':focus').val(item.data('langname')).attr('iata_code',item.data('lang'));
+            }
+        });     
+      }
+                           
+</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
 <script src="{{('front_asset/claim/flight_delay/js/custom.js')}}"></script>
 

@@ -19,6 +19,7 @@ class CreateItineraryDetailsTable extends Migration
             $table->string('flight_number')->nullable();
             $table->string('flight_segment')->nullable();
             $table->string('departure_date')->nullable();
+            $table->boolean('is_selected')->default(0)->nullable();
             $table->timestamps();
             });
     }

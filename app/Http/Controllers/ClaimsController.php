@@ -32,7 +32,7 @@ class ClaimsController extends Controller
      *
      * @return \Illuminate\View\View
      */
-     public function claim()
+   public function claim()
    {
        return view('frontEnd.claim.claim');
    }
@@ -65,7 +65,27 @@ class ClaimsController extends Controller
 
    public function flight_delay()
    {
-       return view('frontEnd.claim.flight_delay');
+
+        $airports = Airport::select('name', 'iata_code')->get()->toArray();
+        $airport_object = '[';
+        foreach ($airports as $airport) {
+            $airport_object .= "['".$airport['name']."', '".$airport['iata_code']."'],";
+        }
+        $airport_object = rtrim($airport_object, ',');
+        $airport_object .= ']';
+
+        $airlines = Airline::select('name', 'iata_code')->get()->toArray();
+        $airline_object = '[';
+        foreach ($airlines as $airline) {
+            $airline_object .= "['".$airline['name']."', '".$airline['iata_code']."'],";
+        }
+        $airline_object = rtrim($airline_object, ',');
+        $airline_object .= ']';
+
+        $currencies = Currency::pluck('code','id');
+
+
+       return view('frontEnd.claim.flight_delay', compact('airport_object', 'airline_object', 'currencies'));
    }
 
    public function flight_cancellation()
@@ -184,6 +204,7 @@ class ClaimsController extends Controller
     
     public function store(Request $request)
     {
+
 
 
         $departed_from_id = $this->get_airport_id_name_and_iata_code($request->departed_from);
@@ -320,13 +341,19 @@ class ClaimsController extends Controller
         $cnt = 0;
         foreach ($request->flight_code as $single_flight_code) {
             if ($single_flight_code != "") {
-                $itineraryDetail                    = new ItineraryDetail();
-                $itineraryDetail->claim_id          = $claim->id;
-                $itineraryDetail->flight_number     = $request->flight_number[$cnt];
-                $itineraryDetail->flight_segment     = $request->flight_segment[$cnt];
-                $itineraryDetail->departure_date    = $request->departure_date[$cnt];
-                $itineraryDetail->airline_id        = Airline::where('iata_code', $single_flight_code)->first()->id;
-                $itineraryDetail->save();
+              if ($request->flight_segment[$cnt] == $selected_connection_iata_codes) {
+                $is_selected = 1;
+              }else{
+                $is_selected = 0;
+              }
+              $itineraryDetail                    = new ItineraryDetail();
+              $itineraryDetail->claim_id          = $claim->id;
+              $itineraryDetail->flight_number     = $request->flight_number[$cnt];
+              $itineraryDetail->flight_segment    = $request->flight_segment[$cnt];
+              $itineraryDetail->departure_date    = $request->departure_date[$cnt];
+              $itineraryDetail->is_selected        = $is_selected;
+              $itineraryDetail->airline_id        = Airline::where('iata_code', $single_flight_code)->first()->id;
+              $itineraryDetail->save();
             }
             $cnt++;
         }
