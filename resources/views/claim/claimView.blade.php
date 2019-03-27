@@ -70,6 +70,8 @@
                                     <li role="presentation"><a href="#airline_response" role="tab" id="airline_response-tab" data-toggle="tab" aria-controls="airline_response" aria-expanded="true"><i class="fa fa-info-circle" aria-hidden="true"></i> Airline Response</a></li>
                                     <li role="presentation"><a href="#customer_final_comm" role="tab" id="customer_final_comm-tab" data-toggle="tab" aria-controls="customer_final_comm" aria-expanded="true"><i class="fa fa-info-circle" aria-hidden="true"></i> Customer Final Comments</a></li>
                                     <li role="presentation"><a href="#reminder" role="tab" id="reminder-tab" data-toggle="tab" aria-controls="reminder" aria-expanded="true"><i class="fa fa-bell" aria-hidden="true"></i> Reminders</a></li>
+                                    <li role="presentation"><a href="#required-details" role="tab" id="required-details-tab" data-toggle="tab" aria-controls="required-details" aria-expanded="true"><i class="fa fa-bell" aria-hidden="true"></i> Required Details</a></li>
+                                    <li role="presentation"><a href="#claim-status" role="tab" id="claim-status-tab" data-toggle="tab" aria-controls="claim-status" aria-expanded="true"><i class="fa fa-bell" aria-hidden="true"></i> Status</a></li>
 
                                 </ul>
                                 <div id="myTabContent" class="tab-content">
@@ -95,6 +97,7 @@
                                                     <li class="nav-item">
                                                         <a class="nav-link" data-toggle="tab" href="#claim_eligib" role="tab" aria-controls="settings">Claim Eligibility</a>
                                                     </li>
+
                                                 </ul>
                                             </div>
                                             <div class="col-md-10" style="margin-top: 5px;">
@@ -956,6 +959,101 @@
                                                 </div>
                                             </div>
                                     </div>
+
+
+                                    <div role="tabpanel" class="tab-pane" id="required-details" aria-labelledby="required-details-tab">
+
+                                            <form action="#" method="post">
+                                                <div class="row" style="margin-top:1%;">
+                                                <div class="col-sm-4">
+                                                    <div class="form-group">
+                                                        <label> Bank Details </label>
+                                                        <select class="form-control" id="status">
+                                                            <option value="">Select Status</option>
+                                                            @foreach($banks as $bank)
+                                                            <option value="{{$bank->id}}">{{$bank->account_name.' '.'('.$bank->title.')'}}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <div class="form-group">
+                                                        <label> Affiliate Commision </label>
+                                                        <input type="text" class="form-control" name="" id="">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-sm-4">
+                                                    <div class="form-group">
+                                                        <label> Admin Commision </label>
+                                                        <input type="text" class="form-control" name="" id="">
+                                                    </div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+
+                                            <div class="row" style="margin-top:1%;">
+                                                <div class="col-sm-4">
+                                                    <div class="form-group">
+                                                        <label> Additional Details For LBA </label>
+                                                        <textarea name="" class="form-control" id="" cols="30" rows="3"></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <div class="form-group">
+                                                        <label> Expected Compensation Amount </label>
+                                                        <input type="text" class="form-control" name="" id="">
+                                                    </div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                                </div>
+                                            </div>
+                                            </form>
+
+
+                                        </div>
+
+
+                                    <div role="tabpanel" class="tab-pane" id="claim-status" aria-labelledby="claim-status-tab">
+                                        <div class="row" style="margin-top:1%;">
+                                        <form action="#" method="post">
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label> Status </label>
+                                                    <select class="form-control" id="status">
+                                                        <option value="">Select Status</option>
+                                                        @foreach($claimStatus as $claim_status)
+                                                        <option value="{{$claim_status->id}}">{{$claim_status->name}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label> Next Step </label>
+                                                    <select class="form-control" id="next_step">
+                                                        <option value="">Select Next Step</option>
+                                                        @foreach($nextSteps as $nextStep)
+                                                        <option value="{{$nextStep->id}}">{{$nextStep->name}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-4">
+                                                <button type="submit" class="btn btn-success" id="status_btn">Submit</button>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </form>
+
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                             <div class="clearfix"> </div>

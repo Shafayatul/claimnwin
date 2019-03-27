@@ -221,11 +221,23 @@
     padding: 10px;
 }
 
+#status_btn{
+    margin-top: 5%;
+}
+
 
 @media(min-width:768px){
     .navbar-top-links .dropdown-messages,
     .navbar-top-links .dropdown-tasks,
     .navbar-top-links .dropdown-alerts {
         margin-left: auto;
+    }
+
+
+}
+
+@media screen and (max-width: 768px){
+    #status_btn{
+        margin-top: 0%;
     }
 }

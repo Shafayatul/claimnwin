@@ -49,7 +49,7 @@
 
                                             <td><a href="{{url('/claim-view/'.$row->id)}}">{{$row->id}}</a></td>
                                                 <td>
-                                                        {{$row->first_name.' '.$row->last_name}}
+                                                        {{$passenger[$row->id]['first_name'].' '.$passenger[$row->id]['last_name']}}
                                                     <br>
                                                     <a href="#"></a>
                                                 </td>
