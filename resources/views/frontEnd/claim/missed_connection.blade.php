@@ -1125,7 +1125,6 @@
             </div>
           </div>
 
-          <input type="hidden" name="claim_table_type" value="missed_connection">
 
           <div class="common_row">
             <div class="total_button_div">
@@ -1143,6 +1142,8 @@
           </div>
 
         </div>
+        <input type="hidden" name="claim_table_type" value="missed_connection">
+
         <!-- ...................................................................
                                   STEP 8 ENDS
         .................................................................... -->
