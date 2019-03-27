@@ -32,7 +32,7 @@ class ClaimsController extends Controller
      *
      * @return \Illuminate\View\View
      */
-     public function claim()
+   public function claim()
    {
        return view('frontEnd.claim.claim');
    }
@@ -65,7 +65,27 @@ class ClaimsController extends Controller
 
    public function flight_delay()
    {
-       return view('frontEnd.claim.flight_delay');
+
+        $airports = Airport::select('name', 'iata_code')->get()->toArray();
+        $airport_object = '[';
+        foreach ($airports as $airport) {
+            $airport_object .= "['".$airport['name']."', '".$airport['iata_code']."'],";
+        }
+        $airport_object = rtrim($airport_object, ',');
+        $airport_object .= ']';
+
+        $airlines = Airline::select('name', 'iata_code')->get()->toArray();
+        $airline_object = '[';
+        foreach ($airlines as $airline) {
+            $airline_object .= "['".$airline['name']."', '".$airline['iata_code']."'],";
+        }
+        $airline_object = rtrim($airline_object, ',');
+        $airline_object .= ']';
+
+        $currencies = Currency::pluck('code','id');
+
+
+       return view('frontEnd.claim.flight_delay', compact('airport_object', 'airline_object', 'currencies'));
    }
 
    public function flight_cancellation()
@@ -184,6 +204,8 @@ class ClaimsController extends Controller
     
     public function store(Request $request)
     {
+
+      dd($request);
 
 
         $departed_from_id = $this->get_airport_id_name_and_iata_code($request->departed_from);

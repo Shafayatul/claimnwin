@@ -1,8 +1,85 @@
 $(document).ready(function() {
 
+    /*HIDE MOBILE TABLE*/
+    if($(window).width() > 768){
+      $('.table_show_on_small_screen').remove();
+    }else{
+      $('.show_on_is_obtained_full_reimbursement_no').remove();
+    }
+
+
+    $(document).on('click', '#continue_8', function(){
+        $("#step-form").submit();
+    });
+    $(document).on('change', '.airline', function(){
+      console.log('working');
+      var iata_code = $(this).attr('iata_code');
+      var serial = $(this).attr('serial');
+      console.log(iata_code);
+      console.log(serial);
+      console.log($(".flight_code_"+serial).val(iata_code));
+    });
+
+    $(document).on('change', "input[name='departed_from'], input[name='final_destination'], input[name='is_direct_flight'], .connection", function(){
+       if ($("input[name='is_direct_flight']:checked").val() == '1') {
+          var is_connection_empty = true;
+          $(".connection").each(function(){
+            if ($(this).val() != "") {
+              is_connection_empty = false;
+            }
+          });
+          if (!is_connection_empty) {
+            itinerary_details_for_your_disrupted_flight_html('multiple');
+          }
+        }else{
+          itinerary_details_for_your_disrupted_flight_html('single');
+        }
+    });
+
+
+    function itinerary_details_for_your_disrupted_flight_html(type){
+
+      if (type=='single') {
+        var value = $("input[name='departed_from']").attr('iata-code')+'-'+$("input[name='final_destination']").attr('iata-code');
+        var html = '<div class="common_row"><div class="parent_div"><div class="single_child_div"><div class="arrival_to_destination_text_div"><span class="arrival_to_destination_text_span">'+$("input[name='departed_from']").val()+'<i class="fas fa-plane"></i>'+$("input[name='final_destination']").val()+'</span></div></div></div><div class="parent_div"><div class="single_child_div"><div class="left_div"><div class="label_field"><label for="airline">AIRLINE</label></div><div class="input_field"><input type="text" serial="1" class="auto_airline_complete common_input airline" id="common_input airline" name="airline[]" placeholder="e.g. New York or JFK"><input type="hidden" name="flight_segment[]" value="'+value+'"></div></div><div class="right_div"><div class="flight_number_div"><div class="label_field"><label for="departure_airport">FLIGHT NO.</label></div><div class="two_input_field"><div class="child_two_input_field_left"><div class="input_field"><input type="text" class="common_input flight_code flight_code_1" id="common_input flight_code" name="flight_code[]" placeholder=""></div></div><div class="child_two_input_field_right"><div class="input_field"><input type="text" class="common_input flight_number" id="common_input flight_number" name="flight_number[]" placeholder="1234"></div></div></div></div><div class="departure_date_div"><div class="label_field"><label for="departure_airport">DEPARTURE DATE</label></div><div class="two_input_field"><div class="input_field"><input type="text" class="common_input departure_airport date" id="common_input departure_airport date" name="departure_date[]" placeholder="e.g. New York or JFK"></div></div></div></div></div></div></div>';
+        $('.itinerary_flight_element').html(html);
+
+      }else if (type=='multiple') {
+
+        var airport_array_temp = new Array();
+        var airport_array_iata_code_temp = new Array();
+
+        airport_array_temp.push($("input[name='departed_from']").val());
+        airport_array_iata_code_temp.push($("input[name='departed_from']").attr('iata-code'));
+
+        $(".connection").each(function(){
+          if ($(this).val() != "") {
+            airport_array_temp.push($(this).val());
+            airport_array_iata_code_temp.push($(this).attr('iata-code'));
+          }
+        });
+        airport_array_temp.push($("input[name='final_destination']").val());
+        airport_array_iata_code_temp.push($("input[name='final_destination']").attr('iata-code'));
+
+        var html='';
+        for (var i = 0; i < airport_array_temp.length-1; i++) {
+          j=i+1;
+          var value = airport_array_iata_code_temp[i]+'-'+airport_array_iata_code_temp[j];
+          html += '<div class="common_row"><div class="parent_div"><div class="single_child_div"><div class="arrival_to_destination_text_div"><span class="arrival_to_destination_text_span">'+airport_array_temp[i]+'<i class="fas fa-plane"></i>'+airport_array_temp[j]+'</span></div></div></div><div class="parent_div"><div class="single_child_div"><div class="left_div"><div class="label_field"><label for="airline">AIRLINE</label></div><div class="input_field"><input type="text" serial="'+j+'" class="auto_airline_complete common_input airline" id="common_input airline" name="airline[]" placeholder="e.g. New York or JFK"><input type="hidden" name="flight_segment[]" value="'+value+'"></div></div><div class="right_div"><div class="flight_number_div"><div class="label_field"><label for="departure_airport">FLIGHT NO.</label></div><div class="two_input_field"><div class="child_two_input_field_left"><div class="input_field"><input type="text" class="common_input flight_code flight_code_'+j+'" id="common_input flight_code" name="flight_code[]" placeholder=""></div></div><div class="child_two_input_field_right"><div class="input_field"><input type="text" class="common_input flight_number" id="common_input flight_number" name="flight_number[]" placeholder="1234"></div></div></div></div><div class="departure_date_div"><div class="label_field"><label for="departure_airport">DEPARTURE DATE</label></div><div class="two_input_field"><div class="input_field"><input type="text" class="common_input departure_airport date" id="common_input departure_airport date" name="departure_date[]" placeholder="e.g. New York or JFK"></div></div></div></div></div></div></div>';
+        }
+        $('.itinerary_flight_element').html(html);
+      }
+
+      date_picker();
+      auto_airline_complete();
+
+    }
+
+
     var keyCount = 0;
-    $("#add_connection").click(function() {
-        $("<div class='child_div' style='margin-top: 10px;' id='property_remove_" + keyCount + "'><input  style='width: 75%; float: left; margin-right: 10px; margin-bottom: 0px; margin-top: 0px;' type='text' class='common_input connection' id='connection' name='connection[]'/> <button type='button' class='remove_property' id='" + keyCount + "' style='float: none;margin-left: 5px;margin-top: 2px;'><i class='fas fa-minus-circle'></i></button></div>").appendTo("#property");
+    $("#add_connection").click(function(){
+      $("<div class='child_div' style='margin-top: 10px;' id='property_remove_"+keyCount+"'><input  style='width: 75%; float: left; margin-right: 10px; margin-bottom: 0px; margin-top: 0px;' type='text' class='auto_airport_complete common_input connection' id='connection' name='connection[]'/> <button type='button' class='remove_property' id='"+keyCount+"' style='float: none;margin-left: 5px;margin-top: 2px;'><i class='fas fa-minus-circle'></i></button></div>").appendTo("#property");
+      auto_airport_complete();
     });
 
     $(document).on('click', '.remove_property', function() {
@@ -102,59 +179,68 @@ $(document).ready(function() {
         } else if (step == 5) {
             return true;
         } else if (step == 6) {
-            $("#continue_6").removeClass('active_button');
-            var first_name = true;
-            var last_name = true;
-            var address = true;
-            var post_code = true;
-            var date_of_birth = true;
+        $("#continue_6").removeClass('active_button');
 
-            $("input[name^='first_name']").each(function() {
-                if ($(this).val() == "") {
-                    first_name = false;
-                }
+            var is_first_name_empty = false;
+            var is_last_name_empty = false;
+            var is_address_empty = false;
+            var is_post_code_empty = false;
+            var is_date_of_birth_empty = false;
+
+            $("input[name^='first_name']").each(function(){
+              if ($(this).val() == "") {
+                is_first_name_empty = true;
+              }
             });
-            $("input[name^='last_name']").each(function() {
-                if ($(this).val() == "") {
-                    last_name = false;
-                }
+            $("input[name^='last_name']").each(function(){
+              if ($(this).val() == "") {
+                is_last_name_empty = true;
+              }
             });
-            $("input[name^='address']").each(function() {
-                if ($(this).val() == "") {
-                    address = false;
-                }
+            $("input[name^='address']").each(function(){
+              if ($(this).val() == "") {
+                is_address_empty = true;
+              }
             });
-            $("input[name^='post_code']").each(function() {
-                if ($(this).val() == "") {
-                    post_code = false;
-                }
+            $("input[name^='post_code']").each(function(){
+              if ($(this).val() == "") {
+                is_post_code_empty = true;
+              }
             });
-            $("input[name^='date_of_birth']").each(function() {
-                if ($(this).val() == "") {
-                    date_of_birth = false;
-                }
+            $("input[name^='date_of_birth']").each(function(){
+              if ($(this).val() == "") {
+                is_date_of_birth_empty = true;
+              }
             });
 
-            if (first_name && last_name && address && post_code && date_of_birth) {
-                if (($("input[name='is_booking_reference']").is(':checked'))) {
-                    if ($('input[name=is_booking_reference]:checked').val() == '1') {
-                        var is_booking_reference_field_input_empty = false;
-                        $("input[name^='booking_reference_field_input']").each(function() {
-                            if ($(this).val() == "") {
-                                is_booking_reference_field_input_empty = true;
-                            }
-                        });
-                        if (!is_booking_reference_field_input_empty) {
-                            $("#continue_6").addClass('active_button');
-                            return true;
-                        }
-                    } else if ($('input[name=is_booking_reference]:checked').val() == '0') {
-                        $("#continue_6").addClass('active_button');
-                        return true;
-                    }
-                }
-            } else {
-                return false;
+            if (!is_first_name_empty && !is_last_name_empty && !is_address_empty && !is_post_code_empty && !is_date_of_birth_empty) {
+                $("#continue_6").addClass('active_button');
+                return true;         
+              // setTimeout(function(){
+
+              //   var is_booking_reference_field_input_empty = false; 
+              //   $(".booking_reference_field_input").each(function(){
+
+              //     if( ($(this).is(':visible')) && ($(this).val()=="") ){
+              //       console.log("Value 1: "+$(this).is(':visible'));
+              //       console.log("Value 2: "+$(this).val());
+              //       is_booking_reference_field_input_empty = true;
+              //     }
+
+              //   });
+              //   console.log('after loop');
+              //   console.log(is_booking_reference_field_input_empty);
+              //   if (!is_booking_reference_field_input_empty) {
+              //     $("#continue_6").addClass('active_button');
+              //     return true;            
+              //   }
+
+              //   return false;
+
+              // },1000);
+
+            }else {
+              return false;
             }
         } else if (step == 7) {
             $("#continue_7").removeClass('active_button');
@@ -405,13 +491,16 @@ $(document).ready(function() {
         the_return3.innerHTML = this.value;
     });
 
+  date_picker();
+  function date_picker(){
     var date_input = $('.date'); //our date input has the name "date"
     var options = {
-        format: 'mm/dd/yyyy',
-        endDate: '+0d',
-        todayHighlight: true,
-        autoclose: true,
+      format: 'mm/dd/yyyy',
+      endDate: '+0d',
+      todayHighlight: true,
+      autoclose: true,
     };
-    date_input.datepicker(options);
+    date_input.datepicker(options);  
+  }
 
 });
