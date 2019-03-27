@@ -24,6 +24,8 @@ class CreateClaimsTable extends Migration
             $table->string('reason')->nullable();
             $table->boolean('is_rerouted')->nullable();
             $table->boolean('is_obtain_full_reimbursement')->nullable();
+            // new add for flight cancelation 
+            $table->boolean('is_notify_before_forteen_days')->default(0)->nullable();
             $table->string('ticket_price')->nullable();
             $table->string('ticket_currency')->nullable();
             $table->string('rerouted_ticket_price')->nullable();
