@@ -53,13 +53,13 @@
             <div class="parent_div">
               <div class="two_child_radio_div first_child">
                 <label class="container_radio">Yes
-                  <input class="common_input" type="radio" id="common_input is_direct_flight_yes" name="is_direct_flight" value="is_direct_flight_yes">
+                  <input class="common_input" type="radio" id="common_input is_direct_flight_yes" name="is_direct_flight" value="1">
                   <span class="checkmark"></span>
                 </label>
               </div>
               <div class="two_child_radio_div">
                 <label class="container_radio">No
-                  <input class="common_input" type="radio" id="common_input is_direct_flight_no" name="is_direct_flight" value="is_direct_flight_no">
+                  <input class="common_input" type="radio" id="common_input is_direct_flight_no" name="is_direct_flight" value="0">
                   <span class="checkmark"></span>
                 </label>
               </div>
@@ -250,13 +250,13 @@
             <div class="parent_div">
               <div class="two_child_radio_div first_child">
                 <label class="container_radio">Yes
-                  <input class="common_input" type="radio" id="common_input is_rerouted_yes" name="is_rerouted" value="is_rerouted_yes">
+                  <input class="common_input" type="radio" id="common_input is_rerouted_yes" name="is_rerouted" value="1">
                   <span class="checkmark"></span>
                 </label>
               </div>
               <div class="two_child_radio_div">
                 <label class="container_radio">No
-                  <input class="common_input" type="radio" id="common_input is_rerouted_no" name="is_rerouted" value="is_rerouted_no">
+                  <input class="common_input" type="radio" id="common_input is_rerouted_no" name="is_rerouted" value="0">
                   <span class="checkmark"></span>
                 </label>
               </div>
@@ -270,13 +270,13 @@
               </div>
               <div class="two_child_radio_div first_child">
                 <label class="container_radio">Yes
-                  <input class="common_input" type="radio" id="common_input is_obtained_full_reimbursement_yes" name="is_obtained_full_reimbursement" value="is_obtained_full_reimbursement_yes">
+                  <input class="common_input" type="radio" id="common_input is_obtained_full_reimbursement_yes" name="is_obtained_full_reimbursement" value="1">
                   <span class="checkmark"></span>
                 </label>
               </div>
               <div class="two_child_radio_div">
                 <label class="container_radio">No
-                  <input class="common_input" type="radio" id="common_input is_obtained_full_reimbursement_no" name="is_obtained_full_reimbursement" value="is_obtained_full_reimbursement_no">
+                  <input class="common_input" type="radio" id="common_input is_obtained_full_reimbursement_no" name="is_obtained_full_reimbursement" value="0">
                   <span class="checkmark"></span>
                 </label>
               </div>
@@ -313,7 +313,7 @@
               </div>
               <div class="two_child_radio_div first_child">
                 <label class="container_radio">Yes
-                  <input class="common_input" type="radio" id="common_input is_paid_for_rerouting_yes" name="is_paid_for_rerouting" value="is_paid_for_rerouting_yes">
+                  <input class="common_input" type="radio" id="common_input is_paid_for_rerouting_yes" name="is_paid_for_rerouting" value="1">
                   <span class="checkmark"></span>
                 </label>
               </div>
@@ -826,13 +826,13 @@
             <div class="parent_div">
               <div class="two_child_radio_div first_child">
                 <label class="container_radio">Yes
-                  <input class="common_input passenger_is_booking_checkbox" type="radio" count="1" id="common_input is_booking_reference_yes" name="is_booking_reference" value="is_booking_reference_yes">
+                  <input class="common_input passenger_is_booking_checkbox" type="radio" count="1" id="common_input is_booking_reference_yes" name="is_booking_reference" value="1">
                   <span class="checkmark"></span>
                 </label>
               </div>
               <div class="two_child_radio_div">
                 <label class="container_radio">Later
-                  <input class="common_input passenger_is_booking_checkbox" type="radio" count="1" id="common_input is_booking_reference_no" name="is_booking_reference" value="is_booking_reference_no">
+                  <input class="common_input passenger_is_booking_checkbox" type="radio" count="1" id="common_input is_booking_reference_no" name="is_booking_reference" value="0">
                   <span class="checkmark"></span>
                 </label>
               </div>
@@ -954,7 +954,7 @@
               </div>
               <div class="two_child_radio_div">
                 <label class="container_radio">No
-                  <input class="common_input" type="radio" id="common_input is_contacted_airline_no" name="is_contacted_airline" value="2">
+                  <input class="common_input" type="radio" id="common_input is_contacted_airline_no" name="is_contacted_airline" value="0">
                   <span class="checkmark"></span>
                 </label>
               </div>
