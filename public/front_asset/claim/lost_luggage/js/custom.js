@@ -3,7 +3,7 @@ $(document).ready(function() {
     $(document).on('click', '#continue_8', function(){
         $("#step-form").submit();
     });
-    
+
     /**
     * flight list dynamic checkbox
     */
@@ -140,9 +140,24 @@ $(document).ready(function() {
             }
         } else if (step == 3) {
             $("#continue_3").removeClass('active_button');
-            if ($("input[name='received_luggage_date']").val() != "") {
+            if ($("input[name='is_luggage_received']").is(':checked')) {
+              if ($("input[name='is_luggage_received']:checked").val() == "1") {
+                $("#continue_3").removeClass('active_button');
+                if ($("input[name='received_luggage_date']").val() != "") {
+                    $("#continue_3").addClass('active_button');
+                    return true;
+                }else {
+                  $("#continue_3").removeClass('active_button');
+                  return false;
+                }
+              }else if ($("input[name='is_luggage_received']:checked").val() == "0"){
                 $("#continue_3").addClass('active_button');
                 return true;
+              }else  {
+                return false;
+              }
+            }else {
+              return false;
             }
         } else if (step == 4) {
             $("#continue_4").removeClass('active_button');
@@ -315,6 +330,17 @@ $(document).ready(function() {
         $('a[data-toggle="' + tog + '"][data-title="' + sel + '"]').removeClass('notActive').addClass('active');
     });
 
+    /* Is Luggage Received  */
+    $(".show_on_is_luggage_received_yes").hide();
+    $("input[name=is_luggage_received]:radio").click(function() {
+        if ($(this).attr("value") == "1") {
+            $(".show_on_is_luggage_received_yes").show(500);
+        }else {
+            $(".show_on_is_luggage_received_yes").hide(500);
+        }
+    });
+
+
     /* Booking Reference   */
     $(document).on('change', '.passenger_is_booking_checkbox', function() {
         var count = $(this).attr('count');
@@ -454,7 +480,7 @@ $(document).ready(function() {
       todayHighlight: true,
       autoclose: true,
     };
-    date_input.datepicker(options);  
+    date_input.datepicker(options);
   }
 
 
