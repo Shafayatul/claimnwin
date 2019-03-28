@@ -5,13 +5,22 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\User;
+use App\Airline;
+use App\Claim;
+use App\ClaimStatus;
 use Hash;
 
 class UserPanelController extends Controller
 {
     public function index()
     {
-        return view('front-end.user.user_panel');
+        $user_id = Auth::user()->id;
+        $claims = Claim::where('user_id', $user_id)->get();
+        $airline_id_array = Claim::where('user_id', $user_id)->pluck('airline_id')->toArray();
+        $airline = Airline::whereIn('id', $airline_id_array)->pluck('name', 'id')->toArray();
+        $claim_status = ClaimStatus::pluck('name', 'id')->toArray();
+
+        return view('front-end.user.user_panel', compact('claims', 'airline', 'claim_status'));
     }
 
     public function user_my_claim()
