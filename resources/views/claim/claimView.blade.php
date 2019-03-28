@@ -130,10 +130,6 @@
                                                                                         <td>{{$passenger->first_name.' '.$passenger->last_name}}</td>
                                                                                     </tr>
                                                                                     <tr class="odd gradeX">
-                                                                                        <th>Passenger Tel</th>
-                                                                                        <td>*#*</td>
-                                                                                    </tr>
-                                                                                    <tr class="odd gradeX">
                                                                                         <th>Passenger Email</th>
                                                                                         <td>{{$passenger->email}}</td>
                                                                                     </tr>
@@ -152,19 +148,7 @@
                                                                                     <td>{{Carbon\Carbon::parse($claims->created_at)->format('d-m-Y')}}</td>
                                                                                     </tr>
                                                                                     <tr class="odd gradeX">
-                                                                                        <th>Next Action Date</th>
-                                                                                        <td>*#*{{Carbon\Carbon::parse()->format('d-m-Y')}}</td>
-                                                                                    </tr>
-                                                                                    <tr class="odd gradeX">
-                                                                                        <th>Member Name</th>
-                                                                                        <td></td>
-                                                                                    </tr>
-                                                                                    <tr class="odd gradeX">
                                                                                         <th>Claim Status</th>
-                                                                                        <td></td>
-                                                                                    </tr>
-                                                                                    <tr class="odd gradeX">
-                                                                                        <th>Claim With</th>
                                                                                         <td></td>
                                                                                     </tr>
                                                                                     <tr class="odd gradeX">
@@ -172,15 +156,7 @@
                                                                                         <td>{{$claims->claim_table_type}}</td>
                                                                                     </tr>
                                                                                     <tr class="odd gradeX">
-                                                                                        <th>Legacy Case</th>
-                                                                                        <td></td>
-                                                                                    </tr>
-                                                                                    <tr class="odd gradeX">
                                                                                         <th>Claim Closed Date</th>
-                                                                                        <td></td>
-                                                                                    </tr>
-                                                                                    <tr class="odd gradeX">
-                                                                                        <th>Claim Summary</th>
                                                                                         <td></td>
                                                                                     </tr>
                                                                                     <tr class="odd gradeX">
