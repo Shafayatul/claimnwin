@@ -143,7 +143,7 @@ $(document).ready(function() {
             if ($("input[name='is_luggage_received']").is(':checked')) {
               if ($("input[name='is_luggage_received']:checked").val() == "1") {
                 $("#continue_3").removeClass('active_button');
-                if ($("input[name='received_luggage_date']").val() != "") {
+                if (($("input[name='received_luggage_date']").val() != "") && ($("input[name='is_already_written_airline']").is(':checked'))) {
                     $("#continue_3").addClass('active_button');
                     return true;
                 }else {
@@ -334,6 +334,7 @@ $(document).ready(function() {
     $(".show_on_is_luggage_received_yes").hide();
     $("input[name=is_luggage_received]:radio").click(function() {
         if ($(this).attr("value") == "1") {
+          console.log('chhhh');
             $(".show_on_is_luggage_received_yes").show(500);
         }else {
             $(".show_on_is_luggage_received_yes").hide(500);
