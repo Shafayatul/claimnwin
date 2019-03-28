@@ -16,6 +16,9 @@ use App\NextStep;
 use App\BankAccount;
 use App\Setting;
 use App\Flight;
+use File;
+use App\ClaimFile;
+use Auth;
 
 class ClaimBackController extends Controller
 {
@@ -52,6 +55,16 @@ class ClaimBackController extends Controller
         $reminders=Reminder::where('claim_id',$id)->get();
 
         $claims = Claim::where('id',$id)->first();
+        if($claims->claim_status_id != null){
+            $claim_status_id = $claims->claim_status_id;
+            $claimStatusData=ClaimStatus::where('id',$claim_status_id)->first();
+        }
+
+        if($claims->claim_next_step_id != null){
+            $claim_next_step_id = $claims->claim_next_step_id;
+            $NextStepData=NextStep::where('id',$claim_next_step_id)->first();
+        }
+
 
         $passengers = Passenger::where('claim_id',$id)->get();
 
@@ -67,11 +80,13 @@ class ClaimBackController extends Controller
         $destination_airport=Airport::where('iata_code',$airport_array[1])->first();
 
         $flightNo=$ittDetails->flight_number;
-        
+
         $flightInfo=Flight::where('flight_no',$flightNo)->first();
 
-        $flightCount=DB::table('itinerary_details')->where('claim_id',$id)->count();
-        $passCount=DB::table('passengers')->where('claim_id',$id)->count();
+
+
+        $flightCount=ItineraryDetail::where('claim_id',$id)->count();
+        $passCount=Passenger::where('claim_id',$id)->count();
         $claimsStatus=ClaimStatus::all();
         $nextSteps = NextStep::all();
         $banks = BankAccount::join('currencies','bank_accounts.currency_of_account','=','currencies.id')
@@ -80,7 +95,47 @@ class ClaimBackController extends Controller
                     ->get();
         $adminComm = Setting::where(['fieldKey'=>'_admin_comm'])->first();
         $affiliateComm = Setting::where(['fieldKey'=>'_affiliate_comm'])->first();
-        return view('claim.claimView',compact('flightInfo','airline','departed_airport','destination_airport','reminders','claims','passengers','ittDetails','flightCount','passCount','claimsStatus','nextSteps','banks'));
+        return view('claim.claimView',compact('NextStepData','claimStatusData','flightInfo','airline','departed_airport','destination_airport','reminders','claims','passengers','ittDetails','flightCount','passCount','claimsStatus','nextSteps','banks'));
+    }
+
+
+    public function claimFileUpload(Request $request)
+    {
+        $claim_id = $request->claim_id;
+        $file = $request->file('file_name');
+
+
+      $file_name = sha1(date('YmdHis') . str_random(30));
+      $name = $file_name . '.' . $file->getClientOriginalExtension();
+      // $resize_name = $name . str_random(2) . '.' . $photo->getClientOriginalExtension();
+
+
+
+      if(!File::exists(public_path('/uploads').'/'.$claim_id)) {
+        File::makeDirectory(public_path('/uploads').'/'.$claim_id);
+      }
+
+      $file->move(public_path('/uploads').'/'.$claim_id.'/', $name);
+
+      $claim_file = new ClaimFile();
+      $claim_file->name = $request->name;
+      $claim_file->file_name = $name;
+      $claim_file->user_id = Auth::user()->id;
+      $claim_file->claim_id = $claim_id;
+      $claim_file->save();
+      return redirect('/claim-view/'.$claim_id)->with('success','File Added');
+
+    }
+
+
+    public function claimNextstepStatusChange(Request $request)
+    {
+        $claim_id = $request->claim_id;
+        $claim = Claim::find($claim_id);
+        $claim->claim_status_id = $request->claim_status;
+        $claim->claim_next_step_id = $request->nextstep_status;
+        $claim->save();
+        return redirect('/claim-view/'.$claim_id)->with('success','Status Updated');
     }
 
     public function manageUnfinishedClaim()

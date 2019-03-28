@@ -42,15 +42,7 @@
                             <div class="panel" style="background-color: #d8a72b;">
                                 <div class="panel-heading cus_pan_heading">
                                     <p class="text-center">Claim Status</p>
-                                    <h5 class="text-center">Determination Started</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                            <div class="panel panel-primary">
-                                <div class="panel-heading cus_pan_heading">
-                                    <p class="text-center">Claim With</p>
-                                    <h5 class="text-center">AD</h5>
+                                    <h5 class="text-center">{{$claimStatusData->name}}</h5>
                                 </div>
                             </div>
                         </div>
@@ -140,7 +132,11 @@
 
                                                                                     <tr class="odd gradeX">
                                                                                         <th>Claim Referance Number</th>
-                                                                                    <td>{{$passenger->booking_refernece}}</td>
+                                                                                    <td>
+                                                                                        @if($passenger->is_booking_reference == 1)
+                                                                                        {{$passenger->booking_refernece}}
+                                                                                        @endif
+                                                                                    </td>
                                                                                     </tr>
                                                                                     @endforeach
                                                                                     <tr class="odd gradeX">
@@ -149,7 +145,7 @@
                                                                                     </tr>
                                                                                     <tr class="odd gradeX">
                                                                                         <th>Claim Status</th>
-                                                                                        <td></td>
+                                                                                    <td>{{$claimStatusData->name}}</td>
                                                                                     </tr>
                                                                                     <tr class="odd gradeX">
                                                                                         <th>Claim Type</th>
@@ -161,7 +157,7 @@
                                                                                     </tr>
                                                                                     <tr class="odd gradeX">
                                                                                         <th>Claim Outcome</th>
-                                                                                        <td></td>
+                                                                                    <td>{{$claims->amount}}</td>
                                                                                     </tr>
                                                                                 </tbody>
                                                                             </table>
@@ -218,10 +214,6 @@
                                                                                 <td>{{$ittDetails->flight_number}}</td>
                                                                                 </tr>
                                                                                 <tr class="odd gradeX">
-                                                                                    <th>Booking Ref</th>
-                                                                                    <td>{{$claims->booking_refernece}}</td>
-                                                                                </tr>
-                                                                                <tr class="odd gradeX">
                                                                                     <th>Scheduled Date & Time Of Arrival</th>
                                                                                 <td>{{$flightInfo->scheduled_arrival_time_and_date}}</td>
                                                                                 </tr>
@@ -255,19 +247,7 @@
                                                                                     <th>What reason was given for the delay</th>
                                                                                 <td>{{$claims->reason}}</td>
                                                                                 </tr>
-                                                                                <tr class="odd gradeX">
-                                                                                    <th>Do you dispute the reason</th>
-                                                                                    <td></td>
-                                                                                </tr>
-                                                                                <tr class="odd gradeX">
-                                                                                    <th>Refreshments</th>
-                                                                                <td>{{$claims->is_obtain_full_reimbursement}}</td>
-                                                                                </tr>
-                                                                                <tr class="odd gradeX">
-                                                                                    <th>Telephone Call</th>
-                                                                                    <td></td>
-                                                                                </tr>
-                                                                                <tr class="odd gradeX">
+                                                                                {{-- <tr class="odd gradeX">
                                                                                     <th>If delayed overnight - Hotel accomodation</th>
                                                                                     <td></td>
                                                                                 </tr>
@@ -282,14 +262,26 @@
                                                                                 <tr class="odd gradeX">
                                                                                     <th>Have you received any compensation (money/vouchers) already?</th>
                                                                                     <td></td>
-                                                                                </tr>
+                                                                                </tr> --}}
                                                                                 <tr class="odd gradeX">
                                                                                     <th>Number of passengers:</th>
                                                                                 <td>{{$passCount}}</td>
                                                                                 </tr>
                                                                                 <tr class="odd gradeX">
                                                                                     <th>Passengers Name</th>
-                                                                                <td>{{$claims->first_name.' '.$claims->last_name}}</td>
+                                                                                    <td>
+                                                                                        @foreach($passengers as $passenger)
+                                                                                            {{$passenger->first_name.' '.$passenger->last_name}}
+                                                                                        @endforeach
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr class="odd gradeX">
+                                                                                    <th>What Happened To The Flight?</th>
+                                                                                    <td>{{$claims->what_happened_to_the_flight}}</td>
+                                                                                </tr>
+                                                                                <tr class="odd gradeX">
+                                                                                    <th>What was the total delay once you arrived?</th>
+                                                                                    <td>{{$claims->total_delay}}</td>
                                                                                 </tr>
                                                                             </tbody>
                                                                         </table>
@@ -306,6 +298,31 @@
                                                             Your file submission allowance has now passed and you are no longer able to upload any more files to your case.
                                                             We will now request the Defence from the airline.
                                                         </p>
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <form action="{{route('claim-file-upload')}}" class="form-horizontal" method="post" enctype="multipart/form-data">
+                                                                    {{ csrf_field() }}
+                                                                    <div class="form-group">
+
+                                                                        <label for="file_name" class="control-label"></label>
+                                                                        <input type="text" class="form-control" name="name" id="file_name" placeholder="File Name..." required>
+                                                                    </div>
+
+
+                                                                    <label for="file-upload" class="custom-file-upload">
+                                                                        <i class="fas fa-cloud-upload-alt"></i> Custom Upload
+                                                                    </label>
+                                                                    <input id="file-upload" name="file_name" type="file" required/>
+                                                                    <input type="hidden" name="claim_id" value="{{$claims->id}}">
+                                                                    <div class="form-group">
+                                                                        <div class="col-md-12">
+                                                                            <button type="submit" class="mybtn"><i class="fa fa-save"></i> Save</button>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </form>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                     <div class="tab-pane" id="view_claim_files" role="tabpanel">
                                                         <div class="row">
@@ -411,17 +428,27 @@
                                                                                 </tr>
                                                                                 <tr class="odd gradeX">
                                                                                     <th>Have you complained direct to the airline writing?</th>
-                                                                                    <td></td>
+                                                                                    <td>
+                                                                                        @if($claims->is_already_written_airline == 0)
+                                                                                        NO
+                                                                                        @else
+                                                                                        Yes
+                                                                                        @endif
+                                                                                    </td>
                                                                                 </tr>
-                                                                                <tr class="odd gradeX">
+                                                                                {{-- <tr class="odd gradeX">
                                                                                     <th>Has the airline provided their final response?</th>
                                                                                     <td></td>
-                                                                                </tr>
+                                                                                </tr> --}}
                                                                                 <tr class="odd gradeX">
                                                                                     <th>What date did you complain to the airline?</th>
-                                                                                    <td></td>
+                                                                                    <td>
+                                                                                        @if($claims->is_already_written_airline == 1)
+                                                                                        {{$claims->written_airline_date}}
+                                                                                        @endif
+                                                                                    </td>
                                                                                 </tr>
-                                                                                <tr class="odd gradeX">
+                                                                                {{-- <tr class="odd gradeX">
                                                                                     <th>Did they reject your complain?</th>
                                                                                     <td></td>
                                                                                 </tr>
@@ -432,7 +459,7 @@
                                                                                 <tr class="odd gradeX">
                                                                                     <th>Airline response</th>
                                                                                     <td></td>
-                                                                                </tr>
+                                                                                </tr> --}}
                                                                             </tbody>
                                                                         </table>
                                                                     </div>
@@ -1002,22 +1029,24 @@
 
                                     <div role="tabpanel" class="tab-pane" id="claim-status" aria-labelledby="claim-status-tab">
                                         <div class="row" style="margin-top:1%;">
-                                        <form action="#" method="post">
+                                        <form action="{{route('claim-nextstep-status-change')}}" method="post" name="clam_nextstep_status">
+                                            {{ csrf_field() }}
                                             <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label> Status </label>
-                                                    <select class="form-control" id="status">
+                                                    <select class="form-control" id="status" name="claim_status">
                                                         <option value="">Select Status</option>
                                                         @foreach($claimsStatus as $claims_status)
                                                         <option value="{{$claims_status->id}}">{{$claims_status->name}}</option>
                                                         @endforeach
                                                     </select>
+                                                <input type="hidden" name="claim_id" value="{{$claims->id}}">
                                                 </div>
                                             </div>
                                             <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label> Next Step </label>
-                                                    <select class="form-control" id="next_step">
+                                                    <select class="form-control" id="next_step" name="nextstep_status">
                                                         <option value="">Select Next Step</option>
                                                         @foreach($nextSteps as $nextStep)
                                                         <option value="{{$nextStep->id}}">{{$nextStep->name}}</option>
@@ -1049,4 +1078,8 @@ $(function() {
     $('#note').froalaEditor()
 });
 </script> --}}
+<script>
+    document.forms['clam_nextstep_status'].elements['claim_status'].value="{{$claimStatusData->id}}";
+    document.forms['clam_nextstep_status'].elements['nextstep_status'].value="{{$NextStepData->id}}";
+</script>
 @endsection

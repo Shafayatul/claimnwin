@@ -88,6 +88,8 @@ Route::get('/manage-unfinished-claim', 'ClaimBackController@manageUnfinishedClai
 Route::get('/unfinished-claim-view', 'ClaimBackController@unfinishedClaimView');
 Route::get('/manage-fills-claim', 'ClaimBackController@manageFillsClaim');
 Route::get('/fills-claim-view', 'ClaimBackController@fillsClaimView');
+Route::post('/claim-file-upload', 'ClaimBackController@claimFileUpload')->name('claim-file-upload');
+Route::post('/claim-nextstep-status-change', 'ClaimBackController@claimNextstepStatusChange')->name('claim-nextstep-status-change');
 
 Route::resource('notes', 'NotesController');
 Route::post('/save-note', 'NotesController@store')->name('save-note');
@@ -100,3 +102,5 @@ Route::get('/close-ticket/{id}', 'TicketsController@closeTicket');
 Route::resource('flights', 'FlightsController');
 
 Route::get('/letter-before-action/{id}', 'PdfController@letterBeforeActionView');
+
+Route::resource('claim-files', 'ClaimFilesController');
