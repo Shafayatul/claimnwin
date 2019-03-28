@@ -427,7 +427,7 @@ class ClaimsController extends Controller
         if (isset($request->is_contacted_airline)) {
             $is_contacted_airline = $request->is_contacted_airline;
         }else{
-            $is_contacted_airline = "";
+            $is_contacted_airline = 0;
         }
 
         if (isset($request->what_happened)) {
@@ -595,7 +595,7 @@ class ClaimsController extends Controller
         }elseif ($claim_table_type == 'delay_luggage') {
             $amount = $this->delay_luggage_calculaion($departed_from_id, $final_destination_id, $total_delay, $selected_connection_iata_codes, $claim->id);
         }elseif ($claim_table_type == 'lost_luggage') {
-            $amount = $this->lost_luggage_calculaion($departed_from_id, $final_destination_id, $total_delay, $selected_connection_iata_codes, $claim->id);
+            $amount = $this->lost_luggage_calculaion($departed_from_id, $final_destination_id, $total_delay, $selected_connection_iata_codes, $claim->id, $is_luggage_received, $received_luggage_date, $is_already_written_airline);
         }elseif ($claim_table_type == 'denied_boarding') {
             $amount = $this->denied_boarding_calculaion($departed_from_id, $final_destination_id, $total_delay, $selected_connection_iata_codes, $claim->id);
         }
@@ -763,8 +763,41 @@ class ClaimsController extends Controller
 
 
 
-    public function lost_luggage_calculaion($departed_from_id, $final_destination_id, $total_delay, $selected_connection_iata_codes, $claim_id){
-        // bug ..................
+    public function lost_luggage_calculaion($departed_from_id, $final_destination_id, $total_delay, $selected_connection_iata_codes, $claim_id, $is_luggage_received, $received_luggage_date, $is_already_written_airline){
+
+        $claim = Claim::where('id', $claim_id)->first();
+        $Itinerary_detail = ItineraryDetail::WHERE('claim_id', $claim_id)->first();
+        $departure_date = strtotime($Itinerary_detail->departure_date);
+        $current_date = strtotime($claim->created_at);
+        $time_diff = $current_date - $departure_date;
+
+        if ($is_luggage_received==1) {
+
+            if ($time_diff > (2*365*24*60*60)) {
+                return '0';
+            }else{
+                $received_luggage_date = strtotime($received_luggage_date);
+                $time_diff = $departure_date - $received_luggage_date;
+                if ($time_diff < (21*24*60*60)) {
+                    return 'You are eligibe to a refund of up to 1350 EUR per passenger';
+                }else{
+                    if ($is_already_written_airline == 1) {
+                        return 'You are eligibe to a refund of up to 1350 EUR per passenger';
+                    }else{
+                        return 'Low cances but we can try to claim up to 1350 EUR per passenger';
+                    }
+                }
+            }
+
+        }else{
+
+            if ($time_diff > (2*365*24*60*60)) {
+                return '0';
+            }else{
+                return 'up to 1350 EUR';
+            }
+
+        }
         return false;
     }
 

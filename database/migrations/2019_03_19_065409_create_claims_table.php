@@ -26,7 +26,7 @@ class CreateClaimsTable extends Migration
             $table->boolean('is_obtain_full_reimbursement')->default(0)->nullable();
 
             // new add for flight cancelation 
-            $table->boolean('is_notify_before_forteen_days')->default(0)->nullable();        
+            $table->boolean('is_notify_before_forteen_days')->default(0)->nullable();
                 
             // new add for delayed luggage  
             $table->boolean('is_already_written_airline')->default(0)->nullable();
