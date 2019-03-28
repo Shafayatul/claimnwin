@@ -14,6 +14,11 @@ class UserPanelController extends Controller
         return view('frontEnd.user.user_panel');
     }
 
+    public function user_my_claim()
+    {
+        return view('frontEnd.user.user_panel_my_claim');
+    }
+
     public function userSignup(Request $request)
     {
       if($request->password == $request->confirm_password)
