@@ -14,7 +14,7 @@
     <div class="form_h2">
       <h2 class="text-center">Missed Connection</h2>
     </div>
-      <form action="{{url('/claim')}}" method="post">
+      <form action="{{url('/claim')}}" method="post" id="step-form">
         @csrf
         <!-- ...................................................................
                                   STEP 1 STARTS
@@ -1125,7 +1125,6 @@
             </div>
           </div>
 
-          <input type="hidden" name="claim_table_type" value="missed_connection">
 
           <div class="common_row">
             <div class="total_button_div">
@@ -1143,6 +1142,8 @@
           </div>
 
         </div>
+        <input type="hidden" name="claim_table_type" value="missed_connection">
+
         <!-- ...................................................................
                                   STEP 8 ENDS
         .................................................................... -->

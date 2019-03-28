@@ -14,7 +14,8 @@
     <div class="form_h2">
         <h2 class="text-center">Lost Luggage</h2>
     </div>
-    <form action="">
+      <form action="{{url('/claim')}}" method="post" id="step-form">
+        @csrf
 
         <!-- ...................................................................
                                   STEP 1 STARTS
@@ -26,22 +27,22 @@
                     <h3>Where did you fly?</h3>
                 </div>
                 <div class="parent_div">
-                    <div class="two_child_div_left">
-                        <div class="label_field">
-                            <label for="departed_from">DEPARTED FROM: </label>
-                        </div>
-                        <div class="input_field">
-                            <input type="text" class="common_input departed_from" id="common_input departed_from" name="departed_from" placeholder="e.g. New York or JFK">
-                        </div>
+                  <div class="two_child_div_left">
+                    <div class="label_field">
+                      <label for="departed_from">DEPARTED FROM: </label>
                     </div>
-                    <div class="two_child_div_right">
-                        <div class="label_field">
-                            <label for="final_destination">FINAL DESTINATION: </label>
-                        </div>
-                        <div class="input_field">
-                            <input type="text" class="common_input final_destination" id="common_input final_destination" name="final_destination" placeholder="e.g. London or LHR">
-                        </div>
+                    <div class="input_field">
+                      <input type="text" class="auto_airport_complete common_input departed_from" id="advanced-demo common_input departed_from" name="departed_from" placeholder="e.g. New York or JFK">
                     </div>
+                  </div>
+                  <div class="two_child_div_right">
+                    <div class="label_field">
+                      <label for="final_destination">FINAL DESTINATION: </label>
+                    </div>
+                    <div class="input_field">
+                      <input type="text" class="auto_airport_complete common_input final_destination" id="common_input final_destination" name="final_destination" placeholder="e.g. London or LHR">
+                    </div>
+                  </div>
                 </div>
             </div>
 
@@ -54,58 +55,9 @@
                 </div>
             </div>
 
-            <div class="common_row">
-                <div class="parent_div">
-                    <div class="single_child_div">
-                        <div class="arrival_to_destination_text_div">
-                            <span class="arrival_to_destination_text_span">New Chitose Airport, Sapporo (CTS)<i class="fas fa-plane"></i>New Chitose Airport, Sapporo (CTS)</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="parent_div">
-                    <div class="single_child_div">
-                        <div class="left_div">
-                            <div class="label_field">
-                                <label for="airline">AIRLINE</label>
-                            </div>
-                            <div class="input_field">
-                                <input type="text" class="common_input airline" id="common_input airline" name="airline[]" placeholder="e.g. New York or JFK">
-                            </div>
-                        </div>
-                        <div class="right_div">
-                            <div class="flight_number_div">
-                                <div class="label_field">
-                                    <label for="departure_airport">FLIGHT NO.</label>
-                                </div>
-                                <div class="two_input_field">
-                                    <div class="child_two_input_field_left">
-                                        <div class="input_field">
-                                            <input type="text" class="common_input flight_code" id="common_input flight_code" name="flight_code[]" placeholder="">
-                                        </div>
-                                    </div>
-                                    <div class="child_two_input_field_right">
-                                        <div class="input_field">
-                                            <input type="text" class="common_input flight_number" id="common_input flight_number" name="flight_number[]" placeholder="1234">
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="departure_date_div">
-                                <div class="label_field">
-                                    <label for="departure_airport">DEPARTURE DATE</label>
-                                </div>
-                                <div class="two_input_field">
-                                    <div class="input_field">
-                                        <input type="text" class="common_input departure_airport date" id="common_input departure_airport date" name="departure_date[]" placeholder="e.g. New York or JFK">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+          <div class="itinerary_flight_element">
+            {{-- code from JS --}}
+          </div>
 
             <div class="common_row">
                 <div class="total_button_div">
@@ -848,6 +800,8 @@
             </div>
 
         </div>
+
+        <input type="hidden" name="claim_table_type" value="lost_luggage">
         <!-- ...................................................................
                                   STEP 8 ENDS
         .................................................................... -->
@@ -857,10 +811,56 @@
 @endsection
 
 @section('footer-script')
-{{-- <script src="h ttps://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> --}}
+  <script type="text/javascript">
+      auto_airport_complete();
+      function auto_airport_complete(){
+        $('.auto_airport_complete').autoComplete({
+            minChars: 3,
+            source: function(term, suggest){
+                term = term.toLowerCase();
+                var choices = {!! $airport_object !!};
+                var suggestions = [];
+                for (i=0;i<choices.length;i++)
+                    if (~(choices[i][0]+' '+choices[i][1]).toLowerCase().indexOf(term)) suggestions.push(choices[i]);
+                suggest(suggestions);
+            },
+            renderItem: function (item, search){
+                search = search.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+                var re = new RegExp("(" + search.split(' ').join('|') + ")", "gi");
+                return '<div class="autocomplete-suggestion" data-langname="'+item[0]+'" data-lang="'+item[1]+'" data-val="'+search+'"> '+item[0].replace(re, "<b>$1</b>")+'</div>';
+            },
+            onSelect: function(e, term, item){
+                // console.log('Item "'+item.data('langname')+' ('+item.data('lang')+')" selected by '+(e.type == 'keydown' ? 'pressing enter or tab' : 'mouse click')+'.');
+                $(':focus').val(item.data('langname')+' ('+item.data('lang')+')').attr('iata-code',item.data('lang'));
+            }
+        });     
+      }
+      auto_airline_complete();
+      function auto_airline_complete(){
+        $('.auto_airline_complete').autoComplete({
+            minChars: 3,
+            source: function(term, suggest){
+                term = term.toLowerCase();
+                var choices = {!! $airline_object !!};
+                var suggestions = [];
+                for (i=0;i<choices.length;i++)
+                    if (~(choices[i][0]+' '+choices[i][1]).toLowerCase().indexOf(term)) suggestions.push(choices[i]);
+                suggest(suggestions);
+            },
+            renderItem: function (item, search){
+                search = search.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+                var re = new RegExp("(" + search.split(' ').join('|') + ")", "gi");
+                return '<div class="autocomplete-suggestion" data-langname="'+item[0]+'" data-lang="'+item[1]+'" data-val="'+search+'"> '+item[0].replace(re, "<b>$1</b>")+'</div>';
+            },
+            onSelect: function(e, term, item){
+                $(':focus').val(item.data('langname')).attr('iata_code',item.data('lang'));
+            }
+        });     
+      }
+                           
+  </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-{{-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> --}}
-<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
 <script src="{{('front_asset/claim/lost_luggage/js/custom.js')}}"></script>
 

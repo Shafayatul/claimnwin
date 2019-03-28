@@ -49,7 +49,7 @@
                           <td>{{ $loop->iteration }}</td>
                           <td>{{ $item->flight_no }}</td>
                           <td>{{ $item->date }}</td>
-                          <td>{{ $item->scheduled_departure_time }}</td>
+                          <td>{{ $item->scheduled_departure_time_and_date }}</td>
                           <td>{{ $item->scheduled_arrival_time_and_date }}</td>
                           <td>{{ $item->actual_departure_time_and_date }}</td>
                           <td>{{ $item->actual_arrival_time_and_date }}</td>

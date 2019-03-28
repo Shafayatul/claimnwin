@@ -25,7 +25,7 @@ class Airline extends Model
      *
      * @var array
      */
-    protected $fillable = ['user_id', 'name', 'email', 'iata_code', 'icao_code', 'country', 'phone', 'ability', 'sub_name', 'address_line_1', 'address_line_2', 'address_line_3', 'address_line_4', 'online_form_link', 'status'];
+    protected $fillable = ['user_id', 'name', 'email', 'iata_code', 'icao_code', 'country', 'phone', 'address_line_1', 'address_line_2', 'address_line_3', 'address_line_4', 'online_form_link', 'status','alias'];
 
-    
+
 }

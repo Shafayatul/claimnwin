@@ -58,18 +58,18 @@
 
 <div class="row">
   <div class="col-md-6 grid_box1">
-    <div class="form-group {{ $errors->has('ability') ? 'has-error' : ''}}">
-        {!! Form::label('ability', 'Ability', ['class' => 'control-label']) !!}
-         {{ Form::select('ability', ['Yes'=> 'Yes', 'No'=> 'No'], null, array('class'=>'form-control', 'placeholder'=>'Please select ...')) }}
-        {!! $errors->first('ability', '<p class="help-block">:message</p>') !!}
-    </div>
+        <div class="form-group {{ $errors->has('alias') ? 'has-error' : ''}}">
+            {!! Form::label('alias', 'Alias', ['class' => 'control-label']) !!}
+            {!! Form::text('alias', null, ('' == 'required') ? ['class' => 'form-control', 'required' => 'required'] : ['class' => 'form-control']) !!}
+            {!! $errors->first('alias', '<p class="help-block">:message</p>') !!}
+        </div>
   </div>
   <div class="col-md-6">
-    <div class="form-group {{ $errors->has('sub_name') ? 'has-error' : ''}}">
-        {!! Form::label('sub_name', 'Sub Name', ['class' => 'control-label']) !!}
-        {!! Form::text('sub_name', null, ('' == 'required') ? ['class' => 'form-control', 'required' => 'required'] : ['class' => 'form-control']) !!}
-        {!! $errors->first('sub_name', '<p class="help-block">:message</p>') !!}
-    </div>
+        <div class="form-group {{ $errors->has('status') ? 'has-error' : ''}}">
+            {!! Form::label('status', 'Active', ['class' => 'control-label']) !!}
+                {{ Form::select('status', ['1'=> 'Enabled', '2'=> 'Disabled'], null, array('class'=>'form-control', 'placeholder'=>'Please select ...')) }}
+            {!! $errors->first('status', '<p class="help-block">:message</p>') !!}
+        </div>
   </div>
 </div>
 
@@ -115,13 +115,12 @@
         {!! $errors->first('online_form_link', '<p class="help-block">:message</p>') !!}
     </div>
   </div>
-  <div class="col-md-6">
-    <div class="form-group {{ $errors->has('status') ? 'has-error' : ''}}">
-        {!! Form::label('status', 'Status', ['class' => 'control-label']) !!}
-         {{ Form::select('status', ['1'=> 'Enabled', '2'=> 'Disabled'], null, array('class'=>'form-control', 'placeholder'=>'Please select ...')) }}
-        {!! $errors->first('status', '<p class="help-block">:message</p>') !!}
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+
     </div>
-  </div>
 </div>
 
 <div class="row">

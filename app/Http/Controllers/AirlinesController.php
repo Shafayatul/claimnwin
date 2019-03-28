@@ -31,14 +31,13 @@ class AirlinesController extends Controller
                 ->orWhere('icao_code', 'LIKE', "%$keyword%")
                 ->orWhere('country', 'LIKE', "%$keyword%")
                 ->orWhere('phone', 'LIKE', "%$keyword%")
-                ->orWhere('ability', 'LIKE', "%$keyword%")
-                ->orWhere('sub_name', 'LIKE', "%$keyword%")
                 ->orWhere('address_line_1', 'LIKE', "%$keyword%")
                 ->orWhere('address_line_2', 'LIKE', "%$keyword%")
                 ->orWhere('address_line_3', 'LIKE', "%$keyword%")
                 ->orWhere('address_line_4', 'LIKE', "%$keyword%")
                 ->orWhere('online_form_link', 'LIKE', "%$keyword%")
                 ->orWhere('status', 'LIKE', "%$keyword%")
+                ->orWhere('alias', 'LIKE', "%$keyword%")
                 ->latest()->paginate($perPage);
         } else {
             $airlines = Airline::latest()->paginate($perPage);

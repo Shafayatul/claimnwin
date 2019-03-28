@@ -17,7 +17,7 @@ class CreateFlightsTable extends Migration
             $table->string('user_id')->nullable();
             $table->string('flight_no')->nullable();
             $table->string('date')->nullable();
-            $table->string('scheduled_departure_time')->nullable();
+            $table->string('scheduled_departure_time_and_date')->nullable();
             $table->string('actual_departure_time_and_date')->nullable();
             $table->string('scheduled_arrival_time_and_date')->nullable();
             $table->string('actual_arrival_time_and_date')->nullable();
