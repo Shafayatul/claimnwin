@@ -16,7 +16,7 @@
 	</div>
 	<div class="common_row">
 		<div class="parent_div">
-			@if(!$amount)
+			@if($amount!='0')
 			<p>
 				Your claim has been submitted successfully! Ready, set, go! Let’s start the process. Our experienced flight experts will verify the eligibility of your claim and to make sure that you can obtain your compensation of {{$amount}}. To check your claim status, simply visit your Dashboard. 
 			</p>
@@ -28,7 +28,7 @@
 			@endif
 		</div>
 	</div>
-	@if(!$amount)
+	@if($amount!='0')
 	<div class="common_row">
 		<div class="parent_div">
 			<div class="single_button_child_div">
