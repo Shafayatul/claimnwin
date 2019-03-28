@@ -18,6 +18,7 @@
 		<div class="parent_div">
 			@if($amount!='0')
 			<p>
+				My Id: {{Auth::user()->id}}
 				Your claim has been submitted successfully! Ready, set, go! Let’s start the process. Our experienced flight experts will verify the eligibility of your claim and to make sure that you can obtain your compensation of {{$amount}}. To check your claim status, simply visit your Dashboard. 
 			</p>
 			@else

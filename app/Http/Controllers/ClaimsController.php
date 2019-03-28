@@ -16,7 +16,7 @@ use App\Passenger;
 use App\Airline;
 use App\Expense;
 use Illuminate\Http\Request;
-
+use Auth;
 use Countries;
 
 class ClaimsController extends Controller
@@ -451,13 +451,22 @@ class ClaimsController extends Controller
 
 
 
-        // create new user
-        $user = User::create(
-            [
-             'name'             => $email,
-             'email'            => $email,
-             'password'         => Hash::make($email)
-            ]);
+        // create new user or get old
+        $user_count = User::where('email', $email)->count();
+        if ($user_count ==0) {
+            $user = User::create(
+                [
+                 'name'             => $email,
+                 'email'            => $email,
+                 'password'         => Hash::make($email)
+                ]);
+        }else{
+            $user = User::where('email', $email)->first();
+        }
+        // user login
+        if ($user != null){
+            Auth::loginUsingId($user->id);
+        }
 
 
         // create claim
@@ -609,12 +618,7 @@ class ClaimsController extends Controller
 
 
         // return 'Done';
-        if(auth()->attempt(['email' => $email, 'password' => $email])){
-            // Mail::to($user->email)->send(new Welcome($user));
-            return view('front-end.claim.success',compact('amount'));
-        }else{
-          return "not working";
-        }
+        return view('front-end.claim.success',compact('amount'));
 
         
     }
