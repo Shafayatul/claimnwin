@@ -102,5 +102,6 @@ Route::get('/close-ticket/{id}', 'TicketsController@closeTicket');
 Route::resource('flights', 'FlightsController');
 
 Route::get('/letter-before-action/{id}', 'PdfController@letterBeforeActionView');
+Route::get('/poa-pdf/{id}', 'PdfController@pdfView');
 
 Route::resource('claim-files', 'ClaimFilesController');

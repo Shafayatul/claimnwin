@@ -23,4 +23,11 @@ class PdfController extends Controller
         $connection = Connection::find($id);
         return view('pdf.letterBeforeAction',compact('claim','passenger','iternery','expense','reminder','connection'));
     }
+
+    public function pdfView($id)
+    {
+        $claim=Claim::find($id);
+        $passenger = Passenger::where('claim_id',$id)->get();
+        return view('pdf.POA');
+    }
 }

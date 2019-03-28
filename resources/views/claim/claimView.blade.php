@@ -336,7 +336,7 @@
                                                         </div>
                                                         <div class="row">
                                                             <div class="col-lg-12">
-
+                                                                    <a href="{{URL::to('/poa-pdf/'.$claims->id)}}" class="btn btn-primary btn-sm">Download POA Pdf</a>
                                                                         <div class="panel panel-default">
                                                                             <!-- /.panel-heading -->
                                                                             <div class="panel-body">
