@@ -46,6 +46,10 @@
                 </div>
             </div>
 
+             <div style="display: none;">
+               <input type="text" name="selected_connection_iata_codes" class="selected_connection_iata_codes"> 
+            </div>
+
             <div class="parent_div">
                 <div class="form_h3">
                     <h3>Itinerary details for your disrupted flight</h3>
@@ -152,8 +156,6 @@
                     </label>
                 </div>
             </div>
-          </div>
-
 
           <div class="common_row show_on_is_luggage_received_yes">
             <div class="parent_div">
@@ -166,7 +168,29 @@
                     </div>
                 </div>
             </div>
+
+
+            <div class="parent_div">
+              <div class="form_h3">
+                  <h3>have you filed a complained with the airline within 21 days of receipt of baggage?</h3>
+              </div>
+              <div class="parent_div">
+                  <div class="two_child_radio_div first_child">
+                      <label class="container_radio">Yes
+                          <input class="common_input is_already_written_airline" type="radio" id="common_input is_already_written_airline_yes" name="is_already_written_airline" value="1">
+                          <span class="checkmark"></span>
+                      </label>
+                  </div>
+                  <div class="two_child_radio_div">
+                      <label class="container_radio">No
+                          <input class="common_input is_already_written_airline" type="radio" id="common_input is_already_written_airline_no" name="is_already_written_airline" value="0">
+                          <span class="checkmark"></span>
+                      </label>
+                  </div>
+              </div>
+            </div>    
           </div>
+        </div>
 
             <div class="common_row">
                 <div class="total_button_div">

@@ -95,6 +95,10 @@
                 </div>
             </div>
 
+             <div style="display: none;">
+                   <input type="text" name="selected_connection_iata_codes" class="selected_connection_iata_codes"> 
+                </div>
+
             <div class="parent_div">
                 <div class="form_h3">
                     <h3>Itinerary details for your disrupted flight</h3>

@@ -44,6 +44,10 @@
             </div>
           </div>
 
+           <div style="display: none;">
+               <input type="text" name="selected_connection_iata_codes" class="selected_connection_iata_codes"> 
+            </div>
+
           <div class="common_row">
             <div class="form_h3">
               <h3>Were any other airports involved in this trip?</h3>

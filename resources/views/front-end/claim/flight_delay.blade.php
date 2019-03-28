@@ -42,6 +42,10 @@
                     </div>
                   </div>
                 </div>
+                <div style="display: none;">
+                   <input type="text" name="selected_connection_iata_codes" class="selected_connection_iata_codes"> 
+                </div>
+                
             </div>
 
             <div class="common_row">
@@ -917,6 +921,7 @@
             </div>
 
         </div>
+        
         <input type="hidden" name="claim_table_type" value="flight_delay">
         <!-- ...................................................................
                                   STEP 8 ENDS

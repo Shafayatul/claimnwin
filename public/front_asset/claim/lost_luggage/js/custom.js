@@ -39,6 +39,9 @@ $(document).ready(function() {
         var value = $("input[name='departed_from']").attr('iata-code')+'-'+$("input[name='final_destination']").attr('iata-code');
         var html = '<div class="common_row"><div class="parent_div"><div class="single_child_div"><div class="arrival_to_destination_text_div"><span class="arrival_to_destination_text_span">'+$("input[name='departed_from']").val()+'<i class="fas fa-plane"></i>'+$("input[name='final_destination']").val()+'</span></div></div></div><div class="parent_div"><div class="single_child_div"><div class="left_div"><div class="label_field"><label for="airline">AIRLINE</label></div><div class="input_field"><input type="text" serial="1" class="auto_airline_complete common_input airline" id="common_input airline" name="airline[]" placeholder="e.g. New York or JFK"><input type="hidden" name="flight_segment[]" value="'+value+'"></div></div><div class="right_div"><div class="flight_number_div"><div class="label_field"><label for="departure_airport">FLIGHT NO.</label></div><div class="two_input_field"><div class="child_two_input_field_left"><div class="input_field"><input type="text" class="common_input flight_code flight_code_1" id="common_input flight_code" name="flight_code[]" placeholder=""></div></div><div class="child_two_input_field_right"><div class="input_field"><input type="text" class="common_input flight_number" id="common_input flight_number" name="flight_number[]" placeholder="1234"></div></div></div></div><div class="departure_date_div"><div class="label_field"><label for="departure_airport">DEPARTURE DATE</label></div><div class="two_input_field"><div class="input_field"><input type="text" class="common_input departure_airport date" id="common_input departure_airport date" name="departure_date[]" placeholder="e.g. New York or JFK"></div></div></div></div></div></div></div>';
         $('.itinerary_flight_element').html(html);
+        console.log("hhhhh:" +value);
+        // $("input[name='selected_connection_iata_codes']").attr('value').val(value);
+        $("input[name='selected_connection_iata_codes']").val(value);
 
       }else if (type=='multiple') {
 
@@ -70,6 +73,8 @@ $(document).ready(function() {
       auto_airline_complete();
 
     }
+
+    
     /*HIDE MOBILE TABLE*/
     if($(window).width() > 768){
       $('.table_show_on_small_screen').remove();
@@ -143,7 +148,7 @@ $(document).ready(function() {
             if ($("input[name='is_luggage_received']").is(':checked')) {
               if ($("input[name='is_luggage_received']:checked").val() == "1") {
                 $("#continue_3").removeClass('active_button');
-                if ($("input[name='received_luggage_date']").val() != "") {
+                if (($("input[name='received_luggage_date']").val() != "") && ($("input[name='is_already_written_airline']").is(':checked'))) {
                     $("#continue_3").addClass('active_button');
                     return true;
                 }else {
@@ -334,6 +339,7 @@ $(document).ready(function() {
     $(".show_on_is_luggage_received_yes").hide();
     $("input[name=is_luggage_received]:radio").click(function() {
         if ($(this).attr("value") == "1") {
+          console.log('chhhh');
             $(".show_on_is_luggage_received_yes").show(500);
         }else {
             $(".show_on_is_luggage_received_yes").hide(500);
