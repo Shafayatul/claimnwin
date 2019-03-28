@@ -290,8 +290,7 @@ class ClaimsController extends Controller
     
     public function store(Request $request)
     {
-
-
+        
         $departed_from_id = $this->get_airport_id_name_and_iata_code($request->departed_from);
         $final_destination_id = $this->get_airport_id_name_and_iata_code($request->final_destination);
 
@@ -450,23 +449,27 @@ class ClaimsController extends Controller
 
 
 
-
-        // create new user or get old
-        $user_count = User::where('email', $email)->count();
-        if ($user_count ==0) {
-            $user = User::create(
-                [
-                 'name'             => $email,
-                 'email'            => $email,
-                 'password'         => Hash::make($email)
-                ]);
+        if (Auth::user()) {
+            $user = Auth::user();
         }else{
-            $user = User::where('email', $email)->first();
+            // create new user or get old
+            $user_count = User::where('email', $email)->count();
+            if ($user_count ==0) {
+                $user = User::create(
+                    [
+                     'name'             => $email,
+                     'email'            => $email,
+                     'password'         => Hash::make($email)
+                    ]);
+            }else{
+                $user = User::where('email', $email)->first();
+            }
+            // user login
+            if ($user != null){
+                Auth::loginUsingId($user->id);
+            }            
         }
-        // user login
-        if ($user != null){
-            Auth::loginUsingId($user->id);
-        }
+    
 
 
         // create claim

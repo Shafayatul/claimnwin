@@ -23,9 +23,10 @@ class UserPanelController extends Controller
         return view('front-end.user.user_panel', compact('claims', 'airline', 'claim_status'));
     }
 
-    public function user_my_claim()
+    public function user_my_claim($id)
     {
-        return view('front-end.user.user_panel_my_claim');
+       $claim = Claim::where('id',$id)->get();
+        return view('front-end.user.user_panel_my_claim', compact('claim'));
     }
 
     public function userSignup(Request $request)

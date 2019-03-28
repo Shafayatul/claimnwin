@@ -42,6 +42,9 @@
                     </div>
                   </div>
                 </div>
+                 <div style="display: none;">
+                   <input type="text" name="selected_connection_iata_codes" class="selected_connection_iata_codes"> 
+                </div>
             </div>
 
             <div class="common_row">

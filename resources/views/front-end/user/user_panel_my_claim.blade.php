@@ -44,9 +44,9 @@
       <li class="nav-item claim_options_ul_li active">
         <a class="nav-link active text-center" id="claim-status-tab" data-toggle="tab" href="#claim-status" role="tab" aria-controls="claim-status" aria-selected="true"><i class="fas fa-signature"></i> Claim status</a>
       </li>
-      <li class="nav-item claim_options_ul_li">
+      {{-- <li class="nav-item claim_options_ul_li">
         <a class="nav-link text-center" id="history-tab" data-toggle="tab" href="#history" role="tab" aria-controls="history" aria-selected="false"><i class="fas fa-list"></i> History</a>
-      </li>
+      </li> --}}
       <li class="nav-item claim_options_ul_li">
         <a class="nav-link text-center" id="claim-details-tab" data-toggle="tab" href="#claim-details" role="tab" aria-controls="claim-details" aria-selected="false"><i class="fas fa-bolt"></i> Claim details</a>
       </li>
@@ -75,7 +75,7 @@
         </div>
       </div>
 
-      <div class="tab-pane fade" id="history" role="tabpanel" aria-labelledby="history-tab">
+{{--       <div class="tab-pane fade" id="history" role="tabpanel" aria-labelledby="history-tab">
         <div class="wrapper">
 
 
@@ -105,7 +105,7 @@
 
 
         </div>
-      </div>
+      </div> --}}
       <div class="tab-pane fade" id="claim-details" role="tabpanel" aria-labelledby="claim-details-tab">
         <div class="wrapper">
           <div class="parent_div">

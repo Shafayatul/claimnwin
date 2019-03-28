@@ -47,30 +47,40 @@
       <div class="row">
         <div class="col-md-2 col-md-offset-1">
           <div class="parent_div claim_list_div text-center">
-            <a href="{{ URL::to('/user-my-claim')}}">{{str_replace('_', ' ', ucfirst($claim->claim_table_type)) }}</a>
+            <a href="{{ URL::to('/user-my-claim/'.$claim->id)}}">{{str_replace('_', ' ', ucfirst($claim->claim_table_type)) }}</a>
           </div>
         </div>
         <div class="col-md-2">
           <div class="parent_div claim_list_div text-center">
-            <a href="{{ URL::to('/user-my-claim')}}">{{$claim->id}}</a>
+            <a href="{{ URL::to('/user-my-claim/'.$claim->id)}}">{{$claim->id}}</a>
           </div>
         </div>
         <div class="col-md-2 text-center">
           <div class="parent_div claim_list_div text-center">
-            <a href="{{ URL::to('/user-my-claim')}}">{{$airline[$claim->airline_id]}}</a>
+            @if(isset($airline[$claim->airline_id]))
+              <a href="{{ URL::to('/user-my-claim/'.$claim->id)}}">{{$airline[$claim->airline_id]}}</a>
+            @else
+              <a href="{{ URL::to('/user-my-claim/'.$claim->id)}}">---</a>
+            @endif
           </div>
         </div>
         <div class="col-md-2">
           <div class="parent_div claim_list_div text-center">
-            <a href="{{ URL::to('/user-my-claim')}}">{{$claim->amount}}</a>
+            <a href="{{ URL::to('/user-my-claim/'.$claim->id)}}">
+              @if($claim->amount != "")
+                <a href="{{ URL::to('/user-my-claim/'.$claim->id)}}">{{$claim->amount}}</a>
+              @else
+                <a href="{{ URL::to('/user-my-claim/'.$claim->id)}}">---</a>
+              @endif
+            </a>
           </div>
         </div>
         <div class="col-md-2">
           <div class="parent_div claim_list_div text-center">
             @if(isset($claim_status[$claim->claim_status_id]))
-              <a href="{{ URL::to('/user-my-claim')}}" class="claim_status_a">{{$claim_status[$claim->claim_status_id]}}</a>
+              <a href="{{ URL::to('/user-my-claim/'.$claim->id)}}" class="claim_status_a">{{$claim_status[$claim->claim_status_id]}}</a>
             @else
-              <a href="{{ URL::to('/user-my-claim')}}" class="claim_status_a">No status defined</a>
+              <a href="{{ URL::to('/user-my-claim/'.$claim->id)}}" class="claim_status_a">No status defined</a>
             @endif
           </div>
         </div>
