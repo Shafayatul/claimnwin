@@ -56,6 +56,7 @@ class CreateClaimsTable extends Migration
             $table->string('claim_status_id')->nullable();
             $table->string('claim_next_step_id')->nullable();
             $table->string('amount')->nullable();
+            $table->string('airline_id')->nullable();
             $table->timestamps();
             });
     }

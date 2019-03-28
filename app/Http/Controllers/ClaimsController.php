@@ -554,12 +554,14 @@ class ClaimsController extends Controller
         
 
         // create ininerary detail
+        $airline_id = 0;
         if (isset($request->flight_code)) {
             $cnt = 0;
             foreach ($request->flight_code as $single_flight_code) {
                 if ($single_flight_code != "") {
                   if ($request->flight_segment[$cnt] == $selected_connection_iata_codes) {
                     $is_selected = 1;
+                    $airline_id  = Airline::where('iata_code', $single_flight_code)->first()->id;
                   }else{
                     $is_selected = 0;
                   }
@@ -573,6 +575,10 @@ class ClaimsController extends Controller
                   $itineraryDetail->save();
                 }
                 $cnt++;
+            }
+
+            if (count($request->flight_code)==1) {
+                $airline_id  = ItineraryDetail::where('claim_id', $claim->id)->first()->airline_id;
             }
         }
 
@@ -610,17 +616,14 @@ class ClaimsController extends Controller
         }
 
 
-        $update_claim = Claim::find($claim->id);
-        $update_claim->amount = $amount;
+        $update_claim               = Claim::find($claim->id);
+        $update_claim->amount       = $amount;
+        $update_claim->airline_id   = $airline_id;
         $update_claim->save();
 
-        // return $amount;
 
-
-        // return 'Done';
         return view('front-end.claim.success',compact('amount'));
 
-        
     }
 
 
