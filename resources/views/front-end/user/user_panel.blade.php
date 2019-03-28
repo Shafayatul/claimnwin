@@ -1,4 +1,4 @@
-@extends('FrontEnd.user.user_panel_layout')
+@extends('front-end.user.user_panel_layout')
 
 @section('user_panel_main_section')
 
