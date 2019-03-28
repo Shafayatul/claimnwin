@@ -18,8 +18,14 @@ border-radius: 0;
 
 /* Add a gray background color and some padding to the footer */
 footer {
+  width: 100%;
+margin-top: 10px;
 border-top: 1px solid #e7e7e7;
 background-color: #f2f2f2;
+position:fixed;
+bottom:10%;
+left: 0%;
+
 }
 
 .menu{
@@ -42,6 +48,17 @@ color: #65718b !important;
 }
 */
 
+.claim_list_div a {
+  font-size: 16px;
+  text-decoration: none;
+  color: #12488e;
+  display: block;
+}
+
+.claim_status_a {
+  color: #feba3a !important;
+}
+
 .menu_nav li a:hover{
 color: #26cfa2 !important;
 }
@@ -59,7 +76,7 @@ background-color: none!important;
 }
 
 .navbar-nav>li>.dropdown-menu{
-border-top: 3px solid #26cfa2!important;
+border-top: 3px solid #26cfa2 !important;
 }
 
 .menu_nav img{
@@ -123,6 +140,10 @@ font-weight: bold;
 .underline_row {
 width : 100%;
 border : 1px solid #b7b7b7;
+}
+
+.claim_list_div_underline {
+  border-bottom: 1px solid #e7e7e7;
 }
 
 .message_underline_row {
