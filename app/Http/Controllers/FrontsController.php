@@ -8,12 +8,12 @@ class FrontsController extends Controller
 {
   public function user_signup()
   {
-      return view('frontEnd.signup');
+      return view('front-end.signup');
   }
 
   public function user_login()
   {
-      return view('frontEnd.login');
+      return view('front-end.login');
   }
 
 }

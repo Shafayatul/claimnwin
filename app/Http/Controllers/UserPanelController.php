@@ -11,12 +11,12 @@ class UserPanelController extends Controller
 {
     public function index()
     {
-        return view('frontEnd.user.user_panel');
+        return view('front-end.user.user_panel');
     }
 
     public function user_my_claim()
     {
-        return view('frontEnd.user.user_panel_my_claim');
+        return view('front-end.user.user_panel_my_claim');
     }
 
     public function userSignup(Request $request)
