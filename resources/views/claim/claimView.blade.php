@@ -189,10 +189,10 @@
                                                                                     <th>Date Of Disrupted</th>
                                                                                 <td>{{$ittDetails->departure_date}}</td>
                                                                                 </tr>
-                                                                                <tr class="odd gradeX">
+                                                                         {{--        <tr class="odd gradeX">
                                                                                     <th>Scheduled Date & Time Of Departure</th>
                                                                                     <td>{{$flightInfo->scheduled_departure_time_and_date}}</td>
-                                                                                </tr>
+                                                                                </tr> --}}
                                                                                 <tr class="odd gradeX">
                                                                                     <th>Airline</th>
                                                                                 <td>{{$airline->name}}</td>
@@ -213,14 +213,14 @@
                                                                                     <th>Flight Number</th>
                                                                                 <td>{{$ittDetails->flight_number}}</td>
                                                                                 </tr>
-                                                                                <tr class="odd gradeX">
+                                                                               {{--  <tr class="odd gradeX">
                                                                                     <th>Scheduled Date & Time Of Arrival</th>
                                                                                 <td>{{$flightInfo->scheduled_arrival_time_and_date}}</td>
-                                                                                </tr>
-                                                                                <tr class="odd gradeX">
+                                                                                </tr> --}}
+                                                                                {{-- <tr class="odd gradeX">
                                                                                     <th>Actual Date & Time Of Arrival</th>
                                                                                 <td>{{$flightInfo->actual_arrival_time_and_date}}</td>
-                                                                                </tr>
+                                                                                </tr> --}}
                                                                             </tbody>
                                                                         </table>
                                                                     </div>
@@ -1078,8 +1078,8 @@ $(function() {
     $('#note').froalaEditor()
 });
 </script> --}}
-<script>
+{{-- <script>
     document.forms['clam_nextstep_status'].elements['claim_status'].value="{{$claimStatusData->id}}";
     document.forms['clam_nextstep_status'].elements['nextstep_status'].value="{{$NextStepData->id}}";
-</script>
+</script> --}}
 @endsection

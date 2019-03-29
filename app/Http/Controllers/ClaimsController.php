@@ -40,11 +40,10 @@ class ClaimsController extends Controller
    public function missed_connection()
    {
 
-
         $airports = Airport::select('name', 'iata_code')->get()->toArray();
         $airport_object = '[';
         foreach ($airports as $airport) {
-            $airport_object .= "['".$airport['name']."', '".$airport['iata_code']."'],";
+            $airport_object .= "['".addslashes($airport['name'])."', '".addslashes($airport['iata_code'])."'],";
         }
         $airport_object = rtrim($airport_object, ',');
         $airport_object .= ']';
@@ -68,7 +67,7 @@ class ClaimsController extends Controller
         $airports = Airport::select('name', 'iata_code')->get()->toArray();
         $airport_object = '[';
         foreach ($airports as $airport) {
-            $airport_object .= "['".$airport['name']."', '".$airport['iata_code']."'],";
+            $airport_object .= "['".addslashes($airport['name'])."', '".addslashes($airport['iata_code'])."'],";
         }
         $airport_object = rtrim($airport_object, ',');
         $airport_object .= ']';
@@ -76,7 +75,7 @@ class ClaimsController extends Controller
         $airlines = Airline::select('name', 'iata_code')->get()->toArray();
         $airline_object = '[';
         foreach ($airlines as $airline) {
-            $airline_object .= "['".$airline['name']."', '".$airline['iata_code']."'],";
+            $airline_object .= "['".addslashes($airline['name'])."', '".addslashes($airline['iata_code'])."'],";
         }
         $airline_object = rtrim($airline_object, ',');
         $airline_object .= ']';
@@ -92,7 +91,7 @@ class ClaimsController extends Controller
         $airports = Airport::select('name', 'iata_code')->get()->toArray();
         $airport_object = '[';
         foreach ($airports as $airport) {
-            $airport_object .= "['".$airport['name']."', '".$airport['iata_code']."'],";
+            $airport_object .= "['".addslashes($airport['name'])."', '".addslashes($airport['iata_code'])."'],";
         }
         $airport_object = rtrim($airport_object, ',');
         $airport_object .= ']';
@@ -100,7 +99,7 @@ class ClaimsController extends Controller
         $airlines = Airline::select('name', 'iata_code')->get()->toArray();
         $airline_object = '[';
         foreach ($airlines as $airline) {
-            $airline_object .= "['".$airline['name']."', '".$airline['iata_code']."'],";
+            $airline_object .= "['".addslashes($airline['name'])."', '".addslashes($airline['iata_code'])."'],";
         }
         $airline_object = rtrim($airline_object, ',');
         $airline_object .= ']';
@@ -117,7 +116,7 @@ class ClaimsController extends Controller
         $airports = Airport::select('name', 'iata_code')->get()->toArray();
         $airport_object = '[';
         foreach ($airports as $airport) {
-            $airport_object .= "['".$airport['name']."', '".$airport['iata_code']."'],";
+            $airport_object .= "['".addslashes($airport['name'])."', '".addslashes($airport['iata_code'])."'],";
         }
         $airport_object = rtrim($airport_object, ',');
         $airport_object .= ']';
@@ -125,7 +124,7 @@ class ClaimsController extends Controller
         $airlines = Airline::select('name', 'iata_code')->get()->toArray();
         $airline_object = '[';
         foreach ($airlines as $airline) {
-            $airline_object .= "['".$airline['name']."', '".$airline['iata_code']."'],";
+            $airline_object .= "['".addslashes($airline['name'])."', '".addslashes($airline['iata_code'])."'],";
         }
         $airline_object = rtrim($airline_object, ',');
         $airline_object .= ']';
@@ -143,7 +142,7 @@ class ClaimsController extends Controller
         $airports = Airport::select('name', 'iata_code')->get()->toArray();
         $airport_object = '[';
         foreach ($airports as $airport) {
-            $airport_object .= "['".$airport['name']."', '".$airport['iata_code']."'],";
+            $airport_object .= "['".addslashes($airport['name'])."', '".addslashes($airport['iata_code'])."'],";
         }
         $airport_object = rtrim($airport_object, ',');
         $airport_object .= ']';
@@ -151,7 +150,7 @@ class ClaimsController extends Controller
         $airlines = Airline::select('name', 'iata_code')->get()->toArray();
         $airline_object = '[';
         foreach ($airlines as $airline) {
-            $airline_object .= "['".$airline['name']."', '".$airline['iata_code']."'],";
+            $airline_object .= "['".addslashes($airline['name'])."', '".addslashes($airline['iata_code'])."'],";
         }
         $airline_object = rtrim($airline_object, ',');
         $airline_object .= ']';
@@ -166,7 +165,7 @@ class ClaimsController extends Controller
         $airports = Airport::select('name', 'iata_code')->get()->toArray();
         $airport_object = '[';
         foreach ($airports as $airport) {
-            $airport_object .= "['".$airport['name']."', '".$airport['iata_code']."'],";
+            $airport_object .= "['".addslashes($airport['name'])."', '".addslashes($airport['iata_code'])."'],";
         }
         $airport_object = rtrim($airport_object, ',');
         $airport_object .= ']';
@@ -174,7 +173,7 @@ class ClaimsController extends Controller
         $airlines = Airline::select('name', 'iata_code')->get()->toArray();
         $airline_object = '[';
         foreach ($airlines as $airline) {
-            $airline_object .= "['".$airline['name']."', '".$airline['iata_code']."'],";
+            $airline_object .= "['".addslashes($airline['name'])."', '".addslashes($airline['iata_code'])."'],";
         }
         $airline_object = rtrim($airline_object, ',');
         $airline_object .= ']';
