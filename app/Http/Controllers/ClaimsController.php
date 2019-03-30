@@ -18,7 +18,8 @@ use App\Expense;
 use App\Ticket;
 use Illuminate\Http\Request;
 use Auth;
-use Countries;
+use PragmaRX\Countries\Package\Countries;
+use App\Setting;
 
 class ClaimsController extends Controller
 {
@@ -57,7 +58,7 @@ class ClaimsController extends Controller
         $airline_object = rtrim($airline_object, ',');
         $airline_object .= ']';
 
-        $currencies = Currency::pluck('code','id');
+        $currencies = Countries::currencies();
 
         return view('front-end.claim.missed_connection', compact('airport_object', 'airline_object', 'currencies'));
    }
@@ -81,7 +82,7 @@ class ClaimsController extends Controller
         $airline_object = rtrim($airline_object, ',');
         $airline_object .= ']';
 
-        $currencies = Currency::pluck('code','id');
+        $currencies = Countries::currencies();
 
 
        return view('front-end.claim.flight_delay', compact('airport_object', 'airline_object', 'currencies'));
@@ -105,7 +106,7 @@ class ClaimsController extends Controller
         $airline_object = rtrim($airline_object, ',');
         $airline_object .= ']';
 
-        $currencies = Currency::pluck('code','id');
+        $currencies = Countries::currencies();
 
 
        return view('front-end.claim.flight_cancellation', compact('airport_object', 'airline_object', 'currencies'));
@@ -130,7 +131,7 @@ class ClaimsController extends Controller
         $airline_object = rtrim($airline_object, ',');
         $airline_object .= ']';
 
-        $currencies = Currency::pluck('code','id');
+        $currencies = Countries::currencies();
 
 
        return view('front-end.claim.delay_luggage', compact('airport_object', 'airline_object', 'currencies'));
@@ -156,7 +157,7 @@ class ClaimsController extends Controller
         $airline_object = rtrim($airline_object, ',');
         $airline_object .= ']';
 
-        $currencies = Currency::pluck('code','id');
+        $currencies = Countries::currencies();
 
        return view('front-end.claim.lost_luggage', compact('airport_object', 'airline_object', 'currencies'));
    }
@@ -179,7 +180,7 @@ class ClaimsController extends Controller
         $airline_object = rtrim($airline_object, ',');
         $airline_object .= ']';
 
-        $currencies = Currency::pluck('code','id');
+        $currencies = Countries::currencies();
 
        return view('front-end.claim.denied_boarding', compact('airport_object', 'airline_object', 'currencies'));
    }
@@ -470,6 +471,9 @@ class ClaimsController extends Controller
             }
         }
 
+        $adminCom=Setting::where('fieldKey','_admin_comm')->where('status',1)->first();
+        $affiliateCom=Setting::where('fieldKey','_affiliate_comm')->where('status',1)->first();
+
 
 
         // create claim
@@ -513,6 +517,9 @@ class ClaimsController extends Controller
         $claim->correspondence_proof_of_expense_file    = "";
         $claim->correspondence_others_file              = "";
 
+        $claim->affiliate_commision                     = $affiliateCom->fieldValue;
+        $claim->admin_commision                         = $adminCom->fieldValue;
+
         $claim->claim_table_type                        = $claim_table_type;
         $claim->save();
 
@@ -524,8 +531,6 @@ class ClaimsController extends Controller
           $ticket->status = "1";
           $ticket->save();
         }
-
-
 
 
         // create connect

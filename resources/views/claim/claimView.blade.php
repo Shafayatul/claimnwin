@@ -336,11 +336,12 @@
                                                         </div>
                                                         <div class="row">
                                                             <div class="col-lg-12">
+                                                                    <a href="{{URL::to('/letter-before-action/'.$claims->id)}}" class="btn btn-success btn-sm">Download Pdf</a>
                                                                     <a href="{{URL::to('/poa-pdf/'.$claims->id)}}" class="btn btn-primary btn-sm">Download POA Pdf</a>
                                                                         <div class="panel panel-default">
                                                                             <!-- /.panel-heading -->
                                                                             <div class="panel-body">
-                                                                            <a href="{{URL::to('/letter-before-action/'.$claims->id)}}" class="btn btn-success btn-sm">Download Pdf</a>
+
                                                                                 <div class="table-responsive">
 
 
@@ -349,57 +350,22 @@
                                                                                         <tr>
                                                                                             <th>File Name</th>
                                                                                             <th>Upload Date</th>
-                                                                                            <th>Description</th>
-                                                                                            <th>File Type</th>
-                                                                                            <th>File Category</th>
                                                                                             <th>Uploaded By</th>
-                                                                                            <th>Time line date</th>
                                                                                             <th>Delete</th>
                                                                                         </tr>
                                                                                     </thead>
                                                                                     <tbody>
+                                                                                        @foreach($claimFiles as $claimFile)
                                                                                         <tr>
-                                                                                            <td><input type="text" name="" id="" placeholder="Filter"></td>
-                                                                                            <td><input type="text" name="" id="" placeholder="Filter"></td>
-                                                                                            <td><input type="text" name="" id="" placeholder="Filter"></td>
-                                                                                            <td><input type="text" name="" id="" placeholder="Filter"></td>
+                                                                                            <td>{{$claimFile->name}}</td>
+                                                                                            <td>{{Carbon\Carbon::parse($claimFile->created_at)->format('d-m-Y')}}</td>
+                                                                                            <td>{{$claimFile->user_id}}</td>
                                                                                             <td>
-                                                                                                <select name="" id="" class="form-control">
-                                                                                                    <option value="">All</option>
-                                                                                                    <option value="">Lugguage-lost</option>
-                                                                                                    <option value="">Lugguage-damaged</option>
-                                                                                                    <option value="">Fight delay</option>
-                                                                                                </select>
-                                                                                            </td>
-                                                                                            <td>
-                                                                                                <select name="" id="" class="form-control">
-                                                                                                    <option value="">All</option>
-                                                                                                    <option value="">Passenger</option>
-                                                                                                    <option value="">Initial Assessment</option>
-                                                                                                </select>
-                                                                                            </td>
-                                                                                            <td><input type="text" name="" id="" placeholder="Filter"></td>
-                                                                                            <td></td>
-                                                                                        </tr>
-                                                                                        <tr>
-                                                                                            <td>claim_file_jsagdhsagjd</td>
-                                                                                            <td>14-03-2019</td>
-                                                                                            <td><input type="text" name="" id=""></td>
-                                                                                            <td>pdf</td>
-                                                                                            <td>
-                                                                                                <select name="" id="" class="form-control">
-                                                                                                    <option value="">All</option>
-                                                                                                    <option value="">Lugguage-lost</option>
-                                                                                                    <option value="">Lugguage-damaged</option>
-                                                                                                    <option value="">Fight delay</option>
-                                                                                                </select>
-                                                                                            </td>
-                                                                                            <td>Passenger</td>
-                                                                                            <td>05/03/2019</td>
-                                                                                            <td>
-                                                                                                <input type="checkbox" name="" id="">
+                                                                                            <a href="{{URL::to('/claim-file/'.$claimFile->id)}}" class="btn btn-sm btn-primary"><i class="fa fa-download"></i> Download</a>
+                                                                                            <a href="#" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> Delete</a>
                                                                                             </td>
                                                                                         </tr>
+                                                                                        @endforeach
                                                                                     </tbody>
                                                                                 </table>
                                                                             </div>
@@ -971,12 +937,13 @@
 
                                     <div role="tabpanel" class="tab-pane" id="required-details" aria-labelledby="required-details-tab">
 
-                                            <form action="#" method="post">
+                                    <form action="{{route('required-details')}}" method="post" name="required_details">
+                                        {{ csrf_field() }}
                                                 <div class="row" style="margin-top:1%;">
                                                 <div class="col-sm-4">
                                                     <div class="form-group">
                                                         <label> Bank Details </label>
-                                                        <select class="form-control" id="status">
+                                                        <select class="form-control" id="status" name="bank_details_id">
                                                             <option value="">Select Status</option>
                                                             @foreach($banks as $bank)
                                                             <option value="{{$bank->id}}">{{$bank->account_name.' '.'('.$bank->title.')'}}</option>
@@ -987,14 +954,15 @@
                                                 <div class="col-sm-4">
                                                     <div class="form-group">
                                                         <label> Affiliate Commision </label>
-                                                        <input type="text" class="form-control" name="" id="">
+                                                        <input type="text" class="form-control" name="affiliate_commision" id="" value="{{$affiliateComm->fieldValue}}">
+                                                        <input type="hidden" name="claim_id" value="{{$claims->id}}">
                                                     </div>
                                                 </div>
 
                                                 <div class="col-sm-4">
                                                     <div class="form-group">
                                                         <label> Admin Commision </label>
-                                                        <input type="text" class="form-control" name="" id="">
+                                                        <input type="text" class="form-control" name="admin_commision" id="" value="{{$adminComm->fieldValue}}">
                                                     </div>
                                                 </div>
                                                 <div class="clearfix"></div>
@@ -1004,13 +972,13 @@
                                                 <div class="col-sm-4">
                                                     <div class="form-group">
                                                         <label> Additional Details For LBA </label>
-                                                        <textarea name="" class="form-control" id="" cols="30" rows="3"></textarea>
+                                                    <textarea name="additional_details_for_lba" class="form-control" id="" cols="30" rows="3">{{$claims->additional_details_for_lba}}</textarea>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-4">
                                                     <div class="form-group">
                                                         <label> Expected Compensation Amount </label>
-                                                        <input type="text" class="form-control" name="" id="">
+                                                        <input type="text" class="form-control" name="amount" id="" value="{{$claims->amount}}">
                                                     </div>
                                                 </div>
                                                 <div class="clearfix"></div>
@@ -1078,8 +1046,9 @@ $(function() {
     $('#note').froalaEditor()
 });
 </script> --}}
-{{-- <script>
+<script>
     document.forms['clam_nextstep_status'].elements['claim_status'].value="{{$claimStatusData->id}}";
     document.forms['clam_nextstep_status'].elements['nextstep_status'].value="{{$NextStepData->id}}";
-</script> --}}
+    document.forms['required_details'].elements['bank_details_id'].value="{{$claims->bank_details_id}}";
+</script>
 @endsection

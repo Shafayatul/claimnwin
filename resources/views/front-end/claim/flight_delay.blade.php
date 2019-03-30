@@ -43,9 +43,9 @@
                   </div>
                 </div>
                 <div style="display: none;">
-                   <input type="text" name="selected_connection_iata_codes" class="selected_connection_iata_codes"> 
+                   <input type="text" name="selected_connection_iata_codes" class="selected_connection_iata_codes">
                 </div>
-                
+
             </div>
 
             <div class="common_row">
@@ -282,7 +282,7 @@
                                 <select class="form-control custom_select" name="expense_currency[]">
                                   <option hidden>Currency</option>
                                   @foreach($currencies as $key => $val)
-                                    <option value="{{$key}}">{{$val}}</option>
+                                    <option value="{{$key}}">{{$key}}</option>
                                   @endforeach
                                 </select>
                               </div>
@@ -312,7 +312,7 @@
                                 <select class="form-control custom_select" name="expense_currency[]">
                                   <option hidden>Currency</option>
                                   @foreach($currencies as $key => $val)
-                                    <option value="{{$key}}">{{$val}}</option>
+                                    <option value="{{$key}}">{{$key}}</option>
                                   @endforeach
                                 </select>
                               </div>
@@ -345,7 +345,7 @@
                                 <select class="form-control custom_select" name="expense_currency[]">
                                   <option hidden>Currency</option>
                                   @foreach($currencies as $key => $val)
-                                    <option value="{{$key}}">{{$val}}</option>
+                                    <option value="{{$key}}">{{$key}}</option>
                                   @endforeach
                                 </select>
                               </div>
@@ -377,7 +377,7 @@
                                 <select class="form-control custom_select" name="expense_currency[]">
                                   <option hidden>Currency</option>
                                   @foreach($currencies as $key => $val)
-                                    <option value="{{$key}}">{{$val}}</option>
+                                    <option value="{{$key}}">{{$key}}</option>
                                   @endforeach
                                 </select>
                               </div>
@@ -426,7 +426,7 @@
                               <select class="form-control custom_select" name="expense_currency[]">
                                 <option hidden>Currency</option>
                                 @foreach($currencies as $key => $val)
-                                  <option value="{{$key}}">{{$val}}</option>
+                                    <option value="{{$key}}">{{$key}}</option>
                                 @endforeach
                               </select>
                             </div>
@@ -461,7 +461,7 @@
                               <select class="form-control custom_select" name="expense_currency[]">
                                 <option hidden>Currency</option>
                                 @foreach($currencies as $key => $val)
-                                  <option value="{{$key}}">{{$val}}</option>
+                                    <option value="{{$key}}">{{$key}}</option>
                                 @endforeach
                               </select>
                             </div>
@@ -499,7 +499,7 @@
                               <select class="form-control custom_select" name="expense_currency[]">
                                 <option hidden>Currency</option>
                                 @foreach($currencies as $key => $val)
-                                  <option value="{{$key}}">{{$val}}</option>
+                                    <option value="{{$key}}">{{$key}}</option>
                                 @endforeach
                               </select>
                             </div>
@@ -536,7 +536,7 @@
                               <select class="form-control custom_select" name="expense_currency[]">
                                 <option hidden>Currency</option>
                                 @foreach($currencies as $key => $val)
-                                  <option value="{{$key}}">{{$val}}</option>
+                                    <option value="{{$key}}">{{$key}}</option>
                                 @endforeach
                               </select>
                             </div>
@@ -921,7 +921,7 @@
             </div>
 
         </div>
-        
+
         <input type="hidden" name="claim_table_type" value="flight_delay">
         <!-- ...................................................................
                                   STEP 8 ENDS
@@ -955,7 +955,7 @@
                 // console.log('Item "'+item.data('langname')+' ('+item.data('lang')+')" selected by '+(e.type == 'keydown' ? 'pressing enter or tab' : 'mouse click')+'.');
                 $(':focus').val(item.data('langname')+' ('+item.data('lang')+')').attr('iata-code',item.data('lang'));
             }
-        });     
+        });
       }
       auto_airline_complete();
       function auto_airline_complete(){
@@ -977,9 +977,9 @@
             onSelect: function(e, term, item){
                 $(':focus').val(item.data('langname')).attr('iata_code',item.data('lang'));
             }
-        });     
+        });
       }
-                           
+
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>

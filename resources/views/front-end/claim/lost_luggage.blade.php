@@ -47,7 +47,7 @@
             </div>
 
              <div style="display: none;">
-               <input type="text" name="selected_connection_iata_codes" class="selected_connection_iata_codes"> 
+               <input type="text" name="selected_connection_iata_codes" class="selected_connection_iata_codes">
             </div>
 
             <div class="parent_div">
@@ -188,7 +188,7 @@
                       </label>
                   </div>
               </div>
-            </div>    
+            </div>
           </div>
         </div>
 
@@ -445,10 +445,10 @@
                                             <div class="col-md-6">
                                                 <div class="select_reason_class">
                                                     <select class="form-control custom_select" name="expense_currency[]">
-                                                        <option selected>Open this select menu</option>
-                                                        <option value="1">One</option>
-                                                        <option value="2">Two</option>
-                                                        <option value="3">Three</option>
+                                                        <option selected>select currency</option>
+                                                        @foreach($currencies as $key => $val)
+                                                            <option value="{{$key}}">{{$key}}</option>
+                                                        @endforeach
                                                     </select>
                                                 </div>
                                             </div>
@@ -475,10 +475,10 @@
                                             <div class="col-md-6">
                                                 <div class="select_reason_class">
                                                     <select class="form-control custom_select" name="expense_currency[]">
-                                                        <option selected>Open this select menu</option>
-                                                        <option value="1">One</option>
-                                                        <option value="2">Two</option>
-                                                        <option value="3">Three</option>
+                                                        <option selected>select currency</option>
+                                                        @foreach($currencies as $key => $val)
+                                                            <option value="{{$key}}">{{$key}}</option>
+                                                        @endforeach
                                                     </select>
                                                 </div>
                                             </div>
@@ -505,10 +505,10 @@
                                             <div class="col-md-6">
                                                 <div class="select_reason_class">
                                                     <select class="form-control custom_select" name="expense_currency[]">
-                                                        <option selected>Open this select menu</option>
-                                                        <option value="1">One</option>
-                                                        <option value="2">Two</option>
-                                                        <option value="3">Three</option>
+                                                        <option selected>select currency</option>
+                                                        @foreach($currencies as $key => $val)
+                                                            <option value="{{$key}}">{{$key}}</option>
+                                                        @endforeach
                                                     </select>
                                                 </div>
                                             </div>
@@ -533,10 +533,10 @@
                                             <div class="col-md-6">
                                                 <div class="select_reason_class">
                                                     <select class="form-control custom_select">
-                                                        <option selected>Open this select menu</option>
-                                                        <option value="1">One</option>
-                                                        <option value="2">Two</option>
-                                                        <option value="3">Three</option>
+                                                        <option selected>select currency</option>
+                                                        @foreach($currencies as $key => $val)
+                                                            <option value="{{$key}}">{{$key}}</option>
+                                                        @endforeach
                                                     </select>
                                                 </div>
                                             </div>
@@ -575,10 +575,10 @@
                                         <div class="col-md-6">
                                             <div class="select_reason_class">
                                                 <select class="form-control custom_select" name="expense_currency[]">
-                                                    <option selected>Open this select menu</option>
-                                                    <option value="1">One</option>
-                                                    <option value="2">Two</option>
-                                                    <option value="3">Three</option>
+                                                    <option selected>select currency</option>
+                                                    @foreach($currencies as $key => $val)
+                                                        <option value="{{$key}}">{{$key}}</option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                         </div>
@@ -612,10 +612,10 @@
                                         <div class="col-md-6">
                                             <div class="select_reason_class">
                                                 <select class="form-control custom_select" name="expense_currency[]">
-                                                    <option selected>Open this select menu</option>
-                                                    <option value="1">One</option>
-                                                    <option value="2">Two</option>
-                                                    <option value="3">Three</option>
+                                                    <option selected>select currency</option>
+                                                    @foreach($currencies as $key => $val)
+                                                        <option value="{{$key}}">{{$key}}</option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                         </div>
@@ -649,10 +649,10 @@
                                         <div class="col-md-6">
                                             <div class="select_reason_class">
                                                 <select class="form-control custom_select" name="expense_currency[]">
-                                                    <option selected>Open this select menu</option>
-                                                    <option value="1">One</option>
-                                                    <option value="2">Two</option>
-                                                    <option value="3">Three</option>
+                                                    <option selected>select currency</option>
+                                                    @foreach($currencies as $key => $val)
+                                                        <option value="{{$key}}">{{$key}}</option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                         </div>
@@ -680,10 +680,10 @@
                                         <div class="col-md-6">
                                             <div class="select_reason_class">
                                                 <select class="form-control custom_select">
-                                                    <option selected>Open this select menu</option>
-                                                    <option value="1">One</option>
-                                                    <option value="2">Two</option>
-                                                    <option value="3">Three</option>
+                                                    <option selected>select currency</option>
+                                                    @foreach($currencies as $key => $val)
+                                                        <option value="{{$key}}">{{$key}}</option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                         </div>

@@ -15,6 +15,7 @@
         "laravel/socialite": "^4.1",
         "laravel/tinker": "^1.0",
         "monarobase/country-list": "^2.1",
+        "pragmarx/countries": "^0.5.9",
         "spatie/laravel-permission": "^2.36"
     },
     "require-dev": {

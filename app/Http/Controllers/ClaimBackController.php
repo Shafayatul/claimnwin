@@ -84,6 +84,8 @@ class ClaimBackController extends Controller
         $flightInfo=Flight::where('flight_no',$flightNo)->first();
 
 
+        $claimFiles = ClaimFile::all();
+
 
         $flightCount=ItineraryDetail::where('claim_id',$id)->count();
         $passCount=Passenger::where('claim_id',$id)->count();
@@ -95,7 +97,22 @@ class ClaimBackController extends Controller
                     ->get();
         $adminComm = Setting::where(['fieldKey'=>'_admin_comm'])->first();
         $affiliateComm = Setting::where(['fieldKey'=>'_affiliate_comm'])->first();
-        return view('claim.claimView',compact('NextStepData','claimStatusData','flightInfo','airline','departed_airport','destination_airport','reminders','claims','passengers','ittDetails','flightCount','passCount','claimsStatus','nextSteps','banks'));
+
+
+        return view('claim.claimView',compact('claimFiles','affiliateComm','adminComm','NextStepData','claimStatusData','flightInfo','airline','departed_airport','destination_airport','reminders','claims','passengers','ittDetails','flightCount','passCount','claimsStatus','nextSteps','banks'));
+    }
+
+    public function downloadClaimFile($id)
+    {
+        $Claimfile= ClaimFile::where('id',$id)->first();
+        $ext = $Claimfile->file_name;
+        $ext=explode(".",$ext);
+        $file_name = $Claimfile->name.'.'.$ext[1];
+        $claimId = $Claimfile->claim_id;
+
+        $file_path = public_path('uploads'.'/'.$claimId.'/'.$Claimfile->file_name);
+        return response()->download($file_path,$file_name);
+
     }
 
 
@@ -138,6 +155,19 @@ class ClaimBackController extends Controller
         return redirect('/claim-view/'.$claim_id)->with('success','Status Updated');
     }
 
+    public function requiredDetailsUpdate(Request $request)
+    {
+        $claim_id = $request->claim_id;
+        $claim = Claim::find($claim_id);
+        $claim->bank_details_id = $request->bank_details_id;
+        $claim->affiliate_commision = $request->affiliate_commision;
+        $claim->admin_commision = $request->admin_commision;
+        $claim->additional_details_for_lba = $request->additional_details_for_lba;
+        $claim->amount = $request->amount;
+        $claim->save();
+        return redirect('/claim-view/'.$claim_id)->with('success','Required Details Updated');
+    }
+
     public function manageUnfinishedClaim()
     {
         return view('claim.manage_unfinished_claim');
@@ -157,4 +187,6 @@ class ClaimBackController extends Controller
     {
         return view('claim.fills_claim_view');
     }
+
+
 }
