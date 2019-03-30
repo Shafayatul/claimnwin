@@ -7,6 +7,8 @@ use Auth;
 use App\User;
 use App\Airline;
 use App\Claim;
+use App\Ticket;
+use App\TicketNote;
 use App\ClaimStatus;
 use Hash;
 
@@ -14,13 +16,19 @@ class UserPanelController extends Controller
 {
     public function index()
     {
-        $user_id = Auth::user()->id;
-        $claims = Claim::where('user_id', $user_id)->get();
-        $airline_id_array = Claim::where('user_id', $user_id)->pluck('airline_id')->toArray();
-        $airline = Airline::whereIn('id', $airline_id_array)->pluck('name', 'id')->toArray();
-        $claim_status = ClaimStatus::pluck('name', 'id')->toArray();
+        if (!Auth::check())
+        {
+          return redirect('/');
+        }else
+        {
+          $user_id = Auth::user()->id;
+          $claims = Claim::where('user_id', $user_id)->get();
+          $airline_id_array = Claim::where('user_id', $user_id)->pluck('airline_id')->toArray();
+          $airline = Airline::whereIn('id', $airline_id_array)->pluck('name', 'id')->toArray();
+          $claim_status = ClaimStatus::pluck('name', 'id')->toArray();
 
-        return view('front-end.user.user_panel', compact('claims', 'airline', 'claim_status'));
+          return view('front-end.user.user_panel', compact('claims', 'airline', 'claim_status'));
+        }
     }
 
     public function user_my_claim($id)
@@ -49,4 +57,16 @@ class UserPanelController extends Controller
         }
 
     }
+
+    public function user_signup()
+    {
+        return view('front-end.signup');
+    }
+
+    public function user_login()
+    {
+        return view('front-end.login');
+    }
+
+
 }

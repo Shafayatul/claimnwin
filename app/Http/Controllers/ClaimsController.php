@@ -15,6 +15,7 @@ use App\Airport;
 use App\Passenger;
 use App\Airline;
 use App\Expense;
+use App\Ticket;
 use Illuminate\Http\Request;
 use Auth;
 use Countries;
@@ -23,9 +24,9 @@ class ClaimsController extends Controller
 {
 
     var $europe_countries;
-    public function __construct() {       
-        $this->europe_countries = ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','GB','IS','NO','CH','TR','UA'];       
-    }   
+    public function __construct() {
+        $this->europe_countries = ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','GB','IS','NO','CH','TR','UA'];
+    }
 
     /**
      * Display a listing of the resource.
@@ -179,7 +180,7 @@ class ClaimsController extends Controller
         $airline_object .= ']';
 
         $currencies = Currency::pluck('code','id');
-        
+
        return view('front-end.claim.denied_boarding', compact('airport_object', 'airline_object', 'currencies'));
    }
 
@@ -286,10 +287,10 @@ class ClaimsController extends Controller
             return 0;
         }
     }
-    
+
     public function store(Request $request)
     {
-        
+
         $departed_from_id = $this->get_airport_id_name_and_iata_code($request->departed_from);
         $final_destination_id = $this->get_airport_id_name_and_iata_code($request->final_destination);
 
@@ -304,19 +305,19 @@ class ClaimsController extends Controller
         }else{
             $what_happened_to_the_flight = "";
         }
-        
+
         if (isset($request->total_delay)) {
             $total_delay = $request->total_delay;
         }else{
             $total_delay = "";
         }
-        
+
         if (isset($request->reason)) {
             $reason = $request->reason;
         }else{
             $reason = "";
         }
-        
+
 
 
         if (!isset($request->is_rerouted)) {
@@ -336,13 +337,13 @@ class ClaimsController extends Controller
         }else{
             $ticket_price = 0;
         }
-        
+
         if (isset($request->ticket_currency_original_ticket)) {
             $ticket_currency = $request->ticket_currency_original_ticket;
         }else{
             $ticket_currency = 0;
         }
-        
+
 
 
         if (!isset($request->is_paid_for_rerouting)) {
@@ -357,16 +358,16 @@ class ClaimsController extends Controller
         }else{
             $rerouted_ticket_price = "";
         }
-        
+
         if (isset($request->ticket_currency_rerouting)) {
             $rerouted_ticket_currency = $request->ticket_currency_rerouting;
         }else{
             $rerouted_ticket_currency = "";
         }
-        
+
 
         $email = $request->email_address;
-        
+
 
         if (isset($request->pir)) {
             $pir = $request->pir;
@@ -466,9 +467,9 @@ class ClaimsController extends Controller
             // user login
             if ($user != null){
                 Auth::loginUsingId($user->id);
-            }            
+            }
         }
-    
+
 
 
         // create claim
@@ -495,16 +496,16 @@ class ClaimsController extends Controller
         $claim->what_happened                           = $what_happened;
 
 
-        $claim->is_notify_before_forteen_days           = $is_notify_before_forteen_days;       
-        $claim->is_already_written_airline              = $is_already_written_airline; 
-        $claim->written_airline_date                    = $written_airline_date; 
-        $claim->pir                                     = $pir; 
-        $claim->received_luggage_date                   = $received_luggage_date; 
-        $claim->correspondence_property_irregularity_report = $correspondence_property_irregularity_report; 
-        $claim->is_luggage_received                     = $is_luggage_received; 
+        $claim->is_notify_before_forteen_days           = $is_notify_before_forteen_days;
+        $claim->is_already_written_airline              = $is_already_written_airline;
+        $claim->written_airline_date                    = $written_airline_date;
+        $claim->pir                                     = $pir;
+        $claim->received_luggage_date                   = $received_luggage_date;
+        $claim->correspondence_property_irregularity_report = $correspondence_property_irregularity_report;
+        $claim->is_luggage_received                     = $is_luggage_received;
 
-        $claim->claim_status_id                         = '1'; 
-        $claim->claim_next_step_id                      = '1'; 
+        $claim->claim_status_id                         = '1';
+        $claim->claim_next_step_id                      = '1';
 
 
         $claim->correspondence_ids_file                 = "";
@@ -514,6 +515,16 @@ class ClaimsController extends Controller
 
         $claim->claim_table_type                        = $claim_table_type;
         $claim->save();
+
+        if ($claim) {
+          $ticket = new Ticket;
+          $ticket->subject = $claim->claim_table_type;
+          $ticket->status = "1";
+          $ticket->save();
+        }
+
+
+
 
         // create connect
         if (isset($request->connection)) {
@@ -553,7 +564,7 @@ class ClaimsController extends Controller
             }
         }
 
-        
+
 
         // create ininerary detail
         $airline_id = 0;
@@ -595,7 +606,7 @@ class ClaimsController extends Controller
                 $expense->name              = $request->expense_name[$cnt];
                 $expense->amount            = $request->expense_price[$cnt];
                 $expense->currency          = $request->expense_currency[$cnt];
-                $expense->is_receipt        = $request->expense_is_receipt[$cnt]; 
+                $expense->is_receipt        = $request->expense_is_receipt[$cnt];
                 $expense->save();
 
                 $cnt++;
@@ -712,7 +723,7 @@ class ClaimsController extends Controller
                     return '3080 ILS';
                   }
               }
-              
+
             // israel to other
             }else{
                 if ($distance < 2000) {
@@ -845,7 +856,7 @@ class ClaimsController extends Controller
                   }else{
                     return '600 EUR';
                   }
-                } 
+                }
 
             // europe to israel
             }elseif($final_destination->country == "IL"){
@@ -884,7 +895,7 @@ class ClaimsController extends Controller
                 }else{
                   return '600 EUR';
                 }
-              } 
+              }
 
             }
 
@@ -930,7 +941,7 @@ class ClaimsController extends Controller
                   return '0';
                 }
               }
-              
+
             // israel to other
             }else{
               if ($total_delay == "more_than_8_hours") {
@@ -963,7 +974,7 @@ class ClaimsController extends Controller
                   }else{
                     return '600 EUR';
                   }
-                } 
+                }
               }else{
                 return '0';
               }
@@ -1071,7 +1082,7 @@ class ClaimsController extends Controller
                     return '3080 ILS';
                   }
               }
-              
+
             // israel to other
             }else{
                   if ($distance < 2000) {
@@ -1149,7 +1160,7 @@ class ClaimsController extends Controller
                   }else{
                     return '600 EUR';
                   }
-                } 
+                }
 
             // europe to israel
             }elseif($final_destination->country == "IL"){
@@ -1172,7 +1183,7 @@ class ClaimsController extends Controller
                   }else{
                     return '3080 ILS';
                   }
-                } 
+                }
 
             // europe to other country
             }else{
@@ -1187,7 +1198,7 @@ class ClaimsController extends Controller
                   }else{
                     return '600 EUR';
                   }
-                } 
+                }
 
             }
 
@@ -1233,7 +1244,7 @@ class ClaimsController extends Controller
                   return '0';
                 }
               }
-              
+
             // israel to other
             }else{
               if ($total_delay == "more_than_8_hours") {
@@ -1266,7 +1277,7 @@ class ClaimsController extends Controller
                   }else{
                     return '600 EUR';
                   }
-                } 
+                }
               }else{
                 return '0';
               }
@@ -1321,7 +1332,7 @@ class ClaimsController extends Controller
                   }else{
                     return '600 EUR';
                   }
-                } 
+                }
 
             // europe to israel
             }elseif($final_destination->country == "IL"){
@@ -1338,7 +1349,7 @@ class ClaimsController extends Controller
                   }else{
                     return '600 EUR';
                   }
-                } 
+                }
 
               // non europe airline
               }else{
@@ -1379,7 +1390,7 @@ class ClaimsController extends Controller
                 }else{
                   return '600 EUR';
                 }
-              } 
+              }
 
             }
 
@@ -1425,7 +1436,7 @@ class ClaimsController extends Controller
                   return '0';
                 }
               }
-              
+
             // israel to other
             }else{
               if ($total_delay == "more_than_8_hours") {
@@ -1458,7 +1469,7 @@ class ClaimsController extends Controller
                   }else{
                     return '600 EUR';
                   }
-                } 
+                }
               }else{
                 return '0';
               }

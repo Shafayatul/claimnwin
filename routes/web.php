@@ -17,8 +17,8 @@ use Illuminate\Support\Facades\Route;
 /*----FrontEnd Route----*/
 Route::get('/','WelcomeController@index');
 
-Route::get('user/signup','FrontsController@user_signup')->name('user/signup');
-Route::get('/user/login','FrontsController@user_login')->name('user/login');
+Route::get('user/signup','UserPanelController@user_signup')->name('user/signup');
+Route::get('/user/login','UserPanelController@user_login')->name('user/login');
 
 Route::get('/user-home','UserPanelController@index');
 Route::get('/user-my-claim/{id}','UserPanelController@user_my_claim');

@@ -7,7 +7,7 @@
     <div class="col-md-12">
       <div class="parent_div">
         <div class="user_panel_h1">
-          <h1>Claim abcd1235</h1>
+          <h1>My Claim Details</h1>
         </div>
       </div>
     </div>
@@ -44,9 +44,9 @@
       <li class="nav-item claim_options_ul_li active">
         <a class="nav-link active text-center" id="claim-status-tab" data-toggle="tab" href="#claim-status" role="tab" aria-controls="claim-status" aria-selected="true"><i class="fas fa-signature"></i> Claim status</a>
       </li>
-      {{-- <li class="nav-item claim_options_ul_li">
-        <a class="nav-link text-center" id="history-tab" data-toggle="tab" href="#history" role="tab" aria-controls="history" aria-selected="false"><i class="fas fa-list"></i> History</a>
-      </li> --}}
+      <li class="nav-item claim_options_ul_li">
+        <a class="nav-link text-center" id="ticket-tab" data-toggle="tab" href="#ticket" role="tab" aria-controls="ticket" aria-selected="false"><i class="fas fa-ticket-alt"></i> Ticket details</a>
+      </li>
       <li class="nav-item claim_options_ul_li">
         <a class="nav-link text-center" id="claim-details-tab" data-toggle="tab" href="#claim-details" role="tab" aria-controls="claim-details" aria-selected="false"><i class="fas fa-bolt"></i> Claim details</a>
       </li>
@@ -75,11 +75,11 @@
         </div>
       </div>
 
-{{--       <div class="tab-pane fade" id="history" role="tabpanel" aria-labelledby="history-tab">
+      <div class="tab-pane fade" id="ticket" role="tabpanel" aria-labelledby="ticket-tab">
         <div class="wrapper">
 
 
-          <div class="container mt-5 mb-5">
+          {{-- <div class="container mt-5 mb-5">
             <div class="row">
               <div class="col-md-6 offset-md-3 text-center">
                 <ul class="timeline">
@@ -101,11 +101,34 @@
                 </ul>
               </div>
             </div>
+          </div> --}}
+
+          <div class="parent_div">
+            <div class="ticket_table">
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <th scope="col" class="text-center">Ticket ID:</th>
+                    <td class="text-center">{{ $ticket->id }}</td>
+                  </tr>
+                  <tr>
+                    <th scope="col" class="text-center">Ticket Subject:</th>
+                    <td class="text-center">Missed Cnnection</td>
+                  </tr>
+                  <tr>
+                    <th scope="col" class="text-center">Notes</th>
+                    <td class="text-center">I am a good boy</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
 
 
+
+
         </div>
-      </div> --}}
+      </div>
       <div class="tab-pane fade" id="claim-details" role="tabpanel" aria-labelledby="claim-details-tab">
         <div class="wrapper">
           <div class="parent_div">

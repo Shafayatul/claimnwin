@@ -7,7 +7,7 @@
       <div class="col-md-12">
         <div class="parent_div">
           <div class="user_panel_h1">
-            <h1>Claim abcd1235</h1>
+            <h1>My Claim List</h1>
           </div>
         </div>
       </div>
