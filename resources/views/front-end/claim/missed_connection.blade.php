@@ -375,9 +375,9 @@
                   <div class="select_reason_class">
                     <select class="form-control custom_select" name="ticket_currency_original_ticket">
                       <option hidden>Select currency</option>
-                      @foreach($currencies as $key => $val)
-                        <option value="{{$key}}">{{$val}}</option>
-                      @endforeach
+                        @foreach($currencies as $key=>$value)
+                        <option value="{{$key}}">{{$key}}</option>
+                        @endforeach
                     </select>
                   </div>
                 </div>
@@ -419,7 +419,7 @@
                     <select class="form-control custom_select" name="ticket_currency_rerouting">
                       <option hidden>Currency</option>
                       @foreach($currencies as $key => $val)
-                        <option value="{{$key}}">{{$val}}</option>
+                        <option value="{{$key}}">{{$key}}</option>
                       @endforeach
                     </select>
                   </div>
@@ -488,7 +488,7 @@
                                 <select class="form-control custom_select" name="expense_currency[]">
                                   <option hidden>Currency</option>
                                   @foreach($currencies as $key => $val)
-                                    <option value="{{$key}}">{{$val}}</option>
+                                    <option value="{{$key}}">{{$key}}</option>
                                   @endforeach
                                 </select>
                               </div>
@@ -518,7 +518,7 @@
                                 <select class="form-control custom_select" name="expense_currency[]">
                                   <option hidden>Currency</option>
                                   @foreach($currencies as $key => $val)
-                                    <option value="{{$key}}">{{$val}}</option>
+                                    <option value="{{$key}}">{{$key}}</option>
                                   @endforeach
                                 </select>
                               </div>
@@ -551,7 +551,7 @@
                                 <select class="form-control custom_select" name="expense_currency[]">
                                   <option hidden>Currency</option>
                                   @foreach($currencies as $key => $val)
-                                    <option value="{{$key}}">{{$val}}</option>
+                                    <option value="{{$key}}">{{$key}}</option>
                                   @endforeach
                                 </select>
                               </div>
@@ -583,7 +583,7 @@
                                 <select class="form-control custom_select" name="expense_currency[]">
                                   <option hidden>Currency</option>
                                   @foreach($currencies as $key => $val)
-                                    <option value="{{$key}}">{{$val}}</option>
+                                    <option value="{{$key}}">{{$key}}</option>
                                   @endforeach
                                 </select>
                               </div>
@@ -632,7 +632,7 @@
                               <select class="form-control custom_select" name="expense_currency[]">
                                 <option hidden>Currency</option>
                                 @foreach($currencies as $key => $val)
-                                  <option value="{{$key}}">{{$val}}</option>
+                                  <option value="{{$key}}">{{$key}}</option>
                                 @endforeach
                               </select>
                             </div>
@@ -667,7 +667,7 @@
                               <select class="form-control custom_select" name="expense_currency[]">
                                 <option hidden>Currency</option>
                                 @foreach($currencies as $key => $val)
-                                  <option value="{{$key}}">{{$val}}</option>
+                                  <option value="{{$key}}">{{$key}}</option>
                                 @endforeach
                               </select>
                             </div>
@@ -705,7 +705,7 @@
                               <select class="form-control custom_select" name="expense_currency[]">
                                 <option hidden>Currency</option>
                                 @foreach($currencies as $key => $val)
-                                  <option value="{{$key}}">{{$val}}</option>
+                                  <option value="{{$key}}">{{$key}}</option>
                                 @endforeach
                               </select>
                             </div>
@@ -742,7 +742,7 @@
                               <select class="form-control custom_select" name="expense_currency[]">
                                 <option hidden>Currency</option>
                                 @foreach($currencies as $key => $val)
-                                  <option value="{{$key}}">{{$val}}</option>
+                                  <option value="{{$key}}">{{$key}}</option>
                                 @endforeach
                               </select>
                             </div>
@@ -1176,7 +1176,7 @@
                 // console.log('Item "'+item.data('langname')+' ('+item.data('lang')+')" selected by '+(e.type == 'keydown' ? 'pressing enter or tab' : 'mouse click')+'.');
                 $(':focus').val(item.data('langname')+' ('+item.data('lang')+')').attr('iata-code',item.data('lang'));
             }
-        });     
+        });
       }
       auto_airline_complete();
       function auto_airline_complete(){
@@ -1198,9 +1198,9 @@
             onSelect: function(e, term, item){
                 $(':focus').val(item.data('langname')).attr('iata_code',item.data('lang'));
             }
-        });     
+        });
       }
-                           
+
   </script>
 
 
