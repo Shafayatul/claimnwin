@@ -519,6 +519,8 @@ class ClaimsController extends Controller
         if ($claim) {
           $ticket = new Ticket;
           $ticket->subject = $claim->claim_table_type;
+          $ticket->claim_id = $claim->id;
+          $ticket->user_id = $claim->user_id;
           $ticket->status = "1";
           $ticket->save();
         }

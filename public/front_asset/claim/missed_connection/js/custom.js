@@ -8,7 +8,7 @@ $(document).ready(function(){
     }
 
 
-    // $(document).on('click', '#continue_7', function(){
+    // $(document).on('click', '#continue_8', function(){
     //     $("#step-form").submit();
     // });
 
@@ -149,15 +149,15 @@ $(document).ready(function(){
             if (!is_connection_empty) {
               if ($("input[name='selected_connection_iata_codes']").is(':checked') ) {
                 $("#continue_1").addClass('active_button');
-                return true;                
+                return true;
               }
             }
 
           }else{
-            
+
             if ($("input[name='selected_connection_iata_codes']").is(':checked') ) {
               $("#continue_1").addClass('active_button');
-              return true;                
+              return true;
             }
           }
         }
@@ -354,10 +354,10 @@ $(document).ready(function(){
 
         if (!is_first_name_empty && !is_last_name_empty && !is_address_empty && !is_post_code_empty && !is_date_of_birth_empty) {
             $("#continue_6").addClass('active_button');
-            return true;         
+            return true;
           // setTimeout(function(){
 
-          //   var is_booking_reference_field_input_empty = false; 
+          //   var is_booking_reference_field_input_empty = false;
           //   $(".booking_reference_field_input").each(function(){
 
           //     if( ($(this).is(':visible')) && ($(this).val()=="") ){
@@ -371,7 +371,7 @@ $(document).ready(function(){
           //   console.log(is_booking_reference_field_input_empty);
           //   if (!is_booking_reference_field_input_empty) {
           //     $("#continue_6").addClass('active_button');
-          //     return true;            
+          //     return true;
           //   }
 
           //   return false;
@@ -721,7 +721,7 @@ fileInput1.addEventListener( "change", function( event ) {
       todayHighlight: true,
       autoclose: true,
     };
-    date_input.datepicker(options);  
+    date_input.datepicker(options);
   }
 
 

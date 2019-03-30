@@ -33,8 +33,14 @@ class UserPanelController extends Controller
 
     public function user_my_claim($id)
     {
-       $claim = Claim::where('id',$id)->get();
-        return view('front-end.user.user_panel_my_claim', compact('claim'));
+
+      $claims = Claim::join('tickets', 'claims.id', '=', 'tickets.claim_id')
+                      ->where('claims.id', $id)
+                      ->select('tickets.id as ticket_id','tickets.subject', 'claims.*')
+                      ->first();
+       // $claim = Claim::where('id',$id)->get();
+       // $ticket = Ticket::where('claim_id', $id)->first();
+        return view('front-end.user.user_panel_my_claim', compact('claims'));
     }
 
     public function userSignup(Request $request)
