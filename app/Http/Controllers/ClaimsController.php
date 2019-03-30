@@ -18,6 +18,7 @@ use App\Expense;
 use Illuminate\Http\Request;
 use Auth;
 use PragmaRX\Countries\Package\Countries;
+use App\Setting;
 
 class ClaimsController extends Controller
 {
@@ -469,6 +470,11 @@ class ClaimsController extends Controller
             }
         }
 
+        $adminCom=Setting::where('fieldKey','_admin_comm')->where('status',1)->first();
+        $affiliateCom=Setting::where('fieldKey','_affiliate_comm')->where('status',1)->first();
+
+
+
 
 
         // create claim
@@ -512,8 +518,18 @@ class ClaimsController extends Controller
         $claim->correspondence_proof_of_expense_file    = "";
         $claim->correspondence_others_file              = "";
 
+        $claim->affiliate_commision                     = $affiliateCom->fieldValue;
+        $claim->admin_commision                         = $adminCom->fieldValue;
+
         $claim->claim_table_type                        = $claim_table_type;
         $claim->save();
+
+
+
+
+
+
+
 
         // create connect
         if (isset($request->connection)) {
