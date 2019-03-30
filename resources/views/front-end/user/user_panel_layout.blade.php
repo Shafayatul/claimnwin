@@ -50,7 +50,7 @@
 
                     <ul class="nav navbar-nav navbar-right menu_nav">
                         <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">User Name
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{ Auth::user()->email }}
                                 <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="#">My Claims</a></li>

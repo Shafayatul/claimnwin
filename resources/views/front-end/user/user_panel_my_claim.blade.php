@@ -107,9 +107,6 @@
             <div class="ticket_table">
               <table class="table">
                 <tbody>
-
-
-
                   <tr>
                     <th scope="col" class="text-center">Ticket ID:</th>
                     <td class="text-center">{{ $claims->ticket_id}}</td>
@@ -122,7 +119,6 @@
                     <th scope="col" class="text-center">Notes</th>
                     <td class="text-center">I am a good boy</td>
                   </tr>
-
                 </tbody>
               </table>
             </div>

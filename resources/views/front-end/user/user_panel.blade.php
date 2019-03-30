@@ -21,7 +21,7 @@
       </div>
       <div class="col-md-2">
         <div class="parent_div text-center">
-          <span class="bold_span">ID</span>
+          <span class="bold_span">Created at</span>
         </div>
       </div>
       <div class="col-md-2 text-center">
@@ -52,7 +52,7 @@
         </div>
         <div class="col-md-2">
           <div class="parent_div claim_list_div text-center">
-            <a href="{{ URL::to('/user-my-claim/'.$claim->id)}}">{{$claim->id}}</a>
+            <a href="{{ URL::to('/user-my-claim/'.$claim->id)}}">{{$claim->created_at}}</a>
           </div>
         </div>
         <div class="col-md-2 text-center">
