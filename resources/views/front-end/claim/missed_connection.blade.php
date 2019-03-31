@@ -1130,7 +1130,7 @@
             <div class="total_button_div">
               <div class="two_button_child_div_left">
                 <div class="continue_button_div">
-                  <button type="submit" class="continue_button" id="continue_8" name="button">Continue <i class="fas fa-arrow-right"></i></button>
+                  <button type="button" class="continue_button" id="continue_8" name="button">Continue <i class="fas fa-arrow-right"></i></button>
                 </div>
               </div>
               <div class="two_button_child_div_right">
