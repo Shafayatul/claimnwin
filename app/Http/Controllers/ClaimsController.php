@@ -709,7 +709,6 @@ class ClaimsController extends Controller
             if (in_array($final_destination->country, $this->europe_countries)) {
               // europe airline
               if (in_array($airline->country, $this->europe_countries)) {
-                // bug..............
                   if ($distance < 2000) {
                     return '1250 ILS';
                   }elseif ($distance <= 3500) {
@@ -721,7 +720,7 @@ class ClaimsController extends Controller
                   }
 
               // israel airline
-              }elseif ($airline->country == "IL") {
+              }else{
                   if ($distance < 2000) {
                     return '1250 ILS';
                   }elseif ($distance <= 4500) {
@@ -749,16 +748,13 @@ class ClaimsController extends Controller
             if (in_array($final_destination->country, $this->europe_countries)) {
               // europe airline
               if (in_array($airline->country, $this->europe_countries)) {
-                // bug..........
-                  if ($distance < 2000) {
-                    return '1250 ILS';
-                  }elseif ($distance <= 3500) {
-                    return '2000 ILS';
-                  }elseif ($distance <= 4500) {
-                    return '600 EUR';
-                  }else{
-                    return '3080 ILS';
-                  }
+                if ($distance < 1500) {
+                  return '250 EUR';
+                }elseif ($distance <= 3500) {
+                  return '400 EUR';
+                }else{
+                  return '600 EUR';
+                }
               }else{
                 return '0';
               }
@@ -1068,7 +1064,6 @@ class ClaimsController extends Controller
             if (in_array($final_destination->country, $this->europe_countries)) {
               // europe airline
               if (in_array($airline->country, $this->europe_countries)) {
-                    // bug...........
                   if ($distance < 2000) {
                     return '1250 ILS';
                   }elseif ($distance <= 3500) {
@@ -1079,8 +1074,8 @@ class ClaimsController extends Controller
                     return '3080 ILS';
                   }
 
-              // israel airline
-              }elseif ($airline->country == "IL") {
+              // other airline
+              }else {
                   if ($distance < 2000) {
                     return '1250 ILS';
                   }elseif ($distance <= 4500) {
@@ -1108,16 +1103,13 @@ class ClaimsController extends Controller
             if (in_array($final_destination->country, $this->europe_countries)) {
               // europe airline
               if (in_array($airline->country, $this->europe_countries)) {
-                // bug.....
-                  if ($distance < 2000) {
-                    return '1250 ILS';
-                  }elseif ($distance <= 3500) {
-                    return '2000 ILS';
-                  }elseif ($distance <= 4500) {
-                    return '600 EUR';
-                  }else{
-                    return '3080 ILS';
-                  }
+                if ($distance < 1500) {
+                  return '250 EUR';
+                }elseif ($distance <= 3500) {
+                  return '400 EUR';
+                }else{
+                  return '600 EUR';
+                }
               }else{
                 return '0';
               }
@@ -1237,8 +1229,8 @@ class ClaimsController extends Controller
                   }
                 }
 
-              // israel airline
-              }elseif ($airline->country == "IL") {
+              // other airline
+              }else {
                 if ($total_delay == "more_than_8_hours") {
                   if ($distance < 2000) {
                     return '1250 ILS';
@@ -1344,23 +1336,6 @@ class ClaimsController extends Controller
             // europe to israel
             }elseif($final_destination->country == "IL"){
 
-              //Europe Airline
-              if (in_array($airline->country, $this->europe_countries)) {
-                if ($total_delay == "less_than_3_hours") {
-                  return '0';
-                }else{
-                  if ($distance < 1500) {
-                    return '250 EUR';
-                  }elseif ($distance <= 3500) {
-                    return '400 EUR';
-                  }else{
-                    return '600 EUR';
-                  }
-                }
-
-              // non europe airline
-              }else{
-
                 if ($total_delay == "3_to_8_hours") {
                   if ($distance < 1500) {
                     return '250 EUR';
@@ -1380,9 +1355,6 @@ class ClaimsController extends Controller
                     return '3080 ILS';
                   }
                 }
-
-              }
-
 
             // europe to other country
             }else{
@@ -1406,43 +1378,49 @@ class ClaimsController extends Controller
           }elseif ($final_destination->country == "IL") {
             // israel to europe
             if (in_array($final_destination->country, $this->europe_countries)) {
-              // europe airline
-              if (in_array($airline->country, $this->europe_countries)) {
 
-                if ($total_delay == "3_to_8_hours") {
-                  if ($distance < 1500) {
-                    return '250 EUR';
-                  }elseif ($distance <= 3500) {
-                    return '400 EUR';
-                  }else{
-                    return '600 EUR';
-                  }
-                }elseif($total_delay == "more_than_8_hours"){
-                  if ($distance < 2000) {
-                    return '1250 ILS';
-                  }elseif ($distance <= 3500) {
-                    return '2000 ILS';
-                  }elseif ($distance <= 4500) {
-                    return '600 EUR';
-                  }else{
-                    return '3080 ILS';
-                  }
-                }
+              if ($total_delay == "less_than_3_hours") {
+                return '0';
+              }else{
+                  // europe airline
+                  if (in_array($airline->country, $this->europe_countries)) {
 
-              // israel airline
-              }elseif ($airline->country == "IL") {
-                if ($total_delay == "more_than_8_hours") {
-                  if ($distance < 2000) {
-                    return '1250 ILS';
-                  }elseif ($distance <= 4500) {
-                    return '2000 ILS';
+                    if ($total_delay == "3_to_8_hours") {
+                      if ($distance < 1500) {
+                        return '250 EUR';
+                      }elseif ($distance <= 3500) {
+                        return '400 EUR';
+                      }else{
+                        return '600 EUR';
+                      }
+                    }elseif($total_delay == "more_than_8_hours"){
+                      if ($distance < 2000) {
+                        return '1250 ILS';
+                      }elseif ($distance <= 3500) {
+                        return '2000 ILS';
+                      }elseif ($distance <= 4500) {
+                        return '600 EUR';
+                      }else{
+                        return '3080 ILS';
+                      }
+                    }
+
+                  // other airline
                   }else{
-                    return '3080 ILS';
+                    if ($total_delay == "more_than_8_hours") {
+                      if ($distance < 2000) {
+                        return '1250 ILS';
+                      }elseif ($distance <= 4500) {
+                        return '2000 ILS';
+                      }else{
+                        return '3080 ILS';
+                      }
+                    }else{
+                      return '0';
+                    }
                   }
-                }else{
-                  return '0';
-                }
               }
+
 
             // israel to other
             }else{
