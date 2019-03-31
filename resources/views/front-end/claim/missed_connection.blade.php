@@ -30,7 +30,7 @@
                   <label for="departed_from">DEPARTED FROM: </label>
                 </div>
                 <div class="input_field">
-                  <input type="text" class="auto_airport_complete common_input departed_from" id="advanced-demo common_input departed_from" name="departed_from" placeholder="e.g. New York or JFK">
+                  <input type="text" class="auto_airport_complete common_input departed_from" id="advanced-demo common_input departed_from" name="departed_from" placeholder="e.g. New York State Police Heliport">
                 </div>
               </div>
               <div class="two_child_div_right">
@@ -38,7 +38,7 @@
                   <label for="final_destination">FINAL DESTINATION: </label>
                 </div>
                 <div class="input_field">
-                  <input type="text" class="auto_airport_complete common_input final_destination" id="common_input final_destination" name="final_destination" placeholder="e.g. London or LHR">
+                  <input type="text" class="auto_airport_complete common_input final_destination" id="common_input final_destination" name="final_destination" placeholder="e.g. London Airport">
                 </div>
               </div>
             </div>
@@ -505,9 +505,9 @@
                   <table class="table text-center">
                     <thead>
                       <tr>
-                        <th scope="col">Expense</th>
-                        <th scope="col">Amount</th>
-                        <th scope="col">Receipt</th>
+                        <th scope="col" class="text-center">Expense</th>
+                        <th scope="col" class="text-center">Amount</th>
+                        <th scope="col" class="text-center">Receipt</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -816,7 +816,7 @@
                 <label for="email_address">PLEASE ENTER YOUR EMAIL ADDRESS</label>
               </div>
               <div class="input_field">
-                <input type="text" class="common_input email_address" id="common_input email_address" name="email_address" placeholder="something@gmail.com">
+                <input type="text" class="common_input email_address" id="common_input email_address" name="email_address" placeholder="e.g. something@gmail.com">
               </div>
             </div>
           </div>
