@@ -69,14 +69,14 @@
                                                 </td>--}}
                                                 <td>
                                                     <a href="{{url('/claim-view/'.$row->id)}}" class="btn btn-sm btn-primary">Details</a>
-                                                    <a href="#" class="btn btn-sm btn-danger">Delete</a>
+                                                    <a href="{{URL::to('/claim-archive/'.$row->id)}}" class="btn btn-sm btn-danger">Delete</a>
                                                 </td>
 
                                             </tr>
                                             @endforeach
                                         </tbody>
                                     </table>
-                                    <div class="pagination-wrapper">  </div>
+                                <div class="pagination-wrapper">{{$claims->links()}}</div>
                                 </div>
                         </div>
                         </div>

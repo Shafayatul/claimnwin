@@ -25,7 +25,7 @@ class ClaimBackController extends Controller
     public function index(Request $request)
     {
 
-        $claims = Claim::paginate(10);
+        $claims = Claim::where('is_deleted',0)->paginate(10);
         $claim_id_array = [];
         foreach($claims as $claim){
             array_push($claim_id_array, $claim->id);
@@ -166,6 +166,14 @@ class ClaimBackController extends Controller
         $claim->amount = $request->amount;
         $claim->save();
         return redirect('/claim-view/'.$claim_id)->with('success','Required Details Updated');
+    }
+
+    public function claimArchive($id)
+    {
+        $claim=Claim::find($id);
+        $claim->is_deleted = "1";
+        $claim->save();
+        return redirect()->back()->with('success','Claim Archived!');
     }
 
     public function manageUnfinishedClaim()

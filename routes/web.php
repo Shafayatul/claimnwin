@@ -92,6 +92,7 @@ Route::post('/claim-file-upload', 'ClaimBackController@claimFileUpload')->name('
 Route::post('/claim-nextstep-status-change', 'ClaimBackController@claimNextstepStatusChange')->name('claim-nextstep-status-change');
 Route::post('/required-details', 'ClaimBackController@requiredDetailsUpdate')->name('required-details');
 Route::get('/claim-file/{id}', 'ClaimBackController@downloadClaimFile');
+Route::get('/claim-archive/{id}', 'ClaimBackController@claimArchive');
 
 Route::resource('notes', 'NotesController');
 Route::post('/save-note', 'NotesController@store')->name('save-note');
