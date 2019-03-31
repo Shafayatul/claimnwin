@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
+use Soumen\Agent\Facades\Agent;
 use Hash;
 use App\User;
 use App\ItineraryDetail;
@@ -292,6 +292,8 @@ class ClaimsController extends Controller
     public function store(Request $request)
     {
 
+        $user_agent = Agent::all();
+
         $departed_from_id = $this->get_airport_id_name_and_iata_code($request->departed_from);
         $final_destination_id = $this->get_airport_id_name_and_iata_code($request->final_destination);
 
@@ -521,6 +523,13 @@ class ClaimsController extends Controller
         $claim->admin_commision                         = $adminCom->fieldValue;
 
         $claim->claim_table_type                        = $claim_table_type;
+
+
+        $claim->ip                                      =    $user_agent->ip;
+        $claim->browser                                 =    $user_agent->browser->name;
+        $claim->language                                =    $request->server('HTTP_ACCEPT_LANGUAGE');
+        $claim->os                                      =    $user_agent->platform->name;
+
         $claim->save();
 
         if ($claim) {
