@@ -187,7 +187,7 @@
             </div>
           </a>
           <ul class="dropdown-menu drp-mnu">
-            <li> <a href="#"><i class="fa fa-cog"></i> Change Password</a> </li>
+            <li> <a href="{{url('/update-password')}}"><i class="fa fa-cog"></i> Change Password</a> </li>
             {{-- <li> <a href="#"><i class="fa fa-user"></i> My Account</a> </li> --}}
             {{-- <li> <a href="#"><i class="fa fa-suitcase"></i> Profile</a> </li> --}}
             <li>
