@@ -77,7 +77,7 @@
                                     <td>{{ $item->icao_code }}</td>
                                     <td>{{ $item->email }}</td>
                                     <td>{{ $item->phone }}</td>
-                                    <td>{{ $country[$item->country] }}</td>
+                                    <td>{{ $item->country }}</td>
                                     @if($item->status == 1)
                                     <td>Enabled</td>
                                     @else

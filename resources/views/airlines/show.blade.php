@@ -47,7 +47,7 @@
                                     </tr>
                                     <tr>
                                         <th> Country </th>
-                                        <td> {{ $country[$airline->country] }} </td>
+                                        <td> {{ $airline->country }} </td>
                                     </tr>
                                     <tr>
                                         <th> Icao Code </th>
