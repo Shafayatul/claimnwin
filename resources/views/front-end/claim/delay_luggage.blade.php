@@ -17,7 +17,7 @@
       <form action="{{url('/claim')}}" method="post" id="step-form">
         @csrf
         <!-- ...................................................................
-                                  STEP 1 STARTS
+                                  STEP 0 STARTS
         .................................................................... -->
         <div class="single_step" id="step_0">
 
@@ -47,7 +47,7 @@
                 </div>
                 <div class="parent_div">
                     <div class="child_div">
-                        <input type="text" name="written_airline_date" class="common_input date" id="common_input datepicker written_airline_date" placeholder="e.g. London or LHR">
+                        <input type="text" name="written_airline_date" class="common_input date" id="common_input datepicker written_airline_date" placeholder="e.g. 10/10/2010">
                     </div>
                 </div>
             </div>
@@ -63,11 +63,11 @@
         </div>
 
         <!-- ...................................................................
-                                 STEP 1 ENDS
+                                 STEP 0 ENDS
        .................................................................... -->
 
         <!-- ...................................................................
-                                  STEP 2 STARTS
+                                  STEP 1 STARTS
         .................................................................... -->
         <div class="single_step" id="step_1" style="display:none;">
 
@@ -81,7 +81,7 @@
                       <label for="departed_from">DEPARTED FROM: </label>
                     </div>
                     <div class="input_field">
-                      <input type="text" class="auto_airport_complete common_input departed_from" id="advanced-demo common_input departed_from" name="departed_from" placeholder="e.g. New York or JFK">
+                      <input type="text" class="auto_airport_complete common_input departed_from" id="advanced-demo common_input departed_from" name="departed_from" placeholder="e.g. New York State Police Heliport">
                     </div>
                   </div>
                   <div class="two_child_div_right">
@@ -89,7 +89,7 @@
                       <label for="final_destination">FINAL DESTINATION: </label>
                     </div>
                     <div class="input_field">
-                      <input type="text" class="auto_airport_complete common_input final_destination" id="common_input final_destination" name="final_destination" placeholder="e.g. London or LHR">
+                      <input type="text" class="auto_airport_complete common_input final_destination" id="common_input final_destination" name="final_destination" placeholder="e.g. London Airport">
                     </div>
                   </div>
                 </div>
@@ -98,14 +98,18 @@
              <div style="display: none;">
                    <input type="text" name="selected_connection_iata_codes" class="selected_connection_iata_codes">
                 </div>
-
-            <div class="parent_div">
-                <div class="form_h3">
-                    <h3>Itinerary details for your disrupted flight</h3>
-                </div>
-                <div class="form_h4">
-                    <h4>Please give us the full itinerary so we can make sure we claim for the full amount.</h4>
-                </div>
+            <div class="show_on_airport_selected">
+              <div class="parent_div">
+                  <div class="form_h3">
+                      <h3>Itinerary details for your disrupted flight</h3>
+                  </div>
+                  {{-- <div class="form_h4">
+                      <h4>Please give us the full itinerary so we can make sure we claim for the full amount.</h4>
+                  </div> --}}
+                  <div class="label_field only_label_without_input">
+                    <label>PLEASE GIVE US THE FULL ITINERARY SO WE CAN MAKE SURE WE CLAIM FOR THE FULL AMOUNT.</label>
+                  </div>
+              </div>
             </div>
 
 
@@ -131,10 +135,10 @@
         </div>
 
         <!-- ...................................................................
-                                  STEP 2 ENDS
+                                  STEP 1 ENDS
         .................................................................... -->
         <!-- ...................................................................
-                                  STEP 3 STARTS
+                                  STEP 2 STARTS
         .................................................................... -->
 
         <div class="single_step" id="step_2" style="display:none;">
@@ -182,10 +186,10 @@
         </div>
 
         <!-- ...................................................................
-                                  STEP 3 ENDS
+                                  STEP 2 ENDS
         .................................................................... -->
         <!-- ...................................................................
-                                  STEP 4 STARTS
+                                  STEP 3 STARTS
         .................................................................... -->
 
         <div class="single_step" id="step_3" style="display:none;">
@@ -195,7 +199,7 @@
                 </div>
                 <div class="two_input_field">
                     <div class="input_field">
-                        <input type="text" class="common_input received_luggage_date date" id="common_input received_luggage_date date" name="received_luggage_date" placeholder="e.g. New York or JFK">
+                        <input type="text" class="common_input received_luggage_date date" id="common_input received_luggage_date date" name="received_luggage_date" placeholder="e.g. 10/10/2010">
                     </div>
                 </div>
             </div>
@@ -217,10 +221,10 @@
         </div>
 
         <!-- ...................................................................
-                                  STEP 4 ENDS
+                                  STEP 3 ENDS
         .................................................................... -->
         <!-- ...................................................................
-                                  STEP 5 STARTS
+                                  STEP 4 STARTS
         .................................................................... -->
 
         <div class="single_step" id="step_4" style="display:none;">
@@ -231,24 +235,8 @@
                         <label for="departure_airport">Please enter your email address</label>
                     </div>
                     <div class="input_field">
-                        <input type="text" class="common_input email_address" id="common_input email_address" name="email_address" placeholder="abc@efg.hij">
+                        <input type="text" class="common_input email_address" id="common_input email_address" name="email_address" placeholder="e.g. something@gmail.com">
                     </div>
-                </div>
-            </div>
-
-            <div class="common_row">
-                <div class="form_h3 text-center">
-                    <h3>CONGRATULATIONS!!!</h3>
-                </div>
-                <div class="form_show_message_paragraph">
-                    <p>
-                        Congratulations! you are eligible for a refund of expenses incurred.
-                        You are eligible to a refund of up to 1350 EUR (Show on screen the amount
-                        in the currency converted according to passengers IP) per passenger.
-                    </p>
-                    <p>
-                        In the case of luggage delays, airlines are only required to refund, if proof of purchases are submitted.
-                    </p>
                 </div>
             </div>
 
@@ -269,13 +257,52 @@
         </div>
 
         <!-- ...................................................................
-                                  STEP 5 ENDS
+                                  STEP 4 ENDS
         .................................................................... -->
+
+        <!-- ...................................................................
+                                  STEP 5 STARTS
+        .................................................................... -->
+        <div class="single_step" id="step_5" style="display:none;">
+          <div class="common_row">
+              <div class="form_h3 text-center">
+                  <h3>CONGRATULATIONS!!!</h3>
+              </div>
+              <div class="form_show_message_paragraph">
+                  <p>
+                      Congratulations! you are eligible for a refund of expenses incurred.
+                      You are eligible to a refund of up to 1350 EUR (Show on screen the amount
+                      in the currency converted according to passengers IP) per passenger. In the case of luggage delays, airlines are only required to refund, if proof of purchases are submitted.
+                  </p>
+              </div>
+          </div>
+
+          <div class="common_row">
+              <div class="total_button_div">
+                  <div class="two_button_child_div_left">
+                      <div class="continue_button_div">
+                          <button type="button" class="continue_button" id="continue_5" name="button">Continue <i class="fas fa-arrow-right"></i></button>
+                      </div>
+                  </div>
+                  <div class="two_button_child_div_right">
+                      <div class="previous_button_div">
+                          <button type="button" class="previous_button pull-left" id="previous_button" name="button">Previous <i class="fas fa-arrow-left"></i></button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+        </div>
+
+
+        <!-- ...................................................................
+                                  STEP 5 Ends
+        .................................................................... -->
+
         <!-- ...................................................................
                                   STEP 6 STARTS
         .................................................................... -->
 
-        <div class="single_step" id="step_5" style="display:none;">
+        <div class="single_step" id="step_6" style="display:none;">
             <div class="common_row">
                 <div class="form_h3">
                     <h3>Passenger details</h3>
@@ -289,7 +316,7 @@
                             <label for="first_name">FIRST NAME</label>
                         </div>
                         <div class="input_field">
-                            <input type="text" class="common_input first_name" id="common_input first_name" name="first_name[]" placeholder="e.g. New York or JFK">
+                            <input type="text" class="common_input first_name" id="common_input first_name" name="first_name[]" placeholder="e.g. John">
                         </div>
                     </div>
                     <div class="two_child_div_right">
@@ -297,7 +324,7 @@
                             <label for="last_name">LAST NAME</label>
                         </div>
                         <div class="input_field">
-                            <input type="text" class="common_input last_name" id="common_input last_name" name="last_name[]" placeholder="e.g. London or LHR">
+                            <input type="text" class="common_input last_name" id="common_input last_name" name="last_name[]" placeholder="e.g. Dcosta">
                         </div>
                     </div>
                 </div>
@@ -307,7 +334,7 @@
                             <label for="address">ADDRESS</label>
                         </div>
                         <div class="input_field">
-                            <input type="text" class="common_input address" id="common_input address" name="address[]" placeholder="e.g. New York or JFK">
+                            <input type="text" class="common_input address" id="common_input address" name="address[]" placeholder="e.g. Road No. 13, House No. 13 New York">
                         </div>
                     </div>
                     <div class="two_child_div_right">
@@ -315,7 +342,7 @@
                             <label for="post_code">POST CODE</label>
                         </div>
                         <div class="input_field">
-                            <input type="text" class="common_input post_code" id="common_input post_code" name="post_code[]" placeholder="e.g. London or LHR">
+                            <input type="text" class="common_input post_code" id="common_input post_code" name="post_code[]" placeholder="e.g. 1212">
                         </div>
                     </div>
                 </div>
@@ -325,7 +352,7 @@
                             <label for="date_of_birth">DATE OF BIRTH</label>
                         </div>
                         <div class="input_field">
-                            <input type="text" class="common_input date_of_birth date" id="common_input date_of_birth" name="date_of_birth[]" placeholder="1/1/1990">
+                            <input type="text" class="common_input date_of_birth date" id="common_input date_of_birth" name="date_of_birth[]" placeholder="e.g. 10/10/1990">
                         </div>
                     </div>
                 </div>
@@ -377,7 +404,7 @@
                 <div class="total_button_div">
                     <div class="two_button_child_div_left">
                         <div class="continue_button_div">
-                            <button type="button" class="continue_button" id="continue_5" name="button">Continue <i class="fas fa-arrow-right"></i></button>
+                            <button type="button" class="continue_button" id="continue_6" name="button">Continue <i class="fas fa-arrow-right"></i></button>
                         </div>
                     </div>
                     <div class="two_button_child_div_right">
@@ -397,11 +424,14 @@
                                   STEP 7 STARTS
         .................................................................... -->
 
-        <div class="single_step" id="step_6" style="display:none;">
+        <div class="single_step" id="step_7" style="display:none;">
             <div class="common_row table_show_on_large_screen">
               <div class="parent_div">
-                <div class="form_h4 text-center">
+                {{-- <div class="form_h4 text-center">
                   <h4>Tell us about your expenses.</h4>
+                </div> --}}
+                <div class="label_field only_label_without_input">
+                  <label>TELL US ABOUT YOUR EXPENSES.</label>
                 </div>
               </div>
               <div class="parent_div">
@@ -409,9 +439,9 @@
                   <table class="table text-center">
                     <thead>
                       <tr>
-                        <th scope="col">Expense</th>
-                        <th scope="col">Amount</th>
-                        <th scope="col">Receipt</th>
+                        <th scope="col" class="text-center">Expense</th>
+                        <th scope="col" class="text-center">Amount</th>
+                        <th scope="col" class="text-center">Receipt</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -728,7 +758,7 @@
                 <div class="total_button_div">
                     <div class="two_button_child_div_left">
                         <div class="continue_button_div">
-                            <button type="button" class="continue_button" id="continue_6" name="button">Continue <i class="fas fa-arrow-right"></i></button>
+                            <button type="button" class="continue_button" id="continue_7" name="button">Continue <i class="fas fa-arrow-right"></i></button>
                         </div>
                     </div>
                     <div class="two_button_child_div_right">
@@ -747,7 +777,7 @@
                                   STEP 8 STARTS
         .................................................................... -->
 
-        <div class="single_step" id="step_7" style="display:none;">
+        <div class="single_step" id="step_8" style="display:none;">
             <div class="common_row">
                 <div class="form_h3">
                     <h3>Optional: Additional information</h3>
@@ -849,7 +879,7 @@
                 <div class="total_button_div">
                     <div class="two_button_child_div_left">
                         <div class="continue_button_div">
-                            <button type="button" class="continue_button" id="continue_7" name="button">Continue <i class="fas fa-arrow-right"></i></button>
+                            <button type="button" class="continue_button" id="continue_8" name="button">Continue <i class="fas fa-arrow-right"></i></button>
                         </div>
                     </div>
                     <div class="two_button_child_div_right">
