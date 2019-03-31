@@ -52,8 +52,11 @@
                 <div class="form_h3">
                     <h3>Were any other airports involved in this trip?</h3>
                 </div>
-                <div class="form_h4">
+                {{-- <div class="form_h4">
                     <h4>If your trip was not a direct flight, let us know.</h4>
+                </div> --}}
+                <div class="label_field only_label_without_input">
+                  <label>IF YOUR TRIP WAS NOT A DIRECT FLIGHT, LET US KNOW.</label>
                 </div>
                 <div class="parent_div">
                     <div class="two_child_radio_div first_child">
@@ -184,17 +187,22 @@
         .................................................................... -->
 
         <div class="single_step" id="step_3" style="display:none;">
+          <div class="common_row">
             <div class="parent_div">
                 <div class="form_h3">
                     <h3>Itinerary details for your disrupted flight</h3>
                 </div>
-                <div class="form_h4">
+                {{-- <div class="form_h4">
                     <h4>Please give us the full itinerary so we can make sure we claim for the full amount.</h4>
+                </div> --}}
+                <div class="label_field only_label_without_input">
+                  <label>PLEASE GIVE US THE FULL ITINERARY SO WE CAN MAKE SURE WE CLAIM FOR THE FULL AMOUNT.</label>
                 </div>
             </div>
 
-          <div class="itinerary_flight_element">
-            {{-- code from JS --}}
+            <div class="itinerary_flight_element">
+              {{-- code from JS --}}
+            </div>
           </div>
 
             <div class="common_row">
@@ -224,8 +232,11 @@
             <div class="accommodation">
                 <div class="common_row">
                     <div class="parent_div">
-                        <div class="form_h4">
+                        {{-- <div class="form_h4">
                             <h4>Optional: Did you spend on accommodation, food or taxi while waiting for your rerouting flight?</h4>
+                        </div> --}}
+                        <div class="label_field only_label_without_input">
+                          <label>OPTIONAL: DID YOU SPEND ON ACCOMMODATION, FOOD OR TAXI WHILE WAITING FOR YOUR REROUTING FLIGHT?</label>
                         </div>
                     </div>
                     <div class="parent_div">
@@ -253,8 +264,11 @@
 
             <div class="common_row table_show_on_large_screen">
               <div class="parent_div">
-                <div class="form_h4 text-center">
+                {{-- <div class="form_h4 text-center">
                   <h4>Tell us about your expenses.</h4>
+                </div> --}}
+                <div class="label_field only_label_without_input">
+                  <label>TELL US ABOUT YOUR EXPENSES.</label>
                 </div>
               </div>
               <div class="parent_div">
@@ -403,8 +417,11 @@
 
             <div class="common_row table_show_on_small_screen">
               <div class="parent_div">
-                <div class="form_h4 text-center">
+                {{-- <div class="form_h4 text-center">
                   <h4>Tell us about your expenses.</h4>
+                </div> --}}
+                <div class="label_field only_label_without_input">
+                  <label>TELL US ABOUT YOUR EXPENSES.</label>
                 </div>
               </div>
               <div class="parent_div">
@@ -568,7 +585,7 @@
                             <label for="email_address">Please enter your email address</label>
                         </div>
                         <div class="input_field">
-                            <input type="text" class="common_input email_address" id="common_input email_address" name="email_address" placeholder="e.g. New York or JFK">
+                            <input type="text" class="common_input email_address" id="common_input email_address" name="email_address" placeholder="something@gmail.com">
                         </div>
                     </div>
                 </div>
@@ -652,7 +669,7 @@
                   <label for="first_name">FIRST NAME</label>
                 </div>
                 <div class="input_field">
-                  <input type="text" class="common_input first_name" id="common_input first_name" name="first_name[]" placeholder="e.g. New York or JFK">
+                  <input type="text" class="common_input first_name" id="common_input first_name" name="first_name[]" placeholder="e.g. John">
                 </div>
               </div>
               <div class="two_child_div_right">
@@ -660,7 +677,7 @@
                   <label for="last_name">LAST NAME</label>
                 </div>
                 <div class="input_field">
-                  <input type="text" class="common_input last_name" id="common_input last_name" name="last_name[]" placeholder="e.g. London or LHR">
+                  <input type="text" class="common_input last_name" id="common_input last_name" name="last_name[]" placeholder="e.g. Dcosta">
                 </div>
               </div>
             </div>
@@ -670,7 +687,7 @@
                   <label for="address">ADDRESS</label>
                 </div>
                 <div class="input_field">
-                  <input type="text" class="common_input address" id="common_input address" name="address[]" placeholder="e.g. New York or JFK">
+                  <input type="text" class="common_input address" id="common_input address" name="address[]" placeholder="e.g. Road No. 13, House No. 13 New York">
                 </div>
               </div>
               <div class="two_child_div_right">
@@ -678,7 +695,7 @@
                   <label for="post_code">POST CODE</label>
                 </div>
                 <div class="input_field">
-                  <input type="text" class="common_input post_code" id="common_input post_code" name="post_code[]" placeholder="e.g. London or LHR">
+                  <input type="text" class="common_input post_code" id="common_input post_code" name="post_code[]" placeholder="e.g. 1212">
                 </div>
               </div>
             </div>
@@ -688,7 +705,7 @@
                   <label for="date_of_birth">DATE OF BIRTH</label>
                 </div>
                 <div class="input_field">
-                  <input type="text" class="common_input date_of_birth date" id="common_input date_of_birth" name="date_of_birth[]" placeholder="1/1/1990">
+                  <input type="text" class="common_input date_of_birth date" id="common_input date_of_birth" name="date_of_birth[]" placeholder="e.g. 10/10/1990">
                 </div>
               </div>
             </div>
@@ -804,8 +821,11 @@
                 <div class="form_h3">
                     <h3>Optional: Additional information</h3>
                 </div>
-                <div class="form_h4">
+                {{-- <div class="form_h4">
                     <h4>If we gather more information, we can handle your claim faster.</h4>
+                </div> --}}
+                <div class="label_field only_label_without_input">
+                  <label>IF WE GATHER MORE INFORMATION, WE CAN HANDLE YOUR CLAIM FASTER.</label>
                 </div>
                 <div class="select_reason_class">
                     <select class="form-control custom_select" class="hear_from_where">
@@ -821,8 +841,11 @@
             </div>
 
             <div class="common_row">
-                <div class="form_h4">
+                {{-- <div class="form_h4">
                     <h4>Have you contacted the airline regarding this claim?</h4>
+                </div> --}}
+                <div class="label_field only_label_without_input">
+                  <label>HAVE YOU CONTACTED THE AIRLINE REGARDING THIS CLAIM?</label>
                 </div>
                 <div class="parent_div">
                     <div class="two_child_radio_div first_child">
@@ -844,8 +867,11 @@
                 <div class="form_h3">
                     <h3>Tell us what happened</h3>
                 </div>
-                <div class="form_h4">
+                {{-- <div class="form_h4">
                     <h4>Please provide any information that may help us process your claim quickly.</h4>
+                </div> --}}
+                <div class="label_field only_label_without_input">
+                  <label>PLEASE PROVIDE ANY INFORMATION THAT MAY HELP US PROCESS YOUR CLAIM QUICKLY.</label>
                 </div>
                 <div class="parent_div">
                     <div class="form-group">

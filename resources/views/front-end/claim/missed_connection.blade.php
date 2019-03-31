@@ -646,8 +646,11 @@
 
             <div class="common_row table_show_on_small_screen">
               <div class="parent_div">
-                <div class="form_h4 text-center">
+                {{-- <div class="form_h4 text-center">
                   <h4>Tell us about your expenses.</h4>
+                </div> --}}
+                <div class="label_field only_label_without_input">
+                  <label>TELL US ABOUT YOUR EXPENSES.</label>
                 </div>
               </div>
               <div class="parent_div">
