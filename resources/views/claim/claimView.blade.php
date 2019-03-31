@@ -610,7 +610,7 @@
                                                                                 <label for="note" class="control-label col-md-3">Note:</label>
                                                                                 <div class="col-md-9">
                                                                                     <textarea name="note" id="note" rows="3" class="form-control" required></textarea>
-                                                                                <input type="hidden" name="claim_id" value="100276">
+                                                                                <input type="hidden" name="claim_id" value="{{$claims->id}}">
                                                                                 </div>
                                                                             </div>
 
@@ -645,21 +645,25 @@
                                                                     <div class="col-md-12">
 
                                                                             <ul class="timeline">
-                                                                                <li class="time-label"> <span class="bg-red"> 23 Mar 19 </span> </li>
-                                                                                <li> <i class="fa  fa-angle-double-right bg-blue"></i>
-                                                                                <div class="timeline-item"> <span class="time"><i class="fa fa-clock-o"></i> 08:25:55 am</span>
-                                                                                    <h3 class="timeline-header"><a href="#">Admin</a> created a note via <span class="label label-success">Emails From Airline</span></h3>
-                                                                                    <div class="timeline-body"><p><br></p>				   				   </div>
-                                                                                </div>
-                                                                                </li>
-
-                                                                                <li class="time-label"><span class="bg-red"> 28 Jan 19 </span> </li>
-                                                                                <li> <i class="fa  fa-angle-double-right bg-blue"></i>
-                                                                                <div class="timeline-item"> <span class="time"><i class="fa fa-clock-o"></i> 11:17:51 am</span>
-                                                                                    <h3 class="timeline-header"><a href="#">Admin</a> created a note via <span class="label label-success">Emails From Airline</span></h3>
+                                                                                @foreach($notes as $note)
+                                                                                <li class="time-label"> <span class="bg-red"> {{Carbon\Carbon::parse($note->created_at)->format('d M Y')}} </span> </li>
+                                                                                <li> <i class="fa fa-angle-double-right bg-blue"></i>
+                                                                                <div class="timeline-item"> <span class="time"><i class="fa fa-clock-o"></i> {{Carbon\Carbon::parse($note->created_at)->format('h:i:s A')}}</span>
+                                                                                    <h3 class="timeline-header"><a href="#">Admin</a> created a note via <span class="label label-success">
+                                                                                        @if($note->note_status == 1)
+                                                                                        Emails From Airline
+                                                                                        @elseif($note->note_status == 2)
+                                                                                        Emails From Passenger
+                                                                                        @else
+                                                                                        Phone Calls
+                                                                                        @endif
+                                                                                        </span></h3>
                                                                                     <div class="timeline-body"><p><br></p></div>
                                                                                 </div>
                                                                                 </li>
+                                                                                @endforeach
+
+
                                                                             </ul>
                                                                     </div>
                                                                 </div>

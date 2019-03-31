@@ -60,6 +60,7 @@
             <li><a href="{{url('/manage-claim')}}"><i class="fa fa-angle-right"></i> Manage Claim</a></li>
             <li><a href="{{url('/manage-unfinished-claim')}}"><i class="fa fa-angle-right"></i> Manage Unfinished Claim</a></li>
             <li><a href="{{url('/manage-fills-claim')}}"><i class="fa fa-angle-right"></i> Manage Fills Claim</a></li>
+            <li><a href="{{url('/archive-manage-claim')}}"><i class="fa fa-angle-right"></i> Archive Claims</a></li>
             </ul>
             </li>
 
@@ -112,6 +113,8 @@
             </li>
             <li><a href="login.html"><i class="fa fa-pie-chart"></i> Manage Affiliation Report</a></li>
             <li><a href="login.html"><i class="fa fa-table"></i> Reporting</a></li>
+
+
             <li class="treeview">
               <a href="#">
               <i class="fa fa-cog"></i>

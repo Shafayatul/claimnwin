@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 
 use App\Note;
 use Illuminate\Http\Request;
+use Auth;
 
 class NotesController extends Controller
 {
@@ -15,20 +16,6 @@ class NotesController extends Controller
      *
      * @return \Illuminate\View\View
      */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     public function index(Request $request)
     {
         $keyword = $request->get('search');
@@ -64,12 +51,13 @@ class NotesController extends Controller
      */
     public function store(Request $request)
     {
+        $claim_id = $request->claim_id;
 
         $requestData = $request->all();
 
-        Note::create($requestData);
+        Note::create($requestData + ['user_id' => Auth::user()->id]);
 
-        return redirect('/claim-view')->with('success', 'Note added!');
+        return redirect('/claim-view/'.$claim_id)->with(['success'=>'Note added!']);
     }
 
     /**

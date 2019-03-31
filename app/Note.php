@@ -25,7 +25,7 @@ class Note extends Model
      *
      * @var array
      */
-    protected $fillable = ['claim_id', 'note'];
+    protected $fillable = ['claim_id', 'user_id', 'note','note_status','airline_ref'];
 
-    
+
 }
