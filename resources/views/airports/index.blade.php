@@ -57,10 +57,6 @@
                                         <th>ICAO CODE</th>
                                         <th>MUNCIPILITY</th>
                                         <th>TYPE</th>
-                                        <th>LONGITUDE</th>
-                                        <th>LATITUDE</th>
-                                        <th>HOME LINK</th>
-                                        <th>WIKIPEDIA LINK</th>
                                         <th>ACTION</th>
                                     </tr>
                                 </thead>
@@ -74,10 +70,6 @@
                                         <td>{{ $item->icao_code }}</td>
                                         <td>{{ $item->municipality }}</td>
                                         <td>{{ $item->type }}</td>
-                                        <td>{{ $item->longitude }}</td>
-                                        <td>{{ $item->latitude }}</td>
-                                        <td>{{ $item->home_link }}</td>
-                                        <td>{{ $item->wikipedia_link }}</td>
                                         <td>
                                             <a href="{{ url('/airports/' . $item->id) }}" title="View Airport"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
                                             <a href="{{ url('/airports/' . $item->id . '/edit') }}" title="Edit Airport"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
