@@ -8,9 +8,9 @@ $(document).ready(function(){
     }
 
 
-    // $(document).on('click', '#continue_8', function(){
-    //     $("#step-form").submit();
-    // });
+    $(document).on('click', '#continue_8', function(){
+        $("#step-form").submit();
+    });
 
     var keyCount = 0;
     $("#add_connection").click(function(){

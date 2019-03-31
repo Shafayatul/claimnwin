@@ -107,3 +107,7 @@ Route::get('/letter-before-action/{id}', 'PdfController@letterBeforeActionView')
 Route::get('/poa-pdf/{id}', 'PdfController@pdfView');
 
 Route::resource('claim-files', 'ClaimFilesController');
+
+
+
+Route::get('/test', 'TestsController@test');
