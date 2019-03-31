@@ -16,6 +16,7 @@
         "laravel/tinker": "^1.0",
         "monarobase/country-list": "^2.1",
         "pragmarx/countries": "^0.5.9",
+        "soumen-dey/laravel-user-agent": "^1.0",
         "spatie/laravel-permission": "^2.36"
     },
     "require-dev": {
