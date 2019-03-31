@@ -1,9 +1,9 @@
 <div class="sticky-header header-section ">
   <div class="header-left">
     <!--toggle button start-->
-    <button id="showLeftPush"><i class="fa fa-bars"></i></button>
+    {{-- <button id="showLeftPush"><i class="fa fa-bars"></i></button> --}}
     <!--toggle button end-->
-    <div class="profile_details_left"><!--notifications of menu start -->
+    {{-- <div class="profile_details_left">
       <ul class="nofitications-dropdown">
         <li class="dropdown head-dpdn">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-envelope"></i><span class="badge">4</span></a>
@@ -152,7 +152,7 @@
         </li>
       </ul>
       <div class="clearfix"> </div>
-    </div>
+    </div> --}}
     <!--notification menu end -->
     <div class="clearfix"> </div>
   </div>
@@ -160,7 +160,7 @@
 
 
     <!--search-box-->
-    <div class="search-box">
+    {{-- <div class="search-box">
       <form class="input">
         <input class="sb-search-input input__field--madoka" placeholder="Search..." type="search" id="input-31" />
         <label class="input__label" for="input-31">
@@ -169,7 +169,7 @@
           </svg>
         </label>
       </form>
-    </div><!--//end-search-box-->
+    </div> --}}<!--//end-search-box-->
 
     <div class="profile_details">
       <ul>
@@ -178,8 +178,8 @@
             <div class="profile_img">
               <span class="prfil-img"><img src="{{ URL::asset('admin_asset/images/2.jpg')}}" alt=""> </span>
               <div class="user-name">
-                <p>Admin Name</p>
-                <span>Administrator</span>
+                <p>{{Auth::user()->name}}</p>
+                <span>{{Auth::user()->email}}</span>
               </div>
               <i class="fa fa-angle-down lnr"></i>
               <i class="fa fa-angle-up lnr"></i>
@@ -187,9 +187,9 @@
             </div>
           </a>
           <ul class="dropdown-menu drp-mnu">
-            <li> <a href="#"><i class="fa fa-cog"></i> Settings</a> </li>
-            <li> <a href="#"><i class="fa fa-user"></i> My Account</a> </li>
-            <li> <a href="#"><i class="fa fa-suitcase"></i> Profile</a> </li>
+            <li> <a href="{{url('/update-password')}}"><i class="fa fa-cog"></i> Change Password</a> </li>
+            {{-- <li> <a href="#"><i class="fa fa-user"></i> My Account</a> </li> --}}
+            {{-- <li> <a href="#"><i class="fa fa-suitcase"></i> Profile</a> </li> --}}
             <li>
                 <a href="{{ route('logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-sign-out-alt"></i> Logout</a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

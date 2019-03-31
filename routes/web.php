@@ -64,6 +64,12 @@ Route::get('socialauth/{provider}/callback','SocialAuthController@handleProvider
 
 Route::post('user/signup','UserPanelController@userSignup')->name('user/signup');
 
+
+Route::post('/update-password', 'UsersController@update_password');
+Route::get('/update-password', 'UsersController@show_update_password');
+Route::get('/admin-user',  'AdminsController@create');
+Route::post('/admin-user',  'AdminsController@store');
+
 Route::post('/admin/assignRole',  'RoleController@assignRole');
 Route::get('/admin/datatable/role_assign', 'RoleController@datatable_user_role');
 Route::get('/admin/role/assign',  'RoleController@assign')->name('role.assign');

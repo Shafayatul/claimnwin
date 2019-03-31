@@ -464,6 +464,7 @@ class ClaimsController extends Controller
                      'email'            => $email,
                      'password'         => Hash::make($email)
                     ]);
+                $user->syncRoles('User');
             }else{
                 $user = User::where('email', $email)->first();
             }
