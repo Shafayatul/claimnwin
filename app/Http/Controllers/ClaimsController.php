@@ -521,7 +521,6 @@ class ClaimsController extends Controller
 
         $claim->affiliate_commision                     = $affiliateCom->fieldValue;
         $claim->admin_commision                         = $adminCom->fieldValue;
-
         $claim->claim_table_type                        = $claim_table_type;
 
 
