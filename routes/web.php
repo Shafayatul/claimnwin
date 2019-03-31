@@ -56,6 +56,8 @@ Route::resource('reminders', 'RemindersController');
 Route::post('/reminder-create', 'RemindersController@store')->name('reminder-create');
 Route::post('/update-reminder', 'RemindersController@update')->name('update-reminder');
 Route::delete('/reminders-delete/{id}','RemindersController@destroy');
+Route::get('/reminder-status-dismiss/{id}', 'RemindersController@reminderStatusDismiss');
+Route::get('/reminder-status-markasdone/{id}', 'RemindersController@reminderStatusMarkasdone');
 
 Route::get('socialauth/{provider}','SocialAuthController@redirectToProvider');
 Route::get('socialauth/{provider}/callback','SocialAuthController@handleProviderCallback');

@@ -694,59 +694,59 @@
                                                     <br>
                                                     <button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#myModal">Reminder</button>
                                                     <div id="myModal" class="modal fade" role="dialog">
-                                                    <div class="modal-dialog">
+                                                            <div class="modal-dialog">
 
-                                                        <!-- Modal content-->
-                                                        <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                            <h4 class="modal-title">Set Reminder</h4>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                        <form action="{{route('reminder-create')}}" method="post">
-                                                                {{ csrf_field() }}
-                                                           <div class="row">
-                                                               <div class="col-md-6">
-                                                                    <div class="form-group">
-                                                                        <label for="exampleInputEmail1">Reminder Date</label>
-                                                                        <input type="date" name="callback_date" class="form-control" id="exampleInputEmail1"  placeholder="Enter email">
-                                                                        <input type="hidden" name="claim_id" value="100276">
+                                                                <!-- Modal content-->
+                                                                <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                    <h4 class="modal-title">Set Reminder</h4>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                <form action="{{route('reminder-create')}}" method="post">
+                                                                        {{ csrf_field() }}
+                                                                   <div class="row">
+                                                                       <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label for="exampleInputEmail1">Reminder Date</label>
+                                                                                <input type="date" name="callback_date" class="form-control" id="exampleInputEmail1"  placeholder="Enter email">
+                                                                                <input type="hidden" name="claim_id" value="{{$claims->id}}">
+                                                                            </div>
+                                                                       </div>
+
+                                                                       <div class="col-md-6">
+                                                                            <div class="form-group">
+                                                                                <label for="exampleInputEmail1">Reminder Time</label>
+                                                                                <input type="time" name="callback_time" class="form-control" id="exampleInputEmail1"  placeholder="Enter email">
+                                                                            </div>
+                                                                       </div>
+
+                                                                   </div>
+
+                                                                   <div class="row">
+                                                                        <div class="col-md-12">
+                                                                             <div class="form-group">
+                                                                                 <label for="exampleInputEmail1" class="control-label">Note</label>
+                                                                                 <textarea name="note" class="form-control" id="exampleInputEmail1" cols="30" rows="3"></textarea>
+                                                                             </div>
+                                                                        </div>
+
                                                                     </div>
-                                                               </div>
 
-                                                               <div class="col-md-6">
-                                                                    <div class="form-group">
-                                                                        <label for="exampleInputEmail1">Reminder Time</label>
-                                                                        <input type="time" name="callback_time" class="form-control" id="exampleInputEmail1"  placeholder="Enter email">
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <button type="submit" class="btn btn-success">Reminder</button>
+                                                                        </div>
                                                                     </div>
-                                                               </div>
+                                                                </form>
+                                                                </div>
+                                                                <div class="modal-footer">
 
-                                                           </div>
-
-                                                           <div class="row">
-                                                                <div class="col-md-12">
-                                                                     <div class="form-group">
-                                                                         <label for="exampleInputEmail1" class="control-label">Note</label>
-                                                                         <textarea name="note" class="form-control" id="exampleInputEmail1" cols="30" rows="3"></textarea>
-                                                                     </div>
+                                                                </div>
                                                                 </div>
 
                                                             </div>
-
-                                                            <div class="row">
-                                                                <div class="col-md-12">
-                                                                    <button type="submit" class="btn btn-success">Reminder</button>
-                                                                </div>
                                                             </div>
-                                                        </form>
-                                                        </div>
-                                                        <div class="modal-footer">
-
-                                                        </div>
-                                                        </div>
-
-                                                    </div>
-                                                    </div>
                                                 </div>
                                             </div>
 
@@ -776,74 +776,74 @@
                                                                         <a type="button" data-toggle="modal" class="btn btn-sm btn-primary" title="View Reminder" data-target="#reminder-model-{{$item->id}}"><i class="fa fa-eye" aria-hidden="true"></i> View</a>
                                                                         {{--View modal --}}
                                                                         <div id="reminder-model-{{$item->id}}" class="modal fade" role="dialog">
-                                                                                <?php
-                                                                                    $claims=DB::table('claims')
-                                                                                    ->join('passengers','claims.id','passengers.claim_id')
-                                                                                    ->join('itinerary_details','claims.id','itinerary_details.claim_id')
-                                                                                    ->where('claims.id',$item->id)
-                                                                                ->first();
-                                                                                $passengers = DB::table('passengers')->where('claim_id',$item->id)->get();
-                                                                                ?>
+                                                                                    <?php
+                                                                                    $reminder_claims=DB::table('claims')->where('id',$item->claim_id)->first();
+                                                                                    $flightDetails = DB::table('itinerary_details')->where('claim_id',$reminder_claims->id)->where('is_selected','1')->first();
+                                                                                    $airline = DB::table('airlines')->where('id',$flightDetails->airline_id)->first();
+                                                                                    $passengers = DB::table('passengers')->where('claim_id',$reminder_claims->id)->get();
+                                                                                    $reminderDeparted = DB::table('airports')->where('id',$reminder_claims->departed_from_id)->first();
+                                                                                    $reminderfinalDestination = DB::table('airports')->where('id',$reminder_claims->final_destination_id)->first();
+                                                                                    ?>
                                                                                     <div class="modal-dialog">
 
                                                                                     <!-- Modal content-->
                                                                                     <div class="modal-content">
                                                                                         <div class="modal-header">
                                                                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                                                        <a href="#" class="btn btn-sm btn-success">Dismiss</a>
-                                                                                        <a href="#" class="btn btn-sm btn-success">Reschedule</a>
+                                                                                        <a href="{{URL::to('/reminder-status-dismiss/'.$item->id)}}" class="btn btn-sm btn-success">Dismiss</a>
+                                                                                        <a  class="btn btn-sm btn-success" data-toggle="modal" data-target="#myModal-{{$item->id}}" data-dismiss="modal">Reschedule</a>
                                                                                         <a href="#" class="btn btn-sm btn-success">Snooze</a>
-                                                                                        <a href="#" class="btn btn-sm btn-success">Mark as done</a>
-                                                                                        <a href="#" class="btn btn-sm btn-primary">View Claim</a>
+                                                                                        <a href="{{URL::to('/reminder-status-markasdone/'.$item->id)}}" class="btn btn-sm btn-success">Mark as done</a>
+                                                                                        <a href="{{URL::to('/claim-view/'.$item->claim_id)}}" class="btn btn-sm btn-primary">View Claim</a>
                                                                                         </div>
                                                                                         <div class="modal-body">
                                                                                             <div class="row">
                                                                                                 <div class="col-md-12">
-                                                                                                <p style="font-weight:bold;">DEPARTED FROM: <span style="font-weight:normal;">{{$claims->departed_from_id}}</span></p>
-                                                                                                        <p style="font-weight:bold;">FINAL DESTINATION: <span style="font-weight:normal;">{{$claims->final_destination_id}}</span></p>
-                                                                                                        <p style="font-weight:bold;">Did you have any connecting flights?: <span style="font-weight:normal;"></span></p>
-                                                                                                <p style="font-weight:bold;">What happened to the flight?:  <span style="font-weight:normal;">{{$claims->what_happened_to_the_flight}}</span></p>
-                                                                                                        <p style="font-weight:bold;">Date of missed connection:  <span style="font-weight:normal;"></span></p>
-                                                                                                        <p style="font-weight:bold;">Airline:  <span style="font-weight:normal;">{{$claims->airline}}</span></p>
-                                                                                                        <p style="font-weight:bold;">Flight no:  <span style="font-weight:normal;">{{$claims->flight_number}}</span></p>
-                                                                                                        <p style="font-weight:bold;">Departure date:  <span style="font-weight:normal;">{{$claims->departure_date}}</span></p>
-                                                                                                        <hr>
-                                                                                                        <div class="row">
-                                                                                                            <div class="col-md-8">
-                                                                                                                <h4 style="font-weight:bold;">Passenger List</h4>
-                                                                                                                <table class="table table-borderless table-hover">
-                                                                                                                    <thead>
-                                                                                                                        <th style="font-weight:bold;">First Name</th>
-                                                                                                                        <th style="font-weight:bold;">Last Name</th>
-                                                                                                                        <th style="font-weight:bold;">Ticket No</th>
-                                                                                                                    </thead>
-                                                                                                                    <tbody>
-                                                                                                                        @foreach($passengers as $pass)
-                                                                                                                        <tr>
-                                                                                                                            <td>{{$pass->first_name}}</td>
-                                                                                                                            <td>{{$pass->last_name}}</td>
-                                                                                                                            <td></td>
-                                                                                                                        </tr>
-                                                                                                                        @endforeach
-                                                                                                                    </tbody>
-                                                                                                                </table>
-                                                                                                            </div>
-                                                                                                            <div class="col-md-4">
-                                                                                                                <h4 style="font-weight:bold;">Other Documents</h4>
-                                                                                                                <div class="list-group">
-                                                                                                                <a href="#" class="list-group-item">{{$claims->correspondence_others_file}}</a>
-                                                                                                                </div>
+                                                                                                    <p style="font-weight:bold;">DEPARTED FROM: <span style="font-weight:normal;">{{$reminderDeparted->name}}</span></p>
+                                                                                                    <p style="font-weight:bold;">FINAL DESTINATION: <span style="font-weight:normal;">{{$reminderfinalDestination->name}}</span></p>
+                                                                                                <p style="font-weight:bold;">Did you have any connecting flights?: <span style="font-weight:normal;">{{$reminder_claims->is_direct_flight == 0 ? 'No' : 'Yes'}}</span></p>
+                                                                                                    <p style="font-weight:bold;">What happened to the flight?:  <span style="font-weight:normal;">{{$reminder_claims->what_happened_to_the_flight}}</span></p>
+                                                                                                <p style="font-weight:bold;">Date of {{$reminder_claims->claim_table_type}}:  <span style="font-weight:normal;">{{Carbon\Carbon::parse($reminder_claims->created_at)->format('d-m-Y')}}</span></p>
+                                                                                                <p style="font-weight:bold;">Airline:  <span style="font-weight:normal;">{{$airline->name}}</span></p>
+                                                                                                    <p style="font-weight:bold;">Flight no:  <span style="font-weight:normal;">{{$flightDetails->flight_number}}</span></p>
+                                                                                                    <p style="font-weight:bold;">Departure date:  <span style="font-weight:normal;">{{$flightDetails->departure_date}}</span></p>
+                                                                                                    <hr>
+                                                                                                    <div class="row">
+                                                                                                        <div class="col-md-8">
+                                                                                                            <h4 style="font-weight:bold;">Passenger List</h4>
+                                                                                                            <table class="table table-borderless table-hover">
+                                                                                                                <thead>
+                                                                                                                    <th style="font-weight:bold;">First Name</th>
+                                                                                                                    <th style="font-weight:bold;">Last Name</th>
+                                                                                                                    <th style="font-weight:bold;">Ticket No</th>
+                                                                                                                </thead>
+                                                                                                                <tbody>
+                                                                                                                    @foreach($passengers as $pass)
+                                                                                                                    <tr>
+                                                                                                                        <td>{{$pass->first_name}}</td>
+                                                                                                                        <td>{{$pass->last_name}}</td>
+                                                                                                                        <td></td>
+                                                                                                                    </tr>
+                                                                                                                    @endforeach
+                                                                                                                </tbody>
+                                                                                                            </table>
+                                                                                                        </div>
+                                                                                                        <div class="col-md-4">
+                                                                                                            <h4 style="font-weight:bold;">Other Documents</h4>
+                                                                                                            <div class="list-group">
+                                                                                                            <a href="#" class="list-group-item">{{$reminder_claims->correspondence_others_file}}</a>
                                                                                                             </div>
                                                                                                         </div>
-                                                                                                        <p style="font-weight:bold;">Status:  <span style="font-weight:normal;"></span></p>
-                                                                                                        <hr>
-                                                                                                        <p style="font-weight:bold;">DEPARTURE COUNTRY: <span style="font-weight:normal;"></span></p>
-                                                                                                        <p style="font-weight:bold;">ARRIVAL COUNTRY: <span style="font-weight:normal;"></span></p>
-                                                                                                        <p style="font-weight:bold;">DEPARTURE CONTINENTS: <span style="font-weight:normal;"></span></p>
-                                                                                                        <p style="font-weight:bold;">ARRIVAL CONTINENTS: <span style="font-weight:normal;"></span></p>
-                                                                                                        <p style="font-weight:bold;">AIRLINE CONTINENTS: <span style="font-weight:normal;"></span></p>
-                                                                                                        <p style="font-weight:bold;">DISTANCE:  <span style="font-weight:normal;"></span></p>
-                                                                                                        <p style="font-weight:bold;">COMPENSATION AMOUNT:  <span style="font-weight:normal;"></span></p>
+                                                                                                    </div>
+                                                                                                <p style="font-weight:bold;">Status:  <span style="font-weight:normal;">{{$item->status}}</span></p>
+                                                                                                    {{-- <hr>
+                                                                                                    <p style="font-weight:bold;">DEPARTURE COUNTRY: <span style="font-weight:normal;"></span></p>
+                                                                                                    <p style="font-weight:bold;">ARRIVAL COUNTRY: <span style="font-weight:normal;"></span></p>
+                                                                                                    <p style="font-weight:bold;">DEPARTURE CONTINENTS: <span style="font-weight:normal;"></span></p>
+                                                                                                    <p style="font-weight:bold;">ARRIVAL CONTINENTS: <span style="font-weight:normal;"></span></p>
+                                                                                                    <p style="font-weight:bold;">AIRLINE CONTINENTS: <span style="font-weight:normal;"></span></p>
+                                                                                                    <p style="font-weight:bold;">DISTANCE:  <span style="font-weight:normal;"></span></p>
+                                                                                                    <p style="font-weight:bold;">COMPENSATION AMOUNT:  <span style="font-weight:normal;"></span></p> --}}
 
                                                                                                 </div>
                                                                                             </div>
@@ -913,6 +913,62 @@
                                                                                         </div>
                                                                                         </div>
                                                                                 <!--------------------End Edit Modal----------------->
+
+
+                                                                                    <div id="myModal-{{$item->id}}" class="modal fade" role="dialog">
+                                                                                        <div class="modal-dialog">
+
+                                                                                            <!-- Modal content-->
+                                                                                            <div class="modal-content">
+                                                                                            <div class="modal-header">
+                                                                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                                                <h4 class="modal-title">Set Reminder</h4>
+                                                                                            </div>
+                                                                                            <div class="modal-body">
+                                                                                            <form action="{{route('update-reminder')}}" method="post">
+                                                                                                    {{ csrf_field() }}
+                                                                                               <div class="row">
+                                                                                                   <div class="col-md-6">
+                                                                                                        <div class="form-group">
+                                                                                                            <label for="exampleInputEmail1">Reminder Date</label>
+                                                                                                            <input type="date" name="callback_date" class="form-control" id="exampleInputEmail1"  placeholder="Enter email">
+                                                                                                            <input type="text" name="id" value="{{$item->id}}">
+                                                                                                        </div>
+                                                                                                   </div>
+
+                                                                                                   <div class="col-md-6">
+                                                                                                        <div class="form-group">
+                                                                                                            <label for="exampleInputEmail1">Reminder Time</label>
+                                                                                                            <input type="time" name="callback_time" class="form-control" id="exampleInputEmail1"  placeholder="Enter email">
+                                                                                                        </div>
+                                                                                                   </div>
+
+                                                                                               </div>
+
+                                                                                               <div class="row">
+                                                                                                    <div class="col-md-12">
+                                                                                                         <div class="form-group">
+                                                                                                             <label for="exampleInputEmail1" class="control-label">Note</label>
+                                                                                                             <textarea name="note" class="form-control" id="exampleInputEmail1" cols="30" rows="3"></textarea>
+                                                                                                         </div>
+                                                                                                    </div>
+
+                                                                                                </div>
+
+                                                                                                <div class="row">
+                                                                                                    <div class="col-md-12">
+                                                                                                        <button type="submit" class="btn btn-success">Reminder</button>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </form>
+                                                                                            </div>
+                                                                                            <div class="modal-footer">
+
+                                                                                            </div>
+                                                                                            </div>
+
+                                                                                        </div>
+                                                                                        </div>
 
 
 

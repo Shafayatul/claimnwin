@@ -56,11 +56,14 @@ class RemindersController extends Controller
      */
     public function store(Request $request)
     {
+        $id = $request->claim_id;
 
-        $requestData = $request->all();
-        Reminder::create($requestData + ['user_id' => Auth::user()->id] + ['status' => 'Reminders']);
+            $requestData = $request->all();
+            Reminder::create($requestData + ['user_id' => Auth::user()->id] + ['status' => 'Reminders']);
 
-        return redirect('/claim-view')->with('success', 'Reminder added!');
+
+
+        return redirect('/claim-view/'.$id)->with('success', 'Reminder added!');
     }
 
     /**
@@ -107,7 +110,23 @@ class RemindersController extends Controller
         $reminder = Reminder::findOrFail($id);
         $reminder->update($requestData + ['user_id' => Auth::user()->id]);
 
-        return redirect('reminders')->with('success', 'Reminder updated!');
+        return redirect()->back()->with('success', 'Reminder updated!');
+    }
+
+    public function reminderStatusDismiss($id)
+    {
+        $reminder = Reminder::findOrFail($id);
+        $reminder->status = 'Dismiss';
+        $reminder->save();
+        return redirect('/claim-view/'.$reminder->claim_id)->with('success','Reminder Status Updated');
+    }
+
+    public function reminderStatusMarkasdone($id)
+    {
+        $reminder = Reminder::findOrFail($id);
+        $reminder->status = 'Mark as done';
+        $reminder->save();
+        return redirect('/claim-view/'.$reminder->claim_id)->with('success','Reminder Status Updated');
     }
 
     /**
