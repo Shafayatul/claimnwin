@@ -66,9 +66,9 @@ class UserPanelController extends Controller
 
     }
 
-    public function user_signup()
+    public function user_signup($encrypt_user_id=null)
     {
-        return view('front-end.signup');
+        return view('front-end.signup',compact('encrypt_user_id'));
     }
 
     public function user_login()
@@ -78,7 +78,10 @@ class UserPanelController extends Controller
 
     public function affiliate()
     {
-      return view ('front-end.user.user_panel_affiliate');
+      $user_id = Auth::user()->id;
+      $encrypt_user_id = '09Xohf'.$user_id;
+
+      return view ('front-end.user.user_panel_affiliate', compact('encrypt_user_id'));
     }
 
     public function user_ticket_message(Request $request)
