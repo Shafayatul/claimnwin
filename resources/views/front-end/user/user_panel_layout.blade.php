@@ -27,6 +27,7 @@
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav menu_nav">
                         <li><a href="{{ URL::to('/user-home') }}">My Claims</a></li>
+                        {{-- <li><a href="#">Affiliate</a></li> --}}
                         <li><a href="#">FAQs</a></li>
                     </ul>
 

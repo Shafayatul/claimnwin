@@ -78,7 +78,14 @@
         <div class="col-md-2">
           <div class="parent_div claim_list_div text-center">
             @if(isset($claim_status[$claim->claim_status_id]))
-              <a href="{{ URL::to('/user-my-claim/'.$claim->id)}}" class="claim_status_a">{{$claim_status[$claim->claim_status_id]}}</a>
+              <a href="{{ URL::to('/user-my-claim/'.$claim->id)}}" class="claim_status_a">
+                @if ($claim->amount == '0')
+                  Not eligible for compensation
+                @else
+                {{$claim_status[$claim->claim_status_id]}}
+                @endif
+
+              </a>
             @else
               <a href="{{ URL::to('/user-my-claim/'.$claim->id)}}" class="claim_status_a">No status defined</a>
             @endif
