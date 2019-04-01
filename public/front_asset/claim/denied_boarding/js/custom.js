@@ -161,24 +161,23 @@ $(document).ready(function() {
               return false;
             }
 
-
             var spend_on_accommodation = false;
-            var expenses_table = false;
+            // var expenses_table = false;
             if (($("input[name='is_spend_on_accomodation']").is(':checked'))) {
                 spend_on_accommodation = true;
             } else {
                 spend_on_accommodation = false;
             }
-            if ($("input[name^='expense_name']").val() != "" && $("input[name^='expense_price']").val() != "" && $("input[name^='expense_currency']").val() != "") {
-                expenses_table = true;
-            } else {
-                expenses_table = false;
-            }
+            // if ($("input[name^='expense_name']").val() != "" && $("input[name^='expense_price']").val() != "" && $("input[name^='expense_currency']").val() != "") {
+            //     expenses_table = true;
+            // } else {
+            //     expenses_table = false;
+            // }
 
             if (($("input[name='is_rerouted']").is(':checked'))) {
                 if ($('input[name=is_rerouted]:checked').val() == '1') {
                     console.log($('input[name=is_rerouted]:checked').val());
-                    if (spend_on_accommodation == true && expenses_table == true) {
+                    if (spend_on_accommodation == true) {
                         $("#continue_3").addClass('active_button');
                         $("#continue_4").addClass('active_button');
                         return true;
@@ -188,7 +187,7 @@ $(document).ready(function() {
                 } else if ($('input[name=is_rerouted]:checked').val() == '0') {
                     if (($("input[name='is_obtained_full_reimbursement']").is(':checked'))) {
                         if ($('input[name=is_obtained_full_reimbursement]:checked').val() == '1') {
-                            if (spend_on_accommodation == true && expenses_table == true) {
+                            if (spend_on_accommodation == true) {
                                 $("#continue_3").addClass('active_button');
                                 $("#continue_4").addClass('active_button');
                                 return true;
@@ -204,7 +203,7 @@ $(document).ready(function() {
                                         return true;
                                     }
                                 } else if ($('input[name=is_paid_for_rerouting]:checked').val() == '0') {
-                                    if (spend_on_accommodation == true && expenses_table == true) {
+                                    if (spend_on_accommodation == true) {
                                         $("#continue_3").addClass('active_button');
                                         $("#continue_4").addClass('active_button');
                                         return true;
