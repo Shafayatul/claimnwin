@@ -233,18 +233,25 @@
           </div>
 
 
+          @foreach ($ticket_notes as $ticket_note)
+          @if ($ticket_note->user_id == $claims->user_id)
+              <div class="container_message">
+                <img src="{{ asset('/front_asset/user_panel/img/avatar-user.png') }}" alt="Avatar" style="width:100%;">
+                <p>{{ $ticket_note->description }}</p>
+                <span class="time-right">11:00</span>
+              </div>
 
-          <div class="container_message">
-            <img src="{{ asset('/front_asset/user_panel/img/avatar-user.png') }}" alt="Avatar" style="width:100%;">
-            <p>Hello. How are you today?</p>
-            <span class="time-right">11:00</span>
-          </div>
+          @else
+              <div class="container_message darker">
+                <img src="{{ asset('/front_asset/user_panel/img/avatar-admin.png') }}" alt="Avatar" class="right" style="width:100%;">
+                <p>{{ $ticket_note->description }}</p>
+                <span class="time-left">11:01</span>
+              </div>
 
-          <div class="container_message darker">
-            <img src="{{ asset('/front_asset/user_panel/img/avatar-admin.png') }}" alt="Avatar" class="right" style="width:100%;">
-            <p>Hey! I'm fine. Thanks for asking!</p>
-            <span class="time-left">11:01</span>
-          </div>
+          @endif
+        @endforeach
+
+
 
         </div>
       </div>
