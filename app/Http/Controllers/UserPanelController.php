@@ -38,9 +38,11 @@ class UserPanelController extends Controller
                       ->where('claims.id', $id)
                       ->select('tickets.id as ticket_id','tickets.subject', 'claims.*')
                       ->first();
+
+      $ticket_notes = TicketNote::where('ticket_id', $claims->ticket_id)->get();
        // $claim = Claim::where('id',$id)->get();
        // $ticket = Ticket::where('claim_id', $id)->first();
-        return view('front-end.user.user_panel_my_claim', compact('claims'));
+        return view('front-end.user.user_panel_my_claim', compact('claims', 'ticket_notes'));
     }
 
     public function userSignup(Request $request)
@@ -73,6 +75,26 @@ class UserPanelController extends Controller
     {
         return view('front-end.login');
     }
+
+    public function affiliate()
+    {
+      return view ('front-end.user.user_panel_affiliate');
+    }
+
+    public function user_ticket_message(Request $request)
+    {
+      // $user_id = Auth::user()->id;
+      // $user_ticket_notes = new TicketNote;
+      // $user_ticket_notes->description  =  $request->description;
+      // $user_ticket_notes->ticket_id = $request->ticket_id;
+      // $user_ticket_notes->user_id = Auth::user()->id;
+
+      $reqData = $request->all();
+      TicketNote::create($reqData + ['user_id'=>Auth::user()->id]);
+      return redirect()->back()->with('success','Message Send Successfully.');
+
+
+   }
 
 
 }

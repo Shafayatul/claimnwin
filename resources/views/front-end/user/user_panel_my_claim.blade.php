@@ -1,6 +1,7 @@
 @extends('front-end.user.user_panel_layout')
 
 @section('user_panel_main_section')
+<div class="user_panel_main_section">
 <div class="container">
 
   <div class="row">
@@ -214,16 +215,37 @@
 
           </div>
           <div class="user_message">
-            <form class="user_message_form" action="index.html" method="post">
+            <form class="user_message_form" action="{{ route('user-ticket-message') }}" method="post">
+              {{ csrf_field() }}
               <i class="fas fa-pencil-alt prefix"></i>
-              <textarea id="" class="" placeholder="Write a message"></textarea>
+              <textarea id="" class="" name="description" placeholder="Write a message"></textarea>
+              <input type="hidden" name="ticket_id" value="{{ $claims->ticket_id }}">
               <div class="row">
                 <div class="col-md-12 text-right">
-                  <button type="button" name="button">Send</button>
+                  <button type="submit" name="button">Send</button>
                 </div>
               </div>
             </form>
           </div>
+
+          <div class="parent_div message_text">
+            <p class="text-center">Chat Messages</p>
+          </div>
+
+
+
+          <div class="container_message">
+            <img src="{{ asset('/front_asset/user_panel/img/avatar-user.png') }}" alt="Avatar" style="width:100%;">
+            <p>Hello. How are you today?</p>
+            <span class="time-right">11:00</span>
+          </div>
+
+          <div class="container_message darker">
+            <img src="{{ asset('/front_asset/user_panel/img/avatar-admin.png') }}" alt="Avatar" class="right" style="width:100%;">
+            <p>Hey! I'm fine. Thanks for asking!</p>
+            <span class="time-left">11:01</span>
+          </div>
+
         </div>
       </div>
       <div class="tab-pane fade" id="document" role="tabpanel" aria-labelledby="document-tab">
@@ -281,5 +303,6 @@
 
 
 
+</div>
 </div>
 @endsection

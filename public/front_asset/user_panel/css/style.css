@@ -16,16 +16,133 @@ margin-bottom: 0;
 border-radius: 0;
 }
 
+.user_panel_main_section {
+  min-height: 90vh;
+}
+.affiliate_mother_div {
+  width: 80%;
+  margin: 0 auto;
+  position: relative;
+}
+/* social media button starts*/
+
+/* Social Login Buttons */
+.affiliate_link_div {
+  padding: 25px;
+  margin: 20px 0px;
+
+}
+
+.affiliate_icon_div {
+  width: 50%;
+  margin: 0 auto;
+}
+
+/* Wrapper */
+.icon-button {
+	background-color: #cecece;
+	border-radius: 3.6rem;
+	cursor: pointer;
+	display: inline-block;
+	font-size: 2.0rem;
+	height: 7rem;
+	line-height: 3.6rem;
+	margin: 0 5px;
+	position: relative;
+	text-align: center;
+	-webkit-user-select: none;
+	   -moz-user-select: none;
+	    -ms-user-select: none;
+	        user-select: none;
+	width: 7rem;
+}
+
+/* Circle */
+.icon-button span {
+	border-radius: 0;
+	display: block;
+	height: 0;
+	left: 50%;
+	margin: 0;
+	position: absolute;
+	top: 50%;
+	-webkit-transition: all 0.3s;
+	   -moz-transition: all 0.3s;
+	     -o-transition: all 0.3s;
+	        transition: all 0.3s;
+	width: 0;
+}
+.icon-button:hover span {
+	width: 7rem;
+	height: 7rem;
+	border-radius: 3.6rem;
+	margin: -3.5rem;
+}
+.twitter span {
+	background-color: #4099ff;
+}
+.facebook span {
+	background-color: #3B5998;
+}
+.envelope span {
+	background-color: #db5a3c;
+}
+.whatsapp span {
+	background-color: #189D0E;
+}
+
+/* Icons */
+.icon-button i {
+	background: none;
+	color: white;
+	height: 7rem;
+	left: 0;
+	line-height: 3.6rem;
+	position: absolute;
+	top: 17px;
+	-webkit-transition: all 0.3s;
+	   -moz-transition: all 0.3s;
+	     -o-transition: all 0.3s;
+	        transition: all 0.3s;
+	width: 7rem;
+	z-index: 10;
+  font-size: 30px;
+}
+.icon-button .fa-twitter {
+	color: #4099ff;
+}
+.icon-button .fa-facebook-f {
+	color: #3B5998;
+}
+.icon-button .fa-envelope {
+	color: #db5a3c;
+}
+.icon-button .fa-whatsapp {
+	color: #189D0E;
+}
+.icon-button:hover .fa-twitter,
+.icon-button:hover .fa-facebook-f,
+.icon-button:hover .fa-whatsapp,
+.icon-button:hover .fa-envelope {
+	color: white;
+}
+
+/* social media button ends */
+
+
+
+
+
 /* Add a gray background color and some padding to the footer */
 footer {
-  width: 100%;
+width: 100%;
 margin-top: 10px;
 border-top: 1px solid #e7e7e7;
-background-color: #f2f2f2;
+/* background-color: #f2f2f2;
 position:fixed;
 bottom:10%;
-left: 0%;
-
+left: 0%; */
+padding-top: 10px;
 }
 
 .menu{
@@ -389,6 +506,61 @@ padding-top: 20px;
   width: 300px;
   margin: 0 auto;
 }
+
+/* timeline message starts*/
+
+.container_message {
+  border: 2px solid #dedede;
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.darker {
+  border-color: #ccc;
+  background-color: #ddd;
+}
+
+.container_message::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.container_message img {
+  float: left;
+  max-width: 60px;
+  width: 100%;
+  margin-right: 20px;
+  border-radius: 50%;
+}
+
+.container_message img.right {
+  float: right;
+  margin-left: 20px;
+  margin-right:0;
+}
+
+.time-right {
+  float: right;
+  color: #aaa;
+}
+
+.time-left {
+  float: left;
+  color: #999;
+}
+
+
+
+
+/* timeline message ends*/
+
+
+
+
+
 
 
 /* .............................................................................

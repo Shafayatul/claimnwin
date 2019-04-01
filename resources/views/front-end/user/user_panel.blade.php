@@ -1,7 +1,7 @@
 @extends('front-end.user.user_panel_layout')
 
 @section('user_panel_main_section')
-
+<div class="user_panel_main_section">
   <div class="container">
     <div class="row">
       <div class="col-md-12">
@@ -78,7 +78,14 @@
         <div class="col-md-2">
           <div class="parent_div claim_list_div text-center">
             @if(isset($claim_status[$claim->claim_status_id]))
-              <a href="{{ URL::to('/user-my-claim/'.$claim->id)}}" class="claim_status_a">{{$claim_status[$claim->claim_status_id]}}</a>
+              <a href="{{ URL::to('/user-my-claim/'.$claim->id)}}" class="claim_status_a">
+                @if ($claim->amount == '0')
+                  Not eligible for compensation
+                @else
+                {{$claim_status[$claim->claim_status_id]}}
+                @endif
+
+              </a>
             @else
               <a href="{{ URL::to('/user-my-claim/'.$claim->id)}}" class="claim_status_a">No status defined</a>
             @endif
@@ -91,6 +98,7 @@
 
 
 
+  </div>
   </div>
 
 @endsection

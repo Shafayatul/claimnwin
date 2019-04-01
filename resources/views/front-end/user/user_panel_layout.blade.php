@@ -10,6 +10,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="{{asset('front_asset/user_panel/css/style.css')}}">
+
 </head>
 
 <body>
@@ -27,6 +28,7 @@
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav menu_nav">
                         <li><a href="{{ URL::to('/user-home') }}">My Claims</a></li>
+                        <li><a href="{{ URL::to('/affiliate') }}">Affiliate</a></li>
                         <li><a href="#">FAQs</a></li>
                     </ul>
 
@@ -69,7 +71,7 @@
     @yield('user_panel_main_section')
 
     <footer class="container-fluid text-center">
-
+      <p>© 2018 Claim Win | All Rights Reserved.</p>
     </footer>
     <script type="text/javascript">
 
