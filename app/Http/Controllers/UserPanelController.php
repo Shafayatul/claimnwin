@@ -74,5 +74,25 @@ class UserPanelController extends Controller
         return view('front-end.login');
     }
 
+    public function affiliate()
+    {
+      return view ('front-end.user.user_panel_affiliate');
+    }
+
+    public function user_ticket_message(Request $request)
+    {
+      // $user_id = Auth::user()->id;
+      // $user_ticket_notes = new TicketNote;
+      // $user_ticket_notes->description  =  $request->description;
+      // $user_ticket_notes->ticket_id = $request->ticket_id;
+      // $user_ticket_notes->user_id = Auth::user()->id;
+
+      $reqData = $request->all();
+      TicketNote::create($reqData + ['user_id'=>Auth::user()->id]);
+      return redirect()->back()->with('success','Message Send Successfully.');
+
+
+   }
+
 
 }

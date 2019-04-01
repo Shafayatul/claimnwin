@@ -25,7 +25,7 @@ class TicketNote extends Model
      *
      * @var array
      */
-    protected $fillable = ['ticket_id', 'description'];
+    protected $fillable = ['ticket_id', 'description','user_id'];
 
-    
+
 }
