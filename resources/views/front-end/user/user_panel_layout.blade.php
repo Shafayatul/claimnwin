@@ -71,7 +71,7 @@
     @yield('user_panel_main_section')
 
     <footer class="container-fluid text-center">
-
+      <p>© 2018 Claim Win | All Rights Reserved.</p>
     </footer>
     <script type="text/javascript">
 

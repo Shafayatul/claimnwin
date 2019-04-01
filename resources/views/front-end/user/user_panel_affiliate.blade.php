@@ -2,40 +2,22 @@
 
 @section('user_panel_main_section')
 
-<div class="container">
-  <div class="affiliate_mother_div ">
+<div class="user_panel_main_section">
+  <div class="container">
+    <div class="affiliate_mother_div ">
+      <div class="affiliate_link_div text-center">
+        <input class="text-center" style='width:auto;padding: 1%;' type="text" name="" value="https://www.google.comhttps://www.google.comhttps://www.google.com">
+      </div>
 
-      {{-- <div id="orSeparator">
-				<div id="socialSeparatorTop"></div>
-				<div id="or">or</div>
-				<div id="socialSeparatorBottom"></div>
-			</div> --}}
-
-			<div id="socialLogin">
-				<div id="socialHead">
-				  http://www.claimnwin.com
-				</div>
-				<button type="button" id="fblogin">
-					f&nbsp;&nbsp;&nbsp;<em id="fbname"></em>
-					<span id="fbtext">Sign In with Facebook</span>
-				</button>
-
-				<button type="button" id="gpluslogin">
-					g+<em id="gpname"></em>
-					<span id="gptext">Sign In with Google</span>
-				</button>
-
-				<button type="button" id="twtrlogin">
-					t&nbsp;&nbsp;&nbsp;<em id="twtrname"></em>
-					<span id="twtrtext">Sign In with Twitter</span>
-				</button>
-  				{{-- <div id="socialNote">
-  				<b>Note:</b>
-  				</div> --}}
-			</div>
-
-        </div>
-
+      <div class="affiliate_icon_div text-center">
+        <a href="https://twitter.com/minimalmonkey" class="icon-button twitter"><i class="fab fa-twitter"></i><span></span></a>
+        <a href="https://facebook.com" class="icon-button facebook"><i class="fab fa-facebook-f"></i><span></span></a>
+        <a href="https://plus.google.com" class="icon-button envelope"><i class="far fa-envelope"></i><span></span></a>
+        <a href="https://plus.google.com" class="icon-button whatsapp"><i class="fab fa-whatsapp"></i><span></span></a>
+      </div>
+    </div>
+  </div>
 </div>
+
 
 @endsection

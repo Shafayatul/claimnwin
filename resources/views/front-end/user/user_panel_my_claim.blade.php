@@ -1,6 +1,7 @@
 @extends('front-end.user.user_panel_layout')
 
 @section('user_panel_main_section')
+<div class="user_panel_main_section">
 <div class="container">
 
   <div class="row">
@@ -227,10 +228,12 @@
             </form>
           </div>
 
-          <div class="parent_div">
-            <h2 class="text-center">Chat Messages</h2>
+          <div class="parent_div message_text">
+            <p class="text-center">Chat Messages</p>
           </div>
-          
+
+
+
           <div class="container_message">
             <img src="{{ asset('/front_asset/user_panel/img/avatar-user.png') }}" alt="Avatar" style="width:100%;">
             <p>Hello. How are you today?</p>
@@ -300,5 +303,6 @@
 
 
 
+</div>
 </div>
 @endsection

@@ -38,9 +38,11 @@ class UserPanelController extends Controller
                       ->where('claims.id', $id)
                       ->select('tickets.id as ticket_id','tickets.subject', 'claims.*')
                       ->first();
+
+      $ticket_notes = TicketNote::where('ticket_id', $claims->ticket_id)->get();
        // $claim = Claim::where('id',$id)->get();
        // $ticket = Ticket::where('claim_id', $id)->first();
-        return view('front-end.user.user_panel_my_claim', compact('claims'));
+        return view('front-end.user.user_panel_my_claim', compact('claims', 'ticket_notes'));
     }
 
     public function userSignup(Request $request)

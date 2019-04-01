@@ -1,7 +1,7 @@
 @extends('front-end.user.user_panel_layout')
 
 @section('user_panel_main_section')
-
+<div class="user_panel_main_section">
   <div class="container">
     <div class="row">
       <div class="col-md-12">
@@ -98,6 +98,7 @@
 
 
 
+  </div>
   </div>
 
 @endsection
