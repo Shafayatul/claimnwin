@@ -226,41 +226,40 @@ $(document).ready(function(){
 
 
         var spend_on_accommodation = false;
-        var expenses_table = false;
+        // var expenses_table = false;
 
-        if (($("input[name='is_spend_on_accomodation']").is(':checked')))
+        if (($("input[name='is_spend_on_accommodation']").is(':checked')))
         {
-          console.log($('input[name=is_spend_on_accomodation]:checked').val());
+          console.log($('input[name=is_spend_on_accommodation]:checked').val());
           spend_on_accommodation = true;
         }else
         {
           spend_on_accommodation = false;
         }
 
-        if ($("input[name^='expense_name']").val() != "" && $("input[name^='expense_price']").val() != "" && $("input[name^='expense_currency']").val() != "")
-        {
-          expenses_table = true;
-        }else
-        {
-          expenses_table = false;
-        }
-
-
+        // if ($("input[name^='expense_name']").val() != "" && $("input[name^='expense_price']").val() != "" && $("input[name^='expense_currency']").val() != "")
+        // {
+        //   expenses_table = true;
+        // }else
+        // {
+        //   expenses_table = false;
+        // }
 
         if (($("input[name='is_rerouted']").is(':checked')))
         {
-          // console.log($('input[name=is_rerouted]:checked').val());
-
           if ($('input[name=is_rerouted]:checked').val() == '1')
           {
-            console.log($('input[name=is_rerouted]:checked').val());
-            if (spend_on_accommodation == true && expenses_table == true)
+            console.log('spend_on_accommodation '+spend_on_accommodation);
+            if (spend_on_accommodation == true)
             {
+              console.log('should go');
+
               $("#continue_4").addClass('active_button');
               $("#continue_5").addClass('active_button');
               return true;
             }else
             {
+              console.log('should not go');
               return false;
             }
           }else if ($('input[name=is_rerouted]:checked').val() == '0')
@@ -272,7 +271,7 @@ $(document).ready(function(){
               if ($('input[name=is_obtained_full_reimbursement]:checked').val() == '1')
               {
                 console.log('reimbursement YESSS ar moddhe dhukhse');
-                if (spend_on_accommodation == true && expenses_table == true)
+                if (spend_on_accommodation == true)
                 {
                   $("#continue_4").addClass('active_button');
                   $("#continue_5").addClass('active_button');
@@ -298,7 +297,7 @@ $(document).ready(function(){
                     }else if ($('input[name=is_paid_for_rerouting]:checked').val() == '0')
                     {
                       console.log('rerouting paid NOOOO ar moddhe dhukse');
-                      if (spend_on_accommodation == true && expenses_table == true)
+                      if (spend_on_accommodation == true)
                       {
                         $("#continue_4").addClass('active_button');
                         $("#continue_5").addClass('active_button');
