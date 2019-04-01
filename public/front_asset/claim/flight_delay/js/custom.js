@@ -152,8 +152,13 @@ $(document).ready(function() {
             }
         } else if (step == 4) {
             $("#continue_4").removeClass('active_button');
+
+            if ($("input[name='email_address']").val() == "")
+            {
+              return false;
+            }
             var spend_on_accommodation = false;
-            var expenses_table = false;
+            // var expenses_table = false;
             var email_address = false;
 
             if (($("input[name='is_spend_on_accomodation']").is(':checked'))) {
@@ -162,17 +167,17 @@ $(document).ready(function() {
             } else {
                 spend_on_accommodation = false;
             }
-            if ($("input[name^='expense_name']").val() != "" && $("input[name^='expense_price']").val() != "" && $("input[name^='expense_currency']").val() != "") {
-                expenses_table = true;
-            } else {
-                expenses_table = false;
-            }
+            // if ($("input[name^='expense_name']").val() != "" && $("input[name^='expense_price']").val() != "" && $("input[name^='expense_currency']").val() != "") {
+            //     expenses_table = true;
+            // } else {
+            //     expenses_table = false;
+            // }
             if ($("input[name='email_address']").val() != "") {
                 email_address = true;
             } else {
                 email_address = false;
             }
-            if (spend_on_accommodation == true && expenses_table == true && email_address == true) {
+            if (spend_on_accommodation == true && email_address == true) {
                 $("#continue_4").addClass('active_button');
                 $("#continue_5").addClass('active_button');
                 return true;
