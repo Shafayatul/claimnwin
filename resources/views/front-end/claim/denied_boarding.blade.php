@@ -340,19 +340,19 @@
               <div class="parent_div">
                 <div class="child_accommodation child_accommodation_first_div">
                   <label class="container_radio label_child_accommodation">I did not spend anything
-                    <input type="radio" class="common_input" id="common_input not_spend" name="is_spend_on_accomodation" value="not_spend">
+                    <input type="radio" class="common_input" id="common_input not_spend" name="is_spend_on_accommodation" value="not_spend">
                     <span class="checkmark"></span>
                   </label>
                 </div>
                 <div class="child_accommodation child_accommodation_second_div">
                   <label class="container_radio label_child_accommodation">I had expenses but I have not kept the invoices
-                    <input type="radio" class="common_input" id="common_input no_invoice" name="is_spend_on_accomodation" value="no_invoice">
+                    <input type="radio" class="common_input" id="common_input no_invoice" name="is_spend_on_accommodation" value="no_invoice">
                     <span class="checkmark"></span>
                   </label>
                 </div>
                 <div class="child_accommodation child_accommodation_third_div">
                   <label class="container_radio label_child_accommodation">I had expenses and kept the invoices
-                    <input type="radio" class="common_input" id="common_input has_invoice" name="is_spend_on_accomodation" value="has_invoice">
+                    <input type="radio" class="common_input" id="common_input has_invoice" name="is_spend_on_accommodation" value="has_invoice">
                     <span class="checkmark"></span>
                   </label>
                 </div>

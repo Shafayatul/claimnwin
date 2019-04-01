@@ -168,7 +168,7 @@ $(document).ready(function() {
 
             var spend_on_accommodation = false;
             // var expenses_table = false;
-            if (($("input[name='is_spend_on_accomodation']").is(':checked'))) {
+            if (($("input[name='is_spend_on_accommodation']").is(':checked'))) {
                 spend_on_accommodation = true;
             } else {
                 spend_on_accommodation = false;

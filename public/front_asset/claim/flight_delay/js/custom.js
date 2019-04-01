@@ -161,8 +161,8 @@ $(document).ready(function() {
             // var expenses_table = false;
             var email_address = false;
 
-            if (($("input[name='is_spend_on_accomodation']").is(':checked'))) {
-                console.log($('input[name=is_spend_on_accomodation]:checked').val());
+            if (($("input[name='is_spend_on_accommodation']").is(':checked'))) {
+                console.log($('input[name=is_spend_on_accommodation]:checked').val());
                 spend_on_accommodation = true;
             } else {
                 spend_on_accommodation = false;
