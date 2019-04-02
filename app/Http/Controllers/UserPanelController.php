@@ -11,6 +11,7 @@ use App\Ticket;
 use App\TicketNote;
 use App\ClaimStatus;
 use Hash;
+use Share;
 
 class UserPanelController extends Controller
 {
@@ -43,7 +44,7 @@ class UserPanelController extends Controller
       $ticket = Ticket::where('claim_id', $claims->id)->first();
       // dd($ticket->id);
       $ticket_notes = TicketNote::where('ticket_id', $ticket->id)->get();
-    
+
        // $claim = Claim::where('id',$id)->get();
        // $ticket = Ticket::where('claim_id', $id)->first();
         return view('front-end.user.user_panel_my_claim', compact('claims', 'ticket_notes'));
@@ -88,8 +89,17 @@ class UserPanelController extends Controller
     {
       $user_id = Auth::user()->id;
       $encrypt_user_id = '09Xohf'.$user_id;
+      $link = url('user/signup/'.$encrypt_user_id);
 
-      return view ('front-end.user.user_panel_affiliate', compact('encrypt_user_id'));
+    $facebook=Share::page($link,null,['id' => 'facebook'])
+    ->facebook();
+    $twitter=Share::page($link,null,['id' => 'twitter'])
+    ->twitter();
+    $google=Share::page($link,null,['id' => 'google'])
+    ->googlePlus();
+    $whatsapp=Share::page($link,null,['id' => 'whatsapp'])
+    ->whatsapp();
+      return view ('front-end.user.user_panel_affiliate', compact('encrypt_user_id','facebook','twitter','google','whatsapp'));
     }
 
     public function user_ticket_message(Request $request)
