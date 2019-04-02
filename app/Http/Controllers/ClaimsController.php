@@ -506,6 +506,8 @@ class ClaimsController extends Controller
         $claim->is_contacted_airline                    = $is_contacted_airline;
         $claim->what_happened                           = $what_happened;
 
+        $claim->affiliate_user_id                       = $user->affiliate_user_id;
+
 
         $claim->is_notify_before_forteen_days           = $is_notify_before_forteen_days;
         $claim->is_already_written_airline              = $is_already_written_airline;
