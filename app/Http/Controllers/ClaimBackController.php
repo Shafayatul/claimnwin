@@ -15,6 +15,7 @@ use App\ClaimStatus;
 use App\NextStep;
 use App\BankAccount;
 use App\Setting;
+use App\User;
 use App\Flight;
 use File;
 use App\ClaimFile;
@@ -65,7 +66,11 @@ class ClaimBackController extends Controller
             $NextStepData=NextStep::where('id',$claim_next_step_id)->first();
         }
 
-
+        if($claims->affiliate_user_id != null){
+            $affiliate_user = User::where('id', $claims->affiliate_user_id)->first() ;
+        }else{
+            $affiliate_user = false;
+        }
         $passengers = Passenger::where('claim_id',$id)->get();
 
         $ittDetails = ItineraryDetail::where('claim_id',$id)->where('is_selected','1')->first();
@@ -101,7 +106,7 @@ class ClaimBackController extends Controller
         $affiliateComm = Setting::where(['fieldKey'=>'_affiliate_comm'])->first();
 
 
-        return view('claim.claimView',compact('notes','claimFiles','affiliateComm','adminComm','NextStepData','claimStatusData','flightInfo','airline','departed_airport','destination_airport','reminders','claims','passengers','ittDetails','flightCount','passCount','claimsStatus','nextSteps','banks'));
+        return view('claim.claimView',compact('notes','claimFiles','affiliateComm','adminComm','NextStepData','claimStatusData','flightInfo','airline','departed_airport','destination_airport','reminders','claims','passengers','ittDetails','flightCount','passCount','claimsStatus','nextSteps','banks', 'affiliate_user'));
     }
 
     public function downloadClaimFile($id)
