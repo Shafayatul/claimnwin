@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 /*----FrontEnd Route----*/
 Route::get('/','WelcomeController@index');
 
-Route::get('user/signup','UserPanelController@user_signup')->name('user/signup');
+Route::get('user/signup/{encrypt_user_id?}','UserPanelController@user_signup')->name('user/signup');
 Route::get('/user/login','UserPanelController@user_login')->name('user/login');
 
 Route::get('/user-home','UserPanelController@index');

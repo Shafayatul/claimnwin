@@ -83,6 +83,10 @@
                                     <?php
                                     $reminder_claims=DB::table('claims')->where('id',$item->claim_id)->first();
                                     $flightDetails = DB::table('itinerary_details')->where('claim_id',$reminder_claims->id)->where('is_selected','1')->first();
+                                    if (!$flightDetails) {
+                                      $flightDetails = DB::table('itinerary_details')->where('claim_id',$reminder_claims->id)->first();
+                                    }
+                                   
                                     $airline = DB::table('airlines')->where('id',$flightDetails->airline_id)->first();
                                     $passengers = DB::table('passengers')->where('claim_id',$reminder_claims->id)->get();
                                     $reminderDeparted = DB::table('airports')->where('id',$reminder_claims->departed_from_id)->first();

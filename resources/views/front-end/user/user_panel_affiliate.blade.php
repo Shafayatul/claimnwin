@@ -6,7 +6,12 @@
   <div class="container">
     <div class="affiliate_mother_div ">
       <div class="affiliate_link_div text-center">
-        <input class="text-center" style='width:auto;padding: 1%;' type="text" name="" value="https://www.google.comhttps://www.google.comhttps://www.google.com">
+        <br>
+        <br>
+        <h1 class="text-center">Share link and earn</h1>
+        <br>
+        <br>
+        <input class="form-control text-center" style='width:300px; margin: 0 auto; padding: 1%;' type="text" name="" value="{{url('user/signup/'.$encrypt_user_id)}}">
       </div>
 
       <div class="affiliate_icon_div text-center">

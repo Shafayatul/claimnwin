@@ -19,6 +19,8 @@ class AddAgentFiendsToClaimsTable extends Migration
           $table->string('language')->nullable();
           $table->string('os')->nullable();
           $table->boolean('is_deleted')->default(0)->nullable();
+
+          $table->boolean('affiliate_user_id')->nullable();
         });
     }
 
@@ -35,6 +37,8 @@ class AddAgentFiendsToClaimsTable extends Migration
           $table->dropColumn('language');
           $table->dropColumn('os');
           $table->dropColumn('is_deleted');
+          
+          $table->dropColumn('affiliate_user_id');
         });
     }
 }

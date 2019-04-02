@@ -94,6 +94,7 @@ class UserPanelController extends Controller
 
     public function userSignup(Request $request)
     {
+      $affiliate_user_id = str_replace('09Xohf', '', $request->encrypt_user_id);
       if($request->password == $request->confirm_password)
         {
             $authUser=User::create([
@@ -103,19 +104,22 @@ class UserPanelController extends Controller
             ]);
             if($authUser){
                 $authUser->syncRoles('User');
+                $new_user                     = User::find($authUser->id);
+                $new_user->affiliate_user_id  = $affiliate_user_id;
+                $new_user->save();
             }
             auth()->login($authUser);
 
-            return redirect('/user-home');
+            return redirect(url('/claim'));
         }else{
             return redirect()->back()->with('error','Password and Confirm Password Not Match.Please Try Again!!');
         }
 
     }
 
-    public function user_signup()
+    public function user_signup($encrypt_user_id=null)
     {
-        return view('front-end.signup');
+        return view('front-end.signup',compact('encrypt_user_id'));
     }
 
     public function user_login()
@@ -125,7 +129,10 @@ class UserPanelController extends Controller
 
     public function affiliate()
     {
-      return view ('front-end.user.user_panel_affiliate');
+      $user_id = Auth::user()->id;
+      $encrypt_user_id = '09Xohf'.$user_id;
+
+      return view ('front-end.user.user_panel_affiliate', compact('encrypt_user_id'));
     }
 
     public function user_ticket_message(Request $request)

@@ -36,10 +36,11 @@
                                             <tr>
 
                                                 <th>CLAIM ID</th>
-                                                {{-- <th>NAME</th> --}}
+                                                <th>User Email</th>
                                                 {{-- <th>DEPATED/FINAL DESTINATION</th> --}}
                                                 <th>CLAIM TYPE</th>
-                                                {{-- <th>AIRLINE/FLIGHT NO</th> --}}
+                                                <th>AIRLINE/FLIGHT NO</th>
+                                                <th>Affiliate</th>
                                                 <th>ACTION</th>
                                             </tr>
                                         </thead>
@@ -48,25 +49,31 @@
                                             <tr>
 
                                             <td><a href="{{url('/claim-view/'.$row->id)}}">{{$row->id}}</a></td>
-                                                {{-- <td>
-                                                        {{$passenger[$row->id]['first_name'].' '.$passenger[$row->id]['last_name']}}
+                                                <td>
+                                                        {{$passenger[$row->id]['email']}}
                                                     <br>
                                                     <a href="#"></a>
-                                                </td> --}}
-
-                                                {{-- <td>
+                                                </td>
+{{-- 
+                                                <td>
                                                         {{$airport[$row->departed_from_id]}}<br/>
 
                                                         {{$airport[$row->final_destination_id]}}
                                                 </td> --}}
 
+
                                                 <td>
-                                                    {{$row->claim_table_type}}
+                                                    {{str_replace('_', ' ', ucfirst($row->claim_table_type)) }}
                                                 </td>
-                                                {{-- <td>
+                                                 <td>
                                                     {{$airline[$claim_and_airline_array[$row->id]['airline_id']]}}
                                                     {{$airline[$claim_and_airline_array[$row->id]['airline_id']]}}
-                                                </td>--}}
+                                                </td>
+                                                <td>
+                                                    @if($row->affiliate_user_id != "")
+                                                        <i class="fa fa-flag" aria-hidden="true"></i>
+                                                    @endif
+                                                </td>
                                                 <td>
                                                     <a href="{{url('/claim-view/'.$row->id)}}" class="btn btn-sm btn-primary">Details</a>
                                                     <a href="{{URL::to('/claim-archive/'.$row->id)}}" class="btn btn-sm btn-danger">Delete</a>
