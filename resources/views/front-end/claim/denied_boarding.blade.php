@@ -875,6 +875,22 @@
               <h3>Sign permission to handle claim</h3>
             </div>
             <div class="parent_div">
+              
+              <div class="panel panel-default" style="width: 300px; margin: 0 auto">
+                <div class="panel-body center-text">
+
+                  <div id="signArea" >
+                    <h4 class="tag-ingo">Put signature below,</h4>
+                    <div class="sig sigWrapper" style="height:auto; width:302px">
+                      <div class="typed"></div>
+                      <canvas class="sign-pad" id="sign-pad" width="300" height="100"></canvas>
+                    </div>
+                  </div>
+                  {{-- <button type="button" class="btn btn-sm btn-success" id="signature_clear">Clear</button> --}}
+                  {{-- <button id="btnSaveSign" type="button" class="btn btn-xs btn-success" style="margin-top: 2px">Save Signature</button> --}}
+                </div>
+              </div>
+
               <div class="form-check">
       					<label>
       						<input type="checkbox" name="is_signed_permission"> <span class="label-text">Write your signature below as it appears on your ID. It's required by airlines to collect the compensation for you. By signing you agree with the Assignment Form and Price List</span>
