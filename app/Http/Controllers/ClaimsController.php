@@ -656,8 +656,6 @@ class ClaimsController extends Controller
     }
 
 
-
-
     public function denied_boarding_calculaion($departed_from_id, $final_destination_id, $total_delay, $selected_connection_iata_codes, $claim_id){
 
         $airline_id = ItineraryDetail::WHERE('claim_id', $claim_id)->WHERE('flight_segment', $selected_connection_iata_codes)->first()->airline_id;

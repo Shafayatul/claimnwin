@@ -17,22 +17,29 @@
   <div class="row">
     <div class="col-md-3">
       <div class="parent_div text-center">
-        <span class="bold_span">Claim:</span> Cancelled Flight
+        <span class="bold_span">Claim:</span> {{ $claims->subject }}
       </div>
     </div>
     <div class="col-md-3 text-center">
       <div class="parent_div text-center">
-        <span class="bold_span">Defendant:</span> British Airway
+        <span class="bold_span">Defendant:</span> {{ $airline->name }}
       </div>
     </div>
     <div class="col-md-2">
       <div class="parent_div text-center">
-        <span class="bold_span">Value:</span> $1234.56
+        <span class="bold_span">Value:</span> {{ $claims->amount }}
       </div>
     </div>
     <div class="col-md-4">
       <div class="parent_div text-center">
-        <span class="bold_span">Status:</span> Claim assessment in progress
+        <span class="bold_span">Status:</span>
+        @if ($claims->ticket_status == '1')
+          Pending
+        @elseif ($claims->ticket_status == '2')
+          In progress
+        @else
+          Closed
+        @endif
       </div>
     </div>
   </div>
@@ -60,20 +67,59 @@
     </ul>
     <div class="tab-content" id="myTabContent">
       <div class="tab-pane fade active in" id="claim-status" role="tabpanel" aria-labelledby="claim-status-tab">
-        <div class="wrapper">
-          <div class="claim_status_refresh_icon text-center">
-            <i class="fas fa-sync"></i>
+
+        @if ($claims->ticket_status == '1')
+          <div class="wrapper">
+            <div class="claim_status_refresh_icon text-center">
+              <i class="fas fa-sync" style="color: #EFF30B"></i>
+            </div>
+            <div class="claim_status_refresh_text text-center">
+              <p style="color: #EFF30B">Claim assessment in pending</p>
+            </div>
+            <div class="claim_status_message text-center">
+              <p>Your claim is under review. Our legal team will contact you if we require any further information</p>
+            </div>
+            {{-- <div class="claim_status_box_message text-center">
+              <p>NO ACTION IS REQUIRED FROM YOU</p>
+            </div> --}}
           </div>
-          <div class="claim_status_refresh_text text-center">
-            <p>Claim assessment in progress</p>
+
+        @elseif ($claims->ticket_status == '2')
+          <div class="wrapper">
+            <div class="claim_status_refresh_icon text-center">
+              <i class="fas fa-hourglass-half" style="color: #feba3a"></i>
+            </div>
+            <div class="claim_status_refresh_text text-center">
+              <p style="color: #feba3a">Claim assessment in progress</p>
+            </div>
+            <div class="claim_status_message text-center">
+              <p>Your claim is under review. Our legal team will contact you if we require any further information</p>
+            </div>
+            {{-- <div class="claim_status_box_message text-center">
+              <p>NO ACTION IS REQUIRED FROM YOU</p>
+            </div> --}}
           </div>
-          <div class="claim_status_message text-center">
-            <p>Your claim is under review. Our legal team will contact you if we require any further information</p>
+        @else
+          <div class="wrapper">
+            <div class="claim_status_refresh_icon text-center">
+              <i class="fas fa-check-circle" style="color: #1CD356"></i>
+            </div>
+            <div class="claim_status_refresh_text text-center">
+              <p style="color: #1CD356">Claim assessment is closed</p>
+            </div>
+            <div class="claim_status_message text-center">
+              <p>Your claim is under review. Our legal team will contact you if we require any further information</p>
+            </div>
+            {{-- <div class="claim_status_box_message text-center">
+              <p>NO ACTION IS REQUIRED FROM YOU</p>
+            </div> --}}
           </div>
-          <div class="claim_status_box_message text-center">
-            <p>NO ACTION IS REQUIRED FROM YOU</p>
-          </div>
-        </div>
+
+        @endif
+
+
+
+
       </div>
 
       <div class="tab-pane fade" id="ticket" role="tabpanel" aria-labelledby="ticket-tab">
@@ -117,8 +163,16 @@
                     <td class="text-center">{{ $claims->subject }}</td>
                   </tr>
                   <tr>
-                    <th scope="col" class="text-center">Notes</th>
-                    <td class="text-center">I am a good boy</td>
+                    <th scope="col" class="text-center">Ticket Status:</th>
+                    <td class="text-center">
+                      @if ($claims->ticket_status == '1')
+                        Pending
+                      @elseif ($claims->ticket_status == '2')
+                        In progress
+                      @else
+                        Closed
+                      @endif
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -148,14 +202,28 @@
                 </thead>
                 <tbody>
                   <tr>
-                    <td>EU 261 Compensation</td>
-                    <td>$ 6000</td>
+                    <td>Compensation from {{ $airline->name }}</td>
+                    <td>
+
+                    @php
+                    $string = $claims->amount;
+                    echo preg_replace("/[^0-9\.]/", '', $string);
+                    @endphp
+
+                  </td>
                   </tr>
                   <tr>
-                    <td>EU 261 Customer Care</td>
-                    <td>$ 2975.50</td>
+                    <td>Welcome Success Fee</td>
+                    <td>
+                      @php
+                      $string = $claims->amount;
+                      $compensation_from_airline =  preg_replace("/[^0-9\.]/", '', $string);
+                      $welcome_success_fee = (($compensation_from_airline*10)/100);
+                      echo ('- '.$welcome_success_fee);
+                      @endphp
+                    </td>
                   </tr>
-                  <tr>
+                  {{-- <tr>
                     <td>Others</td>
                     <td>-</td>
                   </tr>
@@ -166,16 +234,23 @@
                   <tr>
                     <td>Welcome Success Fee</td>
                     <td>- $ 893.50</td>
-                  </tr>
+                  </tr> --}}
                   <tr class="compensation_table_result_row">
                     <td>Your Compensation</td>
-                    <td>$ 2681.50</td>
+                    <td>
+                      @php
+                      $string = $claims->amount;
+                      $compensation_from_airline =  preg_replace("/[^0-9\.]/", '', $string);
+                      $welcome_success_fee = (($compensation_from_airline*10)/100);
+                      echo ($compensation_from_airline - $welcome_success_fee);
+                      @endphp
+                    </td>
                   </tr>
                 </tbody>
               </table>
             </div>
           </div>
-          <div class="parent_div">
+          {{-- <div class="parent_div">
             <div class="row">
               <div class="col-md-4 col-sm-6 col-xs-6">
                 <div class="defandant_title">
@@ -185,7 +260,7 @@
 
                 </div>
                 <div class="defandant_body">
-                  1. British Airways
+                  {{ $airline->name }}
                 </div>
               </div>
               <div class="col-md-4 col-sm-6 col-xs-6">
@@ -200,7 +275,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> --}}
         </div>
       </div>
       <div class="tab-pane fade" id="message" role="tabpanel" aria-labelledby="message-tab">
@@ -238,14 +313,14 @@
               <div class="container_message">
                 <img src="{{ asset('/front_asset/user_panel/img/avatar-user.png') }}" alt="Avatar" style="width:100%;">
                 <p>{{ $ticket_note->description }}</p>
-                <span class="time-right">11:00</span>
+                <span class="time-right">{{ Carbon\Carbon::parse($ticket_note->created_at)->format('d-m-Y h:m A') }}</span>
               </div>
 
           @else
               <div class="container_message darker">
                 <img src="{{ asset('/front_asset/user_panel/img/avatar-admin.png') }}" alt="Avatar" class="right" style="width:100%;">
                 <p>{{ $ticket_note->description }}</p>
-                <span class="time-left">11:01</span>
+                <span class="time-left">{{ Carbon\Carbon::parse($ticket_note->created_at)->format('d-m-Y h:m A') }}</span>
               </div>
 
           @endif

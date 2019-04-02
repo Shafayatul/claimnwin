@@ -302,18 +302,18 @@ padding: 20px 0px;
 .claim_status_refresh_icon i {
 padding: 40px 0px 20px 0px;
 font-size: 60px;
-color: #feba3a;
+/* color: #feba3a; */
+}
+
+.claim_status_refresh_text p {
+/* color: #feba3a; */
+font-size: 20px;
 }
 
 .message_icon i {
 padding: 40px 0px 20px 0px;
 font-size: 40px;
 color: #13DA93;
-}
-
-.claim_status_refresh_text p {
-color: #feba3a;
-font-size: 20px;
 }
 
 .claim_status_message p {
