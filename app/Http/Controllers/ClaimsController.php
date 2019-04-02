@@ -628,7 +628,7 @@ class ClaimsController extends Controller
                 $expense->name              = $request->expense_name[$cnt];
                 $expense->amount            = $request->expense_price[$cnt];
                 $expense->currency          = $request->expense_currency[$cnt];
-                $expense->is_receipt        = $request->expense_is_receipt[$cnt];
+                $expense->is_receipt        = $request->is_receipt[$cnt];
                 $expense->save();
 
                 $cnt++;
@@ -660,8 +660,6 @@ class ClaimsController extends Controller
         return view('front-end.claim.success',compact('amount'));
 
     }
-
-
 
 
     public function denied_boarding_calculaion($departed_from_id, $final_destination_id, $total_delay, $selected_connection_iata_codes, $claim_id){
