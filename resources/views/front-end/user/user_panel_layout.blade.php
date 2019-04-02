@@ -31,7 +31,7 @@
                         <li><a href="{{ URL::to('/affiliate') }}">Affiliate</a></li>
                         <li><a href="{{ URL('/faq') }}">FAQs</a></li>
                     </ul>
-{{-- 
+{{--
                     <ul class="nav navbar-nav navbar-right menu_nav">
                         <li><a href="#"><img src="{{asset('front_asset/user_panel/img/')}}/notification.svg" alt="country"></a></li>
                     </ul> --}}
@@ -94,7 +94,7 @@
       });
 
     </script>
-
+    <script src="{{ asset('js/share.js') }}"></script>
 
 </body>
 

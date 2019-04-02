@@ -6,13 +6,14 @@ use Illuminate\Http\Request;
 use Auth;
 use App\User;
 use App\Airline;
-use App\ClaimFile;
 use App\Claim;
 use App\Ticket;
 use App\TicketNote;
 use App\ClaimStatus;
 use Hash;
 use File;
+use Share;
+
 class UserPanelController extends Controller
 {
     public function index()
@@ -27,26 +28,21 @@ class UserPanelController extends Controller
           $airline_id_array = Claim::where('user_id', $user_id)->pluck('airline_id')->toArray();
           $airline = Airline::whereIn('id', $airline_id_array)->pluck('name', 'id')->toArray();
           $claim_status = ClaimStatus::pluck('name', 'id')->toArray();
-
           return view('front-end.user.user_panel', compact('claims', 'airline', 'claim_status'));
         }
     }
 
     public function user_my_claim($id)
     {
-
       $claims = Claim::join('tickets', 'claims.id', '=', 'tickets.claim_id')
                       ->where('claims.id', $id)
                       ->select('tickets.id as ticket_id','tickets.subject', 'tickets.status as ticket_status', 'claims.*')
                       ->first();
-
-
       $ticket = Ticket::where('claim_id', $claims->id)->first();
       // dd($ticket->id);
       $ticket_notes = TicketNote::where('ticket_id', $ticket->id)->get();
       $airline = Airline::where('id', $claims->airline_id)->first();
       $claim_files = ClaimFile::where('claim_id', $claims->id)->get();
-
        // $claim = Claim::where('id',$id)->get();
        // $ticket = Ticket::where('claim_id', $id)->first();
         return view('front-end.user.user_panel_my_claim', compact('claims', 'ticket_notes', 'airline', 'claim_files'));
@@ -56,19 +52,12 @@ class UserPanelController extends Controller
     {
         $claim_id = $request->claim_id;
         $file = $request->file('file_name');
-
-
       $file_name = sha1(date('YmdHis') . str_random(30));
       $name = $file_name . '.' . $file->getClientOriginalExtension();
-
-
-
       if(!File::exists(public_path('/uploads').'/'.$claim_id)) {
         File::makeDirectory(public_path('/uploads').'/'.$claim_id);
       }
-
       $file->move(public_path('/uploads').'/'.$claim_id.'/', $name);
-
       $claim_file = new ClaimFile();
       $claim_file->name = $request->user_upload_file_name;
       $claim_file->file_name = $name;
@@ -76,7 +65,6 @@ class UserPanelController extends Controller
       $claim_file->claim_id = $claim_id;
       $claim_file->save();
       return redirect(url('/user-my-claim/'.$claim_id))->with('success','File Added');
-
     }
 
     public function claimFileDownload($id)
@@ -86,10 +74,8 @@ class UserPanelController extends Controller
         $ext=explode(".",$ext);
         $file_name = $Claimfile->name.'.'.$ext[1];
         $claimId = $Claimfile->claim_id;
-
         $file_path = public_path('uploads'.'/'.$claimId.'/'.$Claimfile->file_name);
         return response()->download($file_path,$file_name);
-
     }
 
     public function userSignup(Request $request)
@@ -109,12 +95,10 @@ class UserPanelController extends Controller
                 $new_user->save();
             }
             auth()->login($authUser);
-
             return redirect(url('/claim'));
         }else{
             return redirect()->back()->with('error','Password and Confirm Password Not Match.Please Try Again!!');
         }
-
     }
 
     public function user_signup($encrypt_user_id=null)
@@ -131,8 +115,17 @@ class UserPanelController extends Controller
     {
       $user_id = Auth::user()->id;
       $encrypt_user_id = '09Xohf'.$user_id;
+      $link = url('user/signup/'.$encrypt_user_id);
 
-      return view ('front-end.user.user_panel_affiliate', compact('encrypt_user_id'));
+    $facebook=Share::page($link,null,['id' => 'facebook'])
+    ->facebook();
+    $twitter=Share::page($link,null,['id' => 'twitter'])
+    ->twitter();
+    $google=Share::page($link,null,['id' => 'google'])
+    ->googlePlus();
+    $whatsapp=Share::page($link,null,['id' => 'whatsapp'])
+    ->whatsapp();
+      return view ('front-end.user.user_panel_affiliate', compact('encrypt_user_id','facebook','twitter','google','whatsapp'));
     }
 
     public function user_ticket_message(Request $request)

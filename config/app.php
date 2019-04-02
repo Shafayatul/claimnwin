@@ -166,6 +166,7 @@ return [
          * Package Service Providers...
          */
         Monarobase\CountryList\CountryListServiceProvider::class,
+        Jorenvh\Share\Providers\ShareServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -226,6 +227,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Countries' => Monarobase\CountryList\CountryListFacade::class,
+        'Share' => Jorenvh\Share\ShareFacade::class,
 
     ],
 
