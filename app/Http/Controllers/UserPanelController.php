@@ -6,12 +6,13 @@ use Illuminate\Http\Request;
 use Auth;
 use App\User;
 use App\Airline;
+use App\ClaimFile;
 use App\Claim;
 use App\Ticket;
 use App\TicketNote;
 use App\ClaimStatus;
 use Hash;
-
+use File;
 class UserPanelController extends Controller
 {
     public function index()
@@ -48,6 +49,33 @@ class UserPanelController extends Controller
        // $claim = Claim::where('id',$id)->get();
        // $ticket = Ticket::where('claim_id', $id)->first();
         return view('front-end.user.user_panel_my_claim', compact('claims', 'ticket_notes', 'airline'));
+    }
+
+    public function claimFileUpload(Request $request)
+    {
+        $claim_id = $request->claim_id;
+        $file = $request->file('file_name');
+
+
+      $file_name = sha1(date('YmdHis') . str_random(30));
+      $name = $file_name . '.' . $file->getClientOriginalExtension();
+
+
+
+      if(!File::exists(public_path('/uploads').'/'.$claim_id)) {
+        File::makeDirectory(public_path('/uploads').'/'.$claim_id);
+      }
+
+      $file->move(public_path('/uploads').'/'.$claim_id.'/', $name);
+
+      $claim_file = new ClaimFile();
+      $claim_file->name = $request->name;
+      $claim_file->file_name = $name;
+      $claim_file->user_id = Auth::user()->id;
+      $claim_file->claim_id = $claim_id;
+      $claim_file->save();
+      return redirect(url('/user-my-claim/'.$claim_id))->with('success','File Added');
+
     }
 
     public function userSignup(Request $request)

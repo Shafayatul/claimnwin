@@ -24,6 +24,7 @@ Route::get('/user-home','UserPanelController@index');
 Route::get('/user-my-claim/{id}','UserPanelController@user_my_claim');
 Route::get('/affiliate','UserPanelController@affiliate');
 Route::post('/user-ticket-message','UserPanelController@user_ticket_message')->name('user-ticket-message');
+Route::post('/user-upload-file','UserPanelController@claimFileUpload');
 
 
 // claim

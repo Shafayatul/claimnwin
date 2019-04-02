@@ -204,23 +204,25 @@
                   <tr>
                     <td>Compensation from {{ $airline->name }}</td>
                     <td>
-
-                    @php
-                    $string = $claims->amount;
-                    echo preg_replace("/[^0-9\.]/", '', $string);
-                    @endphp
-
+                    <span class="text-right">
+                      @php
+                      $string = $claims->amount;
+                      echo preg_replace("/[^0-9\.]/", '', $string);
+                      @endphp
+                    </span>
                   </td>
                   </tr>
                   <tr>
                     <td>Welcome Success Fee</td>
                     <td>
-                      @php
-                      $string = $claims->amount;
-                      $compensation_from_airline =  preg_replace("/[^0-9\.]/", '', $string);
-                      $welcome_success_fee = (($compensation_from_airline*10)/100);
-                      echo ('- '.$welcome_success_fee);
-                      @endphp
+                      <span class="text-right">
+                        @php
+                        $string = $claims->amount;
+                        $compensation_from_airline =  preg_replace("/[^0-9\.]/", '', $string);
+                        $welcome_success_fee = (($compensation_from_airline*10)/100);
+                        echo ('- '.$welcome_success_fee);
+                        @endphp
+                      </span>
                     </td>
                   </tr>
                   {{-- <tr>
@@ -238,12 +240,14 @@
                   <tr class="compensation_table_result_row">
                     <td>Your Compensation</td>
                     <td>
-                      @php
-                      $string = $claims->amount;
-                      $compensation_from_airline =  preg_replace("/[^0-9\.]/", '', $string);
-                      $welcome_success_fee = (($compensation_from_airline*10)/100);
-                      echo ($compensation_from_airline - $welcome_success_fee);
-                      @endphp
+                      <span class="text-right">
+                        @php
+                        $string = $claims->amount;
+                        $compensation_from_airline =  preg_replace("/[^0-9\.]/", '', $string);
+                        $welcome_success_fee = (($compensation_from_airline*10)/100);
+                        echo ($compensation_from_airline - $welcome_success_fee);
+                        @endphp
+                      </span>
                     </td>
                   </tr>
                 </tbody>
@@ -336,10 +340,13 @@
             <div class="row">
               <div class="col-md-4 col-md-offset-4">
                 <div class="document_submit_div text-center">
-                  <form action="#" class="">
+                  <form action="{{ url('/user-upload-file') }}" method="post" class="" enctype='multipart/form-data'>
+                    {{ csrf_field() }}
                     <div class="input-file-container">
-                      <input class="input-file" id="my-file" type="file">
+                      <input type="hidden" name="claim_id" value="{{ $claims->id }}">
+                      <input class="input-file" id="my-file" name="file_name" type="file">
                       <label tabindex="0" for="my-file" class="input-file-trigger">Upload Document</label>
+                      <input type="submit" name="submit" value="upload file">
                     </div>
                     <p class="file-return"></p>
                   </form>

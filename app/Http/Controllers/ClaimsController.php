@@ -622,7 +622,7 @@ class ClaimsController extends Controller
                 $expense->name              = $request->expense_name[$cnt];
                 $expense->amount            = $request->expense_price[$cnt];
                 $expense->currency          = $request->expense_currency[$cnt];
-                $expense->is_receipt        = $request->expense_is_receipt[$cnt];
+                $expense->is_receipt        = $request->is_receipt[$cnt];
                 $expense->save();
 
                 $cnt++;
