@@ -23,18 +23,18 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand menu_brand" href="#"> Claimnwin</a>
+                    <a class="navbar-brand menu_brand" href="{{ URL('/') }}"> Claimnwin</a>
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav menu_nav">
                         <li><a href="{{ URL::to('/user-home') }}">My Claims</a></li>
                         <li><a href="{{ URL::to('/affiliate') }}">Affiliate</a></li>
-                        <li><a href="#">FAQs</a></li>
+                        <li><a href="{{ URL('/faq') }}">FAQs</a></li>
                     </ul>
-
+{{-- 
                     <ul class="nav navbar-nav navbar-right menu_nav">
                         <li><a href="#"><img src="{{asset('front_asset/user_panel/img/')}}/notification.svg" alt="country"></a></li>
-                    </ul>
+                    </ul> --}}
 
                     <ul class="nav navbar-nav navbar-right menu_nav">
                         <li class="dropdown">
@@ -55,7 +55,7 @@
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{ Auth::user()->email }}
                                 <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">My Claims</a></li>
+                                <li><a href="{{ URL::to('/user-home') }}">My Claims</a></li>
                                 <li><a href="{{ route('logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-sign-out-alt"></i> Logout</a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     @csrf
