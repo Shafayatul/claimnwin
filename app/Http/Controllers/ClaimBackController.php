@@ -111,7 +111,7 @@ class ClaimBackController extends Controller
         $ticket = Ticket::where('claim_id', $claims->id)->first();
         $ticket_notes = TicketNote::where('ticket_id', $ticket->id)->get();
 
-        return view('claim.claimView',compact('notes', 'ticket_notes', 'claimFiles','affiliateComm','adminComm','NextStepData','claimStatusData','flightInfo','airline','departed_airport','destination_airport','reminders','claims','passengers','ittDetails','flightCount','passCount','claimsStatus','nextSteps','banks', 'affiliate_user'));
+        return view('claim.claimView',compact('notes', 'ticket_notes', 'ticket', 'claimFiles','affiliateComm','adminComm','NextStepData','claimStatusData','flightInfo','airline','departed_airport','destination_airport','reminders','claims','passengers','ittDetails','flightCount','passCount','claimsStatus','nextSteps','banks', 'affiliate_user'));
     }
 
     public function downloadClaimFile($id)
