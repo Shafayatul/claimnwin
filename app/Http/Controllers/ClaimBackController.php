@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Note;
 use App\Reminder;
 use App\Claim;
+use App\Ticket;
+use App\TicketNote;
 use App\Airport;
 use App\Passenger;
 use App\ItineraryDetail;
@@ -106,7 +108,10 @@ class ClaimBackController extends Controller
         $affiliateComm = Setting::where(['fieldKey'=>'_affiliate_comm'])->first();
 
 
-        return view('claim.claimView',compact('notes','claimFiles','affiliateComm','adminComm','NextStepData','claimStatusData','flightInfo','airline','departed_airport','destination_airport','reminders','claims','passengers','ittDetails','flightCount','passCount','claimsStatus','nextSteps','banks', 'affiliate_user'));
+        $ticket = Ticket::where('claim_id', $claims->id)->first();
+        $ticket_notes = TicketNote::where('ticket_id', $ticket->id)->get();
+
+        return view('claim.claimView',compact('notes', 'ticket_notes', 'claimFiles','affiliateComm','adminComm','NextStepData','claimStatusData','flightInfo','airline','departed_airport','destination_airport','reminders','claims','passengers','ittDetails','flightCount','passCount','claimsStatus','nextSteps','banks', 'affiliate_user'));
     }
 
     public function downloadClaimFile($id)
