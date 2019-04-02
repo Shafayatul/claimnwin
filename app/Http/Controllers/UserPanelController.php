@@ -45,10 +45,11 @@ class UserPanelController extends Controller
       // dd($ticket->id);
       $ticket_notes = TicketNote::where('ticket_id', $ticket->id)->get();
       $airline = Airline::where('id', $claims->airline_id)->first();
+      $claim_files = ClaimFile::where('claim_id', $claims->id)->get();
 
        // $claim = Claim::where('id',$id)->get();
        // $ticket = Ticket::where('claim_id', $id)->first();
-        return view('front-end.user.user_panel_my_claim', compact('claims', 'ticket_notes', 'airline'));
+        return view('front-end.user.user_panel_my_claim', compact('claims', 'ticket_notes', 'airline', 'claim_files'));
     }
 
     public function claimFileUpload(Request $request)
@@ -69,12 +70,25 @@ class UserPanelController extends Controller
       $file->move(public_path('/uploads').'/'.$claim_id.'/', $name);
 
       $claim_file = new ClaimFile();
-      $claim_file->name = $request->name;
+      $claim_file->name = $request->user_upload_file_name;
       $claim_file->file_name = $name;
       $claim_file->user_id = Auth::user()->id;
       $claim_file->claim_id = $claim_id;
       $claim_file->save();
       return redirect(url('/user-my-claim/'.$claim_id))->with('success','File Added');
+
+    }
+
+    public function claimFileDownload($id)
+    {
+        $Claimfile= ClaimFile::where('id',$id)->first();
+        $ext = $Claimfile->file_name;
+        $ext=explode(".",$ext);
+        $file_name = $Claimfile->name.'.'.$ext[1];
+        $claimId = $Claimfile->claim_id;
+
+        $file_path = public_path('uploads'.'/'.$claimId.'/'.$Claimfile->file_name);
+        return response()->download($file_path,$file_name);
 
     }
 
