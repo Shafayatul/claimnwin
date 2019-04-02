@@ -623,12 +623,18 @@ class ClaimsController extends Controller
             $cnt = 0;
             foreach ($request->expense_name as $single_expense_name) {
 
+                if (isset($request->is_receipt[$cnt])) {
+                    $is_receipt = $request->is_receipt[$cnt];
+                }else{
+                    $is_receipt = 0;
+                }
+
                 $expense                    = new Expense();
                 $expense->claim_id          = $claim->id;
                 $expense->name              = $request->expense_name[$cnt];
                 $expense->amount            = $request->expense_price[$cnt];
                 $expense->currency          = $request->expense_currency[$cnt];
-                $expense->is_receipt        = $request->is_receipt[$cnt];
+                $expense->is_receipt        = $is_receipt;
                 $expense->save();
 
                 $cnt++;

@@ -7,6 +7,7 @@ use Auth;
 use App\User;
 use App\Airline;
 use App\Claim;
+use App\ClaimFile;
 use App\Ticket;
 use App\TicketNote;
 use App\ClaimStatus;
