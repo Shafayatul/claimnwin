@@ -8,7 +8,7 @@
                 <span class="hamburger-inner"></span>
               </span>
             </button>
-              <a class="navbar-brand" href="#">
+              <a class="navbar-brand" href="{{url('/')}}">
                   <img src="{{asset('front_asset/')}}/img/logo.png" alt="Logo">
               </a>
             </div>
@@ -28,11 +28,25 @@
                     <li><a href="#"><img src="{{asset('front_asset/')}}/img/flag.png" alt="Flag"></a></li>
                   </ul>
                 </li>
-            <li class="login"><a href="{{ route('user/login') }}">
+                @guest
+                <li class="login">
+                  <a href="{{ route('user/login') }}">
                     <img src="{{asset('front_asset/')}}/img/lock.png" alt="lock icon">
                     login
-                </a></li>
-            <li class="signup"><a href="{{route('user/signup')}}">sign up</a></li>
+                  </a>
+                </li>
+                <li class="signup"><a href="{{route('user/signup')}}">sign up</a></li>
+                @endguest
+
+                @auth
+                   <li class="signup">
+                      <a href="{{ route('logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-sign-out-alt"></i> Logout</a>
+                      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                          @csrf
+                      </form>
+                   </li>
+                @endauth
+
               </ul>
               <ul class="nav navbar-nav navbar-right text-uppercase main-menu">
                 <li><a href="#">faq</a></li>
