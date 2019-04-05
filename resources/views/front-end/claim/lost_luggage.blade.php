@@ -69,18 +69,21 @@
             </div>
 
             <div class="common_row">
-                <div class="total_button_div">
-                    <div class="two_button_child_div_left">
+                <div class="continue_button_div">
+                    <button type="button" class="continue_button" id="continue_1" name="button">Continue <i class="fas fa-arrow-right"></i></button>
+                </div>
+{{--                 <div class="total_button_div">
+                    <div class="two_button_child_div_right">
                         <div class="continue_button_div">
                             <button type="button" class="continue_button" id="continue_1" name="button">Continue <i class="fas fa-arrow-right"></i></button>
                         </div>
                     </div>
-                    <div class="two_button_child_div_right">
+                    <div class="two_button_child_div_left">
                         <div class="previous_button_div">
-                            <button type="button" class="previous_button pull-left" id="previous_button" name="button">Previous <i class="fas fa-arrow-left"></i></button>
+                            <button type="button" class="previous_button pull-left" id="previous_button" name="button"><i class="fas fa-arrow-left"></i> Previous</button>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
 
@@ -121,14 +124,14 @@
 
             <div class="common_row">
                 <div class="total_button_div">
-                    <div class="two_button_child_div_left">
+                    <div class="two_button_child_div_right">
                         <div class="continue_button_div">
                             <button type="button" class="continue_button" id="continue_2" name="button">Continue <i class="fas fa-arrow-right"></i></button>
                         </div>
                     </div>
-                    <div class="two_button_child_div_right">
+                    <div class="two_button_child_div_left">
                         <div class="previous_button_div">
-                            <button type="button" class="previous_button pull-left" id="previous_button" name="button">Previous <i class="fas fa-arrow-left"></i></button>
+                            <button type="button" class="previous_button pull-left" id="previous_button" name="button"><i class="fas fa-arrow-left"></i> Previous</button>
                         </div>
                     </div>
                 </div>
@@ -209,14 +212,14 @@
 
             <div class="common_row">
                 <div class="total_button_div">
-                    <div class="two_button_child_div_left">
+                    <div class="two_button_child_div_right">
                         <div class="continue_button_div">
                             <button type="button" class="continue_button" id="continue_3" name="button">Continue <i class="fas fa-arrow-right"></i></button>
                         </div>
                     </div>
-                    <div class="two_button_child_div_right">
+                    <div class="two_button_child_div_left">
                         <div class="previous_button_div">
-                            <button type="button" class="previous_button pull-left" id="previous_button" name="button">Previous <i class="fas fa-arrow-left"></i></button>
+                            <button type="button" class="previous_button pull-left" id="previous_button" name="button"><i class="fas fa-arrow-left"></i> Previous</button>
                         </div>
                     </div>
                 </div>
@@ -245,14 +248,14 @@
 
             <div class="common_row">
                 <div class="total_button_div">
-                    <div class="two_button_child_div_left">
+                    <div class="two_button_child_div_right">
                         <div class="continue_button_div">
                             <button type="button" class="continue_button" id="continue_4" name="button">Continue <i class="fas fa-arrow-right"></i></button>
                         </div>
                     </div>
-                    <div class="two_button_child_div_right">
+                    <div class="two_button_child_div_left">
                         <div class="previous_button_div">
-                            <button type="button" class="previous_button pull-left" id="previous_button" name="button">Previous <i class="fas fa-arrow-left"></i></button>
+                            <button type="button" class="previous_button pull-left" id="previous_button" name="button"><i class="fas fa-arrow-left"></i> Previous</button>
                         </div>
                     </div>
                 </div>
@@ -282,14 +285,14 @@
 
         <div class="common_row">
             <div class="total_button_div">
-                <div class="two_button_child_div_left">
+                <div class="two_button_child_div_right">
                     <div class="continue_button_div">
                         <button type="button" class="continue_button" id="continue_5" name="button">Continue <i class="fas fa-arrow-right"></i></button>
                     </div>
                 </div>
-                <div class="two_button_child_div_right">
+                <div class="two_button_child_div_left">
                     <div class="previous_button_div">
-                        <button type="button" class="previous_button pull-left" id="previous_button" name="button">Previous <i class="fas fa-arrow-left"></i></button>
+                        <button type="button" class="previous_button pull-left" id="previous_button" name="button"><i class="fas fa-arrow-left"></i> Previous</button>
                     </div>
                 </div>
             </div>
@@ -400,14 +403,14 @@
 
             <div class="common_row">
                 <div class="total_button_div">
-                    <div class="two_button_child_div_left">
+                    <div class="two_button_child_div_right">
                         <div class="continue_button_div">
                             <button type="button" class="continue_button" id="continue_6" name="button">Continue <i class="fas fa-arrow-right"></i></button>
                         </div>
                     </div>
-                    <div class="two_button_child_div_right">
+                    <div class="two_button_child_div_left">
                         <div class="previous_button_div">
-                            <button type="button" class="previous_button pull-left" id="previous_button" name="button">Previous <i class="fas fa-arrow-left"></i></button>
+                            <button type="button" class="previous_button pull-left" id="previous_button" name="button"><i class="fas fa-arrow-left"></i> Previous</button>
                         </div>
                     </div>
                 </div>
@@ -746,14 +749,14 @@
 
             <div class="common_row">
                 <div class="total_button_div">
-                    <div class="two_button_child_div_left">
+                    <div class="two_button_child_div_right">
                         <div class="continue_button_div">
                             <button type="button" class="continue_button" id="continue_7" name="button">Continue <i class="fas fa-arrow-right"></i></button>
                         </div>
                     </div>
-                    <div class="two_button_child_div_right">
+                    <div class="two_button_child_div_left">
                         <div class="previous_button_div">
-                            <button type="button" class="previous_button pull-left" id="previous_button" name="button">Previous <i class="fas fa-arrow-left"></i></button>
+                            <button type="button" class="previous_button pull-left" id="previous_button" name="button"><i class="fas fa-arrow-left"></i> Previous</button>
                         </div>
                     </div>
                 </div>
@@ -874,14 +877,14 @@
 
             <div class="common_row">
                 <div class="total_button_div">
-                    <div class="two_button_child_div_left">
+                    <div class="two_button_child_div_right">
                         <div class="continue_button_div">
                             <button type="button" class="continue_button" id="continue_8" name="button">Continue <i class="fas fa-arrow-right"></i></button>
                         </div>
                     </div>
-                    <div class="two_button_child_div_right">
+                    <div class="two_button_child_div_left">
                         <div class="previous_button_div">
-                            <button type="button" class="previous_button pull-left" id="previous_button" name="button">Previous <i class="fas fa-arrow-left"></i></button>
+                            <button type="button" class="previous_button pull-left" id="previous_button" name="button"><i class="fas fa-arrow-left"></i> Previous</button>
                         </div>
                     </div>
                 </div>
