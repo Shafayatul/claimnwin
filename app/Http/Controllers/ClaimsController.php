@@ -21,6 +21,8 @@ use Auth;
 use Log;
 use PragmaRX\Countries\Package\Countries;
 use App\Setting;
+use File;
+use App\ClaimFile;
 
 class ClaimsController extends Controller
 {
@@ -244,10 +246,6 @@ class ClaimsController extends Controller
                 ->orWhere('here_from_other', 'LIKE', "%$keyword%")
                 ->orWhere('is_contacted_airline', 'LIKE', "%$keyword%")
                 ->orWhere('what_happened', 'LIKE', "%$keyword%")
-                ->orWhere('correspondence_ids_file', 'LIKE', "%$keyword%")
-                ->orWhere('correspondence_travel_doc_file', 'LIKE', "%$keyword%")
-                ->orWhere('correspondence_proof_of_expense_file', 'LIKE', "%$keyword%")
-                ->orWhere('correspondence_others_file', 'LIKE', "%$keyword%")
                 ->orWhere('claim_table_type', 'LIKE', "%$keyword%")
                 ->latest()->paginate($perPage);
         } else {
@@ -292,6 +290,30 @@ class ClaimsController extends Controller
             return 0;
         }
     }
+
+/*    public function claimFileUpload(Request $request)
+    {
+        $claim_id = $request->claim_id;
+        $file = $request->file('file_name');
+
+        $file_name = sha1(date('YmdHis') . str_random(30));
+        $name = $file_name . '.' . $file->getClientOriginalExtension();
+
+        if(!File::exists(public_path('/uploads').'/'.$claim_id)) {
+            File::makeDirectory(public_path('/uploads').'/'.$claim_id);
+        }
+
+        $file->move(public_path('/uploads').'/'.$claim_id.'/', $name);
+
+        $claim_file = new ClaimFile();
+        $claim_file->name = $request->name;
+        $claim_file->file_name = $name;
+        $claim_file->user_id = Auth::user()->id;
+        $claim_file->claim_id = $claim_id;
+        $claim_file->save();
+
+    }
+*/
 
     public function store(Request $request)
     {
@@ -635,6 +657,56 @@ class ClaimsController extends Controller
                 $cnt++;
             }
         }
+
+        // store files
+        $all_files = $request->file('file_name');
+        // $file1 = $file_name[1]['file'];
+        $claim_id = $claim->id;
+        for($i=0; $i<count($all_files); $i++) {   
+            $file = $all_files[$i];
+
+            $file_name = sha1(date('YmdHis') . str_random(30));
+            $name = $file_name . '.' . $file->getClientOriginalExtension();
+
+            if(!File::exists(public_path('/uploads').'/'.$claim_id)) {
+                File::makeDirectory(public_path('/uploads').'/'.$claim_id);
+            }
+
+            $file->move(public_path('/uploads').'/'.$claim_id.'/', $name);
+
+            $claim_file             = new ClaimFile();
+            $claim_file->name       = "Uploaded by user";
+            $claim_file->file_name  = $name;
+            $claim_file->user_id    = Auth::user()->id;
+            $claim_file->claim_id   = $claim_id;
+            $claim_file->save();
+        }
+        // foreach ($request->file('file_name') as $key => $value) {
+        //     if ($request->hasFile('file_name')[$key]) {
+        //         $claim_id = $request->claim_id;
+        //         $file = $request->file('file_name')[$key];
+
+        //         $file_name = sha1(date('YmdHis') . str_random(30));
+        //         $name = $file_name . '.' . $file->getClientOriginalExtension();
+
+        //         if(!File::exists(public_path('/uploads').'/'.$claim_id)) {
+        //             File::makeDirectory(public_path('/uploads').'/'.$claim_id);
+        //         }
+
+        //         $file->move(public_path('/uploads').'/'.$claim_id.'/', $name);
+
+        //         $claim_file             = new ClaimFile();
+        //         $claim_file->name       = 'Uploaded by user';
+        //         $claim_file->file_name  = $name;
+        //         $claim_file->user_id    = Auth::user()->id;
+        //         $claim_file->claim_id   = $claim_id;
+        //         $claim_file->save();
+        //     }
+        // }
+
+
+
+
 
 
         if ($claim_table_type == "missed_connection") {

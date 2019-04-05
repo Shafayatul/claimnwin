@@ -14,7 +14,7 @@
     <div class="form_h2">
         <h2 class="text-center">Lost Luggage</h2>
     </div>
-      <form action="{{url('/claim')}}" method="post" id="step-form">
+      <form action="{{url('/claim')}}" method="post" id="step-form" enctype="multipart/form-data" >
         @csrf
 
         <!-- ...................................................................
@@ -817,7 +817,7 @@
                     <div class="row">
                         <div class="col-md-8">
                             ID copies, including travel companions’ if applicable
-                            <input type="hidden" value="ID copies, including travel companions’ if applicable" name="name_by_user[]">
+                            <input type="hidden" value="ID copies, including travel companions’ if applicable" name="file_name_by_user[]">
                         </div>
                         <div class="col-md-4">
                             <div class="input-file-container col-centered">
@@ -832,7 +832,7 @@
                     <div class="row">
                         <div class="col-md-8">
                             Travel documents (reservation, ticket or boarding passes)
-                            <input type="hidden" value="Travel documents (reservation, ticket or boarding passes)" name="name_by_user[]">
+                            <input type="hidden" value="Travel documents (reservation, ticket or boarding passes)" name="file_name_by_user[]">
                         </div>
                         <div class="col-md-4">
                             <div class="input-file-container col-centered">
@@ -847,7 +847,7 @@
                     <div class="row">
                         <div class="col-md-8">
                             Proof of expenses (store/online receipts, detailed bank statements) if applicable
-                            <input type="hidden" value="Proof of expenses (store/online receipts, detailed bank statements) if applicable" name="name_by_user[]">
+                            <input type="hidden" value="Proof of expenses (store/online receipts, detailed bank statements) if applicable" name="file_name_by_user[]">
                         </div>
                         <div class="col-md-4">
                             <div class="input-file-container col-centered">
@@ -862,7 +862,7 @@
                     <div class="row">
                         <div class="col-md-8">
                             Property irregularity report (received in the airport when reporting missing baggage)
-                            <input type="hidden" value="Property irregularity report (received in the airport when reporting missing baggage)" name="name_by_user[]">
+                            <input type="hidden" value="Property irregularity report (received in the airport when reporting missing baggage)" name="file_name_by_user[]">
                         </div>
                         <div class="col-md-4">
                             <div class="input-file-container col-centered">
@@ -877,11 +877,11 @@
                     <div class="row">
                         <div class="col-md-8">
                             Other
-                            <input type="hidden" value="Other" name="file_name[]">
+                            <input type="hidden" value="Other" name="file_name_by_user[]">
                         </div>
                         <div class="col-md-4">
                             <div class="input-file-container col-centered">
-                                <input class="input-file" id="my-file-3" type="file" name="name_by_user[]">
+                                <input class="input-file" id="my-file-3" type="file" name="file_name[]">
                                 <label tabindex="0" for="my-file" class="input-file-trigger" id="input-file-trigger-3">Select a file...</label>
                             </div>
                             <p class="file-return" id="file-return-3"></p>
