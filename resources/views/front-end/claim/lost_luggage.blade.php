@@ -815,10 +815,13 @@
             <div class="common_row show_if_contacted_airline">
                 <div class="document_submit_div">
                     <div class="row">
-                        <div class="col-md-8">ID copies, including travel companions’ if applicable</div>
+                        <div class="col-md-8">
+                            ID copies, including travel companions’ if applicable
+                            <input type="hidden" value="ID copies, including travel companions’ if applicable" name="name_by_user[]">
+                        </div>
                         <div class="col-md-4">
                             <div class="input-file-container col-centered">
-                                <input class="input-file" id="my-file-0" type="file" name="correspondence_ids_file">
+                                <input class="input-file" id="my-file-0" type="file" name="file_name[]">
                                 <label tabindex="0" for="my-file" class="input-file-trigger" id="input-file-trigger-0">Select a file...</label>
                             </div>
                             <p class="file-return" id="file-return-0"></p>
@@ -827,10 +830,13 @@
                 </div>
                 <div class="document_submit_div">
                     <div class="row">
-                        <div class="col-md-8">Travel documents (reservation, ticket or boarding passes)</div>
+                        <div class="col-md-8">
+                            Travel documents (reservation, ticket or boarding passes)
+                            <input type="hidden" value="Travel documents (reservation, ticket or boarding passes)" name="name_by_user[]">
+                        </div>
                         <div class="col-md-4">
                             <div class="input-file-container col-centered">
-                                <input class="input-file" id="my-file-1" type="file" name="correspondence_travel_doc_file">
+                                <input class="input-file" id="my-file-1" type="file" name="file_name[]">
                                 <label tabindex="0" for="my-file" class="input-file-trigger" id="input-file-trigger-1">Select a file...</label>
                             </div>
                             <p class="file-return" id="file-return-1"></p>
@@ -839,10 +845,13 @@
                 </div>
                 <div class="document_submit_div">
                     <div class="row">
-                        <div class="col-md-8">Proof of expenses (store/online receipts, detailed bank statements) if applicable</div>
+                        <div class="col-md-8">
+                            Proof of expenses (store/online receipts, detailed bank statements) if applicable
+                            <input type="hidden" value="Proof of expenses (store/online receipts, detailed bank statements) if applicable" name="name_by_user[]">
+                        </div>
                         <div class="col-md-4">
                             <div class="input-file-container col-centered">
-                                <input class="input-file" id="my-file-2" type="file" name="correspondence_proof_of_expense_file">
+                                <input class="input-file" id="my-file-2" type="file" name="file_name[]">
                                 <label tabindex="0" for="my-file" class="input-file-trigger" id="input-file-trigger-2">Select a file...</label>
                             </div>
                             <p class="file-return" id="file-return-2"></p>
@@ -851,10 +860,13 @@
                 </div>
                 <div class="document_submit_div">
                     <div class="row">
-                        <div class="col-md-8">Property irregularity report (received in the airport when reporting missing baggage)</div>
+                        <div class="col-md-8">
+                            Property irregularity report (received in the airport when reporting missing baggage)
+                            <input type="hidden" value="Property irregularity report (received in the airport when reporting missing baggage)" name="name_by_user[]">
+                        </div>
                         <div class="col-md-4">
                             <div class="input-file-container col-centered">
-                                <input class="input-file" id="my-file-4" type="file" name="correspondence_property_irregularity_report">
+                                <input class="input-file" id="my-file-4" type="file" name="file_name[]">
                                 <label tabindex="0" for="my-file" class="input-file-trigger" id="input-file-trigger-4">Select a file...</label>
                             </div>
                             <p class="file-return" id="file-return-4"></p>
@@ -863,10 +875,13 @@
                 </div>
                 <div class="document_submit_div">
                     <div class="row">
-                        <div class="col-md-8">Other</div>
+                        <div class="col-md-8">
+                            Other
+                            <input type="hidden" value="Other" name="file_name[]">
+                        </div>
                         <div class="col-md-4">
                             <div class="input-file-container col-centered">
-                                <input class="input-file" id="my-file-3" type="file" name="correspondence_others_file">
+                                <input class="input-file" id="my-file-3" type="file" name="name_by_user[]">
                                 <label tabindex="0" for="my-file" class="input-file-trigger" id="input-file-trigger-3">Select a file...</label>
                             </div>
                             <p class="file-return" id="file-return-3"></p>

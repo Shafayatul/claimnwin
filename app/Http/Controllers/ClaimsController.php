@@ -521,11 +521,6 @@ class ClaimsController extends Controller
         $claim->claim_next_step_id                      = '1';
 
 
-        $claim->correspondence_ids_file                 = "";
-        $claim->correspondence_travel_doc_file          = "";
-        $claim->correspondence_proof_of_expense_file    = "";
-        $claim->correspondence_others_file              = "";
-
         $claim->affiliate_commision                     = $affiliateCom->fieldValue;
         $claim->admin_commision                         = $adminCom->fieldValue;
         $claim->claim_table_type                        = $claim_table_type;
