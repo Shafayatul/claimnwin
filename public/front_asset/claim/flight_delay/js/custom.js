@@ -385,7 +385,8 @@ $(document).ready(function() {
     });
 
     $(document).on("click", ".remove_another_passenger", function() {
-        $(this).closest('.total_another_passenger_div').remove();
+     $(this).closest('.total_another_passenger_div').remove();
+     check_next_step();
     });
 
     /* Yes No Radio Buttom */
