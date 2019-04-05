@@ -20,11 +20,17 @@ class AirportsController extends Controller
      */
     public function index(Request $request)
     {
-        $keyword = $request->get('search');
+        $name          = $request->get('name');
+        $country       = $request->get('country');
+        $iata_code     = $request->get('iata_code');
+        $icao_code     = $request->get('icao_code');
+        $municipality  = $request->get('municipality');
+        $type          = $request->get('type');
+
         $perPage = 25;
 
-        if (!empty($keyword)) {
-            $airports = Airport::where('user_id', 'LIKE', "%$keyword%")
+        if ((!empty($name)) || (!empty($country)) || (!empty($iata_code)) || (!empty($icao_code)) || (!empty($municipality)) || (!empty($type))) {
+/*            $airports = Airport::where('user_id', 'LIKE', "%$keyword%")
                 ->orWhere('name', 'LIKE', "%$keyword%")
                 ->orWhere('iata_code', 'LIKE', "%$keyword%")
                 ->orWhere('icao_code', 'LIKE', "%$keyword%")
@@ -35,7 +41,30 @@ class AirportsController extends Controller
                 ->orWhere('longitude', 'LIKE', "%$keyword%")
                 ->orWhere('home_link', 'LIKE', "%$keyword%")
                 ->orWhere('wikipedia_link', 'LIKE', "%$keyword%")
-                ->latest()->paginate($perPage);
+                ->latest()->paginate($perPage);*/
+            $airports = Airport::whereNotNull('id');
+            if(!empty($name)){
+                $airports = $airports->Where('name', 'LIKE', "%$name%");
+            }
+            if(!empty($country)){
+                $airports = $airports->Where('country', 'LIKE', "%$country%");
+            }
+            if(!empty($iata_code)){
+                $airports = $airports->Where('iata_code', 'LIKE', "%$iata_code%");
+            }
+            if(!empty($icao_code)){
+                $airports = $airports->Where('icao_code', 'LIKE', "%$icao_code%");
+            }
+            if(!empty($municipality)){
+                $airports = $airports->Where('municipality', 'LIKE', "%$municipality%");
+            }
+            if(!empty($type)){
+                $airports = $airports->Where('type', 'LIKE', "%$type%");
+            }
+            // dd($airports);
+            $airports = $airports->latest()->paginate($perPage);
+
+
         } else {
             $airports = Airport::latest()->paginate($perPage);
         }

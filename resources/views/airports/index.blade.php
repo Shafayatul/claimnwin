@@ -17,29 +17,33 @@
                                 <div class="form-group mb-n">
                                 <div class="row">
 
-                                    <div class="col-md-10 grid_box1">
-                                    <label class="control-label">Name</label>
-                                    <input type="text" name="search" class="form-control1" value="{{ request('search') }}">
-                                    </div>
-                                    {{-- <div class="col-md-2 grid_box1">
-                                        <label class="control-label">Iata Code</label>
-                                        <input type="text" name="search" class="form-control1" value="{{ $request('search') }}">
+                                    <div class="col-md-2 grid_box1">
+                                        <label class="control-label">NAME</label>
+                                        <input type="text" name="name" class="form-control1" value="{{ request('name') }}">
                                     </div>
                                     <div class="col-md-2 grid_box1">
-                                        <label class="control-label">3 Digit Code</label>
-                                        <input type="text" name="search" class="form-control1" value="{{ $request('search') }}">
+                                        <label class="control-label">COUNTRY</label>
+                                        <input type="text" name="country" class="form-control1" value="{{ request('country') }}">
                                     </div>
                                     <div class="col-md-2 grid_box1">
-                                        <label class="control-label">Continents</label>
-                                        <input type="text" name="search" class="form-control1" value="{{ $request('search') }}">
+                                        <label class="control-label">IATA-CODE</label>
+                                        <input type="text" name="iata_code" class="form-control1" value="{{ request('iata_code') }}">
                                     </div>
                                     <div class="col-md-2 grid_box1">
-                                        <label class="control-label">Country</label>
-                                        <input type="text" name="search" class="form-control1" value="{{ $request('search') }}">
-                                    </div> --}}
+                                        <label class="control-label">ICAO CODE</label>
+                                        <input type="text" name="icao_code" class="form-control1" value="{{ request('icao_code') }}">
+                                    </div>
+                                    <div class="col-md-2 grid_box1">
+                                        <label class="control-label">MUNCIPILITY </label>
+                                        <input type="text" name="municipality" class="form-control1" value="{{ request('municipality') }}">
+                                    </div>
+                                    <div class="col-md-2 grid_box1">
+                                        <label class="control-label">TYPE</label>
+                                        <input type="text" name="type" class="form-control1" value="{{ request('type') }}">
+                                    </div>
                                     <div class="col-md-1">
                                         <label class="control-label"></label>
-                                        <input type="submit" class="btn btn-success">
+                                        <input type="submit" class="btn btn-success" value="Search">
                                     </div>
                                     <div class="clearfix"> </div>
                                 </div>
@@ -65,7 +69,8 @@
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $item->name }}</td>
-                                        <td>{{ $country[$item->country] }}</td>
+                                        {{-- <td>{{ $country[$item->country] }}</td> --}}
+                                        <td>{{ $item->country }}</td>
                                         <td>{{ $item->iata_code }}</td>
                                         <td>{{ $item->icao_code }}</td>
                                         <td>{{ $item->municipality }}</td>
