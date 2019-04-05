@@ -28,6 +28,10 @@ Route::post('/user-upload-file','UserPanelController@claimFileUpload');
 Route::get('/user-download-file/{id}','UserPanelController@claimFileDownload');
 
 
+// Ajax - calculation
+Route::post('/ajax-claim-calculation','ClaimsController@ajax_claim_calculation');
+
+
 // claim
 Route::post('/claim','ClaimsController@store');
 Route::get('/claim','ClaimsController@claim')->name('claim');
@@ -93,6 +97,7 @@ Route::resource('claim-status', 'ClaimStatusController');
 Route::resource('next-step', 'NextStepController');
 Route::resource('settings', 'SettingsController');
 
+Route::get('/manage-claim/user/{id}', 'ClaimBackController@index_by_user');
 Route::get('/manage-claim', 'ClaimBackController@index');
 
 Route::get('/claim-view/{id}', 'ClaimBackController@claimView');

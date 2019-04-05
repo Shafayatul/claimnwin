@@ -39,8 +39,32 @@ class ClaimBackController extends Controller
 
         $necessary_airline_ids = ItineraryDetail::whereIn('claim_id', $claim_id_array)->where('is_selected', '1')->pluck('airline_id')->toArray();
         $claim_and_airline_array = ItineraryDetail::whereIn('claim_id', $claim_id_array)->where('is_selected', '1')->select('airline_id', 'claim_id')->get()->keyBy('claim_id');
-        // $current_airline_id = $necessary_airline_ids[2]['airline_id'];
-// dd($claim_and_airline_array[2]['airline_id']);
+
+
+        $departed_from_id = Claim::whereIn('id', $claim_id_array)->pluck('departed_from_id')->toArray();
+        $final_destination_id = Claim::whereIn('id', $claim_id_array)->pluck('final_destination_id')->toArray();
+
+        $necessary_airport_id_array = array_unique(array_merge($departed_from_id, $final_destination_id));
+        $passenger = Passenger::whereIn('claim_id', $claim_id_array)->orderBy('id', 'DESC')->get()->keyBy('claim_id');
+        $airport = Airport::whereIn('id', $necessary_airport_id_array)->pluck('name','id');
+        $airline = Airline::whereIn('id', $necessary_airline_ids)->pluck('name','id');
+        return view('claim.manage_claim',compact('claims','airport', 'airline', 'passenger', 'claim_and_airline_array'));
+    }
+    public function index_by_user(Request $request, $id)
+    {
+
+        $claims = Claim::where('user_id', $id)->where('is_deleted',0)->paginate(10);
+        $claim_id_array = [];
+        foreach($claims as $claim){
+            array_push($claim_id_array, $claim->id);
+        }
+
+
+        $itineraryDetail = ItineraryDetail::whereIn('claim_id', $claim_id_array)->pluck('airline_id','claim_id')->toArray();
+
+        $necessary_airline_ids = ItineraryDetail::whereIn('claim_id', $claim_id_array)->where('is_selected', '1')->pluck('airline_id')->toArray();
+        $claim_and_airline_array = ItineraryDetail::whereIn('claim_id', $claim_id_array)->where('is_selected', '1')->select('airline_id', 'claim_id')->get()->keyBy('claim_id');
+
 
         $departed_from_id = Claim::whereIn('id', $claim_id_array)->pluck('departed_from_id')->toArray();
         $final_destination_id = Claim::whereIn('id', $claim_id_array)->pluck('final_destination_id')->toArray();

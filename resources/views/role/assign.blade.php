@@ -28,7 +28,11 @@
                                         <td>{{$row->email}}</td>
                                         <td>{{$row->getRoleNames()}}</td>
                                         <td>
-                                        <a href="#" class="btn btn-sm btn-primary">View Claims</a>
+                                          @if($row->getRoleNames() != '["Admin"]')
+                                            <a href="{{url('/manage-claim/user/'.$row->id)}}" class="btn btn-sm btn-primary">View Claims</a>
+                                          @else
+                                              <a class="btn btn-sm btn-primary">Admin User</a>
+                                          @endif
                                         <a href="{{url('/user-info/'.$row->id)}}" class="btn btn-sm btn-success">View/Edit</a>
                                         {!! Form::open([
                                             'method'=>'DELETE',

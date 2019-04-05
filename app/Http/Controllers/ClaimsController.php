@@ -668,6 +668,36 @@ class ClaimsController extends Controller
     }
 
 
+
+    public function ajax_claim_calculation(Request $request){
+
+        $XXXXX = $request->input('XXXXX');
+        $XXXXX = $request->input('XXXXX');
+        $XXXXX = $request->input('XXXXX');
+        $XXXXX = $request->input('XXXXX');
+        $XXXXX = $request->input('XXXXX');
+        $XXXXX = $request->input('XXXXX');
+        $XXXXX = $request->input('XXXXX');
+        $XXXXX = $request->input('XXXXX');
+        $XXXXX = $request->input('XXXXX');
+        $claim_table_type = $request->input('claim_table_type');
+
+        if ($claim_table_type == "missed_connection") {
+            $amount = $this->missed_calculaion($departed_from_id, $final_destination_id, $total_delay, $selected_connection_iata_codes, $claim->id);
+        }elseif ($claim_table_type == 'flight_delay') {
+            $amount = $this->flight_delay_calculaion($departed_from_id, $final_destination_id, $total_delay, $selected_connection_iata_codes, $claim->id);
+        }elseif ($claim_table_type == 'flight_cancellation') {
+            $amount = $this->flight_cancellation_calculaion($departed_from_id, $final_destination_id, $total_delay, $selected_connection_iata_codes, $claim->id);
+        }elseif ($claim_table_type == 'delay_luggage') {
+            $amount = $this->delay_luggage_calculaion($departed_from_id, $final_destination_id, $total_delay, $selected_connection_iata_codes, $claim->id);
+        }elseif ($claim_table_type == 'lost_luggage') {
+            $amount = $this->lost_luggage_calculaion($departed_from_id, $final_destination_id, $total_delay, $selected_connection_iata_codes, $claim->id, $is_luggage_received, $received_luggage_date, $is_already_written_airline);
+        }elseif ($claim_table_type == 'denied_boarding') {
+            $amount = $this->denied_boarding_calculaion($departed_from_id, $final_destination_id, $total_delay, $selected_connection_iata_codes, $claim->id);
+        }
+    }
+
+
     public function denied_boarding_calculaion($departed_from_id, $final_destination_id, $total_delay, $selected_connection_iata_codes, $claim_id){
 
         $airline_id = ItineraryDetail::WHERE('claim_id', $claim_id)->WHERE('flight_segment', $selected_connection_iata_codes)->first()->airline_id;
