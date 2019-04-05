@@ -8,6 +8,8 @@
             <h4>List of Airline</h4>
         </div>
 
+
+
         <div class="form-body">
             <div class="card">
                 <div class="card-body">
@@ -15,29 +17,50 @@
                   <div class="row">
                     <div class="col-md-2">
                       <div class="input-group">
-                          <input type="text" class="form-control" name="search" placeholder="Name" value="{{ request('search') }}">
-                      </div>
-                    </div>
-                    {{-- <div class="col-md-2">
-                      <div class="input-group">
-                          <input type="text" class="form-control" name="search" placeholder="Email" value="{{ request('search') }}">
+                          <input type="text" class="form-control" name="name" placeholder="Name" value="{{ request('name') }}">
                       </div>
                     </div>
                     <div class="col-md-2">
                       <div class="input-group">
-                          <input type="text" class="form-control" name="search" placeholder="Phone" value="{{ request('search') }}">
+                          <input type="text" class="form-control" name="alias" placeholder="Alias" value="{{ request('alias') }}">
                       </div>
                     </div>
                     <div class="col-md-2">
                       <div class="input-group">
-                          <input type="text" class="form-control" name="search" placeholder="Iata-Code" value="{{ request('search') }}">
+                          <input type="text" class="form-control" name="iata_code" placeholder="Iata-Code" value="{{ request('iata_code') }}">
                       </div>
                     </div>
                     <div class="col-md-2">
                       <div class="input-group">
-                          <input type="text" class="form-control" name="search" placeholder="Country" value="{{ request('search') }}">
+                          <input type="text" class="form-control" name="icao_code" placeholder="ICAO-Code" value="{{ request('icao_code') }}">
                       </div>
-                    </div> --}}
+                    </div>
+                    
+                    <div class="col-md-2">
+                      <div class="input-group">
+                          <input type="text" class="form-control" name="email" placeholder="Email" value="{{ request('email') }}">
+                      </div>
+                    </div>
+                    <div class="col-md-2">
+                      <div class="input-group">
+                          <input type="text" class="form-control" name="phone" placeholder="Phone" value="{{ request('phone') }}">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-2">
+                      <div class="input-group">
+                          <input type="text" class="form-control" name="country" placeholder="Country" value="{{ request('country') }}">
+                      </div>
+                    </div>
+                    <div class="col-md-2">
+                      <div class="input-group">
+                        <select class="form-control" id="status" name="status">
+                          <option value="1" @if(request('status')==1) selected="selected" @endif>Enabled</option>
+                          <option value="0" @if(request('status')==0) selected="selected" @endif>Disabled</option>
+                        </select>
+                      </div>
+                    </div>
                     <div class="col-md-2">
                       <span class="input-group-append">
                           <button class="btn btn-secondary" type="submit">
@@ -45,7 +68,6 @@
                           </button>
                       </span>
                     </div>
-
                   </div>
                   {!! Form::close() !!}
 

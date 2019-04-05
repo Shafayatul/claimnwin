@@ -18,12 +18,18 @@ class AirlinesController extends Controller
      */
     public function index(Request $request)
     {
-        $keyword = $request->get('search');
-
+        $name       = $request->get('name');
+        $alias      = $request->get('alias');
+        $iata_code  = $request->get('iata_code');
+        $icao_code  = $request->get('icao_code');
+        $email      = $request->get('email');
+        $phone      = $request->get('phone');
+        $country    = $request->get('country');
+        $status     = $request->get('status');
         $perPage = 25;
 
-        if (!empty($keyword)) {
-
+        if ((!empty($name)) || (!empty($alias)) || (!empty($iata_code)) || (!empty($icao_code)) || (!empty($email)) || (!empty($phone)) || (!empty($country)) || (!empty($status))) {
+/*
             $airlines = Airline::where('user_id', 'LIKE', "%$keyword%")
                 ->orWhere('name', 'LIKE', "%$keyword%")
                 ->orWhere('email', 'LIKE', "%$keyword%")
@@ -39,6 +45,33 @@ class AirlinesController extends Controller
                 ->orWhere('status', 'LIKE', "%$keyword%")
                 ->orWhere('alias', 'LIKE', "%$keyword%")
                 ->latest()->paginate($perPage);
+*/
+            $airlines = Airline::whereNotNull('id');
+
+            if(!empty($name)){
+                $airlines = $airlines->Where('name', 'LIKE', "%$name%");
+            }
+            if(!empty($alias)){
+                $airlines = $airlines->Where('alias', 'LIKE', "%$alias%");
+            }
+            if(!empty($iata_code)){
+                $airlines = $airlines->Where('iata_code', 'LIKE', "%$iata_code%");
+            }
+            if(!empty($icao_code)){
+                $airlines = $airlines->Where('icao_code', 'LIKE', "%$icao_code%");
+            }
+            if(!empty($email)){
+                $airlines = $airlines->Where('email', 'LIKE', "%$email%");
+            }
+            if(!empty($phone)){
+                $airlines = $airlines->Where('phone', 'LIKE', "%$phone%");
+            }
+            if(!empty($country)){
+                $airlines = $airlines->Where('country', 'LIKE', "%$country%");
+            }
+
+            $airlines = $airlines->Where('status', $status)->latest()->paginate($perPage);
+
         } else {
             $airlines = Airline::latest()->paginate($perPage);
         }
