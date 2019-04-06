@@ -3,9 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class Connection extends Model
 {
+    use LogsActivity;
     /**
      * The database table used by the model.
      *
@@ -26,6 +28,7 @@ class Connection extends Model
      * @var array
      */
     protected $fillable = ['claim_id', 'airport_id'];
+    protected static $logAttributes = ['claim_id', 'airport_id'];
 
     
 }

@@ -3,9 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class Reminder extends Model
 {
+    use LogsActivity;
     /**
      * The database table used by the model.
      *
@@ -26,6 +28,7 @@ class Reminder extends Model
      * @var array
      */
     protected $fillable = ['user_id', 'claim_id', 'callback_date', 'callback_time', 'note', 'status', 'snooze'];
+    protected static $logAttributes = ['user_id', 'claim_id', 'callback_date', 'callback_time', 'note', 'status', 'snooze'];
 
     
 }

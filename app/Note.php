@@ -3,9 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class Note extends Model
 {
+    use LogsActivity;
     /**
      * The database table used by the model.
      *
@@ -25,7 +27,7 @@ class Note extends Model
      *
      * @var array
      */
-    protected $fillable = ['claim_id', 'user_id', 'note','note_status','airline_ref'];
+    protected static $logAttributes = ['claim_id', 'user_id', 'note','note_status','airline_ref'];
 
 
 }

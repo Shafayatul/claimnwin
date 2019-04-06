@@ -3,9 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class ItineraryDetail extends Model
 {
+    use LogsActivity;
     /**
      * The database table used by the model.
      *
@@ -26,6 +28,7 @@ class ItineraryDetail extends Model
      * @var array
      */
     protected $fillable = ['claim_id', 'airline', 'flight_number', 'departure_date'];
+    protected static $logAttributes = ['claim_id', 'airline', 'flight_number', 'departure_date'];
 
     
 }

@@ -3,9 +3,10 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Spatie\Activitylog\Traits\LogsActivity;
 class Ticket extends Model
 {
+    use LogsActivity;
     /**
      * The database table used by the model.
      *
@@ -26,6 +27,7 @@ class Ticket extends Model
      * @var array
      */
     protected $fillable = ['subject', 'status'];
+    protected static $logAttributes = ['subject', 'status'];
 
     
 }

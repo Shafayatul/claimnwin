@@ -3,9 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class Setting extends Model
 {
+    use LogsActivity;
     /**
      * The database table used by the model.
      *
@@ -26,6 +28,7 @@ class Setting extends Model
      * @var array
      */
     protected $fillable = ['labelName', 'fieldKey', 'fieldValue', 'status'];
+    protected static $logAttributes = ['labelName', 'fieldKey', 'fieldValue', 'status'];
 
     
 }

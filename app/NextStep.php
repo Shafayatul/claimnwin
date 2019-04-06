@@ -3,9 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class NextStep extends Model
 {
+    use LogsActivity;
     /**
      * The database table used by the model.
      *
@@ -26,6 +28,7 @@ class NextStep extends Model
      * @var array
      */
     protected $fillable = ['name', 'description'];
+    protected static $logAttributes = ['name', 'description'];
 
     
 }

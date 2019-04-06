@@ -3,9 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class Expense extends Model
 {
+    use LogsActivity;
     /**
      * The database table used by the model.
      *
@@ -26,6 +28,7 @@ class Expense extends Model
      * @var array
      */
     protected $fillable = ['claim_id', 'name', 'amount', 'currency', 'is_receipt'];
+    protected static $logAttributes = ['claim_id', 'name', 'amount', 'currency', 'is_receipt'];
 
     
 }
