@@ -112,7 +112,7 @@
               <li><a href="{{route('role.assign')}}"><i class="fa fa-angle-right"></i>User List</a></li>
               </ul>
             </li>
-            <li><a href="login.html"><i class="fa fa-pie-chart"></i> Manage Affiliation Report</a></li>
+            <li><a href="{{url('/manage-affiliate')}}"><i class="fa fa-pie-chart"></i> Manage Affiliation Report</a></li>
             <li><a href="login.html"><i class="fa fa-table"></i> Reporting</a></li>
 
 

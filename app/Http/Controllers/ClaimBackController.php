@@ -12,6 +12,7 @@ use App\Airport;
 use App\Passenger;
 use App\ItineraryDetail;
 use DB;
+use Carbon\Carbon;
 use App\Airline;
 use App\ClaimStatus;
 use App\NextStep;
@@ -25,6 +26,38 @@ use Auth;
 
 class ClaimBackController extends Controller
 {
+    public function index_affiliate(Request $request)
+    {
+
+        $claims = Claim::where('is_deleted',0)->whereNotNull('affiliate_user_id')->latest()->paginate(10);
+        $claim_id_array = [];
+        $user_id_array = [];
+        foreach($claims as $claim){
+            array_push($claim_id_array, $claim->id);
+            array_push($user_id_array, $claim->user_id);
+            array_push($user_id_array, $claim->affiliate_user_id);
+        }
+        
+        $user_id_array = array_unique($user_id_array);
+        $user_all = User::whereIn('id', $user_id_array)->pluck('email', 'id');
+
+        $claim_status=ClaimStatus::pluck('name', 'id');
+
+        $itineraryDetail = ItineraryDetail::whereIn('claim_id', $claim_id_array)->pluck('airline_id','claim_id')->toArray();
+
+        $necessary_airline_ids = ItineraryDetail::whereIn('claim_id', $claim_id_array)->where('is_selected', '1')->pluck('airline_id')->toArray();
+        $claim_and_airline_array = ItineraryDetail::whereIn('claim_id', $claim_id_array)->where('is_selected', '1')->select('airline_id', 'claim_id')->get()->keyBy('claim_id');
+
+
+        $departed_from_id = Claim::whereIn('id', $claim_id_array)->pluck('departed_from_id')->toArray();
+        $final_destination_id = Claim::whereIn('id', $claim_id_array)->pluck('final_destination_id')->toArray();
+
+        $necessary_airport_id_array = array_unique(array_merge($departed_from_id, $final_destination_id));
+        $passenger = Passenger::whereIn('claim_id', $claim_id_array)->orderBy('id', 'DESC')->get()->keyBy('claim_id');
+        $airport = Airport::whereIn('id', $necessary_airport_id_array)->pluck('name','id');
+        $airline = Airline::whereIn('id', $necessary_airline_ids)->pluck('name','id');
+        return view('claim.manage_affiliate',compact('claims','airport', 'airline', 'passenger', 'claim_and_airline_array', 'user_all', 'claim_status'));
+    }
     public function index(Request $request)
     {
 
