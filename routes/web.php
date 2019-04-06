@@ -28,6 +28,8 @@ Route::post('/user-upload-file','UserPanelController@claimFileUpload');
 Route::get('/user-download-file/{id}','UserPanelController@claimFileDownload');
 
 
+Route::get('/activity/index', 'ActivityController@index');
+
 // Ajax - calculation
 Route::post('/ajax-claim-calculation','ClaimsController@ajax_claim_calculation');
 
