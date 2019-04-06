@@ -29,7 +29,34 @@ class ClaimBackController extends Controller
     public function index_affiliate(Request $request)
     {
 
-        $claims = Claim::where('is_deleted',0)->whereNotNull('affiliate_user_id')->latest()->paginate(10);
+        $s_claim_id        = $request->get('s_claim_id');
+        $s_claim_status    = $request->get('s_claim_status');
+        $s_starting_date   = $request->get('s_starting_date');
+        $s_end_date        = $request->get('s_end_date');
+        if ((!empty($s_claim_id)) || (!empty($s_claim_status)) || (!empty($s_starting_date)) || (!empty($s_end_date))) {
+            $claims = Claim::whereNotNull('id');
+            if(!empty($s_claim_id)){
+                $claims = $claims->Where('id', $s_claim_id);
+            }
+            if(!empty($s_claim_status)){
+                $claims = $claims->Where('claim_status_id', $s_claim_status);
+            }
+            if(!empty($s_starting_date)){
+                $claims = $claims->Where('created_at', '>=', $s_starting_date.' 00:00:00');
+            }
+            if(!empty($s_end_date)){
+                $claims = $claims->Where('created_at', '<=', $s_end_date.' 00:00:00');
+            }
+            $claims = $claims->where('is_deleted',0)->whereNotNull('affiliate_user_id')->latest()->paginate(10);
+
+        }else{
+            $claims = Claim::where('is_deleted',0)->whereNotNull('affiliate_user_id')->latest()->paginate(10);
+        }
+
+        
+
+
+
         $claim_id_array = [];
         $user_id_array = [];
         foreach($claims as $claim){
@@ -61,7 +88,9 @@ class ClaimBackController extends Controller
     public function index(Request $request)
     {
 
+
         $claims = Claim::where('is_deleted',0)->paginate(10);
+        
         $claim_id_array = [];
         foreach($claims as $claim){
             array_push($claim_id_array, $claim->id);
