@@ -1,3 +1,6 @@
+p {
+  text-align: justify;
+}
 .main_nav_container {
   background: linear-gradient(-90deg, #b3d1f5, #d2d7e7, #eef1ef);
 }
@@ -10,3 +13,221 @@
   font-size: 42px;
   color: #114478;
 }
+
+/* About Us Top Content Starts */
+
+.about_us_top_content {
+  padding: 40px 0px;
+}
+
+.about_us_image_div img {
+  width: 100%;
+  display: block;
+}
+
+.about_us_top_content_title {
+  padding: 60px 0px 0px 0px;
+}
+
+.about_us_top_content_title h2 {
+  font-size: 42px;
+  color: #124479;
+}
+
+.about_us_top_content_paragraph {
+  padding: 30px 0px 0px 0px;
+}
+
+.about_us_top_content_paragraph p {
+  font-size: 16px;
+}
+
+.about_us_top_content_paragraph p:last-child {
+  padding-top: 30px;
+}
+
+.about_us_top_content_button {
+  margin-top: 30px;
+  width: 200px;
+  padding: 10px;
+  background-color: #8dac2d;
+  color: #ffffff;
+  font-weight: bold;
+  border-radius: 2px;
+}
+
+/* About Us Top Content Ends */
+
+/* About Us Middle Content Starts */
+
+.about_us_middle_content {
+  background-image: url('../img/about_us_middle_content_img.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.about_us_middle_content_paragraph {
+  padding: 60px 80px;
+}
+
+.about_us_middle_content_paragraph p {
+  color: #fff;
+  font-size: 26px;
+}
+
+.about_us_middle_content_button {
+  margin: 0px 80px 60px 80px;
+  width: 200px;
+  padding: 10px;
+  background-color: #8dac2d;
+  color: #ffffff;
+  font-weight: bold;
+  border-radius: 2px;
+}
+
+/* About Us Middle Content Ends */
+
+/* About Us Bottom Content Starts */
+
+.about_us_bottom_content_airline_div {
+  padding: 60px 0px;
+}
+
+.about_us_bottom_content_title_div {
+  padding: 60px 0px 0px 0px;
+}
+
+.about_us_bottom_content_title_div h2 {
+  font-size: 42px;
+  color: #124479;
+}
+
+/* About Us Bottom Content Ends */
+
+/* ______________________________
+            Media CSS Starts
+________________________________ */
+
+/* Media Css for 320px to 480px starts*/
+
+@media (min-width: 320px) and (max-width: 480px) {
+  .page_title {
+    padding: 30px 0px;
+  }
+  .page_title h1 {
+    font-size: 30px;
+  }
+  .about_us_top_content_title {
+    padding: 30px 0px 0px 0px;
+  }
+  .about_us_top_content_title h2 {
+    font-size: 30px;
+    text-align: center;
+  }
+  .about_us_top_content_button {
+    margin-top: 30px;
+    margin-bottom: auto;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .about_us_middle_content_paragraph {
+    padding: 30px 0px;
+  }
+  .about_us_middle_content_paragraph br {
+    display: none;
+  }
+  .about_us_middle_content_paragraph p {
+    font-size: 18px;
+    text-align: center;
+  }
+  .about_us_middle_content_button {
+    margin-top: auto;
+    margin-bottom: 30px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .about_us_bottom_content_title_div {
+    padding: 30px 0px 0px 0px;
+  }
+  .about_us_bottom_content_title_div h2 {
+    font-size: 30px;
+  }
+  .about_us_bottom_content_airline_div {
+    padding: 30px 0px;
+  }
+  .about_us_bottom_content_airline_img_div {
+    padding-bottom: 20px;
+  }
+
+}
+
+/* Media Css for 320px to 480px ends*/
+
+/* Media Css for 481px to 767px starts*/
+@media (min-width: 481px) and (max-width: 767px) {
+  .page_title {
+    padding: 30px 0px;
+  }
+  .page_title h1 {
+    font-size: 35px;
+  }
+  .about_us_top_content_title {
+    padding: 30px 0px 0px 0px;
+  }
+  .about_us_top_content_title h2 {
+    font-size: 35px;
+    text-align: center;
+  }
+  .about_us_top_content_button {
+    margin-top: 30px;
+    margin-bottom: auto;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .about_us_middle_content_paragraph {
+    padding: 30px 0px;
+  }
+  .about_us_middle_content_paragraph br {
+    display: none;
+  }
+  .about_us_middle_content_paragraph p {
+    font-size: 18px;
+    text-align: center;
+  }
+  .about_us_middle_content_button {
+    margin-top: auto;
+    margin-bottom: 30px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .about_us_bottom_content_title_div {
+    padding: 30px 0px 0px 0px;
+  }
+  .about_us_bottom_content_title_div h2 {
+    font-size: 30px;
+  }
+  .about_us_bottom_content_airline_div {
+    padding: 30px 0px;
+  }
+  .about_us_bottom_content_airline_img_div {
+    padding-bottom: 20px;
+  }
+}
+/* Media Css for 481px to 767px ends*/
+
+/* Media Css for 768px to 1024px starts*/
+@media (min-width: 768px) and (max-width: 1024px) {
+  .about_us_bottom_content_airline_img_div {
+    padding-bottom: 20px;
+  }
+}
+/* Media Css for 768px to 1024px ends*/
+
+/* Media Css for 1025px to 1280px starts*/
+@media (min-width: 1025px) and (max-width: 1280px) {
+  .about_us_bottom_content_airline_img_div {
+    padding-bottom: 20px;
+  }
+}
+/* Media Css for 1025px to 1280px ends*/
