@@ -34,7 +34,15 @@
                                             <td>{{$row->description}}</td>
                                             <td>{{$row->subject_id}}</td>
                                             <td>{{$row->subject_type}}</td>
-                                            <td>{{$row->causer_id}}</td>
+                                            <td>
+                                                @if(isset($user_name[$row->causer_id]))
+                                                    {{$user_name[$row->causer_id]}}
+                                                @endif
+                                                <br>
+                                                @if(isset($user_email[$row->causer_id]))
+                                                    {{$user_email[$row->causer_id]}}
+                                                @endif
+                                            </td>
                                             <td>{{$row->causer_type}}</td>
                                             <td>{{$row->created_at}}</td>
                                             <td>{{$row->properties}}</td>
