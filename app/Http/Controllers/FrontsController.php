@@ -10,4 +10,8 @@ class FrontsController extends Controller
   {
     return view('front-pages.about_us');
   }
+  public function contactUs()
+  {
+    return view('front-pages.contact_us');
+  }
 }

@@ -20,6 +20,7 @@ Route::get('/','WelcomeController@index');
 /* ----- Front Pages Starts----- */
 
 Route::get('/about-us','FrontsController@aboutUs');
+Route::get('/contact-us','FrontsController@contactUs');
 
 /* ----- Front Pages Ends----- */
 
