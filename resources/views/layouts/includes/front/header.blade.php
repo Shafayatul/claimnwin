@@ -1,4 +1,5 @@
 <header class="bgf">
+      <div class="main_nav_container">
         <nav class="navbar main-nav">
           <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -57,4 +58,8 @@
             </div><!-- /.navbar-collapse -->
           </div><!-- /.container-fluid -->
         </nav>
+
+        @yield('page-title')
+      </div>
+
     </header>
