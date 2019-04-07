@@ -124,33 +124,67 @@
 
                 <div class="tab-pane fade" id="ticket" role="tabpanel" aria-labelledby="ticket-tab">
                     <div class="wrapper">
+                        <blockquote class="blockquote text-right">
+                          <p class="mb-0">Ticket ID: {{ $claims->ticket_id}}</p>
+                          <footer class="blockquote-footer">
+                            Status: 
+                            @if ($claims->ticket_status == '1')
+                            Pending
+                            @elseif ($claims->ticket_status == '2')
+                            In progress
+                            @else
+                            Closed
+                            @endif
+                          </footer>
+                        </blockquote>
+
+                        <div class="message_icon text-center">
+                            <i class="far fa-comment-alt"></i>
+                        </div>
+                        <div class="message_text text-center">
+                            <p>How can we help you today?</p>
+                        </div>
+                        <div class="message_underline_row">
+
+                        </div>
+                        <div class="user_message">
+                            <form class="user_message_form" action="{{ route('user-ticket-message') }}" method="post">
+                                {{ csrf_field() }}
+                                <i class="fas fa-pencil-alt prefix"></i>
+                                <textarea id="" class="" name="description" placeholder="Write a message"></textarea>
+                                <input type="hidden" name="ticket_id" value="{{ $claims->ticket_id }}">
+                                <div class="row">
+                                    <div class="col-md-12 text-right">
+                                        <button type="submit" name="button">Send</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="parent_div message_text">
+                            <p class="text-center">Chat Messages</p>
+                        </div>
 
 
-                        {{-- <div class="container mt-5 mb-5">
-            <div class="row">
-              <div class="col-md-6 offset-md-3 text-center">
-                <ul class="timeline">
-                  <li>
-                    <a target="_blank" href="https://www.totoprayogo.com/#">New Web Design</a>
-                    <a href="#" class="float-right">21 March, 2014</a>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque scelerisque diam non nisi semper, et elementum lorem ornare. Maecenas placerat facilisis mollis. Duis sagittis ligula in sodales vehicula....</p>
-                  </li>
-                  <li>
-                    <a href="#">21 000 Job Seekers</a>
-                    <a href="#" class="float-right">4 March, 2014</a>
-                    <p>Curabitur purus sem, malesuada eu luctus eget, suscipit sed turpis. Nam pellentesque felis vitae justo accumsan, sed semper nisi sollicitudin...</p>
-                  </li>
-                  <li>
-                    <a href="#">Awesome Employers</a>
-                    <a href="#" class="float-right">1 April, 2014</a>
-                    <p>Fusce ullamcorper ligula sit amet quam accumsan aliquet. Sed nulla odio, tincidunt vitae nunc vitae, mollis pharetra velit. Sed nec tempor nibh...</p>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div> --}}
+                        @foreach ($ticket_notes as $ticket_note)
+                        @if ($ticket_note->user_id == $claims->user_id)
+                        <div class="container_message">
+                            <img src="{{ asset('/front_asset/user_panel/img/avatar-user.png') }}" alt="Avatar" style="width:100%;">
+                            <p>{{ $ticket_note->description }}</p>
+                            <span class="time-right">{{ Carbon\Carbon::parse($ticket_note->created_at)->format('d-m-Y h:m A') }}</span>
+                        </div>
 
-                        <div class="parent_div">
+                        @else
+                        <div class="container_message darker">
+                            <img src="{{ asset('/front_asset/user_panel/img/avatar-admin.png') }}" alt="Avatar" class="right" style="width:100%;">
+                            <p>{{ $ticket_note->description }}</p>
+                            <span class="time-left">{{ Carbon\Carbon::parse($ticket_note->created_at)->format('d-m-Y h:m A') }}</span>
+                        </div>
+
+                        @endif
+                        @endforeach
+
+{{--                         <div class="parent_div">
                             <div class="ticket_table">
                                 <table class="table">
                                     <tbody>
@@ -177,7 +211,7 @@
                                     </tbody>
                                 </table>
                             </div>
-                        </div>
+                        </div> --}}
 
 
 
@@ -284,51 +318,7 @@
 </div>
 <div class="tab-pane fade" id="message" role="tabpanel" aria-labelledby="message-tab">
     <div class="wrapper">
-        <div class="message_icon text-center">
-            <i class="far fa-comment-alt"></i>
-        </div>
-        <div class="message_text text-center">
-            <p>How can we help you today?</p>
-        </div>
-        <div class="message_underline_row">
 
-        </div>
-        <div class="user_message">
-            <form class="user_message_form" action="{{ route('user-ticket-message') }}" method="post">
-                {{ csrf_field() }}
-                <i class="fas fa-pencil-alt prefix"></i>
-                <textarea id="" class="" name="description" placeholder="Write a message"></textarea>
-                <input type="hidden" name="ticket_id" value="{{ $claims->ticket_id }}">
-                <div class="row">
-                    <div class="col-md-12 text-right">
-                        <button type="submit" name="button">Send</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-
-        <div class="parent_div message_text">
-            <p class="text-center">Chat Messages</p>
-        </div>
-
-
-        @foreach ($ticket_notes as $ticket_note)
-        @if ($ticket_note->user_id == $claims->user_id)
-        <div class="container_message">
-            <img src="{{ asset('/front_asset/user_panel/img/avatar-user.png') }}" alt="Avatar" style="width:100%;">
-            <p>{{ $ticket_note->description }}</p>
-            <span class="time-right">{{ Carbon\Carbon::parse($ticket_note->created_at)->format('d-m-Y h:m A') }}</span>
-        </div>
-
-        @else
-        <div class="container_message darker">
-            <img src="{{ asset('/front_asset/user_panel/img/avatar-admin.png') }}" alt="Avatar" class="right" style="width:100%;">
-            <p>{{ $ticket_note->description }}</p>
-            <span class="time-left">{{ Carbon\Carbon::parse($ticket_note->created_at)->format('d-m-Y h:m A') }}</span>
-        </div>
-
-        @endif
-        @endforeach
 
 
 
