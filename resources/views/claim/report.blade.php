@@ -5,19 +5,19 @@
 <div class="forms">
     <div class="form-grids row widget-shadow" data-example-id="basic-forms">
         <div class="form-title">
-            <h4>List of Claims</h4>
+            <h4>Report</h4>
         </div>
 
         <div class="form-body">
             <div class="card">
                 <div class="card-body">
 
-                  {!! Form::open(['method' => 'GET', 'url' => url('/manage-affiliate'), 'class' => 'form-inline my-2 my-lg-0 float-right', 'role' => 'search']) !!}
+                  {!! Form::open(['method' => 'GET', 'url' => url('/manage-report'), 'class' => 'form-inline my-2 my-lg-0 float-right', 'role' => 'search']) !!}
                   <div class="row">
                     <div class="col-md-2">
                       <div class="input-group">
-                        <label>Claim Id</label>
-                          <input type="text" class="form-control" name="s_claim_id" placeholder="Claim Id" value="{{ request('s_claim_id') }}">
+                        <label>Airline</label>
+                          <input type="text" class="form-control" name="s_airline" placeholder="Name" value="{{ request('s_airline') }}">
                       </div>
                     </div>
                     <div class="col-md-2">
@@ -98,7 +98,10 @@
 	                                    {{$row->affiliate_commision}}%
 	                                </td>
 	                                <td>
-	                                    {{$claim_status[$row->claim_status_id]}}
+	                                    @if(isset($claim_status[$row->claim_status_id]))
+	                                    	{{$claim_status[$row->claim_status_id]}}
+	                                    @endif
+	                                    
 	                                </td>
                             </tr>
                             @endforeach

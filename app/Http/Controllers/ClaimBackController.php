@@ -30,14 +30,15 @@ class ClaimBackController extends Controller
     public function index_report(Request $request)
     {
 
-        $s_claim_id        = $request->get('s_claim_id');
+        $s_airline        = $request->get('s_airline');
         $s_claim_status    = $request->get('s_claim_status');
         $s_starting_date   = $request->get('s_starting_date');
         $s_end_date        = $request->get('s_end_date');
-        if ((!empty($s_claim_id)) || (!empty($s_claim_status)) || (!empty($s_starting_date)) || (!empty($s_end_date))) {
+        if ((!empty($s_airline)) || (!empty($s_claim_status)) || (!empty($s_starting_date)) || (!empty($s_end_date))) {
             $claims = Claim::whereNotNull('id');
-            if(!empty($s_claim_id)){
-                $claims = $claims->Where('id', $s_claim_id);
+            if(!empty($s_airline)){
+                $airline_id = Airline::where('name', $s_airline)->first()->id;
+                $claims = $claims->Where('airline_id', $airline_id);
             }
             if(!empty($s_claim_status)){
                 $claims = $claims->Where('claim_status_id', $s_claim_status);
@@ -48,7 +49,7 @@ class ClaimBackController extends Controller
             if(!empty($s_end_date)){
                 $claims = $claims->Where('created_at', '<=', $s_end_date.' 00:00:00');
             }
-            $claims = $claims->where('is_deleted',0)->whereNotNull('affiliate_user_id')->latest()->paginate(10);
+            $claims = $claims->latest()->paginate(15);
 
         }else{
             $claims = Claim::latest()->paginate(15);
