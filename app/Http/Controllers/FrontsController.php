@@ -14,4 +14,8 @@ class FrontsController extends Controller
   {
     return view('front-pages.contact_us');
   }
+  public function faq()
+  {
+    return view('front-pages.faq');
+  }
 }
