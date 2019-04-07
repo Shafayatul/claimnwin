@@ -228,7 +228,7 @@ class ClaimBackController extends Controller
         $flightInfo=Flight::where('flight_no',$flightNo)->first();
 
 
-        $claimFiles = ClaimFile::all();
+        $claimFiles = ClaimFile::where('claim_id',$id)->latest()->get();
 
         $notes = Note::where('claim_id',$id)->latest()->get();
 
