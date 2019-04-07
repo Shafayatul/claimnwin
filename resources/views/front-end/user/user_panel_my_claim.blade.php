@@ -17,7 +17,7 @@
         <div class="row">
             <div class="col-md-3">
                 <div class="parent_div text-center">
-                    <span class="bold_span">Claim:</span> {{ $claims->subject }}
+                    <span class="bold_span">Claim:</span> {{ str_replace('_', ' ', ucfirst( $claims->subject)) }}
                 </div>
             </div>
             <div class="col-md-3 text-center">
@@ -160,7 +160,7 @@
                                         </tr>
                                         <tr>
                                             <th scope="col" class="text-center">Ticket Subject:</th>
-                                            <td class="text-center">{{ $claims->subject }}</td>
+                                            <td class="text-center">{{ str_replace('_', ' ', ucfirst( $claims->subject)) }}</td>
                                         </tr>
                                         <tr>
                                             <th scope="col" class="text-center">Ticket Status:</th>
