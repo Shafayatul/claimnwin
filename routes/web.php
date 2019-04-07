@@ -99,6 +99,7 @@ Route::resource('claim-status', 'ClaimStatusController');
 Route::resource('next-step', 'NextStepController');
 Route::resource('settings', 'SettingsController');
 
+Route::get('/manage-report', 'ClaimBackController@index_report');
 Route::get('/manage-affiliate', 'ClaimBackController@index_affiliate');
 Route::get('/manage-claim/user/{id}', 'ClaimBackController@index_by_user');
 Route::get('/manage-claim', 'ClaimBackController@index');
