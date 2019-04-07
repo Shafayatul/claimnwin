@@ -22,7 +22,8 @@ class TicketNotesController extends Controller
         $requestData = $request->all();
 
         TicketNote::create($requestData);
-        return redirect('tickets')->with('success', 'TicketNote added!');
+        // return redirect('tickets')->with('success', 'TicketNote added!');
+        return redirect()->back()->with('success', 'TicketNote added!');
     }
 
 

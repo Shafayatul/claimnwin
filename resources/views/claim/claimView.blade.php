@@ -1272,7 +1272,7 @@
 
     <!-- Heading -->
     <div class="panel-heading">
-        <h2 class="panel-title pull-left">Name</h2>
+        <h2 class="panel-title pull-left">{{-- Name --}}</h2>
         <h2 class="panel-title pull-right">{{Carbon\Carbon::parse($row->created_at)->format('d-m-Y')}} at {{Carbon\Carbon::parse($row->created_at)->format('H:i A')}}</h2>
     </div>
     <!-- /Heading -->

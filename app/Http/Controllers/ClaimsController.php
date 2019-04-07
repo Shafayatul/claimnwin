@@ -633,53 +633,34 @@ class ClaimsController extends Controller
                 $cnt++;
             }
         }
-
+// -----------------------------
         // store files
-        \Log::debug($request->file('file_name'));
-        $all_files = $request->file('file_name');
-        // $file1 = $file_name[1]['file'];
-        $claim_id = $claim->id;
-        for($i=0; $i<count($all_files); $i++) {   
-            $file = $all_files[$i];
+        if ($request->file('file_name') !== null) {
+            $all_files = $request->file('file_name');
+            // $file1 = $file_name[1]['file'];
+            $claim_id = $claim->id;
+            for($i=0; $i<count($all_files); $i++) {   
+                $file = $all_files[$i];
 
-            $file_name = sha1(date('YmdHis') . str_random(30));
-            $name = $file_name . '.' . $file->getClientOriginalExtension();
+                $file_name = sha1(date('YmdHis') . str_random(30));
+                $name = $file_name . '.' . $file->getClientOriginalExtension();
 
-            if(!File::exists(public_path('/uploads').'/'.$claim_id)) {
-                File::makeDirectory(public_path('/uploads').'/'.$claim_id);
+                if(!File::exists(public_path('/uploads').'/'.$claim_id)) {
+                    File::makeDirectory(public_path('/uploads').'/'.$claim_id);
+                }
+
+                $file->move(public_path('/uploads').'/'.$claim_id.'/', $name);
+
+                $claim_file             = new ClaimFile();
+                $claim_file->name       = "Uploaded by user";
+                $claim_file->file_name  = $name;
+                $claim_file->user_id    = Auth::user()->id;
+                $claim_file->claim_id   = $claim_id;
+                $claim_file->save();
             }
-
-            $file->move(public_path('/uploads').'/'.$claim_id.'/', $name);
-
-            $claim_file             = new ClaimFile();
-            $claim_file->name       = "Uploaded by user";
-            $claim_file->file_name  = $name;
-            $claim_file->user_id    = Auth::user()->id;
-            $claim_file->claim_id   = $claim_id;
-            $claim_file->save();
         }
-        // foreach ($request->file('file_name') as $key => $value) {
-        //     if ($request->hasFile('file_name')[$key]) {
-        //         $claim_id = $request->claim_id;
-        //         $file = $request->file('file_name')[$key];
 
-        //         $file_name = sha1(date('YmdHis') . str_random(30));
-        //         $name = $file_name . '.' . $file->getClientOriginalExtension();
 
-        //         if(!File::exists(public_path('/uploads').'/'.$claim_id)) {
-        //             File::makeDirectory(public_path('/uploads').'/'.$claim_id);
-        //         }
-
-        //         $file->move(public_path('/uploads').'/'.$claim_id.'/', $name);
-
-        //         $claim_file             = new ClaimFile();
-        //         $claim_file->name       = 'Uploaded by user';
-        //         $claim_file->file_name  = $name;
-        //         $claim_file->user_id    = Auth::user()->id;
-        //         $claim_file->claim_id   = $claim_id;
-        //         $claim_file->save();
-        //     }
-        // }
 
 
 

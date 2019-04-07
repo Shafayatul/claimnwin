@@ -42,7 +42,7 @@
                             @foreach($tickets as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item->subject }}</td>
+                                    <td>{{ ucfirst(str_replace('_', ' ', $item->subject)) }}</td>
                                     <td>{{ $item->status }}</td>
                                     <td>
                                         <a href="{{ url('/tickets/' . $item->id) }}" title="View Ticket"><button class="btn btn-info btn-sm"><i class="fa fa-comment" aria-hidden="true"></i> Reply</button></a>

@@ -26,6 +26,57 @@ use Auth;
 
 class ClaimBackController extends Controller
 {
+
+    public function index_report(Request $request)
+    {
+
+        $s_airline        = $request->get('s_airline');
+        $s_claim_status    = $request->get('s_claim_status');
+        $s_starting_date   = $request->get('s_starting_date');
+        $s_end_date        = $request->get('s_end_date');
+        if ((!empty($s_airline)) || (!empty($s_claim_status)) || (!empty($s_starting_date)) || (!empty($s_end_date))) {
+            $claims = Claim::whereNotNull('id');
+            if(!empty($s_airline)){
+                $airline_id = Airline::where('name', $s_airline)->first()->id;
+                $claims = $claims->Where('airline_id', $airline_id);
+            }
+            if(!empty($s_claim_status)){
+                $claims = $claims->Where('claim_status_id', $s_claim_status);
+            }
+            if(!empty($s_starting_date)){
+                $claims = $claims->Where('created_at', '>=', $s_starting_date.' 00:00:00');
+            }
+            if(!empty($s_end_date)){
+                $claims = $claims->Where('created_at', '<=', $s_end_date.' 00:00:00');
+            }
+            $claims = $claims->latest()->paginate(15);
+
+        }else{
+            $claims = Claim::latest()->paginate(15);
+        }
+
+        
+        $claim_id_array = [];
+        $user_id_array = [];
+        $airline_id_array = [];
+        foreach($claims as $claim){
+            array_push($claim_id_array, $claim->id);
+            array_push($user_id_array, $claim->user_id);
+            array_push($airline_id_array, $claim->airline_id);
+        }
+        
+        $user_id_array = array_unique($user_id_array);
+        $user_all = User::whereIn('id', $user_id_array)->pluck('name', 'id');
+        $airlines = Airline::whereIn('id', $airline_id_array)->pluck('name', 'id');
+
+
+        $claim_status=ClaimStatus::pluck('name', 'id');
+
+        return view('claim.report',compact('claims', 'user_all', 'claim_status', 'airlines'));
+    }
+
+
+
     public function index_affiliate(Request $request)
     {
 
@@ -177,7 +228,7 @@ class ClaimBackController extends Controller
         $flightInfo=Flight::where('flight_no',$flightNo)->first();
 
 
-        $claimFiles = ClaimFile::all();
+        $claimFiles = ClaimFile::where('claim_id',$id)->latest()->get();
 
         $notes = Note::where('claim_id',$id)->latest()->get();
 
