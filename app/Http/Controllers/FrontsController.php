@@ -18,4 +18,8 @@ class FrontsController extends Controller
   {
     return view('front-pages.faq');
   }
+  public function app()
+  {
+    return view('front-pages.app_page');
+  }
 }
