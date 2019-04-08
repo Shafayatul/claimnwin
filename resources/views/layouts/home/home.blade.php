@@ -129,5 +129,56 @@
 @endsection
 
 @section('content')
-
+<div class="container">
+  <div class="how_it_works_div">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="how_it_works_title_div text-center">
+              <h1>HOW IT WORKS</h1>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="how_it_works_lower_div">
+            <div class="col-md-4 text-center">
+              <div class="how_it_works_background_icon_div">
+                <div class="how_it_works_icon_div">
+                  <img src="{{ asset('/front_asset/front_pages_asset/img/homepage_how_it_works_compensation.png') }}" alt="">
+                </div>
+              </div>
+              <div class="how_it_works_text_div">
+                <p class="how_it_works_text_upper_p_div">Check your compensation</p>
+                <p class="how_it_works_text_lower_p_div">Submit your details and we run a quick flight check to see if the airline owes you money.</p>
+              </div>
+            </div>
+            <div class="col-md-4 text-center">
+              <div class="how_it_works_background_icon_div">
+                <div class="how_it_works_icon_div">
+                  <img src="{{ asset('/front_asset/front_pages_asset/img/homepage_how_it_works_admin_setting_male.png') }}" alt="">
+                </div>
+              </div>
+              <div class="how_it_works_text_div">
+                <p class="how_it_works_text_upper_p_div">Claim'N Win manages you  claim</p>
+                <p class="how_it_works_text_lower_p_div">We're very good at this, so you sit back and relax while we jump into action.</p>
+              </div>
+            </div>
+            <div class="col-md-4 text-center">
+              <div class="how_it_works_background_icon_div">
+                <div class="how_it_works_icon_div">
+                  <img src="{{ asset('/front_asset/front_pages_asset/img/homepage_how_it_works_receive_cash.png') }}" alt="">
+                </div>
+              </div>
+              <div class="how_it_works_text_div">
+                <p class="how_it_works_text_upper_p_div">We send you the money</p>
+                <p class="how_it_works_text_lower_p_div">We get it to you as quickly as we can, with regular updates along the way.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 @endsection
