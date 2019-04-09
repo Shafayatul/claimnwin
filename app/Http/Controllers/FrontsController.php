@@ -18,4 +18,8 @@ class FrontsController extends Controller
   {
     return view('front-pages.faq');
   }
+  public function termsAndConditions()
+  {
+    return view('front-pages.terms_n_condition');
+  }
 }
