@@ -37,7 +37,7 @@
 
                                                 <th>CLAIM ID</th>
                                                 <th>User Email</th>
-                                                {{-- <th>DEPATED/FINAL DESTINATION</th> --}}
+                                                <th>DEPATED/FINAL DESTINATION</th>
                                                 <th>CLAIM TYPE</th>
                                                 <th>AIRLINE/FLIGHT NO</th>
                                                 <th>Affiliate</th>
@@ -48,26 +48,39 @@
                                             @foreach($claims as $row)
                                             <tr>
 
-                                            <td><a href="{{url('/claim-view/'.$row->id)}}">{{$row->id}}</a></td>
                                                 <td>
+                                                    <a href="{{url('/claim-view/'.$row->id)}}">{{$row->id}}</a>
+                                                </td>
+                                                <td>
+                                                    @if(isset($passenger[$row->id]['email']))
                                                         {{$passenger[$row->id]['email']}}
+                                                    @endif
                                                     <br>
                                                     <a href="#"></a>
                                                 </td>
-{{-- 
+    
                                                 <td>
-                                                        {{$airport[$row->departed_from_id]}}<br/>
-
+                                                    @if(isset($airport[$row->final_destination_id]))
+                                                        {{$airport[$row->departed_from_id]}}
+                                                    @endif
+                                                    <br/>
+                                                    @if(isset($airport[$row->final_destination_id]))
                                                         {{$airport[$row->final_destination_id]}}
-                                                </td> --}}
+                                                    @endif
+                                                        
+                                                </td>
 
 
                                                 <td>
                                                     {{str_replace('_', ' ', ucfirst($row->claim_table_type)) }}
                                                 </td>
                                                  <td>
-                                                    {{$airline[$claim_and_airline_array[$row->id]['airline_id']]}}
-                                                    {{$airline[$claim_and_airline_array[$row->id]['airline_id']]}}
+                                                    
+                                                    @if($row->airline_id !="")
+                                                        {{$airline[$claim_and_airline_array[$row->id]['airline_id']]}}
+                                                    @endif
+                                                    
+                                                    
                                                 </td>
                                                 <td>
                                                     @if($row->affiliate_user_id != "")
