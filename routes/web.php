@@ -22,15 +22,12 @@ Route::get('/','WelcomeController@index');
 Route::get('/about-us','FrontsController@aboutUs');
 Route::get('/contact-us','FrontsController@contactUs');
 Route::get('/faq','FrontsController@faq');
-<<<<<<< HEAD
 Route::get('/terms-and-conditions','FrontsController@termsAndConditions');
 Route::get('/privacy-policy','FrontsController@privacyPolicy');
 Route::get('/pricing-list','FrontsController@pricingList');
 Route::get('/press-blog','FrontsController@pressBlog');
-=======
 Route::get('/app','FrontsController@app');
 
->>>>>>> d3110931b34855480e890367eff9cb56713c59e4
 /* ----- Front Pages Ends----- */
 
 
