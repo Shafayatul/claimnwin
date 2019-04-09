@@ -22,4 +22,8 @@ class FrontsController extends Controller
   {
     return view('front-pages.terms_n_condition');
   }
+  public function privacyPolicy()
+  {
+    return view('front-pages.privacy_policy');
+  }
 }

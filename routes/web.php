@@ -23,6 +23,7 @@ Route::get('/about-us','FrontsController@aboutUs');
 Route::get('/contact-us','FrontsController@contactUs');
 Route::get('/faq','FrontsController@faq');
 Route::get('/terms-and-conditions','FrontsController@termsAndConditions');
+Route::get('/privacy-policy','FrontsController@privacyPolicy');
 
 /* ----- Front Pages Ends----- */
 
