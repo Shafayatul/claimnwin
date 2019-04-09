@@ -1,74 +1,401 @@
 @extends('layouts.front_layout')
+
+@section('header-script')
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<link  href="{{asset('front_asset/front_pages_asset/css/slick.css')}}" rel="stylesheet">
+<link  href="{{asset('front_asset/front_pages_asset/css/slick-theme.css')}}" rel="stylesheet">
+<link  href="{{asset('front_asset/front_pages_asset/css/home.css')}}" rel="stylesheet">
+
+@endsection
+
+@section('page-title')
+  <div class="container">
+    <div class="row">
+      <div class="col-md-7">
+        <div class="home_top_header_div">
+          <div class="row">
+            <div class="col-md-12" style="margin: 0px; padding: 0px;">
+              <div class="home_top_header_title_h1_div">
+                <h1>When travel goes wrong, <span class="extra_color">we </br>make it right.</span></h1>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-9" style="margin: 0px; padding: 0px;">
+              <div class="home_top_header_title_p_div">
+                <p>Travel disruptions happen, but that doesn't mean you have to accept them.</p>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12" style="margin: 0px; padding: 0px;">
+              <div class="home_top_header_title_ul_div">
+                <ul class="fa-ul">
+                  <li><i class="fas fa-check-circle"></i>Get up to €1300 for a cancelled, overbooked or delayed flight.</li>
+                  <li><i class="fas fa-check-circle"></i>Get up to $3400 for a luggage issue.</li>
+                  <li><i class="fas fa-check-circle"></i>Get up to $7000 for expenses you incurred as a result of your distrupted flight.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="home_top_header_departed_destination_div">
+                <form class="" action="index.html" method="post">
+                  <div class="row">
+                    <div class="col-md-4 col-xs-4" style="margin: 0px; padding: 0px;">
+                      <input class="common_input no_right_border" type="text" name="" value="" placeholder="Departed From">
+                    </div>
+                    <div class="col-md-4 col-xs-4" style="margin: 0px; padding: 0px;">
+                      <input class="common_input" type="text" name="" value="" placeholder="Final Destination">
+                    </div>
+                    <div class="col-md-4 col-xs-4" style="margin: 0px; padding: 0px;">
+                      <button class="common_button" type="button" name="button">CHECK COMPENSATION</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12" style="margin: 0px; padding: 0px;">
+              <div class="home_top_header_options_div">
+                <div class="row">
+                  <div class="col-md-3 col-xs-6 padding_left_right_none">
+                    <div class="row padding_bottom">
+                      <div class="col-md-3 col-xs-3" style="padding: 0px;">
+                        <div class="home_top_header_option_icon_div">
+                          <img src="{{ asset('/front_asset/front_pages_asset/img/homepage_top_header_free_icon.png') }}" alt="">
+                        </div>
+                      </div>
+                      <div class="col-md-9 col-xs-9" style="margin: 0px; padding: 0px;">
+                        <div class="home_top_header_option_text_div text-center">
+                          <p class="home_top_header_option_text_p_title_div">It's FREE</p>
+                          <p class="home_top_header_option_text_p_normal_div">to claim</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-3 col-xs-6 padding_left_right_none">
+                    <div class="row padding_bottom">
+                      <div class="col-md-3 col-xs-3" style="padding: 0px;">
+                        <div class="home_top_header_option_icon_div">
+                          <img src="{{ asset('/front_asset/front_pages_asset/img/homepage_top_header_dollar_icon.png') }}" alt="">
+                        </div>
+                      </div>
+                      <div class="col-md-9 col-xs-9" style="margin: 0px; padding: 0px;">
+                        <div class="home_top_header_option_text_div text-center">
+                          <p class="home_top_header_option_text_p_title_div">Up to €600</p>
+                          <p class="home_top_header_option_text_p_normal_div">compensation</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-3 col-xs-6 padding_left_right_none">
+                    <div class="row padding_bottom">
+                      <div class="col-md-3 col-xs-3" style="padding: 0px;">
+                        <div class="home_top_header_option_icon_div">
+                          <img src="{{ asset('/front_asset/front_pages_asset/img/homepage_top_header_group_icon.png') }}" alt="">
+                        </div>
+                      </div>
+                      <div class="col-md-9 col-xs-9" style="margin: 0px; padding: 0px;">
+                        <div class="home_top_header_option_text_div text-center">
+                          <p class="home_top_header_option_text_p_title_div">Trusted</p>
+                          <p class="home_top_header_option_text_p_normal_div">by millions</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-3 col-xs-6 padding_left_right_none">
+                    <div class="row padding_bottom">
+                      <div class="col-md-3 col-xs-3" style="padding: 0px;">
+                        <div class="home_top_header_option_icon_div">
+                          <img src="{{ asset('/front_asset/front_pages_asset/img/homepage_top_header_bank_icon.png') }}" alt="">
+                        </div>
+                      </div>
+                      <div class="col-md-9 col-xs-9" style="margin: 0px; padding: 0px;">
+                        <div class="home_top_header_option_text_div text-center">
+                          <p class="home_top_header_option_text_p_title_div">8 Billion EUR</p>
+                          <p class="home_top_header_option_text_p_normal_div">available to claim</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+@endsection
+
 @section('content')
-<main class="mainBanner">
-        <div class="container">
-            <div class="banner-content text-center">
-                <h1 class="fw-6">Get our free mobile app</h1>
-                <h2 class="fw-5">Submit your claim from the airport. Download our app now!</h2>
-                <a href="#">
-                <img src="{{asset('front_asset/')}}/img/apple.png" alt="apple app">
-                </a>
-                <a href="#">
-                    <img src="{{asset('front_asset/')}}/img/google.png" alt="google app">
-                </a>
-            </div><!-- /.banner-content -->
-        </div><!-- /.container -->
-    </main>
+<div class="container">
+  <!-- How it works div starts -->
+  <div class="how_it_works_div">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="how_it_works_title_div text-center">
+              <h1>HOW IT WORKS</h1>
+            </div>
+          </div>
+        </div>
+        <div class="how_it_works_lower_div">
+          <div class="row">
+            <div class="col-md-4 text-center margin_bottom">
+              <div class="how_it_works_background_icon_div">
+                <div class="how_it_works_icon_div">
+                  <img src="{{ asset('/front_asset/front_pages_asset/img/homepage_how_it_works_compensation.png') }}" alt="">
+                </div>
+              </div>
+              <div class="how_it_works_text_div">
+                <p class="how_it_works_text_upper_p_div">Check your compensation</p>
+                <p class="how_it_works_text_lower_p_div">Submit your details and we run a quick flight check to see if the airline owes you money.</p>
+              </div>
+            </div>
+            <div class="col-md-4 text-center margin_bottom">
+              <div class="how_it_works_background_icon_div">
+                <div class="how_it_works_icon_div">
+                  <img src="{{ asset('/front_asset/front_pages_asset/img/homepage_how_it_works_admin_setting_male.png') }}" alt="">
+                </div>
+              </div>
+              <div class="how_it_works_text_div">
+                <p class="how_it_works_text_upper_p_div">Claim'N Win manages you  claim</p>
+                <p class="how_it_works_text_lower_p_div">We're very good at this, so you sit back and relax while we jump into action.</p>
+              </div>
+            </div>
+            <div class="col-md-4 text-center margin_bottom">
+              <div class="how_it_works_background_icon_div">
+                <div class="how_it_works_icon_div">
+                  <img src="{{ asset('/front_asset/front_pages_asset/img/homepage_how_it_works_receive_cash.png') }}" alt="">
+                </div>
+              </div>
+              <div class="how_it_works_text_div">
+                <p class="how_it_works_text_upper_p_div">We send you the money</p>
+                <p class="how_it_works_text_lower_p_div">We get it to you as quickly as we can, with regular updates along the way.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  <!-- How it works div ends -->
 
-    <div class="intro">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <section>
-                        <h2>Get our free mobile app</h2>
-                        <p>Our team of Delayed Flight experts and solicitors will manage your claim from start to finish while keeping you updated along the way.</p>
-                        <p>We are dedicated to ensuring the best possible outcome for your claim. You will  receive all of the money you are entitled to and we will save you the time and hassle of going it alone.</p>
+  <!-- What customer say div starts -->
 
-                        <h3>Check for delays </h3>
-                        <p>You need to download our app to do this. Thousands of customers have benefited from this app so far!</p>
+  <div class="what_customer_say_div">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="what_customer_say_title_div text-center">
+            <h1>WHAT OUR CUSTOMERS SAY</h1>
+          </div>
+        </div>
+      </div>
+      <div class="what_customer_say_lower_div">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="slider-area slider">
+              <div class="sliding_div">
+                <div class="sliding_div_rating_div">
+                  <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
+                  <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
+                  <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
+                  <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
+                  <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
+                </div>
+                <div class="sliding_div_title_p_div">
+                  <p>Great advisor and transparent...</p>
+                </div>
+                <div class="sliding_div_text_p_div">
+                  <p>Great advisor and transparent communication</br> about the process. Fast turn around too.</br> Strongly recomend it</p>
+                </div>
+                <div class="sliding_div_customer_name_div">
+                  <p>Denise Roberts</p>
+                </div>
+              </div>
+              <div class="sliding_div">
+                <div class="sliding_div_rating_div">
+                  <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
+                  <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
+                  <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
+                  <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
+                  <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
+                </div>
+                <div class="sliding_div_title_p_div">
+                  <p>Great advisor and transparent...</p>
+                </div>
+                <div class="sliding_div_text_p_div">
+                  <p>Great advisor and transparent communication</br> about the process. Fast turn around too.</br> Strongly recomend it</p>
+                </div>
+                <div class="sliding_div_customer_name_div">
+                  <p>Clare Burchell</p>
+                </div>
+              </div>
+              <div class="sliding_div">
+                <div class="sliding_div_rating_div">
+                  <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
+                  <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
+                  <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
+                  <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
+                  <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
+                </div>
+                <div class="sliding_div_title_p_div">
+                  <p>Great advisor and transparent...</p>
+                </div>
+                <div class="sliding_div_text_p_div">
+                  <p>Great advisor and transparent communication</br> about the process. Fast turn around too.</br> Strongly recomend it</p>
+                </div>
+                <div class="sliding_div_customer_name_div">
+                  <p>Kjell Caminha</p>
+                </div>
+              </div>
+              <div class="sliding_div">
+                <div class="sliding_div_rating_div">
+                  <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
+                  <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
+                  <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
+                  <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
+                  <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
+                </div>
+                <div class="sliding_div_title_p_div">
+                  <p>Great advisor and transparent...</p>
+                </div>
+                <div class="sliding_div_text_p_div">
+                  <p>Great advisor and transparent communication</br> about the process. Fast turn around too.</br> Strongly recomend it</p>
+                </div>
+                <div class="sliding_div_customer_name_div">
+                  <p>Sarah Green</p>
+                </div>
+              </div>
+              <div class="sliding_div">
+                <div class="sliding_div_rating_div">
+                  <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
+                  <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
+                  <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
+                  <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
+                  <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
+                </div>
+                <div class="sliding_div_title_p_div">
+                  <p>Great advisor and transparent...</p>
+                </div>
+                <div class="sliding_div_text_p_div">
+                  <p>Great advisor and transparent communication</br> about the process. Fast turn around too.</br> Strongly recomend it</p>
+                </div>
+                <div class="sliding_div_customer_name_div">
+                  <p>Denise Roberts</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-                         <h3>Don’t forget to check on past flights! </h3>
-                        <p>The latest regulations entitle you to claim compensation for delayed or cancelled flights dating back several years (as well as some denied boarding on domestic flights). Download the Claim’N Win app to check past flights!</p>
-                    </section>
-                </div><!-- /.col-md-6 -->
-                <div class="col-md-6 text-center">
-                    <img src="{{asset('front_asset/')}}/img/mobiles.png" alt="Mobiles">
-                </div><!-- /.col-md-6 -->
-            </div><!-- /.row -->
-        </div><!-- /.container -->
-    </div><!-- /.intro -->
+  <!-- What customer say div ends -->
+
+  <!-- Our Process div Starts -->
+  <div class="our_process_div">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="our_process_div_title_div text-center">
+            <h1>OUR PROCESS</h1>
+          </div>
+        </div>
+      </div>
+      <div class="our_process_lower_div">
+        <div class="row">
+          <div class="col-md-3 col-sm-6 col-xs-6 our_process_padding_bottom">
+            <div class="our_process_lower_div_icon_div text-center">
+              <img class="" src="{{ asset('/front_asset/front_pages_asset/img/homepage_our_process_calculator.png') }}" alt="">
+            </div>
+            <div class="our_process_lower_div_icon_text_div text-center">
+              <p>Check your flight with</br> our industry-leading</br> calculator </p>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-6 col-xs-6 our_process_padding_bottom">
+            <div class="our_process_lower_div_icon_div text-center">
+              <img class="" src="{{ asset('/front_asset/front_pages_asset/img/homepage_our_process_passenger_with_bag.png') }}" alt="">
+            </div>
+            <div class="our_process_lower_div_icon_text_div text-center">
+              <p>Add passenger details </br> then submit your claim </p>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-6 col-xs-6 our_process_padding_bottom">
+            <div class="our_process_lower_div_icon_div text-center">
+              <img class="" src="{{ asset('/front_asset/front_pages_asset/img/homepage_our_process_collaboration.png') }}" alt="">
+            </div>
+            <div class="our_process_lower_div_icon_text_div text-center">
+              <p>We negotiate with the </br> airline for you and take it </br> to court in necessary </p>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-6 col-xs-6 our_process_padding_bottom">
+            <div class="our_process_lower_div_icon_div text-center">
+              <img class="" src="{{ asset('/front_asset/front_pages_asset/img/homepage_our_process_cash_in_hand.png') }}" alt="">
+            </div>
+            <div class="our_process_lower_div_icon_text_div text-center">
+              <p>Your claim is settled and </br> your compensation </br> paid to you </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Our Process div ends -->
+
+  <!-- Free Process div Starts -->
+  <div class="about_us_middle_content">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-sm-12 col-xs-12 col-12">
+          <div class="about_us_middle_content_paragraph">
+            <p>Our Services are 100% no win no fee, </br>meaning there's no financial risk to you, </br> even if your claim is unsuccessfull.</p>
+          </div>
+        </div>
+      </div>
+      <div class="about_us_middle_content_button text-center">
+        <button type="button" name="button">CLAIM MY MONEY</button>
+      </div>
+    </div>
+  </div>
+  <!-- Free Process div ends -->
 
 
-    <div class="inner-banner">
-        <div class="container">
-            <h1 class="fw-5">Get compensation when your travel plans don’t go as planned.</h1>
-            <p class="fw-4">If you’ve been on a delayed, cancelled, or diverted flight in the last three years, the airlines might owe you money for your troubles. Check with Claim’N Win to see if your flight qualifies for compensation.</p>
-            <a href="#">Check your compensation</a>
-        </div><!-- /.cnotainer -->
-    </div><!-- /.inner-banner -->
 
-    <div class="features">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="feature-card">
-                        <h2 class="fw-5">Get our free mobile app</h2>
-                        <p class="fw-4">You could receive up to €600 if your flight is delayed, canceled, or you were denied boarding. We handle your claim on a “No Win, No Fee” basis.</p>
-                    </div><!-- /.feature-card -->
-                </div><!-- /.col-md-4 -->
-                <div class="col-md-4">
-                    <div class="feature-card">
-                        <h2 class="fw-5">Get our free mobile app</h2>
-                        <p class="fw-4">You could receive up to €600 if your flight is delayed, canceled, or you were denied boarding. We handle your claim on a “No Win, No Fee” basis.</p>
-                    </div><!-- /.feature-card -->
-                </div><!-- /.col-md-4 -->
-                <div class="col-md-4">
-                    <div class="feature-card">
-                        <h2 class="fw-5">Get our free mobile app</h2>
-                        <p class="fw-4">You could receive up to €600 if your flight is delayed, canceled, or you were denied boarding. We handle your claim on a “No Win, No Fee” basis.</p>
-                    </div><!-- /.feature-card -->
-                </div><!-- /.col-md-4 -->
-            </div><!-- /.row -->
-        </div><!-- /.container -->
-    </div><!-- /.features -->
+
+@endsection
+
+@section('footer-script')
+  <script src="{{asset('front_asset/front_pages_asset/js/slick.js')}}"></script>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      console.log($( window ).width());
+    });
+    if ($( window ).width() > 767) {
+      $(".slider-area").slick({
+          dots: true,
+          infinite: true,
+          slidesToShow: 4,
+          slidesToScroll: 1
+
+        });
+    }else {
+      $(".slider-area").slick({
+          dots: true,
+          infinite: true,
+          slidesToShow: 1,
+          slidesToScroll: 1
+
+        });
+    }
+
+  </script>
 @endsection

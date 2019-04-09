@@ -17,6 +17,20 @@ use Illuminate\Support\Facades\Route;
 /*----FrontEnd Route----*/
 Route::get('/','WelcomeController@index');
 
+/* ----- Front Pages Starts----- */
+
+Route::get('/about-us','FrontsController@aboutUs');
+Route::get('/contact-us','FrontsController@contactUs');
+Route::get('/faq','FrontsController@faq');
+Route::get('/terms-and-conditions','FrontsController@termsAndConditions');
+Route::get('/privacy-policy','FrontsController@privacyPolicy');
+Route::get('/pricing-list','FrontsController@pricingList');
+Route::get('/press-blog','FrontsController@pressBlog');
+Route::get('/app','FrontsController@app');
+
+/* ----- Front Pages Ends----- */
+
+
 Route::get('user/signup/{encrypt_user_id?}','UserPanelController@user_signup')->name('user/signup');
 Route::get('/user/login','UserPanelController@user_login')->name('user/login');
 

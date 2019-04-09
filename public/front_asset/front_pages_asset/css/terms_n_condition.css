@@ -1,0 +1,198 @@
+p {
+    text-align: justify;
+}
+.main_nav_container {
+    background: linear-gradient(-90deg, #b3d1f5, #d2d7e7, #eef1ef);
+}
+.page_title {
+    padding: 60px 0px;
+}
+
+.page_title h1 {
+    font-size: 42px;
+    color: #114478;
+}
+
+.first_row{
+    padding-top: 70px;
+    padding-bottom: 75px;
+}
+
+.title_row{
+    padding-bottom: 40px;
+}
+
+.title_row h1{
+    color: #124479;
+}
+
+.first_row_p{
+    padding-bottom: 50px;
+}
+
+.first_row_p p{
+    line-height: 30px;
+    word-spacing: 3px;
+}
+
+.no_bottom_padding{
+    padding-bottom: 0px!important;
+}
+
+.second_row{
+    padding-bottom: 75px;
+}
+
+.second_row_p p{
+    line-height: 30px;
+    word-spacing: 3px;
+}
+
+.third_row{
+    padding-bottom: 75px;
+}
+
+.third_row_p p{
+    line-height: 30px;
+    word-spacing: 3px;
+}
+
+.third_row_p ul{
+    padding-left: 40px;
+}
+
+.third_row_p ul li{
+    list-style-type: disc;
+    padding-bottom: 20px;
+    line-height: 30px;
+}
+
+.third_row_p ul li:last-child{
+    padding-bottom: 0px!important;
+}
+
+.fourth_row{
+    padding-bottom: 75px;
+}
+
+.fourth_row_p{
+    padding-bottom: 30px;
+}
+
+.fourth_row_p p{
+    line-height: 30px;
+    word-spacing: 3px;
+}
+
+
+
+
+/*
+  ##Device = Desktops
+  ##Screen = 1281px to higher resolution desktops
+*/
+
+@media (min-width: 1281px) {
+
+
+
+  }
+
+  /*
+    ##Device = Laptops, Desktops
+    ##Screen = B/w 1025px to 1280px
+  */
+
+  @media (min-width: 1025px) and (max-width: 1280px) {
+
+
+
+  }
+
+  /*
+    ##Device = Tablets, Ipads (portrait)
+    ##Screen = B/w 768px to 1024px
+  */
+
+  @media (min-width: 768px) and (max-width: 1024px) {
+
+
+
+  }
+
+  /*
+    ##Device = Tablets, Ipads (landscape)
+    ##Screen = B/w 768px to 1024px
+  */
+
+  @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+
+
+
+  }
+
+  /*
+    ##Device = Low Resolution Tablets, Mobiles (Landscape)
+    ##Screen = B/w 481px to 767px
+  */
+
+  @media (min-width: 481px) and (max-width: 767px) {
+
+    .title_row h1{
+        text-align: center;
+    }
+    .first_row_p p{
+        text-align: justify;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .first_row_p p br{
+        display: none;
+    }
+    .second_row_p p{
+        text-align: justify;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .second_row_p p br{
+        display: none;
+    }
+
+    .third_row_p p{
+        text-align: justify;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .third_row_p p br{
+        display: none;
+    }
+
+    .fourth_row_p p{
+        text-align: justify;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .fourth_row_p p br{
+        display: none;
+    }
+
+    .third_row_p ul li br{
+        display: none;
+    }
+
+  }
+
+  /*
+    ##Device = Most of the Smartphones Mobiles (Portrait)
+    ##Screen = B/w 320px to 479px
+  */
+
+  @media (min-width: 320px) and (max-width: 480px) {
+
+
+
+  }

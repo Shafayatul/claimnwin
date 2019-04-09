@@ -1,0 +1,290 @@
+p {
+    text-align: justify;
+}
+.main_nav_container {
+    background: linear-gradient(-90deg, #b3d1f5, #d2d7e7, #eef1ef);
+}
+
+.page_title {
+    padding: 60px 0px;
+}
+
+.page_title h1 {
+    font-size: 42px;
+    color: #114478;
+}
+
+.no_bottom_padding{
+    padding-bottom: 0px!important;
+}
+
+
+.title_row{
+    padding-bottom: 40px;
+}
+
+.title_row h1{
+    color: #124479;
+}
+
+.first_row{
+    padding-top: 50px;
+    padding-bottom: 40px;
+}
+
+.first_row_p p{
+    line-height: 30px;
+    word-spacing: 3px;
+}
+
+.blog_row{
+    padding-bottom: 40px;
+}
+
+.blog_title_row{
+    padding-bottom: 20px;
+    padding-top: 10px;
+}
+
+.blog_title_row h1{
+    color: #124479;
+    font-size: 26px;
+}
+
+.blog_p{
+    padding-bottom: 15px;
+}
+
+.blog_p p{
+    line-height: 24px;
+}
+
+
+
+.blog_btn{
+    padding-top: 25px;
+}
+
+.blog_btn a{
+    color: white;
+}
+
+.single_common_row{
+    padding-bottom: 40px;
+}
+
+.single_common_row:last-of-type{
+    padding-bottom: 0px!important;
+}
+
+.read_more{
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.read_more_btn{
+    margin-left: 45%;
+    display: block;
+}
+
+.read_more_btn a{
+    border: 1px solid #b8ca81;
+    color: #b8ca81;
+    padding: 15px 10px 15px 10px;
+    width: 200px;
+}
+
+.read_more_btn a:hover{
+    color: #b8ca81;
+}
+
+
+
+
+
+/*
+  ##Device = Desktops
+  ##Screen = 1281px to higher resolution desktops
+*/
+
+@media (min-width: 1281px) {
+
+
+
+}
+
+/*
+  ##Device = Laptops, Desktops
+  ##Screen = B/w 1025px to 1280px
+*/
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+
+
+
+}
+
+/*
+  ##Device = Tablets, Ipads (portrait)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) {
+
+
+
+}
+
+/*
+  ##Device = Tablets, Ipads (landscape)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+
+
+
+}
+
+/*
+  ##Device = Low Resolution Tablets, Mobiles (Landscape)
+  ##Screen = B/w 481px to 767px
+*/
+
+@media (min-width: 481px) and (max-width: 767px) {
+
+  .title_row h1{
+      text-align: center;
+      font-size: 20px;
+  }
+
+  .blog_title_row{
+      padding-top: 40px;
+  }
+
+  .blog_btn{
+      padding-left: 35%;
+  }
+
+  .blog_title_row h1{
+      text-align: center;
+  }
+
+  .single_row_img img{
+      padding-left: 55px;
+  }
+
+  .read_more_btn{
+    margin-left: 27%;
+  }
+
+  .first_row_p p{
+      text-align: justify;
+      padding-left: 10px;
+      padding-right: 10px;
+      word-spacing: 0px;
+  }
+
+  .first_row_p p br{
+      display: none;
+  }
+  .second_row_p p{
+      text-align: justify;
+      padding-left: 10px;
+      padding-right: 10px;
+      word-spacing: 0px;
+  }
+
+  .second_row_p p br{
+      display: none;
+  }
+
+  .third_row_p p{
+      text-align: justify;
+      padding-left: 10px;
+      padding-right: 10px;
+      word-spacing: 0px;
+  }
+
+  .third_row_p p br{
+      display: none;
+  }
+
+  .fourth_row_p p{
+      text-align: justify;
+      padding-left: 10px;
+      padding-right: 10px;
+      word-spacing: 0px;
+  }
+
+  .fourth_row_p p br{
+      display: none;
+  }
+
+  .five_row_p p{
+      text-align: justify;
+      padding-left: 10px;
+      padding-right: 10px;
+      word-spacing: 0px;
+  }
+
+  .five_row_p p br{
+      display: none;
+  }
+
+  .six_row_p p{
+      text-align: justify;
+      padding-left: 10px;
+      padding-right: 10px;
+      word-spacing: 0px;
+  }
+
+  .six_row_p p br{
+      display: none;
+  }
+
+  .seven_row_p p{
+      text-align: justify;
+      padding-left: 10px;
+      padding-right: 10px;
+      word-spacing: 0px;
+  }
+
+  .seven_row_p p br{
+      display: none;
+  }
+
+  .eight_row_p p{
+      text-align: justify;
+      padding-left: 10px;
+      padding-right: 10px;
+      word-spacing: 0px;
+  }
+
+  .eight_row_p p br{
+      display: none;
+  }
+
+  .nine_row_p p{
+      text-align: justify;
+      padding-left: 10px;
+      padding-right: 10px;
+      word-spacing: 0px;
+  }
+
+  .nine_row_p p br{
+      display: none;
+  }
+
+}
+
+/*
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+
+@media (min-width: 320px) and (max-width: 480px) {
+
+
+
+}
