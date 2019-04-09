@@ -26,4 +26,12 @@ class FrontsController extends Controller
   {
     return view('front-pages.privacy_policy');
   }
+  public function pricingList()
+  {
+    return view('front-pages.pricing_list');
+  }
+  public function pressBlog()
+  {
+    return view('front-pages.press_blog');
+  }
 }
