@@ -43,13 +43,13 @@
               <div class="home_top_header_departed_destination_div">
                 <form class="" action="index.html" method="post">
                   <div class="row">
-                    <div class="col-md-4" style="margin: 0px; padding: 0px;">
+                    <div class="col-md-4 col-xs-4" style="margin: 0px; padding: 0px;">
                       <input class="common_input no_right_border" type="text" name="" value="" placeholder="Departed From">
                     </div>
-                    <div class="col-md-4" style="margin: 0px; padding: 0px;">
+                    <div class="col-md-4 col-xs-4" style="margin: 0px; padding: 0px;">
                       <input class="common_input" type="text" name="" value="" placeholder="Final Destination">
                     </div>
-                    <div class="col-md-4" style="margin: 0px; padding: 0px;">
+                    <div class="col-md-4 col-xs-4" style="margin: 0px; padding: 0px;">
                       <button class="common_button" type="button" name="button">CHECK COMPENSATION</button>
                     </div>
                   </div>
@@ -61,14 +61,14 @@
             <div class="col-md-12" style="margin: 0px; padding: 0px;">
               <div class="home_top_header_options_div">
                 <div class="row">
-                  <div class="col-md-3">
-                    <div class="row">
-                      <div class="col-md-3" style="padding: 0px;">
+                  <div class="col-md-3 col-xs-6 padding_left_right_none">
+                    <div class="row padding_bottom">
+                      <div class="col-md-3 col-xs-3" style="padding: 0px;">
                         <div class="home_top_header_option_icon_div">
                           <img src="{{ asset('/front_asset/front_pages_asset/img/homepage_top_header_free_icon.png') }}" alt="">
                         </div>
                       </div>
-                      <div class="col-md-9" style="margin: 0px; padding: 0px;">
+                      <div class="col-md-9 col-xs-9" style="margin: 0px; padding: 0px;">
                         <div class="home_top_header_option_text_div text-center">
                           <p class="home_top_header_option_text_p_title_div">It's FREE</p>
                           <p class="home_top_header_option_text_p_normal_div">to claim</p>
@@ -76,14 +76,14 @@
                       </div>
                     </div>
                   </div>
-                  <div class="col-md-3">
-                    <div class="row">
-                      <div class="col-md-3" style="padding: 0px;">
+                  <div class="col-md-3 col-xs-6 padding_left_right_none">
+                    <div class="row padding_bottom">
+                      <div class="col-md-3 col-xs-3" style="padding: 0px;">
                         <div class="home_top_header_option_icon_div">
                           <img src="{{ asset('/front_asset/front_pages_asset/img/homepage_top_header_dollar_icon.png') }}" alt="">
                         </div>
                       </div>
-                      <div class="col-md-9" style="margin: 0px; padding: 0px;">
+                      <div class="col-md-9 col-xs-9" style="margin: 0px; padding: 0px;">
                         <div class="home_top_header_option_text_div text-center">
                           <p class="home_top_header_option_text_p_title_div">Up to €600</p>
                           <p class="home_top_header_option_text_p_normal_div">compensation</p>
@@ -91,14 +91,14 @@
                       </div>
                     </div>
                   </div>
-                  <div class="col-md-3">
-                    <div class="row">
-                      <div class="col-md-3" style="padding: 0px;">
+                  <div class="col-md-3 col-xs-6 padding_left_right_none">
+                    <div class="row padding_bottom">
+                      <div class="col-md-3 col-xs-3" style="padding: 0px;">
                         <div class="home_top_header_option_icon_div">
                           <img src="{{ asset('/front_asset/front_pages_asset/img/homepage_top_header_group_icon.png') }}" alt="">
                         </div>
                       </div>
-                      <div class="col-md-9" style="margin: 0px; padding: 0px;">
+                      <div class="col-md-9 col-xs-9" style="margin: 0px; padding: 0px;">
                         <div class="home_top_header_option_text_div text-center">
                           <p class="home_top_header_option_text_p_title_div">Trusted</p>
                           <p class="home_top_header_option_text_p_normal_div">by millions</p>
@@ -106,14 +106,14 @@
                       </div>
                     </div>
                   </div>
-                  <div class="col-md-3">
-                    <div class="row">
-                      <div class="col-md-3" style="padding: 0px;">
+                  <div class="col-md-3 col-xs-6 padding_left_right_none">
+                    <div class="row padding_bottom">
+                      <div class="col-md-3 col-xs-3" style="padding: 0px;">
                         <div class="home_top_header_option_icon_div">
                           <img src="{{ asset('/front_asset/front_pages_asset/img/homepage_top_header_bank_icon.png') }}" alt="">
                         </div>
                       </div>
-                      <div class="col-md-9" style="margin: 0px; padding: 0px;">
+                      <div class="col-md-9 col-xs-9" style="margin: 0px; padding: 0px;">
                         <div class="home_top_header_option_text_div text-center">
                           <p class="home_top_header_option_text_p_title_div">8 Billion EUR</p>
                           <p class="home_top_header_option_text_p_normal_div">available to claim</p>
@@ -146,7 +146,7 @@
         </div>
         <div class="how_it_works_lower_div">
           <div class="row">
-            <div class="col-md-4 text-center">
+            <div class="col-md-4 text-center margin_bottom">
               <div class="how_it_works_background_icon_div">
                 <div class="how_it_works_icon_div">
                   <img src="{{ asset('/front_asset/front_pages_asset/img/homepage_how_it_works_compensation.png') }}" alt="">
@@ -157,7 +157,7 @@
                 <p class="how_it_works_text_lower_p_div">Submit your details and we run a quick flight check to see if the airline owes you money.</p>
               </div>
             </div>
-            <div class="col-md-4 text-center">
+            <div class="col-md-4 text-center margin_bottom">
               <div class="how_it_works_background_icon_div">
                 <div class="how_it_works_icon_div">
                   <img src="{{ asset('/front_asset/front_pages_asset/img/homepage_how_it_works_admin_setting_male.png') }}" alt="">
@@ -168,7 +168,7 @@
                 <p class="how_it_works_text_lower_p_div">We're very good at this, so you sit back and relax while we jump into action.</p>
               </div>
             </div>
-            <div class="col-md-4 text-center">
+            <div class="col-md-4 text-center margin_bottom">
               <div class="how_it_works_background_icon_div">
                 <div class="how_it_works_icon_div">
                   <img src="{{ asset('/front_asset/front_pages_asset/img/homepage_how_it_works_receive_cash.png') }}" alt="">
@@ -313,7 +313,7 @@
       </div>
       <div class="our_process_lower_div">
         <div class="row">
-          <div class="col-md-3">
+          <div class="col-md-3 col-sm-6 col-xs-6 our_process_padding_bottom">
             <div class="our_process_lower_div_icon_div text-center">
               <img class="" src="{{ asset('/front_asset/front_pages_asset/img/homepage_our_process_calculator.png') }}" alt="">
             </div>
@@ -321,7 +321,7 @@
               <p>Check your flight with</br> our industry-leading</br> calculator </p>
             </div>
           </div>
-          <div class="col-md-3">
+          <div class="col-md-3 col-sm-6 col-xs-6 our_process_padding_bottom">
             <div class="our_process_lower_div_icon_div text-center">
               <img class="" src="{{ asset('/front_asset/front_pages_asset/img/homepage_our_process_passenger_with_bag.png') }}" alt="">
             </div>
@@ -329,7 +329,7 @@
               <p>Add passenger details </br> then submit your claim </p>
             </div>
           </div>
-          <div class="col-md-3">
+          <div class="col-md-3 col-sm-6 col-xs-6 our_process_padding_bottom">
             <div class="our_process_lower_div_icon_div text-center">
               <img class="" src="{{ asset('/front_asset/front_pages_asset/img/homepage_our_process_collaboration.png') }}" alt="">
             </div>
@@ -337,7 +337,7 @@
               <p>We negotiate with the </br> airline for you and take it </br> to court in necessary </p>
             </div>
           </div>
-          <div class="col-md-3">
+          <div class="col-md-3 col-sm-6 col-xs-6 our_process_padding_bottom">
             <div class="our_process_lower_div_icon_div text-center">
               <img class="" src="{{ asset('/front_asset/front_pages_asset/img/homepage_our_process_cash_in_hand.png') }}" alt="">
             </div>
@@ -376,11 +376,26 @@
 @section('footer-script')
   <script src="{{asset('front_asset/front_pages_asset/js/slick.js')}}"></script>
   <script type="text/javascript">
-    $(".slider-area").slick({
-        dots: true,
-        infinite: true,
-        slidesToShow: 4,
-        slidesToScroll: 1
-      });
+    $(document).ready(function(){
+      console.log($( window ).width());
+    });
+    if ($( window ).width() > 767) {
+      $(".slider-area").slick({
+          dots: true,
+          infinite: true,
+          slidesToShow: 4,
+          slidesToScroll: 1
+
+        });
+    }else {
+      $(".slider-area").slick({
+          dots: true,
+          infinite: true,
+          slidesToShow: 1,
+          slidesToScroll: 1
+
+        });
+    }
+
   </script>
 @endsection
