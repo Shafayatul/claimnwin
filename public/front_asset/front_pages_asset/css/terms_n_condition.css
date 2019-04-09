@@ -146,20 +146,42 @@ p {
         padding-left: 10px;
         padding-right: 10px;
     }
+
+    .first_row_p p br{
+        display: none;
+    }
     .second_row_p p{
         text-align: justify;
         padding-left: 10px;
         padding-right: 10px;
     }
+
+    .second_row_p p br{
+        display: none;
+    }
+
     .third_row_p p{
         text-align: justify;
         padding-left: 10px;
         padding-right: 10px;
     }
+
+    .third_row_p p br{
+        display: none;
+    }
+
     .fourth_row_p p{
         text-align: justify;
         padding-left: 10px;
         padding-right: 10px;
+    }
+
+    .fourth_row_p p br{
+        display: none;
+    }
+
+    .third_row_p ul li br{
+        display: none;
     }
 
   }
