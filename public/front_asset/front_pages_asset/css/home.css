@@ -405,6 +405,13 @@ ________________________________ */
     font-size: 10px;
   }
 
+  .li_icon_div {
+    width: 7%;
+  }
+  .li_text_div {
+    width: 93%;
+  }
+
   ::-webkit-input-placeholder { /* Chrome */
     font-size: 10px;
   }
