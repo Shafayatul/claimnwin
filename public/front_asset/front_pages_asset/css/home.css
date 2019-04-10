@@ -9,6 +9,10 @@
   border-bottom: 1px solid #8dac2d;
 }
 
+.clearfix_display_none {
+  display: none;
+}
+
 .home_top_header_div {
   padding: 100px 0px 100px 0px;
 }
@@ -37,6 +41,26 @@
 
 .fa-ul li {
   line-height: 30px;
+}
+
+.li_mother_div {
+  width: 100%;
+  display: block;
+  overflow: hidden;
+}
+
+.li_icon_div {
+  width: 5%;
+  float: left;
+}
+
+.li_icon_div i {
+  vertical-align: middle;
+}
+
+.li_text_div {
+  width: 95%;
+  float: left;
 }
 
 .fa-check-circle {
@@ -341,6 +365,7 @@ input[type="text"]:focus {
   border-radius: 2px;
 }
 
+
 /* Free Service Ends */
 
 /* ______________________________
@@ -367,7 +392,7 @@ ________________________________ */
   .home_top_header_title_p_div, .home_top_header_title_ul_div {
     padding-left: 10px;
     padding-right: 10px;
-    font-size: 14px;
+    font-size: 12px;
   }
 
   .home_top_header_departed_destination_div {
@@ -480,6 +505,16 @@ ________________________________ */
   display: none;
 }
 
+.our_process_lower_div_icon_div {
+  width: 70px;
+  height: 70px;
+}
+
+.our_process_lower_div_icon_div img{
+  width: 40px;
+  height: 36px;
+}
+
 .slider {
     margin: 0px auto;
 }
@@ -515,6 +550,10 @@ ________________________________ */
 
 .our_process_padding_bottom {
   padding-bottom: 30px;
+}
+
+.our_process_lower_div_icon_text_div p br {
+  display: none;
 }
 
   .about_us_middle_content_paragraph {
