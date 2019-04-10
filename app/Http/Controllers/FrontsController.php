@@ -42,4 +42,8 @@ class FrontsController extends Controller
   {
     return view('front-pages.partner');
   }
+  public function affiliatePage()
+  {
+    return view('front-pages.affiliate_page');
+  }
 }
