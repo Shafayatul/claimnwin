@@ -171,12 +171,12 @@ input[type="text"]:focus {
   color: #ffffff;
 }
 
-.how_it_works_background_icon_div::before {
-  content: '';
-  padding: 100px;
+.how_it_works_background_icon_div {
   background-image: url('../img/homepage_how_it_works_cloud.png');
-  background-position: center;
   background-repeat: no-repeat;
+  background-position: center;
+  background-size: 157px 91px;
+  margin: 0 auto;
 }
 
 
@@ -185,8 +185,7 @@ input[type="text"]:focus {
   height: 100px;
   border: 1px dashed #8dac2d;
   border-radius: 50%;
-  margin-top: -45px;
-  margin-left: 130px;
+  margin: 0 auto;
 }
 
 .how_it_works_icon_div img {
@@ -469,16 +468,9 @@ ________________________________ */
   }
 
   .how_it_works_lower_div {
-    padding: 50px 0px 0px 0px;
+    padding: 40px 0px 0px 0px;
   }
 
-  .how_it_works_icon_div {
-    margin-left: 36%;
-}
-
-.how_it_works_background_icon_div::before {
-    padding: 50px 100px;
-}
 
 .how_it_works_text_upper_p_div {
     font-size: 15px;
@@ -653,13 +645,6 @@ ________________________________ */
     padding: 50px 0px 0px 0px;
   }
 
-  .how_it_works_icon_div {
-    margin-left: 40%;
-}
-
-.how_it_works_background_icon_div::before {
-    padding: 50px 100px;
-}
 
 .how_it_works_text_upper_p_div {
     font-size: 15px;
@@ -818,10 +803,6 @@ ________________________________ */
     padding: 50px 0px 0px 0px;
   }
 
-  .how_it_works_icon_div {
-    margin-left: 44%;
-}
-
 .sliding_div_title_p_div p {
     font-size: 11px;
 }
@@ -838,9 +819,9 @@ ________________________________ */
   display: none;
 }
 
-.how_it_works_background_icon_div::before {
+/* .how_it_works_background_icon_div::before {
     padding: 50px 100px;
-}
+} */
 
 .how_it_works_text_upper_p_div {
     font-size: 15px;
@@ -917,6 +898,17 @@ ________________________________ */
 
 /* Media Css for 1025px to 1280px starts*/
 @media (min-width: 1025px) and (max-width: 1280px) {
+  .what_customer_say_title_div {
+    width: 66%;
+  }
+
+  .sliding_div_title_p_div p {
+    font-size: 12px;
+}
+
+  .sliding_div_text_p_div p {
+    font-size: 10px;
+  }
 
 }
 /* Media Css for 1025px to 1280px ends*/
