@@ -27,6 +27,9 @@ Route::get('/privacy-policy','FrontsController@privacyPolicy');
 Route::get('/pricing-list','FrontsController@pricingList');
 Route::get('/press-blog','FrontsController@pressBlog');
 Route::get('/app','FrontsController@app');
+Route::get('/partner','FrontsController@partner');
+Route::get('/affiliate-page','FrontsController@affiliatePage');
+Route::get('/form-claim','FrontsController@formClaim');
 
 /* ----- Front Pages Ends----- */
 

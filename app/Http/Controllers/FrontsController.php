@@ -38,4 +38,16 @@ class FrontsController extends Controller
   {
     return view('front-pages.app_page');
   }
+  public function partner()
+  {
+    return view('front-pages.partner');
+  }
+  public function affiliatePage()
+  {
+    return view('front-pages.affiliate_page');
+  }
+  public function formClaim()
+  {
+    return view('front-pages.form_claim');
+  }
 }

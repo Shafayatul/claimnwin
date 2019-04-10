@@ -31,9 +31,9 @@
             <div class="col-md-12" style="margin: 0px; padding: 0px;">
               <div class="home_top_header_title_ul_div">
                 <ul class="fa-ul">
-                  <li><i class="fas fa-check-circle"></i>Get up to €1300 for a cancelled, overbooked or delayed flight.</li>
-                  <li><i class="fas fa-check-circle"></i>Get up to $3400 for a luggage issue.</li>
-                  <li><i class="fas fa-check-circle"></i>Get up to $7000 for expenses you incurred as a result of your distrupted flight.</li>
+                  <li> <div class="li_mother_div"> <div class="li_icon_div"><i class="fas fa-check-circle"></i></div><div class="li_text_div">Get up to €1300 for a cancelled, overbooked or delayed flight.</div></div></li>
+                  <li> <div class="li_mother_div"> <div class="li_icon_div"><i class="fas fa-check-circle"></i></div><div class="li_text_div">Get up to $3400 for a luggage issue.</div></div></li>
+                  <li> <div class="li_mother_div"> <div class="li_icon_div"><i class="fas fa-check-circle"></i></div><div class="li_text_div">Get up to $7000 for expenses you incurred as a result of your distrupted flight.</div></div></li>
                 </ul>
               </div>
             </div>
@@ -313,7 +313,7 @@
       </div>
       <div class="our_process_lower_div">
         <div class="row">
-          <div class="col-md-3 col-sm-6 col-xs-6 our_process_padding_bottom">
+          <div class="col-md-3 col-xs-6 our_process_padding_bottom">
             <div class="our_process_lower_div_icon_div text-center">
               <img class="" src="{{ asset('/front_asset/front_pages_asset/img/homepage_our_process_calculator.png') }}" alt="">
             </div>
@@ -321,7 +321,7 @@
               <p>Check your flight with</br> our industry-leading</br> calculator </p>
             </div>
           </div>
-          <div class="col-md-3 col-sm-6 col-xs-6 our_process_padding_bottom">
+          <div class="col-md-3 col-xs-6 our_process_padding_bottom">
             <div class="our_process_lower_div_icon_div text-center">
               <img class="" src="{{ asset('/front_asset/front_pages_asset/img/homepage_our_process_passenger_with_bag.png') }}" alt="">
             </div>
@@ -329,7 +329,8 @@
               <p>Add passenger details </br> then submit your claim </p>
             </div>
           </div>
-          <div class="col-md-3 col-sm-6 col-xs-6 our_process_padding_bottom">
+          <div class="clearfix clearfix_display_none"></div>
+          <div class="col-md-3 col-xs-6 our_process_padding_bottom">
             <div class="our_process_lower_div_icon_div text-center">
               <img class="" src="{{ asset('/front_asset/front_pages_asset/img/homepage_our_process_collaboration.png') }}" alt="">
             </div>
@@ -337,7 +338,7 @@
               <p>We negotiate with the </br> airline for you and take it </br> to court in necessary </p>
             </div>
           </div>
-          <div class="col-md-3 col-sm-6 col-xs-6 our_process_padding_bottom">
+          <div class="col-md-3 col-xs-6 our_process_padding_bottom">
             <div class="our_process_lower_div_icon_div text-center">
               <img class="" src="{{ asset('/front_asset/front_pages_asset/img/homepage_our_process_cash_in_hand.png') }}" alt="">
             </div>
@@ -377,7 +378,11 @@
   <script src="{{asset('front_asset/front_pages_asset/js/slick.js')}}"></script>
   <script type="text/javascript">
     $(document).ready(function(){
-      console.log($( window ).width());
+      if ($( window ).width() < 360) {
+        $('.clearfix_display_none').show();
+      }else {
+        $('.clearfix_display_none').hide();
+      }
     });
     if ($( window ).width() > 767) {
       $(".slider-area").slick({

@@ -9,6 +9,10 @@
   border-bottom: 1px solid #8dac2d;
 }
 
+.clearfix_display_none {
+  display: none;
+}
+
 .home_top_header_div {
   padding: 100px 0px 100px 0px;
 }
@@ -37,6 +41,26 @@
 
 .fa-ul li {
   line-height: 30px;
+}
+
+.li_mother_div {
+  width: 100%;
+  display: block;
+  overflow: hidden;
+}
+
+.li_icon_div {
+  width: 5%;
+  float: left;
+}
+
+.li_icon_div i {
+  vertical-align: middle;
+}
+
+.li_text_div {
+  width: 95%;
+  float: left;
 }
 
 .fa-check-circle {
@@ -147,12 +171,12 @@ input[type="text"]:focus {
   color: #ffffff;
 }
 
-.how_it_works_background_icon_div::before {
-  content: '';
-  padding: 100px;
+.how_it_works_background_icon_div {
   background-image: url('../img/homepage_how_it_works_cloud.png');
-  background-position: center;
   background-repeat: no-repeat;
+  background-position: center;
+  background-size: 157px 91px;
+  margin: 0 auto;
 }
 
 
@@ -161,8 +185,7 @@ input[type="text"]:focus {
   height: 100px;
   border: 1px dashed #8dac2d;
   border-radius: 50%;
-  margin-top: -45px;
-  margin-left: 130px;
+  margin: 0 auto;
 }
 
 .how_it_works_icon_div img {
@@ -341,6 +364,7 @@ input[type="text"]:focus {
   border-radius: 2px;
 }
 
+
 /* Free Service Ends */
 
 /* ______________________________
@@ -367,7 +391,7 @@ ________________________________ */
   .home_top_header_title_p_div, .home_top_header_title_ul_div {
     padding-left: 10px;
     padding-right: 10px;
-    font-size: 14px;
+    font-size: 12px;
   }
 
   .home_top_header_departed_destination_div {
@@ -379,6 +403,13 @@ ________________________________ */
     margin: 0 auto;
     width: 100%;
     font-size: 10px;
+  }
+
+  .li_icon_div {
+    width: 7%;
+  }
+  .li_text_div {
+    width: 93%;
   }
 
   ::-webkit-input-placeholder { /* Chrome */
@@ -444,16 +475,9 @@ ________________________________ */
   }
 
   .how_it_works_lower_div {
-    padding: 50px 0px 0px 0px;
+    padding: 40px 0px 0px 0px;
   }
 
-  .how_it_works_icon_div {
-    margin-left: 36%;
-}
-
-.how_it_works_background_icon_div::before {
-    padding: 50px 100px;
-}
 
 .how_it_works_text_upper_p_div {
     font-size: 15px;
@@ -478,6 +502,16 @@ ________________________________ */
 
 .our_process_lower_div_icon_text_div br {
   display: none;
+}
+
+.our_process_lower_div_icon_div {
+  width: 70px;
+  height: 70px;
+}
+
+.our_process_lower_div_icon_div img{
+  width: 40px;
+  height: 36px;
 }
 
 .slider {
@@ -515,6 +549,10 @@ ________________________________ */
 
 .our_process_padding_bottom {
   padding-bottom: 30px;
+}
+
+.our_process_lower_div_icon_text_div p br {
+  display: none;
 }
 
   .about_us_middle_content_paragraph {
@@ -614,13 +652,6 @@ ________________________________ */
     padding: 50px 0px 0px 0px;
   }
 
-  .how_it_works_icon_div {
-    margin-left: 40%;
-}
-
-.how_it_works_background_icon_div::before {
-    padding: 50px 100px;
-}
 
 .how_it_works_text_upper_p_div {
     font-size: 15px;
@@ -779,10 +810,6 @@ ________________________________ */
     padding: 50px 0px 0px 0px;
   }
 
-  .how_it_works_icon_div {
-    margin-left: 44%;
-}
-
 .sliding_div_title_p_div p {
     font-size: 11px;
 }
@@ -799,9 +826,9 @@ ________________________________ */
   display: none;
 }
 
-.how_it_works_background_icon_div::before {
+/* .how_it_works_background_icon_div::before {
     padding: 50px 100px;
-}
+} */
 
 .how_it_works_text_upper_p_div {
     font-size: 15px;
@@ -878,6 +905,17 @@ ________________________________ */
 
 /* Media Css for 1025px to 1280px starts*/
 @media (min-width: 1025px) and (max-width: 1280px) {
+  .what_customer_say_title_div {
+    width: 66%;
+  }
+
+  .sliding_div_title_p_div p {
+    font-size: 12px;
+}
+
+  .sliding_div_text_p_div p {
+    font-size: 10px;
+  }
 
 }
 /* Media Css for 1025px to 1280px ends*/

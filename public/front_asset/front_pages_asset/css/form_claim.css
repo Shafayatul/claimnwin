@@ -1,0 +1,190 @@
+.form_claim_main_content_div {
+  padding: 60px 100px;
+}
+
+/* form_claim_main_left_content_div starts*/
+
+.fa-ul {
+  margin-left: 0px !important;
+}
+
+.fa-ul li {
+  line-height: 30px;
+  margin-bottom: 2px;
+}
+
+.li_mother_div {
+  width: 100%;
+  display: block;
+  overflow: hidden;
+}
+
+.li_number_div {
+  width: 15%;
+  float: left;
+  padding: 2%;
+}
+
+.li_icon_div i {
+  vertical-align: middle;
+}
+
+.li_text_div {
+  width: 85%;
+  float: left;
+  padding-left: 10px;
+}
+
+.li_number_child_div {
+  width: 20px;
+  height: 20px;
+  border: 1px solid #000;
+  border-radius: 50%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* form_claim_main_left_content_div ends*/
+
+/*form_claim_main_right_content_div starts*/
+
+.form_claim_main_right_content_div {
+  border: 1px solid #E6EDF5;
+  padding: 30px 50px;
+}
+
+.common_row
+{
+  width: 100%;
+  display: block;
+  overflow: hidden;
+  margin-bottom: 20px;
+  padding: 10px 0px;
+}
+
+.parent_div
+{
+  width: 100%;
+  display: block;
+  overflow: hidden;
+}
+
+.form_h3 h3
+{
+  color: #124478;
+  padding: 0px;
+  margin: 0 0 8px;
+  font-size: 26px;
+  font-weight: 500;
+  line-height: 32px;
+  padding-bottom: 10px;
+}
+
+.select_option_div {
+  border: 1px solid #8dac2d;
+}
+
+.custom_select  {
+  border-radius: 0px;
+  border: none;
+  padding: 10px 15px;
+  height: 40px;
+}
+
+/* .two_child_div_left
+{
+  width: 45%;
+  float: left;
+}
+
+.two_child_div_middle {
+  width: 10%;
+  float: left;
+  padding-top: 5%;
+  font-size: 27px;
+  color: #124478;
+  font-weight: normal !important;
+}
+
+.two_child_div_right
+{
+  width: 45%;
+  float: right;
+} */
+
+
+
+/*form_claim_main_right_content_div ends*/
+
+
+/* ______________________________
+            Media CSS Starts
+________________________________ */
+
+/* Media Css for 320px to 480px starts*/
+
+@media (min-width: 320px) and (max-width: 480px) {
+  .form_claim_main_left_content_div {
+    display: none;
+  }
+  .form_claim_main_content_div {
+    padding: 30px 20px;
+  }
+  .form_claim_main_right_content_div {
+    border: 1px solid #cecece;
+    padding: 10px 20px;
+  }
+  .form_h3 {
+    text-align: center;
+  }
+  .form_h3 h3 {
+    font-size: 15px;
+    line-height: 25px;
+  }
+}
+
+/* Media Css for 320px to 480px ends*/
+
+/* Media Css for 481px to 767px starts*/
+@media (min-width: 481px) and (max-width: 767px) {
+  .form_claim_main_left_content_div {
+    display: none;
+  }
+  .form_claim_main_content_div {
+    padding: 30px 20px;
+  }
+  .form_claim_main_right_content_div {
+    border: 1px solid #cecece;
+    padding: 10px 20px;
+  }
+  .form_h3 {
+    text-align: center;
+  }
+  .form_h3 h3 {
+    font-size: 17px;
+    line-height: 28px;
+  }
+}
+/* Media Css for 481px to 767px ends*/
+
+/* Media Css for 768px to 1024px starts*/
+@media (min-width: 768px) and (max-width: 1024px) {
+  .form_claim_main_left_content_div {
+    display: none;
+  }
+  .form_h3 h3 {
+    font-size: 18px;
+    line-height: 28px;
+  }
+}
+/* Media Css for 768px to 1024px ends*/
+
+/* Media Css for 1025px to 1280px starts*/
+@media (min-width: 1025px) and (max-width: 1280px) {
+  .form_h3 h3 {
+    font-size: 19px;
+    line-height: 28px;
+  }
+}
+/* Media Css for 1025px to 1280px ends*/
