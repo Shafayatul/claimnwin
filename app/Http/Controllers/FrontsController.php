@@ -38,4 +38,8 @@ class FrontsController extends Controller
   {
     return view('front-pages.app_page');
   }
+  public function partner()
+  {
+    return view('front-pages.partner');
+  }
 }
