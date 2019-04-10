@@ -50,7 +50,7 @@
 /*form_claim_main_right_content_div starts*/
 
 .form_claim_main_right_content_div {
-  border: 1px solid #cecece;
+  border: 1px solid #E6EDF5;
   padding: 30px 50px;
 }
 
@@ -92,7 +92,7 @@
   height: 40px;
 }
 
-.two_child_div_left
+/* .two_child_div_left
 {
   width: 45%;
   float: left;
@@ -111,7 +111,7 @@
 {
   width: 45%;
   float: right;
-}
+} */
 
 
 
