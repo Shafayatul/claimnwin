@@ -386,7 +386,7 @@ input[type="radio"]:checked + .label{
   /* font-family: 'Poppins', sans-serif; */
   align-items: center;
   box-sizing: content-box;
-  border: 1px solid #DAE2EB;
+  border: 1px solid #8dac2d;
   padding: 14px 32px 16px 16px;
   color: #798899;
   background-color: #FFF;

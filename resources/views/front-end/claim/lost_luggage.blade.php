@@ -10,909 +10,975 @@
 @endsection
 
 @section('content')
-<div class="wrapper">
-    <div class="form_h2">
-        <h2 class="text-center">Lost Luggage</h2>
-    </div>
-      <form action="{{url('/claim')}}" method="post" id="step-form" enctype="multipart/form-data" >
-        @csrf
-
-        <!-- ...................................................................
-                                  STEP 1 STARTS
-        .................................................................... -->
-        <div class="single_step" id="step_1">
-
-            <div class="common_row">
-                <div class="form_h3">
-                    <h3>Where did you fly?</h3>
-                </div>
-                <div class="parent_div">
-                  <div class="two_child_div_left">
-                    <div class="label_field">
-                      <label for="departed_from">DEPARTED FROM: </label>
-                    </div>
-                    <div class="input_field">
-                      <input type="text" class="auto_airport_complete common_input departed_from" id="advanced-demo common_input departed_from" name="departed_from" placeholder="e.g. New York State Police Heliport">
-                    </div>
-                  </div>
-                  <div class="two_child_div_right">
-                    <div class="label_field">
-                      <label for="final_destination">FINAL DESTINATION: </label>
-                    </div>
-                    <div class="input_field">
-                      <input type="text" class="auto_airport_complete common_input final_destination" id="common_input final_destination" name="final_destination" placeholder="e.g. London Airport">
-                    </div>
-                  </div>
-                </div>
-            </div>
-
-             <div style="display: none;">
-               <input type="text" name="selected_connection_iata_codes" class="selected_connection_iata_codes">
-            </div>
-
-            <div class="show_on_airport_selected">
-              <div class="parent_div">
-                <div class="form_h3">
-                    <h3>Itinerary details for your disrupted flight</h3>
-                </div>
-                {{-- <div class="form_h4">
-                    <h4>Please give us the full itinerary so we can make sure we claim for the full amount.</h4>
-                </div> --}}
-                <div class="label_field only_label_without_input">
-                  <label>PLEASE GIVE US THE FULL ITINERARY SO WE CAN MAKE SURE WE CLAIM FOR THE FULL AMOUNT.</label>
-                </div>
-              </div>
-
-              <div class="itinerary_flight_element">
-                {{-- code from JS --}}
-              </div>
-            </div>
-
-            <div class="common_row">
-                <div class="continue_button_div">
-                    <button type="button" class="continue_button" id="continue_1" name="button">Continue <i class="fas fa-arrow-right"></i></button>
-                </div>
-{{--                 <div class="total_button_div">
-                    <div class="two_button_child_div_right">
-                        <div class="continue_button_div">
-                            <button type="button" class="continue_button" id="continue_1" name="button">Continue <i class="fas fa-arrow-right"></i></button>
-                        </div>
-                    </div>
-                    <div class="two_button_child_div_left">
-                        <div class="previous_button_div">
-                            <button type="button" class="previous_button pull-left" id="previous_button" name="button"><i class="fas fa-arrow-left"></i> Previous</button>
-                        </div>
-                    </div>
-                </div> --}}
-            </div>
-        </div>
-
-        <!-- ...................................................................
-                                  STEP 1 ENDS
-        .................................................................... -->
-        <!-- ...................................................................
-                                  STEP 2 STARTS
-        .................................................................... -->
-
-        <div class="single_step" id="step_2" style="display:none;">
-            <div class="common_row">
-                <div class="form_h3">
-                    <h3>Do you have a PIR?</h3>
-                </div>
-                <div class="parent_div">
-
-                    <p>A Property Irregularity Report (PIR) reference number is a unique code that helps trace your delayed or damaged baggage.
-                        It has a combination of 10 letters and numbers and can be found above your name on the PIR receipt,
-                        which you received at the airport upon reporting your missing baggage.
-                        For help locating your PIR please contact our customer service department.
-                    </p>
-                </div>
-            </div>
-
-            <div class="common_row">
-                <div class="parent_div">
-                    <div class="label_field">
-                        <label for="departure_airport">PIR:</label>
-                    </div>
-                    <div class="two_input_field">
-                        <div class="input_field">
-                            <input type="text" class="common_input pir" id="common_input pir" name="pir" placeholder="PIR : 123456789">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="common_row">
-                <div class="total_button_div">
-                    <div class="two_button_child_div_right">
-                        <div class="continue_button_div">
-                            <button type="button" class="continue_button" id="continue_2" name="button">Continue <i class="fas fa-arrow-right"></i></button>
-                        </div>
-                    </div>
-                    <div class="two_button_child_div_left">
-                        <div class="previous_button_div">
-                            <button type="button" class="previous_button pull-left" id="previous_button" name="button"><i class="fas fa-arrow-left"></i> Previous</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- ...................................................................
-                                  STEP 2 ENDS
-        .................................................................... -->
-        <!-- ...................................................................
-                                  STEP 3 STARTS
-        .................................................................... -->
-
-        <div class="single_step" id="step_3" style="display:none;">
-          <div class="common_row">
-            {{-- <div class="form_h3">
-                <h3>Have You received your luggage?</h3>
-            </div> --}}
-            <div class="label_field only_label_without_input">
-              <label>HAVE YOU RECEIVED YOUR LUGGAGE?</label>
-            </div>
-            <div class="parent_div">
-                <div class="two_child_radio_div first_child">
-                    <label class="container_radio">Yes
-                        <input class="common_input is_luggage_received" type="radio" id="common_input is_luggage_received_yes" name="is_luggage_received" value="1">
-                        <span class="checkmark"></span>
-                    </label>
-                </div>
-                <div class="two_child_radio_div">
-                    <label class="container_radio">No
-                        <input class="common_input is_luggage_received" type="radio" id="common_input is_luggage_received_no" name="is_luggage_received" value="0">
-                        <span class="checkmark"></span>
-                    </label>
-                </div>
-            </div>
-          </div>
-
-          <div class="show_on_is_luggage_received_yes">
-            <div class="common_row">
-              <div class="parent_div">
-                  <div class="label_field">
-                      <label for="departure_airport">When did you receive your luggage?</label>
-                  </div>
-                  <div class="two_input_field">
-                      <div class="input_field">
-                          <input type="text" class="common_input received_luggage_date date" id="common_input received_luggage_date date" name="received_luggage_date" placeholder="e.g. 10/10/2010">
+  <div class="container">
+      <div class="form_claim_main_content_div">
+          <div class="row">
+              <div class="col-md-3">
+                  <div class="form_claim_main_left_content_div">
+                      <div class="row">
+                          <div class="col-md-12" style="margin: 0px; padding: 0px;">
+                              <div class="form_claim_main_left_content_ul_div">
+                                  <ul class="fa-ul">
+                                      <li>
+                                          <div class="li_mother_div">
+                                              <div class="li_number_div">
+                                                  <div class="li_number_child_div text-center">
+                                                      <span>1</span>
+                                                  </div>
+                                              </div>
+                                              <div class="li_text_div">
+                                                  <span>Eligibility</span>
+                                              </div>
+                                          </div>
+                                      </li>
+                                      <li>
+                                          <div class="li_mother_div">
+                                              <div class="li_number_div">
+                                                  <div class="li_number_child_div text-center align-middle">
+                                                      <span>2</span>
+                                                  </div>
+                                              </div>
+                                              <div class="li_text_div">
+                                                  <span>Additional Details</span>
+                                              </div>
+                                          </div>
+                                      </li>
+                                      <li>
+                                          <div class="li_mother_div">
+                                              <div class="li_number_div">
+                                                  <div class="li_number_child_div text-center">
+                                                      <span>3</span>
+                                                  </div>
+                                              </div>
+                                              <div class="li_text_div">
+                                                  <span>Cliam Submission</span>
+                                              </div>
+                                          </div>
+                                      </li>
+                                  </ul>
+                              </div>
+                          </div>
                       </div>
                   </div>
               </div>
-            </div>
+              <div class="col-md-9">
+                  <div class="form_claim_main_right_content_div">
+                    <div class="wrapper">
+                        {{-- <div class="form_h2">
+                            <h2 class="text-center">Lost Luggage</h2>
+                        </div> --}}
+                          <form action="{{url('/claim')}}" method="post" id="step-form" enctype="multipart/form-data" >
+                            @csrf
 
-            <div class="common_row">
-              <div class="parent_div">
-                {{-- <div class="form_h3">
-                    <h3>have you filed a complained with the airline within 21 days of receipt of baggage?</h3>
-                </div> --}}
-                <div class="label_field only_label_without_input">
-                  <label>HAVE YOU FILED A COMPLAINED WITH THE AIRLINE WITHIN 21 DAYS OF RECEIPT OF BAGGAGE?</label>
-                </div>
-                <div class="parent_div">
-                    <div class="two_child_radio_div first_child">
-                        <label class="container_radio">Yes
-                            <input class="common_input is_already_written_airline" type="radio" id="common_input is_already_written_airline_yes" name="is_already_written_airline" value="1">
-                            <span class="checkmark"></span>
-                        </label>
-                    </div>
-                    <div class="two_child_radio_div">
-                        <label class="container_radio">No
-                            <input class="common_input is_already_written_airline" type="radio" id="common_input is_already_written_airline_no" name="is_already_written_airline" value="0">
-                            <span class="checkmark"></span>
-                        </label>
-                    </div>
-                </div>
-              </div>
-            </div>
-          </div>
+                            <!-- ...................................................................
+                                                      STEP 1 STARTS
+                            .................................................................... -->
+                            <div class="single_step" id="step_1">
 
+                                <div class="common_row">
+                                    <div class="form_h3">
+                                        <h3>Where did you fly?</h3>
+                                    </div>
+                                    <div class="parent_div">
+                                      <div class="two_child_div_left">
+                                        <div class="label_field">
+                                          <label for="departed_from">DEPARTED FROM: </label>
+                                        </div>
+                                        <div class="input_field">
+                                          <input type="text" class="auto_airport_complete common_input departed_from" id="advanced-demo common_input departed_from" name="departed_from" placeholder="e.g. New York State Police Heliport">
+                                        </div>
+                                      </div>
+                                      <div class="two_child_div_right">
+                                        <div class="label_field">
+                                          <label for="final_destination">FINAL DESTINATION: </label>
+                                        </div>
+                                        <div class="input_field">
+                                          <input type="text" class="auto_airport_complete common_input final_destination" id="common_input final_destination" name="final_destination" placeholder="e.g. London Airport">
+                                        </div>
+                                      </div>
+                                    </div>
+                                </div>
 
-            <div class="common_row">
-                <div class="total_button_div">
-                    <div class="two_button_child_div_right">
-                        <div class="continue_button_div">
-                            <button type="button" class="continue_button" id="continue_3" name="button">Continue <i class="fas fa-arrow-right"></i></button>
-                        </div>
-                    </div>
-                    <div class="two_button_child_div_left">
-                        <div class="previous_button_div">
-                            <button type="button" class="previous_button pull-left" id="previous_button" name="button"><i class="fas fa-arrow-left"></i> Previous</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+                                 <div style="display: none;">
+                                   <input type="text" name="selected_connection_iata_codes" class="selected_connection_iata_codes">
+                                </div>
 
-        <!-- ...................................................................
-                                  STEP 3 ENDS
-        .................................................................... -->
-        <!-- ...................................................................
-                                  STEP 4 STARTS
-        .................................................................... -->
+                                <div class="show_on_airport_selected">
+                                  <div class="parent_div">
+                                    <div class="form_h3">
+                                        <h3>Itinerary details for your disrupted flight</h3>
+                                    </div>
+                                    {{-- <div class="form_h4">
+                                        <h4>Please give us the full itinerary so we can make sure we claim for the full amount.</h4>
+                                    </div> --}}
+                                    <div class="label_field only_label_without_input">
+                                      <label>PLEASE GIVE US THE FULL ITINERARY SO WE CAN MAKE SURE WE CLAIM FOR THE FULL AMOUNT.</label>
+                                    </div>
+                                  </div>
 
-        <div class="single_step" id="step_4" style="display:none;">
+                                  <div class="itinerary_flight_element">
+                                    {{-- code from JS --}}
+                                  </div>
+                                </div>
 
-            <div class="common_row">
-                <div class="email_div">
-                    <div class="label_field">
-                        <label for="departure_airport">Please enter your email address</label>
-                    </div>
-                    <div class="input_field">
-                        <input type="text" class="common_input email_address" id="common_input email_address" name="email_address" placeholder="e.g. something@gmail.com">
-                    </div>
-                </div>
-            </div>
+                                <div class="common_row">
+                                    <div class="continue_button_div">
+                                        <button type="button" class="continue_button" id="continue_1" name="button">Continue <i class="fas fa-arrow-right"></i></button>
+                                    </div>
+                                    {{-- <div class="total_button_div">
+                                        <div class="two_button_child_div_right">
+                                            <div class="continue_button_div">
+                                                <button type="button" class="continue_button" id="continue_1" name="button">Continue <i class="fas fa-arrow-right"></i></button>
+                                            </div>
+                                        </div>
+                                        <div class="two_button_child_div_left">
+                                            <div class="previous_button_div">
+                                                <button type="button" class="previous_button pull-left" id="previous_button" name="button"><i class="fas fa-arrow-left"></i> Previous</button>
+                                            </div>
+                                        </div>
+                                    </div> --}}
+                                </div>
+                            </div>
 
-            <div class="common_row">
-                <div class="total_button_div">
-                    <div class="two_button_child_div_right">
-                        <div class="continue_button_div">
-                            <button type="button" class="continue_button" id="continue_4" name="button">Continue <i class="fas fa-arrow-right"></i></button>
-                        </div>
-                    </div>
-                    <div class="two_button_child_div_left">
-                        <div class="previous_button_div">
-                            <button type="button" class="previous_button pull-left" id="previous_button" name="button"><i class="fas fa-arrow-left"></i> Previous</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+                            <!-- ...................................................................
+                                                      STEP 1 ENDS
+                            .................................................................... -->
+                            <!-- ...................................................................
+                                                      STEP 2 STARTS
+                            .................................................................... -->
 
-        <!-- ...................................................................
-                                  STEP 4 ENDS
-        .................................................................... -->
+                            <div class="single_step" id="step_2" style="display:none;">
+                                <div class="common_row">
+                                    <div class="form_h3">
+                                        <h3>Do you have a PIR?</h3>
+                                    </div>
+                                    <div class="parent_div">
 
-        <!-- ...................................................................
-                                  STEP 5 STARTS NEW
-        .................................................................... -->
-        <div class="single_step" id="step_5" style="display:none;">
-        <div class="common_row">
-            <div class="form_h3 text-center">
-                <h3>CONGRATULATIONS!!!</h3>
-            </div>
-            <div class="form_show_message_paragraph">
-                <p>
-                    Congratulations! you are eligible for a refund of expenses incurred.
-                    You are eligible to a refund of up to 1350 EUR (Show on screen the amount
-                    in the currency converted according to passengers IP) per passenger. In the case of luggage delays, airlines are only required to refund, if proof of purchases are submitted.
-                </p>
-            </div>
-        </div>
+                                        <p>A Property Irregularity Report (PIR) reference number is a unique code that helps trace your delayed or damaged baggage.
+                                            It has a combination of 10 letters and numbers and can be found above your name on the PIR receipt,
+                                            which you received at the airport upon reporting your missing baggage.
+                                            For help locating your PIR please contact our customer service department.
+                                        </p>
+                                    </div>
+                                </div>
 
-        <div class="common_row">
-            <div class="total_button_div">
-                <div class="two_button_child_div_right">
-                    <div class="continue_button_div">
-                        <button type="button" class="continue_button" id="continue_5" name="button">Continue <i class="fas fa-arrow-right"></i></button>
-                    </div>
-                </div>
-                <div class="two_button_child_div_left">
-                    <div class="previous_button_div">
-                        <button type="button" class="previous_button pull-left" id="previous_button" name="button"><i class="fas fa-arrow-left"></i> Previous</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        </div>
+                                <div class="common_row">
+                                    <div class="parent_div">
+                                        <div class="label_field">
+                                            <label for="departure_airport">PIR:</label>
+                                        </div>
+                                        <div class="two_input_field">
+                                            <div class="input_field">
+                                                <input type="text" class="common_input pir" id="common_input pir" name="pir" placeholder="PIR : 123456789">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
-        <!-- ...................................................................
-                                  STEP 5 ENDS
-        .................................................................... -->
+                                <div class="common_row">
+                                    <div class="total_button_div">
+                                        <div class="two_button_child_div_right">
+                                            <div class="continue_button_div">
+                                                <button type="button" class="continue_button pull-right" id="continue_2" name="button">Continue <i class="fas fa-arrow-right"></i></button>
+                                            </div>
+                                        </div>
+                                        <div class="two_button_child_div_left">
+                                            <div class="previous_button_div">
+                                                <button type="button" class="previous_button pull-left" id="previous_button" name="button"><i class="fas fa-arrow-left"></i> Previous</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
-        <!-- ...................................................................
-                                  STEP 6 STARTS
-        .................................................................... -->
+                            <!-- ...................................................................
+                                                      STEP 2 ENDS
+                            .................................................................... -->
+                            <!-- ...................................................................
+                                                      STEP 3 STARTS
+                            .................................................................... -->
 
-        <div class="single_step" id="step_6" style="display:none;">
-            <div class="common_row">
-                <div class="form_h3">
-                    <h3>Passenger details</h3>
-                </div>
-                <div class="form_h4">
-                    <h4>Make sure to type your name as it appears on your flight ticket.</h4>
-                </div>
-                <div class="parent_div">
-                    <div class="two_child_div_left">
-                        <div class="label_field">
-                            <label for="first_name">FIRST NAME</label>
-                        </div>
-                        <div class="input_field">
-                            <input type="text" class="common_input first_name" id="common_input first_name" name="first_name[]" placeholder="e.g. John">
-                        </div>
-                    </div>
-                    <div class="two_child_div_right">
-                        <div class="label_field">
-                            <label for="last_name">LAST NAME</label>
-                        </div>
-                        <div class="input_field">
-                            <input type="text" class="common_input last_name" id="common_input last_name" name="last_name[]" placeholder="e.g. Dcosta">
-                        </div>
-                    </div>
-                </div>
-                <div class="parent_div">
-                    <div class="two_child_div_left">
-                        <div class="label_field">
-                            <label for="address">ADDRESS</label>
-                        </div>
-                        <div class="input_field">
-                            <input type="text" class="common_input address" id="common_input address" name="address[]" placeholder="e.g. Road No. 13, House No. 13 New York">
-                        </div>
-                    </div>
-                    <div class="two_child_div_right">
-                        <div class="label_field">
-                            <label for="post_code">POST CODE</label>
-                        </div>
-                        <div class="input_field">
-                            <input type="text" class="common_input post_code" id="common_input post_code" name="post_code[]" placeholder="e.g. 1212">
-                        </div>
-                    </div>
-                </div>
-                <div class="parent_div">
-                    <div class="two_child_div_left">
-                        <div class="label_field">
-                            <label for="date_of_birth">DATE OF BIRTH</label>
-                        </div>
-                        <div class="input_field">
-                            <input type="text" class="common_input date_of_birth date" id="common_input date_of_birth" name="date_of_birth[]" placeholder="e.g. 10/10/1990">
-                        </div>
-                    </div>
-                </div>
-            </div>
+                            <div class="single_step" id="step_3" style="display:none;">
+                              <div class="common_row">
+                                {{-- <div class="form_h3">
+                                    <h3>Have You received your luggage?</h3>
+                                </div> --}}
+                                <div class="label_field only_label_without_input">
+                                  <label>HAVE YOU RECEIVED YOUR LUGGAGE?</label>
+                                </div>
+                                <div class="parent_div">
+                                    <div class="two_child_radio_div first_child">
+                                        <label class="container_radio">Yes
+                                            <input class="common_input is_luggage_received" type="radio" id="common_input is_luggage_received_yes" name="is_luggage_received" value="1">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </div>
+                                    <div class="two_child_radio_div">
+                                        <label class="container_radio">No
+                                            <input class="common_input is_luggage_received" type="radio" id="common_input is_luggage_received_no" name="is_luggage_received" value="0">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                              </div>
 
-            <div class="common_row">
-                <div class="form_h3">
-                    <h3>What’s your booking reference?</h3>
-                </div>
-                <div class="parent_div">
-                    <div class="two_child_radio_div first_child">
-                        <label class="container_radio">Yes
-                            <input class="common_input passenger_is_booking_checkbox" type="radio" count="1" id="common_input is_booking_reference_yes" name="is_booking_reference" value="1">
-                            <span class="checkmark"></span>
-                        </label>
-                    </div>
-                    <div class="two_child_radio_div">
-                        <label class="container_radio">Later
-                            <input class="common_input passenger_is_booking_checkbox" type="radio" count="1" id="common_input is_booking_reference_no" name="is_booking_reference" value="0">
-                            <span class="checkmark"></span>
-                        </label>
-                    </div>
-                </div>
-                <div class="parent_div show_on_is_booking_reference_yes_1" style="display:none">
-                    <div class="add_booking_reference_div" id="add_booking_reference_div_1">
-                        <div class="child_div" style="margin-top: 10px;" id="reference_remove">
-                            <input style="width: 50%; float: left; margin-right: 10px; margin-bottom: 0px; margin-top: 0px;" type="text" class="common_input booking_reference_field_input" id="booking_reference_field_input" name="booking_reference_field_input[]" />
-                        </div>
-                    </div>
-                </div>
-            </div>
+                              <div class="show_on_is_luggage_received_yes">
+                                <div class="common_row">
+                                  <div class="parent_div">
+                                      <div class="label_field">
+                                          <label for="departure_airport">When did you receive your luggage?</label>
+                                      </div>
+                                      <div class="two_input_field">
+                                          <div class="input_field">
+                                              <input type="text" class="common_input received_luggage_date date" id="common_input received_luggage_date date" name="received_luggage_date" placeholder="e.g. 10/10/2010">
+                                          </div>
+                                      </div>
+                                  </div>
+                                </div>
 
-            <div class="show_on_click_add_another_passenger">
+                                <div class="common_row">
+                                  <div class="parent_div">
+                                    {{-- <div class="form_h3">
+                                        <h3>have you filed a complained with the airline within 21 days of receipt of baggage?</h3>
+                                    </div> --}}
+                                    <div class="label_field only_label_without_input">
+                                      <label>HAVE YOU FILED A COMPLAINED WITH THE AIRLINE WITHIN 21 DAYS OF RECEIPT OF BAGGAGE?</label>
+                                    </div>
+                                    <div class="parent_div">
+                                        <div class="two_child_radio_div first_child">
+                                            <label class="container_radio">Yes
+                                                <input class="common_input is_already_written_airline" type="radio" id="common_input is_already_written_airline_yes" name="is_already_written_airline" value="1">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </div>
+                                        <div class="two_child_radio_div">
+                                            <label class="container_radio">No
+                                                <input class="common_input is_already_written_airline" type="radio" id="common_input is_already_written_airline_no" name="is_already_written_airline" value="0">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
 
 
-            </div>
+                                <div class="common_row">
+                                    <div class="total_button_div">
+                                        <div class="two_button_child_div_right">
+                                            <div class="continue_button_div">
+                                                <button type="button" class="continue_button pull-right" id="continue_3" name="button">Continue <i class="fas fa-arrow-right"></i></button>
+                                            </div>
+                                        </div>
+                                        <div class="two_button_child_div_left">
+                                            <div class="previous_button_div">
+                                                <button type="button" class="previous_button pull-left" id="previous_button" name="button"><i class="fas fa-arrow-left"></i> Previous</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
-            <div class="common_row">
-                <div class="parent_div">
-                    <button type="button" name="button" id="add_another_passenger" class="add_another_passenger"><i class="fas fa-plus"></i> Add Another Passenger</button>
-                </div>
-            </div>
+                            <!-- ...................................................................
+                                                      STEP 3 ENDS
+                            .................................................................... -->
+                            <!-- ...................................................................
+                                                      STEP 4 STARTS
+                            .................................................................... -->
 
-            <div class="common_row">
-                <div class="total_button_div">
-                    <div class="two_button_child_div_right">
-                        <div class="continue_button_div">
-                            <button type="button" class="continue_button" id="continue_6" name="button">Continue <i class="fas fa-arrow-right"></i></button>
-                        </div>
-                    </div>
-                    <div class="two_button_child_div_left">
-                        <div class="previous_button_div">
-                            <button type="button" class="previous_button pull-left" id="previous_button" name="button"><i class="fas fa-arrow-left"></i> Previous</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+                            <div class="single_step" id="step_4" style="display:none;">
 
-        <!-- ...................................................................
-                                  STEP 6 ENDS
-        .................................................................... -->
+                                <div class="common_row">
+                                    <div class="email_div">
+                                        <div class="label_field">
+                                            <label for="departure_airport">Please enter your email address</label>
+                                        </div>
+                                        <div class="input_field">
+                                            <input type="text" class="common_input email_address" id="common_input email_address" name="email_address" placeholder="e.g. something@gmail.com">
+                                        </div>
+                                    </div>
+                                </div>
 
-        <!-- ...................................................................
-                                  STEP 7 STARTS
-        .................................................................... -->
+                                <div class="common_row">
+                                    <div class="total_button_div">
+                                        <div class="two_button_child_div_right">
+                                            <div class="continue_button_div">
+                                                <button type="button" class="continue_button pull-right" id="continue_4" name="button">Continue <i class="fas fa-arrow-right"></i></button>
+                                            </div>
+                                        </div>
+                                        <div class="two_button_child_div_left">
+                                            <div class="previous_button_div">
+                                                <button type="button" class="previous_button pull-left" id="previous_button" name="button"><i class="fas fa-arrow-left"></i> Previous</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
-        <div class="single_step" id="step_7" style="display:none;">
-            <div class="common_row table_show_on_large_screen">
-                <div class="parent_div">
-                    <div class="form_h3">
-                        <h3>Total amount claimed for all passengers.</h3>
-                    </div>
-                </div>
-                <div class="parent_div">
-                    {{-- <div class="form_h4 text-center">
-                        <h4>Tell us about your expenses.</h4>
-                    </div> --}}
-                    <div class="label_field only_label_without_input">
-                      <label>TELL US ABOUT YOUR EXPENSES.</label>
-                    </div>
-                </div>
-                <div class="parent_div">
-                    <div class="table_field">
-                        <table class="table text-center">
-                            <thead>
-                                <tr>
-                                    <th scope="col" class="text-center">Expense</th>
-                                    <th scope="col" class="text-center">Amount</th>
-                                    <th scope="col" class="text-center">Receipt</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="align-middle">Clothing
-                                        <input type="hidden" value="accommodation" class="common_input expense_name" id="common_input expense_name" name="expense_name[]">
-                                    </td>
-                                    <td class="align-middle">
+                            <!-- ...................................................................
+                                                      STEP 4 ENDS
+                            .................................................................... -->
+
+                            <!-- ...................................................................
+                                                      STEP 5 STARTS NEW
+                            .................................................................... -->
+                            <div class="single_step" id="step_5" style="display:none;">
+                            <div class="common_row">
+                                <div class="form_h3 text-center">
+                                    <h3>CONGRATULATIONS!!!</h3>
+                                </div>
+                                <div class="form_show_message_paragraph">
+                                    <p>
+                                        Congratulations! you are eligible for a refund of expenses incurred.
+                                        You are eligible to a refund of up to 1350 EUR (Show on screen the amount
+                                        in the currency converted according to passengers IP) per passenger. In the case of luggage delays, airlines are only required to refund, if proof of purchases are submitted.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="common_row">
+                                <div class="total_button_div">
+                                    <div class="two_button_child_div_right">
+                                        <div class="continue_button_div">
+                                            <button type="button" class="continue_button pull-right" id="continue_5" name="button">Continue <i class="fas fa-arrow-right"></i></button>
+                                        </div>
+                                    </div>
+                                    <div class="two_button_child_div_left">
+                                        <div class="previous_button_div">
+                                            <button type="button" class="previous_button pull-left" id="previous_button" name="button"><i class="fas fa-arrow-left"></i> Previous</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+
+                            <!-- ...................................................................
+                                                      STEP 5 ENDS
+                            .................................................................... -->
+
+                            <!-- ...................................................................
+                                                      STEP 6 STARTS
+                            .................................................................... -->
+
+                            <div class="single_step" id="step_6" style="display:none;">
+                                <div class="common_row">
+                                    <div class="form_h3">
+                                        <h3>Passenger details</h3>
+                                    </div>
+                                    <div class="form_h4">
+                                        <h4>Make sure to type your name as it appears on your flight ticket.</h4>
+                                    </div>
+                                    <div class="parent_div">
+                                        <div class="two_child_div_left">
+                                            <div class="label_field">
+                                                <label for="first_name">FIRST NAME</label>
+                                            </div>
+                                            <div class="input_field">
+                                                <input type="text" class="common_input first_name" id="common_input first_name" name="first_name[]" placeholder="e.g. John">
+                                            </div>
+                                        </div>
+                                        <div class="two_child_div_right">
+                                            <div class="label_field">
+                                                <label for="last_name">LAST NAME</label>
+                                            </div>
+                                            <div class="input_field">
+                                                <input type="text" class="common_input last_name" id="common_input last_name" name="last_name[]" placeholder="e.g. Dcosta">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="parent_div">
+                                        <div class="two_child_div_left">
+                                            <div class="label_field">
+                                                <label for="address">ADDRESS</label>
+                                            </div>
+                                            <div class="input_field">
+                                                <input type="text" class="common_input address" id="common_input address" name="address[]" placeholder="e.g. Road No. 13, House No. 13 New York">
+                                            </div>
+                                        </div>
+                                        <div class="two_child_div_right">
+                                            <div class="label_field">
+                                                <label for="post_code">POST CODE</label>
+                                            </div>
+                                            <div class="input_field">
+                                                <input type="text" class="common_input post_code" id="common_input post_code" name="post_code[]" placeholder="e.g. 1212">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="parent_div">
+                                        <div class="two_child_div_left">
+                                            <div class="label_field">
+                                                <label for="date_of_birth">DATE OF BIRTH</label>
+                                            </div>
+                                            <div class="input_field">
+                                                <input type="text" class="common_input date_of_birth date" id="common_input date_of_birth" name="date_of_birth[]" placeholder="e.g. 10/10/1990">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="common_row">
+                                    <div class="form_h3">
+                                        <h3>What’s your booking reference?</h3>
+                                    </div>
+                                    <div class="parent_div">
+                                        <div class="two_child_radio_div first_child">
+                                            <label class="container_radio">Yes
+                                                <input class="common_input passenger_is_booking_checkbox" type="radio" count="1" id="common_input is_booking_reference_yes" name="is_booking_reference" value="1">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </div>
+                                        <div class="two_child_radio_div">
+                                            <label class="container_radio">Later
+                                                <input class="common_input passenger_is_booking_checkbox" type="radio" count="1" id="common_input is_booking_reference_no" name="is_booking_reference" value="0">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="parent_div show_on_is_booking_reference_yes_1" style="display:none">
+                                        <div class="add_booking_reference_div" id="add_booking_reference_div_1">
+                                            <div class="child_div" style="margin-top: 10px;" id="reference_remove">
+                                                <input style="width: 50%; float: left; margin-right: 10px; margin-bottom: 0px; margin-top: 0px;" type="text" class="common_input booking_reference_field_input" id="booking_reference_field_input" name="booking_reference_field_input[]" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="show_on_click_add_another_passenger">
+
+
+                                </div>
+
+                                <div class="common_row">
+                                    <div class="parent_div">
+                                        <button type="button" name="button" id="add_another_passenger" class="add_another_passenger"><i class="fas fa-plus"></i> Add Another Passenger</button>
+                                    </div>
+                                </div>
+
+                                <div class="common_row">
+                                    <div class="total_button_div">
+                                        <div class="two_button_child_div_right">
+                                            <div class="continue_button_div">
+                                                <button type="button" class="continue_button pull-right" id="continue_6" name="button">Continue <i class="fas fa-arrow-right"></i></button>
+                                            </div>
+                                        </div>
+                                        <div class="two_button_child_div_left">
+                                            <div class="previous_button_div">
+                                                <button type="button" class="previous_button pull-left" id="previous_button" name="button"><i class="fas fa-arrow-left"></i> Previous</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- ...................................................................
+                                                      STEP 6 ENDS
+                            .................................................................... -->
+
+                            <!-- ...................................................................
+                                                      STEP 7 STARTS
+                            .................................................................... -->
+
+                            <div class="single_step" id="step_7" style="display:none;">
+                                <div class="common_row table_show_on_large_screen">
+                                    <div class="parent_div">
+                                        <div class="form_h3">
+                                            <h3>Total amount claimed for all passengers.</h3>
+                                        </div>
+                                    </div>
+                                    <div class="parent_div">
+                                        {{-- <div class="form_h4 text-center">
+                                            <h4>Tell us about your expenses.</h4>
+                                        </div> --}}
+                                        <div class="label_field only_label_without_input">
+                                          <label>TELL US ABOUT YOUR EXPENSES.</label>
+                                        </div>
+                                    </div>
+                                    <div class="parent_div">
+                                        <div class="table_field">
+                                            <table class="table text-center">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col" class="text-center">Expense</th>
+                                                        <th scope="col" class="text-center">Amount</th>
+                                                        <th scope="col" class="text-center">Receipt</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="align-middle">Clothing
+                                                            <input type="hidden" value="accommodation" class="common_input expense_name" id="common_input expense_name" name="expense_name[]">
+                                                        </td>
+                                                        <td class="align-middle">
+                                                            <div class="row">
+                                                                <div class="col-md-6 fifty_percent_width">
+                                                                    <input type="text" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
+                                                                </div>
+                                                                <div class="col-md-6 fifty_percent_width">
+                                                                    <div class="select_reason_class">
+                                                                        <select class="form-control custom_select" name="expense_currency[]">
+                                                                            <option selected>select currency</option>
+                                                                            @foreach($currencies as $key => $val)
+                                                                                <option value="{{$key}}">{{$key}}</option>
+                                                                            @endforeach
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="group">
+                                                                <input id="is_receipt_clothing_yes" name="is_receipt[0]" type="radio" value="Yes" checked="checked">
+                                                                <label class="label" for="is_receipt_clothing_yes">Yes</label>
+                                                                <input id="is_receipt_clothing_no" name="is_receipt[0]" type="radio" value="No">
+                                                                <label class="center label" for="is_receipt_clothing_no">No</label>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="align-baseline">Toiletries
+                                                            <input type="hidden" value="accommodation" class="common_input expense_name" id="common_input expense_name" name="expense_name[]">
+                                                        </td>
+                                                        <td>
+                                                            <div class="row">
+                                                                <div class="col-md-6 fifty_percent_width">
+                                                                    <input type="text" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
+                                                                </div>
+                                                                <div class="col-md-6 fifty_percent_width">
+                                                                    <div class="select_reason_class">
+                                                                        <select class="form-control custom_select" name="expense_currency[]">
+                                                                            <option selected>select currency</option>
+                                                                            @foreach($currencies as $key => $val)
+                                                                                <option value="{{$key}}">{{$key}}</option>
+                                                                            @endforeach
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="group">
+                                                                <input id="is_receipt_toiletries_yes" name="is_receipt[1]" type="radio" value="Yes" checked="checked">
+                                                                <label class="label" for="is_receipt_toiletries_yes">Yes</label>
+                                                                <input id="is_receipt_toiletries_no" name="is_receipt[1]" type="radio" value="No">
+                                                                <label class="center label" for="is_receipt_toiletries_no">No</label>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="align-baseline">Others
+                                                            <input type="hidden" value="accommodation" class="common_input expense_name" id="common_input expense_name" name="expense_name[]">
+                                                        </td>
+                                                        <td>
+                                                            <div class="row">
+                                                                <div class="col-md-6 fifty_percent_width">
+                                                                    <input type="text" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
+                                                                </div>
+                                                                <div class="col-md-6 fifty_percent_width">
+                                                                    <div class="select_reason_class">
+                                                                        <select class="form-control custom_select" name="expense_currency[]">
+                                                                            <option selected>select currency</option>
+                                                                            @foreach($currencies as $key => $val)
+                                                                                <option value="{{$key}}">{{$key}}</option>
+                                                                            @endforeach
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="group">
+                                                                <input id="is_receipt_others_yes" name="is_receipt[2]" type="radio" value="Yes" checked="checked">
+                                                                <label class="label" for="is_receipt_others_yes">Yes</label>
+                                                                <input id="is_receipt_others_no" name="is_receipt[2]" type="radio" value="No">
+                                                                <label class="center label" for="is_receipt_others_no">No</label>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Total Claim:</td>
+                                                        <td>
+                                                            <div class="row">
+                                                                <div class="col-md-6 fifty_percent_width">
+                                                                    <input type="text" class="common_input price_input" id="common_input price_input" placeholder="1234">
+                                                                </div>
+                                                                <div class="col-md-6 fifty_percent_width">
+                                                                    <div class="select_reason_class">
+                                                                        <select class="form-control custom_select">
+                                                                            <option selected>select currency</option>
+                                                                            @foreach($currencies as $key => $val)
+                                                                                <option value="{{$key}}">{{$key}}</option>
+                                                                            @endforeach
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="common_row table_show_on_small_screen">
+                                    <div class="parent_div">
+                                        {{-- <div class="form_h4 text-center">
+                                            <h4>Tell us about your expenses.</h4>
+                                        </div> --}}
+                                        <div class="label_field only_label_without_input">
+                                          <label>TELL US ABOUT YOUR EXPENSES.</label>
+                                        </div>
+                                    </div>
+                                    <div class="parent_div">
+                                        <div class="table_field">
+                                            <table class="table text-center">
+                                                <tr>
+                                                    <th scope="col">Expense</th>
+                                                    <td class="align-baseline">Clothing
+                                                        <input type="hidden" value="accommodation" class="common_input expense_name" id="common_input expense_name" name="expense_name[]">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="col">Amount</th>
+                                                    <td>
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <input type="text" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="select_reason_class">
+                                                                    <select class="form-control custom_select" name="expense_currency[]">
+                                                                        <option selected>select currency</option>
+                                                                        @foreach($currencies as $key => $val)
+                                                                            <option value="{{$key}}">{{$key}}</option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr class="bootstrap_table_tr_lower_thin_border">
+                                                    <th scope="col">Receipt</th>
+                                                    <td>
+                                                        <div class="group">
+                                                            <input id="is_receipt_clothing_yes_mobile" name="is_receipt[0]" type="radio" value="Yes" checked="checked">
+                                                            <label class="label" for="is_receipt_clothing_yes_mobile">Yes</label>
+                                                            <input id="is_receipt_clothing_no_mobile" name="is_receipt[0]" type="radio" value="No">
+                                                            <label class="center label" for="is_receipt_clothing_no_mobile">No</label>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="col">Expense</th>
+                                                    <td class="align-baseline">Toiletries
+                                                        <input type="hidden" value="accommodation" class="common_input expense_name" id="common_input expense_name" name="expense_name[]">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="col">Amount</th>
+                                                    <td>
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <input type="text" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="select_reason_class">
+                                                                    <select class="form-control custom_select" name="expense_currency[]">
+                                                                        <option selected>select currency</option>
+                                                                        @foreach($currencies as $key => $val)
+                                                                            <option value="{{$key}}">{{$key}}</option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr class="bootstrap_table_tr_lower_thin_border">
+                                                    <th scope="col">Receipt</th>
+                                                    <td>
+                                                        <div class="group">
+                                                            <input id="is_receipt_toiletries_yes_mobile" name="is_receipt[1]" type="radio" value="Yes" checked="checked">
+                                                            <label class="label" for="is_receipt_toiletries_yes_mobile">Yes</label>
+                                                            <input id="is_receipt_toiletries_no_mobile" name="is_receipt[1]" type="radio" value="No">
+                                                            <label class="center label" for="is_receipt_toiletries_no_mobile">No</label>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="col">Expense</th>
+                                                    <td class="align-baseline">Others
+                                                        <input type="hidden" value="accommodation" class="common_input expense_name" id="common_input expense_name" name="expense_name[]">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="col">Amount</th>
+                                                    <td>
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <input type="text" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="select_reason_class">
+                                                                    <select class="form-control custom_select" name="expense_currency[]">
+                                                                        <option selected>select currency</option>
+                                                                        @foreach($currencies as $key => $val)
+                                                                            <option value="{{$key}}">{{$key}}</option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr class="bootstrap_table_tr_lower_thin_border">
+                                                    <th scope="col">Receipt</th>
+                                                    <td>
+                                                        <div class="group">
+                                                            <input id="is_receipt_others_yes_mobile" name="is_receipt[2]" type="radio" value="Yes" checked="checked">
+                                                            <label class="label" for="is_receipt_others_yes_mobile">Yes</label>
+                                                            <input id="is_receipt_others_no_mobile" name="is_receipt[2]" type="radio" value="No">
+                                                            <label class="center label" for="is_receipt_others_no_mobile">No</label>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Total Claim:</td>
+                                                    <td colspan="2">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <input type="text" class="common_input price_input" id="common_input price_input" placeholder="1234">
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="select_reason_class">
+                                                                    <select class="form-control custom_select">
+                                                                        <option selected>select currency</option>
+                                                                        @foreach($currencies as $key => $val)
+                                                                            <option value="{{$key}}">{{$key}}</option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="common_row">
+                                    <div class="form_h3">
+                                        <h3>Sign permission to handle claim</h3>
+                                    </div>
+                                    <div class="parent_div">
+
+                                      <div class="panel panel-default" style="width: 300px; margin: 0 auto">
+                                        <div class="panel-body center-text">
+
+                                          <div id="signArea" >
+                                            <h4 class="tag-ingo">Put signature below,</h4>
+                                            <div class="sig sigWrapper" style="height:auto; width:302px">
+                                              <div class="typed"></div>
+                                              <canvas class="sign-pad" id="sign-pad" width="300" height="100"></canvas>
+                                            </div>
+                                          </div>
+                                          {{-- <button type="button" class="btn btn-sm btn-success" id="signature_clear">Clear</button> --}}
+                                          {{-- <button id="btnSaveSign" type="button" class="btn btn-xs btn-success" style="margin-top: 2px">Save Signature</button> --}}
+                                        </div>
+                                      </div>
+
+                                        <div class="form-check">
+                                            <label>
+                                                <input type="checkbox" name="is_signed_permission"> <span class="label-text">Write your signature below as it appears on your ID. It's required by airlines to collect the compensation for you. By signing you agree with
+                                                    the Assignment Form and Price List</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="common_row">
+                                    <div class="total_button_div">
+                                        <div class="two_button_child_div_right">
+                                            <div class="continue_button_div">
+                                                <button type="button" class="continue_button pull-right" id="continue_7" name="button">Continue <i class="fas fa-arrow-right"></i></button>
+                                            </div>
+                                        </div>
+                                        <div class="two_button_child_div_left">
+                                            <div class="previous_button_div">
+                                                <button type="button" class="previous_button pull-left" id="previous_button" name="button"><i class="fas fa-arrow-left"></i> Previous</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- ...................................................................
+                                                      STEP 7 ENDS
+                            .................................................................... -->
+                            <!-- ...................................................................
+                                                      STEP 8 STARTS
+                            .................................................................... -->
+
+                            <div class="single_step" id="step_8" style="display:none;">
+                                <div class="common_row">
+                                    <div class="form_h3">
+                                        <h3>Optional: Additional information</h3>
+                                    </div>
+                                    {{-- <div class="form_h4">
+                                        <h4>If we gather more information, we can handle your claim faster.</h4>
+                                    </div> --}}
+                                    <div class="label_field only_label_without_input">
+                                      <label>IF WE GATHER MORE INFORMATION, WE CAN HANDLE YOUR CLAIM FASTER.</label>
+                                    </div>
+                                    <div class="select_reason_class">
+                                        <select class="form-control custom_select" class="hear_from_where">
+                                            <option hidden>Open this select menu</option>
+                                            <option value="1">Google</option>
+                                            <option value="2">Friends</option>
+                                            <option value="3">Social media</option>
+                                            <option value="4">Tv</option>
+                                            <option value="5">Article or blog</option>
+                                            <option value="6">Others</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="common_row">
+                                    <div class="form_h3">
+                                        <h3>Tell us what happened</h3>
+                                    </div>
+                                    {{-- <div class="form_h4">
+                                        <h4>Please provide any information that may help us process your claim quickly.</h4>
+                                    </div> --}}
+
+                                    <div class="label_field only_label_without_input">
+                                      <label>PLEASE PROVIDE ANY INFORMATION THAT MAY HELP US PROCESS YOUR CLAIM QUICKLY.</label>
+                                    </div>
+                                    <div class="parent_div">
+                                        <div class="form-group">
+                                            <textarea class="form-control" rows="5" id="comment" name="text" placeholder="Additional Information"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="common_row show_if_contacted_airline">
+                                    <div class="document_submit_div">
                                         <div class="row">
-                                            <div class="col-md-6">
-                                                <input type="text" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
+                                            <div class="col-md-6 padding_bottom">
+                                                ID copies, including travel companions’ if applicable
+                                                <input type="hidden" value="ID copies, including travel companions’ if applicable" name="file_name_by_user[]">
                                             </div>
                                             <div class="col-md-6">
-                                                <div class="select_reason_class">
-                                                    <select class="form-control custom_select" name="expense_currency[]">
-                                                        <option selected>select currency</option>
-                                                        @foreach($currencies as $key => $val)
-                                                            <option value="{{$key}}">{{$key}}</option>
-                                                        @endforeach
-                                                    </select>
+                                                <div class="input-file-container col-centered">
+                                                    <input class="input-file" id="my-file-0" type="file" name="file_name[]">
+                                                    <label tabindex="0" for="my-file" class="input-file-trigger" id="input-file-trigger-0">Select a file...</label>
                                                 </div>
+                                                <p class="file-return" id="file-return-0"></p>
                                             </div>
                                         </div>
-                                    </td>
-                                    <td>
-                                        <div class="group">
-                                            <input id="is_receipt_clothing_yes" name="is_receipt[0]" type="radio" value="Yes" checked="checked">
-                                            <label class="label" for="is_receipt_clothing_yes">Yes</label>
-                                            <input id="is_receipt_clothing_no" name="is_receipt[0]" type="radio" value="No">
-                                            <label class="center label" for="is_receipt_clothing_no">No</label>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="align-baseline">Toiletries
-                                        <input type="hidden" value="accommodation" class="common_input expense_name" id="common_input expense_name" name="expense_name[]">
-                                    </td>
-                                    <td>
+                                    </div>
+                                    <div class="document_submit_div">
                                         <div class="row">
-                                            <div class="col-md-6">
-                                                <input type="text" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
+                                            <div class="col-md-6 padding_bottom">
+                                                Travel documents (reservation, ticket or boarding passes)
+                                                <input type="hidden" value="Travel documents (reservation, ticket or boarding passes)" name="file_name_by_user[]">
                                             </div>
                                             <div class="col-md-6">
-                                                <div class="select_reason_class">
-                                                    <select class="form-control custom_select" name="expense_currency[]">
-                                                        <option selected>select currency</option>
-                                                        @foreach($currencies as $key => $val)
-                                                            <option value="{{$key}}">{{$key}}</option>
-                                                        @endforeach
-                                                    </select>
+                                                <div class="input-file-container col-centered">
+                                                    <input class="input-file" id="my-file-1" type="file" name="file_name[]">
+                                                    <label tabindex="0" for="my-file" class="input-file-trigger" id="input-file-trigger-1">Select a file...</label>
                                                 </div>
+                                                <p class="file-return" id="file-return-1"></p>
                                             </div>
                                         </div>
-                                    </td>
-                                    <td>
-                                        <div class="group">
-                                            <input id="is_receipt_toiletries_yes" name="is_receipt[1]" type="radio" value="Yes" checked="checked">
-                                            <label class="label" for="is_receipt_toiletries_yes">Yes</label>
-                                            <input id="is_receipt_toiletries_no" name="is_receipt[1]" type="radio" value="No">
-                                            <label class="center label" for="is_receipt_toiletries_no">No</label>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="align-baseline">Others
-                                        <input type="hidden" value="accommodation" class="common_input expense_name" id="common_input expense_name" name="expense_name[]">
-                                    </td>
-                                    <td>
+                                    </div>
+                                    <div class="document_submit_div">
                                         <div class="row">
-                                            <div class="col-md-6">
-                                                <input type="text" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
+                                            <div class="col-md-6 padding_bottom">
+                                                Proof of expenses (store/online receipts, detailed bank statements) if applicable
+                                                <input type="hidden" value="Proof of expenses (store/online receipts, detailed bank statements) if applicable" name="file_name_by_user[]">
                                             </div>
                                             <div class="col-md-6">
-                                                <div class="select_reason_class">
-                                                    <select class="form-control custom_select" name="expense_currency[]">
-                                                        <option selected>select currency</option>
-                                                        @foreach($currencies as $key => $val)
-                                                            <option value="{{$key}}">{{$key}}</option>
-                                                        @endforeach
-                                                    </select>
+                                                <div class="input-file-container col-centered">
+                                                    <input class="input-file" id="my-file-2" type="file" name="file_name[]">
+                                                    <label tabindex="0" for="my-file" class="input-file-trigger" id="input-file-trigger-2">Select a file...</label>
                                                 </div>
+                                                <p class="file-return" id="file-return-2"></p>
                                             </div>
                                         </div>
-                                    </td>
-                                    <td>
-                                        <div class="group">
-                                            <input id="is_receipt_others_yes" name="is_receipt[2]" type="radio" value="Yes" checked="checked">
-                                            <label class="label" for="is_receipt_others_yes">Yes</label>
-                                            <input id="is_receipt_others_no" name="is_receipt[2]" type="radio" value="No">
-                                            <label class="center label" for="is_receipt_others_no">No</label>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Total Claim:</td>
-                                    <td>
+                                    </div>
+                                    <div class="document_submit_div">
                                         <div class="row">
-                                            <div class="col-md-6">
-                                                <input type="text" class="common_input price_input" id="common_input price_input" placeholder="1234">
+                                            <div class="col-md-6 padding_bottom">
+                                                Property irregularity report (received in the airport when reporting missing baggage)
+                                                <input type="hidden" value="Property irregularity report (received in the airport when reporting missing baggage)" name="file_name_by_user[]">
                                             </div>
                                             <div class="col-md-6">
-                                                <div class="select_reason_class">
-                                                    <select class="form-control custom_select">
-                                                        <option selected>select currency</option>
-                                                        @foreach($currencies as $key => $val)
-                                                            <option value="{{$key}}">{{$key}}</option>
-                                                        @endforeach
-                                                    </select>
+                                                <div class="input-file-container col-centered">
+                                                    <input class="input-file" id="my-file-4" type="file" name="file_name[]">
+                                                    <label tabindex="0" for="my-file" class="input-file-trigger" id="input-file-trigger-4">Select a file...</label>
                                                 </div>
+                                                <p class="file-return" id="file-return-4"></p>
                                             </div>
                                         </div>
-                                    </td>
-                                    <td></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
+                                    </div>
+                                    <div class="document_submit_div">
+                                        <div class="row">
+                                            <div class="col-md-6 padding_bottom">
+                                                Other
+                                                <input type="hidden" value="Other" name="file_name_by_user[]">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="input-file-container col-centered">
+                                                    <input class="input-file" id="my-file-3" type="file" name="file_name[]">
+                                                    <label tabindex="0" for="my-file" class="input-file-trigger" id="input-file-trigger-3">Select a file...</label>
+                                                </div>
+                                                <p class="file-return" id="file-return-3"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
-            <div class="common_row table_show_on_small_screen">
-                <div class="parent_div">
-                    {{-- <div class="form_h4 text-center">
-                        <h4>Tell us about your expenses.</h4>
-                    </div> --}}
-                    <div class="label_field only_label_without_input">
-                      <label>TELL US ABOUT YOUR EXPENSES.</label>
-                    </div>
-                </div>
-                <div class="parent_div">
-                    <div class="table_field">
-                        <table class="table text-center">
-                            <tr>
-                                <th scope="col">Expense</th>
-                                <td class="align-baseline">Clothing
-                                    <input type="hidden" value="accommodation" class="common_input expense_name" id="common_input expense_name" name="expense_name[]">
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="col">Amount</th>
-                                <td>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <input type="text" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
+                                <div class="common_row">
+                                    <div class="total_button_div">
+                                        <div class="two_button_child_div_right">
+                                            <div class="continue_button_div">
+                                                <button type="button" class="continue_button pull-right" id="continue_8" name="button">Continue <i class="fas fa-arrow-right"></i></button>
+                                            </div>
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="select_reason_class">
-                                                <select class="form-control custom_select" name="expense_currency[]">
-                                                    <option selected>select currency</option>
-                                                    @foreach($currencies as $key => $val)
-                                                        <option value="{{$key}}">{{$key}}</option>
-                                                    @endforeach
-                                                </select>
+                                        <div class="two_button_child_div_left">
+                                            <div class="previous_button_div">
+                                                <button type="button" class="previous_button pull-left" id="previous_button" name="button"><i class="fas fa-arrow-left"></i> Previous</button>
                                             </div>
                                         </div>
                                     </div>
-                                </td>
-                            </tr>
-                            <tr class="bootstrap_table_tr_lower_thin_border">
-                                <th scope="col">Receipt</th>
-                                <td>
-                                    <div class="group">
-                                        <input id="is_receipt_clothing_yes_mobile" name="is_receipt[0]" type="radio" value="Yes" checked="checked">
-                                        <label class="label" for="is_receipt_clothing_yes_mobile">Yes</label>
-                                        <input id="is_receipt_clothing_no_mobile" name="is_receipt[0]" type="radio" value="No">
-                                        <label class="center label" for="is_receipt_clothing_no_mobile">No</label>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="col">Expense</th>
-                                <td class="align-baseline">Toiletries
-                                    <input type="hidden" value="accommodation" class="common_input expense_name" id="common_input expense_name" name="expense_name[]">
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="col">Amount</th>
-                                <td>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <input type="text" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="select_reason_class">
-                                                <select class="form-control custom_select" name="expense_currency[]">
-                                                    <option selected>select currency</option>
-                                                    @foreach($currencies as $key => $val)
-                                                        <option value="{{$key}}">{{$key}}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr class="bootstrap_table_tr_lower_thin_border">
-                                <th scope="col">Receipt</th>
-                                <td>
-                                    <div class="group">
-                                        <input id="is_receipt_toiletries_yes_mobile" name="is_receipt[1]" type="radio" value="Yes" checked="checked">
-                                        <label class="label" for="is_receipt_toiletries_yes_mobile">Yes</label>
-                                        <input id="is_receipt_toiletries_no_mobile" name="is_receipt[1]" type="radio" value="No">
-                                        <label class="center label" for="is_receipt_toiletries_no_mobile">No</label>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="col">Expense</th>
-                                <td class="align-baseline">Others
-                                    <input type="hidden" value="accommodation" class="common_input expense_name" id="common_input expense_name" name="expense_name[]">
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="col">Amount</th>
-                                <td>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <input type="text" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="select_reason_class">
-                                                <select class="form-control custom_select" name="expense_currency[]">
-                                                    <option selected>select currency</option>
-                                                    @foreach($currencies as $key => $val)
-                                                        <option value="{{$key}}">{{$key}}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr class="bootstrap_table_tr_lower_thin_border">
-                                <th scope="col">Receipt</th>
-                                <td>
-                                    <div class="group">
-                                        <input id="is_receipt_others_yes_mobile" name="is_receipt[2]" type="radio" value="Yes" checked="checked">
-                                        <label class="label" for="is_receipt_others_yes_mobile">Yes</label>
-                                        <input id="is_receipt_others_no_mobile" name="is_receipt[2]" type="radio" value="No">
-                                        <label class="center label" for="is_receipt_others_no_mobile">No</label>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Total Claim:</td>
-                                <td colspan="2">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <input type="text" class="common_input price_input" id="common_input price_input" placeholder="1234">
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="select_reason_class">
-                                                <select class="form-control custom_select">
-                                                    <option selected>select currency</option>
-                                                    @foreach($currencies as $key => $val)
-                                                        <option value="{{$key}}">{{$key}}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-            </div>
+                                </div>
 
+                            </div>
 
-            <div class="common_row">
-                <div class="form_h3">
-                    <h3>Sign permission to handle claim</h3>
-                </div>
-                <div class="parent_div">
-              
-                  <div class="panel panel-default" style="width: 300px; margin: 0 auto">
-                    <div class="panel-body center-text">
-
-                      <div id="signArea" >
-                        <h4 class="tag-ingo">Put signature below,</h4>
-                        <div class="sig sigWrapper" style="height:auto; width:302px">
-                          <div class="typed"></div>
-                          <canvas class="sign-pad" id="sign-pad" width="300" height="100"></canvas>
-                        </div>
-                      </div>
-                      {{-- <button type="button" class="btn btn-sm btn-success" id="signature_clear">Clear</button> --}}
-                      {{-- <button id="btnSaveSign" type="button" class="btn btn-xs btn-success" style="margin-top: 2px">Save Signature</button> --}}
+                            <input type="hidden" name="claim_table_type" value="lost_luggage">
+                            <!-- ...................................................................
+                                                      STEP 8 ENDS
+                            .................................................................... -->
+                        </form>
                     </div>
+
                   </div>
+              </div>
+          </div>
+      </div>
+  </div>
 
-                    <div class="form-check">
-                        <label>
-                            <input type="checkbox" name="is_signed_permission"> <span class="label-text">Write your signature below as it appears on your ID. It's required by airlines to collect the compensation for you. By signing you agree with
-                                the Assignment Form and Price List</span>
-                        </label>
-                    </div>
-                </div>
-            </div>
 
-            <div class="common_row">
-                <div class="total_button_div">
-                    <div class="two_button_child_div_right">
-                        <div class="continue_button_div">
-                            <button type="button" class="continue_button" id="continue_7" name="button">Continue <i class="fas fa-arrow-right"></i></button>
-                        </div>
-                    </div>
-                    <div class="two_button_child_div_left">
-                        <div class="previous_button_div">
-                            <button type="button" class="previous_button pull-left" id="previous_button" name="button"><i class="fas fa-arrow-left"></i> Previous</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        <!-- ...................................................................
-                                  STEP 7 ENDS
-        .................................................................... -->
-        <!-- ...................................................................
-                                  STEP 8 STARTS
-        .................................................................... -->
 
-        <div class="single_step" id="step_8" style="display:none;">
-            <div class="common_row">
-                <div class="form_h3">
-                    <h3>Optional: Additional information</h3>
-                </div>
-                {{-- <div class="form_h4">
-                    <h4>If we gather more information, we can handle your claim faster.</h4>
-                </div> --}}
-                <div class="label_field only_label_without_input">
-                  <label>IF WE GATHER MORE INFORMATION, WE CAN HANDLE YOUR CLAIM FASTER.</label>
-                </div>
-                <div class="select_reason_class">
-                    <select class="form-control custom_select" class="hear_from_where">
-                        <option hidden>Open this select menu</option>
-                        <option value="1">Google</option>
-                        <option value="2">Friends</option>
-                        <option value="3">Social media</option>
-                        <option value="4">Tv</option>
-                        <option value="5">Article or blog</option>
-                        <option value="6">Others</option>
-                    </select>
-                </div>
-            </div>
 
-            <div class="common_row">
-                <div class="form_h3">
-                    <h3>Tell us what happened</h3>
-                </div>
-                {{-- <div class="form_h4">
-                    <h4>Please provide any information that may help us process your claim quickly.</h4>
-                </div> --}}
 
-                <div class="label_field only_label_without_input">
-                  <label>PLEASE PROVIDE ANY INFORMATION THAT MAY HELP US PROCESS YOUR CLAIM QUICKLY.</label>
-                </div>
-                <div class="parent_div">
-                    <div class="form-group">
-                        <textarea class="form-control" rows="5" id="comment" name="text" placeholder="Additional Information"></textarea>
-                    </div>
-                </div>
-            </div>
 
-            <div class="common_row show_if_contacted_airline">
-                <div class="document_submit_div">
-                    <div class="row">
-                        <div class="col-md-8">
-                            ID copies, including travel companions’ if applicable
-                            <input type="hidden" value="ID copies, including travel companions’ if applicable" name="file_name_by_user[]">
-                        </div>
-                        <div class="col-md-4">
-                            <div class="input-file-container col-centered">
-                                <input class="input-file" id="my-file-0" type="file" name="file_name[]">
-                                <label tabindex="0" for="my-file" class="input-file-trigger" id="input-file-trigger-0">Select a file...</label>
-                            </div>
-                            <p class="file-return" id="file-return-0"></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="document_submit_div">
-                    <div class="row">
-                        <div class="col-md-8">
-                            Travel documents (reservation, ticket or boarding passes)
-                            <input type="hidden" value="Travel documents (reservation, ticket or boarding passes)" name="file_name_by_user[]">
-                        </div>
-                        <div class="col-md-4">
-                            <div class="input-file-container col-centered">
-                                <input class="input-file" id="my-file-1" type="file" name="file_name[]">
-                                <label tabindex="0" for="my-file" class="input-file-trigger" id="input-file-trigger-1">Select a file...</label>
-                            </div>
-                            <p class="file-return" id="file-return-1"></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="document_submit_div">
-                    <div class="row">
-                        <div class="col-md-8">
-                            Proof of expenses (store/online receipts, detailed bank statements) if applicable
-                            <input type="hidden" value="Proof of expenses (store/online receipts, detailed bank statements) if applicable" name="file_name_by_user[]">
-                        </div>
-                        <div class="col-md-4">
-                            <div class="input-file-container col-centered">
-                                <input class="input-file" id="my-file-2" type="file" name="file_name[]">
-                                <label tabindex="0" for="my-file" class="input-file-trigger" id="input-file-trigger-2">Select a file...</label>
-                            </div>
-                            <p class="file-return" id="file-return-2"></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="document_submit_div">
-                    <div class="row">
-                        <div class="col-md-8">
-                            Property irregularity report (received in the airport when reporting missing baggage)
-                            <input type="hidden" value="Property irregularity report (received in the airport when reporting missing baggage)" name="file_name_by_user[]">
-                        </div>
-                        <div class="col-md-4">
-                            <div class="input-file-container col-centered">
-                                <input class="input-file" id="my-file-4" type="file" name="file_name[]">
-                                <label tabindex="0" for="my-file" class="input-file-trigger" id="input-file-trigger-4">Select a file...</label>
-                            </div>
-                            <p class="file-return" id="file-return-4"></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="document_submit_div">
-                    <div class="row">
-                        <div class="col-md-8">
-                            Other
-                            <input type="hidden" value="Other" name="file_name_by_user[]">
-                        </div>
-                        <div class="col-md-4">
-                            <div class="input-file-container col-centered">
-                                <input class="input-file" id="my-file-3" type="file" name="file_name[]">
-                                <label tabindex="0" for="my-file" class="input-file-trigger" id="input-file-trigger-3">Select a file...</label>
-                            </div>
-                            <p class="file-return" id="file-return-3"></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="common_row">
-                <div class="total_button_div">
-                    <div class="two_button_child_div_right">
-                        <div class="continue_button_div">
-                            <button type="button" class="continue_button" id="continue_8" name="button">Continue <i class="fas fa-arrow-right"></i></button>
-                        </div>
-                    </div>
-                    <div class="two_button_child_div_left">
-                        <div class="previous_button_div">
-                            <button type="button" class="previous_button pull-left" id="previous_button" name="button"><i class="fas fa-arrow-left"></i> Previous</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-        <input type="hidden" name="claim_table_type" value="lost_luggage">
-        <!-- ...................................................................
-                                  STEP 8 ENDS
-        .................................................................... -->
-    </form>
-</div>
 
 @endsection
 

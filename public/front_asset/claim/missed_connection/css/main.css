@@ -1791,6 +1791,10 @@ input[type="radio"]:checked + .label{
       padding: 0px 16px;
     }
 
+    .middle_align {
+      text-align: center;
+    }
+
   }
 
   /* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 1025 TO 1195 XXXXXXXXXXXXXXXXXXXXXXXXXXXX*/
@@ -1945,13 +1949,13 @@ input[type="radio"]:checked + .label{
     .child_accommodation
     {
       width: 100%;
-      border: 1px solid #DAE2EB;
+      border: 1px solid #8dac2d;
       border-top: none;
       padding: 10px;
     }
     .child_accommodation:first-child
     {
-      border: 1px solid #DAE2EB;
+      border: 1px solid #8dac2d;
     }
 
     .child_accommodation:first-child, .child_accommodation:nth-child(2), .child_accommodation:last-child {
