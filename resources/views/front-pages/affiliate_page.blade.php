@@ -28,87 +28,109 @@
 <div class="container">
     <!-- How it works div starts -->
     <div class="how_it_works_div">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="how_it_works_lower_div">
-                <div class="row">
-                    <div class="col-md-4 text-center margin_bottom">
-                    <div class="how_it_works_background_icon_div">
-                        <div class="how_it_works_icon_div">
-                        <img src="{{ asset('/front_asset/front_pages_asset/img/us-doller.png') }}" alt="">
-                        </div>
-                    </div>
-                    <div class="how_it_works_text_div">
-                        <p class="how_it_works_text_upper_p_div">HIGH COMMISSION RATES</p>
-                        <p class="how_it_works_text_lower_p_div text-center">Claim'N Win Offers some of the highest <br> commision rates in the industry <br> Earn up to €185 per referral!</p>
-                    </div>
-                    </div>
-                    <div class="col-md-4 text-center margin_bottom">
-                    <div class="how_it_works_background_icon_div">
-                        <div class="how_it_works_icon_div">
-                        <img src="{{ asset('/front_asset/front_pages_asset/img/setting.png') }}" alt="">
-                        </div>
-                    </div>
-                    <div class="how_it_works_text_div">
-                        <p class="how_it_works_text_upper_p_div">EASY TO SET UP</p>
-                        <p class="how_it_works_text_lower_p_div text-center">No programming knowledge needed. Simply <br> sign up and pick the option you prefer.</p>
-                    </div>
-                    </div>
-                    <div class="col-md-4 text-center margin_bottom">
-                    <div class="how_it_works_background_icon_div">
-                        <div class="how_it_works_icon_div">
-                        <img src="{{ asset('/front_asset/front_pages_asset/img/search.png') }}" alt="">
-                        </div>
-                    </div>
-                    <div class="how_it_works_text_div">
-                        <p class="how_it_works_text_upper_p_div">LONGEST LASTING COOKIES</p>
-                        <p class="how_it_works_text_lower_p_div text-center">Our cookie data lasts for 3 months! <br> So even if users come back at a later point, <br> we'll still allocate them to you.</p>
-                    </div>
-                    </div>
+      <div class="row">
+        <div class="col-md-12 col-sm-12">
+          <div class="how_it_works_lower_div">
+            <div class="row">
+              <div class="col-md-4 text-center margin_bottom">
+                <div class="how_it_works_background_icon_div">
+                  <div class="how_it_works_icon_div">
+                    <img src="{{ asset('/front_asset/front_pages_asset/img/us-doller.png') }}" alt="">
+                  </div>
                 </div>
+                <div class="how_it_works_text_div">
+                  <p class="how_it_works_text_upper_p_div">HIGH COMMISSION RATES</p>
+                  <p class="how_it_works_text_lower_p_div text-center">Claim'N Win offers some of the highest commision rates in the industry. Earn up to €185 per referral!</p>
                 </div>
-
-                <div class="how_it_works_lower_div">
-                    <div class="row">
-                        <div class="col-md-4 text-center margin_bottom">
-                        <div class="how_it_works_background_icon_div">
-                            <div class="how_it_works_icon_div">
-                            <img src="{{ asset('/front_asset/front_pages_asset/img/like.png') }}" alt="">
-                            </div>
-                        </div>
-                        <div class="how_it_works_text_div">
-                            <p class="how_it_works_text_upper_p_div">LOVED BY TRAVELLERS</p>
-                            <p class="how_it_works_text_lower_p_div text-center">Claim'N Win is rated 4.9 out of <br> 5 stars. Show your visitors that you care <br> about them too!</p>
-                        </div>
-                        </div>
-                        <div class="col-md-4 text-center margin_bottom">
-                        <div class="how_it_works_background_icon_div">
-                            <div class="how_it_works_icon_div">
-                            <img src="{{ asset('/front_asset/front_pages_asset/img/globe.png') }}" alt="">
-                            </div>
-                        </div>
-                        <div class="how_it_works_text_div">
-                            <p class="how_it_works_text_upper_p_div">WE ARE GLOBAL</p>
-                            <p class="how_it_works_text_lower_p_div text-center">We are a truly global team and support <br> travellers in 17 different languages. <br> It's a small world, after all.</p>
-                        </div>
-                        </div>
-                        <div class="col-md-4 text-center margin_bottom">
-                        <div class="how_it_works_background_icon_div">
-                            <div class="how_it_works_icon_div">
-                            <img src="{{ asset('/front_asset/front_pages_asset/img/online_support.png') }}" alt="">
-                            </div>
-                        </div>
-                        <div class="how_it_works_text_div">
-                            <p class="how_it_works_text_upper_p_div">WE SUPPORT YOU</p>
-                            <p class="how_it_works_text_lower_p_div text-center">Just as we do for our customers, <br> we're here to offer the support you need <br> to get you started!</p>
-                        </div>
-                        </div>
-                    </div>
-                    </div>
+              </div>
+              <div class="col-md-4 text-center margin_bottom">
+                <div class="how_it_works_background_icon_div">
+                  <div class="how_it_works_icon_div">
+                    <img src="{{ asset('/front_asset/front_pages_asset/img/setting.png') }}" alt="">
+                  </div>
+                </div>
+                <div class="how_it_works_text_div">
+                  <p class="how_it_works_text_upper_p_div">EASY TO SET UP</p>
+                  <p class="how_it_works_text_lower_p_div text-center">
+                    No programming knowledge needed. Simply
+                    sign up and pick the option you prefer.
+                  </p>
+                </div>
+              </div>
+              <div class="col-md-4 text-center margin_bottom">
+                <div class="how_it_works_background_icon_div">
+                  <div class="how_it_works_icon_div">
+                    <img src="{{ asset('/front_asset/front_pages_asset/img/search.png') }}" alt="">
+                  </div>
+                </div>
+                <div class="how_it_works_text_div">
+                  <p class="how_it_works_text_upper_p_div">LONGEST LASTING COOKIES</p>
+                  <p class="how_it_works_text_lower_p_div text-center">
+                    Our cookie data lasts for 3 months!
+                    So even if users come back at a later point,
+                    we'll still allocate them to you.
+                  </p>
+                </div>
+              </div>
             </div>
+          </div>
         </div>
-    </div>
-</div>
+      </div>
+
+        <div class="row">
+          <div class="col-md-12">
+            <div class="how_it_works_lower_div">
+              <div class="row">
+                <div class="col-md-4 text-center margin_bottom">
+                  <div class="how_it_works_background_icon_div">
+                    <div class="how_it_works_icon_div">
+                      <img src="{{ asset('/front_asset/front_pages_asset/img/like.png') }}" alt="">
+                    </div>
+                  </div>
+                  <div class="how_it_works_text_div">
+                    <p class="how_it_works_text_upper_p_div">LOVED BY TRAVELLERS</p>
+                    <p class="how_it_works_text_lower_p_div text-center">
+                        Claim'N Win is rated 4.9 out of 5 stars. Show your visitors that you care about them too!
+                    </p>
+                  </div>
+                </div>
+                <div class="col-md-4 text-center margin_bottom">
+                  <div class="how_it_works_background_icon_div">
+                    <div class="how_it_works_icon_div">
+                      <img src="{{ asset('/front_asset/front_pages_asset/img/globe.png') }}" alt="">
+                    </div>
+                  </div>
+                  <div class="how_it_works_text_div">
+                    <p class="how_it_works_text_upper_p_div">WE ARE GLOBAL</p>
+                    <p class="how_it_works_text_lower_p_div text-center">
+                        We are a truly global team and support
+                        travellers in 17 different languages.
+                        It's a small world, after all.
+                    </p>
+                  </div>
+                </div>
+                <div class="col-md-4 text-center margin_bottom">
+                  <div class="how_it_works_background_icon_div">
+                    <div class="how_it_works_icon_div">
+                      <img src="{{ asset('/front_asset/front_pages_asset/img/online_support.png') }}" alt="">
+                    </div>
+                  </div>
+                  <div class="how_it_works_text_div">
+                    <p class="how_it_works_text_upper_p_div">WE SUPPORT YOU</p>
+                    <p class="how_it_works_text_lower_p_div text-center">
+                        Just as we do for our customers,
+                        we're here to offer the support you need
+                        to get you started!
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+    <!-- How it works div ends -->
 
 <div class="travel">
     <div class="container">
@@ -143,8 +165,7 @@
 
 <!-- What customer say div starts -->
 <div class="container">
-<div class="what_customer_say_div">
-
+    <div class="what_customer_say_div">
         <div class="row">
             <div class="col-md-12">
                 <div class="what_customer_say_title_div text-center">
@@ -156,13 +177,10 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="work_first_column">
-                        <div class="row">
-                            <div class="col-md-2">
                                 <div class="work_number">
                                     <span>1</span>
                                 </div>
-                            </div>
-                            <div class="col-md-10">
+
                                 <div class="work_text">
                                     <div class="work_text_h1">
                                         <h1>SIGN UP</h1>
@@ -174,60 +192,45 @@
                                         </p>
                                     </div>
                                 </div>
+                        </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="work_first_column">
+                        <div class="work_number">
+                            <span>2</span>
+                        </div>
+                        <div class="work_text">
+                            <div class="work_text_h1">
+                                <h1>PICK A REFERRAL METHOD</h1>
+                            </div>
+                            <div class="work_text_p">
+                                <p>
+                                    Register in just a few simple steps and get
+                                    a referral link.
+                                </p>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="work_first_column">
-                        <div class="row">
-                            <div class="col-md-2">
-                                <div class="work_number">
-                                    <span>2</span>
-                                </div>
-                            </div>
-                            <div class="col-md-10">
-                                <div class="work_text">
-                                    <div class="work_text_h1">
-                                        <h1>PICK A REFERRAL METHOD</h1>
-                                    </div>
-                                    <div class="work_text_p">
-                                        <p>
-                                            Register in just a few simple steps and get
-                                            a referral link.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="work_number">
+                            <span>3</span>
                         </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="work_first_column">
-                        <div class="row">
-                            <div class="col-md-2">
-                                <div class="work_number">
-                                    <span>3</span>
-                                </div>
+                        <div class="work_text">
+                            <div class="work_text_h1">
+                                <h1>BEGIN EARNING MONEY</h1>
                             </div>
-                            <div class="col-md-10">
-                                <div class="work_text">
-                                    <div class="work_text_h1">
-                                        <h1>BEGIN EARNING MONEY</h1>
-                                    </div>
-                                    <div class="work_text_p">
-                                        <p>
-                                            Promote your new service to your users
-                                            and begin earning money!
-                                        </p>
-                                    </div>
-                                </div>
+                            <div class="work_text_p">
+                                <p>
+                                    Promote your new service to your users
+                                    and begin earning money!
+                                </p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </div>
