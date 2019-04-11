@@ -1216,7 +1216,7 @@
                             <div class="common_row show_if_contacted_airline">
                               <div class="document_submit_div">
                                 <div class="row">
-                                  <div class="col-md-6">ID copies, including travel companions’ if applicable</div>
+                                  <div class="col-md-6 padding_bottom">ID copies, including travel companions’ if applicable</div>
                                   <div class="col-md-6">
                                     <div class="input-file-container col-centered">
                                       <input class="input-file" id="my-file-0" type="file" name="file_name[]">
@@ -1228,7 +1228,7 @@
                               </div>
                               <div class="document_submit_div">
                                 <div class="row">
-                                  <div class="col-md-6">Travel documents (reservation, ticket or boarding passes)</div>
+                                  <div class="col-md-6 padding_bottom">Travel documents (reservation, ticket or boarding passes)</div>
                                   <div class="col-md-6">
                                     <div class="input-file-container col-centered">
                                       <input class="input-file" id="my-file-1" type="file" name="file_name[]">
@@ -1240,7 +1240,7 @@
                               </div>
                               <div class="document_submit_div">
                                 <div class="row">
-                                  <div class="col-md-6">Proof of expenses (store/online receipts, detailed bank statements) if applicable</div>
+                                  <div class="col-md-6 padding_bottom">Proof of expenses (store/online receipts, detailed bank statements) if applicable</div>
                                   <div class="col-md-6">
                                     <div class="input-file-container col-centered">
                                       <input class="input-file" id="my-file-2" type="file" name="file_name[]">
@@ -1252,7 +1252,7 @@
                               </div>
                               <div class="document_submit_div">
                                 <div class="row">
-                                  <div class="col-md-6">Other</div>
+                                  <div class="col-md-6 padding_bottom">Other</div>
                                   <div class="col-md-6">
                                     <div class="input-file-container col-centered">
                                       <input class="input-file" id="my-file-3" type="file" name="file_name[]">

@@ -606,8 +606,8 @@ input[type="radio"]:checked + .label{
 {
   padding-left: 25px;
   padding-right: 25px;
-  color: #CEDDE5;
-  /* color: #13DA93; */
+  /* color: #CEDDE5; */
+  color: #13DA93;
   font-size: 17px;
 }
 
@@ -980,6 +980,10 @@ input[type="radio"]:checked + .label{
   margin-bottom: 15px;
 }
 
+.form_show_message_paragraph p {
+  text-align: justify;
+}
+
 /* .............................................................................
    .............................................................................
   RESPONSIVE MEDIA QUERY
@@ -991,11 +995,31 @@ input[type="radio"]:checked + .label{
 
 @media (min-width: 320px) and (max-width: 480px) {
 
+  label {
+    font-size: 11px;
+  }
+
+  /* Placeholder starts */
+  ::-webkit-input-placeholder { /* Chrome */
+    font-size: 9px;
+  }
+  :-ms-input-placeholder { /* IE 10+ */
+    font-size: 9px;
+  }
+  ::-moz-placeholder { /* Firefox 19+ */
+    font-size: 9px;
+  }
+  :-moz-placeholder { /* Firefox 4 - 18 */
+    font-size: 9px;
+  }
+
+  /* Placeholder ends */
+
   .form_claim_main_left_content_div {
     display: none;
   }
   .form_claim_main_content_div {
-    padding: 30px 20px;
+    padding: 30px 0px;
   }
   .form_claim_main_right_content_div {
     border: 1px solid #cecece;
@@ -1005,6 +1029,7 @@ input[type="radio"]:checked + .label{
   .form_h3 h3 {
     font-size: 15px;
     line-height: 25px;
+    padding-bottom: 0px;
   }
 
   .common_row
@@ -1038,6 +1063,7 @@ input[type="radio"]:checked + .label{
     padding: 7px 0px 7px 16px;
     font-size: 16px;
   }
+
   .child_div input
   {
     width: 100%;
@@ -1146,15 +1172,26 @@ input[type="radio"]:checked + .label{
   {
     width: 100%;
     padding: 10px;
-    border: 1px solid #DAE2EB;
-    border-top: none;
+    border-right: 1px solid #8dac2d;
+    border-top: 1px solid #8dac2d;
   }
   .total_delay_flight:first-child, .total_delay_flight_2:first-child
   {
-    border-top: 1px solid #DAE2EB;
+    border-right: 1px solid #8dac2d;
+  }
+  .total_delay_flight:nth-child(3) {
+    border-right: 1px solid #8dac2d;
+  }
+  .total_delay_flight:last-child
+  {
+    border-top: 0px;
   }
   .select_reason
   {
+    width: 100%;
+  }
+
+  .custom_select_reason_max_width {
     width: 100%;
   }
 
@@ -1193,10 +1230,18 @@ input[type="radio"]:checked + .label{
     border-top: none;
     padding: 10px;
   }
-  .child_accommodation:first-child
+  .child_accommodation:first-child, .child_accommodation:nth-child(2), .child_accommodation:last-child
   {
-    border: 1px solid #DAE2EB;
+    border: 0px;
+    border-left: 1px solid #8dac2d;
+    border-top: 1px solid #8dac2d;
+    border-right: 1px solid #8dac2d;
   }
+
+  .child_accommodation:last-child {
+    border-bottom: 1px solid #8dac2d;
+  }
+
   .email_div
   {
     width: 100%;
@@ -1223,11 +1268,51 @@ input[type="radio"]:checked + .label{
   .no_right_border {
     border-right: 1px solid #8dac2d;
   }
+
+  .middle_align {
+    text-align: center;
+  }
+
+  .padding_bottom {
+    padding-bottom: 10px;
+  }
 }
 
   /* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 481 TO 767 XXXXXXXXXXXXXXXXXXXXXXXXXXXX*/
 
   @media (min-width: 481px) and (max-width: 767px) {
+
+    label {
+      font-size: 12px;
+    }
+
+    /* Placeholder starts */
+    ::-webkit-input-placeholder { /* Chrome */
+      font-size: 10px;
+    }
+    :-ms-input-placeholder { /* IE 10+ */
+      font-size: 10px;
+    }
+    ::-moz-placeholder { /* Firefox 19+ */
+      font-size: 10px;
+    }
+    :-moz-placeholder { /* Firefox 4 - 18 */
+      font-size: 10px;
+    }
+
+    /* Placeholder ends */
+
+    .form_claim_main_left_content_div {
+      display: none;
+    }
+    .form_claim_main_content_div {
+      padding: 30px 0px;
+    }
+    .form_claim_main_right_content_div {
+      border: 1px solid #cecece;
+      padding: 10px 20px;
+    }
+
     .common_row
     {
       margin-bottom: 10px;
@@ -1239,8 +1324,9 @@ input[type="radio"]:checked + .label{
     }
     .form_h3 h3
     {
-      font-size: 20px;
-      padding-bottom: 5px;
+      font-size: 15px;
+      line-height: 25px;
+      padding-bottom: 0px;
     }
     .form_h4 h4
     {
@@ -1342,17 +1428,20 @@ input[type="radio"]:checked + .label{
       padding-left: 15px;
       padding-right: 15px;
     }
+
     .airports_involved
     {
       width: 100%;
-      border: 1px solid #DAE2EB;
+      /* border: 1px solid #DAE2EB; */
+      border: 1px solid #8dac2d;
       border-top: none;
       padding: 10px;
     }
 
     .airports_involved:first-child
     {
-      border-top: 1px solid #DAE2EB;
+      /* border-top: 1px solid #DAE2EB; */
+      border: 1px solid #8dac2d;
     }
     .single_child_radio_div
     {
@@ -1362,21 +1451,34 @@ input[type="radio"]:checked + .label{
     {
       font-size: 14px;
     }
+
     .total_delay_flight, .total_delay_flight_2
     {
       width: 100%;
       padding: 10px;
-      border: 1px solid #DAE2EB;
-      border-top: none;
+      border-right: 1px solid #8dac2d;
+      border-top: 1px solid #8dac2d;
     }
     .total_delay_flight:first-child, .total_delay_flight_2:first-child
     {
-      border-top: 1px solid #DAE2EB;
+      border-right: 1px solid #8dac2d;
+    }
+    .total_delay_flight:nth-child(3) {
+      border-right: 1px solid #8dac2d;
+    }
+    .total_delay_flight:last-child
+    {
+      border-top: 0px;
     }
     .select_reason
     {
       width: 100%;
     }
+
+    .custom_select_reason_max_width {
+      width: 100%;
+    }
+
     .total_button_div
     {
       width: 100%;
@@ -1411,6 +1513,27 @@ input[type="radio"]:checked + .label{
     {
       border: 1px solid #DAE2EB;
     }
+
+    .child_accommodation:first-child, .child_accommodation:nth-child(2), .child_accommodation:last-child {
+    border: 0px;
+    border-left: 1px solid #8dac2d;
+    border-top: 1px solid #8dac2d;
+    border-right: 1px solid #8dac2d;
+    }
+
+    .child_accommodation:last-child {
+      border-bottom: 1px solid #8dac2d;
+    }
+
+    .middle_align {
+    text-align: center;
+    }
+
+    .padding_bottom {
+      padding-bottom: 10px;
+    }
+
+
     .email_div
     {
       width: 100%;
