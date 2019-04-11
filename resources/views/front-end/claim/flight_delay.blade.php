@@ -64,9 +64,9 @@
               <div class="col-md-9">
                 <div class="form_claim_main_right_content_div">
                   <div class="wrapper">
-    <div class="form_h2">
+    {{-- <div class="form_h2">
         <h2 class="text-center">Flight Delay</h2>
-    </div>
+    </div> --}}
       <form action="{{url('/claim')}}" method="post" id="step-form" enctype="multipart/form-data" >
         @csrf
         <!-- ...................................................................
@@ -292,20 +292,20 @@
                           <label>OPTIONAL: DID YOU SPEND ON ACCOMMODATION, FOOD OR TAXI WHILE WAITING FOR YOUR REROUTING FLIGHT?</label>
                         </div>
                     </div>
-                    <div class="parent_div">
-                        <div class="child_accommodation child_accommodation_first_div">
+                    <div class="parent_div" style="display: table;">
+                        <div class="child_accommodation child_accommodation_first_div" style="display: table-cell;">
                             <label class="container_radio label_child_accommodation">I did not spend anything
                                 <input type="radio" class="common_input" id="common_input not_spend" name="is_spend_on_accommodation" value="not_spend">
                                 <span class="checkmark"></span>
                             </label>
                         </div>
-                        <div class="child_accommodation child_accommodation_second_div">
+                        <div class="child_accommodation child_accommodation_second_div" style="display: table-cell;">
                             <label class="container_radio label_child_accommodation">I had expenses but I have not kept the invoices
                                 <input type="radio" class="common_input" id="common_input no_invoice" name="is_spend_on_accommodation" value="no_invoice">
                                 <span class="checkmark"></span>
                             </label>
                         </div>
-                        <div class="child_accommodation child_accommodation_third_div">
+                        <div class="child_accommodation child_accommodation_third_div" style="display: table-cell;">
                             <label class="container_radio label_child_accommodation">I had expenses and kept the invoices
                                 <input type="radio" class="common_input" id="common_input has_invoice" name="is_spend_on_accommodation" value="has_invoice">
                                 <span class="checkmark"></span>
@@ -341,10 +341,10 @@
                         </td>
                         <td>
                           <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-6 fifty_percent_width">
                               <input type="text" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6 fifty_percent_width">
                               <div class="select_reason_class">
                                 <select class="form-control custom_select" name="expense_currency[]">
                                   <option hidden>Currency</option>
@@ -371,10 +371,10 @@
                         </td>
                         <td>
                           <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-6 fifty_percent_width">
                               <input type="text" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6 fifty_percent_width">
                               <div class="select_reason_class">
                                 <select class="form-control custom_select" name="expense_currency[]">
                                   <option hidden>Currency</option>
@@ -404,10 +404,10 @@
                         </td>
                         <td>
                           <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-6 fifty_percent_width">
                               <input type="text" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6 fifty_percent_width">
                               <div class="select_reason_class">
                                 <select class="form-control custom_select" name="expense_currency[]">
                                   <option hidden>Currency</option>
@@ -436,10 +436,10 @@
                         </td>
                         <td>
                           <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-6 fifty_percent_width">
                               <input type="text" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6 fifty_percent_width">
                               <div class="select_reason_class">
                                 <select class="form-control custom_select" name="expense_currency[]">
                                   <option hidden>Currency</option>
@@ -952,7 +952,7 @@
             <div class="common_row show_if_contacted_airline">
                 <div class="document_submit_div">
                     <div class="row">
-                        <div class="col-md-6">ID copies, including travel companions’ if applicable</div>
+                        <div class="col-md-6 padding_bottom">ID copies, including travel companions’ if applicable</div>
                         <div class="col-md-6">
                             <div class="input-file-container col-centered">
                                 <input class="input-file" id="my-file-0" type="file" name="file_name[]">
@@ -964,7 +964,7 @@
                 </div>
                 <div class="document_submit_div">
                     <div class="row">
-                        <div class="col-md-6">Travel documents (reservation, ticket or boarding passes)</div>
+                        <div class="col-md-6 padding_bottom">Travel documents (reservation, ticket or boarding passes)</div>
                         <div class="col-md-6">
                             <div class="input-file-container col-centered">
                                 <input class="input-file" id="my-file-1" type="file" name="file_name[]">
@@ -976,7 +976,7 @@
                 </div>
                 <div class="document_submit_div">
                     <div class="row">
-                        <div class="col-md-6">Proof of expenses (store/online receipts, detailed bank statements) if applicable</div>
+                        <div class="col-md-6 padding_bottom">Proof of expenses (store/online receipts, detailed bank statements) if applicable</div>
                         <div class="col-md-6">
                             <div class="input-file-container col-centered">
                                 <input class="input-file" id="my-file-2" type="file" name="file_name[]">
@@ -988,7 +988,7 @@
                 </div>
                 <div class="document_submit_div">
                     <div class="row">
-                        <div class="col-md-6">Other</div>
+                        <div class="col-md-6 padding_bottom">Other</div>
                         <div class="col-md-6">
                             <div class="input-file-container col-centered">
                                 <input class="input-file" id="my-file-3" type="file" name="file_name[]">
