@@ -15,17 +15,19 @@
                 <div class="col-md-2">
                     <div class="panel bg-dark ">
                         <div class="panel-heading cus_pan_heading">
-                            <p class="text-center">Claim Id</p>
-                            <h5 class="text-center">{{$claims->id}}</h5>
+                            <p class="text-center p1">Claim Id</p>
+                            <h5 class="text-center p2">{{$claims->id}}</h5>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-2">
                     <div class="panel" style="background-color: #4894a5;">
                         <div class="panel-heading cus_pan_heading">
-                            <p class="text-center">Passenger</p>
+                            <p class="text-center p1">Passenger</p>
                             @foreach($passengers as $passenger)
-                            <h5 class="text-center">{{$passenger->first_name.' '.$passenger->last_name}}</h5>
+                                @if($loop->first)
+                                    <h5 class="text-center p2">{{$passenger->first_name.' '.$passenger->last_name}}</h5>
+                                @endif
                             @endforeach
                         </div>
                     </div>
@@ -33,24 +35,24 @@
                 <div class="col-md-2">
                     <div class="panel" style="background-color: #006057;">
                         <div class="panel-heading cus_pan_heading">
-                            <p class="text-center">Airline</p>
-                            <h5 class="text-center">{{$airline->name}}</h5>
+                            <p class="text-center p1">Airline</p>
+                            <h5 class="text-center p2">{{$airline->name}}</h5>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-2">
                     <div class="panel" style="background-color: #d8a72b;">
                         <div class="panel-heading cus_pan_heading">
-                            <p class="text-center">Claim Status</p>
-                            <h5 class="text-center">{{$claimStatusData->name}}</h5>
+                            <p class="text-center p1">Claim Status</p>
+                            <h5 class="text-center p2">{{$claimStatusData->name}}</h5>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-2">
                     <div class="panel" style="background-color: #486f84;">
                         <div class="panel-heading cus_pan_heading">
-                            <p class="text-center">Claim Category</p>
-                            <h5 class="text-center">{{$claims->claim_table_type}}</h5>
+                            <p class="text-center p1">Claim Category</p>
+                            <h5 class="text-center p2">{{$claims->claim_table_type}}</h5>
                         </div>
                     </div>
                 </div>
@@ -811,7 +813,7 @@
                                                         <p style="font-weight:bold;">Departure date:  <span style="font-weight:normal;">{{$flightDetails->departure_date}}</span></p>
                                                         <hr>
                                                         <div class="row">
-                                                            <div class="col-md-8">
+                                                            <div class="col-md-12">
                                                                 <h4 style="font-weight:bold;">Passenger List</h4>
                                                                 <table class="table table-borderless table-hover">
                                                                     <thead>
@@ -830,12 +832,7 @@
                                                                     </tbody>
                                                                 </table>
                                                             </div>
-                                                            <div class="col-md-4">
-                                                                <h4 style="font-weight:bold;">Other Documents</h4>
-                                                                <div class="list-group">
-                                                                    <a href="#" class="list-group-item">{{$reminder_claims->correspondence_others_file}}</a>
-                                                                </div>
-                                                            </div>
+                                 
                                                         </div>
                                                         <p style="font-weight:bold;">Status:  <span style="font-weight:normal;">{{$item->status}}</span></p>
 {{-- <hr>

@@ -113,7 +113,8 @@
               </ul>
             </li>
             <li><a href="{{url('/manage-affiliate')}}"><i class="fa fa-pie-chart"></i> Manage Affiliation Report</a></li>
-            <li><a href="login.html"><i class="fa fa-table"></i> Reporting</a></li>
+            <li><a href="{{url('/activity/index')}}"><i class="fa fa-pie-chart"></i> Activity Log</a></li>
+            <li><a href="{{url('/manage-report')}}"><i class="fa fa-table"></i> Reporting</a></li>
 
 
             <li class="treeview">
