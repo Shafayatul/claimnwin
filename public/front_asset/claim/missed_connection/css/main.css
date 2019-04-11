@@ -725,7 +725,7 @@ input[type="radio"]:checked + .label{
   /* font-family: 'Source Sans Pro',sans-serif; */
   /* font-family: 'Poppins', sans-serif; */
   align-items: center;
-  border: 1px solid #DAE2EB;
+  border: 1px solid #8dac2d;
   padding: 14px 10px 16px 10px;
   color: #798899;
   background-color: #FFF;
@@ -1322,10 +1322,7 @@ input[type="radio"]:checked + .label{
       margin-bottom: 10px;
       padding: 5px 0px;
     }
-    /* .common_input
-    {
-      height: 35px;
-    } */
+
     .form_h3 h3
     {
       font-size: 15px;
@@ -1509,13 +1506,13 @@ input[type="radio"]:checked + .label{
     .child_accommodation
     {
       width: 100%;
-      border: 1px solid #DAE2EB;
+      border: 1px solid #8dac2d;
       border-top: none;
       padding: 10px;
     }
     .child_accommodation:first-child
     {
-      border: 1px solid #DAE2EB;
+      border: 1px solid #8dac2d;
     }
 
     .child_accommodation:first-child, .child_accommodation:nth-child(2), .child_accommodation:last-child {
