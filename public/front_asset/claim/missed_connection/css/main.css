@@ -1563,19 +1563,44 @@ input[type="radio"]:checked + .label{
 
   @media (min-width: 768px) and (max-width: 1024px) {
 
+    /* Placeholder starts */
+    ::-webkit-input-placeholder { /* Chrome */
+      font-size: 11px;
+    }
+    :-ms-input-placeholder { /* IE 10+ */
+      font-size: 11px;
+    }
+    ::-moz-placeholder { /* Firefox 19+ */
+      font-size: 11px;
+    }
+    :-moz-placeholder { /* Firefox 4 - 18 */
+      font-size: 11px;
+    }
+
+    /* Placeholder ends */
+
+    .form_claim_main_left_content_div {
+      display: none;
+    }
+    .form_claim_main_content_div {
+      padding: 30px 30px;
+    }
+    .form_claim_main_right_content_div {
+      border: 1px solid #cecece;
+      padding: 10px 20px;
+    }
+
     .common_row
     {
       margin-bottom: 12px;
       padding: 7px 0px;
     }
-    .common_input
-    {
-      height: 40px;
-    }
+
     .form_h3 h3
     {
-      font-size: 21px;
-      padding-bottom: 5px;
+      font-size: 18px;
+      line-height: 25px;
+      padding-bottom: 0px;
     }
     .form_h4 h4
     {
@@ -1668,17 +1693,20 @@ input[type="radio"]:checked + .label{
       padding-left: 15px;
       padding-right: 15px;
     }
+
     .airports_involved
     {
       width: 100%;
-      border: 1px solid #DAE2EB;
+      /* border: 1px solid #DAE2EB; */
+      border: 1px solid #8dac2d;
       border-top: none;
       padding: 10px;
     }
 
     .airports_involved:first-child
     {
-      border-top: 1px solid #DAE2EB;
+      /* border-top: 1px solid #DAE2EB; */
+      border: 1px solid #8dac2d;
     }
     .single_child_radio_div
     {
@@ -1688,16 +1716,9 @@ input[type="radio"]:checked + .label{
     {
       font-size: 14px;
     }
-    .total_delay_flight, .total_delay_flight_2
-    {
-      width: 100%;
-      padding: 10px;
-      border: 1px solid #DAE2EB;
-      border-top: none;
-    }
-    .total_delay_flight:first-child, .total_delay_flight_2:first-child
-    {
-      border-top: 1px solid #DAE2EB;
+    
+    .padding_bottom {
+      padding-bottom: 10px;
     }
     .select_reason
     {
@@ -1740,6 +1761,17 @@ input[type="radio"]:checked + .label{
     .child_accommodation:first-child
     {
       border: 1px solid #DAE2EB;
+    }
+
+    .child_accommodation:first-child, .child_accommodation:nth-child(2), .child_accommodation:last-child {
+    border: 0px;
+    border-left: 1px solid #8dac2d;
+    border-top: 1px solid #8dac2d;
+    border-right: 1px solid #8dac2d;
+    }
+
+    .child_accommodation:last-child {
+      border-bottom: 1px solid #8dac2d;
     }
     .email_div
     {
