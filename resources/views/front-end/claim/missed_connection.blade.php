@@ -61,7 +61,7 @@
                               </div>
                           </div>
                       </div>
-                  </div>
+                    </div>
               </div>
               <div class="col-md-9">
                   <div class="form_claim_main_right_content_div">

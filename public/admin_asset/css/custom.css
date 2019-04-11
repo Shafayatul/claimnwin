@@ -292,3 +292,20 @@
         margin-top: 0%;
     }
 }
+
+
+.cus_pan_heading{
+    padding: 11px !important;
+    height: auto !important;
+}
+.cus_pan_heading .p1{
+    background-color: white;
+    color: red;
+    padding: 2px 2px;
+    margin: 0 auto;
+}
+.cus_pan_heading .p2{
+    color: white;
+    font-weight: bold;
+    margin-top: 8px;
+}
