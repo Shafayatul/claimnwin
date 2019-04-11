@@ -313,7 +313,7 @@
                               </div>
                               <div class="parent_div">
                                 <div class="airline_reason_select_div">
-                                  <select class="form-control custom_select reason" name="reason">
+                                  <select class="form-control custom_select custom_select_reason_max_width reason" name="reason">
                                     <option value="" hidden>Please select</option>
                                     <option value="technical_problem">Technical problem</option>
                                     <option value="bad_weather_conditions">Bad weather conditions</option>
@@ -331,7 +331,7 @@
                               <div class="total_button_div">
                                 <div class="two_button_child_div_right">
                                   <div class="continue_button_div">
-                                    <button type="button" class="continue_button" id="continue_2" name="button">Continue <i class="fas fa-arrow-right"></i></button>
+                                    <button type="button" class="continue_button pull-right" id="continue_2" name="button">Continue <i class="fas fa-arrow-right"></i></button>
                                   </div>
                                 </div>
                                 <div class="two_button_child_div_left">
@@ -373,7 +373,7 @@
                               <div class="total_button_div">
                                 <div class="two_button_child_div_right">
                                   <div class="continue_button_div">
-                                    <button type="button" class="continue_button" id="continue_3" name="button">Continue <i class="fas fa-arrow-right"></i></button>
+                                    <button type="button" class="continue_button pull-right" id="continue_3" name="button">Continue <i class="fas fa-arrow-right"></i></button>
                                   </div>
                                 </div>
                                 <div class="two_button_child_div_left">
@@ -449,7 +449,7 @@
                               <div class="parent_div">
                                 <div class="price_currency_div">
                                   <div class="child_price_currency_div">
-                                    <input type="text" class="common_input ticket_price" id="common_input ticket_price_original_ticket" name="ticket_price_original_ticket" placeholder="Ex. 1234">
+                                    <input type="text" class="common_input no_right_border ticket_price" id="common_input ticket_price_original_ticket" name="ticket_price_original_ticket" placeholder="Ex. 1234">
                                   </div>
                                   <div class="child_price_currency_div">
                                     <div class="select_reason_class">
@@ -493,12 +493,12 @@
                                 <h4>Tell us the price of the re-routing ticket for all passengersTell us the price of the original ticket</h4>
                               </div> --}}
                               <div class="label_field only_label_without_input">
-                                <label>TELL US THE PRICE OF THE RE-ROUTING TICKET FOR ALL PASSENGERSTELL US THE PRICE OF THE ORIGINAL TICKET.</label>
+                                <label>TELL US THE PRICE OF THE RE-ROUTING TICKET FOR ALL PASSENGERS TELL US THE PRICE OF THE ORIGINAL TICKET.</label>
                               </div>
                               <div class="parent_div">
                                 <div class="price_currency_div">
                                   <div class="child_price_currency_div">
-                                    <input type="text" class="common_input ticket_price" id="common_input ticket_price_rerouting" name="ticket_price_rerouting" placeholder="Ex. 1234">
+                                    <input type="text" class="common_input no_right_border ticket_price" id="common_input ticket_price_rerouting" name="ticket_price_rerouting" placeholder="Ex. 1234">
                                   </div>
                                   <div class="child_price_currency_div">
                                     <div class="select_reason_class">
@@ -524,20 +524,20 @@
                                     <label>OPTIONAL: DID YOU SPEND ON ACCOMMODATION, FOOD OR TAXI WHILE WAITING FOR YOUR REROUTING FLIGHT?</label>
                                   </div>
                                 </div>
-                                <div class="parent_div">
-                                  <div class="child_accommodation child_accommodation_first_div">
+                                <div class="parent_div" style="display: table">
+                                  <div class="child_accommodation child_accommodation_first_div" style="display: table-cell">
                                     <label class="container_radio label_child_accommodation">I did not spend anything
                                       <input type="radio" class="common_input" id="common_input not_spend" name="is_spend_on_accommodation" value="I did not spend anything">
                                       <span class="checkmark"></span>
                                     </label>
                                   </div>
-                                  <div class="child_accommodation child_accommodation_second_div">
+                                  <div class="child_accommodation child_accommodation_second_div" style="display: table-cell">
                                     <label class="container_radio label_child_accommodation">I had expenses but I have not kept the invoices
                                       <input type="radio" class="common_input" id="common_input no_invoice" name="is_spend_on_accommodation" value="I had expenses but I have not kept the invoices">
                                       <span class="checkmark"></span>
                                     </label>
                                   </div>
-                                  <div class="child_accommodation child_accommodation_third_div">
+                                  <div class="child_accommodation child_accommodation_third_div" style="display: table-cell">
                                     <label class="container_radio label_child_accommodation">I had expenses and kept the invoices
                                       <input type="radio" class="common_input" id="common_input has_invoice" name="is_spend_on_accommodation" value="I had expenses and kept the invoices">
                                       <span class="checkmark"></span>
@@ -880,7 +880,7 @@
                               <div class="total_button_div">
                                 <div class="two_button_child_div_right">
                                   <div class="continue_button_div">
-                                    <button type="button" class="continue_button" id="continue_4" name="button">Continue <i class="fas fa-arrow-right"></i></button>
+                                    <button type="button" class="continue_button pull-right" id="continue_4" name="button">Continue <i class="fas fa-arrow-right"></i></button>
                                   </div>
                                 </div>
                                 <div class="two_button_child_div_left">
@@ -920,7 +920,7 @@
                               <div class="total_button_div">
                                 <div class="two_button_child_div_right">
                                   <div class="continue_button_div">
-                                    <button type="button" class="continue_button" id="continue_5" name="button">Continue <i class="fas fa-arrow-right"></i></button>
+                                    <button type="button" class="continue_button pull-right" id="continue_5" name="button">Continue <i class="fas fa-arrow-right"></i></button>
                                   </div>
                                 </div>
                                 <div class="two_button_child_div_left">
@@ -1043,7 +1043,7 @@
                               <div class="total_button_div">
                                 <div class="two_button_child_div_right">
                                   <div class="continue_button_div">
-                                    <button type="button" class="continue_button" id="continue_6" name="button">Continue <i class="fas fa-arrow-right"></i></button>
+                                    <button type="button" class="continue_button pull-right" id="continue_6" name="button">Continue <i class="fas fa-arrow-right"></i></button>
                                   </div>
                                 </div>
                                 <div class="two_button_child_div_left">
@@ -1119,7 +1119,7 @@
                               <div class="total_button_div">
                                 <div class="two_button_child_div_right">
                                   <div class="continue_button_div">
-                                    <button type="button" class="continue_button" id="continue_7" name="button">Continue <i class="fas fa-arrow-right"></i></button>
+                                    <button type="button" class="continue_button pull-right" id="continue_7" name="button">Continue <i class="fas fa-arrow-right"></i></button>
                                   </div>
                                 </div>
                                 <div class="two_button_child_div_left">
@@ -1216,8 +1216,8 @@
                             <div class="common_row show_if_contacted_airline">
                               <div class="document_submit_div">
                                 <div class="row">
-                                  <div class="col-md-8">ID copies, including travel companions’ if applicable</div>
-                                  <div class="col-md-4">
+                                  <div class="col-md-6">ID copies, including travel companions’ if applicable</div>
+                                  <div class="col-md-6">
                                     <div class="input-file-container col-centered">
                                       <input class="input-file" id="my-file-0" type="file" name="file_name[]">
                                       <label tabindex="0" for="my-file" class="input-file-trigger" id="input-file-trigger-0">Select a file...</label>
@@ -1228,8 +1228,8 @@
                               </div>
                               <div class="document_submit_div">
                                 <div class="row">
-                                  <div class="col-md-8">Travel documents (reservation, ticket or boarding passes)</div>
-                                  <div class="col-md-4">
+                                  <div class="col-md-6">Travel documents (reservation, ticket or boarding passes)</div>
+                                  <div class="col-md-6">
                                     <div class="input-file-container col-centered">
                                       <input class="input-file" id="my-file-1" type="file" name="file_name[]">
                                       <label tabindex="0" for="my-file" class="input-file-trigger" id="input-file-trigger-1">Select a file...</label>
@@ -1240,8 +1240,8 @@
                               </div>
                               <div class="document_submit_div">
                                 <div class="row">
-                                  <div class="col-md-8">Proof of expenses (store/online receipts, detailed bank statements) if applicable</div>
-                                  <div class="col-md-4">
+                                  <div class="col-md-6">Proof of expenses (store/online receipts, detailed bank statements) if applicable</div>
+                                  <div class="col-md-6">
                                     <div class="input-file-container col-centered">
                                       <input class="input-file" id="my-file-2" type="file" name="file_name[]">
                                       <label tabindex="0" for="my-file" class="input-file-trigger" id="input-file-trigger-2">Select a file...</label>
@@ -1252,8 +1252,8 @@
                               </div>
                               <div class="document_submit_div">
                                 <div class="row">
-                                  <div class="col-md-8">Other</div>
-                                  <div class="col-md-4">
+                                  <div class="col-md-6">Other</div>
+                                  <div class="col-md-6">
                                     <div class="input-file-container col-centered">
                                       <input class="input-file" id="my-file-3" type="file" name="file_name[]">
                                       <label tabindex="0" for="my-file" class="input-file-trigger" id="input-file-trigger-3">Select a file...</label>
@@ -1269,7 +1269,7 @@
                               <div class="total_button_div">
                                 <div class="two_button_child_div_right">
                                   <div class="continue_button_div">
-                                    <button type="button" class="continue_button" id="continue_8" name="button">Continue <i class="fas fa-arrow-right"></i></button>
+                                    <button type="button" class="continue_button pull-right" id="continue_8" name="button">Continue <i class="fas fa-arrow-right"></i></button>
                                   </div>
                                 </div>
                                 <div class="two_button_child_div_left">

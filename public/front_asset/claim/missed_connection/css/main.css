@@ -96,22 +96,22 @@ body
 
 input:focus {
   outline: none;
-  outline:1px solid #13DA93!important;
+  outline:1px solid #8dac2d !important;
 }
 
 /* Placeholder starts */
 ::-webkit-input-placeholder { /* Chrome */
-  color: #e7e7e7;
+  color: #d7d7d7;
 }
 :-ms-input-placeholder { /* IE 10+ */
-  color: #e7e7e7;
+  color: #d7d7d7;
 }
 ::-moz-placeholder { /* Firefox 19+ */
-  color: #e7e7e7;
+  color: #d7d7d7;
   opacity: 1;
 }
 :-moz-placeholder { /* Firefox 4 - 18 */
-  color: #e7e7e7;
+  color: #d7d7d7;
   opacity: 1;
 }
 
@@ -295,6 +295,7 @@ input[type="radio"]:checked + .label{
   margin-bottom: 20px;
   padding: 10px 0px;
 }
+
 .form_h2 h2
 {
   color: #536273;
@@ -332,11 +333,6 @@ input[type="radio"]:checked + .label{
   width: 100%;
   display: block;
   overflow: hidden;
-}
-.two_child_div_left
-{
-  width: 45%;
-  float: left;
 }
 
 .two_child_div_left
@@ -379,10 +375,11 @@ input[type="radio"]:checked + .label{
   /* font-family: 'Source Sans Pro',sans-serif; */
   /* font-family: 'Poppins', sans-serif; */
   align-items: center;
-  border: 1px solid #DAE2EB;
-  padding: 14px 32px 16px 16px;
+  border: 1px solid #8dac2d;
+  padding: 9px 32px 16px 16px;
   color: #798899;
   background-color: #FFF;
+  height: 45px;
 }
 
 .single_child_radio_div
@@ -394,7 +391,7 @@ input[type="radio"]:checked + .label{
   /* font-family: 'Poppins', sans-serif; */
   align-items: center;
   box-sizing: content-box;
-  border: 1px solid #DAE2EB;
+  border: 1px solid #8dac2d;
   padding: 14px 32px 16px 16px;
   color: #798899;
   background-color: #FFF;
@@ -621,7 +618,7 @@ input[type="radio"]:checked + .label{
     /* font-family: 'Source Sans Pro',sans-serif; */
     /* font-family: 'Poppins', sans-serif; */
     align-items: center;
-    border: 1px solid #DAE2EB;
+    border: 1px solid #8dac2d;
     padding: 14px 10px 16px 10px;
     color: #798899;
     background-color: #FFF;
@@ -637,19 +634,25 @@ input[type="radio"]:checked + .label{
 
 .airports_involved:last-child
 {
-  border-right: 1px solid #DAE2EB;
+  border-right: 1px solid #8dac2d;
 }
 
 .custom_select  {
   border-radius: 0px;
-  border: none;
+  border: 1px solid #8dac2d;
   padding: 10px 15px;
-  height: 40px;
+  height: 45px;
+  width: 100%;
+}
+
+.custom_select_reason_max_width {
+  width: 200%;
 }
 
 .child_accommodation
 {
-  border: 1px solid #DAE2EB;
+  /* border: 1px solid #DAE2EB; */
+  border: 1px solid #8dac2d;
   padding: 14px 10px 16px 10px;
   color: #798899;
   background-color: #FFF;
@@ -661,7 +664,7 @@ input[type="radio"]:checked + .label{
 }
 .child_accommodation:last-child
 {
-  border-right: 1px solid #DAE2EB;
+  border: 1px solid #8dac2d;
 }
 .label_child_accommodation
 {
@@ -689,13 +692,26 @@ input[type="radio"]:checked + .label{
   /* font-family: 'Source Sans Pro',sans-serif; */
   /* font-family: 'Poppins', sans-serif; */
   align-items: center;
-  border: 1px solid #DAE2EB;
+  border: 1px solid #8dac2d;
   padding: 14px 10px 16px 10px;
   color: #798899;
   background-color: #FFF;
   margin: 0px;
-  width: 25%;
+  width: 50%;
   float: left;
+}
+
+.total_delay_flight:first-child {
+  border-bottom: 0px;
+  border-right: 0px;
+}
+
+.total_delay_flight:nth-child(2) {
+  border-bottom: 0px;
+}
+
+.total_delay_flight:nth-child(3) {
+  border-right: 0px;
 }
 
 .total_delay_flight_2
@@ -838,7 +854,7 @@ input[type="radio"]:checked + .label{
 }
 .total_button_div
 {
-  width: 50%;
+  width: 90%;
   display: block;
   overflow: hidden;
   margin: 0 auto;
@@ -852,6 +868,10 @@ input[type="radio"]:checked + .label{
 .select_reason_class .custom-select
 {
   height: 45px;
+}
+
+.no_right_border {
+  border-right: 0px;
 }
 
 
@@ -956,6 +976,10 @@ input[type="radio"]:checked + .label{
     border-top: 1px solid #dee2e6;
 }
 
+#signArea h4 {
+  margin-bottom: 15px;
+}
+
 /* .............................................................................
    .............................................................................
   RESPONSIVE MEDIA QUERY
@@ -967,6 +991,22 @@ input[type="radio"]:checked + .label{
 
 @media (min-width: 320px) and (max-width: 480px) {
 
+  .form_claim_main_left_content_div {
+    display: none;
+  }
+  .form_claim_main_content_div {
+    padding: 30px 20px;
+  }
+  .form_claim_main_right_content_div {
+    border: 1px solid #cecece;
+    padding: 10px 20px;
+  }
+
+  .form_h3 h3 {
+    font-size: 15px;
+    line-height: 25px;
+  }
+
   .common_row
   {
     margin-bottom: 10px;
@@ -976,11 +1016,7 @@ input[type="radio"]:checked + .label{
   {
     height: 33px;
   }
-  .form_h3 h3
-  {
-    font-size: 18px;
-    padding-bottom: 5px;
-  }
+
   .form_h4 h4
   {
     font-size: 14px;
@@ -1065,7 +1101,7 @@ input[type="radio"]:checked + .label{
 
   .single_button_child_div
   {
-    width: 50%;
+    width: 90%;
     margin: 0 auto;
     text-align: center;
   }
@@ -1086,14 +1122,16 @@ input[type="radio"]:checked + .label{
   .airports_involved
   {
     width: 100%;
-    border: 1px solid #DAE2EB;
+    /* border: 1px solid #DAE2EB; */
+    border: 1px solid #8dac2d;
     border-top: none;
     padding: 10px;
   }
 
   .airports_involved:first-child
   {
-    border-top: 1px solid #DAE2EB;
+    /* border-top: 1px solid #DAE2EB; */
+    border: 1px solid #8dac2d;
   }
   .single_child_radio_div
   {
@@ -1182,7 +1220,9 @@ input[type="radio"]:checked + .label{
     display: block;
   }
 
-
+  .no_right_border {
+    border-right: 1px solid #8dac2d;
+  }
 }
 
   /* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 481 TO 767 XXXXXXXXXXXXXXXXXXXXXXXXXXXX*/
