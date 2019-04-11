@@ -142,6 +142,10 @@ label
 
 /* Placeholder ends */
 
+textarea.form-control {
+  border: 1px solid #8dac2d;
+}
+
 .only_label_without_input {
   padding-bottom: 5px;
 }
@@ -1252,7 +1256,7 @@ input[type="radio"]:checked + .label{
       border: 1px solid #cecece;
       padding: 10px 20px;
     }
-    
+
     .common_row
     {
       margin-bottom: 10px;
@@ -1472,6 +1476,33 @@ input[type="radio"]:checked + .label{
   /* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 768 TO 1024 XXXXXXXXXXXXXXXXXXXXXXXXXXXX*/
 
   @media (min-width: 768px) and (max-width: 1024px) {
+
+    /* Placeholder starts */
+    ::-webkit-input-placeholder { /* Chrome */
+      font-size: 11px;
+    }
+    :-ms-input-placeholder { /* IE 10+ */
+      font-size: 11px;
+    }
+    ::-moz-placeholder { /* Firefox 19+ */
+      font-size: 11px;
+    }
+    :-moz-placeholder { /* Firefox 4 - 18 */
+      font-size: 11px;
+    }
+
+    /* Placeholder ends */
+
+    .form_claim_main_left_content_div {
+      display: none;
+    }
+    .form_claim_main_content_div {
+      padding: 30px 30px;
+    }
+    .form_claim_main_right_content_div {
+      border: 1px solid #cecece;
+      padding: 10px 20px;
+    }
 
     .common_row
     {
@@ -1865,6 +1896,11 @@ input[type="radio"]:checked + .label{
     {
       height: 40px;
       padding: 0px 16px;
+    }
+
+    .fifty_percent_width {
+      width: 100%;
+      display: block;
     }
 
   }

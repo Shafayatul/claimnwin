@@ -504,10 +504,10 @@
                                             </td>
                                             <td>
                                               <div class="row">
-                                                <div class="col-md-6">
+                                                <div class="col-md-6 fifty_percent_width">
                                                   <input type="text" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
                                                 </div>
-                                                <div class="col-md-6">
+                                                <div class="col-md-6 fifty_percent_width">
                                                   <div class="select_reason_class">
                                                     <select class="form-control custom_select" name="expense_currency[]">
                                                       <option hidden>Currency</option>
@@ -534,10 +534,10 @@
                                             </td>
                                             <td>
                                               <div class="row">
-                                                <div class="col-md-6">
+                                                <div class="col-md-6 fifty_percent_width">
                                                   <input type="text" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
                                                 </div>
-                                                <div class="col-md-6">
+                                                <div class="col-md-6 fifty_percent_width">
                                                   <div class="select_reason_class">
                                                     <select class="form-control custom_select" name="expense_currency[]">
                                                       <option hidden>Currency</option>
@@ -567,10 +567,10 @@
                                             </td>
                                             <td>
                                               <div class="row">
-                                                <div class="col-md-6">
+                                                <div class="col-md-6 fifty_percent_width">
                                                   <input type="text" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
                                                 </div>
-                                                <div class="col-md-6">
+                                                <div class="col-md-6 fifty_percent_width">
                                                   <div class="select_reason_class">
                                                     <select class="form-control custom_select" name="expense_currency[]">
                                                       <option hidden>Currency</option>
@@ -599,10 +599,10 @@
                                             </td>
                                             <td>
                                               <div class="row">
-                                                <div class="col-md-6">
+                                                <div class="col-md-6 fifty_percent_width">
                                                   <input type="text" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
                                                 </div>
-                                                <div class="col-md-6">
+                                                <div class="col-md-6 fifty_percent_width">
                                                   <div class="select_reason_class">
                                                     <select class="form-control custom_select" name="expense_currency[]">
                                                       <option hidden>Currency</option>
