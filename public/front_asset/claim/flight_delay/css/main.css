@@ -599,8 +599,8 @@ input[type="radio"]:checked + .label{
 {
   padding-left: 25px;
   padding-right: 25px;
-  color: #CEDDE5;
-  /* color: #13DA93; */
+  /* color: #CEDDE5; */
+  color: #13DA93;
   font-size: 17px;
 }
 
@@ -630,16 +630,18 @@ input[type="radio"]:checked + .label{
   border-right: 1px solid #DAE2EB;
 }
 
-.custom_select
-{
-  border-radius: 0px;
-  padding: 10px;
-  height: auto;
+.custom_select {
+    border-radius: 0px;
+    border: 1px solid #8dac2d;
+    padding: 10px 15px;
+    height: 45px;
+    width: 100%;
 }
 
 .child_accommodation
 {
-  border: 1px solid #DAE2EB;
+  /* border: 1px solid #DAE2EB; */
+  border: 1px solid #8dac2d;
   padding: 14px 10px 16px 10px;
   color: #798899;
   background-color: #FFF;
@@ -651,8 +653,9 @@ input[type="radio"]:checked + .label{
 }
 .child_accommodation:last-child
 {
-  border-right: 1px solid #DAE2EB;
+  border: 1px solid #8dac2d;
 }
+
 .label_child_accommodation
 {
   font-size: 12px;
@@ -741,6 +744,10 @@ input[type="radio"]:checked + .label{
   width: 400px;
   padding: 10px 20px;
   cursor:pointer;
+}
+
+.custom_select_reason_max_width {
+  width: 200%;
 }
 
 .single_child_div
@@ -840,7 +847,7 @@ input[type="radio"]:checked + .label{
 }
 .total_button_div
 {
-  width: 50%;
+  width: 90%;
   display: block;
   overflow: hidden;
   margin: 0 auto;
@@ -956,6 +963,10 @@ input[type="radio"]:checked + .label{
     padding: .75rem;
     vertical-align: middle;
     border-top: 1px solid #dee2e6;
+}
+
+#signArea h4 {
+    margin-bottom: 15px;
 }
 
 /* .............................................................................

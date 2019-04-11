@@ -117,6 +117,10 @@ input:focus {
 
 /* Placeholder ends */
 
+textarea.form-control {
+  border: 1px solid #8dac2d;
+}
+
 .select_currency_class
 {
   font-size: 13px;
