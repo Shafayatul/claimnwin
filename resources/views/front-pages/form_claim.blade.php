@@ -70,13 +70,12 @@
                                 <div class="select_option_div">
                                     <select class="form-control custom_select reason" name="reason">
                                         <option value="" hidden>Please select</option>
-                                        <option value="missed_connection">Technical problem</option>
-                                        <option value="bad_weather_conditions">Bad weather conditions</option>
-                                        <option value="influence_by_other_flights">Influence by other flights</option>
-                                        <option value="issues_with_airport">Issues with airport</option>
-                                        <option value="strike">Strike</option>
-                                        <option value="no_reason_given">No reason given</option>
-                                        <option value="donot_remember">Don't remember</option>
+                                        <option value="missed_connection">Missed Connection</option>
+                                        <option value="flight_delay">Flight Delay</option>
+                                        <option value="flight_cancellation">Flight Cancellation</option>
+                                        <option value="delay_luggage">Delayed Luggage</option>
+                                        <option value="lost_luggage">Lost Luggage</option>
+                                        <option value="denied_boarding">Denied Boarding</option>
                                     </select>
                                 </div>
                             </div>
@@ -96,6 +95,16 @@
         var claim_type = $(".reason").val();
         if (claim_type=="missed_connection") {
           location.href="{{ url('/missed-connection') }}";
+        }else if (claim_type=="flight_delay") {
+          location.href="{{ url('/flight-delay') }}";
+        }else if (claim_type=="flight_cancellation") {
+          location.href="{{ url('/flight-cancellation') }}";
+        }else if (claim_type=="delay_luggage") {
+          location.href="{{ url('/delay-luggage') }}";
+        }else if (claim_type=="lost_luggage") {
+          location.href="{{ url('/lost-luggage') }}";
+        }else if (claim_type=="denied_boarding") {
+          location.href="{{ url('/denied-boarding') }}";
         }
       });
     });
