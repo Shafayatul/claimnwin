@@ -10,7 +10,60 @@
 @endsection
 
 @section('content')
-<div class="wrapper">
+  <div class="container">
+      <div class="form_claim_main_content_div">
+          <div class="row">
+              <div class="col-md-3">
+                  <div class="form_claim_main_left_content_div">
+                      <div class="row">
+                          <div class="col-md-12" style="margin: 0px; padding: 0px;">
+                              <div class="form_claim_main_left_content_ul_div">
+                                  <ul class="fa-ul">
+                                      <li>
+                                          <div class="li_mother_div">
+                                              <div class="li_number_div">
+                                                  <div class="li_number_child_div text-center">
+                                                      <span>1</span>
+                                                  </div>
+                                              </div>
+                                              <div class="li_text_div">
+                                                  <span>Eligibility</span>
+                                              </div>
+                                          </div>
+                                      </li>
+                                      <li>
+                                          <div class="li_mother_div">
+                                              <div class="li_number_div">
+                                                  <div class="li_number_child_div text-center align-middle">
+                                                      <span>2</span>
+                                                  </div>
+                                              </div>
+                                              <div class="li_text_div">
+                                                  <span>Additional Details</span>
+                                              </div>
+                                          </div>
+                                      </li>
+                                      <li>
+                                          <div class="li_mother_div">
+                                              <div class="li_number_div">
+                                                  <div class="li_number_child_div text-center">
+                                                      <span>3</span>
+                                                  </div>
+                                              </div>
+                                              <div class="li_text_div">
+                                                  <span>Cliam Submission</span>
+                                              </div>
+                                          </div>
+                                      </li>
+                                  </ul>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-md-9">
+                <div class="form_claim_main_right_content_div">
+                  <div class="wrapper">
     <div class="form_h2">
         <h2 class="text-center">Flight Delay</h2>
     </div>
@@ -784,7 +837,7 @@
                     <h3>Sign permission to handle claim</h3>
                 </div>
                 <div class="parent_div">
-                  
+
                   <div class="panel panel-default" style="width: 300px; margin: 0 auto">
                     <div class="panel-body center-text">
 
@@ -970,6 +1023,11 @@
         .................................................................... -->
     </form>
 </div>
+                </div>
+              </div>
+          </div>
+      </div>
+  </div>
 
 @endsection
 
