@@ -549,5 +549,5 @@ $(document).ready(function() {
     date_input.datepicker(options);
   }
 
-
+$(".expense_currency_select_option").val('USD');
 });
