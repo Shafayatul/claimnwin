@@ -120,7 +120,7 @@
                     </div>
                     <div class="two_child_radio_div">
                         <label class="container_radio">No
-                            <input class="common_input" type="radio" id="common_input is_direct_flight_no" name="is_direct_flight" value="0">
+                            <input class="common_input" type="radio" id="common_input is_direct_flight_no" name="is_direct_flight" value="0" checked>
                             <span class="checkmark"></span>
                         </label>
                     </div>
@@ -342,11 +342,11 @@
                         <td>
                           <div class="row">
                             <div class="col-md-6 fifty_percent_width">
-                              <input type="text" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
+                              <input type="number" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
                             </div>
                             <div class="col-md-6 fifty_percent_width">
                               <div class="select_reason_class">
-                                <select class="form-control custom_select" name="expense_currency[]">
+                                <select class="form-control custom_select expense_currency_select_option" name="expense_currency[]">
                                   <option hidden>Currency</option>
                                   @foreach($currencies as $key => $val)
                                     <option value="{{$key}}">{{$key}}</option>
@@ -372,11 +372,11 @@
                         <td>
                           <div class="row">
                             <div class="col-md-6 fifty_percent_width">
-                              <input type="text" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
+                              <input type="number" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
                             </div>
                             <div class="col-md-6 fifty_percent_width">
                               <div class="select_reason_class">
-                                <select class="form-control custom_select" name="expense_currency[]">
+                                <select class="form-control custom_select expense_currency_select_option" name="expense_currency[]">
                                   <option hidden>Currency</option>
                                   @foreach($currencies as $key => $val)
                                     <option value="{{$key}}">{{$key}}</option>
@@ -405,11 +405,11 @@
                         <td>
                           <div class="row">
                             <div class="col-md-6 fifty_percent_width">
-                              <input type="text" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
+                              <input type="number" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
                             </div>
                             <div class="col-md-6 fifty_percent_width">
                               <div class="select_reason_class">
-                                <select class="form-control custom_select" name="expense_currency[]">
+                                <select class="form-control custom_select expense_currency_select_option" name="expense_currency[]">
                                   <option hidden>Currency</option>
                                   @foreach($currencies as $key => $val)
                                     <option value="{{$key}}">{{$key}}</option>
@@ -437,11 +437,11 @@
                         <td>
                           <div class="row">
                             <div class="col-md-6 fifty_percent_width">
-                              <input type="text" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
+                              <input type="number" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
                             </div>
                             <div class="col-md-6 fifty_percent_width">
                               <div class="select_reason_class">
-                                <select class="form-control custom_select" name="expense_currency[]">
+                                <select class="form-control custom_select expense_currency_select_option" name="expense_currency[]">
                                   <option hidden>Currency</option>
                                   @foreach($currencies as $key => $val)
                                     <option value="{{$key}}">{{$key}}</option>
@@ -489,11 +489,11 @@
                       <td>
                         <div class="row">
                           <div class="col-md-6">
-                            <input type="text" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
+                            <input type="number" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
                           </div>
                           <div class="col-md-6">
                             <div class="select_reason_class">
-                              <select class="form-control custom_select" name="expense_currency[]">
+                              <select class="form-control custom_select expense_currency_select_option" name="expense_currency[]">
                                 <option hidden>Currency</option>
                                 @foreach($currencies as $key => $val)
                                     <option value="{{$key}}">{{$key}}</option>
@@ -524,11 +524,11 @@
                       <td>
                         <div class="row">
                           <div class="col-md-6">
-                            <input type="text" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
+                            <input type="number" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
                           </div>
                           <div class="col-md-6">
                             <div class="select_reason_class">
-                              <select class="form-control custom_select" name="expense_currency[]">
+                              <select class="form-control custom_select expense_currency_select_option" name="expense_currency[]">
                                 <option hidden>Currency</option>
                                 @foreach($currencies as $key => $val)
                                     <option value="{{$key}}">{{$key}}</option>
@@ -562,11 +562,11 @@
                       <td>
                         <div class="row">
                           <div class="col-md-6">
-                            <input type="text" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
+                            <input type="number" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
                           </div>
                           <div class="col-md-6">
                             <div class="select_reason_class">
-                              <select class="form-control custom_select" name="expense_currency[]">
+                              <select class="form-control custom_select expense_currency_select_option" name="expense_currency[]">
                                 <option hidden>Currency</option>
                                 @foreach($currencies as $key => $val)
                                     <option value="{{$key}}">{{$key}}</option>
@@ -599,11 +599,11 @@
                       <td>
                         <div class="row">
                           <div class="col-md-6">
-                            <input type="text" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
+                            <input type="number" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
                           </div>
                           <div class="col-md-6">
                             <div class="select_reason_class">
-                              <select class="form-control custom_select" name="expense_currency[]">
+                              <select class="form-control custom_select expense_currency_select_option" name="expense_currency[]">
                                 <option hidden>Currency</option>
                                 @foreach($currencies as $key => $val)
                                     <option value="{{$key}}">{{$key}}</option>
