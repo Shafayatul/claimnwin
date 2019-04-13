@@ -44,9 +44,10 @@ class UserPanelController extends Controller
       $ticket_notes = TicketNote::where('ticket_id', $ticket->id)->get();
       $airline = Airline::where('id', $claims->airline_id)->first();
       $claim_files = ClaimFile::where('claim_id', $claims->id)->get();
+      $claim_staus = ClaimStatus::where('id',$claims->claim_status_id)->first();
        // $claim = Claim::where('id',$id)->get();
        // $ticket = Ticket::where('claim_id', $id)->first();
-        return view('front-end.user.user_panel_my_claim', compact('claims', 'ticket_notes', 'airline', 'claim_files'));
+        return view('front-end.user.user_panel_my_claim', compact('claims', 'ticket_notes', 'airline', 'claim_files','claim_staus'));
     }
 
     public function claimFileUpload(Request $request)
@@ -139,6 +140,8 @@ class UserPanelController extends Controller
 
       $reqData = $request->all();
       TicketNote::create($reqData + ['user_id'=>Auth::user()->id]);
+      $ticket=Ticket::find($request->ticket_id);
+      $ticket->update(['status'=>1]);
       return redirect()->back()->with('success','Message Send Successfully.');
 
 

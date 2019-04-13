@@ -160,8 +160,9 @@
                 <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                <li><a href="{{URL::to('/tickets/create')}}"><i class="fa fa-angle-right"></i> Create Tickets</a></li>
-                <li><a href="{{URL::to('/tickets')}}"><i class="fa fa-angle-right"></i> Manage Tickets</a></li>
+                    {{-- <li><a href="{{URL::to('/tickets/create')}}"><i class="fa fa-angle-right"></i> Create Tickets</a></li> --}}
+                    <li><a href="{{URL::to('/tickets')}}"><i class="fa fa-angle-right"></i> Manage Tickets</a></li>
+                    <li><a href="{{URL::to('/my-tickets')}}"><i class="fa fa-angle-right"></i> My Tickets</a></li>
                 </ul>
             </li>
 

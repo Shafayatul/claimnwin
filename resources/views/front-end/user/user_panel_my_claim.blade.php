@@ -33,13 +33,7 @@
             <div class="col-md-4">
                 <div class="parent_div text-center">
                     <span class="bold_span">Status:</span>
-                    @if ($claims->ticket_status == '1')
-                    Pending
-                    @elseif ($claims->ticket_status == '2')
-                    In progress
-                    @else
-                    Closed
-                    @endif
+                    {{$claim_staus->name}}
                 </div>
             </div>
         </div>
@@ -68,13 +62,13 @@
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade active in" id="claim-status" role="tabpanel" aria-labelledby="claim-status-tab">
 
-                    @if ($claims->ticket_status == '1')
+
                     <div class="wrapper">
                         <div class="claim_status_refresh_icon text-center">
                             <i class="fas fa-sync" style="color: #EFF30B"></i>
                         </div>
                         <div class="claim_status_refresh_text text-center">
-                            <p style="color: #EFF30B">Claim assessment in pending</p>
+                        <p style="color: #EFF30B">Claim assessment in {{$claim_staus->name}}</p>
                         </div>
                         <div class="claim_status_message text-center">
                             <p>Your claim is under review. Our legal team will contact you if we require any further information</p>
@@ -83,39 +77,6 @@
               <p>NO ACTION IS REQUIRED FROM YOU</p>
             </div> --}}
                     </div>
-
-                    @elseif ($claims->ticket_status == '2')
-                    <div class="wrapper">
-                        <div class="claim_status_refresh_icon text-center">
-                            <i class="fas fa-hourglass-half" style="color: #feba3a"></i>
-                        </div>
-                        <div class="claim_status_refresh_text text-center">
-                            <p style="color: #feba3a">Claim assessment in progress</p>
-                        </div>
-                        <div class="claim_status_message text-center">
-                            <p>Your claim is under review. Our legal team will contact you if we require any further information</p>
-                        </div>
-                        {{-- <div class="claim_status_box_message text-center">
-              <p>NO ACTION IS REQUIRED FROM YOU</p>
-            </div> --}}
-                    </div>
-                    @else
-                    <div class="wrapper">
-                        <div class="claim_status_refresh_icon text-center">
-                            <i class="fas fa-check-circle" style="color: #1CD356"></i>
-                        </div>
-                        <div class="claim_status_refresh_text text-center">
-                            <p style="color: #1CD356">Claim assessment is closed</p>
-                        </div>
-                        <div class="claim_status_message text-center">
-                            <p>Your claim is under review. Our legal team will contact you if we require any further information</p>
-                        </div>
-                        {{-- <div class="claim_status_box_message text-center">
-              <p>NO ACTION IS REQUIRED FROM YOU</p>
-            </div> --}}
-                    </div>
-
-                    @endif
 
 
 
@@ -127,17 +88,17 @@
                         <blockquote class="blockquote text-right">
                           <p class="mb-0">Ticket ID: {{ $claims->ticket_id}}</p>
                           <footer class="blockquote-footer">
-                            Status: 
+                            Status:
                             @if ($claims->ticket_status == '1')
-                            Pending
+                            Waiting For Reply
                             @elseif ($claims->ticket_status == '2')
-                            In progress
+                            Action Required
                             @else
                             Closed
                             @endif
                           </footer>
                         </blockquote>
-
+                        @if ($claims->ticket_status != '3')
                         <div class="message_icon text-center">
                             <i class="far fa-comment-alt"></i>
                         </div>
@@ -160,6 +121,7 @@
                                 </div>
                             </form>
                         </div>
+                        @endif
 
                         <div class="parent_div message_text">
                             <p class="text-center">Chat Messages</p>

@@ -139,6 +139,9 @@ Route::resource('tickets', 'TicketsController');
 Route::resource('ticket-notes', 'TicketNotesController');
 Route::post('/ticket-description', 'TicketNotesController@ticketDescriptionSave')->name('ticket-description');
 Route::get('/close-ticket/{id}', 'TicketsController@closeTicket');
+Route::post('/ticket-assign-user', 'TicketsController@ticketAssignUser')->name('ticket.user.assign');
+
+Route::get('/my-tickets','TicketsController@myTickets');
 
 Route::resource('flights', 'FlightsController');
 
