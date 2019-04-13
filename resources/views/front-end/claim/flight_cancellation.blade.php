@@ -200,14 +200,14 @@
                                             <h3>How far in advance were you notified of the cancellation?</h3>
                                         </div>
                                     </div>
-                                    <div class="parent_div">
-                                        <div class="total_delay_flight_2">
+                                    <div class="parent_div" style="display: table">
+                                        <div class="total_delay_flight_2" style="display: table-cell">
                                             <label class="container_radio">Less than 14 days
                                                 <input type="radio" class="common_input" id="common_input total_cancel_radio_notify_less_14" name="is_notify_before_forteen_days" value="1">
                                                 <span class="checkmark"></span>
                                             </label>
                                         </div>
-                                        <div class="total_delay_flight_2">
+                                        <div class="total_delay_flight_2" style="display: table-cell">
                                             <label class="container_radio">More than 14 days
                                                 <input type="radio" class="common_input" id="common_input total_cancel_radio_notify_greater_14" name="is_notify_before_forteen_days" value="0">
                                                 <span class="checkmark"></span>
@@ -242,7 +242,7 @@
                                     <div class="total_button_div">
                                         <div class="two_button_child_div_right">
                                             <div class="continue_button_div">
-                                                <button type="button" class="continue_button" id="continue_2" name="button">Continue <i class="fas fa-arrow-right"></i></button>
+                                                <button type="button" class="continue_button pull-right" id="continue_2" name="button">Continue <i class="fas fa-arrow-right"></i></button>
                                             </div>
                                         </div>
                                         <div class="two_button_child_div_left">
@@ -285,7 +285,7 @@
                                 <div class="total_button_div">
                                   <div class="two_button_child_div_right">
                                     <div class="continue_button_div">
-                                      <button type="button" class="continue_button" id="continue_3" name="button">Continue <i class="fas fa-arrow-right"></i></button>
+                                      <button type="button" class="continue_button pull-right" id="continue_3" name="button">Continue <i class="fas fa-arrow-right"></i></button>
                                     </div>
                                   </div>
                                   <div class="two_button_child_div_left">
@@ -362,11 +362,11 @@
                                     <div class="parent_div">
                                         <div class="price_currency_div">
                                             <div class="child_price_currency_div">
-                                                <input type="text" class="common_input ticket_price" id="common_input ticket_price_original_ticket" name="ticket_price_original_ticket" placeholder="Ex. 1234">
+                                                <input type="number" class="common_input ticket_price" id="common_input ticket_price_original_ticket" name="ticket_price_original_ticket" placeholder="Ex. 1234">
                                             </div>
                                             <div class="child_price_currency_div">
                                                 <div class="select_reason_class">
-                                                    <select class="form-control custom_select" name="ticket_currency_original_ticket">
+                                                    <select class="form-control custom_select expense_currency_select_option" name="ticket_currency_original_ticket">
                                                         <option hidden>Select currency</option>
                                                         @foreach($currencies as $key => $val)
                                                         <option value="{{$key}}">{{$key}}</option>
@@ -411,11 +411,11 @@
                                     <div class="parent_div">
                                         <div class="price_currency_div">
                                             <div class="child_price_currency_div">
-                                                <input type="text" class="common_input ticket_price" id="common_input ticket_price_rerouting" name="ticket_price_rerouting" placeholder="Ex. 1234">
+                                                <input type="number" class="common_input ticket_price" id="common_input ticket_price_rerouting" name="ticket_price_rerouting" placeholder="Ex. 1234">
                                             </div>
                                             <div class="child_price_currency_div">
                                                 <div class="select_reason_class">
-                                                    <select class="form-control custom_select" name="ticket_currency_rerouting">
+                                                    <select class="form-control custom_select expense_currency_select_option" name="ticket_currency_rerouting">
                                                         <option hidden>Currency</option>
                                                         @foreach($currencies as $key => $val)
                                                         <option value="{{$key}}">{{$key}}</option>
@@ -486,11 +486,11 @@
                                                             <td>
                                                                 <div class="row">
                                                                     <div class="col-md-6 fifty_percent_width">
-                                                                        <input type="text" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
+                                                                        <input type="number" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
                                                                     </div>
                                                                     <div class="col-md-6 fifty_percent_width">
                                                                         <div class="select_reason_class">
-                                                                            <select class="form-control custom_select" name="expense_currency[]">
+                                                                            <select class="form-control custom_select expense_currency_select_option" name="expense_currency[]">
                                                                                 <option hidden>Currency</option>
                                                                                 @foreach($currencies as $key => $val)
                                                                                     <option value="{{$key}}">{{$key}}</option>
@@ -516,11 +516,11 @@
                                                             <td>
                                                                 <div class="row">
                                                                     <div class="col-md-6 fifty_percent_width">
-                                                                        <input type="text" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
+                                                                        <input type="number" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
                                                                     </div>
                                                                     <div class="col-md-6 fifty_percent_width">
                                                                         <div class="select_reason_class">
-                                                                            <select class="form-control custom_select" name="expense_currency[]">
+                                                                            <select class="form-control custom_select expense_currency_select_option" name="expense_currency[]">
                                                                                 <option hidden>Currency</option>
                                                                                 @foreach($currencies as $key => $val)
                                                                                     <option value="{{$key}}">{{$key}}</option>
@@ -549,11 +549,11 @@
                                                             <td>
                                                                 <div class="row">
                                                                     <div class="col-md-6 fifty_percent_width">
-                                                                        <input type="text" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
+                                                                        <input type="number" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
                                                                     </div>
                                                                     <div class="col-md-6 fifty_percent_width">
                                                                         <div class="select_reason_class">
-                                                                            <select class="form-control custom_select" name="expense_currency[]">
+                                                                            <select class="form-control custom_select expense_currency_select_option" name="expense_currency[]">
                                                                                 <option hidden>Currency</option>
                                                                                 @foreach($currencies as $key => $val)
                                                                                     <option value="{{$key}}">{{$key}}</option>
@@ -581,11 +581,11 @@
                                                             <td>
                                                                 <div class="row">
                                                                     <div class="col-md-6 fifty_percent_width">
-                                                                        <input type="text" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
+                                                                        <input type="number" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
                                                                     </div>
                                                                     <div class="col-md-6 fifty_percent_width">
                                                                         <div class="select_reason_class">
-                                                                            <select class="form-control custom_select" name="expense_currency[]">
+                                                                            <select class="form-control custom_select expense_currency_select_option" name="expense_currency[]">
                                                                                 <option hidden>Currency</option>
                                                                                 @foreach($currencies as $key => $val)
                                                                                     <option value="{{$key}}">{{$key}}</option>
@@ -633,11 +633,11 @@
                                                         <td>
                                                             <div class="row">
                                                                 <div class="col-md-6">
-                                                                    <input type="text" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
+                                                                    <input type="number" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
                                                                 </div>
                                                                 <div class="col-md-6">
                                                                     <div class="select_reason_class">
-                                                                        <select class="form-control custom_select" name="expense_currency[]">
+                                                                        <select class="form-control custom_select expense_currency_select_option" name="expense_currency[]">
                                                                             <option hidden>Currency</option>
                                                                             @foreach($currencies as $key => $val)
                                                                                 <option value="{{$key}}">{{$key}}</option>
@@ -668,11 +668,11 @@
                                                         <td>
                                                             <div class="row">
                                                                 <div class="col-md-6">
-                                                                    <input type="text" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
+                                                                    <input type="number" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
                                                                 </div>
                                                                 <div class="col-md-6">
                                                                     <div class="select_reason_class">
-                                                                        <select class="form-control custom_select" name="expense_currency[]">
+                                                                        <select class="form-control custom_select expense_currency_select_option" name="expense_currency[]">
                                                                             <option hidden>Currency</option>
                                                                             @foreach($currencies as $key => $val)
                                                                                 <option value="{{$key}}">{{$key}}</option>
@@ -706,11 +706,11 @@
                                                         <td>
                                                             <div class="row">
                                                                 <div class="col-md-6">
-                                                                    <input type="text" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
+                                                                    <input type="number" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
                                                                 </div>
                                                                 <div class="col-md-6">
                                                                     <div class="select_reason_class">
-                                                                        <select class="form-control custom_select" name="expense_currency[]">
+                                                                        <select class="form-control custom_select expense_currency_select_option" name="expense_currency[]">
                                                                             <option hidden>Currency</option>
                                                                             @foreach($currencies as $key => $val)
                                                                                 <option value="{{$key}}">{{$key}}</option>
@@ -743,11 +743,11 @@
                                                         <td>
                                                             <div class="row">
                                                                 <div class="col-md-6">
-                                                                    <input type="text" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
+                                                                    <input type="number" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
                                                                 </div>
                                                                 <div class="col-md-6">
                                                                     <div class="select_reason_class">
-                                                                        <select class="form-control custom_select" name="expense_currency[]">
+                                                                        <select class="form-control custom_select expense_currency_select_option" name="expense_currency[]">
                                                                             <option hidden>Currency</option>
                                                                             @foreach($currencies as $key => $val)
                                                                                 <option value="{{$key}}">{{$key}}</option>
@@ -790,7 +790,7 @@
                                     <div class="total_button_div">
                                         <div class="two_button_child_div_right">
                                             <div class="continue_button_div">
-                                                <button type="button" class="continue_button" id="continue_4" name="button">Continue <i class="fas fa-arrow-right"></i></button>
+                                                <button type="button" class="continue_button pull-right" id="continue_4" name="button">Continue <i class="fas fa-arrow-right"></i></button>
                                             </div>
                                         </div>
                                         <div class="two_button_child_div_left">
@@ -831,7 +831,7 @@
                                     <div class="total_button_div">
                                         <div class="two_button_child_div_right">
                                             <div class="continue_button_div">
-                                                <button type="button" class="continue_button" id="continue_5" name="button">Continue <i class="fas fa-arrow-right"></i></button>
+                                                <button type="button" class="continue_button pull-right" id="continue_5" name="button">Continue <i class="fas fa-arrow-right"></i></button>
                                             </div>
                                         </div>
                                         <div class="two_button_child_div_left">
@@ -952,7 +952,7 @@
                                     <div class="total_button_div">
                                         <div class="two_button_child_div_right">
                                             <div class="continue_button_div">
-                                                <button type="button" class="continue_button" id="continue_6" name="button">Continue <i class="fas fa-arrow-right"></i></button>
+                                                <button type="button" class="continue_button pull-right" id="continue_6" name="button">Continue <i class="fas fa-arrow-right"></i></button>
                                             </div>
                                         </div>
                                         <div class="two_button_child_div_left">
@@ -1011,7 +1011,7 @@
                                     <div class="total_button_div">
                                         <div class="two_button_child_div_right">
                                             <div class="continue_button_div">
-                                                <button type="button" class="continue_button" id="continue_7" name="button">Continue <i class="fas fa-arrow-right"></i></button>
+                                                <button type="button" class="continue_button pull-right" id="continue_7" name="button">Continue <i class="fas fa-arrow-right"></i></button>
                                             </div>
                                         </div>
                                         <div class="two_button_child_div_left">
@@ -1160,7 +1160,7 @@
                                     <div class="total_button_div">
                                         <div class="two_button_child_div_right">
                                             <div class="continue_button_div">
-                                                <button type="button" class="continue_button" id="continue_8" name="button">Continue <i class="fas fa-arrow-right"></i></button>
+                                                <button type="button" class="continue_button pull-right" id="continue_8" name="button">Continue <i class="fas fa-arrow-right"></i></button>
                                             </div>
                                         </div>
                                         <div class="two_button_child_div_left">

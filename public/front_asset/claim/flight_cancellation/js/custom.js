@@ -101,7 +101,7 @@ $(document).ready(function() {
         $("#step_" + step).show();
     });
 
-    
+
 
     function check_next_step() {
         console.log("check_next_step() func");
@@ -578,5 +578,5 @@ $(document).ready(function() {
     date_input.datepicker(options);
   }
 
-
+$(".expense_currency_select_option").val('USD');
 });

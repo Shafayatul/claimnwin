@@ -161,6 +161,12 @@ label
     margin: 0 auto;
 }
 
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 input[type="radio"] {
     /* hide the inputs */
     opacity: 0;
@@ -725,15 +731,18 @@ input[type="radio"]:checked + .label{
   /* font-family: 'Source Sans Pro',sans-serif; */
   /* font-family: 'Poppins', sans-serif; */
   align-items: center;
-  border: 1px solid #DAE2EB;
+  border: 1px solid #8dac2d;
   padding: 14px 10px 16px 10px;
   color: #798899;
   background-color: #FFF;
   margin: 0px;
-  width: 33.3%;
+  width: 50%;
   float: left;
 }
 
+.total_delay_flight_2:first-child {
+  border-right: 0px;
+}
 
 .radio_text
 {
@@ -858,7 +867,7 @@ input[type="radio"]:checked + .label{
 }
 .total_button_div
 {
-  width: 50%;
+  width: 90%;
   display: block;
   overflow: hidden;
   margin: 0 auto;
@@ -987,6 +996,44 @@ input[type="radio"]:checked + .label{
 
 @media (min-width: 320px) and (max-width: 480px) {
 
+  label {
+    font-size: 11px;
+  }
+
+  /* Placeholder starts */
+  ::-webkit-input-placeholder { /* Chrome */
+    font-size: 9px;
+  }
+  :-ms-input-placeholder { /* IE 10+ */
+    font-size: 9px;
+  }
+  ::-moz-placeholder { /* Firefox 19+ */
+    font-size: 9px;
+  }
+  :-moz-placeholder { /* Firefox 4 - 18 */
+    font-size: 9px;
+  }
+
+  /* Placeholder ends */
+
+  .form_claim_main_left_content_div {
+    display: none;
+  }
+  .form_claim_main_content_div {
+    padding: 30px 0px;
+  }
+  .form_claim_main_right_content_div {
+    border: 1px solid #cecece;
+    padding: 10px 20px;
+  }
+
+  .form_h3 h3 {
+    font-size: 15px;
+    line-height: 25px;
+    padding-bottom: 0px;
+  }
+
+
   .common_row
   {
     margin-bottom: 10px;
@@ -995,11 +1042,6 @@ input[type="radio"]:checked + .label{
   .common_input
   {
     height: 33px;
-  }
-  .form_h3 h3
-  {
-    font-size: 18px;
-    padding-bottom: 5px;
   }
   .form_h4 h4
   {
@@ -1124,17 +1166,7 @@ input[type="radio"]:checked + .label{
   {
     font-size: 13px;
   }
-  .total_delay_flight, .total_delay_flight_2
-  {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #8dac2d;
-    border-top: none;
-  }
-  .total_delay_flight:first-child, .total_delay_flight_2:first-child
-  {
-    border-top: 1px solid #8dac2d;
-  }
+
   .select_reason
   {
     width: 100%;
@@ -1219,18 +1251,26 @@ input[type="radio"]:checked + .label{
     width: 100%;
 }
 
-.total_delay_flight:first-child {
-    border-bottom: 1px solid #8dac2d;
-    border-right: 1px solid #8dac2d;
-  }
+.total_delay_flight, .total_delay_flight_2
+{
+  width: 100%;
+  padding: 10px;
+  border-right: 1px solid #8dac2d;
+  border-top: 1px solid #8dac2d;
+}
+.total_delay_flight:first-child, .total_delay_flight_2:first-child
+{
+  border-right: 1px solid #8dac2d;
+  border-bottom: 0px;
+}
 
-  .total_delay_flight:nth-child(2) {
-      border-bottom: 1px solid #8dac2d;
-  }
-
-  .total_delay_flight:nth-child(3) {
-      border-right: 1px solid #8dac2d;
-  }
+.total_delay_flight:nth-child(3) {
+  border-right: 1px solid #8dac2d;
+}
+.total_delay_flight:last-child
+{
+  border-top: 0px;
+}
 
 
 }
@@ -1238,20 +1278,56 @@ input[type="radio"]:checked + .label{
   /* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 481 TO 767 XXXXXXXXXXXXXXXXXXXXXXXXXXXX*/
 
   @media (min-width: 481px) and (max-width: 767px) {
+
+    label {
+      font-size: 12px;
+    }
+
+    /* Placeholder starts */
+    ::-webkit-input-placeholder { /* Chrome */
+      font-size: 11px;
+    }
+    :-ms-input-placeholder { /* IE 10+ */
+      font-size: 11px;
+    }
+    ::-moz-placeholder { /* Firefox 19+ */
+      font-size: 11px;
+    }
+    :-moz-placeholder { /* Firefox 4 - 18 */
+      font-size: 11px;
+    }
+
+    /* Placeholder ends */
+
+    .form_claim_main_left_content_div {
+      display: none;
+    }
+    .form_claim_main_content_div {
+      padding: 30px 0px;
+    }
+    .form_claim_main_right_content_div {
+      border: 1px solid #cecece;
+      padding: 10px 20px;
+    }
+
     .common_row
     {
       margin-bottom: 10px;
       padding: 5px 0px;
     }
+
+    .form_h3 h3
+    {
+      font-size: 15px;
+      line-height: 25px;
+      padding-bottom: 0px;
+    }
+
     .common_input
     {
       height: 35px;
     }
-    .form_h3 h3
-    {
-      font-size: 20px;
-      padding-bottom: 5px;
-    }
+
     .form_h4 h4
     {
       font-size: 16px;
@@ -1376,15 +1452,27 @@ input[type="radio"]:checked + .label{
     {
       width: 100%;
       padding: 10px;
-      border: 1px solid #DAE2EB;
-      border-top: none;
+      border-right: 1px solid #8dac2d;
+      border-top: 1px solid #8dac2d;
     }
     .total_delay_flight:first-child, .total_delay_flight_2:first-child
     {
-      border-top: 1px solid #DAE2EB;
+      border-right: 1px solid #8dac2d;
+      border-bottom: 0px;
+    }
+    .total_delay_flight:nth-child(3) {
+      border-right: 1px solid #8dac2d;
+    }
+    .total_delay_flight:last-child
+    {
+      border-top: 0px;
     }
     .select_reason
     {
+      width: 100%;
+    }
+
+    .custom_select_reason_max_width {
       width: 100%;
     }
     .total_button_div
@@ -1449,21 +1537,50 @@ input[type="radio"]:checked + .label{
   /* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 768 TO 1024 XXXXXXXXXXXXXXXXXXXXXXXXXXXX*/
 
   @media (min-width: 768px) and (max-width: 1024px) {
+    /* Placeholder starts */
+    ::-webkit-input-placeholder { /* Chrome */
+      font-size: 11px;
+    }
+    :-ms-input-placeholder { /* IE 10+ */
+      font-size: 11px;
+    }
+    ::-moz-placeholder { /* Firefox 19+ */
+      font-size: 11px;
+    }
+    :-moz-placeholder { /* Firefox 4 - 18 */
+      font-size: 11px;
+    }
+
+    /* Placeholder ends */
+
+    .form_claim_main_left_content_div {
+      display: none;
+    }
+    .form_claim_main_content_div {
+      padding: 30px 30px;
+    }
+    .form_claim_main_right_content_div {
+      border: 1px solid #cecece;
+      padding: 10px 20px;
+    }
 
     .common_row
     {
       margin-bottom: 12px;
       padding: 7px 0px;
     }
+
+    .form_h3 h3
+    {
+      font-size: 18px;
+      line-height: 25px;
+      padding-bottom: 0px;
+    }
     .common_input
     {
       height: 40px;
     }
-    .form_h3 h3
-    {
-      font-size: 21px;
-      padding-bottom: 5px;
-    }
+
     .form_h4 h4
     {
       font-size: 16px;
@@ -1575,17 +1692,7 @@ input[type="radio"]:checked + .label{
     {
       font-size: 14px;
     }
-    .total_delay_flight, .total_delay_flight_2
-    {
-      width: 100%;
-      padding: 10px;
-      border: 1px solid #DAE2EB;
-      border-top: none;
-    }
-    .total_delay_flight:first-child, .total_delay_flight_2:first-child
-    {
-      border-top: 1px solid #DAE2EB;
-    }
+
     .select_reason
     {
       width: 100%;
