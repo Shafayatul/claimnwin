@@ -30,9 +30,17 @@ class TicketsController extends Controller
         } else {
             $tickets = Ticket::latest()->paginate($perPage);
         }
+        $user_array = [];
+        foreach($tickets as $row){
+            if($row->assign_user_id != null){
+                array_push($user_array,$row->assign_user_id);
+            }
+        }
+        $assign_users=User::whereIn('id',$user_array)->pluck('email','id');
+
         $users = User::role('Admin')->pluck('email','id');
 
-        return view('tickets.index', compact('tickets','users'));
+        return view('tickets.index', compact('tickets','users','assign_users'));
     }
 
     public function myTickets(Request $request)

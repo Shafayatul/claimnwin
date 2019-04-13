@@ -36,6 +36,7 @@
                                     <th>Subject</th>
                                     <th>Status</th>
                                     <th>Is Assigned</th>
+                                    <th>Assigned Email</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -58,6 +59,11 @@
                                         <span style="color: #F44336;">Not Assigned</span>
                                         @else
                                         <span style="color: #00CC3D;">Assigned</span>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if($item->assign_user_id != null)
+                                            {{$assign_users[$item->assign_user_id]}}
                                         @endif
                                     </td>
                                     <td>
