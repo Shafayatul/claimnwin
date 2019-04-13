@@ -249,28 +249,21 @@ $(document).ready(function(){
         {
           if ($('input[name=is_rerouted]:checked').val() == '1')
           {
-            console.log('spend_on_accommodation '+spend_on_accommodation);
             if (spend_on_accommodation == true)
             {
-              console.log('should go');
-
               $("#continue_4").addClass('active_button');
               $("#continue_5").addClass('active_button');
               return true;
             }else
             {
-              console.log('should not go');
               return false;
             }
           }else if ($('input[name=is_rerouted]:checked').val() == '0')
           {
-            console.log($('input[name=is_rerouted]:checked').val());
             if (($("input[name='is_obtained_full_reimbursement']").is(':checked')))
             {
-              console.log($('input[name=is_obtained_full_reimbursement]:checked').val());
               if ($('input[name=is_obtained_full_reimbursement]:checked').val() == '1')
               {
-                console.log('reimbursement YESSS ar moddhe dhukhse');
                 if (spend_on_accommodation == true)
                 {
                   $("#continue_4").addClass('active_button');
@@ -282,21 +275,17 @@ $(document).ready(function(){
                 }
               }else if ($('input[name=is_obtained_full_reimbursement]:checked').val() == '0')
               {
-                console.log('reimbursement NOOOO ar moddhe dhukhse');
                 if (($("input[name='ticket_price_original_ticket']").val() != "") && ($(".ticket_currency_original_ticket").val() != "" ) && ($("input[name='is_paid_for_rerouting']").is(':checked')))
                 {
                   if ($('input[name=is_paid_for_rerouting]:checked').val() == '1') {
-                    console.log('rerouting paid YESSSS ar moddhe dhukse');
                       if (($("input[name='ticket_price_rerouting']").val() != "") && ($("input[name='ticket_currency_rerouting']").val() != ""))
                       {
-                        console.log('rerouting ticket price and currency paise');
                         $("#continue_4").addClass('active_button');
                         $("#continue_5").addClass('active_button');
                         return true;
                       }
                     }else if ($('input[name=is_paid_for_rerouting]:checked').val() == '0')
                     {
-                      console.log('rerouting paid NOOOO ar moddhe dhukse');
                       if (spend_on_accommodation == true)
                       {
                         $("#continue_4").addClass('active_button');
@@ -729,6 +718,8 @@ fileInput1.addEventListener( "change", function( event ) {
     };
     date_input.datepicker(options);
   }
+
+$(".expense_currency_select_option").val('USD');
 
 
 });

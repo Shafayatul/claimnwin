@@ -146,6 +146,12 @@ label
   margin-bottom: 0px;
 }
 
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 .only_label_without_input {
   padding-bottom: 5px;
 }
