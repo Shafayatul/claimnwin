@@ -55,7 +55,7 @@ class ClaimBackController extends Controller
             $claims = Claim::latest()->paginate(15);
         }
 
-        
+
         $claim_id_array = [];
         $user_id_array = [];
         $airline_id_array = [];
@@ -64,7 +64,7 @@ class ClaimBackController extends Controller
             array_push($user_id_array, $claim->user_id);
             array_push($airline_id_array, $claim->airline_id);
         }
-        
+
         $user_id_array = array_unique($user_id_array);
         $user_all = User::whereIn('id', $user_id_array)->pluck('name', 'id');
         $airlines = Airline::whereIn('id', $airline_id_array)->pluck('name', 'id');
@@ -104,7 +104,7 @@ class ClaimBackController extends Controller
             $claims = Claim::where('is_deleted',0)->whereNotNull('affiliate_user_id')->latest()->paginate(10);
         }
 
-        
+
 
 
 
@@ -115,7 +115,7 @@ class ClaimBackController extends Controller
             array_push($user_id_array, $claim->user_id);
             array_push($user_id_array, $claim->affiliate_user_id);
         }
-        
+
         $user_id_array = array_unique($user_id_array);
         $user_all = User::whereIn('id', $user_id_array)->pluck('email', 'id');
 
@@ -140,8 +140,8 @@ class ClaimBackController extends Controller
     {
 
 
-        $claims = Claim::where('is_deleted',0)->paginate(10);
-        
+        $claims = Claim::where('is_deleted',0)->latest()->paginate(10);
+
         $claim_id_array = [];
         foreach($claims as $claim){
             array_push($claim_id_array, $claim->id);
@@ -332,7 +332,29 @@ class ClaimBackController extends Controller
 
     public function manageUnfinishedClaim()
     {
-        return view('claim.manage_unfinished_claim');
+        $claim_status=ClaimStatus::latest()->first();
+        $claims = Claim::where('is_deleted',0)->where('claim_status_id',"!=",$claim_status->id)->latest()->paginate(10);
+
+        $claim_id_array = [];
+        foreach($claims as $claim){
+            array_push($claim_id_array, $claim->id);
+        }
+
+
+        $itineraryDetail = ItineraryDetail::whereIn('claim_id', $claim_id_array)->pluck('airline_id','claim_id')->toArray();
+
+        $necessary_airline_ids = ItineraryDetail::whereIn('claim_id', $claim_id_array)->where('is_selected', '1')->pluck('airline_id')->toArray();
+        $claim_and_airline_array = ItineraryDetail::whereIn('claim_id', $claim_id_array)->where('is_selected', '1')->select('airline_id', 'claim_id')->get()->keyBy('claim_id');
+
+
+        $departed_from_id = Claim::whereIn('id', $claim_id_array)->pluck('departed_from_id')->toArray();
+        $final_destination_id = Claim::whereIn('id', $claim_id_array)->pluck('final_destination_id')->toArray();
+
+        $necessary_airport_id_array = array_unique(array_merge($departed_from_id, $final_destination_id));
+        $passenger = Passenger::whereIn('claim_id', $claim_id_array)->orderBy('id', 'DESC')->get()->keyBy('claim_id');
+        $airport = Airport::whereIn('id', $necessary_airport_id_array)->pluck('name','id');
+        $airline = Airline::whereIn('id', $necessary_airline_ids)->pluck('name','id');
+        return view('claim.manage_unfinished_claim',compact('claims','airport', 'airline', 'passenger', 'claim_and_airline_array'));
     }
 
     public function unfinishedClaimView()
@@ -342,7 +364,29 @@ class ClaimBackController extends Controller
 
     public function manageFillsClaim()
     {
-        return view('claim.manage_fills_claim');
+        $claim_status=ClaimStatus::latest()->first();
+        $claims = Claim::where('is_deleted',0)->where('claim_status_id',"==",$claim_status->id)->latest()->paginate(10);
+
+        $claim_id_array = [];
+        foreach($claims as $claim){
+            array_push($claim_id_array, $claim->id);
+        }
+
+
+        $itineraryDetail = ItineraryDetail::whereIn('claim_id', $claim_id_array)->pluck('airline_id','claim_id')->toArray();
+
+        $necessary_airline_ids = ItineraryDetail::whereIn('claim_id', $claim_id_array)->where('is_selected', '1')->pluck('airline_id')->toArray();
+        $claim_and_airline_array = ItineraryDetail::whereIn('claim_id', $claim_id_array)->where('is_selected', '1')->select('airline_id', 'claim_id')->get()->keyBy('claim_id');
+
+
+        $departed_from_id = Claim::whereIn('id', $claim_id_array)->pluck('departed_from_id')->toArray();
+        $final_destination_id = Claim::whereIn('id', $claim_id_array)->pluck('final_destination_id')->toArray();
+
+        $necessary_airport_id_array = array_unique(array_merge($departed_from_id, $final_destination_id));
+        $passenger = Passenger::whereIn('claim_id', $claim_id_array)->orderBy('id', 'DESC')->get()->keyBy('claim_id');
+        $airport = Airport::whereIn('id', $necessary_airport_id_array)->pluck('name','id');
+        $airline = Airline::whereIn('id', $necessary_airline_ids)->pluck('name','id');
+        return view('claim.manage_fills_claim',compact('claims','airport', 'airline', 'passenger', 'claim_and_airline_array'));
     }
 
     public function fillsClaimView()
