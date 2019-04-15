@@ -710,6 +710,8 @@ class ClaimsController extends Controller
             $amount_and_distance = $this->denied_boarding_calculaion($departed_from_id, $final_destination_id, $total_delay, $selected_connection_iata_codes, $claim->id);
         }
 
+        $amount_and_distance = explode('-', $amount_and_distance);
+
 
         $update_claim                   = Claim::find($claim->id);
         $update_claim->amount           = $amount_and_distance[0];
@@ -719,6 +721,7 @@ class ClaimsController extends Controller
         $update_claim->distance         = $amount_and_distance[1];
         $update_claim->save();
 
+        $amount = $amount_and_distance[0];
 
         return view('front-end.claim.success',compact('amount'));
 
