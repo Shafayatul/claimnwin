@@ -58,8 +58,11 @@ class PdfController extends Controller
 
     public function pdfView($id)
     {
-        $claim=Claim::find($id);
-        $passenger = Passenger::where('claim_id',$id)->get();
-        return view('pdf.POA');
+        // $claim=Claim::find($id);
+        $claim=Claim::where('id',$id)->first();
+        $itinerary_details = ItineraryDetail::where('claim_id',$id)->first();
+        $passenger = Passenger::where('claim_id',$id)->first();
+        // dd($passenger);
+        return view('pdf.POA',compact('claim','passenger', 'itinerary_details'));
     }
 }
