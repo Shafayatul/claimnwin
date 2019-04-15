@@ -23,6 +23,7 @@ use PragmaRX\Countries\Package\Countries;
 use App\Setting;
 use File;
 use App\ClaimFile;
+use App\Classes\cPanel;
 
 class ClaimsController extends Controller
 {
@@ -35,15 +36,36 @@ class ClaimsController extends Controller
         
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\View\View
-     */
-   public function claim()
-   {
+    public function randomPassword() {
+        $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+        $pass = array(); //remember to declare $pass as an array
+        $alphaLength = strlen($alphabet) - 1; //put the length -1 in cache
+        for ($i = 0; $i < 8; $i++) {
+            $n = rand(0, $alphaLength);
+            $pass[] = $alphabet[$n];
+        }
+        return implode($pass); //turn the array into a string
+    }
+
+    public function create_cpanel_email($email_name, $password){
+        $cPanel = new cPanel(env('CPANEL_USERNAME'), env('CPANEL_PASSWORD'), env('CPANEL_IP'));
+        $parameters = [
+                'email'         => $email_name,
+                'password'      => $password,
+                'domain'        => env('CPANEL_DOMAIN'),
+                'quota'         => 0,
+        ];
+
+        $result = $cPanel->execute('uapi', "Email", "add_pop", $parameters);
+        if (!$result->status == 1) {
+            return "not okay";
+        }
+        return "okay";
+    }
+
+    public function claim(){
        return view('front-end.claim.claim');
-   }
+    }
 
    public function missed_connection()
    {
@@ -559,20 +581,21 @@ class ClaimsController extends Controller
             foreach ($request->first_name as $single_first_name) {
                 if ($single_first_name != "") {
                     if ($cnt==0) {
-                        $passenger_email = $email;
+                        $cpanel_email_name  = $request->first_name[0];
+                        $passenger_email    = $email;
                     }else{
                         $passenger_email = $request->additional_email_address[$cnt];
                     }
-                    $passenger             = new Passenger();
-                    $passenger->claim_id   = $claim->id;
-                    $passenger->first_name = $request->first_name[$cnt];
-                    $passenger->last_name = $request->last_name[$cnt];
-                    $passenger->address = $request->address[$cnt];
-                    $passenger->post_code = $request->post_code[$cnt];
-                    $passenger->date_of_birth = $request->date_of_birth[$cnt];
-                    $passenger->email = $passenger_email;
-                    $passenger->is_booking_reference = $request->is_booking_reference[$cnt];
-                    $passenger->booking_refernece = $request->booking_reference_field_input[$cnt];
+                    $passenger                          = new Passenger();
+                    $passenger->claim_id                = $claim->id;
+                    $passenger->first_name              = $request->first_name[$cnt];
+                    $passenger->last_name               = $request->last_name[$cnt];
+                    $passenger->address                 = $request->address[$cnt];
+                    $passenger->post_code               = $request->post_code[$cnt];
+                    $passenger->date_of_birth           = $request->date_of_birth[$cnt];
+                    $passenger->email                   = $passenger_email;
+                    $passenger->is_booking_reference    = $request->is_booking_reference[$cnt];
+                    $passenger->booking_refernece       = $request->booking_reference_field_input[$cnt];
                     $passenger->save();
                 }
                 $cnt++;
@@ -662,7 +685,8 @@ class ClaimsController extends Controller
 
 
 
-
+        $cpanel_email_password  = $this->randomPassword();
+        $cpanel_email_name      = $this->create_email_name($cpanel_email_name);
 
 
 
