@@ -16,6 +16,7 @@ class AddFieldsToTicketsTable extends Migration
         Schema::table('tickets', function (Blueprint $table) {
           $table->string('user_id')->nullable();
           $table->string('claim_id')->nullable();
+          $table->string('assign_user_id')->nullable();
         });
     }
 
@@ -27,8 +28,9 @@ class AddFieldsToTicketsTable extends Migration
     public function down()
     {
         Schema::table('tickets', function (Blueprint $table) {
-            $table->dropColumn('user_id');
-            $table->dropColumn('claim_id');
+            // $table->dropColumn('user_id');
+            // $table->dropColumn('claim_id');
+            // $table->dropColumn('assign_user_id');
         });
     }
 }
