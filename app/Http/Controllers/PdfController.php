@@ -21,37 +21,65 @@ class PdfController extends Controller
 
         $claim=Claim::find($id);
 
-        $itt_details=ItineraryDetail::find($id);
 
-        $flight_segment=$itt_details->flight_segment;
+        $iternery = ItineraryDetail::where('claim_id',$id)->get();
 
-        $flight_seg=explode("-",$flight_segment);
+        $itt_details=ItineraryDetail::where('claim_id',$id)->first();
+
+        if($itt_details)
+        {
+            $flight_segment=$itt_details->flight_segment;
+
+            $flight_seg=explode("-",$flight_segment);
+        }
 
         $dept_and_arrival_airport=Airport::whereIn('iata_code',$flight_seg)->get()->toArray();
-        // dd($dept_final_airport);
+
+
+
         $departed_airport = Airport::where('id',$claim->departed_from_id)->first();
 
         $final_destination_airport = Airport::where('id',$claim->final_destination_id)->first();
+
+
 
         $all_passenger = Passenger::where('claim_id',$id)->get();
 
         $current_passenger = Passenger::where('claim_id',$id)->first();
 
-        $iternery = ItineraryDetail::where('claim_id',$id)->get();
+
+
+
 
         $expense = Expense::where('claim_id',$id)->get();
 
         $reminder = Reminder::find($id);
 
+
+
         $connection = Connection::where('claim_id',$id)->first();
 
-        $connection_airport = Airport::where('id',$connection->airport_id)->first();
+        if($connection != null){
+            $connection_airport = Airport::where('id',$connection->airport_id)->first();
+        }else{
+            $connection_airport = '';
+        }
+
+
+
 
         $bank_info=BankAccount::where('id',$claim->bank_details_id)->first();
 
-        $currency=Currency::where('id',$bank_info->currency_of_account)->first();
+        if($bank_info != null){
+            $currency=Currency::where('id',$bank_info->currency_of_account)->first();
+        }else{
+            $currency='';
+        }
+
 
         $airline = Airline::where('id',$itt_details->airline_id)->first();
+
+
 
         return view('pdf.letterBeforeAction',compact('airline','currency','bank_info','connection_airport','itt_details','dept_and_arrival_airport','departed_airport','final_destination_airport','claim','all_passenger','iternery','expense','reminder','connection','current_passenger'));
     }

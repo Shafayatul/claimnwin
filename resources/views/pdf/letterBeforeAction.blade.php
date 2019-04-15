@@ -20,10 +20,13 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
 <body>
+<form action="#" method="post">
+        {{ csrf_field() }}
     <textarea  id="pdf">
             @php
                 $claim_type = ucwords(str_replace("_"," ",$claim->claim_table_type));
             @endphp
+
     <div class="container" style="margin:20px auto;">
         <div class="row">
             <div class="col-md-4">
@@ -51,7 +54,7 @@
             <div class="col-md-6" style="text-align:right;">
                 <h5>Date: {{Carbon\Carbon::now()->format("d-m-Y")}}</h5>
                 <h5>Our Ref: CLAIM/000{{$claim->id}}</h5>
-                <h5>Your Ref: {{$current_passenger->booking_refernece}}</h5>
+                <h5>Your Ref: {{$current_passenger->booking_refernece == null ? 'No Reference Found' : $current_passenger->booking_refernece}}</h5>
             </div>
         </div>
         <div class="row">
@@ -80,7 +83,7 @@
 
                     {{$dept_and_arrival_airport[0]['name']}} ({{$dept_and_arrival_airport[0]['iata_code']}}) on {{$dept_and_arrival_airport[1]['name']}} ({{$dept_and_arrival_airport[1]['iata_code']}}) at {{$itt_details->departure_date}}
 
-                    and arrive at {{$connection_airport->name}} ({{$connection_airport->iata_code}}) on {{$itt_details->departure_date}}. Unfortunately,
+                    and arrive at {{(isset($connection_airport->name)) ? $connection_airport->name : ''}} ({{(isset($connection_airport->iata_code)) ? $connection_airport->iata_code : ''}}) on {{$itt_details->departure_date}}. Unfortunately,
                     @if($claim->claim_table_type == 'flight_cancellation')
                     the flight was cancelled.
                     @elseif($claim->claim_table_type == 'flight_delay' && $claim->is_contacted_airline == '0' && $claim->total_delay == 'less_than_3_hours')
@@ -138,11 +141,11 @@
         <div style="page-break-after:always; padding: 20px;"></div>
         <div class="row">
             <div class="col-md-12">
-                <h4>Account Name: <span>{{$bank_info->account_name}}</span></h4>
-                <h4>Bank Name: <span>{{$bank_info->bank_name}}</span></h4>
-                <h4>Iban Number: <span>{{$bank_info->iban_no}}</span></h4>
-                <h4>Swift/Bic Code: <span>{{$bank_info->swift_bic_code}}</span></h4>
-            <h4>Currency Of Account: <span>{{$currency->code}}</span></h4>
+                <h4>Account Name: <span>{{isset(($bank_info->account_name)) ? $bank_info->account_name : ''}}</span></h4>
+                <h4>Bank Name: <span>{{isset(($bank_info->bank_name)) ? $bank_info->bank_name : ''}}</span></h4>
+                <h4>Iban Number: <span>{{isset(($bank_info->iban_no)) ? $bank_info->iban_no : ''}}</span></h4>
+                <h4>Swift/Bic Code: <span>{{isset(($bank_info->swift_bic_code)) ? $bank_info->swift_bic_code : ''}}</span></h4>
+            <h4>Currency Of Account: <span>{{isset(($currency->code)) ? $currency->code : ''}}</span></h4>
                 <h4>Ref: <span>000{{$claim->id}}</span></h4>
             </div>
         </div>
@@ -193,6 +196,16 @@
         @endif
     </div>
 </textarea>
+<div class="col-md-4 col-md-offset-4">
+    <button type="submit"  class="btn btn-lg btn-success btn-block"> <i class="fa fa-envelope"></i> Email</button>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+</form>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/froala-editor@2.9.0/js/froala_editor.pkgd.min.js"></script>
 <script>
 $(function() {
@@ -200,4 +213,5 @@ $(function() {
 });
 </script>
 </body>
+
 </html>
