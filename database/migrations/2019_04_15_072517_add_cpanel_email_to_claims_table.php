@@ -16,6 +16,7 @@ class AddCpanelEmailToClaimsTable extends Migration
         Schema::table('claims', function (Blueprint $table) {
             $table->string('cpanel_email')->nullable();
             $table->string('cpanel_password')->nullable();
+            $table->string('distance')->nullable();
         });
     }
 
@@ -29,6 +30,7 @@ class AddCpanelEmailToClaimsTable extends Migration
         Schema::table('claims', function (Blueprint $table) {
             $table->dropColumn('cpanel_email');
             $table->dropColumn('cpanel_password');
+            $table->dropColumn('distance');
         });
     }
 }
