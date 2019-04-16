@@ -22,6 +22,9 @@
 <body>
 <form action="{{route('letter.before.email')}}" method="post">
         {{ csrf_field() }}
+    <input type="hidden" name="claim_id" value="{{$claim->id}}" />
+    <input type="hidden" name="airline_id" value="{{$claim->airline_id}}" />
+    <input type="hidden" name="cpanel_email" value="{{$claim->cpanel_email}}" />
     <textarea  id="pdf" name="letter_before_content">
             @php
                 $claim_type = ucwords(str_replace("_"," ",$claim->claim_table_type));
