@@ -174,6 +174,7 @@
             <h4 class="text-center">{{$current_passenger->first_name.' '.$current_passenger->last_name}}</h4>
             </div>
         </div>
+        @if((($claim->claim_table_type == 'flight_cancellation') && ($claim->total_delay == 'less_than_3_hours') && ($claim->is_contacted_airline == '1'))||(($claim->claim_table_type == 'denied_boarding') && ($claim->total_delay == 'less_than_3_hours') && ($claim->is_contacted_airline == '1'))||(($claim->claim_table_type == 'flight_delay') && ($claim->total_delay == 'less_than_3_hours') && ($claim->is_contacted_airline == '1')))
         <div class="row">
             <div class="col-md-6">
             <h4 class="text-center">Name</h4>
@@ -182,7 +183,7 @@
                 <h4 class="text-center">Ticket No.</h4>
             </div>
         </div>
-        @if((($claim->claim_table_type == 'flight_cancellation') && ($claim->total_delay == 'less_than_3_hours') && ($claim->is_contacted_airline == '1'))||(($claim->claim_table_type == 'denied_boarding') && ($claim->total_delay == 'less_than_3_hours') && ($claim->is_contacted_airline == '1'))||(($claim->claim_table_type == 'flight_delay') && ($claim->total_delay == 'less_than_3_hours') && ($claim->is_contacted_airline == '1')))
+
         @foreach($all_passenger as $passenger_row)
         <div class="row">
             <div class="col-md-6">
@@ -197,6 +198,8 @@
     </div>
 </textarea>
 <div class="col-md-4 col-md-offset-4">
+    <br>
+    <br>
     <button type="submit"  class="btn btn-lg btn-success btn-block"> <i class="fa fa-envelope"></i> Email</button>
 </div>
 <br>

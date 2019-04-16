@@ -95,6 +95,9 @@
                                         <li class="nav-item">
                                             <a class="nav-link" data-toggle="tab" href="#claim_eligib" role="tab" aria-controls="settings">Claim Eligibility</a>
                                         </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" data-toggle="tab" href="#claim_user_info" role="tab" aria-controls="claim_user_info">User Others Info</a>
+                                        </li>
 
                                     </ul>
                                 </div>
@@ -440,6 +443,85 @@
 <!-- /.col-lg-12 -->
 </div>
 </div>
+
+<div class="tab-pane" id="claim_user_info" role="tabpanel">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-comments"></i> User Others Info
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+
+                        <tbody>
+                            <tr class="odd gradeX">
+                                <th>Claim ID</th>
+                                <td>{{$claims->id}}</td>
+                            </tr>
+                            <tr class="odd gradeX">
+                                <th>Ip Address</th>
+                                <td>
+                                    @if($claims->ip == null)
+
+                                    @else
+                                    {{$claims->ip}}
+                                    @endif
+                                </td>
+                            </tr>
+                            <tr class="odd gradeX">
+                                <th>Browser</th>
+                                <td>
+                                    @if($claims->browser == null)
+
+                                    @else
+                                    {{$claims->browser}}
+                                    @endif
+                                </td>
+                            </tr>
+                            <tr class="odd gradeX">
+                                <th>Language</th>
+                                <td>
+                                    @if($claims->language == null)
+
+                                    @else
+                                    {{$claims->language}}
+                                    @endif
+                                </td>
+                            </tr>
+                            <tr class="odd gradeX">
+                                <th>Cpanel Email</th>
+                                <td>
+                                    @if($claims->cpanel_email == null)
+
+                                    @else
+                                    {{$claims->cpanel_email}}
+                                    @endif
+                                </td>
+                            </tr>
+                            <tr class="odd gradeX">
+                                <th>Cpanel Password</th>
+                                <td>
+                                    @if($claims->cpanel_email == null)
+
+                                    @else
+                                    {{$claims->cpanel_password}}
+                                    @endif
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+<!-- /.panel-body -->
+            </div>
+<!-- /.panel -->
+        </div>
+<!-- /.col-lg-12 -->
+    </div>
+</div>
+
+
 </div>
 </div>
 </div>
@@ -832,7 +914,7 @@
                                                                     </tbody>
                                                                 </table>
                                                             </div>
-                                 
+
                                                         </div>
                                                         <p style="font-weight:bold;">Status:  <span style="font-weight:normal;">{{$item->status}}</span></p>
 {{-- <hr>
@@ -1235,7 +1317,7 @@
                             display: none;
                         }
                     </style>
-                    
+
                     @include('layouts.includes.partial.alert')
                     <div class="forms">
                         <div class="form-grids row widget-shadow" data-example-id="basic-forms">
