@@ -412,7 +412,7 @@
 {{-- <tr class="odd gradeX">
 <th>Has the airline provided their final response?</th>
 <td></td>
-</tr> --}}
+</tr>
 <tr class="odd gradeX">
     <th>What date did you complain to the airline?</th>
     <td>
@@ -420,7 +420,7 @@
         {{$claims->written_airline_date}}
         @endif
     </td>
-</tr>
+</tr>--}}
 {{-- <tr class="odd gradeX">
 <th>Did they reject your complain?</th>
 <td></td>
@@ -1013,7 +1013,7 @@
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Reminder Date</label>
                                 <input type="date" name="callback_date" class="form-control" id="exampleInputEmail1"  placeholder="Enter email">
-                                <input type="text" name="id" value="{{$item->id}}">
+                                <input type="hidden" name="id" value="{{$item->id}}">
                             </div>
                         </div>
 
@@ -1339,6 +1339,7 @@
 <time>26. 3. 2015</time>
 </div> --}}
 <!-- /Separator -->
+@if($ticket_notes != null)
 @foreach($ticket_notes as $row)
 <!-- Panel -->
 <article class="panel panel-primary">
@@ -1371,13 +1372,14 @@
 </article>
 <!-- /Panel -->
 @endforeach
+@endif
 
 </div>
 <!-- /Timeline -->
 
 </div>
 </div>
-@if($ticket->status != 3)
+@if($ticket->status != '3')
 <div class="row">
     <div class="col-md-12">
         <div class="panel-group">
