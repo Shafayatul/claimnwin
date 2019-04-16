@@ -10,15 +10,15 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 class LetterBeforeAction extends Mailable
 {
     use Queueable, SerializesModels;
-
+    public $email_content;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($email_content)
     {
-        //
+        $this->email_content = $email_content;
     }
 
     /**
@@ -28,6 +28,6 @@ class LetterBeforeAction extends Mailable
      */
     public function build()
     {
-        return $this->view('view.name');
+        return $this->markdown('email.letter_before');
     }
 }

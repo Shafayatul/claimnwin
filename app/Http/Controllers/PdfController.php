@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use App\Claim;
 use App\Passenger;
 use App\ItineraryDetail;
@@ -13,6 +14,7 @@ use App\Airport;
 use App\BankAccount;
 use App\Currency;
 use App\Airline;
+use App\Mail\LetterBeforeAction;
 
 class PdfController extends Controller
 {
@@ -92,5 +94,12 @@ class PdfController extends Controller
         $passenger = Passenger::where('claim_id',$id)->first();
         // dd($passenger);
         return view('pdf.POA',compact('claim','passenger', 'itinerary_details'));
+    }
+
+    public function letterBeforeActionEmail(Request $request)
+    {
+        $email_content = $request->letter_before_content;
+        Mail::to('sajalkundu098@gmail.com')->send(new LetterBeforeAction($email_content));
+        return redirect()->back();
     }
 }

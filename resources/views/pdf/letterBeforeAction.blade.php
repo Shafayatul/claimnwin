@@ -20,9 +20,9 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-<form action="#" method="post">
+<form action="{{route('letter.before.email')}}" method="post">
         {{ csrf_field() }}
-    <textarea  id="pdf">
+    <textarea  id="pdf" name="letter_before_content">
             @php
                 $claim_type = ucwords(str_replace("_"," ",$claim->claim_table_type));
             @endphp

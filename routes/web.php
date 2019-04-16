@@ -147,6 +147,7 @@ Route::resource('flights', 'FlightsController');
 
 Route::get('/letter-before-action/{id}', 'PdfController@letterBeforeActionView');
 Route::get('/poa-pdf/{id}', 'PdfController@pdfView');
+Route::post('/letter-before-email', 'PdfController@letterBeforeActionEmail')->name('letter.before.email');
 
 Route::resource('claim-files', 'ClaimFilesController');
 
