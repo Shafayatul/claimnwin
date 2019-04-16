@@ -21,7 +21,7 @@
                                 {{-- <li><a href="{{url('/faq')}}">Become a partner </a></li> --}}
                                 <li><a href="{{url('/press-blog')}}">Blog</a></li>
                                 <li><a href="{{url('/about-us')}}">About us</a></li>
-                                {{-- <li><a href="{{url('/faq')}}">Careers</a></li> --}}
+                                <li><a href="{{url('/app')}}">Our App</a></li>
                                 <li><a href="{{url('/contact-us')}}">Contact us</a></li>
                             </ul>
                         </div><!-- /.footer-col -->
@@ -32,7 +32,7 @@
                             <ul>
                                 <li><a href="{{url('/privacy-policy')}}">Privacy policy </a></li>
                                 <li><a href="{{url('/terms-and-conditions')}}">Terms & conditions</a></li>
-                                {{-- <li><a href="{{url('/faq')}}">Imprint</a></li> --}}
+                                <li><a href="{{url('/affiliate-page')}}">Affiliate Page</a></li>
                             </ul>
                         </div><!-- /.footer-col -->
                     </div><!-- /.col-lg-3 col-md-6 -->
