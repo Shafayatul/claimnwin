@@ -114,9 +114,9 @@
               </ul>
             </li>
             <li><a href="{{url('/manage-affiliate')}}"><i class="fa fa-pie-chart"></i> Manage Affiliation Report</a></li>
-            {{-- @hasrole('Super Admin') --}}
+            @hasrole('Super Admin')
             <li><a href="{{url('/activity/index')}}"><i class="fa fa-pie-chart"></i> Activity Log</a></li>
-            {{-- @endhasrole --}}
+            @endhasrole
             <li><a href="{{url('/manage-report')}}"><i class="fa fa-table"></i> Reporting</a></li>
 
 

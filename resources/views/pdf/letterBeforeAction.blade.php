@@ -33,7 +33,7 @@
     <div class="container" style="margin:20px auto;">
         <div class="row">
             <div class="col-md-4">
-                <img src="{{asset('front_asset/img/logo.png')}}" alt="" >
+                <img src="data:image/png;base64,{{base64_encode(file_get_contents(public_path('front_asset/img/logo.png')))}}" alt="" >
             </div>
             <div class="col-md-4"></div>
             <div class="col-md-4" style="text-align: right;">
