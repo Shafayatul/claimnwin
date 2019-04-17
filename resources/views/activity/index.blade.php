@@ -45,7 +45,7 @@
                                             </td>
                                             <td>{{$row->causer_type}}</td>
                                             <td>{{$row->created_at}}</td>
-                                            <td>{{$row->properties}}</td>
+                                            <td>{!! str_replace(['{"attributes":{"','}','{','"', ',', ':'],['','','<br>', '', ', ', ' : '],$row->properties) !!}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>
