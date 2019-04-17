@@ -105,8 +105,6 @@ class PdfController extends Controller
         $airline_email=Airline::where('id',$airline_id )->first()->email;
         $from_email = $request->cpanel_email;
 
-        // return $from_email;
-
         Mail::to($airline_email)->send(new LetterBeforeAction($email_content,$from_email));
         return redirect('/claim-view/'.$id)->with('success','Email Sent Successfully!');
     }
