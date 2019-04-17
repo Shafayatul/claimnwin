@@ -16,23 +16,36 @@
 	</div>
 	<div class="common_row">
 		<div class="parent_div">
-			@if($amount!='0')
-			<p>
-				Your claim has been submitted successfully! Ready, set, go! Let’s start the process. Our experienced flight experts will verify the eligibility of your claim and to make sure that you can obtain your compensation of {{$amount}}. To check your claim status, simply visit your Dashboard. 
-			</p>
-			@else
-			<p>
-				You are not eligible for the claim.
-			</p>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						@if($amount!='0')
+						<p>
+							Your claim has been submitted successfully! Ready, set, go! Let’s start the process. Our experienced flight experts will verify the eligibility of your claim and to make sure that you can obtain your compensation of {{$amount}}. To check your claim status, simply visit your Dashboard. 
+						</p>
+						@else
+						<p>
+							You are not eligible for the claim.
+						</p>
 
-			@endif
+						@endif
+					</div>
+				</div>
+			</div>
+
 		</div>
 	</div>
 	@if($amount!='0')
 	<div class="common_row">
 		<div class="parent_div">
-			<div class="single_button_child_div">
-				<a href="{{url('/user-home')}}"><button type="button" class="continue_button active_button" id="continue_1" name="button">Go To Dashboard</button></a>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="single_button_child_div">
+							<a href="{{url('/user-home')}}"><button type="button" class="continue_button active_button" id="continue_1" name="button">Go To Dashboard</button></a>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

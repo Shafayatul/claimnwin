@@ -1,0 +1,23 @@
+MAIL_DRIVER=smtp
+MAIL_HOST=premium39.web-hosting.com 
+MAIL_PORT=465 for SSL/587 for TLS
+MAIL_USERNAME=info@freeflightclaim.com
+MAIL_PASSWORD=passowrd for info@freeflightclaim.com 
+MAIL_ENCRYPTION=tls or ssl
+
+
+MAIL_DRIVER=smtp
+MAIL_HOST=premium39.web-hosting.com 
+MAIL_PORT=465
+MAIL_USERNAME=info@freeflightclaim.com
+MAIL_PASSWORD=oKwGE2vzcOYt
+MAIL_ENCRYPTION=ssl
+
+
+
+MAIL_DRIVER=smtp
+MAIL_HOST=premium39.web-hosting.com 
+MAIL_PORT=587
+MAIL_USERNAME=info@freeflightclaim.com
+MAIL_PASSWORD=oKwGE2vzcOYt
+MAIL_ENCRYPTION=tls
