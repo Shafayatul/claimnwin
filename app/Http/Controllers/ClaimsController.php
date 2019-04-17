@@ -23,6 +23,7 @@ use PragmaRX\Countries\Package\Countries;
 use App\Setting;
 use File;
 use App\ClaimFile;
+use App\Classes\cPanel;
 
 class ClaimsController extends Controller
 {
@@ -35,15 +36,39 @@ class ClaimsController extends Controller
         
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\View\View
-     */
-   public function claim()
-   {
+    public function randomName() {
+        
+    }
+    public function randomPassword() {
+        $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+        $pass = array(); //remember to declare $pass as an array
+        $alphaLength = strlen($alphabet) - 1; //put the length -1 in cache
+        for ($i = 0; $i < 8; $i++) {
+            $n = rand(0, $alphaLength);
+            $pass[] = $alphabet[$n];
+        }
+        return implode($pass); //turn the array into a string
+    }
+
+    public function create_cpanel_email($email_name, $password){
+        $cPanel = new cPanel(env('CPANEL_USERNAME'), env('CPANEL_PASSWORD'), env('CPANEL_IP'));
+        $parameters = [
+                'email'         => $email_name,
+                'password'      => $password,
+                'domain'        => env('CPANEL_DOMAIN'),
+                'quota'         => 0,
+        ];
+
+        $result = $cPanel->execute('uapi', "Email", "add_pop", $parameters);
+        if (!$result->status == 1) {
+            return "not okay";
+        }
+        return "okay";
+    }
+
+    public function claim(){
        return view('front-end.claim.claim');
-   }
+    }
 
    public function missed_connection()
    {
@@ -559,20 +584,21 @@ class ClaimsController extends Controller
             foreach ($request->first_name as $single_first_name) {
                 if ($single_first_name != "") {
                     if ($cnt==0) {
-                        $passenger_email = $email;
+                        $cpanel_email_name  = $request->first_name[0].'0'.$claim->id;
+                        $passenger_email    = $email;
                     }else{
                         $passenger_email = $request->additional_email_address[$cnt];
                     }
-                    $passenger             = new Passenger();
-                    $passenger->claim_id   = $claim->id;
-                    $passenger->first_name = $request->first_name[$cnt];
-                    $passenger->last_name = $request->last_name[$cnt];
-                    $passenger->address = $request->address[$cnt];
-                    $passenger->post_code = $request->post_code[$cnt];
-                    $passenger->date_of_birth = $request->date_of_birth[$cnt];
-                    $passenger->email = $passenger_email;
-                    $passenger->is_booking_reference = $request->is_booking_reference[$cnt];
-                    $passenger->booking_refernece = $request->booking_reference_field_input[$cnt];
+                    $passenger                          = new Passenger();
+                    $passenger->claim_id                = $claim->id;
+                    $passenger->first_name              = $request->first_name[$cnt];
+                    $passenger->last_name               = $request->last_name[$cnt];
+                    $passenger->address                 = $request->address[$cnt];
+                    $passenger->post_code               = $request->post_code[$cnt];
+                    $passenger->date_of_birth           = $request->date_of_birth[$cnt];
+                    $passenger->email                   = $passenger_email;
+                    $passenger->is_booking_reference    = $request->is_booking_reference[$cnt];
+                    $passenger->booking_refernece       = $request->booking_reference_field_input[$cnt];
                     $passenger->save();
                 }
                 $cnt++;
@@ -633,79 +659,70 @@ class ClaimsController extends Controller
                 $cnt++;
             }
         }
-
+// -----------------------------
         // store files
-        \Log::debug($request->file('file_name'));
-        $all_files = $request->file('file_name');
-        // $file1 = $file_name[1]['file'];
-        $claim_id = $claim->id;
-        for($i=0; $i<count($all_files); $i++) {   
-            $file = $all_files[$i];
+        if ($request->file('file_name') !== null) {
+            $all_files = $request->file('file_name');
+            // $file1 = $file_name[1]['file'];
+            $claim_id = $claim->id;
+            for($i=0; $i<count($all_files); $i++) {   
+                $file = $all_files[$i];
 
-            $file_name = sha1(date('YmdHis') . str_random(30));
-            $name = $file_name . '.' . $file->getClientOriginalExtension();
+                $file_name = sha1(date('YmdHis') . str_random(30));
+                $name = $file_name . '.' . $file->getClientOriginalExtension();
 
-            if(!File::exists(public_path('/uploads').'/'.$claim_id)) {
-                File::makeDirectory(public_path('/uploads').'/'.$claim_id);
+                if(!File::exists(public_path('/uploads').'/'.$claim_id)) {
+                    File::makeDirectory(public_path('/uploads').'/'.$claim_id);
+                }
+
+                $file->move(public_path('/uploads').'/'.$claim_id.'/', $name);
+
+                $claim_file             = new ClaimFile();
+                $claim_file->name       = "Uploaded by user";
+                $claim_file->file_name  = $name;
+                $claim_file->user_id    = Auth::user()->id;
+                $claim_file->claim_id   = $claim_id;
+                $claim_file->save();
             }
-
-            $file->move(public_path('/uploads').'/'.$claim_id.'/', $name);
-
-            $claim_file             = new ClaimFile();
-            $claim_file->name       = "Uploaded by user";
-            $claim_file->file_name  = $name;
-            $claim_file->user_id    = Auth::user()->id;
-            $claim_file->claim_id   = $claim_id;
-            $claim_file->save();
         }
-        // foreach ($request->file('file_name') as $key => $value) {
-        //     if ($request->hasFile('file_name')[$key]) {
-        //         $claim_id = $request->claim_id;
-        //         $file = $request->file('file_name')[$key];
-
-        //         $file_name = sha1(date('YmdHis') . str_random(30));
-        //         $name = $file_name . '.' . $file->getClientOriginalExtension();
-
-        //         if(!File::exists(public_path('/uploads').'/'.$claim_id)) {
-        //             File::makeDirectory(public_path('/uploads').'/'.$claim_id);
-        //         }
-
-        //         $file->move(public_path('/uploads').'/'.$claim_id.'/', $name);
-
-        //         $claim_file             = new ClaimFile();
-        //         $claim_file->name       = 'Uploaded by user';
-        //         $claim_file->file_name  = $name;
-        //         $claim_file->user_id    = Auth::user()->id;
-        //         $claim_file->claim_id   = $claim_id;
-        //         $claim_file->save();
-        //     }
-        // }
 
 
+        /**
+        * Create custom email
+        */
+        $cpanel_password  = $this->randomPassword();
+        $this->create_cpanel_email($cpanel_email_name, $cpanel_password);
+        $cpanel_email     = $cpanel_email_name.'@freeflightclaim.com';
 
 
 
 
         if ($claim_table_type == "missed_connection") {
-            $amount = $this->missed_calculaion($departed_from_id, $final_destination_id, $total_delay, $selected_connection_iata_codes, $claim->id);
+            $amount_and_distance = $this->missed_calculaion($departed_from_id, $final_destination_id, $total_delay, $selected_connection_iata_codes, $claim->id);
         }elseif ($claim_table_type == 'flight_delay') {
-            $amount = $this->flight_delay_calculaion($departed_from_id, $final_destination_id, $total_delay, $selected_connection_iata_codes, $claim->id);
+            $amount_and_distance = $this->flight_delay_calculaion($departed_from_id, $final_destination_id, $total_delay, $selected_connection_iata_codes, $claim->id);
         }elseif ($claim_table_type == 'flight_cancellation') {
-            $amount = $this->flight_cancellation_calculaion($departed_from_id, $final_destination_id, $total_delay, $selected_connection_iata_codes, $claim->id);
+            $amount_and_distance = $this->flight_cancellation_calculaion($departed_from_id, $final_destination_id, $total_delay, $selected_connection_iata_codes, $claim->id);
         }elseif ($claim_table_type == 'delay_luggage') {
-            $amount = $this->delay_luggage_calculaion($departed_from_id, $final_destination_id, $total_delay, $selected_connection_iata_codes, $claim->id);
+            $amount_and_distance = $this->delay_luggage_calculaion($departed_from_id, $final_destination_id, $total_delay, $selected_connection_iata_codes, $claim->id);
         }elseif ($claim_table_type == 'lost_luggage') {
-            $amount = $this->lost_luggage_calculaion($departed_from_id, $final_destination_id, $total_delay, $selected_connection_iata_codes, $claim->id, $is_luggage_received, $received_luggage_date, $is_already_written_airline);
+            $amount_and_distance = $this->lost_luggage_calculaion($departed_from_id, $final_destination_id, $total_delay, $selected_connection_iata_codes, $claim->id, $is_luggage_received, $received_luggage_date, $is_already_written_airline);
         }elseif ($claim_table_type == 'denied_boarding') {
-            $amount = $this->denied_boarding_calculaion($departed_from_id, $final_destination_id, $total_delay, $selected_connection_iata_codes, $claim->id);
+            $amount_and_distance = $this->denied_boarding_calculaion($departed_from_id, $final_destination_id, $total_delay, $selected_connection_iata_codes, $claim->id);
         }
 
+        $amount_and_distance = explode('-', $amount_and_distance);
 
-        $update_claim               = Claim::find($claim->id);
-        $update_claim->amount       = $amount;
-        $update_claim->airline_id   = $airline_id;
+
+        $update_claim                   = Claim::find($claim->id);
+        $update_claim->amount           = $amount_and_distance[0];
+        $update_claim->airline_id       = $airline_id;
+        $update_claim->cpanel_email     = $cpanel_email;
+        $update_claim->cpanel_password  = $cpanel_password;
+        $update_claim->distance         = $amount_and_distance[1];
         $update_claim->save();
 
+        $amount = $amount_and_distance[0];
 
         return view('front-end.claim.success',compact('amount'));
 
@@ -761,110 +778,110 @@ class ClaimsController extends Controller
             // europe to europe
             if ((in_array(strtolower($final_destination->country), $this->europe_countries)) || (in_array(strtolower($final_destination->country), $this->europe_countries_code))) {
 
-                  if ($distance < 1500) {
-                    return '250 EUR';
-                  }elseif ($distance <= 3500) {
-                    return '400 EUR';
-                  }else{
-                    return '600 EUR';
-                  }
+            if ($distance < 1500) {
+                return '250 EUR'.'-'.$distance;
+            }elseif ($distance <= 3500) {
+                return '400 EUR'.'-'.$distance;
+            }else{
+                return '600 EUR'.'-'.$distance;
+            }
 
             // europe to israel
-            }elseif((strtolower($final_destination->country) == "il") || (strtolower($final_destination->country) == "israel")) {
+        }elseif((strtolower($final_destination->country) == "il") || (strtolower($final_destination->country) == "israel")) {
 
-                if ($distance < 2000) {
-                    return '1250 ILS';
-                  }elseif ($distance <= 3500) {
-                    return '2000 ILS';
-                  }elseif ($distance <= 4500) {
-                    return '600 EUR';
-                  }else{
-                    return '3080 ILS';
-                  }
+            if ($distance < 2000) {
+                return '1250 ILS'.'-'.$distance;
+            }elseif ($distance <= 3500) {
+                return '2000 ILS'.'-'.$distance;
+            }elseif ($distance <= 4500) {
+                return '600 EUR'.'-'.$distance;
+            }else{
+                return '3080 ILS'.'-'.$distance;
+            }
 
 
             // europe to other country
-            }else{
-                if ($distance < 1500) {
-                  return '250 EUR';
-                }elseif ($distance <= 3500) {
-                  return '400 EUR';
-                }else{
-                  return '600 EUR';
-                }
+        }else{
+            if ($distance < 1500) {
+              return '250 EUR'.'-'.$distance;
+          }elseif ($distance <= 3500) {
+              return '400 EUR'.'-'.$distance;
+          }else{
+              return '600 EUR'.'-'.$distance;
+          }
 
-            }
+      }
 
 
           // started from israel
-          }elseif ((strtolower($final_destination->country) == "il") || (strtolower($final_destination->country) == "israel") )  {
+  }elseif ((strtolower($final_destination->country) == "il") || (strtolower($final_destination->country) == "israel") )  {
             // israel to europe
-            if ((in_array(strtolower($final_destination->country), $this->europe_countries)) || (in_array(strtolower($final_destination->country), $this->europe_countries_code))) {
+    if ((in_array(strtolower($final_destination->country), $this->europe_countries)) || (in_array(strtolower($final_destination->country), $this->europe_countries_code))) {
               // europe airline
-              if ((in_array(strtolower($airline->country), $this->europe_countries)) || (in_array(strtolower($airline->country), $this->europe_countries_code)) ) {
-                  if ($distance < 2000) {
-                    return '1250 ILS';
-                  }elseif ($distance <= 3500) {
-                    return '2000 ILS';
-                  }elseif ($distance <= 4500) {
-                    return '600 EUR';
-                  }else{
-                    return '3080 ILS';
-                  }
+      if ((in_array(strtolower($airline->country), $this->europe_countries)) || (in_array(strtolower($airline->country), $this->europe_countries_code)) ) {
+          if ($distance < 2000) {
+            return '1250 ILS'.'-'.$distance;
+        }elseif ($distance <= 3500) {
+            return '2000 ILS'.'-'.$distance;
+        }elseif ($distance <= 4500) {
+            return '600 EUR'.'-'.$distance;
+        }else{
+            return '3080 ILS'.'-'.$distance;
+        }
 
               // israel airline
-              }else{
-                  if ($distance < 2000) {
-                    return '1250 ILS';
-                  }elseif ($distance <= 4500) {
-                    return '2000 ILS';
-                  }else{
-                    return '3080 ILS';
-                  }
-              }
+    }else{
+      if ($distance < 2000) {
+        return '1250 ILS'.'-'.$distance;
+    }elseif ($distance <= 4500) {
+        return '2000 ILS'.'-'.$distance;
+    }else{
+        return '3080 ILS'.'-'.$distance;
+    }
+}
 
             // israel to other
-            }else{
-                if ($distance < 2000) {
-                  return '1250 ILS';
-                }elseif ($distance <= 4500) {
-                  return '2000 ILS';
-                }else{
-                  return '3080 ILS';
-                }
-            }
+}else{
+    if ($distance < 2000) {
+      return '1250 ILS'.'-'.$distance;
+  }elseif ($distance <= 4500) {
+      return '2000 ILS'.'-'.$distance;
+  }else{
+      return '3080 ILS'.'-'.$distance;
+  }
+}
 
           // started from other country
-          }else{
+}else{
 
             // other country to europe
-            if ((in_array(strtolower($final_destination->country), $this->europe_countries)) || (in_array(strtolower($final_destination->country), $this->europe_countries_code))) {
+    if ((in_array(strtolower($final_destination->country), $this->europe_countries)) || (in_array(strtolower($final_destination->country), $this->europe_countries_code))) {
               // europe airline
-              if ((in_array(strtolower($airline->country), $this->europe_countries)) || (in_array(strtolower($airline->country), $this->europe_countries_code)) ) {
-                if ($distance < 1500) {
-                  return '250 EUR';
-                }elseif ($distance <= 3500) {
-                  return '400 EUR';
-                }else{
-                  return '600 EUR';
-                }
-              }else{
-                return '0';
-              }
+      if ((in_array(strtolower($airline->country), $this->europe_countries)) || (in_array(strtolower($airline->country), $this->europe_countries_code)) ) {
+        if ($distance < 1500) {
+          return '250 EUR'.'-'.$distance;
+      }elseif ($distance <= 3500) {
+          return '400 EUR'.'-'.$distance;
+      }else{
+          return '600 EUR'.'-'.$distance;
+      }
+  }else{
+    return '0'.'-'.$distance;
+}
 
             // other country to israel
-            }elseif((strtolower($final_destination->country) == "il") || (strtolower($final_destination->country) == "israel") ) {
-                if ($distance < 2000) {
-                  return '1250 ILS';
-                }elseif ($distance <= 4500) {
-                  return '2000 ILS';
-                }else{
-                  return '3080 ILS';
-                }
-            }
-          }
-          return '0';
-        }
+}elseif((strtolower($final_destination->country) == "il") || (strtolower($final_destination->country) == "israel") ) {
+    if ($distance < 2000) {
+      return '1250 ILS'.'-'.$distance;
+  }elseif ($distance <= 4500) {
+      return '2000 ILS'.'-'.$distance;
+  }else{
+      return '3080 ILS'.'-'.$distance;
+  }
+}
+}
+return '0'.'-'.$distance;
+}
 
 
 
@@ -890,17 +907,17 @@ class ClaimsController extends Controller
         if ($is_luggage_received==1) {
 
             if ($time_diff > (2*365*24*60*60)) {
-                return '0';
+                return '0'.'- ';
             }else{
                 $received_luggage_date = strtotime($received_luggage_date);
                 $time_diff = $departure_date - $received_luggage_date;
                 if ($time_diff < (21*24*60*60)) {
-                    return 'You are eligibe to a refund of up to 1350 EUR per passenger';
+                    return 'You are eligibe to a refund of up to 1350 EUR per passenger'.'- ';
                 }else{
                     if ($is_already_written_airline == 1) {
-                        return 'You are eligibe to a refund of up to 1350 EUR per passenger';
+                        return 'You are eligibe to a refund of up to 1350 EUR per passenger'.'- ';
                     }else{
-                        return 'Low cances but we can try to claim up to 1350 EUR per passenger';
+                        return 'Low cances but we can try to claim up to 1350 EUR per passenger'.'- ';
                     }
                 }
             }
@@ -908,13 +925,13 @@ class ClaimsController extends Controller
         }else{
 
             if ($time_diff > (2*365*24*60*60)) {
-                return '0';
+                return '0'.'- ';
             }else{
-                return 'up to 1350 EUR';
+                return 'up to 1350 EUR'.'- ';
             }
 
         }
-        return false;
+        return '0'.'- ';
     }
 
 
@@ -943,14 +960,14 @@ class ClaimsController extends Controller
             if ((in_array(strtolower($final_destination->country), $this->europe_countries)) || (in_array(strtolower($final_destination->country), $this->europe_countries_code))) {
 
                 if ($total_delay == "less_than_3_hours") {
-                  return '0';
+                  return '0'.'-'.$distance;
                 }else{
                   if ($distance < 1500) {
-                    return '250 EUR';
+                    return '250 EUR'.'-'.$distance;
                   }elseif ($distance <= 3500) {
-                    return '400 EUR';
+                    return '400 EUR'.'-'.$distance;
                   }else{
-                    return '600 EUR';
+                    return '600 EUR'.'-'.$distance;
                   }
                 }
 
@@ -959,21 +976,21 @@ class ClaimsController extends Controller
 
                 if ($total_delay == "3_to_8_hours") {
                   if ($distance < 1500) {
-                    return '250 EUR';
+                    return '250 EUR'.'-'.$distance;
                   }elseif ($distance <= 3500) {
-                    return '400 EUR';
+                    return '400 EUR'.'-'.$distance;
                   }else{
-                    return '600 EUR';
+                    return '600 EUR'.'-'.$distance;
                   }
                 }elseif($total_delay == "more_than_8_hours"){
                   if ($distance < 2000) {
-                    return '1250 ILS';
+                    return '1250 ILS'.'-'.$distance;
                   }elseif ($distance <= 3500) {
-                    return '2000 ILS';
+                    return '2000 ILS'.'-'.$distance;
                   }elseif ($distance <= 4500) {
-                    return '600 EUR';
+                    return '600 EUR'.'-'.$distance;
                   }else{
-                    return '3080 ILS';
+                    return '3080 ILS'.'-'.$distance;
                   }
                 }
 
@@ -982,14 +999,14 @@ class ClaimsController extends Controller
             }else{
 
               if ($total_delay == "less_than_3_hours") {
-                return '0';
+                return '0'.'-'.$distance;
               }else{
                 if ($distance < 1500) {
-                  return '250 EUR';
+                  return '250 EUR'.'-'.$distance;
                 }elseif ($distance <= 3500) {
-                  return '400 EUR';
+                  return '400 EUR'.'-'.$distance;
                 }else{
-                  return '600 EUR';
+                  return '600 EUR'.'-'.$distance;
                 }
               }
 
@@ -1005,21 +1022,21 @@ class ClaimsController extends Controller
 
                 if ($total_delay == "3_to_8_hours") {
                   if ($distance < 1500) {
-                    return '250 EUR';
+                    return '250 EUR'.'-'.$distance;
                   }elseif ($distance <= 3500) {
-                    return '400 EUR';
+                    return '400 EUR'.'-'.$distance;
                   }else{
-                    return '600 EUR';
+                    return '600 EUR'.'-'.$distance;
                   }
                 }elseif($total_delay == "more_than_8_hours"){
                   if ($distance < 2000) {
-                    return '1250 ILS';
+                    return '1250 ILS'.'-'.$distance;
                   }elseif ($distance <= 3500) {
-                    return '2000 ILS';
+                    return '2000 ILS'.'-'.$distance;
                   }elseif ($distance <= 4500) {
-                    return '600 EUR';
+                    return '600 EUR'.'-'.$distance;
                   }else{
-                    return '3080 ILS';
+                    return '3080 ILS'.'-'.$distance;
                   }
                 }
 
@@ -1027,14 +1044,14 @@ class ClaimsController extends Controller
               }elseif ($airline->country == "IL") {
                 if ($total_delay == "more_than_8_hours") {
                   if ($distance < 2000) {
-                    return '1250 ILS';
+                    return '1250 ILS'.'-'.$distance;
                   }elseif ($distance <= 4500) {
-                    return '2000 ILS';
+                    return '2000 ILS'.'-'.$distance;
                   }else{
-                    return '3080 ILS';
+                    return '3080 ILS'.'-'.$distance;
                   }
                 }else{
-                  return '0';
+                  return '0'.'-'.$distance;
                 }
               }
 
@@ -1042,14 +1059,14 @@ class ClaimsController extends Controller
             }else{
               if ($total_delay == "more_than_8_hours") {
                 if ($distance < 2000) {
-                  return '1250 ILS';
+                  return '1250 ILS'.'-'.$distance;
                 }elseif ($distance <= 4500) {
-                  return '2000 ILS';
+                  return '2000 ILS'.'-'.$distance;
                 }else{
-                  return '3080 ILS';
+                  return '3080 ILS'.'-'.$distance;
                 }
               }else{
-                return '0';
+                return '0'.'-'.$distance;
               }
             }
 
@@ -1061,36 +1078,36 @@ class ClaimsController extends Controller
               // europe airline
               if ((in_array(strtolower($airline->country), $this->europe_countries)) || (in_array(strtolower($airline->country), $this->europe_countries_code)) ) {
                 if ($total_delay == "less_than_3_hours") {
-                  return '0';
+                  return '0'.'-'.$distance;
                 }else{
                   if ($distance < 1500) {
-                    return '250 EUR';
+                    return '250 EUR'.'-'.$distance;
                   }elseif ($distance <= 3500) {
-                    return '400 EUR';
+                    return '400 EUR'.'-'.$distance;
                   }else{
-                    return '600 EUR';
+                    return '600 EUR'.'-'.$distance;
                   }
                 }
               }else{
-                return '0';
+                return '0'.'-'.$distance;
               }
 
             // other country to israel
             }elseif((strtolower($final_destination->country) == "il") || (strtolower($final_destination->country) == "israel") ) {
               if ($total_delay == "more_than_8_hours") {
                 if ($distance < 2000) {
-                  return '1250 ILS';
+                  return '1250 ILS'.'-'.$distance;
                 }elseif ($distance <= 4500) {
-                  return '2000 ILS';
+                  return '2000 ILS'.'-'.$distance;
                 }else{
-                  return '3080 ILS';
+                  return '3080 ILS'.'-'.$distance;
                 }
               }else{
-                return '0';
+                return '0'.'-'.$distance;
               }
             }
           }
-          return '0';
+          return '0'.'-'.$distance;
         }
 
 
@@ -1116,24 +1133,24 @@ class ClaimsController extends Controller
             if ((in_array(strtolower($final_destination->country), $this->europe_countries)) || (in_array(strtolower($final_destination->country), $this->europe_countries_code))) {
 
                   if ($distance < 1500) {
-                    return '250 EUR';
+                    return '250 EUR'.'-'.$distance;
                   }elseif ($distance <= 3500) {
-                    return '400 EUR';
+                    return '400 EUR'.'-'.$distance;
                   }else{
-                    return '600 EUR';
+                    return '600 EUR'.'-'.$distance;
                   }
 
             // europe to israel
             }elseif((strtolower($final_destination->country) == "il") || (strtolower($final_destination->country) == "israel") ) {
 
                   if ($distance < 2000) {
-                    return '1250 ILS';
+                    return '1250 ILS'.'-'.$distance;
                   }elseif ($distance <= 3500) {
-                    return '2000 ILS';
+                    return '2000 ILS'.'-'.$distance;
                   }elseif ($distance <= 4500) {
-                    return '600 EUR';
+                    return '600 EUR'.'-'.$distance;
                   }else{
-                    return '3080 ILS';
+                    return '3080 ILS'.'-'.$distance;
                   }
 
 
@@ -1141,11 +1158,11 @@ class ClaimsController extends Controller
             }else{
 
                 if ($distance < 1500) {
-                  return '250 EUR';
+                  return '250 EUR'.'-'.$distance;
                 }elseif ($distance <= 3500) {
-                  return '400 EUR';
+                  return '400 EUR'.'-'.$distance;
                 }else{
-                  return '600 EUR';
+                  return '600 EUR'.'-'.$distance;
                 }
 
             }
@@ -1158,34 +1175,34 @@ class ClaimsController extends Controller
               // europe airline
               if ((in_array(strtolower($airline->country), $this->europe_countries)) || (in_array(strtolower($airline->country), $this->europe_countries_code)) ) {
                   if ($distance < 2000) {
-                    return '1250 ILS';
+                    return '1250 ILS'.'-'.$distance;
                   }elseif ($distance <= 3500) {
-                    return '2000 ILS';
+                    return '2000 ILS'.'-'.$distance;
                   }elseif ($distance <= 4500) {
-                    return '600 EUR';
+                    return '600 EUR'.'-'.$distance;
                   }else{
-                    return '3080 ILS';
+                    return '3080 ILS'.'-'.$distance;
                   }
 
               // other airline
               }else {
                   if ($distance < 2000) {
-                    return '1250 ILS';
+                    return '1250 ILS'.'-'.$distance;
                   }elseif ($distance <= 4500) {
-                    return '2000 ILS';
+                    return '2000 ILS'.'-'.$distance;
                   }else{
-                    return '3080 ILS';
+                    return '3080 ILS'.'-'.$distance;
                   }
               }
 
             // israel to other
             }else{
                   if ($distance < 2000) {
-                    return '1250 ILS';
+                    return '1250 ILS'.'-'.$distance;
                   }elseif ($distance <= 4500) {
-                    return '2000 ILS';
+                    return '2000 ILS'.'-'.$distance;
                   }else{
-                    return '3080 ILS';
+                    return '3080 ILS'.'-'.$distance;
                   }
             }
 
@@ -1197,28 +1214,28 @@ class ClaimsController extends Controller
               // europe airline
               if ((in_array(strtolower($airline->country), $this->europe_countries)) || (in_array(strtolower($airline->country), $this->europe_countries_code)) ) {
                 if ($distance < 1500) {
-                  return '250 EUR';
+                  return '250 EUR'.'-'.$distance;
                 }elseif ($distance <= 3500) {
-                  return '400 EUR';
+                  return '400 EUR'.'-'.$distance;
                 }else{
-                  return '600 EUR';
+                  return '600 EUR'.'-'.$distance;
                 }
               }else{
-                return '0';
+                return '0'.'-'.$distance;
               }
 
             // other country to israel
             }elseif((strtolower($final_destination->country) == "il") || (strtolower($final_destination->country) == "israel") ) {
                 if ($distance < 2000) {
-                  return '1250 ILS';
+                  return '1250 ILS'.'-'.$distance;
                 }elseif ($distance <= 4500) {
-                  return '2000 ILS';
+                  return '2000 ILS'.'-'.$distance;
                 }else{
-                  return '3080 ILS';
+                  return '3080 ILS'.'-'.$distance;
                 }
             }
           }
-          return '0';
+          return '0'.'-'.$distance;
         }
 
 
@@ -1246,15 +1263,15 @@ class ClaimsController extends Controller
                 
                 if ($total_delay == "less_than_3_hours") {
                     
-                  return '0';
+                  return '0'.'-'.$distance;
                 }else{
                     
                   if ($distance < 1500) {
-                    return '250 EUR';
+                    return '250 EUR'.'-'.$distance;
                   }elseif ($distance <= 3500) {
-                    return '400 EUR';
+                    return '400 EUR'.'-'.$distance;
                   }else{
-                    return '600 EUR';
+                    return '600 EUR'.'-'.$distance;
                   }
                 }
 
@@ -1263,21 +1280,21 @@ class ClaimsController extends Controller
 
                 if ($total_delay == "3_to_8_hours") {
                   if ($distance < 1500) {
-                    return '250 EUR';
+                    return '250 EUR'.'-'.$distance;
                   }elseif ($distance <= 3500) {
-                    return '400 EUR';
+                    return '400 EUR'.'-'.$distance;
                   }else{
-                    return '600 EUR';
+                    return '600 EUR'.'-'.$distance;
                   }
                 }elseif($total_delay == "more_than_8_hours"){
                   if ($distance < 2000) {
-                    return '1250 ILS';
+                    return '1250 ILS'.'-'.$distance;
                   }elseif ($distance <= 3500) {
-                    return '2000 ILS';
+                    return '2000 ILS'.'-'.$distance;
                   }elseif ($distance <= 4500) {
-                    return '600 EUR';
+                    return '600 EUR'.'-'.$distance;
                   }else{
-                    return '3080 ILS';
+                    return '3080 ILS'.'-'.$distance;
                   }
                 }
 
@@ -1285,14 +1302,14 @@ class ClaimsController extends Controller
             }else{
 
                 if ($total_delay == "less_than_3_hours") {
-                  return '0';
+                  return '0'.'-'.$distance;
                 }else{
                   if ($distance < 1500) {
-                    return '250 EUR';
+                    return '250 EUR'.'-'.$distance;
                   }elseif ($distance <= 3500) {
-                    return '400 EUR';
+                    return '400 EUR'.'-'.$distance;
                   }else{
-                    return '600 EUR';
+                    return '600 EUR'.'-'.$distance;
                   }
                 }
 
@@ -1311,21 +1328,21 @@ class ClaimsController extends Controller
 
                 if ($total_delay == "3_to_8_hours") {
                   if ($distance < 1500) {
-                    return '250 EUR';
+                    return '250 EUR'.'-'.$distance;
                   }elseif ($distance <= 3500) {
-                    return '400 EUR';
+                    return '400 EUR'.'-'.$distance;
                   }else{
-                    return '600 EUR';
+                    return '600 EUR'.'-'.$distance;
                   }
                 }elseif($total_delay == "more_than_8_hours"){
                   if ($distance < 2000) {
-                    return '1250 ILS';
+                    return '1250 ILS'.'-'.$distance;
                   }elseif ($distance <= 3500) {
-                    return '2000 ILS';
+                    return '2000 ILS'.'-'.$distance;
                   }elseif ($distance <= 4500) {
-                    return '600 EUR';
+                    return '600 EUR'.'-'.$distance;
                   }else{
-                    return '3080 ILS';
+                    return '3080 ILS'.'-'.$distance;
                   }
                 }
 
@@ -1333,14 +1350,14 @@ class ClaimsController extends Controller
               }else {
                 if ($total_delay == "more_than_8_hours") {
                   if ($distance < 2000) {
-                    return '1250 ILS';
+                    return '1250 ILS'.'-'.$distance;
                   }elseif ($distance <= 4500) {
-                    return '2000 ILS';
+                    return '2000 ILS'.'-'.$distance;
                   }else{
-                    return '3080 ILS';
+                    return '3080 ILS'.'-'.$distance;
                   }
                 }else{
-                  return '0';
+                  return '0'.'-'.$distance;
                 }
               }
 
@@ -1348,14 +1365,14 @@ class ClaimsController extends Controller
             }else{
               if ($total_delay == "more_than_8_hours") {
                 if ($distance < 2000) {
-                  return '1250 ILS';
+                  return '1250 ILS'.'-'.$distance;
                 }elseif ($distance <= 4500) {
-                  return '2000 ILS';
+                  return '2000 ILS'.'-'.$distance;
                 }else{
-                  return '3080 ILS';
+                  return '3080 ILS'.'-'.$distance;
                 }
               }else{
-                return '0';
+                return '0'.'-'.$distance;
               }
             }
 
@@ -1370,14 +1387,14 @@ class ClaimsController extends Controller
               // europe airline
               if ( (in_array(strtolower($airline->country), $this->europe_countries)) || (in_array(strtolower($airline->country), $this->europe_countries_code)) ) {
                 if ($total_delay == "less_than_3_hours") {
-                  return '0';
+                  return '0'.'-'.$distance;
                 }else{
                   if ($distance < 1500) {
-                    return '250 EUR';
+                    return '250 EUR'.'-'.$distance;
                   }elseif ($distance <= 3500) {
-                    return '400 EUR';
+                    return '400 EUR'.'-'.$distance;
                   }else{
-                    return '600 EUR';
+                    return '600 EUR'.'-'.$distance;
                   }
                 }
               }else{
@@ -1389,25 +1406,25 @@ class ClaimsController extends Controller
                 }
 
 
-                return '0';
+                return '0'.'-'.$distance;
               }
 
             // other country to israel
             }elseif((strtolower($final_destination->country) == "il") || (strtolower($final_destination->country) == "israel") ) {
               if ($total_delay == "more_than_8_hours") {
                 if ($distance < 2000) {
-                  return '1250 ILS';
+                  return '1250 ILS'.'-'.$distance;
                 }elseif ($distance <= 4500) {
-                  return '2000 ILS';
+                  return '2000 ILS'.'-'.$distance;
                 }else{
-                  return '3080 ILS';
+                  return '3080 ILS'.'-'.$distance;
                 }
               }else{
-                return '0';
+                return '0'.'-'.$distance;
               }
             }
           }
-          return '0';
+          return '0'.'-'.$distance;
         }
 
 
@@ -1433,14 +1450,14 @@ class ClaimsController extends Controller
             if ((in_array(strtolower($final_destination->country), $this->europe_countries)) || (in_array(strtolower($final_destination->country), $this->europe_countries_code))) {
 
                 if ($total_delay == "less_than_3_hours") {
-                  return '0';
+                  return '0'.'-'.$distance;
                 }else{
                   if ($distance < 1500) {
-                    return '250 EUR';
+                    return '250 EUR'.'-'.$distance;
                   }elseif ($distance <= 3500) {
-                    return '400 EUR';
+                    return '400 EUR'.'-'.$distance;
                   }else{
-                    return '600 EUR';
+                    return '600 EUR'.'-'.$distance;
                   }
                 }
 
@@ -1449,21 +1466,21 @@ class ClaimsController extends Controller
 
                 if ($total_delay == "3_to_8_hours") {
                   if ($distance < 1500) {
-                    return '250 EUR';
+                    return '250 EUR'.'-'.$distance;
                   }elseif ($distance <= 3500) {
-                    return '400 EUR';
+                    return '400 EUR'.'-'.$distance;
                   }else{
-                    return '600 EUR';
+                    return '600 EUR'.'-'.$distance;
                   }
                 }elseif($total_delay == "more_than_8_hours"){
                   if ($distance < 2000) {
-                    return '1250 ILS';
+                    return '1250 ILS'.'-'.$distance;
                   }elseif ($distance <= 3500) {
-                    return '2000 ILS';
+                    return '2000 ILS'.'-'.$distance;
                   }elseif ($distance <= 4500) {
-                    return '600 EUR';
+                    return '600 EUR'.'-'.$distance;
                   }else{
-                    return '3080 ILS';
+                    return '3080 ILS'.'-'.$distance;
                   }
                 }
 
@@ -1471,14 +1488,14 @@ class ClaimsController extends Controller
             }else{
 
               if ($total_delay == "less_than_3_hours") {
-                return '0';
+                return '0'.'-'.$distance;
               }else{
                 if ($distance < 1500) {
-                  return '250 EUR';
+                  return '250 EUR'.'-'.$distance;
                 }elseif ($distance <= 3500) {
-                  return '400 EUR';
+                  return '400 EUR'.'-'.$distance;
                 }else{
-                  return '600 EUR';
+                  return '600 EUR'.'-'.$distance;
                 }
               }
 
@@ -1491,28 +1508,28 @@ class ClaimsController extends Controller
             if ((in_array(strtolower($final_destination->country), $this->europe_countries)) || (in_array(strtolower($final_destination->country), $this->europe_countries_code))) {
 
               if ($total_delay == "less_than_3_hours") {
-                return '0';
+                return '0'.'-'.$distance;
               }else{
                   // europe airline
                   if ((in_array(strtolower($airline->country), $this->europe_countries)) || (in_array(strtolower($airline->country), $this->europe_countries_code)) ) {
 
                     if ($total_delay == "3_to_8_hours") {
                       if ($distance < 1500) {
-                        return '250 EUR';
+                        return '250 EUR'.'-'.$distance;
                       }elseif ($distance <= 3500) {
-                        return '400 EUR';
+                        return '400 EUR'.'-'.$distance;
                       }else{
-                        return '600 EUR';
+                        return '600 EUR'.'-'.$distance;
                       }
                     }elseif($total_delay == "more_than_8_hours"){
                       if ($distance < 2000) {
-                        return '1250 ILS';
+                        return '1250 ILS'.'-'.$distance;
                       }elseif ($distance <= 3500) {
-                        return '2000 ILS';
+                        return '2000 ILS'.'-'.$distance;
                       }elseif ($distance <= 4500) {
-                        return '600 EUR';
+                        return '600 EUR'.'-'.$distance;
                       }else{
-                        return '3080 ILS';
+                        return '3080 ILS'.'-'.$distance;
                       }
                     }
 
@@ -1520,14 +1537,14 @@ class ClaimsController extends Controller
                   }else{
                     if ($total_delay == "more_than_8_hours") {
                       if ($distance < 2000) {
-                        return '1250 ILS';
+                        return '1250 ILS'.'-'.$distance;
                       }elseif ($distance <= 4500) {
-                        return '2000 ILS';
+                        return '2000 ILS'.'-'.$distance;
                       }else{
-                        return '3080 ILS';
+                        return '3080 ILS'.'-'.$distance;
                       }
                     }else{
-                      return '0';
+                      return '0'.'-'.$distance;
                     }
                   }
               }
@@ -1537,14 +1554,14 @@ class ClaimsController extends Controller
             }else{
               if ($total_delay == "more_than_8_hours") {
                 if ($distance < 2000) {
-                  return '1250 ILS';
+                  return '1250 ILS'.'-'.$distance;
                 }elseif ($distance <= 4500) {
-                  return '2000 ILS';
+                  return '2000 ILS'.'-'.$distance;
                 }else{
-                  return '3080 ILS';
+                  return '3080 ILS'.'-'.$distance;
                 }
               }else{
-                return '0';
+                return '0'.'-'.$distance;
               }
             }
 
@@ -1556,36 +1573,36 @@ class ClaimsController extends Controller
               // europe airline
               if ((in_array(strtolower($airline->country), $this->europe_countries)) || (in_array(strtolower($airline->country), $this->europe_countries_code)) ) {
                 if ($total_delay == "less_than_3_hours") {
-                  return '0';
+                  return '0'.'-'.$distance;
                 }else{
                   if ($distance < 1500) {
-                    return '250 EUR';
+                    return '250 EUR'.'-'.$distance;
                   }elseif ($distance <= 3500) {
-                    return '400 EUR';
+                    return '400 EUR'.'-'.$distance;
                   }else{
-                    return '600 EUR';
+                    return '600 EUR'.'-'.$distance;
                   }
                 }
               }else{
-                return '0';
+                return '0'.'-'.$distance;
               }
 
             // other country to israel
             }elseif((strtolower($final_destination->country) == "il") || (strtolower($final_destination->country) == "israel") ) {
               if ($total_delay == "more_than_8_hours") {
                 if ($distance < 2000) {
-                  return '1250 ILS';
+                  return '1250 ILS'.'-'.$distance;
                 }elseif ($distance <= 4500) {
-                  return '2000 ILS';
+                  return '2000 ILS'.'-'.$distance;
                 }else{
-                  return '3080 ILS';
+                  return '3080 ILS'.'-'.$distance;
                 }
               }else{
-                return '0';
+                return '0'.'-'.$distance;
               }
             }
           }
-          return '0';
+          return '0'.'-'.$distance;
         }
 
     /**

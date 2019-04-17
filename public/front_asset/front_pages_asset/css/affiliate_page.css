@@ -1,0 +1,314 @@
+* {
+    box-sizing: border-box;
+  }
+  .main_nav_container {
+    background-image: url('../img/affiliate_page_image.png');
+    background-repeat: no-repeat;
+    /* background-position: center; */
+    background-size: cover;
+  }
+
+.page_title {
+    padding-top: 60px;
+    padding-bottom: 35px;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.page_title h1 {
+    font-size: 42px;
+    color: #114478;
+}
+
+.margin_bottom{
+    margin-bottom: 20px;
+}
+
+.page_p{
+
+}
+
+.page_p p{
+    font-size: 15px;
+}
+
+.page_btn{
+    padding-top: 35px;
+    padding-bottom: 175px;
+}
+
+.page_btn a{
+    color: white;
+    padding: 15px 10px 15px 10px;
+    width: 200px;
+    background-color: #8dac2d;
+}
+
+.page_btn a:hover{
+    color: white;
+}
+
+/* How it work div starts */
+
+.how_it_works_div {
+    padding: 40px 0px 40px 0px;
+  }
+
+  .how_it_works_lower_div {
+    padding: 40px 0px;
+  }
+
+  .how_it_works_title_div {
+    width: 50%;
+    margin: 0 auto;
+    padding: 40px 0px;
+  }
+
+  .how_it_works_title_div h1 {
+    font-size: 30px;
+    color: #124478;
+  }
+
+  .what_customer_say_div{
+      padding: 40px 0px 60px 0px;
+  }
+
+  .what_customer_say_title_div {
+    width: 60%;
+    margin: 0 auto;
+    padding: 40px 0px;
+    background-image: url('../img/homepage_what_customer_say_background_title.png');
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .what_customer_say_title_div h1 {
+    font-size: 30px;
+    color: #124478;
+  }
+
+  .how_it_works_background_icon_div {
+    background-image: url('../img/homepage_how_it_works_cloud.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 157px 91px;
+    margin: 0 auto;
+  }
+
+
+  .how_it_works_icon_div {
+    width: 100px;
+    height: 100px;
+    border: 1px dashed #8dac2d;
+    border-radius: 50%;
+    margin: 0 auto;
+  }
+
+  .how_it_works_icon_div img {
+    margin-top: 20px;
+    margin-left: 5px;
+  }
+
+  .how_it_works_text_div {
+    padding-top: 20px;
+  }
+
+  .how_it_works_text_upper_p_div {
+    font-size: 15px;
+    font-weight: bold;
+    padding: 20px 0px;
+  }
+
+  .how_it_works_text_lower_p_div {
+    font-size: 12px;
+  }
+
+  /* How it work div ends */
+
+  .travel {
+    background-image: url('../img/travel.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+
+  .travel_title{
+    padding-top: 100px;
+    padding-bottom: 30px;
+  }
+  .travel_title h1{
+      color: white;
+  }
+
+  .travel_p{
+      padding-bottom: 20px;
+  }
+
+  .travel_p p{
+    color: white;
+  }
+
+  .no_padding_bottom{
+      padding-bottom: 0px!important;
+  }
+
+
+  /* What customer say div starts  */
+
+.what_customer_say_title_div {
+    background-image: url('../img/homepage_how_it_works_background.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 60%;
+    margin: 0 auto;
+    padding: 60px 0px;
+  }
+  /* What customer say div ends */
+
+  .works{
+  }
+
+  .work_number{
+      float: left;
+  }
+
+  .work_number span{
+    font-size: 40px;
+    color: #8dac2d;
+  }
+
+  .work_text{
+      padding-left: 20%;
+  }
+
+  .work_text_h1{
+      padding-top: 10px;
+      padding-bottom: 10px;
+  }
+
+  .work_text_h1 h1{
+      font-size: 20px;
+  }
+
+  .become_an_affiliate {
+    background-image: url('../img/become_an_affiliate.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+
+  .become_an_affiliate_title{
+
+  }
+
+  .become_an_affiliate_title h1{
+    color: white;
+    padding-bottom: 20px;
+  }
+
+  .become_an_affiliate_p{
+
+}
+
+.become_an_affiliate_p p{
+  color: white;
+}
+
+.become_an_affiliate_btn{
+    padding-top: 35px;
+    padding-bottom: 100px;
+}
+
+.become_an_affiliate a{
+    color: white;
+    padding: 15px 10px 15px 10px;
+    width: 200px;
+    background-color: #8dac2d;
+}
+
+.become_an_affiliate a:hover{
+    color: white;
+}
+
+.margin_top_70{
+    margin-top: 70px;
+}
+
+@media (min-width: 320px) and (max-width: 480px){
+    .page_title h1 {
+        font-size: 35px;
+    }
+    .page_btn {
+        padding-top: 35px;
+        padding-bottom: 60px;
+    }
+    .how_it_works_title_div {
+        background-image:none;
+        padding: 10px 0px;
+        width: 100%;
+      }
+
+      .how_it_works_div {
+        padding: 30px 0px 0px 0px;
+      }
+
+      .how_it_works_lower_div {
+        padding: 40px 0px 0px 0px;
+      }
+
+
+    .how_it_works_text_upper_p_div {
+        font-size: 15px;
+        font-weight: bold;
+        padding: 5px 0px;
+    }
+    .travel{
+        background-image: none;
+        background-color: #124479;
+    }
+
+    .travel_title h1 {
+        color: white;
+        font-size: 25px;
+        text-align: center;
+    }
+    .what_customer_say_title_div{
+        background-image: url(../img/homepage_how_it_works_background.png);
+        background-repeat: no-repeat;
+        background-size: 100% 50%;
+    }
+    .work_text {
+        padding-left: 10%;
+    }
+    .work_first_column{
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+    .become_an_affiliate_title h1{
+        font-size: 23px;
+        text-align: center;
+    }
+    .become_an_affiliate_btn{
+    padding-bottom: 60px;
+    padding-left: 30%;
+    }
+    .become_an_affiliate_p br{
+        display: none;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 767px)
+{
+    .work_text {
+        padding-left: 10%;
+    }
+    .works{
+        padding-left: 10%;
+        padding-right: 10%;
+    }
+    .what_customer_say_title_div {
+        background-image: url(../img/homepage_how_it_works_background.png);
+        background-repeat: no-repeat;
+        background-size: 100% 50%;
+    }
+}

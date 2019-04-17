@@ -9,6 +9,7 @@ use App\Ticket;
 use Illuminate\Http\Request;
 use App\TicketNote;
 use Auth;
+use App\User;
 
 class TicketsController extends Controller
 {
@@ -29,8 +30,34 @@ class TicketsController extends Controller
         } else {
             $tickets = Ticket::latest()->paginate($perPage);
         }
+        $user_array = [];
+        foreach($tickets as $row){
+            if($row->assign_user_id != null){
+                array_push($user_array,$row->assign_user_id);
+            }
+        }
+        $assign_users=User::whereIn('id',$user_array)->pluck('email','id');
 
-        return view('tickets.index', compact('tickets'));
+        $users = User::role('Admin')->pluck('email','id');
+
+        return view('tickets.index', compact('tickets','users','assign_users'));
+    }
+
+    public function myTickets(Request $request)
+    {
+        $keyword = $request->get('search');
+        $perPage = 25;
+        $id=Auth::user()->id;
+        if (!empty($keyword)) {
+            $tickets = Ticket::where('subject', 'LIKE', "%$keyword%")
+                ->orWhere('status', 'LIKE', "%$keyword%")
+                ->where('assign_user_id',$id)
+                ->latest()->paginate($perPage);
+        } else {
+            $tickets = Ticket::where('assign_user_id',$id)->latest()->paginate($perPage);
+        }
+
+        return view('tickets.my_tickets', compact('tickets'));
     }
 
     /**
@@ -63,6 +90,16 @@ class TicketsController extends Controller
             TicketNote::create(['ticket_id' => $ticket->id, 'description' => $request->description]);
         }
         return redirect('tickets')->with('flash_message', 'Ticket added!');
+    }
+
+
+    public function ticketAssignUser(Request $request)
+    {
+        $ticket_id = $request->ticket_id;
+        $ticket = Ticket::find($ticket_id);
+        $ticket->assign_user_id = $request->assign_user_id;
+        $ticket->save();
+        return redirect('tickets')->with('flash_message', 'Assigned Successfully!');
     }
 
     /**

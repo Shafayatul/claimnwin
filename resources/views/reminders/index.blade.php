@@ -86,7 +86,7 @@
                                     if (!$flightDetails) {
                                       $flightDetails = DB::table('itinerary_details')->where('claim_id',$reminder_claims->id)->first();
                                     }
-                                   
+
                                     $airline = DB::table('airlines')->where('id',$flightDetails->airline_id)->first();
                                     $passengers = DB::table('passengers')->where('claim_id',$reminder_claims->id)->get();
                                     $reminderDeparted = DB::table('airports')->where('id',$reminder_claims->departed_from_id)->first();
@@ -136,12 +136,12 @@
                                                                 </tbody>
                                                             </table>
                                                         </div>
-                                                        <div class="col-md-4">
+                                                        {{-- <div class="col-md-4">
                                                             <h4 style="font-weight:bold;">Other Documents</h4>
                                                             <div class="list-group">
                                                             <a href="#" class="list-group-item">{{$reminder_claims->correspondence_others_file}}</a>
                                                             </div>
-                                                        </div>
+                                                        </div> --}}
                                                     </div>
                                                 <p style="font-weight:bold;">Status:  <span style="font-weight:normal;">{{$item->status}}</span></p>
                                                     {{-- <hr>

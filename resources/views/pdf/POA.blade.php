@@ -40,31 +40,34 @@
         </div>
         <div class="row">
             <div class="col-md-6" style="text-align:left;">
-                <h5>British Airways Plc</h5>
-                <h5>Waterside, PO Box 365</h5>
-                <h5>Harmondsworth, UB7 0GB</h5>
-                <h5>United Kingdom</h5>
+                <h5 style="width: 150px; line-height: 30px;">{{$passenger->address}}</h5>
             </div>
             <div class="col-md-6" style="text-align:right;">
-                <h5>Date: 26th March 2019</h5>
-                <h5>Our Ref: CLAIM/000369</h5>
-                <h5>Your Ref: BA-652-30 Dec 2018</h5>
+                <h5>Date: {{Carbon\Carbon::today()}}</h5>
+                <h5>Our Ref: CLAIM/{{$claim->id}}</h5>
+                <h5>Your Ref:
+
+                @if ($passenger->booking_refernece != "")
+                  {{$passenger->booking_refernece." - ".$passenger->created_at}}</h5>
+                @else
+                  {{"No Reference Found"}}</h5>
+                @endif
             </div>
         </div>
         <div class="row">
             <div class="col-md-12">
                 <h4>Dear Sir/Madam,</h4>
-                <h4>Flight: BA652 30/12/2018 05:12 am Date: 30th December 2018</h4>
+                <h4>Flight: {{$itinerary_details->flight_number." ".$itinerary_details->created_at}}</h4>
             </div>
         </div>
 
         <div class="row">
             <div class="col-md-12">
                 <h4>Power of attorney</h4>
-                <h4>I sam khan ,</h4>
+                <h4>I {{$passenger->first_name." ".$passenger->last_name}}</h4>
                 <p>
-                    hereby authorize Claim'N Win Ltd, to act on my behalf in all manners relating to flight BA652 with a
-                    planned departure on 30th December 2018 05:12 am, and to receive the compensation on my
+                    hereby authorize Claim'N Win Ltd, to act on my behalf in all manners relating to flight {{$passenger->booking_refernece}} with a
+                    planned departure on {{ $itinerary_details->departure_date }}, and to receive the compensation on my
                     behalf. Any and all acts carried out by Claim'N Win Ltd on my behalf shall have the same affects as
                     acts of my own.
                 </p>

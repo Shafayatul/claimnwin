@@ -87,7 +87,7 @@
                 <li><a href="{{URL::to('/currency')}}"><i class="fa fa-angle-right"></i> Manage Currency</a></li>
             </ul>
             </li>
-
+            @hasrole('Super Admin')
             <li class="treeview">
             <a href="#">
             <i class="fa fa-money-check-alt"></i>
@@ -99,6 +99,7 @@
             <li><a href="{{url('/admin/role')}}"><i class="fa fa-angle-right"></i> Role List</a></li>
             </ul>
             </li>
+            @endhasrole
             {{-- <li><a href="login.html"><i class="fa fa-university"></i> Manage Bank Account</a></li> --}}
         <li><a href="{{url('/reminders')}}"><i class="fa fa-bell"></i> Manage Reminders</a></li>
             <li class="treeview">
@@ -113,7 +114,10 @@
               </ul>
             </li>
             <li><a href="{{url('/manage-affiliate')}}"><i class="fa fa-pie-chart"></i> Manage Affiliation Report</a></li>
-            <li><a href="login.html"><i class="fa fa-table"></i> Reporting</a></li>
+            @hasrole('Super Admin')
+            <li><a href="{{url('/activity/index')}}"><i class="fa fa-pie-chart"></i> Activity Log</a></li>
+            @endhasrole
+            <li><a href="{{url('/manage-report')}}"><i class="fa fa-table"></i> Reporting</a></li>
 
 
             <li class="treeview">
@@ -151,18 +155,11 @@
               <li><a href="{{URL::to('/settings')}}"><i class="fa fa-angle-right"></i> Manage Settings</a></li>
               </ul>
             </li>
+            @hasrole('Super Admin')
+            <li><a href="{{url('/tickets')}}"><i class="fa fa-ticket-alt"></i> Manage Tickets</a></li>
+            @endhasrole
 
-            <li class="treeview">
-                <a href="#">
-                <i class="fa fa-cog"></i>
-                <span>Tickets</span>
-                <i class="fa fa-angle-left pull-right"></i>
-                </a>
-                <ul class="treeview-menu">
-                <li><a href="{{URL::to('/tickets/create')}}"><i class="fa fa-angle-right"></i> Create Tickets</a></li>
-                <li><a href="{{URL::to('/tickets')}}"><i class="fa fa-angle-right"></i> Manage Tickets</a></li>
-                </ul>
-            </li>
+            <li><a href="{{url('/my-tickets')}}"><i class="fa fa-ticket-alt"></i> My Tickets</a></li>
 
             {{-- <li class="treeview">
               <a href="#">

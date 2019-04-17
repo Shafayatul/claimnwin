@@ -1,4 +1,5 @@
 <header class="bgf">
+      <div class="main_nav_container">
         <nav class="navbar main-nav">
           <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -49,12 +50,15 @@
 
               </ul>
               <ul class="nav navbar-nav navbar-right text-uppercase main-menu">
-                <li><a href="#">faq</a></li>
-                <li><a href="#">blog</a></li>
-                <li><a href="#">your rights</a></li>
-                <li><a href="#">become a partner</a></li>
+                <li><a href="{{url('/faq')}}">faq</a></li>
+                <li><a href="{{url('/press-blog')}}">blog</a></li>
+                <li><a href="{{url('/partner')}}">become a partner</a></li>
               </ul>
             </div><!-- /.navbar-collapse -->
           </div><!-- /.container-fluid -->
         </nav>
+
+        @yield('page-title')
+      </div>
+
     </header>

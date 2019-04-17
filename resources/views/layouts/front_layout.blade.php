@@ -26,10 +26,10 @@
 
 {{-- signature --}}
   <link  href="{{asset('front_asset/signature/css/jquery.signaturepad.css')}}" rel="stylesheet">
-  <script src="{{asset('front_asset/signature/js/numeric-1.2.6.min.js')}}"></script> 
+  <script src="{{asset('front_asset/signature/js/numeric-1.2.6.min.js')}}"></script>
   <script src="{{asset('front_asset/signature/js/bezier.js')}}"></script>
-  <script src="{{asset('front_asset/signature/js/jquery.signaturepad.js')}}"></script> 
-  
+  <script src="{{asset('front_asset/signature/js/jquery.signaturepad.js')}}"></script>
+
   <script type='text/javascript' src="{{asset('front_asset/signature/js/html2canvas.js')}}"></script>
   <script src="{{asset('front_asset/signature/js/json2.min.js')}}"></script>
   <script>
@@ -41,7 +41,7 @@
     });
 
 
-    
+
     $("#btnSaveSign").click(function(e){
       alert('hahah');
       // html2canvas([document.getElementById('sign-pad')], {

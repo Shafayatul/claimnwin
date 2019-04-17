@@ -6,11 +6,11 @@
                         <div class="footer-col">
                             <h2>OUR SERVICES</h2>
                             <ul>
-                                <li><a href="#">Start a claim</a></li>
-                                <li><a href="#">FAQ</a></li>
-                                <li><a href="#">Pricing</a></li>
-                                <li><a href="#">Your Air Passenger Rights</a></li>
-                                <li><a href="#">Become a partner </a></li>
+                                <li><a href="{{url('/form-claim')}}">Start a claim</a></li>
+                                <li><a href="{{url('/faq')}}">FAQ</a></li>
+                                <li><a href="{{url('/pricing-list')}}">Pricing</a></li>
+                                {{-- <li><a href="{{url('/faq')}}">Your Air Passenger Rights</a></li> --}}
+                                <li><a href="{{url('/partner')}}">Become a partner </a></li>
                             </ul>
                         </div><!-- /.footer-col -->
                     </div><!-- /.col-lg-3 col-md-6 -->
@@ -18,11 +18,11 @@
                         <div class="footer-col">
                             <h2>OUR COMPANY</h2>
                             <ul>
-                                <li><a href="#">Become a partner </a></li>
-                                <li><a href="#">Blog</a></li>
-                                <li><a href="#">About us</a></li>
-                                <li><a href="#">Careers</a></li>
-                                <li><a href="#">Contact us</a></li>
+                                {{-- <li><a href="{{url('/faq')}}">Become a partner </a></li> --}}
+                                <li><a href="{{url('/press-blog')}}">Blog</a></li>
+                                <li><a href="{{url('/about-us')}}">About us</a></li>
+                                <li><a href="{{url('/app')}}">Our App</a></li>
+                                <li><a href="{{url('/contact-us')}}">Contact us</a></li>
                             </ul>
                         </div><!-- /.footer-col -->
                     </div><!-- /.col-lg-3 col-md-6 -->
@@ -30,9 +30,9 @@
                         <div class="footer-col">
                             <h2>TEARMS</h2>
                             <ul>
-                                <li><a href="#">Privacy policy </a></li>
-                                <li><a href="#">Terms & conditions</a></li>
-                                <li><a href="#">Imprint</a></li>
+                                <li><a href="{{url('/privacy-policy')}}">Privacy policy </a></li>
+                                <li><a href="{{url('/terms-and-conditions')}}">Terms & conditions</a></li>
+                                <li><a href="{{url('/affiliate-page')}}">Affiliate Page</a></li>
                             </ul>
                         </div><!-- /.footer-col -->
                     </div><!-- /.col-lg-3 col-md-6 -->

@@ -10,10 +10,63 @@
 @endsection
 
 @section('content')
-<div class="wrapper">
-    <div class="form_h2">
+  <div class="container">
+      <div class="form_claim_main_content_div">
+          <div class="row">
+              <div class="col-md-3">
+                  <div class="form_claim_main_left_content_div">
+                      <div class="row">
+                          <div class="col-md-12" style="margin: 0px; padding: 0px;">
+                              <div class="form_claim_main_left_content_ul_div">
+                                  <ul class="fa-ul">
+                                      <li>
+                                          <div class="li_mother_div">
+                                              <div class="li_number_div">
+                                                  <div class="li_number_child_div text-center">
+                                                      <span>1</span>
+                                                  </div>
+                                              </div>
+                                              <div class="li_text_div">
+                                                  <span>Eligibility</span>
+                                              </div>
+                                          </div>
+                                      </li>
+                                      <li>
+                                          <div class="li_mother_div">
+                                              <div class="li_number_div">
+                                                  <div class="li_number_child_div text-center align-middle">
+                                                      <span>2</span>
+                                                  </div>
+                                              </div>
+                                              <div class="li_text_div">
+                                                  <span>Additional Details</span>
+                                              </div>
+                                          </div>
+                                      </li>
+                                      <li>
+                                          <div class="li_mother_div">
+                                              <div class="li_number_div">
+                                                  <div class="li_number_child_div text-center">
+                                                      <span>3</span>
+                                                  </div>
+                                              </div>
+                                              <div class="li_text_div">
+                                                  <span>Cliam Submission</span>
+                                              </div>
+                                          </div>
+                                      </li>
+                                  </ul>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-md-9">
+                <div class="form_claim_main_right_content_div">
+                  <div class="wrapper">
+    {{-- <div class="form_h2">
         <h2 class="text-center">Flight Delay</h2>
-    </div>
+    </div> --}}
       <form action="{{url('/claim')}}" method="post" id="step-form" enctype="multipart/form-data" >
         @csrf
         <!-- ...................................................................
@@ -67,7 +120,7 @@
                     </div>
                     <div class="two_child_radio_div">
                         <label class="container_radio">No
-                            <input class="common_input" type="radio" id="common_input is_direct_flight_no" name="is_direct_flight" value="0">
+                            <input class="common_input" type="radio" id="common_input is_direct_flight_no" name="is_direct_flight" value="0" checked>
                             <span class="checkmark"></span>
                         </label>
                     </div>
@@ -149,7 +202,7 @@
                 </div>
                 <div class="parent_div">
                     <div class="airline_reason_select_div">
-                        <select class="form-control custom_select reason" name="reason">
+                        <select class="form-control custom_select reason custom_select_reason_max_width" name="reason">
                             <option value="" hidden>Please select</option>
                             <option value="technical_problem">Technical problem</option>
                             <option value="bad_weather_conditions">Bad weather conditions</option>
@@ -167,7 +220,7 @@
                 <div class="total_button_div">
                     <div class="two_button_child_div_right">
                         <div class="continue_button_div">
-                            <button type="button" class="continue_button" id="continue_2" name="button">Continue <i class="fas fa-arrow-right"></i></button>
+                            <button type="button" class="continue_button pull-right" id="continue_2" name="button">Continue <i class="fas fa-arrow-right"></i></button>
                         </div>
                     </div>
                     <div class="two_button_child_div_left">
@@ -209,7 +262,7 @@
                 <div class="total_button_div">
                     <div class="two_button_child_div_right">
                         <div class="continue_button_div">
-                            <button type="button" class="continue_button" id="continue_3" name="button">Continue <i class="fas fa-arrow-right"></i></button>
+                            <button type="button" class="continue_button pull-right" id="continue_3" name="button">Continue <i class="fas fa-arrow-right"></i></button>
                         </div>
                     </div>
                     <div class="two_button_child_div_left">
@@ -239,20 +292,20 @@
                           <label>OPTIONAL: DID YOU SPEND ON ACCOMMODATION, FOOD OR TAXI WHILE WAITING FOR YOUR REROUTING FLIGHT?</label>
                         </div>
                     </div>
-                    <div class="parent_div">
-                        <div class="child_accommodation child_accommodation_first_div">
+                    <div class="parent_div" style="display: table;">
+                        <div class="child_accommodation child_accommodation_first_div" style="display: table-cell;">
                             <label class="container_radio label_child_accommodation">I did not spend anything
                                 <input type="radio" class="common_input" id="common_input not_spend" name="is_spend_on_accommodation" value="not_spend">
                                 <span class="checkmark"></span>
                             </label>
                         </div>
-                        <div class="child_accommodation child_accommodation_second_div">
+                        <div class="child_accommodation child_accommodation_second_div" style="display: table-cell;">
                             <label class="container_radio label_child_accommodation">I had expenses but I have not kept the invoices
                                 <input type="radio" class="common_input" id="common_input no_invoice" name="is_spend_on_accommodation" value="no_invoice">
                                 <span class="checkmark"></span>
                             </label>
                         </div>
-                        <div class="child_accommodation child_accommodation_third_div">
+                        <div class="child_accommodation child_accommodation_third_div" style="display: table-cell;">
                             <label class="container_radio label_child_accommodation">I had expenses and kept the invoices
                                 <input type="radio" class="common_input" id="common_input has_invoice" name="is_spend_on_accommodation" value="has_invoice">
                                 <span class="checkmark"></span>
@@ -288,12 +341,12 @@
                         </td>
                         <td>
                           <div class="row">
-                            <div class="col-md-6">
-                              <input type="text" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
+                            <div class="col-md-6 fifty_percent_width">
+                              <input type="number" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6 fifty_percent_width">
                               <div class="select_reason_class">
-                                <select class="form-control custom_select" name="expense_currency[]">
+                                <select class="form-control custom_select expense_currency_select_option" name="expense_currency[]">
                                   <option hidden>Currency</option>
                                   @foreach($currencies as $key => $val)
                                     <option value="{{$key}}">{{$key}}</option>
@@ -318,12 +371,12 @@
                         </td>
                         <td>
                           <div class="row">
-                            <div class="col-md-6">
-                              <input type="text" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
+                            <div class="col-md-6 fifty_percent_width">
+                              <input type="number" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6 fifty_percent_width">
                               <div class="select_reason_class">
-                                <select class="form-control custom_select" name="expense_currency[]">
+                                <select class="form-control custom_select expense_currency_select_option" name="expense_currency[]">
                                   <option hidden>Currency</option>
                                   @foreach($currencies as $key => $val)
                                     <option value="{{$key}}">{{$key}}</option>
@@ -351,12 +404,12 @@
                         </td>
                         <td>
                           <div class="row">
-                            <div class="col-md-6">
-                              <input type="text" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
+                            <div class="col-md-6 fifty_percent_width">
+                              <input type="number" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6 fifty_percent_width">
                               <div class="select_reason_class">
-                                <select class="form-control custom_select" name="expense_currency[]">
+                                <select class="form-control custom_select expense_currency_select_option" name="expense_currency[]">
                                   <option hidden>Currency</option>
                                   @foreach($currencies as $key => $val)
                                     <option value="{{$key}}">{{$key}}</option>
@@ -383,12 +436,12 @@
                         </td>
                         <td>
                           <div class="row">
-                            <div class="col-md-6">
-                              <input type="text" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
+                            <div class="col-md-6 fifty_percent_width">
+                              <input type="number" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6 fifty_percent_width">
                               <div class="select_reason_class">
-                                <select class="form-control custom_select" name="expense_currency[]">
+                                <select class="form-control custom_select expense_currency_select_option" name="expense_currency[]">
                                   <option hidden>Currency</option>
                                   @foreach($currencies as $key => $val)
                                     <option value="{{$key}}">{{$key}}</option>
@@ -436,11 +489,11 @@
                       <td>
                         <div class="row">
                           <div class="col-md-6">
-                            <input type="text" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
+                            <input type="number" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
                           </div>
                           <div class="col-md-6">
                             <div class="select_reason_class">
-                              <select class="form-control custom_select" name="expense_currency[]">
+                              <select class="form-control custom_select expense_currency_select_option" name="expense_currency[]">
                                 <option hidden>Currency</option>
                                 @foreach($currencies as $key => $val)
                                     <option value="{{$key}}">{{$key}}</option>
@@ -471,11 +524,11 @@
                       <td>
                         <div class="row">
                           <div class="col-md-6">
-                            <input type="text" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
+                            <input type="number" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
                           </div>
                           <div class="col-md-6">
                             <div class="select_reason_class">
-                              <select class="form-control custom_select" name="expense_currency[]">
+                              <select class="form-control custom_select expense_currency_select_option" name="expense_currency[]">
                                 <option hidden>Currency</option>
                                 @foreach($currencies as $key => $val)
                                     <option value="{{$key}}">{{$key}}</option>
@@ -509,11 +562,11 @@
                       <td>
                         <div class="row">
                           <div class="col-md-6">
-                            <input type="text" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
+                            <input type="number" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
                           </div>
                           <div class="col-md-6">
                             <div class="select_reason_class">
-                              <select class="form-control custom_select" name="expense_currency[]">
+                              <select class="form-control custom_select expense_currency_select_option" name="expense_currency[]">
                                 <option hidden>Currency</option>
                                 @foreach($currencies as $key => $val)
                                     <option value="{{$key}}">{{$key}}</option>
@@ -546,11 +599,11 @@
                       <td>
                         <div class="row">
                           <div class="col-md-6">
-                            <input type="text" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
+                            <input type="number" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
                           </div>
                           <div class="col-md-6">
                             <div class="select_reason_class">
-                              <select class="form-control custom_select" name="expense_currency[]">
+                              <select class="form-control custom_select expense_currency_select_option" name="expense_currency[]">
                                 <option hidden>Currency</option>
                                 @foreach($currencies as $key => $val)
                                     <option value="{{$key}}">{{$key}}</option>
@@ -595,7 +648,7 @@
                 <div class="total_button_div">
                     <div class="two_button_child_div_right">
                         <div class="continue_button_div">
-                            <button type="button" class="continue_button" id="continue_4" name="button">Continue <i class="fas fa-arrow-right"></i></button>
+                            <button type="button" class="continue_button pull-right" id="continue_4" name="button">Continue <i class="fas fa-arrow-right"></i></button>
                         </div>
                     </div>
                     <div class="two_button_child_div_left">
@@ -636,7 +689,7 @@
                 <div class="total_button_div">
                     <div class="two_button_child_div_right">
                         <div class="continue_button_div">
-                            <button type="button" class="continue_button" id="continue_5" name="button">Continue <i class="fas fa-arrow-right"></i></button>
+                            <button type="button" class="continue_button pull-right" id="continue_5" name="button">Continue <i class="fas fa-arrow-right"></i></button>
                         </div>
                     </div>
                     <div class="two_button_child_div_left">
@@ -758,7 +811,7 @@
             <div class="total_button_div">
               <div class="two_button_child_div_right">
                 <div class="continue_button_div">
-                  <button type="button" class="continue_button" id="continue_6" name="button">Continue <i class="fas fa-arrow-right"></i></button>
+                  <button type="button" class="continue_button pull-right" id="continue_6" name="button">Continue <i class="fas fa-arrow-right"></i></button>
                 </div>
               </div>
               <div class="two_button_child_div_left">
@@ -784,7 +837,7 @@
                     <h3>Sign permission to handle claim</h3>
                 </div>
                 <div class="parent_div">
-                  
+
                   <div class="panel panel-default" style="width: 300px; margin: 0 auto">
                     <div class="panel-body center-text">
 
@@ -813,7 +866,7 @@
                 <div class="total_button_div">
                     <div class="two_button_child_div_right">
                         <div class="continue_button_div">
-                            <button type="button" class="continue_button" id="continue_7" name="button">Continue <i class="fas fa-arrow-right"></i></button>
+                            <button type="button" class="continue_button pull-right" id="continue_7" name="button">Continue <i class="fas fa-arrow-right"></i></button>
                         </div>
                     </div>
                     <div class="two_button_child_div_left">
@@ -899,8 +952,8 @@
             <div class="common_row show_if_contacted_airline">
                 <div class="document_submit_div">
                     <div class="row">
-                        <div class="col-md-8">ID copies, including travel companions’ if applicable</div>
-                        <div class="col-md-4">
+                        <div class="col-md-6 padding_bottom">ID copies, including travel companions’ if applicable</div>
+                        <div class="col-md-6">
                             <div class="input-file-container col-centered">
                                 <input class="input-file" id="my-file-0" type="file" name="file_name[]">
                                 <label tabindex="0" for="my-file" class="input-file-trigger" id="input-file-trigger-0">Select a file...</label>
@@ -911,8 +964,8 @@
                 </div>
                 <div class="document_submit_div">
                     <div class="row">
-                        <div class="col-md-8">Travel documents (reservation, ticket or boarding passes)</div>
-                        <div class="col-md-4">
+                        <div class="col-md-6 padding_bottom">Travel documents (reservation, ticket or boarding passes)</div>
+                        <div class="col-md-6">
                             <div class="input-file-container col-centered">
                                 <input class="input-file" id="my-file-1" type="file" name="file_name[]">
                                 <label tabindex="0" for="my-file" class="input-file-trigger" id="input-file-trigger-1">Select a file...</label>
@@ -923,8 +976,8 @@
                 </div>
                 <div class="document_submit_div">
                     <div class="row">
-                        <div class="col-md-8">Proof of expenses (store/online receipts, detailed bank statements) if applicable</div>
-                        <div class="col-md-4">
+                        <div class="col-md-6 padding_bottom">Proof of expenses (store/online receipts, detailed bank statements) if applicable</div>
+                        <div class="col-md-6">
                             <div class="input-file-container col-centered">
                                 <input class="input-file" id="my-file-2" type="file" name="file_name[]">
                                 <label tabindex="0" for="my-file" class="input-file-trigger" id="input-file-trigger-2">Select a file...</label>
@@ -935,8 +988,8 @@
                 </div>
                 <div class="document_submit_div">
                     <div class="row">
-                        <div class="col-md-8">Other</div>
-                        <div class="col-md-4">
+                        <div class="col-md-6 padding_bottom">Other</div>
+                        <div class="col-md-6">
                             <div class="input-file-container col-centered">
                                 <input class="input-file" id="my-file-3" type="file" name="file_name[]">
                                 <label tabindex="0" for="my-file" class="input-file-trigger" id="input-file-trigger-3">Select a file...</label>
@@ -951,7 +1004,7 @@
                 <div class="total_button_div">
                     <div class="two_button_child_div_right">
                         <div class="continue_button_div">
-                            <button type="button" class="continue_button" id="continue_8" name="button">Continue <i class="fas fa-arrow-right"></i></button>
+                            <button type="button" class="continue_button pull-right" id="continue_8" name="button">Continue <i class="fas fa-arrow-right"></i></button>
                         </div>
                     </div>
                     <div class="two_button_child_div_left">
@@ -970,6 +1023,11 @@
         .................................................................... -->
     </form>
 </div>
+                </div>
+              </div>
+          </div>
+      </div>
+  </div>
 
 @endsection
 
