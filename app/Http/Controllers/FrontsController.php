@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Post;
 
 class FrontsController extends Controller
 {
@@ -32,7 +33,13 @@ class FrontsController extends Controller
   }
   public function pressBlog()
   {
-    return view('front-pages.press_blog');
+    $blogs=Post::latest()->paginate(6);
+    return view('front-pages.press_blog',compact('blogs'));
+  }
+  public function singleBlogView($title,$id)
+  {
+    $post=Post::find($id);
+    return view('front-pages.single_blog',compact('post'));
   }
   public function app()
   {

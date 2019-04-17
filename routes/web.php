@@ -30,6 +30,7 @@ Route::get('/terms-and-conditions','FrontsController@termsAndConditions');
 Route::get('/privacy-policy','FrontsController@privacyPolicy');
 Route::get('/pricing-list','FrontsController@pricingList');
 Route::get('/press-blog','FrontsController@pressBlog');
+Route::get('/single-blog/{title}/{id}','FrontsController@singleBlogView');
 Route::get('/app','FrontsController@app');
 Route::get('/partner','FrontsController@partner');
 Route::get('/affiliate-page','FrontsController@affiliatePage');
@@ -129,5 +130,10 @@ Route::group(['middleware' => ['auth']], function() {
         Route::post('/letter-before-email', 'PdfController@letterBeforeActionEmail')->name('letter.before.email');
         Route::resource('claim-files', 'ClaimFilesController');
         Route::get('/archive-manage-claim', 'ClaimBackController@archiveIndex');
+
+        // Post
+        Route::get('/admin/posts/create/{type}', 'PostsController@create_with_type');
+        Route::get('/admin/posts/{type}', 'PostsController@index_with_type');
+        Route::resource('posts', 'PostsController');
     });
 });

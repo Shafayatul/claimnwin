@@ -161,6 +161,30 @@
 
             <li><a href="{{url('/my-tickets')}}"><i class="fa fa-ticket-alt"></i> My Tickets</a></li>
 
+            <li class="treeview">
+                <a href="#">
+                <i class="fa fa-cog"></i>
+                <span>Blogs</span>
+                <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                <li><a href="{{URL::to('/admin/posts/create/blog')}}"><i class="fa fa-angle-right"></i> Add Blog</a></li>
+                <li><a href="{{URL::to('/admin/posts/blog')}}"><i class="fa fa-angle-right"></i> Manage Blog</a></li>
+                </ul>
+            </li>
+
+            <li class="treeview">
+                <a href="#">
+                <i class="fa fa-cog"></i>
+                <span>Pages</span>
+                <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                <li><a href="{{URL::to('/admin/posts/create/page')}}"><i class="fa fa-angle-right"></i> Add Page</a></li>
+                <li><a href="{{URL::to('/admin/posts/page')}}"><i class="fa fa-angle-right"></i> Manage Page</a></li>
+                </ul>
+            </li>
+
             {{-- <li class="treeview">
               <a href="#">
               <i class="fa fa-cog"></i>

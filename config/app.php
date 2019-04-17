@@ -167,6 +167,8 @@ return [
          */
         Monarobase\CountryList\CountryListServiceProvider::class,
         Jorenvh\Share\Providers\ShareServiceProvider::class,
+        UniSharp\LaravelFilemanager\LaravelFilemanagerServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -228,6 +230,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Countries' => Monarobase\CountryList\CountryListFacade::class,
         'Share' => Jorenvh\Share\ShareFacade::class,
+        'Image' => Intervention\Image\Facades\Image::class,
 
     ],
 

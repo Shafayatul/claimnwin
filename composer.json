@@ -21,6 +21,7 @@
         "soumen-dey/laravel-user-agent": "^1.0",
         "spatie/laravel-activitylog": "^3.2",
         "spatie/laravel-permission": "^2.36",
+        "unisharp/laravel-filemanager": "~1.8",
         "wildbit/swiftmailer-postmark": "^3.0"
     },
     "require-dev": {
