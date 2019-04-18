@@ -255,10 +255,10 @@ class ClaimBackController extends Controller
         /* connect to gmail */
         $hostname = '{premium39.web-hosting.com}INBOX';
         $hostnameSent = '{premium39.web-hosting.com}INBOX.Sent';
-        // $username = $claims->cpanel_email;
-        // $password = $claims->cpanel_password;
-        $username = 'ara063@freeflightclaim.com';
-        $password = 'oKwGE2vzcOYt';
+        $username = $claims->cpanel_email;
+        $password = $claims->cpanel_password;
+        // $username = 'ara063@freeflightclaim.com';
+        // $password = 'oKwGE2vzcOYt';
 
         /* try to connect */
         $inbox = imap_open($hostname,$username ,$password) or die('Cannot connect to Gmail: ' . imap_last_error());
@@ -269,41 +269,6 @@ class ClaimBackController extends Controller
         $emails = imap_search($inbox,'ALL');
 
         $sents = imap_search($sent,'ALL');
-
-
-        /* if emails are returned, cycle through each... */
-        // if($emails) {
-
-        //     /* begin output var */
-        //     $output = '';
-
-        //     /* put the newest emails on top */
-        //     rsort($emails);
-
-
-        //     /* for every email... */
-        //     foreach($emails as $email_number) {
-
-        //         /* get information specific to this email */
-        //         $overview = imap_fetch_overview($inbox,$email_number,0);
-        //         $message = imap_fetchbody($inbox,$email_number,2);
-
-
-        //         $output.= 'Name:  '.$overview[0]->from.'</br>';
-        //         $output.= 'Email:  '.$overview[0]->message_id.'</br>';
-        //         $output.= 'Message:  '.$message.'</br>';
-
-
-
-        //     }
-
-        //     echo $output;
-        // }
-
-        /* close the connection */
-        // imap_close($inbox);
-
-
 
         return view('claim.claimView',compact('sent','sents','inbox','emails','notes', 'ticket_notes', 'ticket', 'claimFiles','affiliateComm','adminComm','NextStepData','claimStatusData','flightInfo','airline','departed_airport','destination_airport','reminders','claims','passengers','ittDetails','flightCount','passCount','claimsStatus','nextSteps','banks', 'affiliate_user'));
     }
