@@ -127,9 +127,10 @@ Route::group(['middleware' => ['auth']], function() {
         Route::resource('flights', 'FlightsController');
         Route::get('/letter-before-action/{id}', 'PdfController@letterBeforeActionView');
         Route::get('/poa-pdf/{id}', 'PdfController@pdfView');
-        Route::post('/letter-before-email', 'PdfController@letterBeforeActionEmail')->name('letter.before.email');
+
         Route::resource('claim-files', 'ClaimFilesController');
         Route::get('/archive-manage-claim', 'ClaimBackController@archiveIndex');
+        Route::post('/letter-before-email', 'PdfController@letterBeforeActionEmail')->name('letter.before.email');
 
         // Post
         Route::get('/admin/posts/create/{type}', 'PostsController@create_with_type');
@@ -137,3 +138,5 @@ Route::group(['middleware' => ['auth']], function() {
         Route::resource('posts', 'PostsController');
     });
 });
+
+Route::resource('sent-emails', 'SentEmailsController');

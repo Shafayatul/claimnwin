@@ -15,6 +15,7 @@ use App\BankAccount;
 use App\Currency;
 use App\Airline;
 use App\Mail\LetterBeforeAction;
+use App\SentEmail;
 
 class PdfController extends Controller
 {
@@ -106,6 +107,12 @@ class PdfController extends Controller
         $from_email = $request->cpanel_email;
 
         Mail::to($airline_email)->send(new LetterBeforeAction($email_content,$from_email));
+        
+        SentEmail::create([
+            'body'      => $email_content,
+            'claim_id'  => $id
+        ]);
+
         return redirect('/claim-view/'.$id)->with('success','Email Sent Successfully!');
     }
 }

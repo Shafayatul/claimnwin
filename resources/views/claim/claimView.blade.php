@@ -538,26 +538,17 @@
                         <table class="table table-bordered table-hover">
                             <thead>
                                 <th>Date</th>
-                                <th>Subject</th>
                                 <th>Body</th>
                             </thead>
                             <tbody>
-                                <?php
-                                    if($sents) {
-                                    rsort($sents);
-                                    foreach($sents as $sent_number) {
-                                        $overview1 = imap_fetch_overview($sent,$sent_number,0);
-                                        $message1 = imap_fetchbody($sent,$sent_number,1);
-                                ?>
+                                @if($sents)
+                                @foreach($sents as $sent)
                                 <tr>
-                                    <td>{{$overview1[0]->date}}</td>
-                                    <td>{{$overview1[0]->subject}}</td>
-                                    <td>{!! $message1 !!}</td>
+                                    <td>{{Carbon\Carbon::parse($sent->created_at)->format('d-m-Y')}}</td>
+                                    <td>{!! $sent->body !!}</td>
                                 </tr>
-                                <?php
-                                    }
-                                }
-                                ?>
+                                @endforeach
+                                @endif
                             </tbody>
                         </table>
                     </div>
