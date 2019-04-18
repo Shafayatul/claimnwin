@@ -529,248 +529,80 @@
 
 <div role="tabpanel" class="tab-pane" id="messaging" aria-labelledby="messaging-tab">
     <div class="row">
-
-        <div class="col-md-2" style="margin-top: 10px;">
-            <h4 class="compose bg-primary">Compose</h4>
-            <ul class="nav nav-tabs left_row" id="myTab" role="tablist">
-                <li class="nav-item active">
-                    <a class="nav-link active" data-toggle="tab" href="#conversation" role="tab" aria-controls="conversation">Coversation</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#inbox" role="tab" aria-controls="inbox">Inbox</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#sent" role="tab" aria-controls="settings">Sent</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#case_history" role="tab" aria-controls="settings">Case History</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#note_phone" role="tab" aria-controls="settings">Notes & Phone Call</a>
-                </li>
-            </ul>
-        </div>
-        <div class="col-md-10" style="margin-top: 10px;">
-            <div class="tab-content">
-                <!-------------------Conversation----------------------->
-                <div class="tab-pane active" id="conversation" role="tabpanel">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="panel panel-default">
-{{-- <div class="panel-heading">
-<i class="fa fa-comments"></i> Conversation
-</div> --}}
-<!-- /.panel-heading -->
-<div class="panel-body">
-    <table width="100%" class="table table-striped table-borderless" id="dataTables-example">
-        <thead>
-            <th>From</th>
-            <th>Subject</th>
-            <th>Message</th>
-            <th>Date</th>
-        </thead>
-        <tbody>
-            <tr>
-                <td style="width: 330px;">Pre Investigation</td>
-                <td style="width: 330px;">2 to 3(NP)</td>
-                <td style="width: 200px; overflow:hidden; word-break:break-all;">
-                    kjshjkdfshjkhfdkjhbdkjgjkghtfduighfduygfdsjgdfjhudfgjdsfgjhufgjdfsghujgjhgsjhgjhgdf.
-                </td>
-                <td>23/03/2019</td>
-            </tr>
-        </tbody>
-    </table>
-</div>
-<!-- /.panel-body -->
-</div>
-<!-- /.panel -->
-</div>
-<!-- /.col-lg-12 -->
-</div>
-</div>
-<!---------------------End Conversation------------------->
-<!---------------------Inbox------------------------------>
-<div class="tab-pane" id="inbox" role="tabpanel">
-
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <i class="fa fa-comments"></i> Inbox
-                </div>
-                <!-- /.panel-heading -->
-                <div class="panel-body">
-                    <table width="100%" class="table table-striped table-borderless" id="dataTables-example">
-                        <thead>
-                            <th>From</th>
-                            <th>(Role) Message Subject</th>
-                            <th>Received</th>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><input type="checkbox" name="" id=""> Dipto Shome</td>
-                                <td>2 to 3(NP)</td>
-                                <td>23/03/2019</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <!-- /.panel-body -->
-            </div>
-            <!-- /.panel -->
-        </div>
-        <!-- /.col-lg-12 -->
-    </div>
-</div>
-<!---------------------End Inbox------------------------------>
-<!---------------------Sent------------------------------>
-<div class="tab-pane" id="sent" role="tabpanel">
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <i class="fa fa-comments"></i> Sent
-                </div>
-                <!-- /.panel-heading -->
-                <div class="panel-body">
-                    <table width="100%" class="table table-striped table-borderless" id="dataTables-example">
-                        <thead>
-                            <th>To</th>
-                            <th>(Role) Message Subject</th>
-                            <th>Received</th>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><input type="checkbox" name="" id=""> Dipto Shome</td>
-                                <td>2 to 3(NP)</td>
-                                <td>23/03/2019</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <!-- /.panel-body -->
-            </div>
-            <!-- /.panel -->
-        </div>
-        <!-- /.col-lg-12 -->
-    </div>
-</div>
-<!------------------------------End Sent------------------------->
-<!---------------------Case History------------------------------>
-<div class="tab-pane" id="case_history" role="tabpanel">
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <i class="fa fa-comments"></i> Case History
-                </div>
-                <!-- /.panel-heading -->
-                <div class="panel-body">
-
-                </div>
-                <!-- /.panel-body -->
-            </div>
-            <!-- /.panel -->
-        </div>
-        <!-- /.col-lg-12 -->
-    </div>
-
-</div>
-<!------------------------------End Case History------------------------->
-<!---------------------Note & Phone Call------------------------------>
-<div class="tab-pane" id="note_phone" role="tabpanel">
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <i class="fa fa-comments"></i> Note & Phone Call
-                </div>
-                <!-- /.panel-heading -->
-                <div class="panel-body">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <form action="{{route('save-note')}}" method="post" class="form-horizontal" enctype="multipart/form-data">
-                                {{ csrf_field() }}
-
-                                <div class="form-group">
-                                    <label for="note" class="control-label col-md-3">Note:</label>
-                                    <div class="col-md-9">
-                                        <textarea name="note" id="note" rows="3" class="form-control" required></textarea>
-                                        <input type="hidden" name="claim_id" value="{{$claims->id}}">
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="note" class="control-label col-md-3">Select Note Source/Ref.:</label>
-                                    <div class="col-md-9">
-                                        <select name="note_status" id="note_status" class="form-control">
-                                            <option value="1">Emails From Airline</option>
-                                            <option value="2">Emails From Passenger</option>
-                                            <option value="3">Phone Calls</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="note" class="control-label col-md-3">Airline Referance:</label>
-                                    <div class="col-md-9">
-                                        <input type="text" name="airline_ref" class="form-control" placeholder="Airline Referance">
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <div class="col-md-6 col-md-offset-3">
-                                        <button type="submit" class="btn btn-primary btn-sm"> Create Note</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
+        <div class="col-md-12">
+            <h3 class="text-center" style="padding-top: 20px; color:seagreen;">Sent Email</h3>
+            <br>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <th>Date</th>
+                                <th>Subject</th>
+                                <th>Body</th>
+                            </thead>
+                            <tbody>
+                                <?php
+                                    if($sents) {
+                                    rsort($sents);
+                                    foreach($sents as $sent_number) {
+                                        $overview1 = imap_fetch_overview($sent,$sent_number,0);
+                                        $message1 = imap_fetchbody($sent,$sent_number,1);
+                                ?>
+                                <tr>
+                                    <td>{{$overview1[0]->date}}</td>
+                                    <td>{{$overview1[0]->subject}}</td>
+                                    <td>{!! $message1 !!}</td>
+                                </tr>
+                                <?php
+                                    }
+                                }
+                                ?>
+                            </tbody>
+                        </table>
                     </div>
-                    <hr>
-                    <div class="row">
-                        <div class="col-md-12">
-
-                            <ul class="timeline">
-                                @foreach($notes as $note)
-                                <li class="time-label"> <span class="bg-red"> {{Carbon\Carbon::parse($note->created_at)->format('d M Y')}} </span> </li>
-                                <li> <i class="fa fa-angle-double-right bg-blue"></i>
-                                    <div class="timeline-item"> <span class="time"><i class="fa fa-clock-o"></i> {{Carbon\Carbon::parse($note->created_at)->format('h:i:s A')}}</span>
-                                        <h3 class="timeline-header"><a href="#">Admin</a> created a note via <span class="label label-success">
-                                            @if($note->note_status == 1)
-                                            Emails From Airline
-                                            @elseif($note->note_status == 2)
-                                            Emails From Passenger
-                                            @else
-                                            Phone Calls
-                                            @endif
-                                        </span></h3>
-                                        <div class="timeline-body"><p><br></p></div>
-                                    </div>
-                                </li>
-                                @endforeach
-
-
-                            </ul>
-                        </div>
-                    </div>
-
                 </div>
-                <!-- /.panel-body -->
             </div>
-            <!-- /.panel -->
         </div>
-        <!-- /.col-lg-12 -->
     </div>
+</div>
 
-</div>
-<!------------------------------End Note & Phone Call------------------------->
-</div>
-</div>
-</div>
-</div>
 <div role="tabpanel" class="tab-pane" id="airline_response" aria-labelledby="airline_response-tab">
-
+    <h3 class="text-center" style="padding-top: 20px; color:seagreen;">Inbox Email</h3>
+    <br>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <th>Date</th>
+                        <th>Subject</th>
+                        <th>Body</th>
+                    </thead>
+                    <tbody>
+                        <?php
+                            if($emails) {
+                            rsort($emails);
+                            foreach($emails as $email_number) {
+                                $overview = imap_fetch_overview($inbox,$email_number,0);
+                                $message = imap_fetchbody($inbox,$email_number,2);
+                        ?>
+                        <tr>
+                            <td>{{$overview[0]->date}}</td>
+                            <td>{{$overview[0]->subject}}</td>
+                            <td>{!! $message !!}</td>
+                        </tr>
+                        <?php
+                            }
+                        }
+                        ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
+
 <div role="tabpanel" class="tab-pane" id="customer_final_comm" aria-labelledby="customer_final_comm-tab">
 
 </div>
