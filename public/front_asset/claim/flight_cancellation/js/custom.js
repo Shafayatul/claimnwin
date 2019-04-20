@@ -314,10 +314,64 @@ $(document).ready(function() {
         check_next_step();
     });
 
+
+
+
+    function ajax_calculation(){
+
+      var departed_from = $("input[name='departed_from']").val();
+      var final_destination = $("input[name='final_destination']").val();
+      var selected_connection_iata_codes = $("input[name='selected_connection_iata_codes']:checked").val();
+      var total_delay = $("input[name='total_delay']:checked").val();
+      
+      var selected_cnt = 0;
+      var loop_cnt = 0;
+      $('input[name="flight_segment[]"]').map(function(){
+          if(this.value == selected_connection_iata_codes){
+            selected_cnt = loop_cnt;
+          }
+          loop_cnt++;
+      });
+
+      loop_cnt = 0;
+      var flight_code = '';
+      $('input[name="flight_code[]"]').map(function(){
+          if(selected_cnt == loop_cnt){
+            flight_code = this.value;
+          }
+          loop_cnt++;
+      });
+
+      $.ajax({
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        type: 'POST',
+        url: ajax_cal_url,
+        data: {
+          departed_from: departed_from,
+          final_destination: final_destination,
+          total_delay: total_delay,
+          flight_code: flight_code
+        },
+        success: function (data){
+          console.log(data);
+
+          if (data == '0') {
+            $(".result_from_ajax_calculation").html('<div class="form_h3 text-center"><h3>SORRY!!!</h3></div><div class="form_show_message_paragraph"><p>Unfortunately, this flight is not eligible for compensation.Your claim details do not meet the criteria of Israeli or EU law to be compensated. Eligibility is calculated according the length of delay, air carriers and routes you have travelled on.</p></div>');
+          }else{
+            $(".result_from_ajax_calculation").html('<div class="form_h3 text-center"><h3>CONGRATULATIONS!!!</h3></div><div class="form_show_message_paragraph"><p>You are eligible for compensation. Your claim amount will be up to '+data+'</p></div>');
+          }
+        },
+        error: function(e) {
+          console.log(e);
+        }
+      });
+    }
+
     function next() {
         if (check_next_step()) {
             if(step==4){
-                step=step+2;
+                ajax_calculation();
+                step++;
               }else{
                 step++;
               }

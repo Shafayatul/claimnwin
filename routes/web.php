@@ -24,6 +24,7 @@ Route::get('/','WelcomeController@index');
 // Ajax - calculation
 Route::post('/ajax/calculate/missed_calculation','ClaimsController@ajax_missed_calculation');
 Route::post('/ajax/calculate/fight_delay_calculation','ClaimsController@ajax_fight_delay_calculation');
+Route::post('/ajax/calculate/fight_cancellation_calculation','ClaimsController@ajax_fight_cancellation_calculation');
 
 
 // Front Pages Starts
