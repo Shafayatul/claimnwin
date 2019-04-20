@@ -669,20 +669,8 @@
 
         <div class="single_step" id="step_5" style="display:none;">
 
-            <div class="common_row">
-                <div class="form_h3 text-center">
-                    <h3>CONGRATULATIONS!!!</h3>
-                </div>
-                <div class="form_show_message_paragraph">
-                    <p>
-                        Unfortunately, this flight is not eligible for compensation.
-                        Your claim details do not meet the criteria of Israeli or EU law to be compensated. Eligibility is calculated according the length of delay, air carriers and routes you have travelled on.
-                        (or)Congratulations! you are eligible for compensation. Your claim amount will be up to (work out compensation amount according to calculator. Show on screen the amount in the currency converted according to passengers IP)
-                        per
-                        passenger!
+            <div class="common_row result_from_ajax_calculation">
 
-                    </p>
-                </div>
             </div>
 
             <div class="common_row">
@@ -1034,6 +1022,7 @@
 
 @section('footer-script')
 <script type="text/javascript">
+      var ajax_cal_url = "{{url('/ajax/calculate/missed_calculation')}}";
       auto_airport_complete();
       function auto_airport_complete(){
         $('.auto_airport_complete').autoComplete({
