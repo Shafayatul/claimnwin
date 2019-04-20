@@ -20,8 +20,12 @@ Route::get('/test', 'TestsController@test');
 
 // FrontEnd Route
 Route::get('/','WelcomeController@index');
+
 // Ajax - calculation
-Route::post('/ajax-claim-calculation','ClaimsController@ajax_claim_calculation');
+Route::post('/ajax/calculate/missed_calculation','ClaimsController@ajax_missed_calculation');
+Route::post('/ajax/calculate/fight_delay_calculation','ClaimsController@ajax_fight_delay_calculation');
+
+
 // Front Pages Starts
 Route::get('/about-us','FrontsController@aboutUs');
 Route::get('/contact-us','FrontsController@contactUs');

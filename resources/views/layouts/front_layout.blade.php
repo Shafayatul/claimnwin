@@ -6,7 +6,7 @@
   <link rel="shortcut icon" href="favicon.png">
   @include('layouts.includes.front.all-css')
   @yield('header-script')
-
+  <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 
 <body>
