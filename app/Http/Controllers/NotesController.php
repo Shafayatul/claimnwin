@@ -53,9 +53,16 @@ class NotesController extends Controller
     {
         $claim_id = $request->claim_id;
 
-        $requestData = $request->all();
+        // $requestData = $request->all();
 
-        Note::create($requestData + ['user_id' => Auth::user()->id]);
+        // Note::create($requestData + ['user_id' => Auth::user()->id]);
+
+        $note=new Note;
+
+        $note->claim_id         = $claim_id;
+        $note->note             = $request->note;
+        $note->user_id          = Auth::user()->id;
+        $note->save();
 
         return redirect('/claim-view/'.$claim_id)->with(['success'=>'Note added!']);
     }
@@ -96,15 +103,16 @@ class NotesController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
+        $id = $request->note_id;
+        $claim_id = $request->claim_id;
 
-        $requestData = $request->all();
+        $note = Note::find($id);
+        $note->note             = $request->note;
+        $note->save();
 
-        $note = Note::findOrFail($id);
-        $note->update($requestData);
-
-        return redirect('notes')->with('flash_message', 'Note updated!');
+        return redirect('/claim-view/'.$claim_id)->with(['success'=>'Note Updated!']);
     }
 
     /**
@@ -114,10 +122,11 @@ class NotesController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
+        $claim_id = $request->claim_id;
         Note::destroy($id);
 
-        return redirect('notes')->with('flash_message', 'Note deleted!');
+        return redirect('/claim-view/'.$claim_id)->with(['success'=>'Note deleted!']);
     }
 }

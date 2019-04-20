@@ -260,8 +260,8 @@ class ClaimBackController extends Controller
             // $hostnameSent = '{premium39.web-hosting.com}INBOX.Sent';
             $username = $claims->cpanel_email;
             $password = $claims->cpanel_password;
-            // $username = 'huuu065@freeflightclaim.com';
-            // $password = '2Q1y31U9';
+            //$username = 'yyyy075@freeflightclaim.com';
+            //$password = 'fqw2gsvM';
 
             /* try to connect */
             $inbox = imap_open($hostname,$username ,$password) or die('Cannot connect to Gmail: ' . imap_last_error());

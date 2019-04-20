@@ -899,7 +899,7 @@
                                                     STEP 5 STARTS
                           .................................................................... -->
 
-                          <div class="single_step" id="step_5" style="display:none;">
+                          <div class="single_step" id="stepf_5" style="display:none;">
 
                             <div class="common_row">
                               <div class="form_h3 text-center">

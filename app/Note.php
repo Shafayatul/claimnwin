@@ -27,7 +27,7 @@ class Note extends Model
      *
      * @var array
      */
-    protected static $logAttributes = ['claim_id', 'user_id', 'note','note_status','airline_ref'];
+    protected static $logAttributes = ['claim_id', 'user_id', 'note'];
 
 
 }

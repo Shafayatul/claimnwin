@@ -70,7 +70,7 @@
                         <li role="presentation"><a href="#claim-status" role="tab" id="claim-status-tab" data-toggle="tab" aria-controls="claim-status" aria-expanded="true"><i class="fa fa-bell" aria-hidden="true"></i> Status</a></li>
                         <li role="presentation"><a href="#affiliate-info" role="tab" id="affiliate-info-tab" data-toggle="tab" aria-controls="affiliate-info" aria-expanded="true"><i class="fa fa-bell" aria-hidden="true"></i> Affiliate Info</a></li>
                         <li role="presentation"><a href="#ticket-info" role="tab" id="ticket-info-tab" data-toggle="tab" aria-controls="ticket-info" aria-expanded="true"><i class="fas fa-ticket-alt" aria-hidden="true"></i> Ticket Info</a></li>
-
+                        <li role="presentation"><a href="#note" role="tab" id="note-tab" data-toggle="tab" aria-controls="note" aria-expanded="true"><i class="fas fa-ticket-alt" aria-hidden="true"></i> Note Info</a></li>
                     </ul>
                     <div id="myTabContent" class="tab-content">
                         <div role="tabpanel" class="tab-pane fade active in" id="claim_overview" aria-labelledby="home-tab">
@@ -200,26 +200,26 @@
 <th>Scheduled Date & Time Of Departure</th>
 <td>{{$flightInfo->scheduled_departure_time_and_date}}</td>
 </tr> --}}
-<tr class="odd gradeX">
-    <th>Airline</th>
-    <td>{{$airline->name}}</td>
-</tr>
-<tr class="odd gradeX">
-    <th>Number Of Flight Journey</th>
-    <td>{{$flightCount}}</td>
-</tr>
-<tr class="odd gradeX">
-    <th>Departure Airport</th>
-    <td>{{$departed_airport->name}}</td>
-</tr>
-<tr class="odd gradeX">
-    <th>Destination Airport</th>
-    <td>{{$destination_airport->name}}</td>
-</tr>
-<tr class="odd gradeX">
-    <th>Flight Number</th>
-    <td>{{$ittDetails->flight_number}}</td>
-</tr>
+                                                                    <tr class="odd gradeX">
+                                                                        <th>Airline</th>
+                                                                        <td>{{$airline->name}}</td>
+                                                                    </tr>
+                                                                    <tr class="odd gradeX">
+                                                                        <th>Number Of Flight Journey</th>
+                                                                        <td>{{$flightCount}}</td>
+                                                                    </tr>
+                                                                    <tr class="odd gradeX">
+                                                                        <th>Departure Airport</th>
+                                                                        <td>{{$departed_airport->name}}</td>
+                                                                    </tr>
+                                                                    <tr class="odd gradeX">
+                                                                        <th>Destination Airport</th>
+                                                                        <td>{{$destination_airport->name}}</td>
+                                                                    </tr>
+                                                                    <tr class="odd gradeX">
+                                                                        <th>Flight Number</th>
+                                                                        <td>{{$ittDetails->flight_number}}</td>
+                                                                    </tr>
 {{--  <tr class="odd gradeX">
 <th>Scheduled Date & Time Of Arrival</th>
 <td>{{$flightInfo->scheduled_arrival_time_and_date}}</td>
@@ -575,8 +575,9 @@
                             if($emails) {
                             rsort($emails);
                             foreach($emails as $email_number) {
+
                                 $overview = imap_fetch_overview($inbox,$email_number,0);
-                                $message = imap_fetchbody($inbox,$email_number,2);
+                                $message =  imap_fetchbody($inbox,$email_number,2);
                         ?>
                         <tr>
                             <td>{{$overview[0]->date}}</td>
@@ -597,6 +598,7 @@
 <div role="tabpanel" class="tab-pane" id="customer_final_comm" aria-labelledby="customer_final_comm-tab">
 
 </div>
+
 <div role="tabpanel" class="tab-pane" id="reminder" aria-labelledby="reminder-tab">
     <div class="row">
         <div class="col-md-12">
@@ -1241,27 +1243,118 @@
 </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </div>
 <!-- /.panel-body -->
 </div>
 <!-- /.panel -->
 </div>
 <!-- /.col-lg-12 -->
+</div>
+
+<div role="tabpanel" class="tab-pane" id="note" aria-labelledby="note-tab" style="margin-top: 15px;">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-tasks"></i> Note Info
+                </div>
+                <div class="panel-body">
+                <form action="{{url('/save-note')}}" method="post" class="form-horizontal">
+                    {{ csrf_field() }}
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <textarea name="note" id="note" cols="30" rows="5" class="form-control"></textarea>
+                            <input type="hidden" name="claim_id" value="{{$claims->id}}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <button type="submit" class="btn btn-sm btn-success"><i class="fa fa-save"></i> Save</button>
+                        </div>
+                    </div>
+                </form>
+                @if($notes)
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <th>#</th>
+                                    <th>Note</th>
+                                    <th>Action</th>
+                                </thead>
+                                <tbody>
+                                    @php
+                                        $i = 1;
+                                    @endphp
+                                    @foreach($notes as $note)
+                                    <tr>
+                                        <td>{{$i}}</td>
+                                        <td>{{$note->note}}</td>
+                                        <td>
+                                            {!! Form::open([
+                                                'method'=>'DELETE',
+                                                'url' => ['/notes', $note->id],
+                                                'style' => 'display:inline'
+                                            ]) !!}
+                                            <input type="hidden" name="claim_id" value="{{$note->claim_id}}" />
+                                                {!! Form::button('<i class="fa fa-trash" aria-hidden="true"></i> Delete', array(
+                                                        'type' => 'submit',
+                                                        'class' => 'btn btn-danger btn-sm',
+                                                        'title' => 'Delete Ticket',
+                                                        'onclick'=>'return confirm("Confirm delete?")'
+                                                )) !!}
+                                            {!! Form::close() !!}
+                                            <a class="btn btn-info btn-sm" data-toggle="modal" data-target="#editNote-{{$note->id}}"><i class="fa fa-edit"></i></a>
+                                        </td>
+                                    </tr>
+                                    @php
+                                        $i++;
+                                    @endphp
+                                    <div class="modal fade" id="editNote-{{$note->id}}" role="dialog">
+                                        <div class="modal-dialog">
+
+                                        <!-- Modal content-->
+                                        <div class="modal-content">
+                                        <form action="{{route('update-note')}}" method="post" class="form-horizontal">
+                                                {{ csrf_field() }}
+                                            <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                <h4 class="modal-title">Edit Note Data</h4>
+                                            </div>
+
+                                            <div class="modal-body">
+
+                                                <div class="form-group">
+                                                        <textarea name="note" id="note" cols="30" rows="5" class="form-control">{{$note->note}}</textarea>
+                                                        <input type="hidden" name="note_id" value="{{$note->id}}">
+                                                        <input type="hidden" name="claim_id" value="{{$note->claim_id}}" />
+                                                </div>
+
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="submit" class="btn btn-info"><i class="fa fa-save"></i> Update</button>
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            </div>
+                                        </form>
+                                        </div>
+
+                                        </div>
+                                        </div>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                @else
+
+                @endif
+
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 </div>
 
@@ -1287,3 +1380,6 @@ $('#note').froalaEditor()
     document.forms['required_details'].elements['bank_details_id'].value="{{$claims->bank_details_id}}";
 </script>
 @endsection
+
+  <!-- Modal -->
+

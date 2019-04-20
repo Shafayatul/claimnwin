@@ -316,7 +316,11 @@ $(document).ready(function() {
 
     function next() {
         if (check_next_step()) {
-            step++;
+            if(step==4){
+                step=step+2;
+              }else{
+                step++;
+              }
             $('.single_step').hide();
             $("#step_" + step).show();
         }
