@@ -24,6 +24,7 @@ use File;
 use App\ClaimFile;
 use Auth;
 use App\SentEmail;
+use Webklex\IMAP\Client;
 
 class ClaimBackController extends Controller
 {
@@ -256,26 +257,38 @@ class ClaimBackController extends Controller
 
 
             /* connect to gmail */
-            $hostname = '{premium39.web-hosting.com}INBOX';
+            // $hostname = '{premium39.web-hosting.com}INBOX';
             // $hostnameSent = '{premium39.web-hosting.com}INBOX.Sent';
-            $username = $claims->cpanel_email;
-            $password = $claims->cpanel_password;
+            // $username = $claims->cpanel_email;
+            // $password = $claims->cpanel_password;
             //$username = 'yyyy075@freeflightclaim.com';
             //$password = 'fqw2gsvM';
 
             /* try to connect */
-            $inbox = imap_open($hostname,$username ,$password) or die('Cannot connect to Gmail: ' . imap_last_error());
+            // $inbox = imap_open($hostname,$username ,$password) or die('Cannot connect to Gmail: ' . imap_last_error());
 
             // $sent = imap_open($hostnameSent,$username ,$password) or die('Cannot connect to Gmail: ' . imap_last_error());
 
             /* grab emails */
-            $emails = imap_search($inbox,'ALL');
+            // $emails = imap_search($inbox,'ALL');
 
             // $sents = imap_search($sent,'ALL');
             $sents=SentEmail::where('claim_id',$id)->latest()->get();
 
+            $oClient = new Client([
+                'host'          => 'premium39.web-hosting.com',
+                'port'          => 993,
+                'encryption'    => 'ssl',
+                'validate_cert' => true,
+                'username'      => $claims->cpanel_email,
+                'password'      => $claims->cpanel_password,
+                'protocol'      => 'imap'
+            ]);
+            $oClient->connect();
+            $aFolder = $oClient->getFolders();
 
-        return view('claim.claimView',compact('sents','inbox','emails','notes', 'ticket_notes', 'ticket', 'claimFiles','affiliateComm','adminComm','NextStepData','claimStatusData','flightInfo','airline','departed_airport','destination_airport','reminders','claims','passengers','ittDetails','flightCount','passCount','claimsStatus','nextSteps','banks', 'affiliate_user'));
+
+        return view('claim.claimView',compact('aFolder','sents','notes', 'ticket_notes', 'ticket', 'claimFiles','affiliateComm','adminComm','NextStepData','claimStatusData','flightInfo','airline','departed_airport','destination_airport','reminders','claims','passengers','ittDetails','flightCount','passCount','claimsStatus','nextSteps','banks', 'affiliate_user'));
     }
 
     public function downloadClaimFile($id)
