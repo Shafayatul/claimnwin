@@ -20,7 +20,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-<form action="{{route('letter.before.email')}}" method="post">
+<form action="{{route('letter.before.email')}}" method="post" enctype="multipart/form-data">
         {{ csrf_field() }}
     <input type="hidden" name="claim_id" value="{{$claim->id}}" />
     <input type="hidden" name="airline_id" value="{{$claim->airline_id}}" />
@@ -30,7 +30,7 @@
                 $claim_type = ucwords(str_replace("_"," ",$claim->claim_table_type));
             @endphp
 
-    <div class="container" style="margin:20px auto;">
+    <div class="container">
         <div class="row">
             <div class="col-md-4">
                 <img src='{{asset("front_asset/img/logo.png")}}' alt="QR" title="QR" style="display:block;" data-auto-embed="attachment" />

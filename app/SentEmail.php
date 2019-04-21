@@ -25,7 +25,7 @@ class SentEmail extends Model
      *
      * @var array
      */
-    protected $fillable = ['body', 'claim_id'];
+    protected $fillable = ['body', 'claim_id','subject'];
 
-    
+
 }

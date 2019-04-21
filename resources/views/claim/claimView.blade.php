@@ -538,14 +538,39 @@
                         <table class="table table-bordered table-hover">
                             <thead>
                                 <th>Date</th>
-                                <th>Body</th>
+                                <th>Subject</th>
+                                <th>Action</th>
                             </thead>
                             <tbody>
                                 @if($sents)
-                                @foreach($sents as $sent)
+                                    @foreach($sents as $sent)
                                 <tr>
                                     <td>{{Carbon\Carbon::parse($sent->created_at)->format('d-m-Y')}}</td>
-                                    <td>{!! $sent->body !!}</td>
+                                    <td>{{$sent->subject}}</td>
+                                    <td>
+                                        <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#SentEmailShow-{{$sent->id}}">View Email</button>
+                                        <!-- Modal -->
+                                        <div id="SentEmailShow-{{$sent->id}}" class="modal fade" role="dialog">
+                                            <div class="modal-dialog modal-lg">
+
+                                            <!-- Modal content-->
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                <h4 class="modal-title">{{$sent->subject}}</h4>
+                                                </div>
+                                                    <div class="modal-body" style="display: block; overflow:scroll;">
+                                                         {!! $sent->body !!}
+                                                    </div>
+
+                                                <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+
+                                            </div>
+                                        </div>
+                                    </td>
                                 </tr>
                                 @endforeach
                                 @endif
@@ -566,25 +591,55 @@
             <div class="table-responsive">
                 <table class="table table-bordered table-hover">
                     <thead>
+                        <th>#</th>
                         <th>Date</th>
                         <th>Subject</th>
                         <th>Body</th>
+                        <th>Action</th>
                     </thead>
                     <tbody>
                         <?php
-                            if($emails) {
-                            rsort($emails);
-                            foreach($emails as $email_number) {
-
-                                $overview = imap_fetch_overview($inbox,$email_number,0);
-                                $message =  imap_fetchbody($inbox,$email_number,2);
+                            if($aFolder) {
+                            foreach($aFolder as $oFolder) {
+                                $aMessage = $oFolder->messages()->all()->get();
+                                foreach($aMessage as $oMessage){
+                                    $sub=$oMessage->getSubject();
+                                    $date = $oMessage->getDate();
+                                    $msg = $oMessage->getHtmlBody();
+                                    $longMsg=$oMessage->getBodies()['text']->content;
+                                    $lines=explode("\n", $longMsg);
                         ?>
                         <tr>
-                            <td>{{$overview[0]->date}}</td>
-                            <td>{{$overview[0]->subject}}</td>
-                            <td>{!! $message !!}</td>
+                            <td>{{$oMessage->message_no}}</td>
+                            <td>{{Carbon\Carbon::parse($date)->format('d-m-Y')}}</td>
+                            <td>{{$sub}}</td>
+                            <td>{{$lines['0']}}</td>
+                            <td>
+                            <button type="button" class="btn btn-info btn-sm" title="{{$oMessage->message_no}}" data-toggle="modal" data-target="#InboxEmailShow-{{$oMessage->message_no}}">View Email</button>
+                            <!-- Modal -->
+                            <div id="InboxEmailShow-{{$oMessage->message_no}}" class="modal fade" role="dialog">
+                                    <div class="modal-dialog modal-lg">
+
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title">{{$sub}}</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            {!! $msg !!}
+                                        </div>
+                                        <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+
+                                    </div>
+                                </div>
+                            </td>
                         </tr>
                         <?php
+                                }
                             }
                         }
                         ?>
