@@ -1350,7 +1350,36 @@ return '0'.'-'.$distance;
 
 
 
+    public function ajax_lost_luggage_calculation(Request $request){
+        $is_luggage_received        = $request->is_luggage_received;
+        $received_luggage_date      = strtotime($request->received_luggage_date);
+        $departure_date             = strtotime($request->departure_date);
+        $time_diff                  = time() - $departure_date;
 
+        if ($request->is_luggage_received==1) {
+            if ($time_diff > (2*365*24*60*60)) {
+                return '0';
+            }else{
+                $time_diff = $departure_date - $received_luggage_date;
+                if ($time_diff < (21*24*60*60)) {
+                    return '1350 EUR';
+                }else{
+                    if ($request->is_already_written_airline == 1) {
+                        return '1350 EUR';
+                    }else{
+                        return '1350 EUR(low cances but we can try)';
+                    }
+                }
+            }
+        }else{
+            if ($time_diff > (2*365*24*60*60)) {
+                return '0';
+            }else{
+                return '1350 EUR';
+            }
+        }
+        return '0';
+    }
 
 
 

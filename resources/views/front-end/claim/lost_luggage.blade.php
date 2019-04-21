@@ -323,17 +323,8 @@
                                                       STEP 5 STARTS NEW
                             .................................................................... -->
                             <div class="single_step" id="step_5" style="display:none;">
-                            <div class="common_row">
-                                <div class="form_h3 text-center">
-                                    <h3>CONGRATULATIONS!!!</h3>
-                                </div>
-                                <div class="form_show_message_paragraph">
-                                    <p>
-                                        Congratulations! you are eligible for a refund of expenses incurred.
-                                        You are eligible to a refund of up to 1350 EUR (Show on screen the amount
-                                        in the currency converted according to passengers IP) per passenger. In the case of luggage delays, airlines are only required to refund, if proof of purchases are submitted.
-                                    </p>
-                                </div>
+                            <div class="common_row result_from_ajax_calculation">
+
                             </div>
 
                             <div class="common_row">
@@ -984,6 +975,7 @@
 
 @section('footer-script')
   <script type="text/javascript">
+      var ajax_cal_url = "{{url('/ajax/calculate/lost_luggage_calculation')}}";
       auto_airport_complete();
       function auto_airport_complete(){
         $('.auto_airport_complete').autoComplete({

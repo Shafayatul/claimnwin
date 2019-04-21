@@ -253,10 +253,50 @@ $(document).ready(function() {
         check_next_step();
     });
 
+
+
+    function ajax_calculation(){
+
+      
+      var is_already_written_airline  = $("input[name='is_already_written_airline']:checked").val();
+      var is_luggage_received         = $("input[name='is_luggage_received']:checked").val();
+      var received_luggage_date       = $("input[name='received_luggage_date']").val();
+      var departure_date              = "";
+      $('input[name="departure_date[]"]').map(function(){
+        departure_date = this.value;
+      });
+      
+
+      $.ajax({
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        type: 'POST',
+        url: ajax_cal_url,
+        data: {
+          is_already_written_airline  : is_already_written_airline, 
+          is_luggage_received         : is_luggage_received,
+          received_luggage_date       : received_luggage_date,
+          departure_date              : departure_date
+        },
+        success: function (data){
+          console.log(data);
+
+          if (data == '0') {
+            $(".result_from_ajax_calculation").html('<div class="form_h3 text-center"><h3>SORRY!!!</h3></div><div class="form_show_message_paragraph"><p>Unfortunately, this flight is not eligible for compensation.Your claim details do not meet the criteria of Israeli or EU law to be compensated. Eligibility is calculated according the length of delay, air carriers and routes you have travelled on.</p></div>');
+          }else{
+            $(".result_from_ajax_calculation").html('<div class="form_h3 text-center"><h3>CONGRATULATIONS!!!</h3></div><div class="form_show_message_paragraph"><p>You are eligible for compensation. Your claim amount will be up to '+data+'</p></div>');
+          }
+        },
+        error: function(e) {
+          console.log(e);
+        }
+      });
+    }
+
     function next() {
         if (check_next_step()) {
             if(step==4){
-                step=step+2;
+                ajax_calculation();
+                step++;
               }else{
                 step++;
               }
