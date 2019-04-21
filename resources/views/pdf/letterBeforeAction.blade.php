@@ -33,7 +33,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-4">
-                <img src='{{asset("front_asset/img/logo.png")}}' alt="QR" title="QR" style="display:block;" data-auto-embed="attachment" />
+                <img src="http://webencoder.net/demo/logo.png" alt="QR" title="QR" style="display:block;" data-auto-embed="attachment" />
             </div>
             <div class="col-md-4"></div>
             <div class="col-md-4" style="text-align: right;">

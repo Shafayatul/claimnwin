@@ -99,7 +99,6 @@ class PdfController extends Controller
 
     public function letterBeforeActionEmail(Request $request)
     {
-
         $email_content = $request->letter_before_content;
         $id = $request->claim_id;
         $airline_id = $request->airline_id;
