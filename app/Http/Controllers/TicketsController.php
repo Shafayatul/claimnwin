@@ -158,16 +158,27 @@ class TicketsController extends Controller
      */
     public function destroy($id)
     {
-        Ticket::destroy($id);
+        // Ticket::destroy($id);
 
-        return redirect('tickets')->with('flash_message', 'Ticket deleted!');
+        // return redirect('tickets')->with('flash_message', 'Ticket deleted!');
+        $ticket = Ticket::findOrfail($id);
+        $ticket->status = 3;
+        $ticket->save();
+        return redirect()->back()->with('success', 'Ticket Closed!');
     }
 
+    public function reopenTicket($id)
+    {
+        $ticket = Ticket::findOrfail($id);
+        $ticket->status = 1;
+        $ticket->save();
+        return redirect()->back()->with('success', 'Ticket opened!');
+    }
     public function closeTicket($id)
     {
         $ticket = Ticket::findOrfail($id);
         $ticket->status = 3;
         $ticket->save();
-        return redirect('tickets')->with('success', 'Ticket Closed!');
+        return redirect()->back()->with('success', 'Ticket Closed!');
     }
 }
