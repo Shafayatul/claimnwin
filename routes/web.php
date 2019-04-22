@@ -126,6 +126,7 @@ Route::group(['middleware' => ['auth']], function() {
         Route::resource('notes', 'NotesController');
         Route::post('/save-note', 'NotesController@store')->name('save-note');
         Route::post('/update-note', 'NotesController@update')->name('update-note');
+        Route::post('/tickets/reopen/{id}', 'TicketsController@reopenTicket');
         Route::resource('tickets', 'TicketsController');
         Route::resource('ticket-notes', 'TicketNotesController');
         Route::post('/ticket-description', 'TicketNotesController@ticketDescriptionSave')->name('ticket-description');

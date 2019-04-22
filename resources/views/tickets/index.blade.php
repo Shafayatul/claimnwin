@@ -68,19 +68,38 @@
                                     </td>
                                     <td>
                                         <a href="{{ url('/tickets/' . $item->id) }}" title="View Ticket"><button class="btn btn-info btn-sm"><i class="fa fa-comment" aria-hidden="true"></i> Reply</button></a>
-                                        {{-- <a href="{{ url('/tickets/' . $item->id . '/edit') }}" title="Edit Ticket"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a> --}}
-                                        {!! Form::open([
-                                            'method'=>'DELETE',
-                                            'url' => ['/tickets', $item->id],
-                                            'style' => 'display:inline'
-                                        ]) !!}
-                                            {!! Form::button('<i class="fa fa-trash" aria-hidden="true"></i> Delete', array(
-                                                    'type' => 'submit',
-                                                    'class' => 'btn btn-danger btn-sm',
-                                                    'title' => 'Delete Ticket',
-                                                    'onclick'=>'return confirm("Confirm delete?")'
+                                        
+                                        @if($item->status != 3)
+                                            {!! Form::open([
+                                                'method'=>'DELETE',
+                                                'url' => ['/tickets', $item->id],
+                                                'style' => 'display:inline'
+                                            ]) !!}
+                                            {!! Form::button('<i class="fa fa-trash" aria-hidden="true"></i> Close', array(
+                                                        'type' => 'submit',
+                                                        'class' => 'btn btn-danger btn-sm',
+                                                        'title' => 'Delete Ticket',
+                                                        'onclick'=>'return confirm("Confirm close?")'
                                             )) !!}
-                                        {!! Form::close() !!}
+                                            {!! Form::close() !!}
+                                        @else
+                                            {!! Form::open([
+                                                'method'=>'POST',
+                                                'url' => url('/tickets/reopen/'.$item->id),
+                                                'style' => 'display:inline'
+                                            ]) !!}
+                                            {!! Form::button('<i class="fa fa-trash" aria-hidden="true"></i> Re-open', array(
+                                                        'type' => 'submit',
+                                                        'class' => 'btn btn-danger btn-sm',
+                                                        'title' => 'Re-open Ticket',
+                                                        'onclick'=>'return confirm("Confirm re-open?")'
+                                            )) !!}
+                                            {!! Form::close() !!}
+                                        @endif
+
+
+
+
                                         <a class="btn btn-info btn-sm" data-toggle="modal" data-target="#assignModal-{{$item->id}}"><i class="fa fa-tasks"></i></a>
                                          <!-- Modal -->
                                         <div class="modal fade" id="assignModal-{{$item->id}}" role="dialog">
