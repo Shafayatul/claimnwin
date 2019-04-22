@@ -1,0 +1,21 @@
+.common_row {
+  width: 1170px;
+  margin: 0 auto;
+  display: block;
+  overflow: hidden;
+}
+
+.first_child {
+  width: 50%;
+  float: left;
+}
+
+.second_child {
+  width: 50%;
+  float: right;
+  text-align: right;
+}
+
+.second_child_total_div:nth-child(4) {
+  padding-top: 30px;
+}
