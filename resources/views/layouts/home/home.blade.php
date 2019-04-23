@@ -365,7 +365,7 @@
         </div>
       </div>
       <div class="about_us_middle_content_button text-center">
-        <button type="button" name="button">CLAIM MY MONEY</button>
+        <a href="{{ url('/form-claim') }}"> <button type="button" name="button">CLAIM MY MONEY</button></a>
       </div>
     </div>
   </div>

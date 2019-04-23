@@ -31,7 +31,7 @@
             hassle of going it alone.</p>
           </div>
           <div class="about_us_top_content_button text-center">
-            <button type="button" name="button">START YOUR CLAIM</button>
+            <a href="{{ url('/form-claim') }}"><button type="button" name="button">START YOUR CLAIM</button></a>
           </div>
         </div>
       </div>
@@ -47,7 +47,7 @@
           </div>
         </div>
         <div class="about_us_middle_content_button text-center">
-          <button type="button" name="button">CLAIM MY MONEY</button>
+          <a href="{{ url('/form-claim') }}"><button type="button" name="button">CLAIM MY MONEY</button></a>
         </div>
       </div>
     </div>
