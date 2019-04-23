@@ -134,7 +134,7 @@
                           <h2>Talk To Us</h2>
                         </div>
                         <div class="child_div_content_paragraph">
-                          <p>080-xxx-xxxx</p>
+                          <p>+180 000 1234</p>
                         </div>
                       </div>
                     </div>
