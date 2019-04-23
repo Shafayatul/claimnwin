@@ -16,7 +16,7 @@
                 <p>Opportunities that will bring money to you and your customers.</p>
             </div>
             <div class="page_btn">
-                <a href="#" class="btn text-uppercase">contact us</a>
+                <a href="{{ url('/contact-us') }}" class="btn text-uppercase">contact us</a>
             </div>
         </div>
     </div>
