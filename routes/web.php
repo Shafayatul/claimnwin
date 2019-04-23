@@ -152,3 +152,6 @@ Route::resource('sent-emails', 'SentEmailsController');
 
 Route::get('404', ['as' => '404', 'uses' => 'ErrorController@notfound404']);
 Route::get('404', ['as' => '403', 'uses' => 'ErrorController@notfound403']);
+Route::post('/contacts/create','ContactsController@store');
+
+// Route::resource('contacts', 'ContactsController');

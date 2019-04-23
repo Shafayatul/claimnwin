@@ -31,7 +31,8 @@
             <div class="row">
               <div class="col-md-12">
                 <div class="contact_us_form">
-                  <form class="" action="index.html" method="post">
+                  <form class="" action="{{ url('contacts/create') }}" method="post">
+                    {{ csrf_field() }}
                     <div class="row" style="padding-bottom:15px;">
                       <div class="col-md-6 input_name">
                         <input type="text" name="name" placeholder="Your name (required)">
@@ -53,7 +54,7 @@
                     <div class="row">
                       <div class="col-md-12">
                         <div class="contact_us_form_button text-center">
-                          <button type="button" name="button">SUBMIT</button>
+                          <button type="submit" name="button">SUBMIT</button>
                         </div>
                       </div>
                     </div>
