@@ -466,6 +466,22 @@ nav {
   background: transparent !important;
 }
 
+#mainMenu a:hover {
+    -webkit-transform:scale(1.2);
+    transition-duration: 1s;
+
+}
+
+
+
+
+
+
+
+
+
+
+
 .country .dropdown-menu {
   min-width: 30px !important;
   width: 30px !important;

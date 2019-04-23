@@ -32,8 +32,8 @@
               <div class="home_top_header_title_ul_div">
                 <ul class="fa-ul">
                   <li> <div class="li_mother_div"> <div class="li_icon_div"><i class="fas fa-check-circle"></i></div><div class="li_text_div">Get up to €1300 for a cancelled, overbooked or delayed flight.</div></div></li>
-                  <li> <div class="li_mother_div"> <div class="li_icon_div"><i class="fas fa-check-circle"></i></div><div class="li_text_div">Get up to $3400 for a luggage issue.</div></div></li>
-                  <li> <div class="li_mother_div"> <div class="li_icon_div"><i class="fas fa-check-circle"></i></div><div class="li_text_div">Get up to $7000 for expenses you incurred as a result of your distrupted flight.</div></div></li>
+                  <li> <div class="li_mother_div"> <div class="li_icon_div"><i class="fas fa-check-circle"></i></div><div class="li_text_div">Get up to €3400 for a luggage issue.</div></div></li>
+                  <li> <div class="li_mother_div"> <div class="li_icon_div"><i class="fas fa-check-circle"></i></div><div class="li_text_div">Get up to €7000 for expenses you incurred as a result of your distrupted flight.</div></div></li>
                 </ul>
               </div>
             </div>
@@ -44,10 +44,12 @@
                 <form class="" action="index.html" method="post">
                   <div class="row">
                     <div class="col-md-4 col-xs-4" style="margin: 0px; padding: 0px;">
-                      <input class="common_input no_right_border" type="text" name="" value="" placeholder="Departed From">
+                      <input class="common_input no_right_border" type="text" name="" value=""
+                             placeholder="Departed From">
                     </div>
                     <div class="col-md-4 col-xs-4" style="margin: 0px; padding: 0px;">
-                      <input class="common_input" type="text" name="" value="" placeholder="Final Destination">
+                      <input class="common_input" type="text" name="" value=""
+                             placeholder="Final Destination">
                     </div>
                     <div class="col-md-4 col-xs-4" style="margin: 0px; padding: 0px;">
                       <button class="common_button" type="button" name="button">CHECK COMPENSATION</button>
