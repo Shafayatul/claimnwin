@@ -17,7 +17,8 @@
                 </p>
             </div>
             <div class="page_btn">
-                <a href="#" class="btn text-uppercase">sign up</a>
+                {{-- <a href="#" class="btn text-uppercase">sign up</a> --}}
+                <a href="{{route('user/signup')}}" class="btn text-uppercase">sign up</a>
             </div>
         </div>
     </div>
@@ -253,7 +254,7 @@
                     </p>
                 </div>
                 <div class="become_an_affiliate_btn">
-                    <a href="#" class="btn">BECOME AN AFFILIATE</a>
+                    <a href="{{route('user/signup')}}" class="btn">BECOME AN AFFILIATE</a>
                 </div>
             </div>
         </div>
