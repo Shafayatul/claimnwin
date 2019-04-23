@@ -60,6 +60,7 @@ class TicketsController extends Controller
         return view('tickets.my_tickets', compact('tickets'));
     }
 
+
     /**
      * Show the form for creating a new resource.
      *

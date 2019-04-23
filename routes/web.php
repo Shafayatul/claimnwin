@@ -133,6 +133,7 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get('/close-ticket/{id}', 'TicketsController@closeTicket');
         Route::post('/ticket-assign-user', 'TicketsController@ticketAssignUser')->name('ticket.user.assign');
         Route::get('/my-tickets','TicketsController@myTickets');
+        // Route::get('/contact-messages','TicketsController@contactMessages');
         Route::resource('flights', 'FlightsController');
         Route::get('/letter-before-action/{id}', 'PdfController@letterBeforeActionView');
         Route::get('/poa-pdf/{id}', 'PdfController@pdfView');
@@ -153,5 +154,7 @@ Route::resource('sent-emails', 'SentEmailsController');
 Route::get('404', ['as' => '404', 'uses' => 'ErrorController@notfound404']);
 Route::get('404', ['as' => '403', 'uses' => 'ErrorController@notfound403']);
 Route::post('/contacts/create','ContactsController@store');
+Route::get('/contact-messages','ContactsController@index');
+Route::get('/contact-show','ContactsController@index@show');
 
-// Route::resource('contacts', 'ContactsController');
+Route::resource('contacts', 'ContactsController');

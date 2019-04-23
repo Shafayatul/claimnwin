@@ -160,6 +160,7 @@
             @endhasrole
 
             <li><a href="{{url('/my-tickets')}}"><i class="fa fa-ticket-alt"></i> My Tickets</a></li>
+            <li><a href="{{url('/contact-messages')}}"><i class="fa fa-envelope"></i> Contact Messages</a></li>
 
             <li class="treeview">
                 <a href="#">
