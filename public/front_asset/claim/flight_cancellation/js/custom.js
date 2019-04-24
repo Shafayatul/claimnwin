@@ -106,6 +106,9 @@ $(document).ready(function() {
     function check_next_step() {
         console.log("check_next_step() func");
         if (step == 1) {
+            var final_destination_for_blade = $("input[name='final_destination']").val();
+            console.log(final_destination_for_blade);
+            document.getElementById("final_destination_data").innerHTML =final_destination_for_blade;
             $("#continue_1").removeClass('active_button');
             if (($("input[name='departed_from']").val() != "") && ($("input[name='final_destination']").val() != "") && ($("input[name='is_direct_flight']").is(':checked'))) {
                 if ($("input[name='is_direct_flight']:checked").val() == '1') {
@@ -125,6 +128,7 @@ $(document).ready(function() {
                 }
             }
         } else if (step == 2) {
+
             $("#continue_2").removeClass('active_button');
             if (($("input[name='total_delay']").is(':checked')) && ($("input[name='is_notify_before_forteen_days']").is(':checked')) && ($(".reason").val() != "")) {
                 $("#continue_2").addClass('active_button');
@@ -323,7 +327,7 @@ $(document).ready(function() {
       var final_destination = $("input[name='final_destination']").val();
       var selected_connection_iata_codes = $("input[name='selected_connection_iata_codes']:checked").val();
       var total_delay = $("input[name='total_delay']:checked").val();
-      
+
       var selected_cnt = 0;
       var loop_cnt = 0;
       $('input[name="flight_segment[]"]').map(function(){

@@ -33,11 +33,11 @@ class ClaimsController extends Controller
     public function __construct() {
         $this->europe_countries_code = ['at','be','bg','hr','cy','cz','dk','ee','fi','fr','de','gr','hu','ie','it','lv','lt','lu','mt','nl','pl','pt','ro','sk','si','es','se','gb','is','no','ch','tr','ua'];
         $this->europe_countries = ['austria', 'belgium', 'bulgaria', 'croatia', 'cyprus', 'czech republic', 'denmark', 'estonia', 'finland', 'france', 'germany', 'greece', 'hungary', 'ireland', 'italy', 'latvia', 'lithuania', 'luxembourg', 'malta', 'the netherlands', 'poland', 'portugal', 'romania', 'slovakia', 'slovenia', 'spain', 'sweden', 'united kingdom', 'iceland', 'norway', 'switzerland', 'turkey', 'ukraine'];
-        
+
     }
 
     public function randomName() {
-        
+
     }
     public function randomPassword() {
         $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
@@ -665,7 +665,7 @@ class ClaimsController extends Controller
             $all_files = $request->file('file_name');
             // $file1 = $file_name[1]['file'];
             $claim_id = $claim->id;
-            for($i=0; $i<count($all_files); $i++) {   
+            for($i=0; $i<count($all_files); $i++) {
                 $file = $all_files[$i];
 
                 $file_name = sha1(date('YmdHis') . str_random(30));
@@ -686,6 +686,10 @@ class ClaimsController extends Controller
             }
         }
 
+        $signature = $request->hidden_user_sign;
+        $imagedata = base64_decode($signature);
+        $file_name = 'uploads/sig/'.$claim->id.'.png';
+        file_put_contents($file_name,$imagedata);
 
         /**
         * Create custom email
@@ -723,6 +727,8 @@ class ClaimsController extends Controller
 
         $amount = $amount_and_distance[0];
 
+
+        // return 'success';
         return view('front-end.claim.success',compact('amount'));
 
     }
@@ -742,19 +748,19 @@ class ClaimsController extends Controller
 
         $distance = $this->distance($departed_from->latitude, $departed_from->longitude, $final_destination->latitude, $final_destination->longitude, 'K');
 
-        
+
 
         // stated from Europe
         if ((in_array(strtolower($departed_from->country), $this->europe_countries)) || (in_array(strtolower($departed_from->country), $this->europe_countries_code))) {
-            
+
             // europe to europe
             if ((in_array(strtolower($final_destination->country), $this->europe_countries)) || (in_array(strtolower($final_destination->country), $this->europe_countries_code))) {
-                
+
                 if ($total_delay == "less_than_3_hours") {
-                    
+
                   return '0';
                 }else{
-                    
+
                   if ($distance < 1500) {
                     return '250 EUR';
                   }elseif ($distance <= 3500) {
@@ -808,7 +814,7 @@ class ClaimsController extends Controller
           // started from israel
           }elseif ((strtolower($final_destination->country) == "il") || (strtolower($final_destination->country) == "israel") )  {
 
-            
+
 
             // israel to europe
             if ((in_array(strtolower($final_destination->country), $this->europe_countries)) || (in_array(strtolower($final_destination->country), $this->europe_countries_code))) {
@@ -868,11 +874,11 @@ class ClaimsController extends Controller
           // started from other country
           }else{
 
-            
+
 
             // other country to europe
             if ( (in_array(strtolower($final_destination->country), $this->europe_countries)) || (in_array(strtolower($final_destination->country), $this->europe_countries_code)) ) {
-              
+
               // europe airline
               if ( (in_array(strtolower($airline->country), $this->europe_countries)) || (in_array(strtolower($airline->country), $this->europe_countries_code)) ) {
                 if ($total_delay == "less_than_3_hours") {
@@ -916,7 +922,7 @@ class ClaimsController extends Controller
           return '0';
         }
     public function ajax_fight_cancellation_calculation(Request $request){
-      
+
         $total_delay = $request->total_delay;
         $departed_from_id = $this->get_airport_id_name_and_iata_code($request->departed_from);
         $final_destination_id = $this->get_airport_id_name_and_iata_code($request->final_destination);
@@ -1868,19 +1874,19 @@ return '0'.'-'.$distance;
 
         $distance = $this->distance($departed_from->latitude, $departed_from->longitude, $final_destination->latitude, $final_destination->longitude, 'K');
 
-        
+
 
         // stated from Europe
         if ((in_array(strtolower($departed_from->country), $this->europe_countries)) || (in_array(strtolower($departed_from->country), $this->europe_countries_code))) {
-            
+
             // europe to europe
             if ((in_array(strtolower($final_destination->country), $this->europe_countries)) || (in_array(strtolower($final_destination->country), $this->europe_countries_code))) {
-                
+
                 if ($total_delay == "less_than_3_hours") {
-                    
+
                   return '0'.'-'.$distance;
                 }else{
-                    
+
                   if ($distance < 1500) {
                     return '250 EUR'.'-'.$distance;
                   }elseif ($distance <= 3500) {
@@ -1934,7 +1940,7 @@ return '0'.'-'.$distance;
           // started from israel
           }elseif ((strtolower($final_destination->country) == "il") || (strtolower($final_destination->country) == "israel") )  {
 
-            
+
 
             // israel to europe
             if ((in_array(strtolower($final_destination->country), $this->europe_countries)) || (in_array(strtolower($final_destination->country), $this->europe_countries_code))) {
@@ -1994,11 +2000,11 @@ return '0'.'-'.$distance;
           // started from other country
           }else{
 
-            
+
 
             // other country to europe
             if ( (in_array(strtolower($final_destination->country), $this->europe_countries)) || (in_array(strtolower($final_destination->country), $this->europe_countries_code)) ) {
-              
+
               // europe airline
               if ( (in_array(strtolower($airline->country), $this->europe_countries)) || (in_array(strtolower($airline->country), $this->europe_countries_code)) ) {
                 if ($total_delay == "less_than_3_hours") {

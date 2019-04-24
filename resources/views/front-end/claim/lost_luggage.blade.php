@@ -7,6 +7,7 @@
 {{-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> --}}
 <link rel="stylesheet" type="text/css" href="{{ asset('front_asset/') }}/claim/lost_luggage/css/main.css">
 <!--===============================================================================================-->
+<link href="{{asset('signature/css/jquery.signaturepad.css')}}" rel="stylesheet">
 @endsection
 
 @section('content')
@@ -770,13 +771,15 @@
                                       <div class="panel panel-default" style="width: 300px; margin: 0 auto">
                                         <div class="panel-body center-text">
 
-                                          <div id="signArea" >
-                                            <h4 class="tag-ingo">Put signature below,</h4>
-                                            <div class="sig sigWrapper" style="height:auto; width:302px">
-                                              <div class="typed"></div>
-                                              <canvas class="sign-pad" id="sign-pad" width="300" height="100"></canvas>
+                                            <div id="signArea1" >
+                                                <h2 class="tag-ingo">Put Signature</h2>
+                                                <div class="sig sigWrapper" style="height:auto;">
+                                                    <div class="typed"></div>
+                                                    <canvas class="sign-pad" id="sign-pad1" width="300" height="100"></canvas>
+                                                    {{-- <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}"> --}}
+                                                    <input type="hidden" id="sig-1" name="hidden_user_sign">
+                                                </div>
                                             </div>
-                                          </div>
                                           {{-- <button type="button" class="btn btn-sm btn-success" id="signature_clear">Clear</button> --}}
                                           {{-- <button id="btnSaveSign" type="button" class="btn btn-xs btn-success" style="margin-top: 2px">Save Signature</button> --}}
                                         </div>
@@ -784,7 +787,7 @@
 
                                         <div class="form-check">
                                             <label>
-                                                <input type="checkbox" name="is_signed_permission"> <span class="label-text">Write your signature below as it appears on your ID. It's required by airlines to collect the compensation for you. By signing you agree with
+                                                <input type="checkbox" name="is_signed_permission" id="no-use"> <span class="label-text">Write your signature below as it appears on your ID. It's required by airlines to collect the compensation for you. By signing you agree with
                                                     the Assignment Form and Price List</span>
                                             </label>
                                         </div>
@@ -1027,5 +1030,36 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
 <script src="{{('front_asset/claim/lost_luggage/js/custom.js')}}"></script>
+
+<script>
+    $(document).ready(function() {
+            $('#signArea1').signaturePad({drawOnly:true, drawBezierCurves:true, lineTop:90});
+            });
+
+        $(document).ready(function(e){
+
+
+            $("#no-use").click(function(){
+
+                html2canvas([document.getElementById('sign-pad1')], {
+                    onrendered: function (canvas) {
+                        var canvas_img_data = canvas.toDataURL('image/png');
+                        var img_data = canvas_img_data.replace(/^data:image\/(png|jpg);base64,/, "");
+                        console.log(img_data);
+                        $("#sig-1").val(img_data);
+                    }
+                });
+
+            });
+
+        });
+        </script>
+
+     <script src="{{asset('signature/js/numeric-1.2.6.min.js')}}"></script>
+     <script src="{{asset('signature/js/bezier.js')}}"></script>
+     <script src="{{asset('signature/js/jquery.signaturepad.js')}}"></script>
+
+     <script type='text/javascript' src="https://github.com/niklasvh/html2canvas/releases/download/0.4.1/html2canvas.js"></script>
+     <script src="{{asset('signature/js/json2.min.js')}}"></script>
 
 @endsection

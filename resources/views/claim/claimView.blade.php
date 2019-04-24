@@ -510,6 +510,12 @@
                                     @endif
                                 </td>
                             </tr>
+                            <tr class="odd gradeX">
+                                <th>Signature</th>
+                                <td>
+                                    <img src="{{asset('uploads/sig/'.$claim->id.'.png')}}" alt="">
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
