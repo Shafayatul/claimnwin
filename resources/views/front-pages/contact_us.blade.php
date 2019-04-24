@@ -14,6 +14,19 @@
   <div class="contact_us_main_content">
     <div class="container">
       <div class="row">
+        <div class="result_messgae" style="width:75%; margin: 0 auto;">
+          <h1 style="font-size: 20px; margin-bottom: 20px;" class="text-success text-center">
+            <?php
+              $message = Session::get('flash_message');
+              if ($message)
+              {
+                echo $message;
+                Session::put('message', null);
+              }
+
+            ?>
+          </h1>
+        </div>
         <div class="col-md-6">
           <div class="contact_us_main_content_left_div">
             <div class="row">
