@@ -48,20 +48,20 @@
                     {{ csrf_field() }}
                     <div class="row" style="padding-bottom:15px;">
                       <div class="col-md-6 input_name">
-                        <input type="text" name="name" placeholder="Your name (required)">
+                        <input type="text" name="name" placeholder="Your name (required)" required>
                       </div>
                       <div class="col-md-6">
-                        <input type="email" name="email" placeholder="Your email (required)">
+                        <input type="email" name="email" placeholder="Your email (required)" required>
                       </div>
                     </div>
                     <div class="row" style="padding-bottom:15px;">
                       <div class="col-md-12">
-                        <input type="text" name="subject" placeholder="Subject">
+                        <input type="text" name="subject" placeholder="Subject" required>
                       </div>
                     </div>
                     <div class="row" style="padding-bottom:15px;">
                       <div class="col-md-12">
-                        <textarea name="message" rows="8" cols="80" placeholder="your message"></textarea>
+                        <textarea name="message" rows="8" cols="80" placeholder="your message" required></textarea>
                       </div>
                     </div>
                     <div class="row">
