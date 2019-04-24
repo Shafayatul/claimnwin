@@ -33,9 +33,8 @@
                 <span class="omb_spanOr">or</span>
             </div>
         </div>
-
     @include('layouts.includes.partial.alert')
-    <form class="omb_loginForm" action="{{route('user/signup')}}" autocomplete="off" method="POST">
+    <form class="omb_loginForm" action="{{url('/user/signup')}}" autocomplete="off" method="post">
         @csrf
             <div class="row">
                 <div class="col-xs-12 col-sm-12">
