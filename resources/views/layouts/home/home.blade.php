@@ -55,7 +55,7 @@
                              placeholder="Final Destination">
                     </div>
                     <div class="col-md-4 col-xs-4" style="margin: 0px; padding: 0px;">
-                      <button class="common_button" type="button" name="button">CHECK COMPENSATION</button>
+                      <button class="common_button set_cache_claim" type="button" name="button">CHECK COMPENSATION</button>
                     </div>
                   </div>
                 </form>
@@ -434,6 +434,30 @@
             }
         });
       }
+
+
+      $('.set_cache_claim').click(function(){
+        var airport1 = '';
+        var airport2 = '';
+        var airport_cnt = 1; 
+        $('.auto_airport_complete').each(function(){
+          if (airport_cnt == 1) {
+            airport1 = $(this).val();
+          }else{
+            airport2 = $(this).val();
+          }
+          airport_cnt++;
+        });
+
+        if ((airport1=='') || (airport2=='')) {
+          alert("Please input both airports");
+        }else{
+          window.localStorage.setItem('airport1', airport1);
+          window.localStorage.setItem('airport2', airport2);
+          window.location.href = "{{url('/form-claim')}}";
+        }
+
+      });
 
 
 

@@ -59,7 +59,6 @@ Route::get('/user/signup/{encrypt_user_id?}','UserPanelController@user_signup')-
 Route::get('/user/login','UserPanelController@user_login')->name('user/login');
 
 
-
 /* ----- Only Logged User ----- */
 Route::group(['middleware' => ['auth']], function() {
 
