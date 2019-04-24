@@ -234,7 +234,7 @@
                             <div class="common_row show_on_what_happened_to_the_flight_selected">
                               <div class="parent_div">
                                 <div class="form_h3">
-                                  <h3>What was the total delay once you arrived at Tel Aviv-Yafo (TLV)?</h3>
+                                  <h3>What was the total delay once you arrived at <span id="final_destination_data"></span> </h3>
                                 </div>
                               </div>
                               <div class="parent_div">

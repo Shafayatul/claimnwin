@@ -68,6 +68,8 @@ $(document).ready(function(){
       console.log($(".flight_code_"+serial).val(iata_code));
     });
 
+
+
     function itinerary_details_for_your_disrupted_flight_html(type){
 
       if (type=='single') {
@@ -140,6 +142,7 @@ $(document).ready(function(){
 
     function check_next_step(){
       console.log("check_next_step() func");
+
       if (step==1) {
 
         $("#continue_1").removeClass('active_button');
@@ -171,10 +174,15 @@ $(document).ready(function(){
 
       }else if (step == 2) {
 
+        var final_destination_for_blade = $("input[name='final_destination']").val();
+        console.log(final_destination_for_blade);
+        document.getElementById("final_destination_data").innerHTML =final_destination_for_blade;
+
         $("#continue_2").removeClass('active_button');
         if (($("input[name='what_happened_to_the_flight']").is(':checked')) && ($("input[name='total_delay']").is(':checked') ) && ($(".reason").val() != "" )  ) {
           console.log($(".reason").val());
           $("#continue_2").addClass('active_button');
+
           return true;
         }
 
@@ -401,7 +409,7 @@ $(document).ready(function(){
       var final_destination = $("input[name='final_destination']").val();
       var selected_connection_iata_codes = $("input[name='selected_connection_iata_codes']:checked").val();
       var total_delay = $("input[name='total_delay']:checked").val();
-      
+
       var selected_cnt = 0;
       var loop_cnt = 0;
       $('input[name="flight_segment[]"]').map(function(){
