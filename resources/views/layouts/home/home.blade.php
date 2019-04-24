@@ -5,6 +5,9 @@
 <link  href="{{asset('front_asset/front_pages_asset/css/slick.css')}}" rel="stylesheet">
 <link  href="{{asset('front_asset/front_pages_asset/css/slick-theme.css')}}" rel="stylesheet">
 <link  href="{{asset('front_asset/front_pages_asset/css/home.css')}}" rel="stylesheet">
+{{-- autocomplete --}}
+<link href="{{asset('autocomplete/jquery.auto-complete.css')}}" rel="stylesheet">
+
 
 @endsection
 
@@ -44,11 +47,11 @@
                 <form class="" action="index.html" method="post">
                   <div class="row">
                     <div class="col-md-4 col-xs-4" style="margin: 0px; padding: 0px;">
-                      <input class="common_input no_right_border" type="text" name="" value=""
+                      <input class="common_input no_right_border auto_airport_complete" type="text" name="" value=""
                              placeholder="Departed From">
                     </div>
                     <div class="col-md-4 col-xs-4" style="margin: 0px; padding: 0px;">
-                      <input class="common_input" type="text" name="" value=""
+                      <input class="common_input auto_airport_complete" type="text" name="" value=""
                              placeholder="Final Destination">
                     </div>
                     <div class="col-md-4 col-xs-4" style="margin: 0px; padding: 0px;">
@@ -378,31 +381,64 @@
 
 @section('footer-script')
   <script src="{{asset('front_asset/front_pages_asset/js/slick.js')}}"></script>
+  <script src="{{asset('autocomplete/jquery.auto-complete.js')}}"></script>
   <script type="text/javascript">
     $(document).ready(function(){
+
+
+      if ($( window ).width() > 767) {
+        $(".slider-area").slick({
+            dots: true,
+            infinite: true,
+            slidesToShow: 4,
+            slidesToScroll: 1
+
+          });
+      }else {
+        $(".slider-area").slick({
+            dots: true,
+            infinite: true,
+            slidesToShow: 1,
+            slidesToScroll: 1
+
+          });
+      }
+
+
       if ($( window ).width() < 360) {
         $('.clearfix_display_none').show();
       }else {
         $('.clearfix_display_none').hide();
       }
+
+      auto_airport_complete();
+      function auto_airport_complete(){
+        $('.auto_airport_complete').autoComplete({
+            minChars: 3,
+            source: function(term, suggest){
+                term = term.toLowerCase();
+                var choices = {!! $airport_object !!};
+                var suggestions = [];
+                for (i=0;i<choices.length;i++)
+                    if (~(choices[i][0]+' '+choices[i][1]).toLowerCase().indexOf(term)) suggestions.push(choices[i]);
+                suggest(suggestions);
+            },
+            renderItem: function (item, search){
+                search = search.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+                var re = new RegExp("(" + search.split(' ').join('|') + ")", "gi");
+                return '<div class="autocomplete-suggestion" data-langname="'+item[0]+'" data-lang="'+item[1]+'" data-val="'+search+'"> '+item[0].replace(re, "<b>$1</b>")+'</div>';
+            },
+            onSelect: function(e, term, item){
+                // console.log('Item "'+item.data('langname')+' ('+item.data('lang')+')" selected by '+(e.type == 'keydown' ? 'pressing enter or tab' : 'mouse click')+'.');
+                $(':focus').val(item.data('langname')+' ('+item.data('lang')+')').attr('iata-code',item.data('lang'));
+            }
+        });
+      }
+
+
+
     });
-    if ($( window ).width() > 767) {
-      $(".slider-area").slick({
-          dots: true,
-          infinite: true,
-          slidesToShow: 4,
-          slidesToScroll: 1
 
-        });
-    }else {
-      $(".slider-area").slick({
-          dots: true,
-          infinite: true,
-          slidesToShow: 1,
-          slidesToScroll: 1
-
-        });
-    }
 
   </script>
 @endsection
