@@ -367,9 +367,13 @@
           </div>
         </div>
       </div>
-      <div class="about_us_middle_content_button text-center">
-        <a href="{{ url('/form-claim') }}"> <button type="button" name="button">CLAIM MY MONEY</button></a>
-      </div>
+        <a href="{{ url('/form-claim') }}">
+          <div class="about_us_middle_content_button text-center">
+
+          <button type="button" name="button">CLAIM MY MONEY</button>
+
+        </div>
+        </a>
     </div>
   </div>
   <!-- Free Process div ends -->
@@ -439,7 +443,7 @@
       $('.set_cache_claim').click(function(){
         var airport1 = '';
         var airport2 = '';
-        var airport_cnt = 1; 
+        var airport_cnt = 1;
         $('.auto_airport_complete').each(function(){
           if (airport_cnt == 1) {
             airport1 = $(this).val();
