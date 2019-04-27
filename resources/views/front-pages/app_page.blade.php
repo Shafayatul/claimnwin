@@ -43,7 +43,7 @@
         <div class="container">
             <h1 class="fw-5">Get compensation when your travel plans don’t go as planned.</h1>
             <p class="fw-4">If you’ve been on a delayed, cancelled, or diverted flight in the last three years, the airlines might owe you money for your troubles. Check with Claim’N Win to see if your flight qualifies for compensation.</p>
-            <a href="{{ url('/form-claim') }}">Check your compensation</a>
+            <a href="{{ url('/user-home') }}">Check your compensation</a>
         </div><!-- /.cnotainer -->
     </div><!-- /.inner-banner -->
 

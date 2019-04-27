@@ -56,5 +56,5 @@ class FrontsController extends Controller
   public function formClaim()
   {
     return view('front-pages.form_claim');
-  }
+  }  
 }

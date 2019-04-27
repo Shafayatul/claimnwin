@@ -54,9 +54,9 @@ Route::get('/delay-luggage','ClaimsController@delay_luggage')->name('delay-lugga
 Route::get('/lost-luggage','ClaimsController@lost_luggage')->name('lost-luggage');
 Route::get('/denied-boarding','ClaimsController@denied_boarding')->name('denied-boarding');
 // signup and login
+Route::post('/user/signup','UserPanelController@userSignup');
 Route::get('/user/signup/{encrypt_user_id?}','UserPanelController@user_signup')->name('user/signup');
 Route::get('/user/login','UserPanelController@user_login')->name('user/login');
-
 
 
 /* ----- Only Logged User ----- */
@@ -89,7 +89,7 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get('/reminder-status-markasdone/{id}', 'RemindersController@reminderStatusMarkasdone');
         Route::get('socialauth/{provider}','SocialAuthController@redirectToProvider');
         Route::get('socialauth/{provider}/callback','SocialAuthController@handleProviderCallback');
-        Route::post('user/signup','UserPanelController@userSignup')->name('user/signup');
+
         Route::post('/update-password', 'UsersController@update_password');
         Route::get('/update-password', 'UsersController@show_update_password');
         Route::get('/admin-user',  'AdminsController@create');

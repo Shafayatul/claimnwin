@@ -77,15 +77,9 @@
                         <p>© 2018 Claim Win | All Rights Reserved.</p>
                     </div><!-- /.col-md-6 -->
                     <div class="col-md-6 text-right">
-                        <a href="#">
-                            <img src="{{asset('front_asset/')}}/img/add/01.png" alt="Add">
-                        </a>
-                        <a href="#">
-                            <img src="{{asset('front_asset/')}}/img/add/02.png" alt="Add">
-                        </a>
-                        <a href="#">
-                            <img src="{{asset('front_asset/')}}/img/add/03.png" alt="Add">
-                        </a>
+                        <img src="{{asset('front_asset/')}}/img/add/01.png" alt="Add">
+                        <img src="{{asset('front_asset/')}}/img/add/02.png" alt="Add">
+                        <img src="{{asset('front_asset/')}}/img/add/03.png" alt="Add">
                     </div><!-- /.col-md-6 -->
                 </div><!-- /.row -->
             </div><!-- /.container -->
