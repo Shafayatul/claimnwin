@@ -52,9 +52,9 @@
                 <li class="nav-item claim_options_ul_li">
                     <a class="nav-link text-center" id="claim-details-tab" data-toggle="tab" href="#claim-details" role="tab" aria-controls="claim-details" aria-selected="false"><i class="fas fa-bolt"></i> Claim details</a>
                 </li>
-                <li class="nav-item claim_options_ul_li">
+                {{-- <li class="nav-item claim_options_ul_li">
                     <a class="nav-link text-center" id="message-tab" data-toggle="tab" href="#message" role="tab" aria-controls="message" aria-selected="false"><i class="far fa-comment-alt"></i> Message</a>
-                </li>
+                </li> --}}
                 <li class="nav-item claim_options_ul_li">
                     <a class="nav-link text-center" id="document-tab" data-toggle="tab" href="#document" role="tab" aria-controls="document" aria-selected="false"><i class="far fa-file-alt"></i> Document</a>
                 </li>
@@ -278,14 +278,14 @@
         </div> --}}
     </div>
 </div>
-<div class="tab-pane fade" id="message" role="tabpanel" aria-labelledby="message-tab">
+{{-- <div class="tab-pane fade" id="message" role="tabpanel" aria-labelledby="message-tab">
     <div class="wrapper">
 
 
 
 
     </div>
-</div>
+</div> --}}
 <div class="tab-pane fade" id="document" role="tabpanel" aria-labelledby="document-tab">
     <div class="wrapper">
         <div class="parent_div">
@@ -293,14 +293,14 @@
                 {{ csrf_field() }}
                 <div class="row justify-content-center">
                     <div class="col-md-6 text-center">
-                        <input type="text" class="common_input change_placeholder" id="" name="user_upload_file_name" placeholder="File Name">
+                        <input type="text" class="common_input change_placeholder" id="" name="user_upload_file_name" placeholder="File Name" required="required">
                     </div>
 
                     <div class="col-md-6">
                         <div class="document_submit_div text-center">
                             <div class="input-file-container">
                                 <input type="hidden" name="claim_id" value="{{ $claims->id }}">
-                                <input class="input-file" id="my-file" name="file_name" type="file">
+                                <input class="input-file" id="my-file" name="file_name" type="file" required="required">
                                 <label tabindex="0" for="my-file" class="input-file-trigger">Choose Document</label>
                             </div>
                             <p class="file-return"></p>
