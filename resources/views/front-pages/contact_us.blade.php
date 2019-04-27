@@ -66,9 +66,9 @@
                     </div>
                     <div class="row">
                       <div class="col-md-12">
-                        <div class="contact_us_form_button text-center">
-                          <button type="submit" name="button">SUBMIT</button>
-                        </div>
+                          <div class="contact_us_form_button text-center">
+                            <button type="submit" name="button">SUBMIT</button>
+                          </div>
                       </div>
                     </div>
                   </form>
