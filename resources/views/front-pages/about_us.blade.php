@@ -30,9 +30,11 @@
             receive all of the money you are entitled to and we will save you the time and
             hassle of going it alone.</p>
           </div>
-          <div class="about_us_top_content_button text-center">
-            <a href="{{ url('/form-claim') }}"><button type="button" name="button">START YOUR CLAIM</button></a>
-          </div>
+            <a href="{{ url('/form-claim') }}">
+              <div class="about_us_top_content_button text-center">
+                <button type="button" name="button">START YOUR CLAIM</button>
+              </div>
+            </a>
         </div>
       </div>
     </div>
@@ -46,9 +48,11 @@
             </div>
           </div>
         </div>
-        <div class="about_us_middle_content_button text-center">
-          <a href="{{ url('/form-claim') }}"><button type="button" name="button">CLAIM MY MONEY</button></a>
-        </div>
+          <a href="{{ url('/form-claim') }}">
+            <div class="about_us_middle_content_button text-center">
+              <button type="button" name="button">CLAIM MY MONEY</button>
+            </div>
+          </a>
       </div>
     </div>
     <div class="about_us_bottom_content">
