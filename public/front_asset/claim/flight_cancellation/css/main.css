@@ -60,6 +60,14 @@
     border: 1px solid #8dac2d;
   }
 
+  #signArea1 h2 {
+    margin-bottom: 20px;
+  }
+
+  .sigWrapper {
+    width: 302px !important;
+  }
+
   /*New CSS for missed connection ends*/
 
 
