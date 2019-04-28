@@ -772,7 +772,7 @@
                                         <div class="panel-body center-text">
 
                                             <div id="signArea1" >
-                                                <h2 class="tag-ingo">Put Signature</h2>
+                                                <h2 class="tag-ingo text-center">Put Signature</h2>
                                                 <div class="sig sigWrapper" style="height:auto;">
                                                     <div class="typed"></div>
                                                     <canvas class="sign-pad" id="sign-pad1" width="300" height="100"></canvas>
