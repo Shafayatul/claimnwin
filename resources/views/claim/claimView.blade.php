@@ -128,12 +128,16 @@
                                                                         <th>Passenger Representative</th>
                                                                         <td>Claimnwins</td>
                                                                     </tr>
-                                                                    @foreach($passengers as $passenger)
-                                                                    <tr class="odd gradeX">
+
+                                                                    {{-- <tr class="odd gradeX">
                                                                         <th>Passenger Full Name</th>
-                                                                        <td>{{$passenger->first_name.' '.$passenger->last_name}}</td>
-                                                                    </tr>
-                                                                    <tr class="odd gradeX">
+                                                                        @foreach($passengers as $passenger)
+                                                                        @if($loop->first)
+                                                                            <td>{{$passenger->first_name.' '.$passenger->last_name}}</td>
+                                                                        @endif
+                                                                    @endforeach
+                                                                    </tr> --}}
+                                                                    {{-- <tr class="odd gradeX">
                                                                         <th>Passenger Email</th>
                                                                         <td>{{$passenger->email}}</td>
                                                                     </tr>
@@ -149,8 +153,7 @@
                                                                             {{$passenger->booking_refernece}}
                                                                             @endif
                                                                         </td>
-                                                                    </tr>
-                                                                    @endforeach
+                                                                    </tr> --}}
                                                                     <tr class="odd gradeX">
                                                                         <th>Claim Create Date</th>
                                                                         <td>{{Carbon\Carbon::parse($claims->created_at)->format('d-m-Y')}}</td>
@@ -279,14 +282,14 @@
     <th>Number of passengers:</th>
     <td>{{$passCount}}</td>
 </tr>
-<tr class="odd gradeX">
+{{-- <tr class="odd gradeX">
     <th>Passengers Name</th>
     <td>
         @foreach($passengers as $passenger)
         {{$passenger->first_name.' '.$passenger->last_name}}
         @endforeach
     </td>
-</tr>
+</tr> --}}
 <tr class="odd gradeX">
     <th>What Happened To The Flight?</th>
     <td>{{$claims->what_happened_to_the_flight}}</td>
