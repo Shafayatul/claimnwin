@@ -109,7 +109,7 @@ class NotesController extends Controller
         $claim_id = $request->claim_id;
 
         $note = Note::find($id);
-        $note->note             = $request->note;
+        $note->note   = $request->note;
         $note->save();
 
         return redirect('/claim-view/'.$claim_id)->with(['success'=>'Note Updated!']);

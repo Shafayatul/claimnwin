@@ -26,6 +26,7 @@ use Auth;
 use App\SentEmail;
 use Webklex\IMAP\Client;
 use App\Expense;
+use App\affiliate_notes;
 
 class ClaimBackController extends Controller
 {
@@ -291,7 +292,8 @@ class ClaimBackController extends Controller
             $aFolder = $oClient->getFolders();
             // $aFolder = "";
             $expanses = Expense::where('claim_id',$id)->get();
-        return view('claim.claimView',compact('expanses','aFolder','sents','notes', 'ticket_notes', 'ticket', 'claimFiles','affiliateComm','adminComm','NextStepData','claimStatusData','flightInfo','airline','departed_airport','destination_airport','reminders','claims','passengers','ittDetails','flightCount','passCount','claimsStatus','nextSteps','banks', 'affiliate_user'));
+            $affiliateNotes = affiliate_notes::where('claim_id',$id)->get();
+        return view('claim.claimView',compact('affiliateNotes','expanses','aFolder','sents','notes', 'ticket_notes', 'ticket', 'claimFiles','affiliateComm','adminComm','NextStepData','claimStatusData','flightInfo','airline','departed_airport','destination_airport','reminders','claims','passengers','ittDetails','flightCount','passCount','claimsStatus','nextSteps','banks', 'affiliate_user'));
     }
 
     public function downloadClaimFile($id)
@@ -356,6 +358,7 @@ class ClaimBackController extends Controller
         $claim->admin_commision = $request->admin_commision;
         $claim->additional_details_for_lba = $request->additional_details_for_lba;
         $claim->amount = $request->amount;
+        $claim->received_amount = $request->received_amount;
         $claim->save();
         return redirect('/claim-view/'.$claim_id)->with('success','Required Details Updated');
     }
@@ -464,6 +467,32 @@ class ClaimBackController extends Controller
         $airport = Airport::whereIn('id', $necessary_airport_id_array)->pluck('name','id');
         $airline = Airline::whereIn('id', $necessary_airline_ids)->pluck('name','id');
         return view('claim.manage_claim',compact('claims','airport', 'airline', 'passenger', 'claim_and_airline_array'));
+    }
+
+    public function affiliateNoteAdd(Request $request)
+    {
+       $affiliateNote = new affiliate_notes;
+       $affiliateNote->claim_id = $request->claim_id;
+       $affiliateNote->affiliate_note = $request->affiliate_note;
+       $affiliateNote->save();
+       return redirect('/claim-view/'.$request->claim_id)->with('success','Note Add Success!');
+    }
+
+    public function affiliateNoteUpdate(Request $request)
+    {
+        $id = $request->affiliate_note_id;
+        $claim_id = $request->claim_id;
+        $affiliateNote = affiliate_notes::where('id',$id)->first();
+        $affiliateNote->affiliate_note = $request->affiliate_note;
+        $affiliateNote->save();
+        return redirect('/claim-view/'.$claim_id)->with('success','Note Update Success!');
+    }
+
+    public function affiliateNoteDelete(Request $request, $id)
+    {
+        $claim_id = $request->claim_id;
+        affiliate_notes::destroy($id);
+        return redirect('/claim-view/'.$claim_id)->with('success','Affiliate Note Delete!');
     }
 
 

@@ -71,6 +71,7 @@
                         <li role="presentation"><a href="#affiliate-info" role="tab" id="affiliate-info-tab" data-toggle="tab" aria-controls="affiliate-info" aria-expanded="true"><i class="fa fa-bell" aria-hidden="true"></i> Affiliate Info</a></li>
                         <li role="presentation"><a href="#ticket-info" role="tab" id="ticket-info-tab" data-toggle="tab" aria-controls="ticket-info" aria-expanded="true"><i class="fas fa-ticket-alt" aria-hidden="true"></i> Ticket Info</a></li>
                         <li role="presentation"><a href="#note" role="tab" id="note-tab" data-toggle="tab" aria-controls="note" aria-expanded="true"><i class="fas fa-ticket-alt" aria-hidden="true"></i> Note Info</a></li>
+                        <li role="presentation"><a href="#affiliate-note" role="tab" id="affiliate-note-tab" data-toggle="tab" aria-controls="affiliate-note" aria-expanded="true"><i class="fas fa-ticket-alt" aria-hidden="true"></i> Affiliate Note Info</a></li>
                         <li role="presentation"><a href="#expanse" role="tab" id="expanse-tab" data-toggle="tab" aria-controls="expanse" aria-expanded="true"><i class="fas fa-money-bill-alt" aria-hidden="true"></i> Expanse Info</a></li>
                     </ul>
                     <div id="myTabContent" class="tab-content">
@@ -95,6 +96,9 @@
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" data-toggle="tab" href="#claim_eligib" role="tab" aria-controls="settings">Claim Eligibility</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" data-toggle="tab" href="#passengers" role="tab" aria-controls="settings">Passengers</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" data-toggle="tab" href="#claim_user_info" role="tab" aria-controls="claim_user_info">User Others Info</a>
@@ -443,6 +447,68 @@
 </div>
 <!-- /.col-lg-12 -->
 </div>
+</div>
+
+<div class="tab-pane" id="passengers" role="tabpanel">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-comments"></i> Passengers
+                </div>
+                    <!-- /.panel-heading -->
+                <div class="panel-body">
+                    @if($passengers)
+                    <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+                        <thead>
+                            <th>Claim Id</th>
+                            <th>Passengers First Name</th>
+                            <th>Passengers Last Name</th>
+                            <th>Address</th>
+                            <th>Post Code</th>
+                            <th>Date Of Birth</th>
+                            <th>Email</th>
+                            <th>Is Booking Referance?</th>
+                            <th>Booking Referance</th>
+                        </thead>
+                        <tbody>
+                            @foreach($passengers as $all_passenger)
+                            <tr>
+                                <td>{{$all_passenger->claim_id}}</td>
+                                <td>{{$all_passenger->first_name}}</td>
+                                <td>{{$all_passenger->last_name}}</td>
+                                <td>{{$all_passenger->address}}</td>
+                                <td>{{$all_passenger->post_code}}</td>
+                                <td>{{Carbon\Carbon::parse($all_passenger->date_of_birth)->format("d-m-Y")}}</td>
+                                <td>{{$all_passenger->email}}</td>
+                                <td>
+                                    @if($all_passenger->is_booking_reference == 0)
+                                    <span style="color: red;">No</span>
+                                    @else
+                                    <span style="color: green;">Yes</span>
+                                    @endif
+                                </td>
+                                <td>
+                                    @if($all_passenger->is_booking_reference == 0)
+
+                                    @else
+                                    {{$all_passenger->booking_refernece}}
+                                    @endif
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                    @else
+                        <h3 class="text-center">No Passengers Found.</h3>
+                    @endif
+                </div>
+    <!-- /.panel-body -->
+            </div>
+    <!-- /.panel -->
+        </div>
+    <!-- /.col-lg-12 -->
+    </div>
 </div>
 
 <div class="tab-pane" id="claim_user_info" role="tabpanel">
@@ -1009,6 +1075,12 @@
                     <input type="text" class="form-control" name="amount" id="" value="{{$claims->amount}}">
                 </div>
             </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label> Received Amount </label>
+                    <input type="text" class="form-control" name="received_amount" id="" value="{{$claims->received_amount}}">
+                </div>
+            </div>
             <div class="clearfix"></div>
         </div>
 
@@ -1314,18 +1386,126 @@
 </div>
 
 <div role="tabpanel" class="tab-pane" id="note" aria-labelledby="note-tab" style="margin-top: 15px;">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <i class="fa fa-tasks"></i> Note Info
+                    </div>
+                    <div class="panel-body">
+                    <form action="{{url('/save-note')}}" method="post" class="form-horizontal">
+                        {{ csrf_field() }}
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <textarea name="note" id="note" cols="30" rows="5" class="form-control"></textarea>
+                                <input type="hidden" name="claim_id" value="{{$claims->id}}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <button type="submit" class="btn btn-sm btn-success"><i class="fa fa-save"></i> Save</button>
+                            </div>
+                        </div>
+                    </form>
+                    @if($notes)
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <th>#</th>
+                                        <th>Note</th>
+                                        <th>Action</th>
+                                    </thead>
+                                    <tbody>
+                                        @php
+                                            $i = 1;
+                                        @endphp
+                                        @foreach($notes as $note)
+                                        <tr>
+                                            <td>{{$i}}</td>
+                                            <td>{{$note->note}}</td>
+                                            <td>
+                                                {!! Form::open([
+                                                    'method'=>'DELETE',
+                                                    'url' => ['/notes', $note->id],
+                                                    'style' => 'display:inline'
+                                                ]) !!}
+                                                <input type="hidden" name="claim_id" value="{{$note->claim_id}}" />
+                                                    {!! Form::button('<i class="fa fa-trash" aria-hidden="true"></i> Delete', array(
+                                                            'type' => 'submit',
+                                                            'class' => 'btn btn-danger btn-sm',
+                                                            'title' => 'Delete Ticket',
+                                                            'onclick'=>'return confirm("Confirm delete?")'
+                                                    )) !!}
+                                                {!! Form::close() !!}
+                                                <a class="btn btn-info btn-sm" data-toggle="modal" data-target="#editNote-{{$note->id}}"><i class="fa fa-edit"></i></a>
+                                            </td>
+                                        </tr>
+                                        @php
+                                            $i++;
+                                        @endphp
+                                        <div class="modal fade" id="editNote-{{$note->id}}" role="dialog">
+                                            <div class="modal-dialog">
+
+                                            <!-- Modal content-->
+                                            <div class="modal-content">
+                                            <form action="{{route('update-note')}}" method="post" class="form-horizontal">
+                                                    {{ csrf_field() }}
+                                                <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                    <h4 class="modal-title">Edit Note Data</h4>
+                                                </div>
+
+                                                <div class="modal-body">
+
+                                                    <div class="form-group">
+                                                            <textarea name="note" id="note" cols="30" rows="5" class="form-control">{{$note->note}}</textarea>
+                                                            <input type="hidden" name="note_id" value="{{$note->id}}">
+                                                            <input type="hidden" name="claim_id" value="{{$note->claim_id}}" />
+                                                    </div>
+
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="submit" class="btn btn-info"><i class="fa fa-save"></i> Update</button>
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                </div>
+                                            </form>
+                                            </div>
+
+                                            </div>
+                                            </div>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    @else
+
+                    @endif
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!------------------------------------Start Affiliate Note Info------------------------------->
+
+<div role="tabpanel" class="tab-pane" id="affiliate-note" aria-labelledby="affiliate-note-tab" style="margin-top: 15px;">
     <div class="row">
         <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <i class="fa fa-tasks"></i> Note Info
+                    <i class="fa fa-tasks"></i> Affiliate Note Info
                 </div>
                 <div class="panel-body">
-                <form action="{{url('/save-note')}}" method="post" class="form-horizontal">
+                <form action="{{route('affiliate-note-add')}}" method="post" class="form-horizontal">
                     {{ csrf_field() }}
                     <div class="form-group">
                         <div class="col-md-12">
-                            <textarea name="note" id="note" cols="30" rows="5" class="form-control"></textarea>
+                            <textarea name="affiliate_note" id="note" cols="30" rows="5" class="form-control"></textarea>
                             <input type="hidden" name="claim_id" value="{{$claims->id}}">
                         </div>
                     </div>
@@ -1335,7 +1515,7 @@
                         </div>
                     </div>
                 </form>
-                @if($notes)
+                @if($affiliateNotes)
                 <div class="row">
                     <div class="col-md-12">
                         <div class="table-responsive">
@@ -1349,17 +1529,17 @@
                                     @php
                                         $i = 1;
                                     @endphp
-                                    @foreach($notes as $note)
+                                    @foreach($affiliateNotes as $affiliateNote)
                                     <tr>
                                         <td>{{$i}}</td>
-                                        <td>{{$note->note}}</td>
+                                        <td>{{$affiliateNote->affiliate_note}}</td>
                                         <td>
                                             {!! Form::open([
                                                 'method'=>'DELETE',
-                                                'url' => ['/notes', $note->id],
+                                                'url' => ['/affiliate-notes', $affiliateNote->id],
                                                 'style' => 'display:inline'
                                             ]) !!}
-                                            <input type="hidden" name="claim_id" value="{{$note->claim_id}}" />
+                                            <input type="hidden" name="claim_id" value="{{$affiliateNote->claim_id}}" />
                                                 {!! Form::button('<i class="fa fa-trash" aria-hidden="true"></i> Delete', array(
                                                         'type' => 'submit',
                                                         'class' => 'btn btn-danger btn-sm',
@@ -1367,18 +1547,14 @@
                                                         'onclick'=>'return confirm("Confirm delete?")'
                                                 )) !!}
                                             {!! Form::close() !!}
-                                            <a class="btn btn-info btn-sm" data-toggle="modal" data-target="#editNote-{{$note->id}}"><i class="fa fa-edit"></i></a>
+                                            <a class="btn btn-info btn-sm" data-toggle="modal" data-target="#editAffiliateNote-{{$affiliateNote->id}}"><i class="fa fa-edit"></i></a>
                                         </td>
-                                    </tr>
-                                    @php
-                                        $i++;
-                                    @endphp
-                                    <div class="modal fade" id="editNote-{{$note->id}}" role="dialog">
+                                        <div class="modal fade" id="editAffiliateNote-{{$affiliateNote->id}}" role="dialog">
                                         <div class="modal-dialog">
 
                                         <!-- Modal content-->
                                         <div class="modal-content">
-                                        <form action="{{route('update-note')}}" method="post" class="form-horizontal">
+                                        <form action="{{route('update-affiliate-note')}}" method="post" class="form-horizontal">
                                                 {{ csrf_field() }}
                                             <div class="modal-header">
                                             <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -1388,9 +1564,9 @@
                                             <div class="modal-body">
 
                                                 <div class="form-group">
-                                                        <textarea name="note" id="note" cols="30" rows="5" class="form-control">{{$note->note}}</textarea>
-                                                        <input type="hidden" name="note_id" value="{{$note->id}}">
-                                                        <input type="hidden" name="claim_id" value="{{$note->claim_id}}" />
+                                                <textarea name="affiliate_note" id="note" cols="30" rows="5" class="form-control">{{$affiliateNote->affiliate_note}}</textarea>
+                                                    <input type="hidden" name="affiliate_note_id" value="{{$affiliateNote->id}}">
+                                                    <input type="hidden" name="claim_id" value="{{$affiliateNote->claim_id}}" />
                                                 </div>
 
                                             </div>
@@ -1403,6 +1579,10 @@
 
                                         </div>
                                         </div>
+                                    </tr>
+                                    @php
+                                        $i++;
+                                    @endphp
                                     @endforeach
                                 </tbody>
                             </table>
@@ -1410,14 +1590,17 @@
                     </div>
                 </div>
                 @else
-
+                <h3 class="text-center">No Note Found.</h3>
                 @endif
-
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<!-----------------------------------End Affiliate Note Info---------------------------------->
+
+
 
 <!--------------------------Start Expanse Info---------------------->
 <div role="tabpanel" class="tab-pane" id="expanse" aria-labelledby="expanse-tab">

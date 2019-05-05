@@ -146,6 +146,9 @@ Route::get('/user/login','UserPanelController@user_login')->name('user/login');
         Route::get('/admin/posts/create/{type}', 'PostsController@create_with_type');
         Route::get('/admin/posts/{type}', 'PostsController@index_with_type');
         Route::resource('posts', 'PostsController');
+        Route::post('/affiliate-note-add','ClaimBackController@affiliateNoteAdd')->name('affiliate-note-add');
+        Route::post('/update-affiliate-note', 'ClaimBackController@affiliateNoteUpdate')->name('update-affiliate-note');
+        Route::delete('/affiliate-notes/{id}', 'ClaimBackController@affiliateNoteDelete');
     // });
 // });
 
