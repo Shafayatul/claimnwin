@@ -58,7 +58,7 @@
                                                     <br>
                                                     <a href="#"></a>
                                                 </td>
-    
+
                                                 <td>
                                                     @if(isset($airport[$row->final_destination_id]))
                                                         {{$airport[$row->departed_from_id]}}
@@ -67,7 +67,7 @@
                                                     @if(isset($airport[$row->final_destination_id]))
                                                         {{$airport[$row->final_destination_id]}}
                                                     @endif
-                                                        
+
                                                 </td>
 
 
@@ -75,12 +75,12 @@
                                                     {{str_replace('_', ' ', ucfirst($row->claim_table_type)) }}
                                                 </td>
                                                  <td>
-                                                    
+
                                                     @if($row->airline_id !="")
                                                         {{$airline[$claim_and_airline_array[$row->id]['airline_id']]}}
                                                     @endif
-                                                    
-                                                    
+
+
                                                 </td>
                                                 <td>
                                                     @if($row->affiliate_user_id != "")
@@ -89,7 +89,11 @@
                                                 </td>
                                                 <td>
                                                     <a href="{{url('/claim-view/'.$row->id)}}" class="btn btn-sm btn-primary">Details</a>
-                                                    <a href="{{URL::to('/claim-archive/'.$row->id)}}" class="btn btn-sm btn-danger">Delete</a>
+                                                    @if($row->is_deleted == 0)
+                                                    <a href="{{URL::to('/claim-archive/'.$row->id)}}" class="btn btn-sm btn-danger">Close</a>
+                                                    @else
+                                                    <a href="{{URL::to('/claim-archive/'.$row->id)}}" class="btn btn-sm btn-success">Reopen</a>
+                                                    @endif
                                                 </td>
 
                                             </tr>
