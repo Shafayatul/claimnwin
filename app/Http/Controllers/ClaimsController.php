@@ -24,6 +24,8 @@ use App\Setting;
 use File;
 use App\ClaimFile;
 use App\Classes\cPanel;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\PasswordSent;
 
 class ClaimsController extends Controller
 {
@@ -484,14 +486,16 @@ class ClaimsController extends Controller
         }else{
             // create new user or get old
             $user_count = User::where('email', $email)->count();
+            $pass = rand(10000000,100000000);
             if ($user_count ==0) {
                 $user = User::create(
                     [
                      'name'             => $email,
                      'email'            => $email,
-                     'password'         => Hash::make($email)
+                     'password'         => Hash::make($pass)
                     ]);
                 $user->syncRoles('User');
+                Mail::to($email)->send(new PasswordSent($email,$pass));
             }else{
                 $user = User::where('email', $email)->first();
             }
