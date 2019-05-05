@@ -25,9 +25,31 @@ class PdfController extends Controller
         $claim=Claim::find($id);
 
 
+
+
+
         $iternery = ItineraryDetail::where('claim_id',$id)->get();
 
-        $itt_details=ItineraryDetail::where('claim_id',$id)->first();
+        // all segmented flights
+        $all_flight_seg = [];
+        $temp_str = '';
+        foreach ($iternery as $single_iternery) {
+          $temp_str = $temp_str.$single_iternery->flight_segment.'-';
+        }
+        $temp_str = rtrim($temp_str, '-');
+        $all_flight_seg = array_unique(explode('-', $temp_str));
+        $necessary_connection = [];
+        foreach ($all_flight_seg as $key => $value) {
+          array_push($necessary_connection, $value);
+        }
+        $internal_connected_airport = [];
+        for($i=1; $i<=(count($necessary_connection)-2); $i++){
+          array_push($internal_connected_airport, $necessary_connection[$i]);
+        }
+        $internal_connected_airport_names = Airport::whereIn('iata_code', $internal_connected_airport)->get();
+
+
+        $itt_details=ItineraryDetail::where('claim_id',$id)->where('is_selected', 1)->first();
 
         if($itt_details)
         {
@@ -83,18 +105,19 @@ class PdfController extends Controller
         $airline = Airline::where('id',$itt_details->airline_id)->first();
 
 
-
-        return view('pdf.letterBeforeAction',compact('airline','currency','bank_info','connection_airport','itt_details','dept_and_arrival_airport','departed_airport','final_destination_airport','claim','all_passenger','iternery','expense','reminder','connection','current_passenger'));
+        return view('pdf.letterBeforeAction',compact('airline','currency','bank_info','connection_airport','itt_details','dept_and_arrival_airport','departed_airport','final_destination_airport','claim','all_passenger','iternery','expense','reminder','connection','current_passenger', 'internal_connected_airport_names'));
     }
 
     public function pdfView($id)
     {
         // $claim=Claim::find($id);
         $claim=Claim::where('id',$id)->first();
+        $airport_from=Airport::where('id', $claim->departed_from_id)->first();
+        $airport_to=Airport::where('id', $claim->final_destination_id)->first();
         $itinerary_details = ItineraryDetail::where('claim_id',$id)->first();
         $passenger = Passenger::where('claim_id',$id)->first();
         // dd($passenger);
-        return view('pdf.POA',compact('claim','passenger', 'itinerary_details'));
+        return view('pdf.POA',compact('claim','passenger', 'itinerary_details', 'airport_from', 'airport_to'));
     }
 
     public function letterBeforeActionEmail(Request $request)

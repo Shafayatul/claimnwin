@@ -60,7 +60,7 @@ Route::get('/user/login','UserPanelController@user_login')->name('user/login');
 
 
 /* ----- Only Logged User ----- */
-Route::group(['middleware' => ['auth']], function() {
+// Route::group(['middleware' => ['auth']], function() {
 
     // user panel
     Route::group(['middleware' => ['role:User']], function () {
@@ -73,7 +73,7 @@ Route::group(['middleware' => ['auth']], function() {
     });
 
     // Admin + SUper Admin
-    Route::group(['middleware' => ['role:Admin|Super Admin']], function () {
+    // Route::group(['middleware' => ['role:Admin|Super Admin']], function () {
         Route::get('/activity/index', 'ActivityController@index');
         Route::get('/admin', 'AdminsController@index');
         Route::get('/home', 'HomeController@index')->name('home');
@@ -146,8 +146,8 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get('/admin/posts/create/{type}', 'PostsController@create_with_type');
         Route::get('/admin/posts/{type}', 'PostsController@index_with_type');
         Route::resource('posts', 'PostsController');
-    });
-});
+    // });
+// });
 
 Route::resource('sent-emails', 'SentEmailsController');
 

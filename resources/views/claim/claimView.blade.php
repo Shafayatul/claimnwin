@@ -513,7 +513,7 @@
                             <tr class="odd gradeX">
                                 <th>Signature</th>
                                 <td>
-                                    <img src="{{asset('uploads/sig/'.$claim->id.'.png')}}" alt="">
+                                    <img src="{{asset('uploads/sig/'.$claims->id.'.png')}}" alt="">
                                 </td>
                             </tr>
                         </tbody>

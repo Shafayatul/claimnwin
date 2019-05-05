@@ -19,6 +19,52 @@
 
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <style>
+      /* textarea {
+        min-height: 1000px;
+      } */
+      .total_div {
+        width: 968px;
+        margin: 0 auto;
+        display: block;
+        overflow: hidden;
+      }
+      .logo_div {
+        width: 30%;
+        float: left;
+      }
+      .text_div {
+        width: 70%;
+        float: right;
+        padding-top: 10px;
+      }
+      .text_div h4 {
+        margin: 0px;
+        padding-top: 8px;
+      }
+      .text_div h4:first-child {
+        padding-top: 0px;
+      }
+      .address_div {
+        width: 50%;
+        float: left;
+        text-align: left;
+      }
+      .date_time_div {
+        width: 50%;
+        float: left;
+        text-align: right;
+      }
+      .address_div h5 {
+        margin: 0px;
+      }
+      .footer_text {
+        position: absolute;
+        bottom: 1%;
+        padding-top: 30px;
+        left: 25%;
+      }
+    </style>
 </head>
 <body>
 <form action="{{route('letter.before.email')}}" method="post" enctype="multipart/form-data">
@@ -30,8 +76,56 @@
             @php
                 $claim_type = ucwords(str_replace("_"," ",$claim->claim_table_type));
             @endphp
+            <div class="container">
 
-  <div class="common_row">
+  <div class="total_div">
+    <div class="logo_div">
+      <div class="logo_img_div">
+        <img src="{{asset('front_asset/img/logo.png')}}" alt="" >
+      </div>
+    </div>
+    <div class="text_div text-right">
+      <h4 style="color: #76A154;">Claim'n Win Ltd</h4>
+      <h4 style="color: #76A154;">T: <span style="color: #000000;font-size: 15px; font-weight:bold;">020 3808 6632</span></h4>
+      <h4 style="color: #76A154;">E: <span style="color: #000000;font-size: 15px; font-weight:bold;">info@claimnwin@co.uk</span></h4>
+    </div>
+  </div>
+  <div class="total_div">
+    <h5 style="font-size: 15px;padding: 25px 0px 15px 0px; font-weight:bold; text-align: right;">Private and Confidential</h5>
+  </div>
+  <div class="total_div">
+    <div class="address_div">
+      {{-- <h5 style="width: 150px; line-height: 30px;">{{$passenger->address}}</h5> --}}
+
+      @if ($airline->name)
+      <h5 style="padding-bottom: 15px;">{{ $airline->name }}</h5>
+      @endif
+
+      @if ($airline->address_line_1)
+      <h5 style="padding-bottom: 15px;">{{ $airline->address_line_1 }}</h5>
+      @endif
+
+      @if ($airline->address_line_2)
+      <h5 style="padding-bottom: 15px;">{{ $airline->address_line_2 }}</h5>
+      @endif
+
+      @if ($airline->country)
+      <h5 style="padding-bottom: 15px;">{{ $airline->country }}</h5>
+      @endif
+
+
+      {{-- <h5>{{$airline->address_line_1}} {{$airline->address_line_1 == null ? '' : $airline->address_line_1}}</h5> --}}
+      {{-- <h5>{{$airline->address_line_2}}</h5> --}}
+      {{-- <h5>{{$airline->country}}</h5> --}}
+    </div>
+    <div class="date_time_div text-right">
+      <h5>Date: {{Carbon\Carbon::today()}}</h5>
+      <h5>Our Ref: CLAIM/000{{$claim->id}}</h5>
+      <h5>Your Ref: Your Ref: {{$current_passenger->booking_refernece == null ? 'No Reference Found' : $current_passenger->booking_refernece}}
+    </div>
+  </div>
+
+  {{-- <div class="common_row">
     <div class="first_child">
       <div class="logo">
         <img src="http://webencoder.net/demo/logo.png" alt="QR" title="QR" style="display:block;" data-auto-embed="attachment" />
@@ -67,12 +161,12 @@
         <h5>Your Ref: {{$current_passenger->booking_refernece == null ? 'No Reference Found' : $current_passenger->booking_refernece}}</h5>
       </div>
     </div>
-  </div>
+  </div> --}}
 
   <div class="common_row">
     <div class="total_div">
-      <h4>Dear Sirs,</h4>
-      <h4>Re: {{$claim_type}}</h4>
+      <p>Dear Sirs,</p>
+      <p style="font-weight: bold;">Re: {{$claim_type}}</p>
     </div>
   </div>
 
@@ -87,9 +181,58 @@
 
   <div class="common_row">
     <div class="total_div">
-      <h4 style="text-decoration:underline;">Claim Details</h4>
+      <p style="text-decoration:underline; padding-top: 5px; padding-bottom: 1px;">Claim Details</p>
       <p>
-          The claim relates to flight number {{$itt_details->flight_number}} {{$itt_details->departure_date}}, which was scheduled to depart from
+        @if ($claim->what_happened_to_the_flight == 'canceled_flight')
+          @if ($claim->is_direct_flight == 1)
+            The claim relates to flight number {{ $airline->name }} {{ $itt_details->departure_date }}, which was scheduled to depart from {{ $departed_airport->name }}({{ $departed_airport->iata_code }}) on {{ $itt_details->departure_date }} and arrive at {{ $final_destination_airport->name }}({{ $final_destination_airport->iata_code }}) on <span style="font-weight: bold; ">TO BE FILLED BY ADMIN</span>. Unfortunately, the flight was cancelled.</br>
+            Due to this, the passengers listed in Annex A of this letter missed their connecting flight. flight number {{$itt_details->flight_number}} {{ $itt_details->departure_date }}, which was scheduled to depart from {{ $departed_airport->name }}({{ $departed_airport->iata_code }}) on {{ $itt_details->departure_date }} and arrive at {{ $final_destination_airport->name }}({{ $final_destination_airport->iata_code }}) on <span style="font-weight: bold; ">TO BE FILLED BY ADMIN</span>
+            The distance between the departure airport and the final destination airport is {{ $claim->distance }} and in accordance with …… we submit that each passenger is entitled to {{$claim->amount == '' ? '0' : $claim->amount}}.
+
+          @else
+            The claim relates to flight number {{ $airline->name }} {{ $itt_details->departure_date }}, which was scheduled to depart from {{ $departed_airport->name }}({{ $departed_airport->iata_code }}) on {{ $itt_details->departure_date }} and arrive at {{ $final_destination_airport->name }}({{ $final_destination_airport->iata_code }}) on <span style="font-weight: bold; ">TO BE FILLED BY ADMIN</span>. Unfortunately, the flight was cancelled.
+            The distance between these two airports is {{ $claim->distance }} km and in accordance the ……. we submit that each passenger is entitled to {{$claim->amount == '' ? '0' : $claim->amount}}.
+          @endif
+
+        @elseif ($claim->what_happened_to_the_flight == 'delayed_flight')
+          @if ($claim->is_direct_flight == 0)
+            @if ($claim->total_delay == '3_to_8_hours')
+              The claim relates to flight number {{ $airline->name }} {{ $itt_details->departure_date }}, which was scheduled to depart from {{ $departed_airport->name }}({{ $departed_airport->iata_code }}) on {{ $itt_details->departure_date }} and arrive at {{ $final_destination_airport->name }}({{ $final_destination_airport->iata_code }}) on <span style="font-weight: bold; ">TO BE FILLED BY ADMIN</span>. Unfortunately, the flight was delayed more than 3 hours.
+              The distance between these two airports is {{ $claim->distance }} km and in accordance the ……. we submit that each passenger is entitled to {{$claim->amount == '' ? '0' : $claim->amount}}.
+            @endif
+
+          @elseif ($claim->is_direct_flight == 1 && $claim->total_delay == 'less_than_3_hours')
+            The claim relates to flight number {{ $airline->name }} {{ $itt_details->departure_date }}, which was scheduled to depart from {{ $departed_airport->name }}({{ $departed_airport->iata_code }}) on {{ $itt_details->departure_date }} and arrive at {{ $final_destination_airport->name }}({{ $final_destination_airport->iata_code }}) on <span style="font-weight: bold; ">TO BE FILLED BY ADMIN</span>. Unfortunately, the flight was delayed.
+            Due to this, the passengers listed in Annex A of this letter missed their connecting flight. flight number {{ $airline->name }} {{ $itt_details->departure_date }}, which was scheduled to depart from {{ $departed_airport->name }}({{ $departed_airport->iata_code }}) on {{ $itt_details->departure_date }} and arrive at {{ $final_destination_airport->name }}({{ $final_destination_airport->iata_code }}) on <span style="font-weight: bold; ">TO BE FILLED BY ADMIN</span>.
+            The distance between the departure airport and the final destination airport is {{ $claim->distance }} and in accordance with …… we submit that each passenger is entitled to {{$claim->amount == '' ? '0' : $claim->amount}}.
+          @endif
+
+        @elseif ($claim->what_happened_to_the_flight == 'denied_boarding')
+          @if ($claim->is_direct_flight == 0)
+            The claim relates to flight number {{ $airline->name }} {{ $itt_details->departure_date }}, which was scheduled to depart from {{ $departed_airport->name }}({{ $departed_airport->iata_code }}) on {{ $itt_details->departure_date }} and arrive at {{ $final_destination_airport->name }}({{ $final_destination_airport->iata_code }}) on <span style="font-weight: bold; ">TO BE FILLED BY ADMIN</span>. Unfortunately, the passengers listed at Annex A of this letter were denied boarding against their will.
+            The distance between these two airports is {{ $claim->distance }} km and in accordance the ……. we submit that each passenger is entitled to {{$claim->amount == '' ? '0' : $claim->amount}}.
+          @else
+            The claim relates to flight number {{ $airline->name }} {{ $itt_details->departure_date }}, which was scheduled to depart from {{ $departed_airport->name }}({{ $departed_airport->iata_code }}) on {{ $itt_details->departure_date }} and arrive at {{ $final_destination_airport->name }}({{ $final_destination_airport->iata_code }}) on <span style="font-weight: bold; ">TO BE FILLED BY ADMIN</span>. Unfortunately, the passengers listed at Annex A of this letter were denied boarding against their will.
+            Due to this, the passengers listed in Annex A of this letter missed their connecting flight. flight number <span style="font-weight: bold; ">TO BE FILLED BY ADMIN</span>, which was scheduled to depart from {{$dept_and_arrival_airport[0]['name']}} ({{$dept_and_arrival_airport[0]['iata_code']}}) on <span style="font-weight: bold; ">TO BE FILLED BY ADMIN</span> and arrive at {{$dept_and_arrival_airport[1]['name']}} ({{$dept_and_arrival_airport[1]['iata_code']}}) on <span style="font-weight: bold;">TO BE FILLED BY ADMIN </span>.
+            The distance between the departure airport and the final destination airport is {{ $claim->distance }} and in accordance with …… we submit that each passenger is entitled to {{$claim->amount == '' ? '0' : $claim->amount}}.
+
+          @endif
+
+        @endif
+
+
+
+
+
+
+
+
+
+
+
+
+
+          {{-- The claim relates to flight number {{$itt_details->flight_number}} {{$itt_details->departure_date}}, which was scheduled to depart from
 
           {{$dept_and_arrival_airport[0]['name']}} ({{$dept_and_arrival_airport[0]['iata_code']}}) on {{$dept_and_arrival_airport[1]['name']}} ({{$dept_and_arrival_airport[1]['iata_code']}}) at {{$itt_details->departure_date}}
 
@@ -102,11 +245,11 @@
           the flight was delayed.
           @elseif($claim->claim_table_type == 'denied_boarding')
           the passengers listed at {{$current_passenger->first_name.' '.$current_passenger->last_name}} of this letter were denied boarding against their will
-          @endif
+          @endif --}}
       </p>
-      <p>
+      {{-- <p>
           The distance between these 2 airports is {{$claim->distance}} Km and in accordance with the {{$claim_type}} we submit that each passenger is entitled to {{$claim->amount == '' ? '0' : $claim->amount}}.
-      </p>
+      </p> --}}
       <p>
           Please note that we are instructed exclusively in relation to statutory compensation unless otherwise
           specified. Any settlement achieved is strictly without prejudice to any other losses our client may have
@@ -117,7 +260,7 @@
 
   <div class="common_row">
     <div class="total_div">
-      <h4 style="text-decoration:underline;">Expected Pre-Action Conduct</h4>
+      <p style="text-decoration:underline; padding-top: 5px; padding-bottom: 1px;">Expected Pre-Action Conduct</p>
       <p>
           This letter should be accepted as the requisite letter before claim, pursuant to the Practice Direction on Pre-Action Conduct (“Practice Direction”).
           In accordance with the Practice Direction we anticipate receiving your acknowledgement within 14 days and then a full response within 30 days.
@@ -131,7 +274,7 @@
 
   <div class="common_row">
     <div class="total_div">
-      <h4 style="text-decoration:underline;">If Liability To Compensate Is Accepted</h4>
+      <p style="text-decoration:underline; padding-top: 5px; padding-bottom: 1px;">If Liability To Compensate Is Accepted</p>
       <p>
           If you are accepting a liability to compensate each of the passengers, then we look forward to
           receiving payment within 21 days of that admission.
@@ -149,24 +292,24 @@
 
   <div class="common_row">
     <div class="total_div">
-      <h4>Account Name: <span>{{isset(($bank_info->account_name)) ? $bank_info->account_name : ''}}</span></h4>
-      <h4>Bank Name: <span>{{isset(($bank_info->bank_name)) ? $bank_info->bank_name : ''}}</span></h4>
-      <h4>Iban Number: <span>{{isset(($bank_info->iban_no)) ? $bank_info->iban_no : ''}}</span></h4>
-      <h4>Swift/Bic Code: <span>{{isset(($bank_info->swift_bic_code)) ? $bank_info->swift_bic_code : ''}}</span></h4>
-      <h4>Currency Of Account: <span>{{isset(($currency->code)) ? $currency->code : ''}}</span></h4>
-      <h4>Ref: <span>000{{$claim->id}}</span></h4>
+      <p>Account Name: <span>{{isset(($bank_info->account_name)) ? $bank_info->account_name : '---'}}</span></p>
+      <p>Bank Name: <span>{{isset(($bank_info->bank_name)) ? $bank_info->bank_name : '---'}}</span></p>
+      <p>Iban Number: <span>{{isset(($bank_info->iban_no)) ? $bank_info->iban_no : '---'}}</span></p>
+      <p>Swift/Bic Code: <span>{{isset(($bank_info->swift_bic_code)) ? $bank_info->swift_bic_code : '---'}}</span></p>
+      <p>Currency Of Account: <span>{{isset(($currency->code)) ? $currency->code : '---'}}</span></p>
+      <p>Ref: <span>000{{$claim->id}}</span></p>
     </div>
   </div>
 
   <div class="common_row">
     <div class="total_div">
-      <h4>We will accept payment of {{$claim->amount == '' ? '0' : $claim->amount}}</h4>
+      <p>We will accept payment of {{$claim->amount == '' ? '0' : $claim->amount}}</p>
     </div>
   </div>
 
   <div class="common_row">
     <div class="total_div">
-      <h4 style="text-decoration:underline;">Information Required If Defence Raised</h4>
+      <p style="text-decoration:underline; padding-top: 5px; padding-bottom: 1px;">Information Required If Defence Raised</p>
       <p>
           If you intend on arguing that the statutory defence of extraordinary circumstances applies, then we
           require you to clarify the exact nature of the circumstances and provide disclosure in support of the
@@ -177,38 +320,42 @@
 
   <div class="common_row">
     <div class="total_div">
-      <h4>Yours faithfully</h4>
+      <p>Yours faithfully</p>
     </div>
   </div>
 
-
-
   <div class="common_row">
       <div class="total_div">
-        <h4>{{$current_passenger->first_name.' '.$current_passenger->last_name}}</h4>
+        <p>{{$current_passenger->first_name.' '.$current_passenger->last_name}}</p>
       </div>
   </div>
   @if((($claim->claim_table_type == 'flight_cancellation') && ($claim->total_delay == 'less_than_3_hours') && ($claim->is_contacted_airline == '1'))||(($claim->claim_table_type == 'denied_boarding') && ($claim->total_delay == 'less_than_3_hours') && ($claim->is_contacted_airline == '1'))||(($claim->claim_table_type == 'flight_delay') && ($claim->total_delay == 'less_than_3_hours') && ($claim->is_contacted_airline == '1')))
   <div class="common_row">
       <div class="first_child">
-        <h4>Name</h4>
+        <p>Name</p>
       </div>
       <div class="second_child">
-          <h4>Ticket No.</h4>
+          <p>Ticket No.</p>
       </div>
   </div>
 
   @foreach($all_passenger as $passenger_row)
   <div class="common_row">
       <div class="first_child">
-        <h4>{{$passenger_row->first_name.' '.$passenger_row->last_name}}</h4>
+        <p>{{$passenger_row->first_name.' '.$passenger_row->last_name}}</p>
       </div>
       <div class="second_child">
-        <h4 class="text-center">656</h4>
+        <p class="text-center">656</p>
       </div>
   </div>
   @endforeach
   @endif
+
+  <footer>
+    <div class="footer_text" style="text-align: center;">
+      <h5 style="font-size: 10px;">Registered Office: 39 Montefiore Court, 69 Stamford Hill, London N16 5TY / Registered in England Company No: 9748199</h5>
+    </div>
+  </footer>
 
 
 
@@ -224,6 +371,7 @@
 <br>
 <br>
 <br>
+</div>
 </form>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/froala-editor@2.9.0/js/froala_editor.pkgd.min.js"></script>
 <script>
