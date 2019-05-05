@@ -71,6 +71,7 @@
                         <li role="presentation"><a href="#affiliate-info" role="tab" id="affiliate-info-tab" data-toggle="tab" aria-controls="affiliate-info" aria-expanded="true"><i class="fa fa-bell" aria-hidden="true"></i> Affiliate Info</a></li>
                         <li role="presentation"><a href="#ticket-info" role="tab" id="ticket-info-tab" data-toggle="tab" aria-controls="ticket-info" aria-expanded="true"><i class="fas fa-ticket-alt" aria-hidden="true"></i> Ticket Info</a></li>
                         <li role="presentation"><a href="#note" role="tab" id="note-tab" data-toggle="tab" aria-controls="note" aria-expanded="true"><i class="fas fa-ticket-alt" aria-hidden="true"></i> Note Info</a></li>
+                        <li role="presentation"><a href="#expanse" role="tab" id="expanse-tab" data-toggle="tab" aria-controls="expanse" aria-expanded="true"><i class="fas fa-money-bill-alt" aria-hidden="true"></i> Expanse Info</a></li>
                     </ul>
                     <div id="myTabContent" class="tab-content">
                         <div role="tabpanel" class="tab-pane fade active in" id="claim_overview" aria-labelledby="home-tab">
@@ -1417,6 +1418,62 @@
         </div>
     </div>
 </div>
+
+<!--------------------------Start Expanse Info---------------------->
+<div role="tabpanel" class="tab-pane" id="expanse" aria-labelledby="expanse-tab">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-comments"></i> Expense Info
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    @if(!$expanses)
+                    <h2>No expanse in this claim</h2>
+                    @else
+                    <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+                        <thead>
+                            <th>Claim Id</th>
+                            <th>Expense Name</th>
+                            <th>Amount</th>
+                            <th>Currency</th>
+                            <th>Receipt</th>
+                        </thead>
+                        <tbody>
+                            @foreach($expanses as $expense)
+                            <tr class="odd gradeX">
+                                <td>{{$expense->claim_id}}</td>
+                                <td>{{$expense->name}}</td>
+                                <td>
+                                    @if($expense->amount == null)
+                                    <span style="color: red;">0</span>
+                                    @else
+                                    {{$expense->amount}}
+                                    @endif
+                                </td>
+                                <td>{{$expense->currency}}</td>
+                                <td>
+                                    @if($expense->is_receipt == null)
+                                    <span style="color: red;">No</span>
+                                    @else
+                                    <span style="color: green;">Yes</span>
+                                    @endif
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                    @endif
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+</div>
+<!--------------------------End Expanse Info------------------------>
 </div>
 
 

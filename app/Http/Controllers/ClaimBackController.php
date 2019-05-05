@@ -25,6 +25,7 @@ use App\ClaimFile;
 use Auth;
 use App\SentEmail;
 use Webklex\IMAP\Client;
+use App\Expense;
 
 class ClaimBackController extends Controller
 {
@@ -289,7 +290,8 @@ class ClaimBackController extends Controller
             $oClient->connect();
             $aFolder = $oClient->getFolders();
             // $aFolder = "";
-        return view('claim.claimView',compact('aFolder','sents','notes', 'ticket_notes', 'ticket', 'claimFiles','affiliateComm','adminComm','NextStepData','claimStatusData','flightInfo','airline','departed_airport','destination_airport','reminders','claims','passengers','ittDetails','flightCount','passCount','claimsStatus','nextSteps','banks', 'affiliate_user'));
+            $expanses = Expense::where('claim_id',$id)->get();
+        return view('claim.claimView',compact('expanses','aFolder','sents','notes', 'ticket_notes', 'ticket', 'claimFiles','affiliateComm','adminComm','NextStepData','claimStatusData','flightInfo','airline','departed_airport','destination_airport','reminders','claims','passengers','ittDetails','flightCount','passCount','claimsStatus','nextSteps','banks', 'affiliate_user'));
     }
 
     public function downloadClaimFile($id)
