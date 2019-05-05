@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\TicketNote;
 use Auth;
 use App\User;
+use Webklex\IMAP\Client;
 
 class TicketsController extends Controller
 {
@@ -18,6 +19,61 @@ class TicketsController extends Controller
      *
      * @return \Illuminate\View\View
      */
+
+    public function ticketInbox(Request $request)
+    {
+        $perPage = 25;
+        $oClient = new Client([
+            'host'          => 'premium39.web-hosting.com',
+            'port'          => 993,
+            'encryption'    => 'ssl',
+            'validate_cert' => true,
+            // 'username'      => $claims->cpanel_email,
+            // 'password'      => $claims->cpanel_password,
+            'username'      =>'rtwh095@freeflightclaim.com',
+            'password'      => 'olMpHjWv',
+            'protocol'      => 'imap'
+        ]);
+        $oClient->connect();
+        $aFolder = $oClient->getFolders();
+
+        foreach($aFolder as $oFolder){
+
+            //Get all Messages of the current Mailbox $oFolder
+            /** @var \Webklex\IMAP\Support\MessageCollection $aMessage */
+            $aMessage = $oFolder->getUnseenMessages()->all();
+
+            /** @var \Webklex\IMAP\Message $oMessage */
+            foreach($aMessage as $oMessage){
+                $sub=$oMessage->getSubject();
+                $date = $oMessage->getDate();
+                $longMsg=$oMessage->getBodies()['text']->content;
+                 $lines=explode("\n", $longMsg);
+                    $ticket = new Ticket;
+                    $ticket->subject = $sub;
+                    $ticket->status = '2';
+                    $ticket->save();
+
+                    $ticketNote = new TicketNote;
+                    $ticketNote->ticket_id = $ticket->id;
+                    $ticketNote->description = $lines['0'];
+                    $ticketNote->save();
+        }
+    }
+    $tickets=Ticket::whereNull('claim_id')->latest()->paginate($perPage);
+    $user_array = [];
+        foreach($tickets as $row){
+            if($row->assign_user_id != null){
+                array_push($user_array,$row->assign_user_id);
+            }
+        }
+        $assign_users=User::whereIn('id',$user_array)->pluck('email','id');
+
+        $users = User::role('Admin')->pluck('email','id');
+
+        return view('tickets.ticket-inbox', compact('tickets','users','assign_users'));
+    }
+
     public function index(Request $request)
     {
         $keyword = $request->get('search');
@@ -100,7 +156,7 @@ class TicketsController extends Controller
         $ticket = Ticket::find($ticket_id);
         $ticket->assign_user_id = $request->assign_user_id;
         $ticket->save();
-        return redirect('tickets')->with('flash_message', 'Assigned Successfully!');
+        return redirect()->back()->with('flash_message', 'Assigned Successfully!');
     }
 
     /**

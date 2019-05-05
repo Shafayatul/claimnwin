@@ -155,11 +155,14 @@
               <li><a href="{{URL::to('/settings')}}"><i class="fa fa-angle-right"></i> Manage Settings</a></li>
               </ul>
             </li>
-            {{-- @hasrole('Super Admin') --}}
+            @hasrole('Super Admin')
             <li><a href="{{url('/tickets')}}"><i class="fa fa-ticket-alt"></i> Manage Tickets</a></li>
-            {{-- @endhasrole --}}
+            @endhasrole
+
+            <li><a href="{{url('/tickets-inbox')}}"><i class="fa fa-ticket-alt"></i>Tickets Inbox</a></li>
 
             <li><a href="{{url('/my-tickets')}}"><i class="fa fa-ticket-alt"></i> My Tickets</a></li>
+            
             <li><a href="{{url('/contact-messages')}}"><i class="fa fa-envelope"></i> Contact Messages</a></li>
 
             <li class="treeview">

@@ -1,5 +1,6 @@
 <?php
 
+
 // use Illuminate\Support\Facades\Route;
 
 /*
@@ -133,6 +134,7 @@ Route::get('/user/login','UserPanelController@user_login')->name('user/login');
         Route::get('/close-ticket/{id}', 'TicketsController@closeTicket');
         Route::post('/ticket-assign-user', 'TicketsController@ticketAssignUser')->name('ticket.user.assign');
         Route::get('/my-tickets','TicketsController@myTickets');
+        Route::get('/tickets-inbox', 'TicketsController@ticketInbox');
         // Route::get('/contact-messages','TicketsController@contactMessages');
         Route::resource('flights', 'FlightsController');
         Route::get('/letter-before-action/{id}', 'PdfController@letterBeforeActionView');
