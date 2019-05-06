@@ -169,6 +169,7 @@ return [
         Jorenvh\Share\Providers\ShareServiceProvider::class,
         UniSharp\LaravelFilemanager\LaravelFilemanagerServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
+        Victorybiz\GeoIPLocation\GeoIPLocationServiceProvider::class,
         /*
          * Application Service Providers...
          */

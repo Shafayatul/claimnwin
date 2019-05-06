@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ccc10ac5070e7b136995990ec79cc6a2",
+    "content-hash": "5d507ced45829aa6df12160e42451720",
     "packages": [
         {
             "name": "anahkiasen/underscore-php",
@@ -4093,7 +4093,7 @@
                 },
                 {
                     "name": "Gert de Pagter",
-                    "email": "BackEndTea@gmail.com"
+                    "email": "backendtea@gmail.com"
                 }
             ],
             "description": "Symfony polyfill for ctype functions",
@@ -4836,6 +4836,54 @@
                 "upload"
             ],
             "time": "2018-07-05T11:36:08+00:00"
+        },
+        {
+            "name": "victorybiz/geoip-location",
+            "version": "v1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/victorybiz/geoip-location.git",
+                "reference": "d0d52f9e547cfaa5d66d1762a48dbbf6e0c2b057"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/victorybiz/geoip-location/zipball/d0d52f9e547cfaa5d66d1762a48dbbf6e0c2b057",
+                "reference": "d0d52f9e547cfaa5d66d1762a48dbbf6e0c2b057",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "6.*",
+                "php": ">=5.6"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~5.7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Victorybiz\\GeoIPLocation\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Victory Osayi",
+                    "email": "lavictorybiz@gmail.com"
+                }
+            ],
+            "description": "Get the geographical location of website visitors based on their IP addresses. Support Laravel 5 and PHP (Non-Laravel) Project.",
+            "keywords": [
+                "geoip",
+                "github",
+                "laravel",
+                "laravel 5",
+                "open source",
+                "php"
+            ],
+            "time": "2018-01-17T16:21:12+00:00"
         },
         {
             "name": "vlucas/phpdotenv",

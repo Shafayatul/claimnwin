@@ -1,6 +1,16 @@
 @extends('layouts.admin_layout')
 
 @section('main_content')
+@section('header-css')
+<style>
+    .modal.modal-wide .modal-dialog {
+  width: 90%;
+}
+.modal-wide .modal-body {
+  overflow-y: auto;
+}
+</style>
+@endsection
 @include('layouts.includes.partial.alert')
 <div class="forms">
     <div class="form-grids row widget-shadow" data-example-id="basic-forms">
@@ -626,8 +636,8 @@
                                     <td>
                                         <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#SentEmailShow-{{$sent->id}}">View Email</button>
                                         <!-- Modal -->
-                                        <div id="SentEmailShow-{{$sent->id}}" class="modal fade" role="dialog">
-                                            <div class="modal-dialog modal-lg">
+                                        <div id="SentEmailShow-{{$sent->id}}" class="modal modal-wide fade" role="dialog">
+                                            <div class="modal-dialog">
 
                                             <!-- Modal content-->
                                             <div class="modal-content">
@@ -1086,6 +1096,16 @@
             </div>
             <div class="clearfix"></div>
         </div>
+
+        <div class="row" style="margin-top:1%;">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label> Expected  Compensation Converted Amount </label>
+                        <input type="text" class="form-control" name="converted_expection_amount" id="" value="{{$claims->converted_expection_amount}}">
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
 
         <div class="row">
             <div class="col-md-12">
@@ -1682,6 +1702,14 @@ $('#note').froalaEditor()
     document.forms['clam_nextstep_status'].elements['claim_status'].value="{{$claimStatusData->id}}";
     document.forms['clam_nextstep_status'].elements['nextstep_status'].value="{{$NextStepData->id}}";
     document.forms['required_details'].elements['bank_details_id'].value="{{$claims->bank_details_id}}";
+</script>
+@endsection
+@section('footer-script')
+<script>
+    $(".modal-wide").on("show.bs.modal", function() {
+  var height = $(window).height() - 200;
+  $(this).find(".modal-body").css("max-height", height);
+});
 </script>
 @endsection
 

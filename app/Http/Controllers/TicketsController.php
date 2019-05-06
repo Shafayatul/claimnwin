@@ -30,6 +30,8 @@ class TicketsController extends Controller
             'validate_cert' => true,
             'username'      => env('MAIL_USERNAME'),
             'password'      => env('MAIL_PASSWORD'),
+            // 'username'      =>'rtwh095@freeflightclaim.com',
+            // 'password'      => 'olMpHjWv',
             'protocol'      => 'imap'
         ]);
         $oClient->connect();

@@ -26,6 +26,7 @@ use App\ClaimFile;
 use App\Classes\cPanel;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\PasswordSent;
+use Victorybiz\GeoIPLocation\GeoIPLocation;
 
 class ClaimsController extends Controller
 {
@@ -569,6 +570,30 @@ class ClaimsController extends Controller
           $ticket->save();
         }
 
+        // <--------------------------------Start Convert Amount Code----------------------->
+        
+        if($claim->amount != null)
+        {
+            $compensation_amount = explode(" ",$claim->amount);
+
+            $compensationAmount = $compensation_amount[0];
+            $compensationAmountCurrencyCode = $compensation_amount[1];
+
+            $currency_info=Currency::where('code',$compensationAmountCurrencyCode)->first();
+            $total_usd_compensation_amount = $compensationAmount*$currency_info->value;
+
+            $geoip = new GeoIPLocation();
+            $currentCurrencyCode = $geoip->getCurrencyCode();
+
+            $currentCurrencyInfo=Currency::where('code',$currentCurrencyCode)->first();
+            $converted_expection_amount = $total_usd_compensation_amount*$currentCurrencyInfo->value;
+
+            $convert_amount                             = Claim::find($claim->id);
+            $convert_amount->converted_expection_amount = $converted_expection_amount;
+            $convert_amount->save();
+        }
+
+        // <--------------------------------End Convert Amount Code----------------------->
 
         // create connect
         if (isset($request->connection)) {

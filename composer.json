@@ -22,6 +22,7 @@
         "spatie/laravel-activitylog": "^3.2",
         "spatie/laravel-permission": "^2.36",
         "unisharp/laravel-filemanager": "~1.8",
+        "victorybiz/geoip-location": "^1.0",
         "webklex/laravel-imap": "^1.4",
         "wildbit/swiftmailer-postmark": "^3.0"
     },

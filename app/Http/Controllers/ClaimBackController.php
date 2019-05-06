@@ -27,6 +27,10 @@ use App\SentEmail;
 use Webklex\IMAP\Client;
 use App\Expense;
 use App\affiliate_notes;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ClaimClosed;
+use App\Currency;
+use Victorybiz\GeoIPLocation\GeoIPLocation;
 
 class ClaimBackController extends Controller
 {
@@ -293,6 +297,8 @@ class ClaimBackController extends Controller
             // $aFolder = "";
             $expanses = Expense::where('claim_id',$id)->get();
             $affiliateNotes = affiliate_notes::where('claim_id',$id)->get();
+
+
         return view('claim.claimView',compact('affiliateNotes','expanses','aFolder','sents','notes', 'ticket_notes', 'ticket', 'claimFiles','affiliateComm','adminComm','NextStepData','claimStatusData','flightInfo','airline','departed_airport','destination_airport','reminders','claims','passengers','ittDetails','flightCount','passCount','claimsStatus','nextSteps','banks', 'affiliate_user'));
     }
 
@@ -366,9 +372,11 @@ class ClaimBackController extends Controller
     public function claimArchiveOrReopen($id)
     {
         $claim=Claim::find($id);
+        $user = User::where('id',$claim->user_id)->first();
         $isDelete = $claim->is_deleted;
         if($isDelete == 0){
             $claim->is_deleted = "1";
+            Mail::to($user->email)->send(new ClaimClosed());
         }else{
             $claim->is_deleted = "0";
         }
