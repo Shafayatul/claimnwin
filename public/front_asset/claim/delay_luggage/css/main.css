@@ -377,7 +377,7 @@ input[type="radio"]:checked + .label{
 }
 
 .two_child_radio_div {
-    width: 25%;
+    width: 30%;
     float: left;
     font-size: 16px;
     font-weight: 200;

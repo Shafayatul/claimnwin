@@ -97,7 +97,7 @@ class UserPanelController extends Controller
                 $new_user->save();
             }
             auth()->login($authUser);
-            return redirect(url('/claim'));
+            return redirect(url('/form-claim'));
         }else{
             return redirect()->back()->with('error','Password and Confirm Password Not Match.Please Try Again!!');
         }
