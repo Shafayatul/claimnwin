@@ -747,7 +747,7 @@
                   <label for="date_of_birth">DATE OF BIRTH</label>
                 </div>
                 <div class="input_field">
-                  <input type="text" class="common_input date_of_birth date" id="common_input date_of_birth" name="date_of_birth[]" placeholder="e.g. 10/10/1990">
+                  <input type="text" class="common_input date_of_birth date" id="common_input date_of_birth" name="date_of_birth[]" placeholder=" DD/MM/YY">
                 </div>
               </div>
             </div>
@@ -760,13 +760,13 @@
             </div>
             <div class="parent_div">
               <div class="two_child_radio_div first_child">
-                <label class="container_radio">Yes
+                <label class="container_radio">Add Now
                   <input class="common_input passenger_is_booking_checkbox" type="radio" count="0" id="common_input is_booking_reference_yes" name="is_booking_reference[0]" value="1">
                   <span class="checkmark"></span>
                 </label>
               </div>
               <div class="two_child_radio_div">
-                <label class="container_radio">Later
+                <label class="container_radio">Add Later
                   <input class="common_input passenger_is_booking_checkbox" type="radio" count="0" id="common_input is_booking_reference_no" name="is_booking_reference[0]" value="0" checked>
                   <span class="checkmark"></span>
                 </label>
@@ -886,6 +886,7 @@
                 </div> --}}
                 <div class="label_field only_label_without_input">
                   <label>IF WE GATHER MORE INFORMATION, WE CAN HANDLE YOUR CLAIM FASTER.</label>
+                  <label>Where did you hear about Claim’N Win?</label>
                 </div>
                 <div class="select_reason_class">
                     <select class="form-control custom_select" class="hear_from_where">

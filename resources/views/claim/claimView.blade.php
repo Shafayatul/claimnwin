@@ -1380,7 +1380,7 @@
                         </div>
                         <div class="form-group">
                             <div class="col-md-12">
-                                <button type="submit" class="btn btn-lg btn-success">Responde Ticket</button>
+                                <button type="submit" class="btn btn-lg btn-success">Response Ticket</button>
                                 <a href="{{URL::to('/close-ticket/'.$ticket->id)}}" onclick="return confirm('Are you sure close the ticket?');" class="btn btn-danger btn-sm pull-right">Close Ticket</a>
                             </div>
                         </div>
@@ -1714,4 +1714,3 @@ $('#note').froalaEditor()
 @endsection
 
   <!-- Modal -->
-
