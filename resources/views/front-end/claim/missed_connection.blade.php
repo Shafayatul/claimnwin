@@ -99,7 +99,7 @@
                               </div>
                             </div>
 
-                            <div class="common_row">
+                            <div class="common_row" style="display: none;">
                               <div class="form_h3">
                                 <h3>Where did you fly?</h3>
                               </div>

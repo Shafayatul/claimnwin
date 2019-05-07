@@ -102,13 +102,10 @@
                                     </div>
                                 </div>
 
-                                <div class="common_row">
+                                <div class="common_row" style="display: none;">
                                     <div class="form_h3">
                                         <h3>Were any other airports involved in this trip?</h3>
                                     </div>
-                                    {{-- <div class="form_h4">
-                                        <h4>If your trip was not a direct flight, let us know.</h4>
-                                    </div> --}}
                                     <div class="label_field only_label_without_input">
                                       <label>IF YOUR TRIP WAS NOT A DIRECT FLIGHT, LET US KNOW.</label>
                                     </div>
