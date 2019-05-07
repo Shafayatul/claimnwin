@@ -412,6 +412,9 @@
                                     <div class="form_h3">
                                         <h3>What’s your booking reference?</h3>
                                     </div>
+                                    <div class="parent_div" style="padding-bottom: 20px;">
+                                      <label>A booking reference is a code used by airlines to keep track of individual reservations. You can find your booking reference on your e-ticket or on any emails or documents you received from the airline after booking your trip. This code will most often be six digits, including both letters and numbers (for example: DF87G3, REDYYD, L5W4NW). Please make sure you don’t include spaces. For help locating your booking please contact our <a style="font-weight: bold; color: #124478;" href="{{ URL::to('/contact-us') }}">Customer Service Department.</a></label>
+                                    </div>
                                     <div class="parent_div">
                                         <div class="two_child_radio_div first_child">
                                             <label class="container_radio">Add Now

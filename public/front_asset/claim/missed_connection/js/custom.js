@@ -46,14 +46,16 @@ $(document).ready(function(){
     * flight list dynamic checkbox
     */
       $(".show_on_airport_selected").hide();
-      $(document).on('change', "input[name='departed_from'], input[name='final_destination'], input[name='is_direct_flight'], .connection", function(){
+      $(document).on('change', "input[name='departed_from'], input[name='final_destination'], .connection", function(){
 
         if (($("input[name='departed_from']").val() != "")||($("input[name='final_destination']").val() != "")) {
           $(".show_on_airport_selected").show(500);
         }else{
           $(".show_on_airport_selected").hide(500);
         }
-       if ($("input[name='is_direct_flight']:checked").val() == '1') {
+
+
+       if ($(".connection").val() != '') {
           var is_connection_empty = true;
           $(".connection").each(function(){
             if ($(this).val() != "") {
@@ -156,8 +158,8 @@ $(document).ready(function(){
       if (step==1) {
 
         $("#continue_1").removeClass('active_button');
-        if (($("input[name='departed_from']").val() != "") && ($("input[name='final_destination']").val() != "") && ($("input[name='is_direct_flight']").is(':checked')) ) {
-          if ($("input[name='is_direct_flight']:checked").val() == '1') {
+        if (($("input[name='departed_from']").val() != "") && ($("input[name='final_destination']").val() != "")) {
+          if ($(".connection").val() != '') {
 
             var is_connection_empty = true;
 
@@ -520,15 +522,15 @@ $(document).ready(function(){
 
 
 
-    $("#connection_div").hide();
-
-    $("input[name=is_direct_flight]:radio").click(function() {
-      if($(this).attr("value")=="1") {
-        $("#connection_div").show(500);
-      }else{
-        $("#connection_div").hide(500);
-      }
-    });
+    // $("#connection_div").hide();
+    //
+    // $("input[name=is_direct_flight]:radio").click(function() {
+    //   if($(this).attr("value")=="1") {
+    //     $("#connection_div").show(500);
+    //   }else{
+    //     $("#connection_div").hide(500);
+    //   }
+    // });
 
 
     /* --------- Delayed Button ----------- */

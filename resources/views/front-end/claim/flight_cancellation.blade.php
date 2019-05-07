@@ -102,13 +102,10 @@
                                     </div>
                                 </div>
 
-                                <div class="common_row">
+                                <div class="common_row" style="display: none;">
                                     <div class="form_h3">
                                         <h3>Were any other airports involved in this trip?</h3>
                                     </div>
-                                    {{-- <div class="form_h4">
-                                        <h4>If your trip was not a direct flight, let us know.</h4>
-                                    </div> --}}
                                     <div class="label_field only_label_without_input">
                                       <label>IF YOUR TRIP WAS NOT A DIRECT FLIGHT, LET US KNOW.</label>
                                     </div>
@@ -898,6 +895,9 @@
                                 <div class="common_row">
                                     <div class="form_h3">
                                         <h3>What’s your booking reference?</h3>
+                                    </div>
+                                    <div class="parent_div" style="padding-bottom: 20px;">
+                                      <label>A booking reference is a code used by airlines to keep track of individual reservations. You can find your booking reference on your e-ticket or on any emails or documents you received from the airline after booking your trip. This code will most often be six digits, including both letters and numbers (for example: DF87G3, REDYYD, L5W4NW). Please make sure you don’t include spaces. For help locating your booking please contact our <a style="font-weight: bold; color: #124478;" href="{{ URL::to('/contact-us') }}">Customer Service Department.</a></label>
                                     </div>
                                     <div class="parent_div">
                                         <div class="two_child_radio_div first_child">

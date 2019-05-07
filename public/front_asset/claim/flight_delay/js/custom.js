@@ -29,8 +29,8 @@ $(document).ready(function() {
       console.log($(".flight_code_"+serial).val(iata_code));
     });
 
-    $(document).on('change', "input[name='departed_from'], input[name='final_destination'], input[name='is_direct_flight'], .connection", function(){
-       if ($("input[name='is_direct_flight']:checked").val() == '1') {
+    $(document).on('change', "input[name='departed_from'], input[name='final_destination'], .connection", function(){
+       if ($(".connection").val() != '') {
           var is_connection_empty = true;
           $(".connection").each(function(){
             if ($(this).val() != "") {
@@ -112,8 +112,8 @@ $(document).ready(function() {
             console.log(final_destination_for_blade);
             document.getElementById("final_destination_data").innerHTML =final_destination_for_blade;
             $("#continue_1").removeClass('active_button');
-            if (($("input[name='departed_from']").val() != "") && ($("input[name='final_destination']").val() != "") && ($("input[name='is_direct_flight']").is(':checked'))) {
-                if ($("input[name='is_direct_flight']:checked").val() == '1') {
+            if (($("input[name='departed_from']").val() != "") && ($("input[name='final_destination']").val() != "")) {
+                if ($(".connection").val() != '') {
                     var is_connection_empty = true;
                     $(".connection").each(function() {
                         if ($(this).val() == "") {
@@ -367,14 +367,14 @@ $(document).ready(function() {
 
     /*----------Connection Hide/Show-------*/
 
-    $("#connection_div").hide();
-    $("input[name=is_direct_flight]:radio").click(function() {
-        if ($(this).attr("value") == "1") {
-            $("#connection_div").show(500);
-        } else {
-            $("#connection_div").hide(500);
-        }
-    });
+    // $("#connection_div").hide();
+    // $("input[name=is_direct_flight]:radio").click(function() {
+    //     if ($(this).attr("value") == "1") {
+    //         $("#connection_div").show(500);
+    //     } else {
+    //         $("#connection_div").hide(500);
+    //     }
+    // });
 
     $("input[name=total_delay]:radio").click(function() {
         if ($(this).attr("value") == "less_than_3_hours") {
