@@ -820,7 +820,7 @@
                                         <div class="form-check">
                                             <label>
                                                 <input type="checkbox" name="is_signed_permission" id="no-use"> <span class="label-text">Write your signature below as it appears on your ID. It's required by airlines to collect the compensation for you. By signing you agree with
-                                                    the Assignment Form and Price List</span>
+                                                    the <a href="{{URL::to('/pricing-list')}}">Assignment Form and Price List</a>/span>
                                             </label>
                                         </div>
                                     </div>
@@ -885,7 +885,9 @@
                                     </div>
                                 </div>
 
-                                <div class="common_row show_if_contacted_airline">
+
+
+                                <div class="common_row">
                                     <div class="document_submit_div">
                                         <div class="row">
                                             <div class="col-md-6 padding_bottom">ID copies, including travel companions’ if applicable</div>

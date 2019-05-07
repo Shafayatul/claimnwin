@@ -27,7 +27,11 @@
             </div>
             <div class="col-md-2">
                 <div class="parent_div text-center">
-                    <span class="bold_span">Value:</span> {{ $claims->amount }}
+                    @php
+                        $geoip = new \Victorybiz\GeoIPLocation\GeoIPLocation;
+                        $currentCurrencyCode = $geoip->getCurrencyCode();
+                    @endphp
+                    <span class="bold_span">Value:</span> {{ $claims->converted_expection_amount.' '.$currentCurrencyCode }}
                 </div>
             </div>
             <div class="col-md-4">
@@ -202,13 +206,14 @@
                                             <td>
                                                 <span class="text-right">
                                                     @php
-                                                    $string = $claims->amount;
-                                                    echo preg_replace("/[^0-9\.]/", '', $string);
+
+                                                    $string = $claims->converted_expection_amount;
+                                                    echo preg_replace("/[^0-9\.]/", '', $string).' '.$currentCurrencyCode;
                                                     @endphp
                                                 </span>
                                             </td>
                                         </tr>
-                                        <tr>
+                                        {{-- <tr>
                                             <td>Welcome Success Fee</td>
                                             <td>
                                                 <span class="text-right">
@@ -220,7 +225,7 @@
                                                     @endphp
                                                 </span>
                                             </td>
-                                        </tr>
+                                        </tr> --}}
                                         {{-- <tr>
                     <td>Others</td>
                     <td>-</td>
@@ -238,10 +243,11 @@
                                             <td>
                                                 <span class="text-right">
                                                     @php
-                                                    $string = $claims->amount;
+                                                    $string = $claims->converted_expection_amount;
                                                     $compensation_from_airline = preg_replace("/[^0-9\.]/", '', $string);
                                                     $welcome_success_fee = (($compensation_from_airline*10)/100);
-                                                    echo ($compensation_from_airline - $welcome_success_fee);
+                                                    // echo ($compensation_from_airline - $welcome_success_fee);
+                                                    echo $compensation_from_airline.' '.$currentCurrencyCode;
                                                     @endphp
                                                 </span>
                                             </td>

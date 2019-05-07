@@ -613,58 +613,287 @@
 </div>
 </div>
 
-<div role="tabpanel" class="tab-pane" id="messaging" aria-labelledby="messaging-tab">
+<div role="tabpanel" class="tab-pane active" id="messaging" aria-labelledby="messaging-tab">
     <div class="row">
-        <div class="col-md-12">
-            <h3 class="text-center" style="padding-top: 20px; color:seagreen;">Sent Email</h3>
-            <br>
+            <div class="col-md-2" style="margin-top: 5px;">
+                    <a class="btn btn-primary btn-lg" href="#">Compose</a>
+                <ul class="nav nav-tabs message" id="myTab" role="tablist">
+
+                    {{-- <li></li> --}}
+
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" href="#conversation" role="tab" aria-controls="home">Conversation</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#inbox" role="tab" aria-controls="profile">Inbox</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#sent" role="tab" aria-controls="messages">Sent</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#case_history" role="tab" aria-controls="settings">Case History</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#note_&_phone_calls" role="tab" aria-controls="settings">Note & Phone Calls</a>
+                    </li>
+
+                </ul>
+            </div>
+        <div class="col-md-10" style="margin-top: 5px;">
+            {{-- <h3 class="text-center" style="padding-top: 20px; color:seagreen;">Sent Email</h3>
+            <br> --}}
+            <div class="tab-content">
+
+            <div class="tab-pane active" id="conversation" role="tabpanel">
             <div class="row">
                 <div class="col-md-12">
                     <div class="table-responsive">
                         <table class="table table-bordered table-hover">
                             <thead>
-                                <th>Date</th>
+                                <th>From</th>
                                 <th>Subject</th>
-                                <th>Action</th>
+                                <th>Message</th>
+                                <th>Date</th>
                             </thead>
                             <tbody>
-                                @if($sents)
-                                    @foreach($sents as $sent)
+                                    <?php
+                                    $userInfo=DB::table('users')->where('id',$claims->user_id)->first();
+                                    $userEmail=$userInfo->email;
+                                    if($aFolder) {
+                                    foreach($aFolder as $oFolder) {
+                                        $aMessage = $oFolder->messages()->from($userEmail)->get();
+                                        foreach($aMessage as $oMessage){
+                                            // dd($oMessage);
+                                            $sub=$oMessage->getSubject();
+                                            $date = $oMessage->getDate();
+                                            $from = $oMessage->getFrom()[0]->mail;
+                                            // $body = $oMessage->getBodies();
+                                            $msg = $oMessage->getHtmlBody();
+                                            $longMsg=$oMessage->getBodies()['text']->content;
+                                            $lines=explode("\n", $longMsg);
+                                ?>
                                 <tr>
-                                    <td>{{Carbon\Carbon::parse($sent->created_at)->format('d-m-Y')}}</td>
-                                    <td>{{$sent->subject}}</td>
-                                    <td>
-                                        <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#SentEmailShow-{{$sent->id}}">View Email</button>
-                                        <!-- Modal -->
-                                        <div id="SentEmailShow-{{$sent->id}}" class="modal modal-wide fade" role="dialog">
-                                            <div class="modal-dialog">
-
-                                            <!-- Modal content-->
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                <h4 class="modal-title">{{$sent->subject}}</h4>
-                                                </div>
-                                                    <div class="modal-body" style="display: block; overflow:scroll;">
-                                                         {!! $sent->body !!}
-                                                    </div>
-
-                                                <div class="modal-footer">
-                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                </div>
-                                            </div>
-
-                                            </div>
-                                        </div>
-                                    </td>
+                                    <td>{{$from}}</td>
+                                    <td>{{$sub}}</td>
+                                    <td>{{$lines['0']}}</td>
+                                    <td>{{Carbon\Carbon::parse($date)->format('d-m-Y')}}</td>
                                 </tr>
-                                @endforeach
-                                @endif
+                                <?php
+                                }
+                            }
+                        }
+                        ?>
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
+        </div>
+
+        <div class="tab-pane" id="inbox" role="tabpanel">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                    <th>Date</th>
+                                    <th>Subject</th>
+                                    <th>Action</th>
+                                </thead>
+                                <tbody>
+                                    @if($sents)
+                                        @foreach($sents as $sent)
+                                    <tr>
+                                        <td>{{Carbon\Carbon::parse($sent->created_at)->format('d-m-Y')}}</td>
+                                        <td>{{$sent->subject}}</td>
+                                        <td>
+                                            <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#SentEmailShow-{{$sent->id}}">View Email</button>
+                                            <!-- Modal -->
+                                            <div id="SentEmailShow-{{$sent->id}}" class="modal modal-wide fade" role="dialog">
+                                                <div class="modal-dialog">
+
+                                                <!-- Modal content-->
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                    <h4 class="modal-title">{{$sent->subject}}</h4>
+                                                    </div>
+                                                        <div class="modal-body" style="display: block; overflow:scroll;">
+                                                             {!! $sent->body !!}
+                                                        </div>
+
+                                                    <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                    </div>
+                                                </div>
+
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                    @endif
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="tab-pane" id="sent" role="tabpanel">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-hover">
+                                    <thead>
+                                        <th>Date</th>
+                                        <th>Subject</th>
+                                        <th>Action</th>
+                                    </thead>
+                                    <tbody>
+                                        @if($sents)
+                                            @foreach($sents as $sent)
+                                        <tr>
+                                            <td>{{Carbon\Carbon::parse($sent->created_at)->format('d-m-Y')}}</td>
+                                            <td>{{$sent->subject}}</td>
+                                            <td>
+                                                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#SentEmailShow-{{$sent->id}}">View Email</button>
+                                                <!-- Modal -->
+                                                <div id="SentEmailShow-{{$sent->id}}" class="modal modal-wide fade" role="dialog">
+                                                    <div class="modal-dialog">
+
+                                                    <!-- Modal content-->
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                        <h4 class="modal-title">{{$sent->subject}}</h4>
+                                                        </div>
+                                                            <div class="modal-body" style="display: block; overflow:scroll;">
+                                                                 {!! $sent->body !!}
+                                                            </div>
+
+                                                        <div class="modal-footer">
+                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                        </div>
+                                                    </div>
+
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                        @endif
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="tab-pane" id="case_history" role="tabpanel">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-hover">
+                                        <thead>
+                                            <th>Date</th>
+                                            <th>Subject</th>
+                                            <th>Action</th>
+                                        </thead>
+                                        <tbody>
+                                            @if($sents)
+                                                @foreach($sents as $sent)
+                                            <tr>
+                                                <td>{{Carbon\Carbon::parse($sent->created_at)->format('d-m-Y')}}</td>
+                                                <td>{{$sent->subject}}</td>
+                                                <td>
+                                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#SentEmailShow-{{$sent->id}}">View Email</button>
+                                                    <!-- Modal -->
+                                                    <div id="SentEmailShow-{{$sent->id}}" class="modal modal-wide fade" role="dialog">
+                                                        <div class="modal-dialog">
+
+                                                        <!-- Modal content-->
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                            <h4 class="modal-title">{{$sent->subject}}</h4>
+                                                            </div>
+                                                                <div class="modal-body" style="display: block; overflow:scroll;">
+                                                                     {!! $sent->body !!}
+                                                                </div>
+
+                                                            <div class="modal-footer">
+                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                            </div>
+                                                        </div>
+
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            @endforeach
+                                            @endif
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane" id="note_&_phone_calls" role="tabpanel">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered table-hover">
+                                            <thead>
+                                                <th>Date</th>
+                                                <th>Subject</th>
+                                                <th>Action</th>
+                                            </thead>
+                                            <tbody>
+                                                @if($sents)
+                                                    @foreach($sents as $sent)
+                                                <tr>
+                                                    <td>{{Carbon\Carbon::parse($sent->created_at)->format('d-m-Y')}}</td>
+                                                    <td>{{$sent->subject}}</td>
+                                                    <td>
+                                                        <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#SentEmailShow-{{$sent->id}}">View Email</button>
+                                                        <!-- Modal -->
+                                                        <div id="SentEmailShow-{{$sent->id}}" class="modal modal-wide fade" role="dialog">
+                                                            <div class="modal-dialog">
+
+                                                            <!-- Modal content-->
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                <h4 class="modal-title">{{$sent->subject}}</h4>
+                                                                </div>
+                                                                    <div class="modal-body" style="display: block; overflow:scroll;">
+                                                                         {!! $sent->body !!}
+                                                                    </div>
+
+                                                                <div class="modal-footer">
+                                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                                </div>
+                                                            </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                @endforeach
+                                                @endif
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+        </div>
         </div>
     </div>
 </div>

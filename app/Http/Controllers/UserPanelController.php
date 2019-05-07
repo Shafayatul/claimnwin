@@ -27,6 +27,7 @@ class UserPanelController extends Controller
           $user_id = Auth::user()->id;
           $claims = Claim::where('user_id', $user_id)->get();
           $airline_id_array = Claim::where('user_id', $user_id)->pluck('airline_id')->toArray();
+
           $airline = Airline::whereIn('id', $airline_id_array)->pluck('name', 'id')->toArray();
           $claim_status = ClaimStatus::pluck('name', 'id')->toArray();
           return view('front-end.user.user_panel', compact('claims', 'airline', 'claim_status'));
@@ -39,6 +40,7 @@ class UserPanelController extends Controller
                       ->where('claims.id', $id)
                       ->select('tickets.id as ticket_id','tickets.subject', 'tickets.status as ticket_status', 'claims.*')
                       ->first();
+      
       $ticket = Ticket::where('claim_id', $claims->id)->first();
       // dd($ticket->id);
       $ticket_notes = TicketNote::where('ticket_id', $ticket->id)->get();

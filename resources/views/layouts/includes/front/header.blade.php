@@ -21,6 +21,12 @@
                     <img src="{{asset('front_asset/')}}/img/phone.png" alt="phone icon">
                     +180 000 1234
                 </a></li>
+
+                @role('User')
+                <li><a href="{{ URL::to('/user-home') }}">My Claims</a></li>
+                <li><a href="{{ URL::to('/affiliate') }}">Affiliate</a></li>
+                @endrole
+
                 <li class="dropdown country">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img src="{{asset('front_asset/')}}/img/flag.png" alt="Flag"> <span class="caret"></span></a>
                   <ul class="dropdown-menu">

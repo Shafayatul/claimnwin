@@ -847,7 +847,7 @@
                     <div class="form-check">
                         <label>
                             <input type="checkbox" name="is_signed_permission" id="no-use"> <span class="label-text">Write your signature below as it appears on your ID. It's required by airlines to collect the compensation for you. By signing you agree with
-                                the Assignment Form and Price List</span>
+                                the <a href="{{URL::to('/pricing-list')}}">Assignment Form and Price List</a></span>
                         </label>
                     </div>
                 </div>
@@ -924,6 +924,18 @@
                 </div>
             </div>
 
+            <div class="common_row show_if_contacted_airline">
+                <div class="parent_div">
+                    <div class="form_h4">
+                        <h4>Please upload all previous correspondence</h4>
+                    </div>
+                    <div class="form-group">
+                        <input type="file" name="flight_delay_correspondence_file" class="form-control-file" id="exampleFormControlFile1">
+                    </div>
+                </div>
+            </div>
+
+
             <div class="common_row">
                 <div class="form_h3">
                     <h3>Tell us what happened</h3>
@@ -941,7 +953,7 @@
                 </div>
             </div>
 
-            <div class="common_row show_if_contacted_airline">
+            <div class="common_row">
                 <div class="document_submit_div">
                     <div class="row">
                         <div class="col-md-6 padding_bottom">ID copies, including travel companions’ if applicable</div>

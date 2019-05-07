@@ -1079,7 +1079,7 @@
 
                                 <div class="form-check">
                                   <label>
-                                    <input type="checkbox" name="is_signed_permission" id="no-use"> <span class="label-text">Write your signature below as it appears on your ID. It's required by airlines to collect the compensation for you. By signing you agree with the Assignment Form and Price List</span>
+                                  <input type="checkbox" name="is_signed_permission" id="no-use"> <span class="label-text">Write your signature below as it appears on your ID. It's required by airlines to collect the compensation for you. By signing you agree with the <a href="{{URL::to('/pricing-list')}}">Assignment Form and Price List</a></span>
 
                                   </label>
                                 </div>
@@ -1181,16 +1181,16 @@
                               </div>
                             </div>
 
-                            {{-- <div class="common_row show_if_contacted_airline">
+                            <div class="common_row show_if_contacted_airline">
                               <div class="parent_div">
                                 <div class="form_h4">
-                                  <h4>Please upload all correspondence</h4>
+                                  <h4>Please upload all previous correspondence</h4>
                                 </div>
                                 <div class="form-group">
-                                  <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                                  <input type="file" name="missed_correspondence_file" class="form-control-file" id="exampleFormControlFile1">
                                 </div>
                               </div>
-                            </div> --}}
+                            </div>
 
                             <div class="common_row">
                               <div class="form_h3">
@@ -1209,7 +1209,21 @@
                               </div>
                             </div>
 
-                            <div class="common_row show_if_contacted_airline">
+                            <div class="common_row">
+                            <div class="document_submit_div">
+                            <div class="row">
+                                <div class="col-md-12 padding_bottom">
+                                    <p style="text-align:justify!important;">
+                                        You'll find below a list of documents legally required for the submission of your claim.
+                                        Don't worry if you don’t have them to hand right now, you can upload them later via your personal dashboard.
+                                        Alternatively, you can send them via email to info@claimnwin.com
+                                    </p><br>
+                                    <p style="text-align:justify!important;">
+                                        2X Faster: Submitting your documents to us right away will allow us to send your claim off much faster!
+                                    </p>
+                                </div>
+                            </div>
+                            </div>
                               <div class="document_submit_div">
                                 <div class="row">
                                   <div class="col-md-6 padding_bottom">ID copies, including travel companions’ if applicable</div>
@@ -1259,6 +1273,10 @@
                                 </div>
                               </div>
                             </div>
+
+
+                                    {{-- <a href="#" class="btn btn-dm btn-danger pull-right" id="reset_file">Reset File</a> --}}
+
 
 
                             <div class="common_row">
@@ -1372,6 +1390,23 @@ $(document).ready(function() {
 
     });
     </script>
+
+    {{-- <script>
+$(document).ready(function(){
+    var control = $('input[type="file"]');
+         clearBn = $("#reset_file");
+
+
+        // Setup the clear functionality
+        clearBn.on("click", function(){
+            control.replaceWith( control.val('').clone( true ) );
+        });
+        control.on({
+            change: function(){ console.log( "Changed" ) },
+            focus: function(){ console.log(  "Focus"  ) }
+        });
+    });
+    </script> --}}
 
  <script src="{{asset('signature/js/numeric-1.2.6.min.js')}}"></script>
  <script src="{{asset('signature/js/bezier.js')}}"></script>

@@ -511,6 +511,8 @@ class ClaimsController extends Controller
 
 
 
+
+
         // create claim
         $claim = new Claim();
         $claim->user_id                                 = $user->id;
@@ -561,6 +563,73 @@ class ClaimsController extends Controller
 
         $claim->save();
 
+        if($claim_table_type == 'missed_connection'){
+            if($request->hasFile('missed_correspondence_file')){
+                $correspondenceFile = $request->file('missed_correspondence_file');
+                $fileName = uniqid().'.'.strtolower($correspondenceFile->getClientOriginalExtension());
+                if(!File::exists(public_path('/uploads').'/'.$claim->id)) {
+                    File::makeDirectory(public_path('/uploads').'/'.$claim->id);
+                }
+                $FileUrl =  $correspondenceFile->move(public_path('/uploads').'/'.$claim->id.'/', $fileName);
+            }else{
+                $FileUrl = null;
+            }
+            $claim_file = new ClaimFile();
+            $claim_file->file_name = $FileUrl;
+            $claim_file->user_id = Auth::user()->id;
+            $claim_file->claim_id = $claim->id;
+            $claim_file->save();
+        }elseif($claim_table_type == 'denied_boarding'){
+            if($request->hasFile('denied_correspondence_file')){
+                $correspondenceFile = $request->file('denied_correspondence_file');
+                $fileName = uniqid().'.'.strtolower($correspondenceFile->getClientOriginalExtension());
+                if(!File::exists(public_path('/uploads').'/'.$claim->id)) {
+                    File::makeDirectory(public_path('/uploads').'/'.$claim->id);
+                }
+                $FileUrl =  $correspondenceFile->move(public_path('/uploads').'/'.$claim->id.'/', $fileName);
+            }else{
+                $FileUrl = null;
+            }
+            $claim_file = new ClaimFile();
+            $claim_file->file_name = $FileUrl;
+            $claim_file->user_id = Auth::user()->id;
+            $claim_file->claim_id = $claim->id;
+            $claim_file->save();
+        }elseif($claim_table_type == 'flight_delay'){
+            if($request->hasFile('flight_delay_correspondence_file')){
+                $correspondenceFile = $request->file('flight_delay_correspondence_file');
+                $fileName = uniqid().'.'.strtolower($correspondenceFile->getClientOriginalExtension());
+                if(!File::exists(public_path('/uploads').'/'.$claim->id)) {
+                    File::makeDirectory(public_path('/uploads').'/'.$claim->id);
+                }
+                $FileUrl =  $correspondenceFile->move(public_path('/uploads').'/'.$claim->id.'/', $fileName);
+            }else{
+                $FileUrl = null;
+            }
+            $claim_file = new ClaimFile();
+            $claim_file->file_name = $FileUrl;
+            $claim_file->user_id = Auth::user()->id;
+            $claim_file->claim_id = $claim->id;
+            $claim_file->save();
+        }elseif($claim_table_type == 'flight_cancellation'){
+            if($request->hasFile('flight_cancel_correspondence_file')){
+                $correspondenceFile = $request->file('flight_cancel_correspondence_file');
+                $fileName = uniqid().'.'.strtolower($correspondenceFile->getClientOriginalExtension());
+                if(!File::exists(public_path('/uploads').'/'.$claim->id)) {
+                    File::makeDirectory(public_path('/uploads').'/'.$claim->id);
+                }
+                $FileUrl =  $correspondenceFile->move(public_path('/uploads').'/'.$claim->id.'/', $fileName);
+            }else{
+                $FileUrl = null;
+            }
+            $claim_file = new ClaimFile();
+            $claim_file->file_name = $FileUrl;
+            $claim_file->user_id = Auth::user()->id;
+            $claim_file->claim_id = $claim->id;
+            $claim_file->save();
+        }
+
+
         if ($claim) {
           $ticket = new Ticket;
           $ticket->subject = $claim->claim_table_type;
@@ -571,7 +640,7 @@ class ClaimsController extends Controller
         }
 
         // <--------------------------------Start Convert Amount Code----------------------->
-        
+
         if($claim->amount != null)
         {
             $compensation_amount = explode(" ",$claim->amount);

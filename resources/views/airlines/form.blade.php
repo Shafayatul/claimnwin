@@ -67,7 +67,7 @@
   <div class="col-md-6">
         <div class="form-group {{ $errors->has('status') ? 'has-error' : ''}}">
             {!! Form::label('status', 'Active', ['class' => 'control-label']) !!}
-                {{ Form::select('status', ['1'=> 'Enabled', '2'=> 'Disabled'], null, array('class'=>'form-control', 'placeholder'=>'Please select ...')) }}
+                {{ Form::select('status', ['1'=> 'Enabled', '2'=> 'Disabled'], null, array('class'=>'form-control')) }}
             {!! $errors->first('status', '<p class="help-block">:message</p>') !!}
         </div>
   </div>
