@@ -10,6 +10,9 @@
   overflow-y: auto;
 }
 </style>
+    <!-- Include Editor style. -->
+    <link href="https://cdn.jsdelivr.net/npm/froala-editor@2.9.0/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/npm/froala-editor@2.9.0/css/froala_style.min.css" rel="stylesheet" type="text/css" />
 @endsection
 @include('layouts.includes.partial.alert')
 <div class="forms">
@@ -613,16 +616,18 @@
 </div>
 </div>
 
-<div role="tabpanel" class="tab-pane active" id="messaging" aria-labelledby="messaging-tab">
+<div role="tabpanel" class="tab-pane " id="messaging" aria-labelledby="messaging-tab">
     <div class="row">
             <div class="col-md-2" style="margin-top: 5px;">
-                    <a class="btn btn-primary btn-lg" href="#">Compose</a>
+                    {{-- <a class="btn btn-primary btn-lg" href="#">Compose</a> --}}
                 <ul class="nav nav-tabs message" id="myTab" role="tablist">
 
-                    {{-- <li></li> --}}
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-block btn-primary" href="http://freeflightclaim.com/webmail" target="_blank">Compose</a>
+                    </li>
 
                     <li class="nav-item">
-                        <a class="nav-link active" data-toggle="tab" href="#conversation" role="tab" aria-controls="home">Conversation</a>
+                        <a class="nav-link" data-toggle="tab" href="#conversation" role="tab" aria-controls="home">Conversation</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" data-toggle="tab" href="#inbox" role="tab" aria-controls="profile">Inbox</a>
@@ -696,44 +701,69 @@
                         <div class="table-responsive">
                             <table class="table table-bordered table-hover">
                                 <thead>
-                                    <th>Date</th>
+                                    <th>From</th>
                                     <th>Subject</th>
+                                    <th>Message</th>
+                                    <th>Date</th>
                                     <th>Action</th>
                                 </thead>
                                 <tbody>
-                                    @if($sents)
-                                        @foreach($sents as $sent)
-                                    <tr>
-                                        <td>{{Carbon\Carbon::parse($sent->created_at)->format('d-m-Y')}}</td>
-                                        <td>{{$sent->subject}}</td>
-                                        <td>
-                                            <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#SentEmailShow-{{$sent->id}}">View Email</button>
-                                            <!-- Modal -->
-                                            <div id="SentEmailShow-{{$sent->id}}" class="modal modal-wide fade" role="dialog">
-                                                <div class="modal-dialog">
+                                    <?php
 
-                                                <!-- Modal content-->
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                    <h4 class="modal-title">{{$sent->subject}}</h4>
-                                                    </div>
-                                                        <div class="modal-body" style="display: block; overflow:scroll;">
-                                                             {!! $sent->body !!}
-                                                        </div>
+                                    if($inbox) {
+                                    $userInfo=DB::table('users')->where('id',$claims->user_id)->first();
+                                    $userEmail=$userInfo->email;
+                                    foreach($inbox as $oFolder) {
+                                        $aMessage = $oFolder->messages()->from($userEmail)->get();
+                                        foreach($aMessage as $oMessage){
+                                            // dd($oMessage);
+                                            $sub=$oMessage->getSubject();
+                                            $date = $oMessage->getDate();
+                                            $from = $oMessage->getFrom()[0]->mail;
+                                            $id = $oMessage->getMessageNo();
+                                            // $body = $oMessage->getBodies();
+                                            $msg = $oMessage->getHtmlBody();
+                                            $longMsg=$oMessage->getBodies()['text']->content;
+                                            $lines=explode("\n", $longMsg);
+                                ?>
+                                <tr>
+                                    <td>{{$from}}</td>
+                                    <td>{{$sub}}</td>
+                                    <td>{{$lines['0']}}</td>
+                                    <td>{{Carbon\Carbon::parse($date)->format('d-m-Y')}}</td>
+                                    <td>
+                                    <a class="btn btn-info btn-lg" title="inbox-{{$id}}" data-toggle="modal" data-target="#inbox{{$id}}">View</a>
+                                    <!-- Modal -->
 
-                                                    <div class="modal-footer">
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                    </div>
-                                                </div>
+                                    </td>
+                                </tr>
+                                <div id="inbox{{$id}}" class="modal fade" role="dialog">
+                                        <div class="modal-dialog">
 
-                                                </div>
+                                        <!-- Modal content-->
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title">{{$sub}}</h4>
                                             </div>
-                                        </td>
-                                    </tr>
-                                    @endforeach
-                                    @endif
-                                </tbody>
+                                            <div class="modal-body">
+                                                <p>
+                                                    {{$longMsg}}
+                                                </p>
+                                            </div>
+                                            <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+
+                                        </div>
+                                    </div>
+                                <?php
+                                }
+                            }
+                        }
+                        ?>
+                            </tbody>
                             </table>
                         </div>
                     </div>
@@ -747,44 +777,67 @@
                             <div class="table-responsive">
                                 <table class="table table-bordered table-hover">
                                     <thead>
-                                        <th>Date</th>
+                                        <th>From</th>
                                         <th>Subject</th>
+                                        <th>Message</th>
+                                        <th>Date</th>
                                         <th>Action</th>
                                     </thead>
                                     <tbody>
-                                        @if($sents)
-                                            @foreach($sents as $sent)
-                                        <tr>
-                                            <td>{{Carbon\Carbon::parse($sent->created_at)->format('d-m-Y')}}</td>
-                                            <td>{{$sent->subject}}</td>
-                                            <td>
-                                                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#SentEmailShow-{{$sent->id}}">View Email</button>
-                                                <!-- Modal -->
-                                                <div id="SentEmailShow-{{$sent->id}}" class="modal modal-wide fade" role="dialog">
-                                                    <div class="modal-dialog">
+                                    <?php
 
-                                                    <!-- Modal content-->
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                        <h4 class="modal-title">{{$sent->subject}}</h4>
-                                                        </div>
-                                                            <div class="modal-body" style="display: block; overflow:scroll;">
-                                                                 {!! $sent->body !!}
-                                                            </div>
+                                    if($sent) {
+                                    $userInfo=DB::table('users')->where('id',$claims->user_id)->first();
+                                    $userEmail=$userInfo->email;
+                                    // foreach($sent as $oFolder) {
+                                        $aMessage = $sent->messages()->from($userEmail)->get();
+                                        foreach($aMessage as $oMessage){
+                                            // dd($oMessage);
+                                            $sub=$oMessage->getSubject();
+                                            $date = $oMessage->getDate();
+                                            $from = $oMessage->getFrom()[0]->mail;
+                                            $id = $oMessage->getMessageNo();
+                                            // $body = $oMessage->getBodies();
+                                            $msg = $oMessage->getHtmlBody();
+                                            $longMsg=$oMessage->getBodies()['text']->content;
+                                            $lines=explode("\n", $longMsg);
+                                ?>
+                                <tr>
+                                    <td>{{$from}}</td>
+                                    <td>{{$sub}}</td>
+                                    <td>{{$lines['0']}}</td>
+                                    <td>{{Carbon\Carbon::parse($date)->format('d-m-Y')}}</td>
+                                    <td>
+                                        <a class="btn btn-info btn-lg" title="sent-{{$id}}" data-toggle="modal" data-target="#sent{{$id}}">View</a>
+                                        <div id="sent{{$id}}" class="modal fade" role="dialog">
+                                        <div class="modal-dialog">
 
-                                                        <div class="modal-footer">
-                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                        </div>
-                                                    </div>
+                                        <!-- Modal content-->
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title">{{$sub}}</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>
+                                                    {{$longMsg}}
+                                                </p>
+                                            </div>
+                                            <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
 
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        @endforeach
-                                        @endif
-                                    </tbody>
+                                        </div>
+                                    </div>
+                                    </td>
+                                </tr>
+                                <?php
+                                }
+                            // }
+                        }
+                        ?>
+                            </tbody>
                                 </table>
                             </div>
                         </div>
@@ -898,72 +951,341 @@
     </div>
 </div>
 
+
+
 <div role="tabpanel" class="tab-pane" id="airline_response" aria-labelledby="airline_response-tab">
-    <h3 class="text-center" style="padding-top: 20px; color:seagreen;">Inbox Email</h3>
-    <br>
     <div class="row">
-        <div class="col-md-12">
-            <div class="table-responsive">
-                <table class="table table-bordered table-hover">
-                    <thead>
-                        <th>#</th>
-                        <th>Date</th>
-                        <th>Subject</th>
-                        <th>Body</th>
-                        <th>Action</th>
-                    </thead>
-                    <tbody>
-                        <?php
-                            if($aFolder) {
-                            foreach($aFolder as $oFolder) {
-                                $aMessage = $oFolder->messages()->all()->get();
-                                foreach($aMessage as $oMessage){
-                                    $sub=$oMessage->getSubject();
-                                    $date = $oMessage->getDate();
-                                    $msg = $oMessage->getHtmlBody();
-                                    $longMsg=$oMessage->getBodies()['text']->content;
-                                    $lines=explode("\n", $longMsg);
-                        ?>
-                        <tr>
-                            <td>{{$oMessage->message_no}}</td>
-                            <td>{{Carbon\Carbon::parse($date)->format('d-m-Y')}}</td>
-                            <td>{{$sub}}</td>
-                            <td>{{$lines['0']}}</td>
-                            <td>
-                            <button type="button" class="btn btn-info btn-sm" title="{{$oMessage->message_no}}" data-toggle="modal" data-target="#InboxEmailShow-{{$oMessage->message_no}}">View Email</button>
-                            <!-- Modal -->
-                            <div id="InboxEmailShow-{{$oMessage->message_no}}" class="modal fade" role="dialog">
-                                    <div class="modal-dialog modal-lg">
+            <div class="col-md-2" style="margin-top: 5px;">
+                    {{-- <a class="btn btn-primary btn-lg" href="#">Compose</a> --}}
+                <ul class="nav nav-tabs message" id="myTab" role="tablist">
 
-                                    <!-- Modal content-->
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                        <h4 class="modal-title">{{$sub}}</h4>
-                                        </div>
-                                        <div class="modal-body">
-                                            {!! $msg !!}
-                                        </div>
-                                        <div class="modal-footer">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                        </div>
-                                    </div>
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-block btn-primary" href="http://freeflightclaim.com/webmail" target="_blank">Compose</a>
+                        </li>
 
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <?php
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#airline_conversation" role="tab" aria-controls="home">Conversation</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#airline_inbox" role="tab" aria-controls="profile">Inbox</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#airline_sent" role="tab" aria-controls="messages">Sent</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#airline_case_history" role="tab" aria-controls="settings">Case History</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#airline_note_&_phone_calls" role="tab" aria-controls="settings">Note & Phone Calls</a>
+                    </li>
+
+                </ul>
+            </div>
+        <div class="col-md-10" style="margin-top: 5px;">
+            {{-- <h3 class="text-center" style="padding-top: 20px; color:seagreen;">Sent Email</h3>
+            <br> --}}
+            <div class="tab-content">
+
+            <div class="tab-pane active" id="airline_conversation" role="tabpanel">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <th>From</th>
+                                <th>Subject</th>
+                                <th>Message</th>
+                                <th>Date</th>
+                            </thead>
+                            <tbody>
+                                    <?php
+                                    $airlineInfo=DB::table('airlines')->where('id',$claims->airline_id)->first();
+                                    $airlineEmail=$airlineInfo->email;
+                                    if($aFolder) {
+                                    foreach($aFolder as $oFolder) {
+                                        $aMessage = $oFolder->messages()->from($airlineEmail)->get();
+                                        // dd($aMessage);
+                                        foreach($aMessage as $oMessage){
+                                            // dd($oMessage);
+                                            $sub=$oMessage->getSubject();
+                                            $date = $oMessage->getDate();
+                                            $from = $oMessage->getFrom()[0]->mail;
+                                            // $body = $oMessage->getBodies();
+                                            $msg = $oMessage->getHtmlBody();
+                                            $longMsg=$oMessage->getBodies()['text']->content;
+                                            $lines=explode("\n", $longMsg);
+                                ?>
+                                <tr>
+                                    <td>{{$from}}</td>
+                                    <td>{{$sub}}</td>
+                                    <td>{{$lines['0']}}</td>
+                                    <td>{{Carbon\Carbon::parse($date)->format('d-m-Y')}}</td>
+
+                                </tr>
+                                <?php
                                 }
                             }
                         }
                         ?>
-                    </tbody>
-                </table>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
+        </div>
+
+        <div class="tab-pane" id="airline_inbox" role="tabpanel">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                    <th>From</th>
+                                    <th>Subject</th>
+                                    <th>Message</th>
+                                    <th>Date</th>
+                                    <th>Action</th>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    $airlineInfo=DB::table('airlines')->where('id',$claims->airline_id)->first();
+                                    $airlineEmail=$airlineInfo->email;
+                                    if($aFolder) {
+                                    foreach($aFolder as $oFolder) {
+                                        $aMessage = $oFolder->messages()->from($airlineEmail)->get();
+                                        foreach($aMessage as $oMessage){
+                                            // dd($oMessage);
+                                            $sub=$oMessage->getSubject();
+                                            $date = $oMessage->getDate();
+                                            $from = $oMessage->getFrom()[0]->mail;
+                                            $id = $oMessage->getMessageNo();
+                                            // $body = $oMessage->getBodies();
+                                            $msg = $oMessage->getHtmlBody();
+                                            $longMsg=$oMessage->getBodies()['text']->content;
+                                            $lines=explode("\n", $longMsg);
+                                ?>
+                                <tr>
+                                    <td>{{$from}}</td>
+                                    <td>{{$sub}}</td>
+                                    <td>{{$lines['0']}}</td>
+                                    <td>{{Carbon\Carbon::parse($date)->format('d-m-Y')}}</td>
+                                    <td>
+                                        <a class="btn btn-info btn-lg" title="airline_inbox-{{$id}}" data-toggle="modal" data-target="#airline_inbox{{$id}}">View</a>
+                                        <div id="airline_inbox{{$id}}" class="modal fade" role="dialog">
+                                        <div class="modal-dialog">
+
+                                        <!-- Modal content-->
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title">{{$sub}}</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>
+                                                    {{$longMsg}}
+                                                </p>
+                                            </div>
+                                            <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+
+                                        </div>
+                                    </div>
+                                    </td>
+                                </tr>
+                                <?php
+                                }
+                            }
+                        }
+                        ?>
+                            </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="tab-pane" id="airline_sent" role="tabpanel">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-hover">
+                                    <thead>
+                                        <th>From</th>
+                                        <th>Subject</th>
+                                        <th>Message</th>
+                                        <th>Date</th>
+                                        <th>Action</th>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        $airlineInfo=DB::table('airlines')->where('id',$claims->airline_id)->first();
+                                        $airlineEmail=$airlineInfo->email;
+                                        if($aFolder) {
+                                        foreach($aFolder as $oFolder) {
+                                            $aMessage = $oFolder->messages()->from($airlineEmail)->get();
+                                            foreach($aMessage as $oMessage){
+                                                // dd($oMessage);
+                                                $sub=$oMessage->getSubject();
+                                                $date = $oMessage->getDate();
+                                                $from = $oMessage->getFrom()[0]->mail;
+                                                $id = $oMessage->getMessageNo();
+                                                // $body = $oMessage->getBodies();
+                                                $msg = $oMessage->getHtmlBody();
+                                                $longMsg=$oMessage->getBodies()['text']->content;
+                                                $lines=explode("\n", $longMsg);
+                                    ?>
+                                    <tr>
+                                        <td>{{$from}}</td>
+                                        <td>{{$sub}}</td>
+                                        <td>{{$lines['0']}}</td>
+                                        <td>{{Carbon\Carbon::parse($date)->format('d-m-Y')}}</td>
+                                        <td>
+                                            <a class="btn btn-info btn-lg" title="airline_sent-{{$id}}" data-toggle="modal" data-target="#airline_sent{{$id}}">View</a>
+                                            <div id="airline_sent{{$id}}" class="modal fade" role="dialog">
+                                            <div class="modal-dialog">
+
+                                            <!-- Modal content-->
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                <h4 class="modal-title">{{$sub}}</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>
+                                                        {{$longMsg}}
+                                                    </p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+
+                                            </div>
+                                        </div>
+                                        </td>
+                                    </tr>
+                                    <?php
+                                    }
+                                }
+                            }
+                            ?>
+                                </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="tab-pane" id="airline_case_history" role="tabpanel">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-hover">
+                                        <thead>
+                                            <th>Date</th>
+                                            <th>Subject</th>
+                                            <th>Action</th>
+                                        </thead>
+                                        <tbody>
+                                            @if($sents)
+                                                @foreach($sents as $sent)
+                                            <tr>
+                                                <td>{{Carbon\Carbon::parse($sent->created_at)->format('d-m-Y')}}</td>
+                                                <td>{{$sent->subject}}</td>
+                                                <td>
+                                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#SentEmailShow-{{$sent->id}}">View Email</button>
+                                                    <!-- Modal -->
+                                                    <div id="SentEmailShow-{{$sent->id}}" class="modal modal-wide fade" role="dialog">
+                                                        <div class="modal-dialog">
+
+                                                        <!-- Modal content-->
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                            <h4 class="modal-title">{{$sent->subject}}</h4>
+                                                            </div>
+                                                                <div class="modal-body" style="display: block; overflow:scroll;">
+                                                                     {!! $sent->body !!}
+                                                                </div>
+
+                                                            <div class="modal-footer">
+                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                            </div>
+                                                        </div>
+
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            @endforeach
+                                            @endif
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane" id="airline_note_&_phone_calls" role="tabpanel">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered table-hover">
+                                            <thead>
+                                                <th>Date</th>
+                                                <th>Subject</th>
+                                                <th>Action</th>
+                                            </thead>
+                                            <tbody>
+                                                @if($sents)
+                                                    @foreach($sents as $sent)
+                                                <tr>
+                                                    <td>{{Carbon\Carbon::parse($sent->created_at)->format('d-m-Y')}}</td>
+                                                    <td>{{$sent->subject}}</td>
+                                                    <td>
+                                                        <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#SentEmailShow-{{$sent->id}}">View Email</button>
+                                                        <!-- Modal -->
+                                                        <div id="SentEmailShow-{{$sent->id}}" class="modal modal-wide fade" role="dialog">
+                                                            <div class="modal-dialog">
+
+                                                            <!-- Modal content-->
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                <h4 class="modal-title">{{$sent->subject}}</h4>
+                                                                </div>
+                                                                    <div class="modal-body" style="display: block; overflow:scroll;">
+                                                                         {!! $sent->body !!}
+                                                                    </div>
+
+                                                                <div class="modal-footer">
+                                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                                </div>
+                                                            </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                @endforeach
+                                                @endif
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+        </div>
         </div>
     </div>
 </div>
+
 
 <div role="tabpanel" class="tab-pane" id="customer_final_comm" aria-labelledby="customer_final_comm-tab">
 
@@ -1938,6 +2260,16 @@ $('#note').froalaEditor()
     $(".modal-wide").on("show.bs.modal", function() {
   var height = $(window).height() - 200;
   $(this).find(".modal-body").css("max-height", height);
+});
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/froala-editor@2.9.0/js/froala_editor.pkgd.min.js"></script>
+<script>
+$(function() {
+    $('#airlineCompose').froalaEditor()
+});
+
+$(function() {
+    $('#Compose').froalaEditor()
 });
 </script>
 @endsection

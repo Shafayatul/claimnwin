@@ -293,14 +293,24 @@ class ClaimBackController extends Controller
                 'protocol'      => 'imap'
             ]);
             $oClient->connect();
+            // dd($conn);
             $aFolder = $oClient->getFolders();
+
+            $inbox = $oClient->getFolders('INBOX');
+
+            $sent = $oClient->getFolder('Sent');
+            // dd($sent);
             // dd($aFolder);
-            // $aFolder = "";
+            // // $aFolder = "";
+
+
+            // $aFolder = $oClient->getFolders('INBOX.');
+
             $expanses = Expense::where('claim_id',$id)->get();
             $affiliateNotes = affiliate_notes::where('claim_id',$id)->get();
 
 
-        return view('claim.claimView',compact('affiliateNotes','expanses','aFolder','sents','notes', 'ticket_notes', 'ticket', 'claimFiles','affiliateComm','adminComm','NextStepData','claimStatusData','flightInfo','airline','departed_airport','destination_airport','reminders','claims','passengers','ittDetails','flightCount','passCount','claimsStatus','nextSteps','banks', 'affiliate_user'));
+        return view('claim.claimView',compact('sent','inbox','affiliateNotes','expanses','aFolder','sents','notes', 'ticket_notes', 'ticket', 'claimFiles','affiliateComm','adminComm','NextStepData','claimStatusData','flightInfo','airline','departed_airport','destination_airport','reminders','claims','passengers','ittDetails','flightCount','passCount','claimsStatus','nextSteps','banks', 'affiliate_user'));
     }
 
     public function downloadClaimFile($id)
@@ -503,6 +513,8 @@ class ClaimBackController extends Controller
         affiliate_notes::destroy($id);
         return redirect('/claim-view/'.$claim_id)->with('success','Affiliate Note Delete!');
     }
+
+
 
 
 }

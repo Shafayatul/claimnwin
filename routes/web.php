@@ -151,6 +151,8 @@ Route::get('/user/login','UserPanelController@user_login')->name('user/login');
         Route::post('/affiliate-note-add','ClaimBackController@affiliateNoteAdd')->name('affiliate-note-add');
         Route::post('/update-affiliate-note', 'ClaimBackController@affiliateNoteUpdate')->name('update-affiliate-note');
         Route::delete('/affiliate-notes/{id}', 'ClaimBackController@affiliateNoteDelete');
+
+        
     // });
 // });
 
