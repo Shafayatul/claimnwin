@@ -13,23 +13,63 @@
 
                             <div class="card-body">
 
-                                        {{-- {!! Form::open(['method' => 'GET', 'url' => '/', 'class' => 'form-inline my-2 my-lg-0 float-right', 'role' => 'search'])  !!}
-                                        <div class="form-group mb-n">
-                                        <div class="row">
+                              {!! Form::open(['method' => 'GET', 'url' => url('/manage-claim'), 'class' => 'form-inline my-2 my-lg-0 float-right', 'role' => 'search']) !!}
+                              <div class="row">
+                                <div class="col-md-2">
+                                  <div class="input-group">
+                                      <input type="text" class="form-control" name="name" placeholder="claims Name" value="{{ request('claim_name') }}">
+                                  </div>
+                                </div>
+                                <div class="col-md-2">
+                                  <div class="input-group">
+                                      <input type="text" class="form-control" name="alias" placeholder="claim id" value="{{ request('claim_id') }}">
+                                  </div>
+                                </div>
+                                <div class="col-md-2">
+                                  <div class="input-group">
+                                      <input type="text" class="form-control" name="iata_code" placeholder="First Name" value="{{ request('first_name') }}">
+                                  </div>
+                                </div>
+                                <div class="col-md-2">
+                                  <div class="input-group">
+                                      <input type="text" class="form-control" name="icao_code" placeholder="Last Name" value="{{ request('last_name') }}">
+                                  </div>
+                                </div>
+                                
+                                <div class="col-md-2">
+                                  <div class="input-group">
+                                      <input type="text" class="form-control" name="email" placeholder="Email" value="{{ request('email') }}">
+                                  </div>
+                                </div>
+                                <div class="col-md-2">
+                                  <div class="input-group">
+                                      <input type="text" class="form-control" name="phone" placeholder="Phone" value="{{ request('phone') }}">
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-md-2">
+                                  <div class="input-group">
+                                      <input type="text" class="form-control" name="country" placeholder="Note" value="{{ request('note') }}">
+                                  </div>
+                                </div>
+                                <div class="col-md-2">
+                                  <div class="input-group">
+                                      <input type="text" class="form-control" name="country" placeholder="Airline Reference" value="{{ request('airline_reference') }}">
+                                  </div>
+                                </div>
+                                
+                                <div class="col-md-2">
+                                  <span class="input-group-append">
+                                      <button class="btn btn-secondary" type="submit" name="submit">
+                                          <i class="fa fa-search"></i>
+                                      </button>
+                                  </span>
+                                </div>
+                              </div>
+                              {!! Form::close() !!}
 
-                                            <div class="col-md-11 grid_box1">
-                                            <label class="control-label">Claim Id</label>
-                                            <input type="text" name="search" class="form-control1" value="">
-                                            </div>
-                                            <div class="col-md-1">
-                                                    <label class="control-label"></label>
-                                                    <input type="submit" class="btn btn-success" value="Search">
-                                                </div>
-                                            <div class="clearfix"> </div>
-                                        </div>
-                                    </div>
 
-                                        {!! Form::close() !!} --}}
                                 <div class=" table-responsive">
                                     <table class="table table-borderless">
                                         <thead>

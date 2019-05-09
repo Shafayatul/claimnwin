@@ -147,8 +147,52 @@ class ClaimBackController extends Controller
     public function index(Request $request)
     {
 
+        if ($request->has('submit')){
 
-        $claims = Claim::where('is_deleted',0)->latest()->paginate(10);
+            $claim_name             = $request->get('claim_name');
+            $claim_id               = $request->get('claim_id');
+            $first_name             = $request->get('first_name');
+            $last_name              = $request->get('last_name');
+            $email                  = $request->get('email');
+            $phone                  = $request->get('phone');
+            $note                   = $request->get('note');
+            $airline_reference      = $request->get('airline_reference');
+            $perPage = 10;
+
+            $claims = Claim::whereNotNull('id');
+            if(!empty($name)){
+                $claims = $claims->Where('name', 'LIKE', "%$name%");
+            }
+            if(!empty($alias)){
+                $claims = $claims->Where('alias', 'LIKE', "%$alias%");
+            }
+            if(!empty($iata_code)){
+                $claims = $claims->Where('iata_code', 'LIKE', "%$iata_code%");
+            }
+            if(!empty($icao_code)){
+                $claims = $claims->Where('icao_code', 'LIKE', "%$icao_code%");
+            }
+            if(!empty($email)){
+                $claims = $claims->Where('email', 'LIKE', "%$email%");
+            }
+            if(!empty($phone)){
+                $claims = $claims->Where('phone', 'LIKE', "%$phone%");
+            }
+            if(!empty($country)){
+                $claims = $claims->Where('country', 'LIKE', "%$country%");
+            }
+
+            $airlines = $airlines->Where('status', $status)->latest()->paginate($perPage);
+
+        }else{
+            $claims = Claim::where('is_deleted',0)->latest()->paginate(10);
+        }
+
+
+
+
+
+        
 
         $claim_id_array = [];
         foreach($claims as $claim){
