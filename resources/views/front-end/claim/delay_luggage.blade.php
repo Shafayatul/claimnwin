@@ -205,7 +205,7 @@
                                         <p>A Property Irregularity Report (PIR) reference number is a unique code that helps trace your delayed or damaged baggage.
                                             It has a combination of 10 letters and numbers and can be found above your name on the PIR receipt,
                                             which you received at the airport upon reporting your missing baggage.
-                                            For help locating your PIR please contact our <a href="{{ URL::to('/contact-us') }}">customer service department.</a>
+                                            For help locating your PIR please contact our <a style="font-weight: bold; color: #124478;" href="{{ URL::to('/contact-us') }}">Customer Service Department.</a>
                                         </p>
                                     </div>
                                 </div>

@@ -158,7 +158,7 @@
                                         <p>A Property Irregularity Report (PIR) reference number is a unique code that helps trace your delayed or damaged baggage.
                                             It has a combination of 10 letters and numbers and can be found above your name on the PIR receipt,
                                             which you received at the airport upon reporting your missing baggage.
-                                            For help locating your PIR please contact our customer service department.
+                                            For help locating your PIR please contact our <a href="{{url('/contact-us')}}">Customer Service Department</a>.
                                         </p>
                                     </div>
                                 </div>
@@ -199,7 +199,7 @@
                                                       STEP 3 STARTS
                             .................................................................... -->
 
-                            <div class="single_step" id="step_3" style="display:none;">
+                            <div class="" id="" style="display:none;">
                               <div class="common_row">
                                 {{-- <div class="form_h3">
                                     <h3>Have You received your luggage?</h3>
@@ -216,7 +216,7 @@
                                     </div>
                                     <div class="two_child_radio_div">
                                         <label class="container_radio">No
-                                            <input class="common_input is_luggage_received" type="radio" id="common_input is_luggage_received_no" name="is_luggage_received" value="0">
+                                            <input class="common_input is_luggage_received" type="radio" id="common_input is_luggage_received_no" name="is_luggage_received" value="0" checked>
                                             <span class="checkmark"></span>
                                         </label>
                                     </div>
@@ -268,7 +268,7 @@
                                     <div class="total_button_div">
                                         <div class="two_button_child_div_right">
                                             <div class="continue_button_div">
-                                                <button type="button" class="continue_button pull-right" id="continue_3" name="button">Continue <i class="fas fa-arrow-right"></i></button>
+                                                <button type="button" class="continue_button pull-right" id="continue" name="button">Continue <i class="fas fa-arrow-right"></i></button>
                                             </div>
                                         </div>
                                         <div class="two_button_child_div_left">
@@ -287,7 +287,7 @@
                                                       STEP 4 STARTS
                             .................................................................... -->
 
-                            <div class="single_step" id="step_4" style="display:none;">
+                            <div class="single_step" id="step_3" style="display:none;">
 
                                 <div class="common_row">
                                     <div class="email_div">
@@ -304,7 +304,7 @@
                                     <div class="total_button_div">
                                         <div class="two_button_child_div_right">
                                             <div class="continue_button_div">
-                                                <button type="button" class="continue_button pull-right" id="continue_4" name="button">Continue <i class="fas fa-arrow-right"></i></button>
+                                                <button type="button" class="continue_button pull-right" id="continue_3" name="button">Continue <i class="fas fa-arrow-right"></i></button>
                                             </div>
                                         </div>
                                         <div class="two_button_child_div_left">
@@ -323,7 +323,7 @@
                             <!-- ...................................................................
                                                       STEP 5 STARTS NEW
                             .................................................................... -->
-                            <div class="single_step" id="step_5" style="display:none;">
+                            <div class="single_step" id="step_4" style="display:none;">
                             <div class="common_row result_from_ajax_calculation">
 
                             </div>
@@ -332,7 +332,7 @@
                                 <div class="total_button_div">
                                     <div class="two_button_child_div_right">
                                         <div class="continue_button_div">
-                                            <button type="button" class="continue_button pull-right" id="continue_5" name="button">Continue <i class="fas fa-arrow-right"></i></button>
+                                            <button type="button" class="continue_button pull-right" id="continue_4" name="button">Continue <i class="fas fa-arrow-right"></i></button>
                                         </div>
                                     </div>
                                     <div class="two_button_child_div_left">
@@ -352,7 +352,7 @@
                                                       STEP 6 STARTS
                             .................................................................... -->
 
-                            <div class="single_step" id="step_6" style="display:none;">
+                            <div class="single_step" id="step_5" style="display:none;">
                                 <div class="common_row">
                                     <div class="form_h3">
                                         <h3>Passenger details</h3>
@@ -453,7 +453,7 @@
                                     <div class="total_button_div">
                                         <div class="two_button_child_div_right">
                                             <div class="continue_button_div">
-                                                <button type="button" class="continue_button pull-right" id="continue_6" name="button">Continue <i class="fas fa-arrow-right"></i></button>
+                                                <button type="button" class="continue_button pull-right" id="continue_5" name="button">Continue <i class="fas fa-arrow-right"></i></button>
                                             </div>
                                         </div>
                                         <div class="two_button_child_div_left">
@@ -473,7 +473,7 @@
                                                       STEP 7 STARTS
                             .................................................................... -->
 
-                            <div class="single_step" id="step_7" style="display:none;">
+                            <div class="single_step" id="step_6" style="display:none;">
                                 <div class="common_row table_show_on_large_screen">
                                     <div class="parent_div">
                                         <div class="form_h3">
@@ -801,7 +801,7 @@
                                     <div class="total_button_div">
                                         <div class="two_button_child_div_right">
                                             <div class="continue_button_div">
-                                                <button type="button" class="continue_button pull-right" id="continue_7" name="button">Continue <i class="fas fa-arrow-right"></i></button>
+                                                <button type="button" class="continue_button pull-right" id="continue_6" name="button">Continue <i class="fas fa-arrow-right"></i></button>
                                             </div>
                                         </div>
                                         <div class="two_button_child_div_left">
@@ -820,7 +820,7 @@
                                                       STEP 8 STARTS
                             .................................................................... -->
 
-                            <div class="single_step" id="step_8" style="display:none;">
+                            <div class="single_step" id="step_7" style="display:none;">
                                 <div class="common_row">
                                     <div class="form_h3">
                                         <h3>Optional: Additional information</h3>
@@ -945,7 +945,7 @@
                                     <div class="total_button_div">
                                         <div class="two_button_child_div_right">
                                             <div class="continue_button_div">
-                                                <button type="button" class="continue_button pull-right" id="continue_8" name="button">Continue <i class="fas fa-arrow-right"></i></button>
+                                                <button type="button" class="continue_button pull-right" id="continue_7" name="button">Continue <i class="fas fa-arrow-right"></i></button>
                                             </div>
                                         </div>
                                         <div class="two_button_child_div_left">

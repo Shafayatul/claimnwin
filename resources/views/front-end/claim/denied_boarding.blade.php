@@ -185,7 +185,8 @@
                               </div>
                               <div class="parent_div">
                                 <div class="airline_reason_select_div">
-                                  <select class="form-control custom_select custom_select_reason_max_width reason" name="reason">
+                                  <input type="text" class=" common_input form-control custom_select custom_select_reason_max_width reason" id="common_input " name="reason" placeholder="Reason">
+                                  {{-- <select class="form-control custom_select custom_select_reason_max_width reason" name="reason">
                                     <option value="" hidden>Please select</option>
                                     <option value="technical_problem">Technical problem</option>
                                     <option value="bad_weather_conditions">Bad weather conditions</option>
@@ -194,7 +195,7 @@
                                     <option value="strike">Strike</option>
                                     <option value="no_reason_given">No reason given</option>
                                     <option value="donot_remember">Don't remember</option>
-                                  </select>
+                                  </select> --}}
                                 </div>
                               </div>
                             </div>

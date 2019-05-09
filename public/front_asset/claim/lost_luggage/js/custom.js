@@ -161,36 +161,15 @@ $(document).ready(function() {
             }
         } else if (step == 3) {
             $("#continue_3").removeClass('active_button');
-            if ($("input[name='is_luggage_received']").is(':checked')) {
-              if ($("input[name='is_luggage_received']:checked").val() == "1") {
-                $("#continue_3").removeClass('active_button');
-                if (($("input[name='received_luggage_date']").val() != "") && ($("input[name='is_already_written_airline']").is(':checked'))) {
-                    $("#continue_3").addClass('active_button');
-                    return true;
-                }else {
-                  $("#continue_3").removeClass('active_button');
-                  return false;
-                }
-              }else if ($("input[name='is_luggage_received']:checked").val() == "0"){
-                $("#continue_3").addClass('active_button');
-                return true;
-              }else  {
-                return false;
-              }
-            }else {
-              return false;
-            }
-        } else if (step == 4) {
-            $("#continue_4").removeClass('active_button');
             if ($("input[name='email_address']").val() != "") {
+                $("#continue_3").addClass('active_button');
                 $("#continue_4").addClass('active_button');
-                $("#continue_5").addClass('active_button');
                 return true;
             }
-        }else if (step == 5) {
+        }else if (step == 4) {
           return true;
-        } else if (step == 6) {
-            $("#continue_6").removeClass('active_button');
+        } else if (step ==5) {
+            $("#continue_5").removeClass('active_button');
             var first_name = true;
             var last_name = true;
             var address = true;
@@ -237,22 +216,22 @@ $(document).ready(function() {
                             }
                         });
                         if (is_booking_reference_field_input_empty) {
-                            $("#continue_6").addClass('active_button');
+                            $("#continue_5").addClass('active_button');
                             return true;
                         }
                     } else if ($('input[name=is_booking_reference]:checked').val() == '0') {
-                        $("#continue_6").addClass('active_button');
+                        $("#continue_5").addClass('active_button');
                         return true;
                     }
                 }
             } else {
                 return false;
             }
-        } else if (step == 7) {
-            $("#continue_7").removeClass('active_button');
+        } else if (step == 6) {
+            $("#continue_6").removeClass('active_button');
             if (($("input[name='is_signed_permission']").is(':checked'))) {
+                $("#continue_6").addClass('active_button');
                 $("#continue_7").addClass('active_button');
-                $("#continue_8").addClass('active_button');
                 return true;
             }
         }
@@ -290,7 +269,7 @@ $(document).ready(function() {
 
           if (data == '0') {
             $(".result_from_ajax_calculation").html('<div class="form_h3 text-center"><h3>SORRY!!!</h3></div><div class="form_show_message_paragraph"><p>Unfortunately, this flight is not eligible for compensation.Your claim details do not meet the criteria of Israeli or EU law to be compensated. Eligibility is calculated according the length of delay, air carriers and routes you have travelled on.</p></div>');
-            $("#continue_5").hide();
+            $("#continue_4").hide();
           }else{
             $(".result_from_ajax_calculation").html('<div class="form_h3 text-center"><h3>CONGRATULATIONS!!!</h3></div><div class="form_show_message_paragraph"><p>You are eligible for compensation. Your claim amount will be up to '+data+'</p></div>');
           }
@@ -303,7 +282,7 @@ $(document).ready(function() {
 
     function next() {
         if (check_next_step()) {
-            if(step==4){
+            if(step==3){
                 ajax_calculation();
                 step++;
               }else{

@@ -122,6 +122,7 @@ $(document).ready(function() {
     });
 
     function check_next_step() {
+      console.log('Step n0. '+step );
         if (step == 0) {
             console.log('1111');
             $("#continue_0").removeClass('active_button');
@@ -273,11 +274,7 @@ $(document).ready(function() {
 
     function next() {
         if (check_next_step()) {
-            if(step==4){
-                step=step+2;
-              }else{
-                step++;
-              }
+            step++;
             $('.single_step').hide();
             $("#step_" + step).show();
         }

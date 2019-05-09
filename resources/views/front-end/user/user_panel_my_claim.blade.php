@@ -135,14 +135,16 @@
                         @foreach ($ticket_notes as $ticket_note)
                         @if ($ticket_note->user_id == $claims->user_id)
                         <div class="container_message">
-                            <img src="{{ asset('/front_asset/user_panel/img/avatar-user.png') }}" alt="Avatar" style="width:100%;">
+                            {{-- <img src="{{ asset('/front_asset/user_panel/img/avatar-user.png') }}" alt="Avatar" style="width:100%;"> --}}
+                            <div style="width: 50px; height: 50px; border-radius: 50%; border: 1px solid black; float: left; position: relative; margin-right: 20px;"><p style="font-size: 12px;  font-weight: bold; position: absolute; top: 30%; left: 35%;">Me</p></div>
                             <p>{{ $ticket_note->description }}</p>
                             <span class="time-right">{{ Carbon\Carbon::parse($ticket_note->created_at)->format('d-m-Y h:m A') }}</span>
                         </div>
 
                         @else
                         <div class="container_message darker">
-                            <img src="{{ asset('/front_asset/user_panel/img/avatar-admin.png') }}" alt="Avatar" class="right" style="width:100%;">
+                            {{-- <img src="{{ asset('/front_asset/user_panel/img/avatar-admin.png') }}" alt="Avatar" class="right" style="width:100%;"> --}}
+                            <div style="width: 50px; height: 50px; border-radius: 50%; border: 1px solid black; float: right; position: relative; margin-left: 20px;"><p style="font-size: 12px;  font-weight: bold; position: absolute; top: 30%; left: 14%;">Admin</p></div>
                             <p>{{ $ticket_note->description }}</p>
                             <span class="time-left">{{ Carbon\Carbon::parse($ticket_note->created_at)->format('d-m-Y h:m A') }}</span>
                         </div>
