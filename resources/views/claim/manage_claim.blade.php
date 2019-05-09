@@ -13,7 +13,7 @@
 
                             <div class="card-body">
 
-                              {!! Form::open(['method' => 'GET', 'url' => url('/manage-claim'), 'class' => 'form-inline my-2 my-lg-0 float-right', 'role' => 'search']) !!}
+{{--                               {!! Form::open(['method' => 'GET', 'url' => url('/manage-claim'), 'class' => 'form-inline my-2 my-lg-0 float-right', 'role' => 'search']) !!}
                               <div class="row">
                                 <div class="col-md-2">
                                   <div class="input-group">
@@ -67,7 +67,7 @@
                                   </span>
                                 </div>
                               </div>
-                              {!! Form::close() !!}
+                              {!! Form::close() !!} --}}
 
 
                                 <div class=" table-responsive">

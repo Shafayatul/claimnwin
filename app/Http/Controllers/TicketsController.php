@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\TicketNote;
 use Auth;
 use App\User;
+use App\Claim;
 use Webklex\IMAP\Client;
 
 class TicketsController extends Controller
@@ -28,8 +29,8 @@ class TicketsController extends Controller
             'port'          => 993,
             'encryption'    => 'ssl',
             'validate_cert' => true,
-            'username'      => env('MAIL_USERNAME'),
-            'password'      => env('MAIL_PASSWORD'),
+            'username'      => 'info@freeflightclaim.com',
+            'password'      => 'oKwGE2vzcOYt',
             // 'username'      =>'rtwh095@freeflightclaim.com',
             // 'password'      => 'olMpHjWv',
             'protocol'      => 'imap'
@@ -45,23 +46,33 @@ class TicketsController extends Controller
 
             /** @var \Webklex\IMAP\Message $oMessage */
             foreach($aMessage as $oMessage){
-                $sub=$oMessage->getSubject();
+                $from_email = $oMessage->getFrom()[0]->mail;
+                if (Claim::where('cpanel_email', $from_email)->count() !=0) {
+                    $old_claim_id      = Claim::where('cpanel_email', $from_email)->first()->id;
+                }else{
+                    $old_claim_id      = "";
+                }
+
+
+                $sub =$oMessage->getSubject();
                 $date = $oMessage->getDate();
                 $longMsg=$oMessage->getBodies()['text']->content;
-                 $lines=explode("\n", $longMsg);
-                    $ticket = new Ticket;
-                    $ticket->subject = $sub;
-                    $ticket->status = '2';
-                    $ticket->save();
+                $lines=explode("\n", $longMsg);
 
-                    $ticketNote = new TicketNote;
-                    $ticketNote->ticket_id = $ticket->id;
-                    $ticketNote->description = $lines['0'];
-                    $ticketNote->save();
+                $ticket             = new Ticket;
+                $ticket->subject    = $sub;
+                $ticket->claim_id   = $old_claim_id;
+                $ticket->status     = '1';
+                $ticket->save();
+
+                $ticketNote = new TicketNote;
+                $ticketNote->ticket_id = $ticket->id;
+                $ticketNote->description = $lines['0'];
+                $ticketNote->save();
+            }
         }
-    }
-    $tickets=Ticket::whereNull('claim_id')->latest()->paginate($perPage);
-    $user_array = [];
+        $tickets=Ticket::latest()->paginate($perPage);
+        $user_array = [];
         foreach($tickets as $row){
             if($row->assign_user_id != null){
                 array_push($user_array,$row->assign_user_id);
