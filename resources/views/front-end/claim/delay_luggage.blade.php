@@ -482,318 +482,295 @@
                             .................................................................... -->
 
                             <div class="single_step" id="step_7" style="display:none;">
-                                <div class="common_row table_show_on_large_screen">
-                                  <div class="parent_div">
-                                    {{-- <div class="form_h4 text-center">
-                                      <h4>Tell us about your expenses.</h4>
-                                    </div> --}}
-                                    <div class="label_field only_label_without_input">
-                                      <label>TELL US ABOUT YOUR EXPENSES.</label>
-                                    </div>
-                                  </div>
-                                  <div class="parent_div">
-                                    <div class="table_field">
-                                      <table class="table text-center">
-                                        <thead>
-                                          <tr>
-                                            <th scope="col" class="text-center">Expense</th>
-                                            <th scope="col" class="text-center">Amount</th>
-                                            <th scope="col" class="text-center">Receipt</th>
-                                          </tr>
-                                        </thead>
-                                        <tbody>
-                                          <tr>
-                                            <td class="align-baseline">Accommodation
-                                              <input type="hidden" value="accommodation" class="common_input expense_name" id="common_input expense_name" name="expense_name[]">
-                                            </td>
-                                            <td>
-                                              <div class="row">
-                                                <div class="col-md-6 fifty_percent_width">
-                                                  <input type="number" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
-                                                </div>
-                                                <div class="col-md-6 fifty_percent_width">
-                                                  <div class="select_reason_class">
-                                                    <select class="form-control custom_select expense_currency_select_option" name="expense_currency[]">
-                                                      <option hidden>Currency</option>
-                                                      @foreach($currencies as $key => $val)
-                                                        <option value="{{$key}}">{{$key}}</option>
-                                                      @endforeach
-                                                    </select>
-                                                  </div>
-                                                </div>
-                                              </div>
-                                            </td>
-                                            <td>
-                                              <div class="group">
-                                                <input id="is_receipt_accommodation_yes" name="is_receipt[0]" type="radio" value="1" checked="checked">
-                                                <label class="label" for="is_receipt_accommodation_yes">Yes</label>
-                                                <input id="is_receipt_accommodation_no" name="is_receipt[0]" type="radio" value="0" >
-                                                <label class="center label" for="is_receipt_accommodation_no">No</label>
-                                              </div>
-                                            </td>
-                                          </tr>
-                                          <tr>
-                                            <td class="align-baseline">Transportation
-                                              <input type="hidden" value="transportation" class="common_input expense_name" id="common_input expense_name" name="expense_name[]">
-                                            </td>
-                                            <td>
-                                              <div class="row">
-                                                <div class="col-md-6 fifty_percent_width">
-                                                  <input type="number" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
-                                                </div>
-                                                <div class="col-md-6 fifty_percent_width">
-                                                  <div class="select_reason_class">
-                                                    <select class="form-control custom_select expense_currency_select_option" name="expense_currency[]">
-                                                      <option hidden>Currency</option>
-                                                      @foreach($currencies as $key => $val)
-                                                        <option value="{{$key}}">{{$key}}</option>
-                                                      @endforeach
-                                                    </select>
-                                                  </div>
-                                                </div>
-                                              </div>
-                                            </td>
-                                            <td>
-                                              <div class="input-group yes_no_center">
-                                                <div class="group">
-                                                  <input id="is_receipt_transportation_yes" name="is_receipt[1]" type="radio" value="1" checked="checked">
-                                                  <label class="label" for="is_receipt_transportation_yes">Yes</label>
-                                                  <input id="is_receipt_transportation_no" name="is_receipt[1]" type="radio" value="0" >
-                                                  <label class="center label" for="is_receipt_transportation_no">No</label>
-                                                </div>
 
-                                              </div>
-                                            </td>
-                                          </tr>
-                                          <tr>
-                                            <td class="align-baseline">Food
-                                              <input type="hidden" value="food" class="common_input expense_name" id="common_input expense_name" name="expense_name[]">
-                                            </td>
-                                            <td>
-                                              <div class="row">
-                                                <div class="col-md-6 fifty_percent_width">
-                                                  <input type="number" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
-                                                </div>
-                                                <div class="col-md-6 fifty_percent_width">
-                                                  <div class="select_reason_class">
-                                                    <select class="form-control custom_select expense_currency_select_option" name="expense_currency[]">
-                                                      <option hidden>Currency</option>
-                                                      @foreach($currencies as $key => $val)
-                                                        <option value="{{$key}}">{{$key}}</option>
-                                                      @endforeach
-                                                    </select>
-                                                  </div>
-                                                </div>
-                                              </div>
-                                            </td>
-                                            <td>
-                                              <div class="input-group yes_no_center">
-                                                <div class="group">
-                                                  <input id="is_receipt_food_yes" name="is_receipt[2]" type="radio" value="1" checked="checked">
-                                                  <label class="label" for="is_receipt_food_yes">Yes</label>
-                                                  <input id="is_receipt_food_no" name="is_receipt[2]" type="radio" value="0" >
-                                                  <label class="center label" for="is_receipt_food_no">No</label>
-                                                </div>
-                                              </div>
-                                            </td>
-                                          </tr>
-                                          <tr>
-                                            <td class="align-baseline">Other
-                                              <input type="hidden" value="other" class="common_input expense_name" id="common_input expense_name" name="expense_name[]">
-                                            </td>
-                                            <td>
-                                              <div class="row">
-                                                <div class="col-md-6 fifty_percent_width">
-                                                  <input type="number" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
-                                                </div>
-                                                <div class="col-md-6 fifty_percent_width">
-                                                  <div class="select_reason_class">
-                                                    <select class="form-control custom_select expense_currency_select_option" name="expense_currency[]">
-                                                      <option hidden>Currency</option>
-                                                      @foreach($currencies as $key => $val)
-                                                        <option value="{{$key}}">{{$key}}</option>
-                                                      @endforeach
-                                                    </select>
-                                                  </div>
-                                                </div>
-                                              </div>
-                                            </td>
-                                            <td>
-                                              <div class="input-group yes_no_center">
-                                                <div class="group">
-                                                  <input id="is_receipt_others_yes" name="is_receipt[3]" type="radio" value="1" checked="checked">
-                                                  <label class="label" for="is_receipt_others_yes">Yes</label>
-                                                  <input id="is_receipt_others_no" name="is_receipt[3]" type="radio" value="0" >
-                                                  <label class="center label" for="is_receipt_others_no">No</label>
-                                                </div>
-                                              </div>
-                                            </td>
-                                          </tr>
-                                        </tbody>
-                                      </table>
+                                <div class="common_row table_show_on_large_screen">
+                                    <div class="parent_div">
+                                        <div class="form_h3">
+                                            <h3>Total amount claimed for all passengers.</h3>
+                                        </div>
                                     </div>
-                                  </div>
+                                    <div class="parent_div">
+                                        {{-- <div class="form_h4 text-center">
+                                            <h4>Tell us about your expenses.</h4>
+                                        </div> --}}
+                                        <div class="label_field only_label_without_input">
+                                          <label>TELL US ABOUT YOUR EXPENSES.</label>
+                                        </div>
+                                    </div>
+                                    <div class="parent_div">
+                                        <div class="table_field">
+                                            <table class="table text-center">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col" class="text-center">Expense</th>
+                                                        <th scope="col" class="text-center">Amount</th>
+                                                        <th scope="col" class="text-center">Receipt</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="align-middle">Clothing
+                                                            <input type="hidden" value="accommodation" class="common_input expense_name" id="common_input expense_name" name="expense_name[]">
+                                                        </td>
+                                                        <td class="align-middle">
+                                                            <div class="row">
+                                                                <div class="col-md-6 fifty_percent_width">
+                                                                    <input type="number" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
+                                                                </div>
+                                                                <div class="col-md-6 fifty_percent_width">
+                                                                    <div class="select_reason_class">
+                                                                        <select class="form-control custom_select expense_currency_select_option" name="expense_currency[]">
+                                                                            <option selected>select currency</option>
+                                                                            @foreach($currencies as $key => $val)
+                                                                                <option value="{{$key}}">{{$key}}</option>
+                                                                            @endforeach
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="group">
+                                                                <input id="is_receipt_clothing_yes" name="is_receipt[0]" type="radio" value="1" checked="checked">
+                                                                <label class="label" for="is_receipt_clothing_yes">Yes</label>
+                                                                <input id="is_receipt_clothing_no" name="is_receipt[0]" type="radio" value="0">
+                                                                <label class="center label" for="is_receipt_clothing_no">No</label>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="align-baseline">Toiletries
+                                                            <input type="hidden" value="accommodation" class="common_input expense_name" id="common_input expense_name" name="expense_name[]">
+                                                        </td>
+                                                        <td>
+                                                            <div class="row">
+                                                                <div class="col-md-6 fifty_percent_width">
+                                                                    <input type="number" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
+                                                                </div>
+                                                                <div class="col-md-6 fifty_percent_width">
+                                                                    <div class="select_reason_class">
+                                                                        <select class="form-control custom_select expense_currency_select_option" name="expense_currency[]">
+                                                                            <option selected>select currency</option>
+                                                                            @foreach($currencies as $key => $val)
+                                                                                <option value="{{$key}}">{{$key}}</option>
+                                                                            @endforeach
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="group">
+                                                                <input id="is_receipt_toiletries_yes" name="is_receipt[1]" type="radio" value="1" checked="checked">
+                                                                <label class="label" for="is_receipt_toiletries_yes">Yes</label>
+                                                                <input id="is_receipt_toiletries_no" name="is_receipt[1]" type="radio" value="0">
+                                                                <label class="center label" for="is_receipt_toiletries_no">No</label>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="align-baseline">Others
+                                                            <input type="hidden" value="accommodation" class="common_input expense_name" id="common_input expense_name" name="expense_name[]">
+                                                        </td>
+                                                        <td>
+                                                            <div class="row">
+                                                                <div class="col-md-6 fifty_percent_width">
+                                                                    <input type="number" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
+                                                                </div>
+                                                                <div class="col-md-6 fifty_percent_width">
+                                                                    <div class="select_reason_class">
+                                                                        <select class="form-control custom_select expense_currency_select_option" name="expense_currency[]">
+                                                                            <option selected>select currency</option>
+                                                                            @foreach($currencies as $key => $val)
+                                                                                <option value="{{$key}}">{{$key}}</option>
+                                                                            @endforeach
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="group">
+                                                                <input id="is_receipt_others_yes" name="is_receipt[2]" type="radio" value="1" checked="checked">
+                                                                <label class="label" for="is_receipt_others_yes">Yes</label>
+                                                                <input id="is_receipt_others_no" name="is_receipt[2]" type="radio" value="0">
+                                                                <label class="center label" for="is_receipt_others_no">No</label>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Total Claim:</td>
+                                                        <td>
+                                                            <div class="row">
+                                                                <div class="col-md-6 fifty_percent_width">
+                                                                    <input type="number" class="common_input price_input" id="common_input price_input" placeholder="1234">
+                                                                </div>
+                                                                <div class="col-md-6 fifty_percent_width">
+                                                                    <div class="select_reason_class">
+                                                                        <select class="form-control custom_select expense_currency_select_option">
+                                                                            <option selected>select currency</option>
+                                                                            @foreach($currencies as $key => $val)
+                                                                                <option value="{{$key}}">{{$key}}</option>
+                                                                            @endforeach
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <div class="common_row table_show_on_small_screen">
-                                  <div class="parent_div">
-                                    <div class="form_h4 text-center">
-                                      <h4>Tell us about your expenses.</h4>
+                                    <div class="parent_div">
+                                        {{-- <div class="form_h4 text-center">
+                                            <h4>Tell us about your expenses.</h4>
+                                        </div> --}}
+                                        <div class="label_field only_label_without_input">
+                                          <label>TELL US ABOUT YOUR EXPENSES.</label>
+                                        </div>
                                     </div>
-                                  </div>
-                                  <div class="parent_div">
-                                    <div class="table_field">
-                                      <table class="table text-center">
-                                        <tr>
-                                          <th scope="col">Expense</th>
-                                          <td class="align-baseline">Accommodation</td>
-                                        </tr>
-                                        <tr>
-                                          <th scope="col">Amount</th>
-                                          <td>
-                                            <div class="row">
-                                              <div class="col-md-6">
-                                                <input type="number" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
-                                              </div>
-                                              <div class="col-md-6">
-                                                <div class="select_reason_class">
-                                                  <select class="form-control custom_select expense_currency_select_option" name="expense_currency[]">
-                                                    <option hidden>Currency</option>
-                                                    @foreach($currencies as $key => $val)
-                                                      <option value="{{$key}}">{{$key}}</option>
-                                                    @endforeach
-                                                  </select>
-                                                </div>
-                                              </div>
-                                            </div>
-                                          </td>
-                                        </tr>
-                                        <tr class="bootstrap_table_tr_lower_thin_border">
-                                          <th scope="col">Receipt</th>
-                                          <td>
-                                            <div class="group">
-                                              <input id="is_receipt_accommodation_yes_mobile" name="is_receipt[0]" type="radio" value="1" checked="checked">
-                                              <label class="label" for="is_receipt_accommodation_yes_mobile">Yes</label>
-                                              <input id="is_receipt_accommodation_no_mobile" name="is_receipt[0]" type="radio" value="0" >
-                                              <label class="center label" for="is_receipt_accommodation_no_mobile">No</label>
-                                            </div>
-                                          </td>
-                                        </tr>
-                                        <tr>
-                                          <th scope="col">Expense</th>
-                                          <td class="align-baseline">Transportation</td>
-                                        </tr>
-                                        <tr>
-                                          <th scope="col">Amount</th>
-                                          <td>
-                                            <div class="row">
-                                              <div class="col-md-6">
-                                                <input type="number" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
-                                              </div>
-                                              <div class="col-md-6">
-                                                <div class="select_reason_class">
-                                                  <select class="form-control custom_select expense_currency_select_option" name="expense_currency[]">
-                                                    <option hidden>Currency</option>
-                                                    @foreach($currencies as $key => $val)
-                                                      <option value="{{$key}}">{{$key}}</option>
-                                                    @endforeach
-                                                  </select>
-                                                </div>
-                                              </div>
-                                            </div>
-                                          </td>
-                                        </tr>
-                                        <tr class="bootstrap_table_tr_lower_thin_border">
-                                          <th scope="col">Receipt</th>
-                                          <td>
-                                            <div class="input-group yes_no_center">
-                                              <div class="group">
-                                                <input id="is_receipt_transportation_yes_mobile" name="is_receipt[1]" type="radio" value="1" checked="checked">
-                                                <label class="label" for="is_receipt_transportation_yes_mobile">Yes</label>
-                                                <input id="is_receipt_transportation_no_mobile" name="is_receipt[1]" type="radio" value="0" >
-                                                <label class="center label" for="is_receipt_transportation_no_mobile">No</label>
-                                              </div>
-
-                                            </div>
-                                          </td>
-                                        </tr>
-                                        <tr>
-                                          <th scope="col">Expense</th>
-                                          <td class="align-baseline">Food</td>
-                                        </tr>
-                                        <tr>
-                                          <th scope="col">Amount</th>
-                                          <td>
-                                            <div class="row">
-                                              <div class="col-md-6">
-                                                <input type="number" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
-                                              </div>
-                                              <div class="col-md-6">
-                                                <div class="select_reason_class">
-                                                  <select class="form-control custom_select expense_currency_select_option" name="expense_currency[]">
-                                                    <option hidden>Currency</option>
-                                                    @foreach($currencies as $key => $val)
-                                                      <option value="{{$key}}">{{$key}}</option>
-                                                    @endforeach
-                                                  </select>
-                                                </div>
-                                              </div>
-                                            </div>
-                                          </td>
-                                        </tr>
-                                        <tr class="bootstrap_table_tr_lower_thin_border">
-                                          <th scope="col">Receipt</th>
-                                          <td>
-                                            <div class="input-group yes_no_center">
-                                              <div class="group">
-                                                <input id="is_receipt_food_yes_mobile" name="is_receipt[2]" type="radio" value="1" checked="checked">
-                                                <label class="label" for="is_receipt_food_yes_mobile">Yes</label>
-                                                <input id="is_receipt_food_no_mobile" name="is_receipt[2]" type="radio" value="0" >
-                                                <label class="center label" for="is_receipt_food_no_mobile">No</label>
-                                              </div>
-                                            </div>
-                                          </td>
-                                        </tr>
-                                        <tr>
-                                          <th scope="col">Expense</th>
-                                          <td class="align-baseline">Others</td>
-                                        </tr>
-                                        <tr>
-                                          <th scope="col">Amount</th>
-                                          <td>
-                                            <div class="row">
-                                              <div class="col-md-6">
-                                                <input type="number" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
-                                              </div>
-                                              <div class="col-md-6">
-                                                <div class="select_reason_class">
-                                                  <select class="form-control custom_select expense_currency_select_option" name="expense_currency[]">
-                                                    <option hidden>Currency</option>
-                                                    @foreach($currencies as $key => $val)
-                                                      <option value="{{$key}}">{{$key}}</option>
-                                                    @endforeach
-                                                  </select>
-                                                </div>
-                                              </div>
-                                            </div>
-                                          </td>
-                                        </tr>
-                                        <tr class="bootstrap_table_tr_lower_thin_border">
-                                          <th scope="col">Receipt</th>
-                                          <td>
-                                            <div class="input-group yes_no_center">
-                                              <div class="group">
-                                                <input id="is_receipt_others_yes_mobile" name="is_receipt[3]" type="radio" value="1" checked="checked">
-                                                <label class="label" for="is_receipt_others_yes_mobile">Yes</label>
-                                                <input id="is_receipt_others_no_mobile" name="is_receipt[3]" type="radio" value="0" >
-                                                <label class="center label" for="is_receipt_others_no_mobile">No</label>
-                                              </div>
-                                            </div>
-                                          </td>
-                                        </tr>
-                                      </table>
+                                    <div class="parent_div">
+                                        <div class="table_field">
+                                            <table class="table text-center">
+                                                <tr>
+                                                    <th scope="col">Expense</th>
+                                                    <td class="align-baseline">Clothing
+                                                        <input type="hidden" value="accommodation" class="common_input expense_name" id="common_input expense_name" name="expense_name[]">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="col">Amount</th>
+                                                    <td>
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <input type="number" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="select_reason_class">
+                                                                    <select class="form-control custom_select expense_currency_select_option" name="expense_currency[]">
+                                                                        <option selected>select currency</option>
+                                                                        @foreach($currencies as $key => $val)
+                                                                            <option value="{{$key}}">{{$key}}</option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr class="bootstrap_table_tr_lower_thin_border">
+                                                    <th scope="col">Receipt</th>
+                                                    <td>
+                                                        <div class="group">
+                                                            <input id="is_receipt_clothing_yes_mobile" name="is_receipt[0]" type="radio" value="1" checked="checked">
+                                                            <label class="label" for="is_receipt_clothing_yes_mobile">Yes</label>
+                                                            <input id="is_receipt_clothing_no_mobile" name="is_receipt[0]" type="radio" value="0">
+                                                            <label class="center label" for="is_receipt_clothing_no_mobile">No</label>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="col">Expense</th>
+                                                    <td class="align-baseline">Toiletries
+                                                        <input type="hidden" value="accommodation" class="common_input expense_name" id="common_input expense_name" name="expense_name[]">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="col">Amount</th>
+                                                    <td>
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <input type="number" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="select_reason_class">
+                                                                    <select class="form-control custom_select expense_currency_select_option" name="expense_currency[]">
+                                                                        <option selected>select currency</option>
+                                                                        @foreach($currencies as $key => $val)
+                                                                            <option value="{{$key}}">{{$key}}</option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr class="bootstrap_table_tr_lower_thin_border">
+                                                    <th scope="col">Receipt</th>
+                                                    <td>
+                                                        <div class="group">
+                                                            <input id="is_receipt_toiletries_yes_mobile" name="is_receipt[1]" type="radio" value="1" checked="checked">
+                                                            <label class="label" for="is_receipt_toiletries_yes_mobile">Yes</label>
+                                                            <input id="is_receipt_toiletries_no_mobile" name="is_receipt[1]" type="radio" value="0">
+                                                            <label class="center label" for="is_receipt_toiletries_no_mobile">No</label>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="col">Expense</th>
+                                                    <td class="align-baseline">Others
+                                                        <input type="hidden" value="accommodation" class="common_input expense_name" id="common_input expense_name" name="expense_name[]">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="col">Amount</th>
+                                                    <td>
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <input type="number" class="common_input expense_price" id="common_input expense_price" name="expense_price[]" placeholder="1234">
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="select_reason_class">
+                                                                    <select class="form-control custom_select expense_currency_select_option" name="expense_currency[]">
+                                                                        <option selected>select currency</option>
+                                                                        @foreach($currencies as $key => $val)
+                                                                            <option value="{{$key}}">{{$key}}</option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr class="bootstrap_table_tr_lower_thin_border">
+                                                    <th scope="col">Receipt</th>
+                                                    <td>
+                                                        <div class="group">
+                                                            <input id="is_receipt_others_yes_mobile" name="is_receipt[2]" type="radio" value="1" checked="checked">
+                                                            <label class="label" for="is_receipt_others_yes_mobile">Yes</label>
+                                                            <input id="is_receipt_others_no_mobile" name="is_receipt[2]" type="radio" value="0">
+                                                            <label class="center label" for="is_receipt_others_no_mobile">No</label>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Total Claim:</td>
+                                                    <td colspan="2">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <input type="number" class="common_input price_input" id="common_input price_input" placeholder="1234">
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="select_reason_class">
+                                                                    <select class="form-control custom_select expense_currency_select_option">
+                                                                        <option selected>select currency</option>
+                                                                        @foreach($currencies as $key => $val)
+                                                                            <option value="{{$key}}">{{$key}}</option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
                                     </div>
-                                  </div>
                                 </div>
 
 
