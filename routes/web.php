@@ -152,7 +152,8 @@ Route::get('/user/login','UserPanelController@user_login')->name('user/login');
         Route::post('/update-affiliate-note', 'ClaimBackController@affiliateNoteUpdate')->name('update-affiliate-note');
         Route::delete('/affiliate-notes/{id}', 'ClaimBackController@affiliateNoteDelete');
 
-        
+        Route::post('/compose-customer-data', 'ClaimBackController@customerComposeDataSave')->name('compose-customer-data');
+        Route::post('/airline-compose-data', 'ClaimBackController@airlineComposeDataSave')->name('airline-compose-data');
     // });
 // });
 

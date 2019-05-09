@@ -1,0 +1,7 @@
+1. send email and create ticket + assign a ticket
+2. expense tab
+3. Received amount
+4. Old email will not work, new emailing 
+5. buton rename - delete to close and reopen
+6. Option in admin if the user should receive for all claim that the passenger will send or only the first.
+7. add a link to the case and separate case/file for admin to manage the affiliate users, like adding notes and payment date and doc of payment confirmation
