@@ -229,14 +229,14 @@
                                                                         <th>Number Of Flight Journey</th>
                                                                         <td>{{$flightCount}}</td>
                                                                     </tr>
-                                                                    <tr class="odd gradeX">
+                                                      {{--               <tr class="odd gradeX">
                                                                         <th>Departure Airport</th>
                                                                         <td>{{$departed_airport->name}}</td>
                                                                     </tr>
                                                                     <tr class="odd gradeX">
                                                                         <th>Destination Airport</th>
                                                                         <td>{{$destination_airport->name}}</td>
-                                                                    </tr>
+                                                                    </tr> --}}
                                                                     <tr class="odd gradeX">
                                                                         <th>Flight Number</th>
                                                                         <td>{{$ittDetails->flight_number}}</td>
