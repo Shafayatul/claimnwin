@@ -31,6 +31,10 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\ClaimClosed;
 use App\Currency;
 use Victorybiz\GeoIPLocation\GeoIPLocation;
+use App\CustomerComposerFile;
+use App\AirlineComposeFile;
+use App\Mail\CustomerCompose;
+use App\Mail\AirlineCompose;
 
 class ClaimBackController extends Controller
 {
@@ -323,7 +327,7 @@ class ClaimBackController extends Controller
             // $emails = imap_search($inbox,'ALL');
 
             // $sents = imap_search($sent,'ALL');
-            $sents=SentEmail::where('claim_id',$id)->latest()->get();
+            $sents=CustomerComposerFile::where('claim_id',$id)->latest()->get();
 
             $oClient = new Client([
                 'host'          => 'premium39.web-hosting.com',
@@ -341,8 +345,6 @@ class ClaimBackController extends Controller
             $aFolder = $oClient->getFolders();
 
             $inbox = $oClient->getFolders('INBOX');
-
-            $sent = $oClient->getFolder('Sent');
             // dd($sent);
             // dd($aFolder);
             // // $aFolder = "";
@@ -352,9 +354,10 @@ class ClaimBackController extends Controller
 
             $expanses = Expense::where('claim_id',$id)->get();
             $affiliateNotes = affiliate_notes::where('claim_id',$id)->get();
+            $airlineSents=AirlineComposeFile::where('claim_id',$id)->latest()->get();
 
 
-        return view('claim.claimView',compact('sent','inbox','affiliateNotes','expanses','aFolder','sents','notes', 'ticket_notes', 'ticket', 'claimFiles','affiliateComm','adminComm','NextStepData','claimStatusData','flightInfo','airline','departed_airport','destination_airport','reminders','claims','passengers','ittDetails','flightCount','passCount','claimsStatus','nextSteps','banks', 'affiliate_user'));
+        return view('claim.claimView',compact('airlineSents','inbox','affiliateNotes','expanses','aFolder','sents','notes', 'ticket_notes', 'ticket', 'claimFiles','affiliateComm','adminComm','NextStepData','claimStatusData','flightInfo','airline','departed_airport','destination_airport','reminders','claims','passengers','ittDetails','flightCount','passCount','claimsStatus','nextSteps','banks', 'affiliate_user'));
     }
 
     public function downloadClaimFile($id)
@@ -558,6 +561,78 @@ class ClaimBackController extends Controller
         return redirect('/claim-view/'.$claim_id)->with('success','Affiliate Note Delete!');
     }
 
+    public function customerComposeDataSave(Request $request)
+    {
+        $id = $request->claim_id;
+        $composeData = strip_tags($request->compose_text);
+
+        if($request->hasFile('compose_file')){
+            $files = $request->file('compose_file');
+            // dd($files);
+            foreach($files as $file){
+                $fileName = uniqid().'.'.$file->getClientOriginalExtension();
+                $filePath = 'compose_file/';
+                $fileUrl = $filePath.$fileName;
+                $file->move($filePath,$fileName);
+                // $file__name[] = $fileName;
+                $images[]=$fileUrl;
+            }
+
+        }
+
+       $file__names =$images;
+
+        $claim=Claim::where('id',$id)->first();
+        $userInfo = User::where('id',$claim->user_id)->first();
+        $userName = $userInfo->name;
+        Mail::to($userInfo->email)->send(new CustomerCompose($file__names,$composeData,$userName));
+        $file= new CustomerComposerFile();
+        $file->compose_text = $request->compose_text;
+        $file->from_email = $claim->cpanel_email;
+        $file->claim_id = $request->claim_id;
+        $file->sub = $request->sub;
+        $file->compose_file= implode("|",$images);
+        $file->save();
+        return redirect('/claim-view/'.$id)->with('success','Sent Email Successfully!');
+
+    }
+
+    public function airlineComposeDataSave(Request $request)
+    {
+        $id = $request->claim_id;
+        $composeData = strip_tags($request->airline_compose_text);
+
+        if($request->hasFile('airline_compose_file')){
+            $files = $request->file('airline_compose_file');
+            // dd($files);
+            foreach($files as $file){
+                $fileName = uniqid().'.'.$file->getClientOriginalExtension();
+                $filePath = 'airline_compose_file/';
+                $fileUrl = $filePath.$fileName;
+                $file->move($filePath,$fileName);
+                // $file__name[] = $fileName;
+                $images[]=$fileUrl;
+            }
+
+        }else{
+            $images[]= null;
+        }
+
+       $file__names =$images;
+
+        $claim=Claim::where('id',$id)->first();
+        $airlineInfo = Airline::where('id',$claim->airline_id)->first();
+        $userName = $airlineInfo->email;
+        Mail::to($userName)->send(new AirlineCompose($file__names,$composeData,$userName));
+        $file= new AirlineComposeFile();
+        $file->airline_compose_text = $request->airline_compose_text;
+        $file->from_email = $claim->cpanel_email;
+        $file->claim_id = $request->claim_id;
+        $file->sub = $request->sub;
+        $file->airline_compose_file= implode("|",$images);
+        $file->save();
+        return redirect('/claim-view/'.$id)->with('success','Sent Email Successfully!');
+    }
 
 
 
