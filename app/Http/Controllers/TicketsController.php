@@ -29,10 +29,10 @@ class TicketsController extends Controller
             'port'          => 993,
             'encryption'    => 'ssl',
             'validate_cert' => true,
-            'username'      => 'info@freeflightclaim.com',
-            'password'      => 'oKwGE2vzcOYt',
-            // 'username'      =>'rtwh095@freeflightclaim.com',
-            // 'password'      => 'olMpHjWv',
+            // 'username'      => 'info@freeflightclaim.com',
+            // 'password'      => 'oKwGE2vzcOYt',
+            'username'      =>'rtwh095@freeflightclaim.com',
+            'password'      => 'olMpHjWv',
             'protocol'      => 'imap'
         ]);
         $oClient->connect();

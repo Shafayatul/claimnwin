@@ -53,15 +53,28 @@ class NotesController extends Controller
     {
         $claim_id = $request->claim_id;
 
-        // $requestData = $request->all();
+        if($request->hasFile('note_files')){
+            $files = $request->file('note_files');
+            // dd($files);
+            foreach($files as $file){
+                $fileName = uniqid().'.'.$file->getClientOriginalExtension();
+                $filePath = 'claim_note_files/';
+                $fileUrl = $filePath.$fileName;
+                $file->move($filePath,$fileName);
+                // $file__name[] = $fileName;
+                $images[]=$fileUrl;
+            }
 
-        // Note::create($requestData + ['user_id' => Auth::user()->id]);
+        }else{
+            $images[]= null;
+        }
 
         $note=new Note;
 
         $note->claim_id         = $claim_id;
         $note->note             = $request->note;
         $note->user_id          = Auth::user()->id;
+        $note->note_files       = implode("|",$images);
         $note->save();
 
         return redirect('/claim-view/'.$claim_id)->with(['success'=>'Note added!']);
@@ -125,6 +138,16 @@ class NotesController extends Controller
     public function destroy(Request $request, $id)
     {
         $claim_id = $request->claim_id;
+        $note=Note::find($id);
+        
+        if($note->note_files != null){
+        $noteFiles = explode("|",$note->note_files);
+
+            foreach($noteFiles as $key=>$value){
+                unlink($value);
+            }
+        }
+
         Note::destroy($id);
 
         return redirect('/claim-view/'.$claim_id)->with(['success'=>'Note deleted!']);

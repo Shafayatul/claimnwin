@@ -17,14 +17,11 @@
 @include('layouts.includes.partial.alert')
 <div class="forms">
     <div class="form-grids row widget-shadow" data-example-id="basic-forms">
-{{-- <div class="form-title">
-<h4>List of Claims</h4>
-</div> --}}
-<div class="form-body">
-    <div class="card">
-        <div class="card-body">
+        <div class="form-body">
+            <div class="card">
+                <div class="card-body">
 
-            <div class="row">
+                <div class="row">
                 <div class="col-md-2">
                     <div class="panel bg-dark ">
                         <div class="panel-heading cus_pan_heading">
@@ -69,9 +66,9 @@
                         </div>
                     </div>
                 </div>
-            </div>
+                </div>
 
-            <div class="row">
+                <div class="row">
                 <div class="col-md-12 widget-shadow">
                     <ul id="myTabs" class="nav nav-tabs" role="tablist">
                         <li role="presentation" class="active"><a href="#claim_overview" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="false"><i class="fa fa-bookmark" aria-hidden="true"></i> Claim Overview</a></li>
@@ -86,6 +83,7 @@
                         <li role="presentation"><a href="#note" role="tab" id="note-tab" data-toggle="tab" aria-controls="note" aria-expanded="true"><i class="fas fa-ticket-alt" aria-hidden="true"></i> Note Info</a></li>
                         <li role="presentation"><a href="#affiliate-note" role="tab" id="affiliate-note-tab" data-toggle="tab" aria-controls="affiliate-note" aria-expanded="true"><i class="fas fa-ticket-alt" aria-hidden="true"></i> Affiliate Note Info</a></li>
                         <li role="presentation"><a href="#expanse" role="tab" id="expanse-tab" data-toggle="tab" aria-controls="expanse" aria-expanded="true"><i class="fas fa-money-bill-alt" aria-hidden="true"></i> Expanse Info</a></li>
+                        <li role="presentation"><a href="#airline" role="tab" id="airline-tab" data-toggle="tab" aria-controls="airline" aria-expanded="true"><i class="fas fa-plane" aria-hidden="true"></i> Airline Info</a></li>
                     </ul>
                     <div id="myTabContent" class="tab-content">
                         <div role="tabpanel" class="tab-pane fade active in" id="claim_overview" aria-labelledby="home-tab">
@@ -141,32 +139,6 @@
                                                                         <th>Passenger Representative</th>
                                                                         <td>Claimnwins</td>
                                                                     </tr>
-
-                                                                    {{-- <tr class="odd gradeX">
-                                                                        <th>Passenger Full Name</th>
-                                                                        @foreach($passengers as $passenger)
-                                                                        @if($loop->first)
-                                                                            <td>{{$passenger->first_name.' '.$passenger->last_name}}</td>
-                                                                        @endif
-                                                                    @endforeach
-                                                                    </tr> --}}
-                                                                    {{-- <tr class="odd gradeX">
-                                                                        <th>Passenger Email</th>
-                                                                        <td>{{$passenger->email}}</td>
-                                                                    </tr>
-                                                                    <tr class="odd gradeX">
-                                                                        <th>Passenger Address</th>
-                                                                        <td>{{$passenger->address}}</td>
-                                                                    </tr>
-
-                                                                    <tr class="odd gradeX">
-                                                                        <th>Claim Referance Number</th>
-                                                                        <td>
-                                                                            @if($passenger->is_booking_reference == 1)
-                                                                            {{$passenger->booking_refernece}}
-                                                                            @endif
-                                                                        </td>
-                                                                    </tr> --}}
                                                                     <tr class="odd gradeX">
                                                                         <th>Claim Create Date</th>
                                                                         <td>{{Carbon\Carbon::parse($claims->created_at)->format('d-m-Y')}}</td>
@@ -217,10 +189,6 @@
                                                                         <th>Date Of Disrupted</th>
                                                                         <td>{{$ittDetails->departure_date}}</td>
                                                                     </tr>
-{{--        <tr class="odd gradeX">
-<th>Scheduled Date & Time Of Departure</th>
-<td>{{$flightInfo->scheduled_departure_time_and_date}}</td>
-</tr> --}}
                                                                     <tr class="odd gradeX">
                                                                         <th>Airline</th>
                                                                         <td>{{$airline->name}}</td>
@@ -229,792 +197,844 @@
                                                                         <th>Number Of Flight Journey</th>
                                                                         <td>{{$flightCount}}</td>
                                                                     </tr>
-                                                      {{--               <tr class="odd gradeX">
-                                                                        <th>Departure Airport</th>
-                                                                        <td>{{$departed_airport->name}}</td>
-                                                                    </tr>
-                                                                    <tr class="odd gradeX">
-                                                                        <th>Destination Airport</th>
-                                                                        <td>{{$destination_airport->name}}</td>
-                                                                    </tr> --}}
                                                                     <tr class="odd gradeX">
                                                                         <th>Flight Number</th>
                                                                         <td>{{$ittDetails->flight_number}}</td>
                                                                     </tr>
-{{--  <tr class="odd gradeX">
-<th>Scheduled Date & Time Of Arrival</th>
-<td>{{$flightInfo->scheduled_arrival_time_and_date}}</td>
-</tr> --}}
-{{-- <tr class="odd gradeX">
-<th>Actual Date & Time Of Arrival</th>
-<td>{{$flightInfo->actual_arrival_time_and_date}}</td>
-</tr> --}}
-</tbody>
-</table>
-</div>
-<!-- /.panel-body -->
-</div>
-<!-- /.panel -->
-</div>
-<!-- /.col-lg-12 -->
-</div>
-</div>
-<div class="tab-pane" id="claim_detail" role="tabpanel">
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <i class="fa fa-comments"></i> Claim Details
-                </div>
-                <!-- /.panel-heading -->
-                <div class="panel-body">
-                    <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
 
-                        <tbody>
-                            <tr class="odd gradeX">
-                                <th>What reason was given for the delay</th>
-                                <td>{{$claims->reason}}</td>
-                            </tr>
-{{-- <tr class="odd gradeX">
-<th>If delayed overnight - Hotel accomodation</th>
-<td></td>
-</tr>
-<tr class="odd gradeX">
-<th>If applicable - transport between the airport and hote</th>
-<td></td>
-</tr>
-<tr class="odd gradeX">
-<th>Did you incur any such expenditure</th>
-<td></td>
-</tr>
-<tr class="odd gradeX">
-<th>Have you received any compensation (money/vouchers) already?</th>
-<td></td>
-</tr> --}}
-<tr class="odd gradeX">
-    <th>Number of passengers:</th>
-    <td>{{$passCount}}</td>
-</tr>
-{{-- <tr class="odd gradeX">
-    <th>Passengers Name</th>
-    <td>
-        @foreach($passengers as $passenger)
-        {{$passenger->first_name.' '.$passenger->last_name}}
-        @endforeach
-    </td>
-</tr> --}}
-<tr class="odd gradeX">
-    <th>What Happened To The Flight?</th>
-    <td>{{$claims->what_happened_to_the_flight}}</td>
-</tr>
-<tr class="odd gradeX">
-    <th>What was the total delay once you arrived?</th>
-    <td>{{$claims->total_delay}}</td>
-</tr>
-</tbody>
-</table>
-</div>
-<!-- /.panel-body -->
-</div>
-<!-- /.panel -->
-</div>
-<!-- /.col-lg-12 -->
-</div>
-</div>
-<div class="tab-pane" id="add_claim_files" role="tabpanel">
-    <p>
-        Your file submission allowance has now passed and you are no longer able to upload any more files to your case.
-        We will now request the Defence from the airline.
-    </p>
-    <div class="row">
-        <div class="col-md-12">
-            <form action="{{route('claim-file-upload')}}" class="form-horizontal" method="post" enctype="multipart/form-data">
-                {{ csrf_field() }}
-                <div class="form-group">
-
-                    <label for="file_name" class="control-label"></label>
-                    <input type="text" class="form-control" name="name" id="file_name" placeholder="File Name..." required>
-                </div>
-
-
-                <label for="file-upload" class="custom-file-upload">
-                    <i class="fas fa-cloud-upload-alt"></i> Custom Upload
-                </label>
-                <input id="file-upload" name="file_name" type="file" required/>
-                <input type="hidden" name="claim_id" value="{{$claims->id}}">
-                <div class="form-group">
-                    <div class="col-md-12">
-                        <button type="submit" class="mybtn"><i class="fa fa-save"></i> Save</button>
-                    </div>
-                </div>
-
-            </form>
-        </div>
-    </div>
-</div>
-<div class="tab-pane" id="view_claim_files" role="tabpanel">
-    <div class="row">
-        <div class="col-lg-12">
-            <p>
-                You have successfully uploaded your files.On this screen you can organise your files to enable other parties to understand the significance of the file to the case.
-                Please give the file description and a time line date to show the chronological ordering of your files.
-            </p>
-            <button>Save Changes</button>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-12">
-            <a href="{{URL::to('/letter-before-action/'.$claims->id)}}" class="btn btn-success btn-sm">Download Pdf</a>
-            <a href="{{URL::to('/poa-pdf/'.$claims->id)}}" class="btn btn-primary btn-sm">Download POA Pdf</a>
-            <div class="panel panel-default">
-                <!-- /.panel-heading -->
-                <div class="panel-body">
-
-                    <div class="table-responsive">
-
-
-                        <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
-                            <thead>
-                                <tr>
-                                    <th>File Name</th>
-                                    <th>Upload Date</th>
-                                    <th>Uploaded By</th>
-                                    <th>Delete</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($claimFiles as $claimFile)
-                                <tr>
-                                    <td>{{$claimFile->name}}</td>
-                                    <td>{{Carbon\Carbon::parse($claimFile->created_at)->format('d-m-Y')}}</td>
-                                    <td>{{$claimFile->user_id}}</td>
-                                    <td>
-                                        <a href="{{URL::to('/claim-file/'.$claimFile->id)}}" class="btn btn-sm btn-primary"><i class="fa fa-download"></i> Download</a>
-                                        <a href="#" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> Delete</a>
-                                    </td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <!-- /.panel-body -->
-            </div>
-            <!-- /.panel -->
-        </div>
-    </div>
-</div>
-<div class="tab-pane" id="claim_eligib" role="tabpanel">
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <i class="fa fa-comments"></i> Claim Eligibility
-                </div>
-                <!-- /.panel-heading -->
-                <div class="panel-body">
-                    <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
-
-                        <tbody>
-                            <tr class="odd gradeX">
-                                <th>Claim ID</th>
-                                <td>{{$claims->id}}</td>
-                            </tr>
-                            <tr class="odd gradeX">
-                                <th>Have you complained direct to the airline writing?</th>
-                                <td>
-                                    @if($claims->is_already_written_airline == 0)
-                                    NO
-                                    @else
-                                    Yes
-                                    @endif
-                                </td>
-                            </tr>
-{{-- <tr class="odd gradeX">
-<th>Has the airline provided their final response?</th>
-<td></td>
-</tr>
-<tr class="odd gradeX">
-    <th>What date did you complain to the airline?</th>
-    <td>
-        @if($claims->is_already_written_airline == 1)
-        {{$claims->written_airline_date}}
-        @endif
-    </td>
-</tr>--}}
-{{-- <tr class="odd gradeX">
-<th>Did they reject your complain?</th>
-<td></td>
-</tr>
-<tr class="odd gradeX">
-<th>Have you reject the final response?</th>
-<td></td>
-</tr>
-<tr class="odd gradeX">
-<th>Airline response</th>
-<td></td>
-</tr> --}}
-</tbody>
-</table>
-</div>
-<!-- /.panel-body -->
-</div>
-<!-- /.panel -->
-</div>
-<!-- /.col-lg-12 -->
-</div>
-</div>
-
-<div class="tab-pane" id="passengers" role="tabpanel">
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <i class="fa fa-comments"></i> Passengers
-                </div>
-                    <!-- /.panel-heading -->
-                <div class="panel-body">
-                    @if($passengers)
-                    <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
-                        <thead>
-                            <th>Claim Id</th>
-                            <th>Passengers First Name</th>
-                            <th>Passengers Last Name</th>
-                            <th>Address</th>
-                            <th>Post Code</th>
-                            <th>Date Of Birth</th>
-                            <th>Email</th>
-                            <th>Is Booking Referance?</th>
-                            <th>Booking Referance</th>
-                        </thead>
-                        <tbody>
-                            @foreach($passengers as $all_passenger)
-                            <tr>
-                                <td>{{$all_passenger->claim_id}}</td>
-                                <td>{{$all_passenger->first_name}}</td>
-                                <td>{{$all_passenger->last_name}}</td>
-                                <td>{{$all_passenger->address}}</td>
-                                <td>{{$all_passenger->post_code}}</td>
-                                <td>{{Carbon\Carbon::parse($all_passenger->date_of_birth)->format("d-m-Y")}}</td>
-                                <td>{{$all_passenger->email}}</td>
-                                <td>
-                                    @if($all_passenger->is_booking_reference == 0)
-                                    <span style="color: red;">No</span>
-                                    @else
-                                    <span style="color: green;">Yes</span>
-                                    @endif
-                                </td>
-                                <td>
-                                    @if($all_passenger->is_booking_reference == 0)
-
-                                    @else
-                                    {{$all_passenger->booking_refernece}}
-                                    @endif
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                    @else
-                        <h3 class="text-center">No Passengers Found.</h3>
-                    @endif
-                </div>
-    <!-- /.panel-body -->
-            </div>
-    <!-- /.panel -->
-        </div>
-    <!-- /.col-lg-12 -->
-    </div>
-</div>
-
-<div class="tab-pane" id="claim_user_info" role="tabpanel">
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <i class="fa fa-comments"></i> User Others Info
-                </div>
-                <!-- /.panel-heading -->
-                <div class="panel-body">
-                    <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
-
-                        <tbody>
-                            <tr class="odd gradeX">
-                                <th>Claim ID</th>
-                                <td>{{$claims->id}}</td>
-                            </tr>
-                            <tr class="odd gradeX">
-                                <th>Ip Address</th>
-                                <td>
-                                    @if($claims->ip == null)
-
-                                    @else
-                                    {{$claims->ip}}
-                                    @endif
-                                </td>
-                            </tr>
-                            <tr class="odd gradeX">
-                                <th>Browser</th>
-                                <td>
-                                    @if($claims->browser == null)
-
-                                    @else
-                                    {{$claims->browser}}
-                                    @endif
-                                </td>
-                            </tr>
-                            <tr class="odd gradeX">
-                                <th>Language</th>
-                                <td>
-                                    @if($claims->language == null)
-
-                                    @else
-                                    {{$claims->language}}
-                                    @endif
-                                </td>
-                            </tr>
-                            <tr class="odd gradeX">
-                                <th>Cpanel Email</th>
-                                <td>
-                                    @if($claims->cpanel_email == null)
-
-                                    @else
-                                    {{$claims->cpanel_email}}
-                                    @endif
-                                </td>
-                            </tr>
-                            <tr class="odd gradeX">
-                                <th>Cpanel Password</th>
-                                <td>
-                                    @if($claims->cpanel_email == null)
-
-                                    @else
-                                    {{$claims->cpanel_password}}
-                                    @endif
-                                </td>
-                            </tr>
-                            <tr class="odd gradeX">
-                                <th>Signature</th>
-                                <td>
-                                    <img src="{{asset('uploads/sig/'.$claims->id.'.png')}}" alt="">
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-<!-- /.panel-body -->
-            </div>
-<!-- /.panel -->
-        </div>
-<!-- /.col-lg-12 -->
-    </div>
-</div>
-
-
-</div>
-</div>
-</div>
-</div>
-
-<div role="tabpanel" class="tab-pane " id="messaging" aria-labelledby="messaging-tab">
-    <div class="row">
-            <div class="col-md-2" style="margin-top: 5px;">
-                    {{-- <a class="btn btn-primary btn-lg" href="#">Compose</a> --}}
-                <ul class="nav nav-tabs message" id="myTab" role="tablist">
-
-                    <li class="nav-item">
-                        <a class="nav-link btn btn-block btn-primary" data-toggle="tab" href="#compose"role="tab" aria-controls="compose">Compose</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#conversation" role="tab" aria-controls="home">Conversation</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#inbox" role="tab" aria-controls="profile">Inbox</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#sent" role="tab" aria-controls="messages">Sent</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#case_history" role="tab" aria-controls="settings">Case History</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#note_&_phone_calls" role="tab" aria-controls="settings">Note & Phone Calls</a>
-                    </li>
-
-                </ul>
-            </div>
-        <div class="col-md-10" style="margin-top: 5px;">
-            {{-- <h3 class="text-center" style="padding-top: 20px; color:seagreen;">Sent Email</h3>
-            <br> --}}
-            <div class="tab-content">
-
-            <div class="tab-pane active" id="compose" role="tabpanel">
-                <div class="row">
-                    <div class="col-md-12">
-                    <form action="{{route('compose-customer-data')}}" method="post" class="form-horizontal" enctype="multipart/form-data">
-                            @csrf
-                            <div class="form-group">
-                                <div class="col-md-12">
-                                    <textarea name="compose_text" id="Compose" class="form-control" cols="30" rows="10"></textarea>
-                                <input type="hidden" name="claim_id" value="{{$claims->id}}">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <div class="col-md-12">
-                                    <input type="text" name="sub" id="sub" class="form-control" required/>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <div class="col-md-12">
-                                    <input type="file" name="compose_file[]" id="" class="form-control" multiple/>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <div class="col-md-12">
-                                    <button type="submit" class="btn btn-sm btn-success">Send</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-
-            <div class="tab-pane" id="conversation" role="tabpanel">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="table-responsive">
-                        <table class="table table-bordered table-hover">
-                            <thead>
-                                <th>From</th>
-                                <th>Subject</th>
-                                <th>Message</th>
-                                <th>Date</th>
-                            </thead>
-                            <tbody>
-                                    <?php
-
-                                    $inbox_from_user = [];
-
-                                    foreach($sents as $cutomSent){
-                                        $time_stamps  = Carbon\Carbon::parse($cutomSent->created_at)->timestamp;
-
-                                        $inbox_from_user[$time_stamps]['sub']   = $cutomSent->sub;
-                                        $inbox_from_user[$time_stamps]['date']  = Carbon\Carbon::parse($cutomSent->created_at)->format('d-m-Y h:i:s');
-                                        $inbox_from_user[$time_stamps]['from']  = $cutomSent->from_email;
-                                        $inbox_from_user[$time_stamps]['msg']   = $cutomSent->compose_text;
-                                    }
-
-
-
-
-                                    $userInfo=DB::table('users')->where('id',$claims->user_id)->first();
-                                    $userEmail=$userInfo->email;
-                                    if($aFolder) {
-
-                                    foreach($aFolder as $oFolder) {
-                                        $aMessage = $oFolder->messages()->from($userEmail)->get();
-                                        foreach($aMessage as $oMessage){
-                                            $time_stamps =  Carbon\Carbon::parse($oMessage->date)->timestamp;
-                                            $sub=$oMessage->getSubject();
-                                            $date = $oMessage->getDate();
-                                            $from = $oMessage->getFrom()[0]->mail;
-                                            // $body = $oMessage->getBodies();
-                                            $msg = $oMessage->getHtmlBody();
-                                            $longMsg=$oMessage->getBodies()['text']->content;
-                                            $lines=explode("\n", $longMsg);
-
-                                            $inbox_from_user[$time_stamps]['sub']   = $sub;
-                                            $inbox_from_user[$time_stamps]['date']  = $date;
-                                            $inbox_from_user[$time_stamps]['from']  = $from;
-                                            $inbox_from_user[$time_stamps]['msg']   = $msg;
-                                        }
-                                    }
-
-                                    krsort($inbox_from_user,1);
-                                foreach ($inbox_from_user as $inbox_from_user_single) {
-                                ?>
-                                    <tr>
-                                        <td>{{$inbox_from_user_single['from']}}</td>
-                                        <td>{{$inbox_from_user_single['sub']}}</td>
-                                        <td>{!! $inbox_from_user_single['msg'] !!}</td>
-                                        <td>{{Carbon\Carbon::parse($inbox_from_user_single['date'])->format('d-m-Y')}}</td>
-                                    </tr>
-                                <?php
-                                }
-
-
-
-                        }
-                        ?>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="tab-pane" id="inbox" role="tabpanel">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="table-responsive">
-                            <table class="table table-bordered table-hover">
-                                <thead>
-                                    <th>From</th>
-                                    <th>Subject</th>
-                                    <th>Message</th>
-                                    <th>Date</th>
-                                    <th>Action</th>
-                                </thead>
-                                <tbody>
-                                    <?php
-
-                                    if($inbox) {
-                                    $userInfo=DB::table('users')->where('id',$claims->user_id)->first();
-                                    $userEmail=$userInfo->email;
-                                    foreach($inbox as $oFolder) {
-                                        $aMessage = $oFolder->messages()->from($userEmail)->get();
-                                        foreach($aMessage as $oMessage){
-                                            // dd($oMessage);
-                                            $sub=$oMessage->getSubject();
-                                            $date = $oMessage->getDate();
-                                            $from = $oMessage->getFrom()[0]->mail;
-                                            $id = $oMessage->getMessageNo();
-                                            // $body = $oMessage->getBodies();
-                                            $msg = $oMessage->getHtmlBody();
-                                            $longMsg=$oMessage->getBodies()['text']->content;
-                                            $lines=explode("\n", $longMsg);
-                                ?>
-                                <tr>
-                                    <td>{{$from}}</td>
-                                    <td>{{$sub}}</td>
-                                    <td>{{$lines['0']}}</td>
-                                    <td>{{Carbon\Carbon::parse($date)->format('d-m-Y')}}</td>
-                                    <td>
-                                    <a class="btn btn-info btn-sm" title="inbox-{{$id}}" data-toggle="modal" data-target="#inbox{{$id}}">View</a>
-                                    <!-- Modal -->
-
-                                    </td>
-                                </tr>
-                                <div id="inbox{{$id}}" class="modal fade" role="dialog" style="width: 100%;">
-                                    <div class="modal-dialog modal-wide modal-lg">
-
-                                        <!-- Modal content-->
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                            <h4 class="modal-title">{{$sub}}</h4>
-                                            </div>
-                                            <div class="modal-body">
-                                                <p>
-                                                    {{$longMsg}}
-                                                </p>
-                                            </div>
-                                            <div class="modal-footer">
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                            </div>
-                                        </div>
-
-                                        </div>
-                                    </div>
-                                <?php
-                                }
-                            }
-                        }
-                        ?>
-                            </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="tab-pane" id="sent" role="tabpanel">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-hover">
-                                    <thead>
-                                        <th>From</th>
-                                        <th>Subject</th>
-                                        <th>Message</th>
-                                        <th>Date</th>
-                                        <th>Action</th>
-                                    </thead>
-                                    <tbody>
-                                    <?php
-
-                                    if($sents) {
-                                ?>
-                                @foreach($sents as $cutomSent)
-                                @php
-                                    $inbox_from_user[$time_stamps]['sub']   = 'Static subject';
-                                    $inbox_from_user[$time_stamps]['date']  = Carbon\Carbon::parse($cutomSent->created_at)->timestamp;
-                                    $inbox_from_user[$time_stamps]['from']  = $cutomSent->from_email;
-                                    $inbox_from_user[$time_stamps]['msg']   = $cutomSent->compose_text;
-                                @endphp
-                                <tr>
-                                    <td>{{$cutomSent->from_email}}</td>
-                                    <td>{{$cutomSent->sub}}</td>
-                                    <td>{!!$cutomSent->compose_text!!}</td>
-                                    <td>{{Carbon\Carbon::parse($cutomSent->created_at)->format('d-m-Y')}}</td>
-                                    <td>
-                                        <a class="btn btn-info btn-sm" title="sent-{{$cutomSent->id}}" data-toggle="modal" data-target="#sent{{$cutomSent->id}}">View</a>
-                                        <div id="sent{{$cutomSent->id}}" class="modal fade" role="dialog">
-                                        <div class="modal-dialog">
-
-                                        <!-- Modal content-->
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                            <h4 class="modal-title">Sent Message Details</h4>
-                                            </div>
-                                            <div class="modal-body">
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        {!!$cutomSent->compose_text!!}
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    <!-- /.panel-body -->
                                                     </div>
+                                                <!-- /.panel -->
                                                 </div>
-
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        @php
-                                                        $custome_single_files=explode("|",$cutomSent->compose_file);
-
-                                                        @endphp
-                                                        {{-- @foreach($custome_single_files as $key=>$value)
-                                                        <a href="{{$value}}" download>{{$value}}</a><br>
-                                                        @endforeach --}}
-                                                    </div>
-                                                </div>
-
-
-
+                                            <!-- /.col-lg-12 -->
                                             </div>
-                                            <div class="modal-footer">
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                            </div>
-                                        </div>
+                                            <div class="row">
+                                                <h3 class="text-center">Airline Time Schedule</h3> <br>
 
-                                        </div>
-                                    </div>
-                                    </td>
-                                </tr>
-                                @endforeach
-                                <?php
-                                }
-                        ?>
-                            </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="tab-pane" id="case_history" role="tabpanel">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="table-responsive">
-                                    <table class="table table-bordered table-hover">
-                                        <thead>
-                                            <th>Date</th>
-                                            <th>Subject</th>
-                                            <th>Action</th>
-                                        </thead>
-                                        <tbody>
-
-                                            <tr>
-                                                <td></td>
-                                                <td></td>
-                                                <td>
-                                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#SentEmailShow">View Email</button>
-                                                    <!-- Modal -->
-                                                    <div id="SentEmailShow" class="modal modal-wide fade" role="dialog">
-                                                        <div class="modal-dialog">
-
-                                                        <!-- Modal content-->
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                            <h4 class="modal-title"></h4>
+                                                <div class="col-md-12">
+                                                    <form action="{{route('departure-arival-time-save')}}" method="post" class="form-horizontal">
+                                                        @csrf
+                                                        <div class="form-group">
+                                                            <label for="departure_time_by_claim" class="col-md-3 control-label">Departure Time</label>
+                                                            <div class="col-md-9">
+                                                            <input type="time" class="form-control" value="{{$claims->departure_time_by_claim}}" name="departure_time_by_claim" id="departure_time_by_claim" />
+                                                            <input type="hidden" name="claim_id" value="{{$claims->id}}">
                                                             </div>
-                                                                <div class="modal-body" style="display: block; overflow:scroll;">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="arival_time_by_claim" class="col-md-3 control-label">Arival Time</label>
+                                                            <div class="col-md-9">
+                                                                <input type="time" class="form-control" value="{{$claims->arival_time_by_claim}}" name="arival_time_by_claim" id="arival_time_by_claim" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <div class="col-md-6 col-md-offset-3">
+                                                                <button type="submit" class="btn btn-sm btn-success"><i class="fa fa-save"></i> Save</button>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane" id="claim_detail" role="tabpanel">
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="panel panel-default">
+                                                        <div class="panel-heading">
+                                                            <i class="fa fa-comments"></i> Claim Details
+                                                        </div>
+                                                        <!-- /.panel-heading -->
+                                                        <div class="panel-body">
+                                                            <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
 
-                                                                </div>
+                                                                <tbody>
+                                                                    <tr class="odd gradeX">
+                                                                        <th>What reason was given for the delay</th>
+                                                                        <td>{{$claims->reason}}</td>
+                                                                    </tr>
+                                                                    <tr class="odd gradeX">
+                                                                        <th>Number of passengers:</th>
+                                                                        <td>{{$passCount}}</td>
+                                                                    </tr>
+                                                                    <tr class="odd gradeX">
+                                                                        <th>What Happened To The Flight?</th>
+                                                                        <td>{{$claims->what_happened_to_the_flight}}</td>
+                                                                    </tr>
+                                                                    <tr class="odd gradeX">
+                                                                        <th>What was the total delay once you arrived?</th>
+                                                                        <td>{{$claims->total_delay}}</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    <!-- /.panel-body -->
+                                                    </div>
+                                                <!-- /.panel -->
+                                                </div>
+                                            <!-- /.col-lg-12 -->
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane" id="add_claim_files" role="tabpanel">
+                                            <p>
+                                                Your file submission allowance has now passed and you are no longer able to upload any more files to your case.
+                                                We will now request the Defence from the airline.
+                                            </p>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <form action="{{route('claim-file-upload')}}" class="form-horizontal" method="post" enctype="multipart/form-data">
+                                                        {{ csrf_field() }}
+                                                        <div class="form-group">
 
-                                                            <div class="modal-footer">
-                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                            <label for="file_name" class="control-label"></label>
+                                                            <input type="text" class="form-control" name="name" id="file_name" placeholder="File Name..." required>
+                                                        </div>
+
+
+                                                        <label for="file-upload" class="custom-file-upload">
+                                                            <i class="fas fa-cloud-upload-alt"></i> Custom Upload
+                                                        </label>
+                                                        <input id="file-upload" name="file_name" type="file" required/>
+                                                        <input type="hidden" name="claim_id" value="{{$claims->id}}">
+                                                        <div class="form-group">
+                                                            <div class="col-md-12">
+                                                                <button type="submit" class="mybtn"><i class="fa fa-save"></i> Save</button>
                                                             </div>
                                                         </div>
 
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane" id="view_claim_files" role="tabpanel">
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <p>
+                                                        You have successfully uploaded your files.On this screen you can organise your files to enable other parties to understand the significance of the file to the case.
+                                                        Please give the file description and a time line date to show the chronological ordering of your files.
+                                                    </p>
+                                                    <button>Save Changes</button>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <a href="{{URL::to('/letter-before-action/'.$claims->id)}}" class="btn btn-success btn-sm">Download Pdf</a>
+                                                    <a href="{{URL::to('/poa-pdf/'.$claims->id)}}" class="btn btn-primary btn-sm">Download POA Pdf</a>
+                                                    <div class="panel panel-default">
+                                                        <!-- /.panel-heading -->
+                                                        <div class="panel-body">
+
+                                                            <div class="table-responsive">
+
+
+                                                                <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>File Name</th>
+                                                                            <th>Upload Date</th>
+                                                                            <th>Uploaded By</th>
+                                                                            <th>Delete</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        @foreach($claimFiles as $claimFile)
+                                                                        <tr>
+                                                                            <td>{{$claimFile->name}}</td>
+                                                                            <td>{{Carbon\Carbon::parse($claimFile->created_at)->format('d-m-Y')}}</td>
+                                                                            <td>{{$claimFile->user_id}}</td>
+                                                                            <td>
+                                                                                <a href="{{URL::to('/claim-file/'.$claimFile->id)}}" class="btn btn-sm btn-primary"><i class="fa fa-download"></i> Download</a>
+                                                                                <a href="#" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> Delete</a>
+                                                                            </td>
+                                                                        </tr>
+                                                                        @endforeach
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
                                                         </div>
+                                                        <!-- /.panel-body -->
                                                     </div>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                                    <!-- /.panel -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane" id="claim_eligib" role="tabpanel">
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="panel panel-default">
+                                                        <div class="panel-heading">
+                                                            <i class="fa fa-comments"></i> Claim Eligibility
+                                                        </div>
+                                                        <!-- /.panel-heading -->
+                                                        <div class="panel-body">
+                                                            <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+
+                                                                <tbody>
+                                                                    <tr class="odd gradeX">
+                                                                        <th>Claim ID</th>
+                                                                        <td>{{$claims->id}}</td>
+                                                                    </tr>
+                                                                    <tr class="odd gradeX">
+                                                                        <th>Have you complained direct to the airline writing?</th>
+                                                                        <td>
+                                                                            @if($claims->is_already_written_airline == 0)
+                                                                            NO
+                                                                            @else
+                                                                            Yes
+                                                                            @endif
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    <!-- /.panel-body -->
+                                                    </div>
+                                                <!-- /.panel -->
+                                                </div>
+                                            <!-- /.col-lg-12 -->
+                                            </div>
+                                        </div>
+
+                                        <div class="tab-pane" id="passengers" role="tabpanel">
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="panel panel-default">
+                                                        <div class="panel-heading">
+                                                            <i class="fa fa-comments"></i> Passengers
+                                                        </div>
+                                                            <!-- /.panel-heading -->
+                                                        <div class="panel-body">
+                                                            @if($passengers)
+                                                            <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                                                <thead>
+                                                                    <th>Claim Id</th>
+                                                                    <th>Passengers First Name</th>
+                                                                    <th>Passengers Last Name</th>
+                                                                    <th>Address</th>
+                                                                    <th>Post Code</th>
+                                                                    <th>Date Of Birth</th>
+                                                                    <th>Email</th>
+                                                                    <th>Is Booking Referance?</th>
+                                                                    <th>Booking Referance</th>
+                                                                </thead>
+                                                                <tbody>
+                                                                    @foreach($passengers as $all_passenger)
+                                                                    <tr>
+                                                                        <td>{{$all_passenger->claim_id}}</td>
+                                                                        <td>{{$all_passenger->first_name}}</td>
+                                                                        <td>{{$all_passenger->last_name}}</td>
+                                                                        <td>{{$all_passenger->address}}</td>
+                                                                        <td>{{$all_passenger->post_code}}</td>
+                                                                        <td>{{Carbon\Carbon::parse($all_passenger->date_of_birth)->format("d-m-Y")}}</td>
+                                                                        <td>{{$all_passenger->email}}</td>
+                                                                        <td>
+                                                                            @if($all_passenger->is_booking_reference == 0)
+                                                                            <span style="color: red;">No</span>
+                                                                            @else
+                                                                            <span style="color: green;">Yes</span>
+                                                                            @endif
+                                                                        </td>
+                                                                        <td>
+                                                                            @if($all_passenger->is_booking_reference == 0)
+
+                                                                            @else
+                                                                            {{$all_passenger->booking_refernece}}
+                                                                            @endif
+                                                                        </td>
+                                                                    </tr>
+                                                                    @endforeach
+                                                                </tbody>
+                                                            </table>
+                                                            @else
+                                                                <h3 class="text-center">No Passengers Found.</h3>
+                                                            @endif
+                                                        </div>
+                                            <!-- /.panel-body -->
+                                                    </div>
+                                            <!-- /.panel -->
+                                                </div>
+                                            <!-- /.col-lg-12 -->
+                                            </div>
+                                        </div>
+
+                                        <div class="tab-pane" id="claim_user_info" role="tabpanel">
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="panel panel-default">
+                                                        <div class="panel-heading">
+                                                            <i class="fa fa-comments"></i> User Others Info
+                                                        </div>
+                                                        <!-- /.panel-heading -->
+                                                        <div class="panel-body">
+                                                            <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+
+                                                                <tbody>
+                                                                    <tr class="odd gradeX">
+                                                                        <th>Claim ID</th>
+                                                                        <td>{{$claims->id}}</td>
+                                                                    </tr>
+                                                                    <tr class="odd gradeX">
+                                                                        <th>Ip Address</th>
+                                                                        <td>
+                                                                            @if($claims->ip == null)
+
+                                                                            @else
+                                                                            {{$claims->ip}}
+                                                                            @endif
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="odd gradeX">
+                                                                        <th>Browser</th>
+                                                                        <td>
+                                                                            @if($claims->browser == null)
+
+                                                                            @else
+                                                                            {{$claims->browser}}
+                                                                            @endif
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="odd gradeX">
+                                                                        <th>Language</th>
+                                                                        <td>
+                                                                            @if($claims->language == null)
+
+                                                                            @else
+                                                                            {{$claims->language}}
+                                                                            @endif
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="odd gradeX">
+                                                                        <th>Cpanel Email</th>
+                                                                        <td>
+                                                                            @if($claims->cpanel_email == null)
+
+                                                                            @else
+                                                                            {{$claims->cpanel_email}}
+                                                                            @endif
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="odd gradeX">
+                                                                        <th>Cpanel Password</th>
+                                                                        <td>
+                                                                            @if($claims->cpanel_email == null)
+
+                                                                            @else
+                                                                            {{$claims->cpanel_password}}
+                                                                            @endif
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="odd gradeX">
+                                                                        <th>Signature</th>
+                                                                        <td>
+                                                                            <img src="{{asset('uploads/sig/'.$claims->id.'.png')}}" alt="">
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                        <!-- /.panel-body -->
+                                                    </div>
+                                        <!-- /.panel -->
+                                                </div>
+                                        <!-- /.col-lg-12 -->
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="tab-pane" id="note_&_phone_calls" role="tabpanel">
+                        <div role="tabpanel" class="tab-pane " id="messaging" aria-labelledby="messaging-tab">
                             <div class="row">
-                                <div class="col-md-12">
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered table-hover">
-                                            <thead>
-                                                <th>Date</th>
-                                                <th>Subject</th>
-                                                <th>Action</th>
-                                            </thead>
-                                            <tbody>
+                                <div class="col-md-2" style="margin-top: 5px;">
+                                        {{-- <a class="btn btn-primary btn-lg" href="#">Compose</a> --}}
+                                    <ul class="nav nav-tabs message" id="myTab" role="tablist">
 
-                                                <tr>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td>
-                                                        <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#SentEmailShow">View Email</button>
-                                                        <!-- Modal -->
-                                                        <div id="SentEmailShow" class="modal modal-wide fade" role="dialog">
-                                                            <div class="modal-dialog">
+                                        <li class="nav-item">
+                                            <a class="nav-link btn btn-block btn-primary" data-toggle="tab" href="#compose"role="tab" aria-controls="compose">Compose</a>
+                                        </li>
 
-                                                            <!-- Modal content-->
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                                <h4 class="modal-title"></h4>
+                                        <li class="nav-item">
+                                            <a class="nav-link" data-toggle="tab" href="#conversation" role="tab" aria-controls="home">Conversation</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" data-toggle="tab" href="#inbox" role="tab" aria-controls="profile">Inbox</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" data-toggle="tab" href="#sent" role="tab" aria-controls="messages">Sent</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" data-toggle="tab" href="#case_history" role="tab" aria-controls="settings">Case History</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" data-toggle="tab" href="#note_&_phone_calls" role="tab" aria-controls="settings">Note & Phone Calls</a>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                                <div class="col-md-10" style="margin-top: 5px;">
+                                    {{-- <h3 class="text-center" style="padding-top: 20px; color:seagreen;">Sent Email</h3>
+                                    <br> --}}
+                                    <div class="tab-content">
+
+                                    <div class="tab-pane active" id="compose" role="tabpanel">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                            <form action="{{route('compose-customer-data')}}" method="post" class="form-horizontal" enctype="multipart/form-data">
+                                                    @csrf
+                                                    <div class="form-group">
+                                                        <div class="col-md-12">
+                                                            <input type="text" name="from_name" id="from_name" value="Claimand Win" class="form-control" placeholder="From Name" required/>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <div class="col-md-12">
+                                                        <input type="text" name="from_email" value="{{$claims->cpanel_email}}" id="from_email" class="form-control" placeholder="From Email" required/>
+                                                        </div>
+                                                    </div>
+
+                                                    @php
+                                                        $userData=DB::table('users')->where('id',$claims->user_id)->first();
+
+                                                    @endphp
+
+                                                    <div class="form-group">
+                                                        <div class="col-md-12">
+                                                        <input type="text" name="to_email" id="to_email" value="{{$userData->email}}" class="form-control" placeholder="To Email"/>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <div class="col-md-12">
+                                                            <input type="text" name="sub" id="sub" class="form-control" required/>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <div class="col-md-12">
+                                                            <textarea name="compose_text" class="form-control Compose" cols="30" rows="10"></textarea>
+                                                            <input type="hidden" name="claim_id" value="{{$claims->id}}">
+                                                        </div>
+                                                    </div>
+
+
+
+                                                    <div class="form-group">
+                                                        <div class="col-md-12">
+                                                            <input type="file" name="compose_file[]" id="" class="form-control" multiple/>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <div class="col-md-12">
+                                                            <button type="submit" class="btn btn-sm btn-success">Send</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="tab-pane" id="conversation" role="tabpanel">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="table-responsive">
+                                                <table class="table table-bordered table-hover">
+                                                    <thead>
+                                                        <th>From</th>
+                                                        <th>Subject</th>
+                                                        <th>Message</th>
+                                                        <th>Date</th>
+                                                    </thead>
+                                                    <tbody>
+                                                            <?php
+
+                                                            $inbox_from_user = [];
+
+                                                            foreach($sents as $cutomSent){
+                                                                $time_stamps  = Carbon\Carbon::parse($cutomSent->created_at)->timestamp;
+
+                                                                $inbox_from_user[$time_stamps]['sub']   = $cutomSent->sub;
+                                                                $inbox_from_user[$time_stamps]['date']  = Carbon\Carbon::parse($cutomSent->created_at)->format('d-m-Y h:i:s');
+                                                                $inbox_from_user[$time_stamps]['from']  = $cutomSent->from_email;
+                                                                $inbox_from_user[$time_stamps]['msg']   = $cutomSent->compose_text;
+                                                            }
+                                                            $userInfo=DB::table('users')->where('id',$claims->user_id)->first();
+                                                            $userEmail=$userInfo->email;
+                                                            if($aFolder) {
+
+                                                            foreach($aFolder as $oFolder) {
+                                                                $aMessage = $oFolder->messages()->from($userEmail)->get();
+                                                                foreach($aMessage as $oMessage){
+                                                                    $time_stamps =  Carbon\Carbon::parse($oMessage->date)->timestamp;
+                                                                    $sub=$oMessage->getSubject();
+                                                                    $date = $oMessage->getDate();
+                                                                    $from = $oMessage->getFrom()[0]->mail;
+                                                                    // $body = $oMessage->getBodies();
+                                                                    $msg = $oMessage->getHtmlBody();
+                                                                    $longMsg=$oMessage->getBodies()['text']->content;
+                                                                    $lines=explode("\n", $longMsg);
+
+                                                                    $inbox_from_user[$time_stamps]['sub']   = $sub;
+                                                                    $inbox_from_user[$time_stamps]['date']  = $date;
+                                                                    $inbox_from_user[$time_stamps]['from']  = $from;
+                                                                    $inbox_from_user[$time_stamps]['msg']   = $msg;
+                                                                }
+                                                            }
+
+                                                            krsort($inbox_from_user,1);
+                                                        foreach ($inbox_from_user as $inbox_from_user_single) {
+                                                        ?>
+                                                            <tr>
+                                                                <td>{{$inbox_from_user_single['from']}}</td>
+                                                                <td>{{$inbox_from_user_single['sub']}}</td>
+                                                                <td>{!! $inbox_from_user_single['msg'] !!}</td>
+                                                                <td>{{Carbon\Carbon::parse($inbox_from_user_single['date'])->format('d-m-Y')}}</td>
+                                                            </tr>
+                                                        <?php
+                                                            }
+                                                        }
+                                                        ?>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="tab-pane" id="inbox" role="tabpanel">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="table-responsive">
+                                                    <table class="table table-bordered table-hover">
+                                                        <thead>
+                                                            <th>From</th>
+                                                            <th>Subject</th>
+                                                            <th>Message</th>
+                                                            <th>Date</th>
+                                                            <th>Action</th>
+                                                        </thead>
+                                                        <tbody>
+                                                            <?php
+
+                                                            if($inbox) {
+                                                            $userInfo=DB::table('users')->where('id',$claims->user_id)->first();
+                                                            $userEmail=$userInfo->email;
+                                                            foreach($inbox as $oFolder) {
+                                                                $aMessage = $oFolder->messages()->from($userEmail)->get();
+                                                                foreach($aMessage as $oMessage){
+                                                                    // dd($oMessage);
+                                                                    $sub=$oMessage->getSubject();
+                                                                    $date = $oMessage->getDate();
+                                                                    $from = $oMessage->getFrom()[0]->mail;
+                                                                    $id = $oMessage->getMessageNo();
+                                                                    // $body = $oMessage->getBodies();
+                                                                    $msg = $oMessage->getHtmlBody();
+                                                                    $longMsg=$oMessage->getBodies()['text']->content;
+                                                                    $lines=explode("\n", $longMsg);
+                                                        ?>
+                                                        <tr>
+                                                            <td>{{$from}}</td>
+                                                            <td>{{$sub}}</td>
+                                                            <td>{{$lines['0']}}</td>
+                                                            <td>{{Carbon\Carbon::parse($date)->format('d-m-Y')}}</td>
+                                                            <td>
+                                                            <a class="btn btn-info btn-sm" title="inbox-{{$id}}" data-toggle="modal" data-target="#inbox{{$id}}">View</a>
+                                                            <a class="btn btn-info btn-sm" title="inbox-{{$id}}" data-toggle="modal" data-target="#inbox_reply{{$id}}">Reply</a>
+                                                            <!-- Modal -->
+
+                                                            </td>
+                                                        </tr>
+                                                        <div id="inbox{{$id}}" class="modal fade" role="dialog" style="width: 100%;">
+                                                            <div class="modal-dialog modal-wide modal-lg">
+
+                                                                <!-- Modal content-->
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                    <h4 class="modal-title">{{$sub}}</h4>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <p>
+                                                                            {{$longMsg}}
+                                                                        </p>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                                    </div>
                                                                 </div>
-                                                                    <div class="modal-body" style="display: block; overflow:scroll;">
+
+                                                                </div>
+                                                            </div>
+
+                                                            <div id="inbox_reply{{$id}}" class="modal fade" role="dialog">
+                                                            <div class="modal-dialog modal-wide">
+
+                                                                <!-- Modal content-->
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                    <h4 class="modal-title">{{$sub}}</h4>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <form action="{{route('reply-customer-data')}}" method="post" class="form-horizontal" enctype="multipart/form-data">
+                                                                            @csrf
+                                                                            <div class="form-group">
+                                                                                <div class="col-md-12">
+                                                                                    <input type="text" name="from_name" id="from_name" value="Claimand Win" class="form-control" placeholder="From Name" required/>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="form-group">
+                                                                                <div class="col-md-12">
+                                                                                <input type="text" name="from_email" value="{{$claims->cpanel_email}}" id="from_email" class="form-control" placeholder="From Email" required/>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            @php
+                                                                                $userData=DB::table('users')->where('id',$claims->user_id)->first();
+
+                                                                            @endphp
+
+                                                                            <div class="form-group">
+                                                                                <div class="col-md-12">
+                                                                                <input type="text" name="to_email" id="to_email" value="{{$userData->email}}" class="form-control" placeholder="To Email"/>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="form-group">
+                                                                                <div class="col-md-12">
+                                                                                    <input type="text" name="sub" id="sub" class="form-control" required/>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="form-group">
+                                                                                <div class="col-md-12">
+                                                                                    <textarea name="compose_text"  class="form-control Compose" cols="30" rows="10"></textarea>
+                                                                                    <input type="hidden" name="claim_id" value="{{$claims->id}}">
+                                                                                </div>
+                                                                            </div>
+
+
+
+                                                                            <div class="form-group">
+                                                                                <div class="col-md-12">
+                                                                                    <input type="file" name="compose_file[]" id="" class="form-control" multiple/>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="form-group">
+                                                                                <div class="col-md-12">
+                                                                                    <button type="submit" class="btn btn-sm btn-success">Send</button>
+                                                                                </div>
+                                                                            </div>
+                                                                        </form>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                                    </div>
+                                                                </div>
+
+                                                                </div>
+                                                            </div>
+                                                        <?php
+                                                        }
+                                                    }
+                                                }
+                                                ?>
+                                                    </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="tab-pane" id="sent" role="tabpanel">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="table-responsive">
+                                                        <table class="table table-bordered table-hover">
+                                                            <thead>
+                                                                <th>From</th>
+                                                                <th>Subject</th>
+                                                                <th>Message</th>
+                                                                <th>Date</th>
+                                                                <th>Action</th>
+                                                            </thead>
+                                                            <tbody>
+                                                            <?php
+
+                                                            if($sents) {
+                                                        ?>
+                                                        @foreach($sents as $cutomSent)
+                                                        @php
+                                                            $inbox_from_user[$time_stamps]['sub']   = 'Static subject';
+                                                            $inbox_from_user[$time_stamps]['date']  = Carbon\Carbon::parse($cutomSent->created_at)->timestamp;
+                                                            $inbox_from_user[$time_stamps]['from']  = $cutomSent->from_email;
+                                                            $inbox_from_user[$time_stamps]['msg']   = $cutomSent->compose_text;
+                                                        @endphp
+                                                        <tr>
+                                                            <td>{{$cutomSent->from_email}}</td>
+                                                            <td>{{$cutomSent->sub}}</td>
+                                                            <td>{!!$cutomSent->compose_text!!}</td>
+                                                            <td>{{Carbon\Carbon::parse($cutomSent->created_at)->format('d-m-Y')}}</td>
+                                                            <td>
+                                                                <a class="btn btn-info btn-sm" title="sent-{{$cutomSent->id}}" data-toggle="modal" data-target="#sent{{$cutomSent->id}}">View</a>
+                                                                <div id="sent{{$cutomSent->id}}" class="modal fade" role="dialog">
+                                                                <div class="modal-dialog">
+
+                                                                <!-- Modal content-->
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                    <h4 class="modal-title">Sent Message Details</h4>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <div class="row">
+                                                                            <div class="col-md-12">
+                                                                                {!!$cutomSent->compose_text!!}
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="row">
+                                                                            <div class="col-md-12">
+                                                                                @php
+                                                                                $custome_single_files=explode("|",$cutomSent->compose_file);
+
+                                                                                @endphp
+                                                                                {{-- @foreach($custome_single_files as $key=>$value)
+                                                                                <a href="{{$value}}" download>{{$value}}</a><br>
+                                                                                @endforeach --}}
+                                                                            </div>
+                                                                        </div>
+
+
 
                                                                     </div>
+                                                                    <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                                    </div>
+                                                                </div>
 
-                                                                <div class="modal-footer">
-                                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                                                 </div>
                                                             </div>
+                                                            </td>
+                                                        </tr>
+                                                        @endforeach
+                                                        <?php
+                                                        }
+                                                ?>
+                                                    </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
 
+
+                                        <div class="tab-pane" id="case_history" role="tabpanel">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="table-responsive">
+                                                            <table class="table table-bordered table-hover">
+                                                                <thead>
+                                                                    <th>Date</th>
+                                                                    <th>Subject</th>
+                                                                    <th>Action</th>
+                                                                </thead>
+                                                                <tbody>
+
+                                                                    <tr>
+                                                                        <td></td>
+                                                                        <td></td>
+                                                                        <td>
+                                                                            <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#SentEmailShow">View Email</button>
+                                                                            <!-- Modal -->
+                                                                            <div id="SentEmailShow" class="modal modal-wide fade" role="dialog">
+                                                                                <div class="modal-dialog">
+
+                                                                                <!-- Modal content-->
+                                                                                <div class="modal-content">
+                                                                                    <div class="modal-header">
+                                                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                                    <h4 class="modal-title"></h4>
+                                                                                    </div>
+                                                                                        <div class="modal-body" style="display: block; overflow:scroll;">
+
+                                                                                        </div>
+
+                                                                                    <div class="modal-footer">
+                                                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="tab-pane" id="note_&_phone_calls" role="tabpanel">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="table-responsive">
+                                                                <table class="table table-bordered table-hover">
+                                                                    <thead>
+                                                                        <th>Date</th>
+                                                                        <th>Subject</th>
+                                                                        <th>Action</th>
+                                                                    </thead>
+                                                                    <tbody>
+
+                                                                        <tr>
+                                                                            <td></td>
+                                                                            <td></td>
+                                                                            <td>
+                                                                                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#SentEmailShow">View Email</button>
+                                                                                <!-- Modal -->
+                                                                                <div id="SentEmailShow" class="modal modal-wide fade" role="dialog">
+                                                                                    <div class="modal-dialog">
+
+                                                                                    <!-- Modal content-->
+                                                                                    <div class="modal-content">
+                                                                                        <div class="modal-header">
+                                                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                                        <h4 class="modal-title"></h4>
+                                                                                        </div>
+                                                                                            <div class="modal-body" style="display: block; overflow:scroll;">
+
+                                                                                            </div>
+
+                                                                                        <div class="modal-footer">
+                                                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                    </div>
+                                                                                </div>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
                                                             </div>
                                                         </div>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
+                                                    </div>
+                                                </div>
+
+
+                                </div>
                                 </div>
                             </div>
                         </div>
-
-
-        </div>
-        </div>
-    </div>
-</div>
 
 
 
@@ -1058,13 +1078,38 @@
                             @csrf
                             <div class="form-group">
                                 <div class="col-md-12">
-                                    <textarea name="airline_compose_text" id="airline_compose_text" class="form-control"></textarea>
+                                    <input type="text" name="from_name" id="from_name" value="Claimand Win" class="form-control" placeholder="From Name" required/>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <div class="col-md-12">
-                                    <input type="text" name="sub" id="airline_sub" class="form-control" required/>
+                                <input type="text" name="from_email" value="{{$claims->cpanel_email}}" id="from_email" class="form-control" placeholder="From Email" required/>
+                                </div>
+                            </div>
+
+                            @php
+                                $airlineData=DB::table('airlines')->where('id',$claims->airline_id)->first();
+
+                            @endphp
+
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                <input type="text" name="to_email" id="to_email" value="{{$airlineData->email}}" class="form-control" placeholder="To Email" readonly/>
+                                </div>
+                            </div>
+
+
+
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <input type="text" name="sub" id="airline_sub" class="form-control" placeholder="Subject" required/>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <textarea name="airline_compose_text" class="form-control airline_compose_text" rows="5" cols="50"></textarea>
                                 </div>
                             </div>
 
@@ -1196,6 +1241,7 @@
                                     <td>{{Carbon\Carbon::parse($date)->format('d-m-Y')}}</td>
                                     <td>
                                         <a class="btn btn-info btn-sm" title="airline_inbox-{{$id}}" data-toggle="modal" data-target="#airline_inbox{{$id}}">View</a>
+                                        <a class="btn btn-info btn-sm" title="airline_inbox-{{$id}}" data-toggle="modal" data-target="#airline_reply{{$id}}">Reply</a>
                                         <div id="airline_inbox{{$id}}" class="modal fade" role="dialog">
                                         <div class="modal-dialog modal-wide">
 
@@ -1207,8 +1253,79 @@
                                             </div>
                                             <div class="modal-body">
                                                 <p>
-                                                    {{$longMsg}}
+                                                    {!!$longMsg!!}
                                                 </p>
+                                            </div>
+                                            <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+
+                                        </div>
+                                    </div>
+                                    
+                                    <div id="airline_reply{{$id}}" class="modal fade" role="dialog">
+                                        <div class="modal-dialog modal-wide">
+
+                                        <!-- Modal content-->
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title">{{$sub}}</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                    <form action="{{route('airline-reply-data')}}" method="post" class="form-horizontal" enctype="multipart/form-data">
+                                                        @csrf
+                                                        <div class="form-group">
+                                                            <div class="col-md-12">
+                                                                <input type="text" name="from_name" id="from_name" value="Claimand Win" class="form-control" placeholder="From Name" required/>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <div class="col-md-12">
+                                                            <input type="text" name="from_email" value="{{$claims->cpanel_email}}" id="from_email" class="form-control" placeholder="From Email" required/>
+                                                            </div>
+                                                        </div>
+
+                                                        @php
+                                                            $airlineData=DB::table('airlines')->where('id',$claims->airline_id)->first();
+
+                                                        @endphp
+
+                                                        <div class="form-group">
+                                                            <div class="col-md-12">
+                                                            <input type="text" name="to_email" id="to_email" value="{{$airlineData->email}}" class="form-control" placeholder="To Email" readonly/>
+                                                            </div>
+                                                        </div>
+
+
+
+                                                        <div class="form-group">
+                                                            <div class="col-md-12">
+                                                                <input type="text" name="sub" id="airline_sub" class="form-control" placeholder="Subject" required/>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <div class="col-md-12">
+                                                                <textarea name="airline_compose_text"  class="form-control airline_compose_text" rows="5" cols="50"></textarea>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <div class="col-md-12">
+                                                                <input type="file" name="airline_compose_file[]" id="" class="form-control" multiple/>
+                                                            <input type="hidden" name="claim_id" value="{{$claims->id}}">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <div class="col-md-12">
+                                                                <button type="submit" class="btn btn-sm btn-success">Send</button>
+                                                            </div>
+                                                        </div>
+                                                    </form>
                                             </div>
                                             <div class="modal-footer">
                                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -2069,12 +2186,17 @@
                         <i class="fa fa-tasks"></i> Note Info
                     </div>
                     <div class="panel-body">
-                    <form action="{{url('/save-note')}}" method="post" class="form-horizontal">
+                    <form action="{{url('/save-note')}}" method="post" class="form-horizontal" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         <div class="form-group">
                             <div class="col-md-12">
-                                <textarea name="note" id="note" cols="30" rows="5" class="form-control"></textarea>
+                                <textarea name="note" id="note-info" cols="30" rows="5" class="form-control"></textarea>
                                 <input type="hidden" name="claim_id" value="{{$claims->id}}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <input type="file" class="form-control" name="note_files[]" id="note_file" multiple>
                             </div>
                         </div>
                         <div class="form-group">
@@ -2083,6 +2205,7 @@
                             </div>
                         </div>
                     </form>
+
                     @if($notes)
                     <div class="row">
                         <div class="col-md-12">
@@ -2100,7 +2223,7 @@
                                         @foreach($notes as $note)
                                         <tr>
                                             <td>{{$i}}</td>
-                                            <td>{{$note->note}}</td>
+                                            <td>{!! $note->note !!}</td>
                                             <td>
                                                 {!! Form::open([
                                                     'method'=>'DELETE',
@@ -2115,14 +2238,15 @@
                                                             'onclick'=>'return confirm("Confirm delete?")'
                                                     )) !!}
                                                 {!! Form::close() !!}
-                                                <a class="btn btn-info btn-sm" data-toggle="modal" data-target="#editNote-{{$note->id}}"><i class="fa fa-edit"></i></a>
+                                                <a class="btn btn-primary btn-sm" data-toggle="modal" data-target="#viewNote-{{$note->id}}"><i class="fa fa-eye"></i></a>
+                                                {{-- <a class="btn btn-info btn-sm" data-toggle="modal" data-target="#editNote-{{$note->id}}"><i class="fa fa-edit"></i></a> --}}
                                             </td>
                                         </tr>
                                         @php
                                             $i++;
                                         @endphp
-                                        <div class="modal fade" id="editNote-{{$note->id}}" role="dialog">
-                                            <div class="modal-dialog">
+                                        {{-- <div class="modal fade" id="editNote-{{$note->id}}" role="dialog">
+                                            <div class="modal-dialog modal-lg">
 
                                             <!-- Modal content-->
                                             <div class="modal-content">
@@ -2136,7 +2260,7 @@
                                                 <div class="modal-body">
 
                                                     <div class="form-group">
-                                                            <textarea name="note" id="note" cols="30" rows="5" class="form-control">{{$note->note}}</textarea>
+                                                            <textarea name="note" cols="30" rows="5" class="form-control edit-note">{{$note->note}}</textarea>
                                                             <input type="hidden" name="note_id" value="{{$note->id}}">
                                                             <input type="hidden" name="claim_id" value="{{$note->claim_id}}" />
                                                     </div>
@@ -2150,7 +2274,49 @@
                                             </div>
 
                                             </div>
-                                            </div>
+                                            </div> --}}
+
+
+
+                                            <div class="modal fade" id="viewNote-{{$note->id}}" role="dialog">
+                                                <div class="modal-dialog modal-lg">
+
+                                                <!-- Modal content-->
+                                                <div class="modal-content">
+                                                    <div class="panel panel-default">
+                                                        <div class="panel-heading">
+                                                            <h3 class="text-center">Note Data</h3>
+                                                        </div>
+                                                        <div class="panel-body">
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+
+                                                                <h4>User Name: {{Auth::user()->name}}</h4> <br>
+                                                                    <h4>Claim Id: {{$note->claim_id}}</h4> <br>
+                                                                    <p>
+                                                                        {!! $note->note !!}
+                                                                    </p><br>
+                                                                    <?php
+                                                                        if($note->note_files != null){
+                                                                        $noteFiles = explode("|",$note->note_files);
+                                                                   ?>
+                                                                        @foreach($noteFiles as $key=>$value)
+                                                                            {{-- <a href="{{URL::to('/note-file-download')}}" download>File-{{$loop->iteration}}</a><br> --}}
+                                                                            <a href="{{URL::to($value)}}" download class="btn btn-success btn-sm">Download File-{{$loop->iteration}}</a>
+                                                                            &nbsp; &nbsp; &nbsp;
+                                                                        @endforeach
+                                                                    @php
+                                                                        }
+                                                                    @endphp
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                </div>
+                                                </div>
                                         @endforeach
                                     </tbody>
                                 </table>
@@ -2333,6 +2499,69 @@
     </div>
 </div>
 <!--------------------------End Expanse Info------------------------>
+
+<!--------------------------Start Airline Info Tab------------------->
+
+<div role="tabpanel" class="tab-pane" id="airline" aria-labelledby="airline-tab" style="margin-top: 15px;">
+    <div class="row">
+        <div class="col-md-12">
+            <h3 class="text-center">Airline Info</h3><br>
+
+            <div class="table-responsive">
+                <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+                    <tbody>
+                        <tr>
+                            <th>Airline Id</th>
+                            <td>{{$airlineInfo->id}}</td>
+                        </tr>
+                        <tr>
+                            <th>Name</th>
+                            <td>{{$airlineInfo->name}}</td>
+                        </tr>
+                        <tr>
+                            <th>Email</th>
+                            <td>{{$airlineInfo->email}}</td>
+                        </tr>
+                        <tr>
+                            <th>Iata Code</th>
+                            <td>{{$airlineInfo->iata_code}}</td>
+                        </tr>
+                        <tr>
+                            <th>Icao Code</th>
+                            <td>{{$airlineInfo->icao_code}}</td>
+                        </tr>
+                        <tr>
+                            <th>Country</th>
+                            <td>{{$airlineInfo->country}}</td>
+                        </tr>
+                        <tr>
+                            <th>Phone</th>
+                            <td>{{$airlineInfo->phone}}</td>
+                        </tr>
+                        <tr>
+                            <th>Alias</th>
+                            <td>{{$airlineInfo->alias}}</td>
+                        </tr>
+                        <tr>
+                            <th>Status</th>
+                            <td>
+                                @if($airlineInfo->status == 1)
+                                    <span style="color: green;">Enabled</span>
+                                @else
+                                    <span style="color: red;">Disabled</span>
+                                @endif
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<!--------------------------End Airline Info Tab--------------------->
 </div>
 
 
@@ -2371,8 +2600,16 @@ $('#note').froalaEditor()
 // });
 
 $(function() {
-    $('#Compose').froalaEditor();
-    $('#airline_compose_text').froalaEditor();
+    $('.Compose').froalaEditor({
+        heightMin: 200,
+        heightMax: 800,
+    });
+    $('.airline_compose_text').froalaEditor({
+        heightMin: 200,
+        heightMax: 800,
+    });
+    $('#note-info').froalaEditor();
+    $('.edit-note').froalaEditor();
 });
 </script>
 @endsection

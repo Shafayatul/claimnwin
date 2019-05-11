@@ -7,7 +7,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class CustomerCompose extends Mailable
+class CustomerReply extends Mailable
 {
     use Queueable, SerializesModels;
    public $file__names,$composeData,$userName,$from_email,$from_name;

@@ -154,6 +154,11 @@ Route::get('/user/login','UserPanelController@user_login')->name('user/login');
 
         Route::post('/compose-customer-data', 'ClaimBackController@customerComposeDataSave')->name('compose-customer-data');
         Route::post('/airline-compose-data', 'ClaimBackController@airlineComposeDataSave')->name('airline-compose-data');
+
+        Route::post('/departure-arival-time-save', 'ClaimBackController@departureArivalTimeSave')->name('departure-arival-time-save');
+
+        Route::post('/airline-reply-data', 'ClaimBackController@airlineReplyDataSave')->name('airline-reply-data');
+        Route::post('/reply-customer-data', 'ClaimBackController@customerReplyDataSave')->name('reply-customer-data');
     // });
 // });
 
