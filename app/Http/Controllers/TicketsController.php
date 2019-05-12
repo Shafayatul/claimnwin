@@ -72,7 +72,7 @@ class TicketsController extends Controller
 
                 $ticketNote = new TicketNote;
                 $ticketNote->ticket_id = $ticket->id;
-                $ticketNote->description = $lines['0'];
+                $ticketNote->description = $longMsg;
                 $ticketNote->save();
             }
         }
@@ -290,8 +290,13 @@ class TicketsController extends Controller
         $file->to_email             = $request->to_email;
         $file->ticket_id            = $request->ticket_id;
         $file->sub                  = $request->sub;
-        $file->ticket_reply_files = implode("|",$images);
+        $file->ticket_reply_files   = implode("|",$images);
         $file->save();
+
+        $ticketNote = new TicketNote;
+        $ticketNote->ticket_id      = $request->ticket_id;
+        $ticketNote->description    = $request->ticket_reply_note;
+        $ticketNote->save();
         return redirect('/tickets-inbox')->with('success','Sent Email Successfully!');
     }
 }
