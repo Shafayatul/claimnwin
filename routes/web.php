@@ -61,7 +61,7 @@ Route::get('/user/login','UserPanelController@user_login')->name('user/login');
 
 
 /* ----- Only Logged User ----- */
-// Route::group(['middleware' => ['auth']], function() {
+Route::group(['middleware' => ['auth']], function() {
 
     // user panel
     Route::group(['middleware' => ['role:User']], function () {
@@ -74,7 +74,7 @@ Route::get('/user/login','UserPanelController@user_login')->name('user/login');
     });
 
     // Admin + SUper Admin
-    // Route::group(['middleware' => ['role:Admin|Super Admin']], function () {
+    Route::group(['middleware' => ['role:Admin|Super Admin']], function () {
         Route::get('/activity/index', 'ActivityController@index');
         Route::get('/admin', 'AdminsController@index');
         Route::get('/home', 'HomeController@index')->name('home');
@@ -159,8 +159,8 @@ Route::get('/user/login','UserPanelController@user_login')->name('user/login');
 
         Route::post('/airline-reply-data', 'ClaimBackController@airlineReplyDataSave')->name('airline-reply-data');
         Route::post('/reply-customer-data', 'ClaimBackController@customerReplyDataSave')->name('reply-customer-data');
-    // });
-// });
+    });
+});
 
 Route::resource('sent-emails', 'SentEmailsController');
 

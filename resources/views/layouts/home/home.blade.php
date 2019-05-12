@@ -44,21 +44,21 @@
           <div class="row">
             <div class="col-md-12">
               <div class="home_top_header_departed_destination_div">
-                <form class="" action="index.html" method="post">
+                {{-- <form class="" action="index.html" method="post"> --}}
                   <div class="row">
-                    <div class="col-md-4 col-xs-4" style="margin: 0px; padding: 0px;">
+                    {{-- <div class="col-md-4 col-xs-4" style="margin: 0px; padding: 0px;">
                       <input class="common_input no_right_border auto_airport_complete" type="text" name="" value=""
                              placeholder="Departed From">
                     </div>
                     <div class="col-md-4 col-xs-4" style="margin: 0px; padding: 0px;">
                       <input class="common_input auto_airport_complete" type="text" name="" value=""
                              placeholder="Final Destination">
-                    </div>
-                    <div class="col-md-4 col-xs-4" style="margin: 0px; padding: 0px;">
+                    </div> --}}
+                    <div class="col-md-6 col-xs-6 " style="margin: 0px; padding: 0px;">
                       <button class="common_button set_cache_claim" type="button" name="button">CHECK COMPENSATION</button>
                     </div>
                   </div>
-                </form>
+                {{-- </form> --}}
               </div>
             </div>
           </div>
@@ -413,52 +413,10 @@
         $('.clearfix_display_none').hide();
       }
 
-      auto_airport_complete();
-      function auto_airport_complete(){
-        $('.auto_airport_complete').autoComplete({
-            minChars: 3,
-            source: function(term, suggest){
-                term = term.toLowerCase();
-                var choices = {!! $airport_object !!};
-                var suggestions = [];
-                for (i=0;i<choices.length;i++)
-                    if (~(choices[i][0]+' '+choices[i][1]).toLowerCase().indexOf(term)) suggestions.push(choices[i]);
-                suggest(suggestions);
-            },
-            renderItem: function (item, search){
-                search = search.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
-                var re = new RegExp("(" + search.split(' ').join('|') + ")", "gi");
-                return '<div class="autocomplete-suggestion" data-langname="'+item[0]+'" data-lang="'+item[1]+'" data-val="'+search+'"> '+item[0].replace(re, "<b>$1</b>")+'</div>';
-            },
-            onSelect: function(e, term, item){
-                // console.log('Item "'+item.data('langname')+' ('+item.data('lang')+')" selected by '+(e.type == 'keydown' ? 'pressing enter or tab' : 'mouse click')+'.');
-                $(':focus').val(item.data('langname')+' ('+item.data('lang')+')').attr('iata-code',item.data('lang'));
-            }
-        });
-      }
 
 
       $('.set_cache_claim').click(function(){
-        var airport1 = '';
-        var airport2 = '';
-        var airport_cnt = 1;
-        $('.auto_airport_complete').each(function(){
-          if (airport_cnt == 1) {
-            airport1 = $(this).val();
-          }else{
-            airport2 = $(this).val();
-          }
-          airport_cnt++;
-        });
-
-        if ((airport1=='') || (airport2=='')) {
-          alert("Please input both airports");
-        }else{
-          window.localStorage.setItem('airport1', airport1);
-          window.localStorage.setItem('airport2', airport2);
           window.location.href = "{{url('/form-claim')}}";
-        }
-
       });
 
 
