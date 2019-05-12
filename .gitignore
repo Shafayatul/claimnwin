@@ -7,6 +7,7 @@
 /public/compose_file
 /public/claim_note_files
 /public/BlogImage
+/public/ticket_reply_file
 .env
 .phpunit.result.cache
 Homestead.json

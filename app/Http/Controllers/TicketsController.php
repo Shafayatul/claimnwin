@@ -12,6 +12,10 @@ use Auth;
 use App\User;
 use App\Claim;
 use Webklex\IMAP\Client;
+// use Illuminate\Foundation\Console\PackageDiscoverCommand;
+use App\TicketReplyEmail;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\TicketReply;
 
 class TicketsController extends Controller
 {
@@ -59,15 +63,16 @@ class TicketsController extends Controller
                 $longMsg=$oMessage->getBodies()['text']->content;
                 $lines=explode("\n", $longMsg);
 
-                $ticket             = new Ticket;
-                $ticket->subject    = $sub;
-                $ticket->claim_id   = $old_claim_id;
-                $ticket->status     = '1';
+                $ticket                 = new Ticket;
+                $ticket->subject        = $sub;
+                $ticket->claim_id       = $old_claim_id;
+                $ticket->status         = '1';
+                $ticket->from_email     = $from_email;
                 $ticket->save();
 
                 $ticketNote = new TicketNote;
                 $ticketNote->ticket_id = $ticket->id;
-                $ticketNote->description = $lines['0'];
+                $ticketNote->description = $longMsg;
                 $ticketNote->save();
             }
         }
@@ -248,5 +253,50 @@ class TicketsController extends Controller
         $ticket->status = 3;
         $ticket->save();
         return redirect()->back()->with('success', 'Ticket Closed!');
+    }
+
+    public function ticketReplyDataSave(Request $request)
+    {
+
+        $composeData = $request->ticket_reply_note;
+
+        if($request->hasFile('ticket_reply_files')){
+            $files = $request->file('ticket_reply_files');
+            // dd($files);
+            foreach($files as $file){
+                $fileName = uniqid().'.'.$file->getClientOriginalExtension();
+                $filePath = 'ticket_reply_file/';
+                $fileUrl = $filePath.$fileName;
+                $file->move($filePath,$fileName);
+                // $file__name[] = $fileName;
+                $images[]=$fileUrl;
+            }
+
+        }else{
+            $images= [];
+        }
+        $file_names =$images;
+
+       $from_email  = $request->from_email;
+       $from_name   = $request->from_name;
+
+
+        $toEmail = $request->to_email;
+        Mail::to($toEmail)->send(new TicketReply($file_names,$composeData,$toEmail,$from_email,$from_name));
+        $file = new TicketReplyEmail;
+        $file->ticket_reply_note    = $request->ticket_reply_note;
+        $file->from_email           = $request->from_email;
+        $file->from_name            = $request->from_name;
+        $file->to_email             = $request->to_email;
+        $file->ticket_id            = $request->ticket_id;
+        $file->sub                  = $request->sub;
+        $file->ticket_reply_files   = implode("|",$images);
+        $file->save();
+
+        $ticketNote = new TicketNote;
+        $ticketNote->ticket_id      = $request->ticket_id;
+        $ticketNote->description    = $request->ticket_reply_note;
+        $ticketNote->save();
+        return redirect('/tickets-inbox')->with('success','Sent Email Successfully!');
     }
 }

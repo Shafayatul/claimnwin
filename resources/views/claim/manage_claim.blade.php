@@ -13,29 +13,24 @@
 
                             <div class="card-body">
 
-{{--                               {!! Form::open(['method' => 'GET', 'url' => url('/manage-claim'), 'class' => 'form-inline my-2 my-lg-0 float-right', 'role' => 'search']) !!}
+                              {!! Form::open(['method' => 'GET', 'url' => url('/manage-claim'), 'class' => 'form-inline my-2 my-lg-0 float-right', 'role' => 'search']) !!}
                               <div class="row">
+                                {{-- <div class="col-md-2">
+                                  <div class="input-group">
+                                      <input type="text" class="form-control" name="alias" placeholder="Alias" value="{{ request('alias') }}">
+                                  </div>
+                                </div> --}}
                                 <div class="col-md-2">
                                   <div class="input-group">
-                                      <input type="text" class="form-control" name="name" placeholder="claims Name" value="{{ request('claim_name') }}">
+                                      <input type="text" class="form-control" name="first_name" placeholder="First Name" value="{{ request('first_name') }}">
                                   </div>
                                 </div>
                                 <div class="col-md-2">
                                   <div class="input-group">
-                                      <input type="text" class="form-control" name="alias" placeholder="claim id" value="{{ request('claim_id') }}">
+                                      <input type="text" class="form-control" name="last_name" placeholder="Last Name" value="{{ request('last_name') }}">
                                   </div>
                                 </div>
-                                <div class="col-md-2">
-                                  <div class="input-group">
-                                      <input type="text" class="form-control" name="iata_code" placeholder="First Name" value="{{ request('first_name') }}">
-                                  </div>
-                                </div>
-                                <div class="col-md-2">
-                                  <div class="input-group">
-                                      <input type="text" class="form-control" name="icao_code" placeholder="Last Name" value="{{ request('last_name') }}">
-                                  </div>
-                                </div>
-                                
+
                                 <div class="col-md-2">
                                   <div class="input-group">
                                       <input type="text" class="form-control" name="email" placeholder="Email" value="{{ request('email') }}">
@@ -46,31 +41,46 @@
                                       <input type="text" class="form-control" name="phone" placeholder="Phone" value="{{ request('phone') }}">
                                   </div>
                                 </div>
-                              </div>
-                              <div class="row">
+
                                 <div class="col-md-2">
-                                  <div class="input-group">
-                                      <input type="text" class="form-control" name="country" placeholder="Note" value="{{ request('note') }}">
-                                  </div>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="note" placeholder="Note" value="{{ request('note') }}">
+                                    </div>
                                 </div>
                                 <div class="col-md-2">
-                                  <div class="input-group">
-                                      <input type="text" class="form-control" name="country" placeholder="Airline Reference" value="{{ request('airline_reference') }}">
-                                  </div>
-                                </div>
-                                
-                                <div class="col-md-2">
-                                  <span class="input-group-append">
-                                      <button class="btn btn-secondary" type="submit" name="submit">
-                                          <i class="fa fa-search"></i>
-                                      </button>
-                                  </span>
+                                <span class="input-group-append">
+                                    <button class="btn btn-secondary" type="submit" name="submit">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </span>
                                 </div>
                               </div>
-                              {!! Form::close() !!} --}}
+                              {{-- <div class="row">
+
+                                <div class="col-md-2">
+                                  <div class="input-group">
+                                      <input type="text" class="form-control" name="airline_reference" placeholder="Airline Reference" value="{{ request('airline_reference') }}">
+                                  </div>
+                                </div>
+
+                                <div class="col-md-2">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="iata_code" placeholder="Iata Code" value="{{ request('iata_code') }}">
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="icao_code" placeholder="Icao Code" value="{{ request('icao_code') }}">
+                                    </div>
+                                </div>
 
 
-                                <div class=" table-responsive">
+                              </div> --}}
+                              {!! Form::close() !!}
+
+                              <br>
+                              <br>
+                                <div class="table-responsive">
                                     <table class="table table-borderless">
                                         <thead>
                                             <tr>
@@ -140,7 +150,7 @@
                                             @endforeach
                                         </tbody>
                                     </table>
-                                <div class="pagination-wrapper">{{$claims->links()}}</div>
+                                <div class="pagination-wrapper"> {!! $claims->appends(['search' => Request::get('search')])->render() !!} </div>
                                 </div>
                         </div>
                         </div>
