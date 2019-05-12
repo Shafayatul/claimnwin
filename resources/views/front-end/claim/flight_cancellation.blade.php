@@ -786,6 +786,16 @@
                                     </div>
                                 </div>
                                 <div class="common_row">
+                                  <div class="email_div">
+                                    <div class="label_field">
+                                      <label for="phone_number">PLEASE ENTER YOUR PHONE NUMBER</label>
+                                    </div>
+                                    <div class="input_field">
+                                      <input type="text" class="common_input phone_number" id="common_input phone_number" name="phone_number" placeholder="+123-2345678">
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="common_row">
                                     <div class="total_button_div">
                                         <div class="two_button_child_div_right">
                                             <div class="continue_button_div">
@@ -889,6 +899,14 @@
                                             <div class="input_field">
                                                 <input type="text" class="common_input date_of_birth date" id="common_input date_of_birth" name="date_of_birth[]" placeholder=" DD/MM/YY">
                                             </div>
+                                        </div>
+                                        <div class="two_child_div_right">
+                                          <div class="label_field">
+                                            <label for="phone">Phone</label>
+                                          </div>
+                                          <div class="input_field">
+                                            <input type="text" class="common_input phone" id="common_input phone" name="phone[]" placeholder="e.g. 1212">
+                                          </div>
                                         </div>
                                     </div>
                                 </div>

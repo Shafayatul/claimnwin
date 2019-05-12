@@ -341,7 +341,12 @@ $(document).ready(function(){
         var is_post_code_empty = false;
         var is_phone_empty = false;
         var is_date_of_birth_empty = false;
-
+        
+        $("input[name^='phone']").each(function(){
+          if ($(this).val() == "") {
+            is_phone_empty = true;
+          }
+        });
         $("input[name^='first_name']").each(function(){
           if ($(this).val() == "") {
             is_first_name_empty = true;
@@ -362,11 +367,7 @@ $(document).ready(function(){
             is_post_code_empty = true;
           }
         });
-        $("input[name^='phone']").each(function(){
-          if ($(this).val() == "") {
-            is_phone_empty = true;
-          }
-        });
+
         $("input[name^='date_of_birth']").each(function(){
           if ($(this).val() == "") {
             is_date_of_birth_empty = true;
