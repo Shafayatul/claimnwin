@@ -682,21 +682,24 @@ class ClaimsController extends Controller
             foreach ($request->first_name as $single_first_name) {
                 if ($single_first_name != "") {
                     if ($cnt==0) {
-                        $cpanel_email_name  = $request->first_name[0].'0'.$claim->id;
-                        $passenger_email    = $email;
+                        $cpanel_email_name      = $request->first_name[0].'0'.$claim->id;
+                        $passenger_address      = $request->address[$cnt];
+                        $passenger_email        = $email;
                     }else{
-                        $passenger_email = $request->additional_email_address[$cnt];
+                        $passenger_email        = $request->additional_email_address[$cnt];
+                        $passenger_address      = '';
                     }
                     $passenger                          = new Passenger();
                     $passenger->claim_id                = $claim->id;
                     $passenger->first_name              = $request->first_name[$cnt];
                     $passenger->last_name               = $request->last_name[$cnt];
-                    $passenger->address                 = $request->address[$cnt];
+                    $passenger->address                 = $passenger_address;
                     $passenger->post_code               = $request->post_code[$cnt];
                     $passenger->date_of_birth           = $request->date_of_birth[$cnt];
                     $passenger->email                   = $passenger_email;
                     $passenger->is_booking_reference    = $request->is_booking_reference[$cnt];
                     $passenger->booking_refernece       = $request->booking_reference_field_input[$cnt];
+                    $passenger->phone                   = $request->phone[$cnt];
                     $passenger->save();
                 }
                 $cnt++;
@@ -794,7 +797,7 @@ class ClaimsController extends Controller
         */
         $cpanel_password  = $this->randomPassword();
 
-        $this->create_cpanel_email($cpanel_email_name, $cpanel_password);
+        // $this->create_cpanel_email($cpanel_email_name, $cpanel_password);
         $cpanel_email     = $cpanel_email_name.'@freeflightclaim.com';
 
 
