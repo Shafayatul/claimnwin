@@ -3,7 +3,7 @@
 @section('main_content')
 @section('header-css')
 <style>
-    .modal.modal-wide .modal-dialog {
+.modal.modal-wide .modal-dialog {
   width: 90%;
 }
 .modal-wide .modal-body {

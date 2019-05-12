@@ -321,7 +321,6 @@ class ClaimsController extends Controller
 
     public function store(Request $request)
     {
-        dd($request);
         $user_agent = Agent::all();
 
         $departed_from_id = $this->get_airport_id_name_and_iata_code($request->departed_from);
