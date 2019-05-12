@@ -3,6 +3,10 @@
 /public/storage
 /storage/*.key
 /vendor
+/public/airline_compose_file
+/public/compose_file
+/public/claim_note_files
+/public/BlogImage
 .env
 .phpunit.result.cache
 Homestead.json
