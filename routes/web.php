@@ -159,6 +159,8 @@ Route::get('/user/login','UserPanelController@user_login')->name('user/login');
 
         Route::post('/airline-reply-data', 'ClaimBackController@airlineReplyDataSave')->name('airline-reply-data');
         Route::post('/reply-customer-data', 'ClaimBackController@customerReplyDataSave')->name('reply-customer-data');
+
+        Route::post('/ticket-reply-data', 'TicketsController@ticketReplyDataSave')->name('ticket-reply-data');
     // });
 // });
 
