@@ -562,7 +562,7 @@ class ClaimsController extends Controller
 
         $claim->save();
 
-        if($claim_table_type == 'missed_connection'){
+/*        if($claim_table_type == 'missed_connection'){
             if($request->hasFile('missed_correspondence_file')){
                 $correspondenceFile = $request->file('missed_correspondence_file');
                 $fileName = uniqid().'.'.strtolower($correspondenceFile->getClientOriginalExtension());
@@ -626,7 +626,7 @@ class ClaimsController extends Controller
             $claim_file->user_id = Auth::user()->id;
             $claim_file->claim_id = $claim->id;
             $claim_file->save();
-        }
+        }*/
 
 
         if ($claim) {
