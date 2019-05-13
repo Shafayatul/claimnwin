@@ -47,35 +47,43 @@
                                         <input type="text" class="form-control" name="note" placeholder="Note" value="{{ request('note') }}">
                                     </div>
                                 </div>
+
                                 <div class="col-md-2">
-                                <span class="input-group-append">
-                                    <button class="btn btn-secondary" type="submit" name="submit">
-                                        <i class="fa fa-search"></i>
-                                    </button>
-                                </span>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="airline_ref" placeholder="Airline Reference" value="{{ request('airline_ref') }}">
                                 </div>
+                                </div>
+
                               </div>
-                              {{-- <div class="row">
+                              <div class="row">
 
                                 <div class="col-md-2">
                                   <div class="input-group">
-                                      <input type="text" class="form-control" name="airline_reference" placeholder="Airline Reference" value="{{ request('airline_reference') }}">
+                                      <input type="text" class="form-control" name="caa_ref" placeholder="CAA Reference" value="{{ request('caa_ref') }}">
                                   </div>
                                 </div>
 
                                 <div class="col-md-2">
                                     <div class="input-group">
-                                        <input type="text" class="form-control" name="iata_code" placeholder="Iata Code" value="{{ request('iata_code') }}">
+                                        <input type="text" class="form-control" name="adr_ref" placeholder="ADR Reference" value="{{ request('adr_ref') }}">
                                     </div>
                                 </div>
                                 <div class="col-md-2">
                                     <div class="input-group">
-                                        <input type="text" class="form-control" name="icao_code" placeholder="Icao Code" value="{{ request('icao_code') }}">
+                                        <input type="text" class="form-control" name="court_no" placeholder="Court No" value="{{ request('court_no') }}">
                                     </div>
                                 </div>
 
+                                <div class="col-md-2">
+                                    <span class="input-group-append">
+                                        <button class="btn btn-secondary" type="submit" name="submit">
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                    </span>
+                                    </div>
 
-                              </div> --}}
+
+                              </div>
                               {!! Form::close() !!}
 
                               <br>

@@ -159,6 +159,10 @@ class ClaimBackController extends Controller
             $email                  = $request->get('email');
             $phone                  = $request->get('phone');
             $note                   = $request->get('note');
+            $airline_ref            = $request->get('airline_ref');
+            $caa_ref                = $request->get('caa_ref');
+            $adr_ref                = $request->get('adr_ref');
+            $court_no               = $request->get('court_no');
 
             $claims = Claim::whereNotNull('id');
             if(!empty($first_name)){
@@ -183,7 +187,18 @@ class ClaimBackController extends Controller
             if(!empty($note)){
                 $notes = Note::where('note', 'LIKE', "%$note%")->select('claim_id')->get();
                 $claims = $claims->whereIn('id',$notes)->latest()->paginate($perPage);
-
+            }
+            if(!empty($airline_ref)){
+                $claims = $claims->where('airline_ref', 'LIKE', "%$airline_ref%")->latest()->paginate($perPage);
+            }
+            if(!empty($caa_ref)){
+                $claims = $claims->where('caa_ref', 'LIKE', "%$caa_ref%")->latest()->paginate($perPage);
+            }
+            if(!empty($adr_ref)){
+                $claims = $claims->where('adr_ref', 'LIKE', "%$adr_ref%")->latest()->paginate($perPage);
+            }
+            if(!empty($court_no)){
+                $claims = $claims->where('court_no', 'LIKE', "%$court_no%")->latest()->paginate($perPage);
             }
 
             // $airlines = $airlines->Where('status', $status)->latest()->paginate($perPage);
@@ -386,14 +401,18 @@ class ClaimBackController extends Controller
 
     public function requiredDetailsUpdate(Request $request)
     {
-        $claim_id = $request->claim_id;
-        $claim = Claim::find($claim_id);
-        $claim->bank_details_id = $request->bank_details_id;
-        $claim->affiliate_commision = $request->affiliate_commision;
-        $claim->admin_commision = $request->admin_commision;
-        $claim->additional_details_for_lba = $request->additional_details_for_lba;
-        $claim->amount = $request->amount;
-        $claim->received_amount = $request->received_amount;
+        $claim_id                           = $request->claim_id;
+        $claim                              = Claim::where('id',$claim_id)->first();
+        $claim->bank_details_id             = $request->bank_details_id;
+        $claim->affiliate_commision         = $request->affiliate_commision;
+        $claim->admin_commision             = $request->admin_commision;
+        $claim->additional_details_for_lba  = $request->additional_details_for_lba;
+        $claim->amount                      = $request->amount;
+        $claim->received_amount             = $request->received_amount;
+        $claim->caa_ref                     = $request->caa_ref;
+        $claim->adr_ref                     = $request->adr_ref;
+        $claim->airline_ref                 = $request->airline_ref;
+        $claim->court_no                    = $request->court_no;
         $claim->save();
         return redirect('/claim-view/'.$claim_id)->with('success','Required Details Updated');
     }
