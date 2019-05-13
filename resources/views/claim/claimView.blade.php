@@ -406,6 +406,7 @@
                                                         </div>
                                                             <!-- /.panel-heading -->
                                                         <div class="panel-body">
+                                                            <div class="table-responsive">
                                                             @if($passengers)
                                                             <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                                                 <thead>
@@ -416,6 +417,7 @@
                                                                     <th>Post Code</th>
                                                                     <th>Date Of Birth</th>
                                                                     <th>Email</th>
+                                                                    <th>Phone</th>
                                                                     <th>Is Booking Referance?</th>
                                                                     <th>Booking Referance</th>
                                                                 </thead>
@@ -429,6 +431,7 @@
                                                                         <td>{{$all_passenger->post_code}}</td>
                                                                         <td>{{Carbon\Carbon::parse($all_passenger->date_of_birth)->format("d-m-Y")}}</td>
                                                                         <td>{{$all_passenger->email}}</td>
+                                                                        <td>{{$all_passenger->phone}}</td>
                                                                         <td>
                                                                             @if($all_passenger->is_booking_reference == 0)
                                                                             <span style="color: red;">No</span>
@@ -450,6 +453,7 @@
                                                             @else
                                                                 <h3 class="text-center">No Passengers Found.</h3>
                                                             @endif
+                                                        </div>
                                                         </div>
                                             <!-- /.panel-body -->
                                                     </div>
@@ -1910,14 +1914,42 @@
         </div>
 
         <div class="row" style="margin-top:1%;">
-                <div class="col-sm-4">
-                    <div class="form-group">
-                        <label> Expected  Compensation Converted Amount </label>
-                        <input type="text" class="form-control" name="converted_expection_amount" id="" value="{{$claims->converted_expection_amount}}">
-                    </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label> Expected  Compensation Converted Amount </label>
+                    <input type="text" class="form-control" name="converted_expection_amount" id="" value="{{$claims->converted_expection_amount}}" readonly>
                 </div>
-                <div class="clearfix"></div>
             </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label> CAA Ref</label>
+                    <input type="text" class="form-control" name="caa_ref" id="" value="{{$claims->caa_ref}}">
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label> ADR Ref </label>
+                    <input type="text" class="form-control" name="adr_ref" id="" value="{{$claims->adr_ref}}">
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+        <div class="row" style="margin-top:1%;">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label> Airline Referance </label>
+                    <input type="text" class="form-control" name="airline_ref" id="" value="{{$claims->airline_ref}}">
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label> Court No</label>
+                    <input type="text" class="form-control" name="court_no" id="" value="{{$claims->court_no}}">
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
 
         <div class="row">
             <div class="col-md-12">
