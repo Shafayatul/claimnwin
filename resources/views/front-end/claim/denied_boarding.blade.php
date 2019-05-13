@@ -1070,7 +1070,8 @@
                                   <div class="col-md-6 padding_bottom">ID copies, including travel companions’ if applicable</div>
                                   <div class="col-md-6">
                                     <div class="input-file-container col-centered">
-                                      <input class="input-file" id="my-file-0" type="file" name="file_name[]">
+                                      <input class="input-file" id="my-file-0" type="file" name="file_name[0]">
+                                      <input type="hidden" value="ID copies" name="file_name_to_show[0]">
                                       <label tabindex="0" for="my-file" class="input-file-trigger" id="input-file-trigger-0">Select a file...</label>
                                     </div>
                                     <p class="file-return" id="file-return-0"></p>
@@ -1082,7 +1083,8 @@
                                   <div class="col-md-6 padding_bottom">Travel documents (reservation, ticket or boarding passes)</div>
                                   <div class="col-md-6">
                                     <div class="input-file-container col-centered">
-                                      <input class="input-file" id="my-file-1" type="file" name="file_name[]">
+                                      <input class="input-file" id="my-file-1" type="file" name="file_name[1]">
+                                      <input type="hidden" value="Travel documents" name="file_name_to_show[1]">
                                       <label tabindex="0" for="my-file" class="input-file-trigger" id="input-file-trigger-1">Select a file...</label>
                                     </div>
                                     <p class="file-return" id="file-return-1"></p>
@@ -1094,7 +1096,8 @@
                                   <div class="col-md-6 padding_bottom">Proof of expenses (store/online receipts, detailed bank statements) if applicable</div>
                                   <div class="col-md-6">
                                     <div class="input-file-container col-centered">
-                                      <input class="input-file" id="my-file-2" type="file" name="file_name[]">
+                                      <input class="input-file" id="my-file-2" type="file" name="file_name[2]">
+                                      <input type="hidden" value="Proof of expenses" name="file_name_to_show[2]">
                                       <label tabindex="0" for="my-file" class="input-file-trigger" id="input-file-trigger-2">Select a file...</label>
                                     </div>
                                     <p class="file-return" id="file-return-2"></p>
@@ -1106,7 +1109,8 @@
                                   <div class="col-md-6 padding_bottom">Other</div>
                                   <div class="col-md-6">
                                     <div class="input-file-container col-centered">
-                                      <input class="input-file" id="my-file-3" type="file" name="file_name[]">
+                                      <input class="input-file" id="my-file-3" type="file" name="file_name[3]">
+                                      <input type="hidden" value="Other" name="file_name_to_show[3]">
                                       <label tabindex="0" for="my-file" class="input-file-trigger" id="input-file-trigger-3">Select a file...</label>
                                     </div>
                                     <p class="file-return" id="file-return-3"></p>

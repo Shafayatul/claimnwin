@@ -765,8 +765,10 @@ class ClaimsController extends Controller
             $all_files = $request->file('file_name');
             // $file1 = $file_name[1]['file'];
             $claim_id = $claim->id;
-            for($i=0; $i<count($all_files); $i++) {
-                $file = $all_files[$i];
+
+            foreach ($all_files as $key => $value) {
+
+                $file = $all_files[$key];
 
                 $file_name = sha1(date('YmdHis') . str_random(30));
                 $name = $file_name . '.' . $file->getClientOriginalExtension();
@@ -778,7 +780,7 @@ class ClaimsController extends Controller
                 $file->move(public_path('/uploads').'/'.$claim_id.'/', $name);
 
                 $claim_file             = new ClaimFile();
-                $claim_file->name       = "Uploaded by user";
+                $claim_file->name       = $request->input('file_name_to_show')[$key];
                 $claim_file->file_name  = $name;
                 $claim_file->user_id    = Auth::user()->id;
                 $claim_file->claim_id   = $claim_id;
