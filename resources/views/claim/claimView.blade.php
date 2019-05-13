@@ -406,6 +406,7 @@
                                                         </div>
                                                             <!-- /.panel-heading -->
                                                         <div class="panel-body">
+                                                            <div class="table-responsive">
                                                             @if($passengers)
                                                             <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                                                 <thead>
@@ -416,6 +417,7 @@
                                                                     <th>Post Code</th>
                                                                     <th>Date Of Birth</th>
                                                                     <th>Email</th>
+                                                                    <th>Phone</th>
                                                                     <th>Is Booking Referance?</th>
                                                                     <th>Booking Referance</th>
                                                                 </thead>
@@ -429,6 +431,7 @@
                                                                         <td>{{$all_passenger->post_code}}</td>
                                                                         <td>{{Carbon\Carbon::parse($all_passenger->date_of_birth)->format("d-m-Y")}}</td>
                                                                         <td>{{$all_passenger->email}}</td>
+                                                                        <td>{{$all_passenger->phone}}</td>
                                                                         <td>
                                                                             @if($all_passenger->is_booking_reference == 0)
                                                                             <span style="color: red;">No</span>
@@ -450,6 +453,7 @@
                                                             @else
                                                                 <h3 class="text-center">No Passengers Found.</h3>
                                                             @endif
+                                                        </div>
                                                         </div>
                                             <!-- /.panel-body -->
                                                     </div>
