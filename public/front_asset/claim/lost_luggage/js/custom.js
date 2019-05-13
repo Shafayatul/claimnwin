@@ -161,7 +161,7 @@ $(document).ready(function() {
             }
         } else if (step == 3) {
             $("#continue_3").removeClass('active_button');
-            if (($("input[name='email_address']").val() == "") || ($("input[name='phone_number']").val() == ""))
+            if (($("input[name='email_address']").val() == "") || ($("input[name='phone_number']").val() == "")){
                 $("#continue_3").addClass('active_button');
                 $("#continue_4").addClass('active_button');
                 return true;

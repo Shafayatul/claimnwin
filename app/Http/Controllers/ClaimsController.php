@@ -829,7 +829,7 @@ class ClaimsController extends Controller
 
 
         // return 'success';
-        return view('front-end.claim.success',compact('amount'));
+        return  redirect(url('/user-home'));
 
     }
 
@@ -912,7 +912,7 @@ class ClaimsController extends Controller
 
 
           // started from israel
-          }elseif ((strtolower($final_destination->country) == "il") || (strtolower($final_destination->country) == "israel") )  {
+          }elseif ((strtolower($departed_from->country) == "il") || (strtolower($departed_from->country) == "israel") )  {
 
 
 
@@ -1079,7 +1079,7 @@ class ClaimsController extends Controller
 
 
           // started from israel
-          }elseif ((strtolower($final_destination->country) == "il") || (strtolower($final_destination->country) == "israel") )  {
+          }elseif ((strtolower($departed_from->country) == "il") || (strtolower($departed_from->country) == "israel") )  {
             // israel to europe
             if ((in_array(strtolower($final_destination->country), $this->europe_countries)) || (in_array(strtolower($final_destination->country), $this->europe_countries_code))) {
               // europe airline
@@ -1204,7 +1204,7 @@ class ClaimsController extends Controller
 
 
                   // started from israel
-            }elseif ((strtolower($final_destination->country) == "il") || (strtolower($final_destination->country) == "israel") )  {
+            }elseif ((strtolower($departed_from->country) == "il") || (strtolower($departed_from->country) == "israel") )  {
                     // israel to europe
                 if ((in_array(strtolower($final_destination->country), $this->europe_countries)) || (in_array(strtolower($final_destination->country), $this->europe_countries_code))) {
                       // europe airline
@@ -1348,7 +1348,7 @@ class ClaimsController extends Controller
 
 
           // started from israel
-          }elseif ((strtolower($final_destination->country) == "il") || (strtolower($final_destination->country) == "israel") )  {
+          }elseif ((strtolower($departed_from->country) == "il") || (strtolower($departed_from->country) == "israel") )  {
             // israel to europe
             if ((in_array(strtolower($final_destination->country), $this->europe_countries)) || (in_array(strtolower($final_destination->country), $this->europe_countries_code))) {
 
@@ -1506,7 +1506,7 @@ class ClaimsController extends Controller
 
 
           // started from israel
-  }elseif ((strtolower($final_destination->country) == "il") || (strtolower($final_destination->country) == "israel") )  {
+  }elseif ((strtolower($departed_from->country) == "il") || (strtolower($departed_from->country) == "israel") )  {
             // israel to europe
     if ((in_array(strtolower($final_destination->country), $this->europe_countries)) || (in_array(strtolower($final_destination->country), $this->europe_countries_code))) {
               // europe airline
@@ -1599,7 +1599,7 @@ return '0'.'-'.$distance;
                     if ($request->is_already_written_airline == 1) {
                         return '1350 EUR';
                     }else{
-                        return '1350 EUR(low cances but we can try)';
+                        return '1350 EUR';
                     }
                 }
             }
@@ -1633,12 +1633,12 @@ return '0'.'-'.$distance;
                 $received_luggage_date = strtotime($received_luggage_date);
                 $time_diff = $departure_date - $received_luggage_date;
                 if ($time_diff < (21*24*60*60)) {
-                    return 'You are eligibe to a refund of up to 1350 EUR per passenger'.'- ';
+                    return '1350 EUR'.'- ';
                 }else{
                     if ($is_already_written_airline == 1) {
-                        return 'You are eligibe to a refund of up to 1350 EUR per passenger'.'- ';
+                        return '1350 EUR'.'- ';
                     }else{
-                        return 'Low cances but we can try to claim up to 1350 EUR per passenger'.'- ';
+                        return '1350 EUR'.'- ';
                     }
                 }
             }
@@ -1648,7 +1648,7 @@ return '0'.'-'.$distance;
             if ($time_diff > (2*365*24*60*60)) {
                 return '0'.'- ';
             }else{
-                return 'up to 1350 EUR'.'- ';
+                return '1350 EUR'.'- ';
             }
 
         }
@@ -1735,7 +1735,7 @@ return '0'.'-'.$distance;
 
 
           // started from israel
-          }elseif ((strtolower($final_destination->country) == "il") || (strtolower($final_destination->country) == "israel") )  {
+          }elseif ((strtolower($departed_from->country) == "il") || (strtolower($departed_from->country) == "israel") )  {
             // israel to europe
             if ((in_array(strtolower($final_destination->country), $this->europe_countries)) || (in_array(strtolower($final_destination->country), $this->europe_countries_code))) {
               // europe airline
@@ -1847,6 +1847,8 @@ return '0'.'-'.$distance;
 
         $distance = $this->distance($departed_from->latitude, $departed_from->longitude, $final_destination->latitude, $final_destination->longitude, 'K');
 
+
+        \Log::debug($distance);
         // stated from Europe
         if ((in_array(strtolower($departed_from->country), $this->europe_countries)) || (in_array(strtolower($departed_from->country), $this->europe_countries_code))) {
 
@@ -1890,7 +1892,7 @@ return '0'.'-'.$distance;
 
 
           // started from israel
-          }elseif ((strtolower($final_destination->country) == "il") || (strtolower($final_destination->country) == "israel") )  {
+          }elseif ((strtolower($departed_from->country) == "il") || (strtolower($departed_from->country) == "israel") )  {
             // israel to europe
             if ((in_array(strtolower($final_destination->country), $this->europe_countries)) || (in_array(strtolower($final_destination->country), $this->europe_countries_code))) {
               // europe airline
@@ -2038,7 +2040,7 @@ return '0'.'-'.$distance;
 
 
           // started from israel
-          }elseif ((strtolower($final_destination->country) == "il") || (strtolower($final_destination->country) == "israel") )  {
+          }elseif ((strtolower($departed_from->country) == "il") || (strtolower($departed_from->country) == "israel") )  {
 
 
 
@@ -2224,7 +2226,7 @@ return '0'.'-'.$distance;
 
 
           // started from israel
-          }elseif ((strtolower($final_destination->country) == "il") || (strtolower($final_destination->country) == "israel") )  {
+          }elseif ((strtolower($departed_from->country) == "il") || (strtolower($departed_from->country) == "israel") )  {
             // israel to europe
             if ((in_array(strtolower($final_destination->country), $this->europe_countries)) || (in_array(strtolower($final_destination->country), $this->europe_countries_code))) {
 
