@@ -162,21 +162,27 @@ class ClaimBackController extends Controller
 
             $claims = Claim::whereNotNull('id');
             if(!empty($first_name)){
-                $claims = $claims->Where('first_name', 'LIKE', "%$first_name%");
+                $claim_id=Passenger::where('first_name', 'LIKE', "%$first_name%")->select('claim_id')->get();
+
+                $claims = $claims->whereIn('id',$claim_id)->latest()->paginate($perPage);
             }
             if(!empty($last_name)){
-                $claims = $claims->Where('last_name', 'LIKE', "%$last_name%");
+                $claim_id=Passenger::where('last_name', 'LIKE', "%$last_name%")->select('claim_id')->get();
+
+                $claims = $claims->whereIn('id',$claim_id)->latest()->paginate($perPage);
             }
             if(!empty($email)){
-                $claims = $claims->Where('email', 'LIKE', "%$email%");
+                $claim_id=Passenger::where('email', 'LIKE', "%$email%")->select('claim_id')->get();
+
+                $claims = $claims->whereIn('id',$claim_id)->latest()->paginate($perPage);
             }
             if(!empty($phone)){
-                $claims = $claims->Where('phone', 'LIKE', "%$phone%");
+                $claim_id=Passenger::where('phone', 'LIKE', "%$phone%")->select('claim_id')->get();
+                $claims = $claims->whereIn('id',$claim_id)->latest()->paginate($perPage);
             }
             if(!empty($note)){
-                $notes = Note::where('note', 'LIKE', "%$note%")->first();
-
-                $claims = $claims->Where('id', $notes->claim_id)->latest()->paginate($perPage);
+                $notes = Note::where('note', 'LIKE', "%$note%")->select('claim_id')->get();
+                $claims = $claims->whereIn('id',$notes)->latest()->paginate($perPage);
 
             }
 
