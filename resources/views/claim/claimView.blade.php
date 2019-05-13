@@ -681,7 +681,7 @@
                                                                     $inbox_from_user[$time_stamps]['sub']   = $sub;
                                                                     $inbox_from_user[$time_stamps]['date']  = $date;
                                                                     $inbox_from_user[$time_stamps]['from']  = $from;
-                                                                    $inbox_from_user[$time_stamps]['msg']   = $msg;
+                                                                    $inbox_from_user[$time_stamps]['msg']   = $lines["0"];
                                                                 }
                                                             }
 
@@ -735,6 +735,7 @@
                                                                     $msg = $oMessage->getHtmlBody();
                                                                     $longMsg=$oMessage->getBodies()['text']->content;
                                                                     $lines=explode("\n", $longMsg);
+                                                                    $attachFile = $oMessage->getAttachments();
                                                         ?>
                                                         <tr>
                                                             <td>{{$from}}</td>
@@ -754,13 +755,20 @@
                                                                 <!-- Modal content-->
                                                                 <div class="modal-content">
                                                                     <div class="modal-header">
+
                                                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                                    <h4 class="modal-title">{{$sub}}</h4>
+                                                                    <button type="button" onclick="printDiv('print_div')" class="btn btn-sm btn-primary"><i class="fa fa-print"></i> Print</button>
+
                                                                     </div>
-                                                                    <div class="modal-body">
+                                                                    <div class="modal-body" id="print_div">
+                                                                            <h4 class="text-center">Sub: {{$sub}}</h4> <br>
                                                                         <p>
-                                                                            {{$longMsg}}
+                                                                            {{ $lines['0'] }}
                                                                         </p>
+                                                                        @foreach($attachFile as $key => $value)
+                                                                        <a href="{{URL::to($value)}}" download class="btn btn-sm btn-info">Download File-{{$loop->iteration}}</a>
+                                                                                &nbsp; &nbsp; &nbsp;
+                                                                        @endforeach
                                                                     </div>
                                                                     <div class="modal-footer">
                                                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -872,7 +880,7 @@
                                                         ?>
                                                         @foreach($sents as $cutomSent)
                                                         @php
-                                                            $inbox_from_user[$time_stamps]['sub']   = 'Static subject';
+                                                            $inbox_from_user[$time_stamps]['sub']   = $cutomSent->sub;
                                                             $inbox_from_user[$time_stamps]['date']  = Carbon\Carbon::parse($cutomSent->created_at)->timestamp;
                                                             $inbox_from_user[$time_stamps]['from']  = $cutomSent->from_email;
                                                             $inbox_from_user[$time_stamps]['msg']   = $cutomSent->compose_text;
@@ -890,11 +898,13 @@
                                                                 <!-- Modal content-->
                                                                 <div class="modal-content">
                                                                     <div class="modal-header">
+                                                                    <button type="button" onclick="printDiv('sent_msgs')" class="btn btn-sm btn-primary"><i class="fa fa-print"></i> Print</button>
                                                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                                    <h4 class="modal-title">Sent Message Details</h4>
+
                                                                     </div>
                                                                     <div class="modal-body">
-                                                                        <div class="row">
+                                                                        <div class="row" id="sent_msgs">
+                                                                            <h4 class="text-center">Sent Message Details</h4> <br>
                                                                             <div class="col-md-12">
                                                                                 {!!$cutomSent->compose_text!!}
                                                                             </div>
@@ -906,9 +916,10 @@
                                                                                 $custome_single_files=explode("|",$cutomSent->compose_file);
 
                                                                                 @endphp
-                                                                                {{-- @foreach($custome_single_files as $key=>$value)
-                                                                                <a href="{{$value}}" download>{{$value}}</a><br>
-                                                                                @endforeach --}}
+                                                                                @foreach($custome_single_files as $key=>$value)
+                                                                                <a href="{{URL::to($value)}}" download class="btn btn-sm btn-info">Download File-{{$loop->iteration}}</a>
+                                                                                &nbsp; &nbsp; &nbsp;
+                                                                                @endforeach
                                                                             </div>
                                                                         </div>
 
@@ -1152,7 +1163,7 @@
                                         $inbox_from_user[$time_stamps]['sub']   = $airlineSent->sub;
                                         $inbox_from_user[$time_stamps]['date']  = Carbon\Carbon::parse($airlineSent->created_at)->format('d-m-Y h:i:s');
                                         $inbox_from_user[$time_stamps]['from']  = $airlineSent->from_email;
-                                        $inbox_from_user[$time_stamps]['msg']   = $airlineSent->compose_text;
+                                        $inbox_from_user[$time_stamps]['msg']   = $airlineSent->airline_compose_text;
                                     }
 
 
@@ -1177,7 +1188,7 @@
                                             $inbox_from_user[$time_stamps]['sub']   = $sub;
                                             $inbox_from_user[$time_stamps]['date']  = $date;
                                             $inbox_from_user[$time_stamps]['from']  = $from;
-                                            $inbox_from_user[$time_stamps]['msg']   = $msg;
+                                            $inbox_from_user[$time_stamps]['msg']   = $lines["0"];
                                         }
                                     }
 
@@ -1233,6 +1244,7 @@
                                             $msg = $oMessage->getHtmlBody();
                                             $longMsg=$oMessage->getBodies()['text']->content;
                                             $lines=explode("\n", $longMsg);
+                                            $attachFiles = $oMessage->getAttachments();
                                 ?>
                                 <tr>
                                     <td>{{$from}}</td>
@@ -1248,13 +1260,24 @@
                                         <!-- Modal content-->
                                         <div class="modal-content">
                                             <div class="modal-header">
+                                            <button type="button" onclick="printDiv('airlineInbox')" class="btn btn-sm btn-primary"><i class="fa fa-print"></i> Print</button>
                                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                            <h4 class="modal-title">{{$sub}}</h4>
+
                                             </div>
                                             <div class="modal-body">
-                                                <p>
-                                                    {!!$longMsg!!}
-                                                </p>
+                                                <div class="row" id="airlineInbox">
+                                                        <h4 class="text-center">Sub: {{$sub}}</h4> <br>
+                                                    <p>
+                                                        {{$lines["0"]}}
+                                                    </p>
+                                                </div>
+                                                <div class="row">
+                                                    @foreach($attachFiles as $key => $value)
+                                                    <a href="{{URL::to($value)}}" download class="btn btn-sm btn-info">Download File-{{$loop->iteration}}</a>
+                                                            &nbsp; &nbsp; &nbsp;
+                                                    @endforeach
+                                                </div>
+
                                             </div>
                                             <div class="modal-footer">
                                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -1263,7 +1286,7 @@
 
                                         </div>
                                     </div>
-                                    
+
                                     <div id="airline_reply{{$id}}" class="modal fade" role="dialog">
                                         <div class="modal-dialog modal-wide">
 
@@ -1274,58 +1297,58 @@
                                             <h4 class="modal-title">{{$sub}}</h4>
                                             </div>
                                             <div class="modal-body">
-                                                    <form action="{{route('airline-reply-data')}}" method="post" class="form-horizontal" enctype="multipart/form-data">
-                                                        @csrf
-                                                        <div class="form-group">
-                                                            <div class="col-md-12">
-                                                                <input type="text" name="from_name" id="from_name" value="Claimand Win" class="form-control" placeholder="From Name" required/>
-                                                            </div>
+                                                <form action="{{route('airline-reply-data')}}" method="post" class="form-horizontal" enctype="multipart/form-data">
+                                                    @csrf
+                                                    <div class="form-group">
+                                                        <div class="col-md-12">
+                                                            <input type="text" name="from_name" id="from_name" value="Claimand Win" class="form-control" placeholder="From Name" required/>
                                                         </div>
+                                                    </div>
 
-                                                        <div class="form-group">
-                                                            <div class="col-md-12">
-                                                            <input type="text" name="from_email" value="{{$claims->cpanel_email}}" id="from_email" class="form-control" placeholder="From Email" required/>
-                                                            </div>
+                                                    <div class="form-group">
+                                                        <div class="col-md-12">
+                                                        <input type="text" name="from_email" value="{{$claims->cpanel_email}}" id="from_email" class="form-control" placeholder="From Email" required/>
                                                         </div>
+                                                    </div>
 
-                                                        @php
-                                                            $airlineData=DB::table('airlines')->where('id',$claims->airline_id)->first();
+                                                    @php
+                                                        $airlineData=DB::table('airlines')->where('id',$claims->airline_id)->first();
 
-                                                        @endphp
+                                                    @endphp
 
-                                                        <div class="form-group">
-                                                            <div class="col-md-12">
-                                                            <input type="text" name="to_email" id="to_email" value="{{$airlineData->email}}" class="form-control" placeholder="To Email" readonly/>
-                                                            </div>
+                                                    <div class="form-group">
+                                                        <div class="col-md-12">
+                                                        <input type="text" name="to_email" id="to_email" value="{{$airlineData->email}}" class="form-control" placeholder="To Email" readonly/>
                                                         </div>
+                                                    </div>
 
 
 
-                                                        <div class="form-group">
-                                                            <div class="col-md-12">
-                                                                <input type="text" name="sub" id="airline_sub" class="form-control" placeholder="Subject" required/>
-                                                            </div>
+                                                    <div class="form-group">
+                                                        <div class="col-md-12">
+                                                            <input type="text" name="sub" id="airline_sub" class="form-control" placeholder="Subject" required/>
                                                         </div>
+                                                    </div>
 
-                                                        <div class="form-group">
-                                                            <div class="col-md-12">
-                                                                <textarea name="airline_compose_text"  class="form-control airline_compose_text" rows="5" cols="50"></textarea>
-                                                            </div>
+                                                    <div class="form-group">
+                                                        <div class="col-md-12">
+                                                            <textarea name="airline_compose_text"  class="form-control airline_compose_text" rows="5" cols="50"></textarea>
                                                         </div>
+                                                    </div>
 
-                                                        <div class="form-group">
-                                                            <div class="col-md-12">
-                                                                <input type="file" name="airline_compose_file[]" id="" class="form-control" multiple/>
-                                                            <input type="hidden" name="claim_id" value="{{$claims->id}}">
-                                                            </div>
+                                                    <div class="form-group">
+                                                        <div class="col-md-12">
+                                                            <input type="file" name="airline_compose_file[]" id="" class="form-control" multiple/>
+                                                        <input type="hidden" name="claim_id" value="{{$claims->id}}">
                                                         </div>
+                                                    </div>
 
-                                                        <div class="form-group">
-                                                            <div class="col-md-12">
-                                                                <button type="submit" class="btn btn-sm btn-success">Send</button>
-                                                            </div>
+                                                    <div class="form-group">
+                                                        <div class="col-md-12">
+                                                            <button type="submit" class="btn btn-sm btn-success">Send</button>
                                                         </div>
-                                                    </form>
+                                                    </div>
+                                                </form>
                                             </div>
                                             <div class="modal-footer">
                                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -1380,11 +1403,30 @@
                                             <!-- Modal content-->
                                             <div class="modal-content">
                                                 <div class="modal-header">
+                                                        <button type="button" onclick="printDiv('airline_sent_msgs')" class="btn btn-sm btn-primary"><i class="fa fa-print"></i> Print</button>
                                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                <h4 class="modal-title">Airline Sent Message Details </h4>
                                                 </div>
                                                 <div class="modal-body">
-                                                    {!! $airlineSent->airline_compose_text !!}
+                                                    <div class="row" id="airline_sent_msgs">
+                                                    <h4 class="text-center">Sub: {{$airlineSent->sub}}</h4> <br>
+                                                        <div class="col-md-12">
+                                                            {!! $airlineSent->airline_compose_text !!}
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            @php
+                                                            $airline_single_files=explode("|",$airlineSent->airline_compose_file);
+
+                                                            @endphp
+                                                            @foreach($airline_single_files as $key=>$value)
+                                                            <a href="{{URL::to($value)}}" download class="btn btn-sm btn-info">Download File-{{$loop->iteration}}</a>
+                                                            &nbsp; &nbsp; &nbsp;
+                                                            @endforeach
+                                                        </div>
+                                                    </div>
                                                 </div>
                                                 <div class="modal-footer">
                                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -2611,6 +2653,24 @@ $(function() {
     $('#note-info').froalaEditor();
     $('.edit-note').froalaEditor();
 });
+
+
+
+</script>
+<script type="text/javascript">
+function printDiv(divName) {
+     var printContents = document.getElementById(divName).innerHTML;
+     var originalContents = document.body.innerHTML;
+
+     document.body.innerHTML = printContents;
+
+     window.print();
+
+     document.body.innerHTML = originalContents;
+     setTimeout(function() {
+                location.reload();
+           }, 1000);
+}
 </script>
 @endsection
 
