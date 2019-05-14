@@ -161,7 +161,7 @@ $(document).ready(function() {
             }
         } else if (step == 3) {
             $("#continue_3").removeClass('active_button');
-            if (($("input[name='email_address']").val() == "") || ($("input[name='phone_number']").val() == "")){
+            if (($("input[name='email_address']").val() != "") && ($("input[name='phone_number']").val() != "")){
                 $("#continue_3").addClass('active_button');
                 $("#continue_4").addClass('active_button');
                 return true;
@@ -177,7 +177,7 @@ $(document).ready(function() {
             var is_post_code_empty = false;
             var is_phone_empty = false;
             var is_date_of_birth_empty = false;
-            
+
             $("input[name^='phone']").each(function(){
               if ($(this).val() == "") {
                 is_phone_empty = true;
