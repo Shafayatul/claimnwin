@@ -71,6 +71,7 @@ Route::group(['middleware' => ['auth']], function() {
         Route::post('/user-ticket-message','UserPanelController@user_ticket_message')->name('user-ticket-message');
         Route::post('/user-upload-file','UserPanelController@claimFileUpload');
         Route::get('/user-download-file/{id}','UserPanelController@claimFileDownload');
+        Route::get('/affiliate-info','UserPanelController@affiliateInfoShow' );
     });
 
     // Admin + SUper Admin
@@ -163,7 +164,7 @@ Route::group(['middleware' => ['auth']], function() {
     });
 });
 
-        
+
 
 
 Route::resource('sent-emails', 'SentEmailsController');

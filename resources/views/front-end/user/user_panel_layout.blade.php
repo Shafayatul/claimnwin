@@ -29,6 +29,7 @@
                     <ul class="nav navbar-nav menu_nav">
                         <li><a href="{{ URL::to('/user-home') }}">My Claims</a></li>
                         <li><a href="{{ URL::to('/affiliate') }}">Affiliate</a></li>
+                        <li><a href="{{URL::to('/affiliate-info')}}">Affiliate Info</a></li>
                         <li><a href="{{ URL('/faq') }}">FAQs</a></li>
                     </ul>
 {{--

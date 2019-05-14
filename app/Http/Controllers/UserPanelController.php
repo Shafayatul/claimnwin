@@ -40,7 +40,7 @@ class UserPanelController extends Controller
                       ->where('claims.id', $id)
                       ->select('tickets.id as ticket_id','tickets.subject', 'tickets.status as ticket_status', 'claims.*')
                       ->first();
-      
+
       $ticket = Ticket::where('claim_id', $claims->id)->first();
       // dd($ticket->id);
       $ticket_notes = TicketNote::where('ticket_id', $ticket->id)->get();
@@ -147,6 +147,11 @@ class UserPanelController extends Controller
       return redirect()->back()->with('success','Message Send Successfully.');
 
 
+   }
+
+   public function affiliateInfoShow()
+   {
+        return view('front-end.user.user_panel_affiliate_info');
    }
 
 
