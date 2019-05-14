@@ -562,106 +562,17 @@ class ClaimsController extends Controller
 
         $claim->save();
 
-/*        if($claim_table_type == 'missed_connection'){
-            if($request->hasFile('missed_correspondence_file')){
-                $correspondenceFile = $request->file('missed_correspondence_file');
-                $fileName = uniqid().'.'.strtolower($correspondenceFile->getClientOriginalExtension());
-                if(!File::exists(public_path('/uploads').'/'.$claim->id)) {
-                    File::makeDirectory(public_path('/uploads').'/'.$claim->id);
-                }
-                $FileUrl =  $correspondenceFile->move(public_path('/uploads').'/'.$claim->id.'/', $fileName);
-            }else{
-                $FileUrl = null;
-            }
-            $claim_file = new ClaimFile();
-            $claim_file->file_name = $FileUrl;
-            $claim_file->user_id = Auth::user()->id;
-            $claim_file->claim_id = $claim->id;
-            $claim_file->save();
-        }elseif($claim_table_type == 'denied_boarding'){
-            if($request->hasFile('denied_correspondence_file')){
-                $correspondenceFile = $request->file('denied_correspondence_file');
-                $fileName = uniqid().'.'.strtolower($correspondenceFile->getClientOriginalExtension());
-                if(!File::exists(public_path('/uploads').'/'.$claim->id)) {
-                    File::makeDirectory(public_path('/uploads').'/'.$claim->id);
-                }
-                $FileUrl =  $correspondenceFile->move(public_path('/uploads').'/'.$claim->id.'/', $fileName);
-            }else{
-                $FileUrl = null;
-            }
-            $claim_file = new ClaimFile();
-            $claim_file->file_name = $FileUrl;
-            $claim_file->user_id = Auth::user()->id;
-            $claim_file->claim_id = $claim->id;
-            $claim_file->save();
-        }elseif($claim_table_type == 'flight_delay'){
-            if($request->hasFile('flight_delay_correspondence_file')){
-                $correspondenceFile = $request->file('flight_delay_correspondence_file');
-                $fileName = uniqid().'.'.strtolower($correspondenceFile->getClientOriginalExtension());
-                if(!File::exists(public_path('/uploads').'/'.$claim->id)) {
-                    File::makeDirectory(public_path('/uploads').'/'.$claim->id);
-                }
-                $FileUrl =  $correspondenceFile->move(public_path('/uploads').'/'.$claim->id.'/', $fileName);
-            }else{
-                $FileUrl = null;
-            }
-            $claim_file = new ClaimFile();
-            $claim_file->file_name = $FileUrl;
-            $claim_file->user_id = Auth::user()->id;
-            $claim_file->claim_id = $claim->id;
-            $claim_file->save();
-        }elseif($claim_table_type == 'flight_cancellation'){
-            if($request->hasFile('flight_cancel_correspondence_file')){
-                $correspondenceFile = $request->file('flight_cancel_correspondence_file');
-                $fileName = uniqid().'.'.strtolower($correspondenceFile->getClientOriginalExtension());
-                if(!File::exists(public_path('/uploads').'/'.$claim->id)) {
-                    File::makeDirectory(public_path('/uploads').'/'.$claim->id);
-                }
-                $FileUrl =  $correspondenceFile->move(public_path('/uploads').'/'.$claim->id.'/', $fileName);
-            }else{
-                $FileUrl = null;
-            }
-            $claim_file = new ClaimFile();
-            $claim_file->file_name = $FileUrl;
-            $claim_file->user_id = Auth::user()->id;
-            $claim_file->claim_id = $claim->id;
-            $claim_file->save();
-        }*/
-
 
         if ($claim) {
           $ticket = new Ticket;
-          $ticket->subject = $claim->claim_table_type;
+          $ticket->subject  = $claim->claim_table_type;
           $ticket->claim_id = $claim->id;
-          $ticket->user_id = $claim->user_id;
-          $ticket->status = "1";
+          $ticket->user_id  = $claim->user_id;
+          $ticket->status   = "1";
           $ticket->save();
         }
 
-        // <--------------------------------Start Convert Amount Code----------------------->
 
-        if($claim->amount != null)
-        {
-            $compensation_amount = explode(" ",$claim->amount);
-
-            $compensationAmount = $compensation_amount[0];
-            $compensationAmountCurrencyCode = $compensation_amount[1];
-
-            $currency_info=Currency::where('code',$compensationAmountCurrencyCode)->first();
-            $total_usd_compensation_amount = $compensationAmount*$currency_info->value;
-
-            $geoip = new GeoIPLocation();
-            $currentCurrencyCode = $geoip->getCurrencyCode();
-
-            $currentCurrencyInfo=Currency::where('code',$currentCurrencyCode)->first();
-            $converted_expection_amount = $total_usd_compensation_amount*$currentCurrencyInfo->value;
-
-            $convert_amount                             = Claim::find($claim->id);
-            $convert_amount->converted_expection_amount = $converted_expection_amount;
-            $convert_amount->save();
-        }
-
-        // <--------------------------------End Convert Amount Code----------------------->
 
         // create connect
         if (isset($request->connection)) {
@@ -804,6 +715,7 @@ class ClaimsController extends Controller
 
         if ($claim_table_type == "missed_connection") {
             $amount_and_distance = $this->missed_calculaion($departed_from_id, $final_destination_id, $total_delay, $selected_connection_iata_codes, $claim->id);
+            \Log::debug($amount_and_distance);
         }elseif ($claim_table_type == 'flight_delay') {
             $amount_and_distance = $this->flight_delay_calculaion($departed_from_id, $final_destination_id, $total_delay, $selected_connection_iata_codes, $claim->id);
         }elseif ($claim_table_type == 'flight_cancellation') {
@@ -819,12 +731,35 @@ class ClaimsController extends Controller
         $amount_and_distance = explode('-', $amount_and_distance);
 
 
-        $update_claim                   = Claim::find($claim->id);
-        $update_claim->amount           = $amount_and_distance[0];
-        $update_claim->airline_id       = $airline_id;
-        $update_claim->cpanel_email     = $cpanel_email;
-        $update_claim->cpanel_password  = $cpanel_password;
-        $update_claim->distance         = $amount_and_distance[1];
+        // <--------------------------------Start Convert Amount Code----------------------->
+
+
+        $compensation_amount = explode(" ",$amount_and_distance[0]);
+
+        $compensationAmount = $compensation_amount[0];
+        $compensationAmountCurrencyCode = $compensation_amount[1];
+
+        $currency_info=Currency::where('code',$compensationAmountCurrencyCode)->first();
+        $total_usd_compensation_amount = $compensationAmount*$currency_info->value;
+
+        $geoip = new GeoIPLocation();
+        $currentCurrencyCode = $geoip->getCurrencyCode();
+
+        $currentCurrencyInfo=Currency::where('code',$currentCurrencyCode)->first();
+        $converted_expection_amount = round($total_usd_compensation_amount*$currentCurrencyInfo->value).' '.$currentCurrencyCode;
+
+
+        // <--------------------------------End Convert Amount Code----------------------->
+
+
+
+        $update_claim                               = Claim::find($claim->id);
+        $update_claim->amount                       = $amount_and_distance[0];
+        $update_claim->airline_id                   = $airline_id;
+        $update_claim->cpanel_email                 = $cpanel_email;
+        $update_claim->cpanel_password              = $cpanel_password;
+        $update_claim->distance                     = $amount_and_distance[1];
+        $update_claim->converted_expection_amount   = $converted_expection_amount;
         $update_claim->save();
 
         $amount = $amount_and_distance[0];

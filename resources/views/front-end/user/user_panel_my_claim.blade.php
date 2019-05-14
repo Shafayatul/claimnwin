@@ -27,11 +27,7 @@
             </div>
             <div class="col-md-2">
                 <div class="parent_div text-center">
-                    @php
-                        $geoip = new \Victorybiz\GeoIPLocation\GeoIPLocation;
-                        $currentCurrencyCode = $geoip->getCurrencyCode();
-                    @endphp
-                    <span class="bold_span">Value:</span> {{ $claims->converted_expection_amount.' '.$currentCurrencyCode }}
+                    <span class="bold_span">Value:</span> {!! $claims->amount.'<br> ('.$claims->converted_expection_amount.')' !!}
                 </div>
             </div>
             <div class="col-md-4">
@@ -207,50 +203,22 @@
                                             <td>Compensation from {{ $airline->name }}</td>
                                             <td>
                                                 <span class="text-right">
-                                                    @php
-
-                                                    $string = $claims->converted_expection_amount;
-                                                    echo preg_replace("/[^0-9\.]/", '', $string).' '.$currentCurrencyCode;
-                                                    @endphp
+                                                    {{$claims->amount.' ('.$claims->converted_expection_amount.')'}}
                                                 </span>
                                             </td>
                                         </tr>
-                                        {{-- <tr>
-                                            <td>Welcome Success Fee</td>
-                                            <td>
-                                                <span class="text-right">
-                                                    @php
-                                                    $string = $claims->amount;
-                                                    $compensation_from_airline = preg_replace("/[^0-9\.]/", '', $string);
-                                                    $welcome_success_fee = (($compensation_from_airline*10)/100);
-                                                    echo ('- '.$welcome_success_fee);
-                                                    @endphp
-                                                </span>
-                                            </td>
-                                        </tr> --}}
-                                        {{-- <tr>
-                    <td>Others</td>
-                    <td>-</td>
-                  </tr>
-                  <tr class="compensation_table_background">
-                    <th scope="col">Compensation from British Airways</th>
-                    <th scope="col">$ 3500.50</th>
-                  </tr>
-                  <tr>
-                    <td>Welcome Success Fee</td>
-                    <td>- $ 893.50</td>
-                  </tr> --}}
                                         <tr class="compensation_table_result_row">
                                             <td>Your Compensation</td>
                                             <td>
                                                 <span class="text-right">
-                                                    @php
-                                                    $string = $claims->converted_expection_amount;
-                                                    $compensation_from_airline = preg_replace("/[^0-9\.]/", '', $string);
-                                                    $welcome_success_fee = (($compensation_from_airline*10)/100);
+                                                    {{-- @php
+                                                    // $string = $claims->converted_expection_amount;
+                                                    // $compensation_from_airline = preg_replace("/[^0-9\.]/", '', $string);
+                                                    // $welcome_success_fee = (($compensation_from_airline*10)/100);
                                                     // echo ($compensation_from_airline - $welcome_success_fee);
-                                                    echo $compensation_from_airline.' '.$currentCurrencyCode;
-                                                    @endphp
+                                                    // echo $compensation_from_airline;
+                                                    @endphp --}}
+                                                    ??????
                                                 </span>
                                             </td>
                                         </tr>
@@ -258,32 +226,6 @@
                                 </table>
                             </div>
                         </div>
-                        {{-- <div class="parent_div">
-            <div class="row">
-              <div class="col-md-4 col-sm-6 col-xs-6">
-                <div class="defandant_title">
-                  Defandant
-                </div>
-                <div class="underline_row">
-
-                </div>
-                <div class="defandant_body">
-                  {{ $airline->name }}
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6 col-xs-6">
-                    <div class="defandant_title">
-                        Extra Claimant
-                    </div>
-                    <div class="underline_row">
-
-                    </div>
-                    <div class="defandant_body">
-                        No extra claimant added.
-                    </div>
-                </div>
-            </div>
-        </div> --}}
     </div>
 </div>
 {{-- <div class="tab-pane fade" id="message" role="tabpanel" aria-labelledby="message-tab">

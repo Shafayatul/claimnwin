@@ -67,12 +67,8 @@
         <div class="col-md-2">
           <div class="parent_div claim_list_div text-center">
             <a href="{{ URL::to('/user-my-claim/'.$claim->id)}}">
-                @php
-                    $geoip = new \Victorybiz\GeoIPLocation\GeoIPLocation;
-                    $currentCurrencyCode = $geoip->getCurrencyCode();
-                @endphp
               @if($claim->converted_expection_amount != "")
-                <a href="{{ URL::to('/user-my-claim/'.$claim->id)}}">{{$claim->converted_expection_amount.' '.$currentCurrencyCode}}</a>
+                <a href="{{ URL::to('/user-my-claim/'.$claim->id)}}">{{$claim->converted_expection_amount}}</a>
               @else
                 <a href="{{ URL::to('/user-my-claim/'.$claim->id)}}">---</a>
               @endif
