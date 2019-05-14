@@ -170,74 +170,74 @@
                                             </div>
                                         </div>
                                         <div class="tab-pane" id="flight_detail" role="tabpanel">
-                                            <div class="row">
-                                                <div class="col-lg-12">
-                                                    <div class="panel panel-default">
-                                                        <div class="panel-heading">
-                                                            <i class="fa fa-comments"></i> Fligh Details
-                                                        </div>
-                                                        <!-- /.panel-heading -->
-                                                        <div class="panel-body">
-                                                            <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                            {{-- now working --}}
+                                            @foreach($intinerary_details as $single_intinerary_detail)
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <div class="panel panel-default">
+                                                            <div class="panel-heading">
+                                                                <i class="fa fa-comments"></i> Fligh Details
+                                                            </div>
+                                                            <!-- /.panel-heading -->
+                                                            <div class="panel-body">
+                                                                <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
 
-                                                                <tbody>
-                                                                    <tr class="odd gradeX">
-                                                                        <th>Claim ID</th>
-                                                                        <td>{{$claims->id}}</td>
-                                                                    </tr>
-                                                                    <tr class="odd gradeX">
-                                                                        <th>Date Of Disrupted</th>
-                                                                        <td>{{$ittDetails->departure_date}}</td>
-                                                                    </tr>
-                                                                    <tr class="odd gradeX">
-                                                                        <th>Airline</th>
-                                                                        <td>{{$airline->name}}</td>
-                                                                    </tr>
-                                                                    <tr class="odd gradeX">
-                                                                        <th>Number Of Flight Journey</th>
-                                                                        <td>{{$flightCount}}</td>
-                                                                    </tr>
-                                                                    <tr class="odd gradeX">
-                                                                        <th>Flight Number</th>
-                                                                        <td>{{$ittDetails->flight_number}}</td>
-                                                                    </tr>
+                                                                    <tbody>
+                                                                        <tr class="odd gradeX">
+                                                                            <th>Date Of Disrupted</th>
+                                                                            <td>{{$single_intinerary_detail->departure_date}}</td>
+                                                                        </tr>
+                                                                        <tr class="odd gradeX">
+                                                                            <th>Airline</th>
+                                                                            <td>{{$single_intinerary_detail->name}}</td>
+                                                                        </tr>
+                                                                        {{-- <tr class="odd gradeX">
+                                                                            <th>Number Of Flight Journey</th>
+                                                                            <td>{{$flightCount}}</td>
+                                                                        </tr> --}}
+                                                                        <tr class="odd gradeX">
+                                                                            <th>Flight Number</th>
+                                                                            <td>{{$single_intinerary_detail->flight_number}}</td>
+                                                                        </tr>
 
-                                                                </tbody>
-                                                            </table>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        <!-- /.panel-body -->
                                                         </div>
-                                                    <!-- /.panel-body -->
+                                                    <!-- /.panel -->
                                                     </div>
-                                                <!-- /.panel -->
+                                                <!-- /.col-lg-12 -->
                                                 </div>
-                                            <!-- /.col-lg-12 -->
-                                            </div>
-                                            <div class="row">
-                                                <h3 class="text-center">Airline Time Schedule</h3> <br>
+                                                <div class="row">
+                                                    <h3 class="text-center">Airline Time Schedule</h3> <br>
 
-                                                <div class="col-md-12">
-                                                    <form action="{{route('departure-arival-time-save')}}" method="post" class="form-horizontal">
-                                                        @csrf
-                                                        <div class="form-group">
-                                                            <label for="departure_time_by_claim" class="col-md-3 control-label">Departure Time</label>
-                                                            <div class="col-md-9">
-                                                            <input type="time" class="form-control" value="{{$claims->departure_time_by_claim}}" name="departure_time_by_claim" id="departure_time_by_claim" />
-                                                            <input type="hidden" name="claim_id" value="{{$claims->id}}">
+                                                    <div class="col-md-12">
+                                                        <form action="{{route('departure-arival-time-save')}}" method="post" class="form-horizontal">
+                                                            @csrf
+                                                            <div class="form-group">
+                                                                <label for="departure_time_by_claim" class="col-md-3 control-label">Departure Time</label>
+                                                                <div class="col-md-9">
+                                                                <input type="time" class="form-control" value="{{$single_intinerary_detail->departure_time}}" name="departure_time" id="departure_time" />
+                                                                <input type="hidden" name="claim_id" value="{{$claims->id}}">
+                                                                <input type="hidden" name="itinerary_detail_id" value="{{$single_intinerary_detail->id}}">
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="arival_time_by_claim" class="col-md-3 control-label">Arival Time</label>
-                                                            <div class="col-md-9">
-                                                                <input type="time" class="form-control" value="{{$claims->arival_time_by_claim}}" name="arival_time_by_claim" id="arival_time_by_claim" />
+                                                            <div class="form-group">
+                                                                <label for="arival_time" class="col-md-3 control-label">Arival Time</label>
+                                                                <div class="col-md-9">
+                                                                    <input type="time" class="form-control" value="{{$single_intinerary_detail->arival_time}}" name="arival_time" id="arival_time" />
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <div class="col-md-6 col-md-offset-3">
-                                                                <button type="submit" class="btn btn-sm btn-success"><i class="fa fa-save"></i> Save</button>
+                                                            <div class="form-group">
+                                                                <div class="col-md-6 col-md-offset-3">
+                                                                    <button type="submit" class="btn btn-sm btn-success"><i class="fa fa-save"></i> Save</button>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </form>
+                                                        </form>
+                                                    </div>
                                                 </div>
-                                            </div>
+                                            @endforeach
                                         </div>
                                         <div class="tab-pane" id="claim_detail" role="tabpanel">
                                             <div class="row">

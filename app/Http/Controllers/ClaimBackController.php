@@ -325,10 +325,10 @@ class ClaimBackController extends Controller
                 'port'          => 993,
                 'encryption'    => 'ssl',
                 'validate_cert' => true,
-                'username'      => $claims->cpanel_email,
-                'password'      => $claims->cpanel_password,
-                // 'username'      =>'rtwh095@freeflightclaim.com',
-                // 'password'      => 'olMpHjWv',
+                // 'username'      => $claims->cpanel_email,
+                // 'password'      => $claims->cpanel_password,
+                'username'      =>'rtwh095@freeflightclaim.com',
+                'password'      => 'olMpHjWv',
                 'protocol'      => 'imap'
             ]);
             $oClient->connect();
@@ -344,7 +344,9 @@ class ClaimBackController extends Controller
             $airlineId = $claims->airline_id;
             $airlineInfo = Airline::where('id',$airlineId)->first();
 
-        return view('claim.claimView',compact('airlineInfo','airlineSents','inbox','affiliateNotes','expanses','aFolder','sents','notes', 'ticket_notes', 'ticket', 'claimFiles','affiliateComm','adminComm','NextStepData','claimStatusData','flightInfo','airline','departed_airport','destination_airport','reminders','claims','passengers','ittDetails','flightCount','passCount','claimsStatus','nextSteps','banks', 'affiliate_user'));
+            $intinerary_details = ItineraryDetail::where('claim_id',$id)->get();
+
+        return view('claim.claimView',compact('airlineInfo','airlineSents','inbox','affiliateNotes','expanses','aFolder','sents','notes', 'ticket_notes', 'ticket', 'claimFiles','affiliateComm','adminComm','NextStepData','claimStatusData','flightInfo','airline','departed_airport','destination_airport','reminders','claims','passengers','ittDetails','flightCount','passCount','claimsStatus','nextSteps','banks', 'affiliate_user', 'intinerary_details'));
     }
 
     public function downloadClaimFile($id)
@@ -636,14 +638,17 @@ class ClaimBackController extends Controller
         return redirect('/claim-view/'.$id)->with('success','Sent Email Successfully!');
     }
 
+
     public function departureArivalTimeSave(Request $request)
     {
-        $claim_id = $request->claim_id;
-        $claim = Claim::where('id',$claim_id)->first();
-        $claim->departure_time_by_claim     = $request->departure_time_by_claim;
-        $claim->arival_time_by_claim        = $request->arival_time_by_claim;
-        $claim->save();
-        return redirect('/claim-view/'.$claim_id)->with('success','Update Successfully!');
+        $itinerary_detail_id = $request->input('itinerary_detail_id');
+
+        $itinerary_detail                       = ItineraryDetail::find($itinerary_detail_id);
+        $itinerary_detail->departure_time       = $request->input('departure_time');
+        $itinerary_detail->arival_time          = $request->input('arival_time');
+        $itinerary_detail->save();
+
+        return redirect('/claim-view/'.$request->input('claim_id'))->with('success','Update Successfully!');
     }
 
     public function airlineReplyDataSave(Request $request)
