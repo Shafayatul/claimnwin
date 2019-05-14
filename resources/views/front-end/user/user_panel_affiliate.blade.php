@@ -11,9 +11,6 @@
         float: left;
     }
 
-
-
-
     #facebook{
         color: blue;
         font-size: 60px;

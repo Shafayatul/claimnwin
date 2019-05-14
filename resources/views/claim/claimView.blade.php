@@ -195,7 +195,7 @@
                                                                                 </a>
                                                                             </td>
                                                                         </tr>
-                                                                        
+
                                                                         <tr class="odd gradeX">
                                                                             <th>Flight Number</th>
                                                                             <td>{{$single_intinerary_detail->flight_number}}</td>
@@ -2008,6 +2008,66 @@
     </div>
 </div>
 <div role="tabpanel" class="tab-pane" id="affiliate-info" aria-labelledby="affiliate-info-tab">
+    <div class="row" style="margin-top:1%;">
+        <div class="col-md-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <i class="fa fa-info-circle"></i> Affiliate Info Form
+                </div>
+                <div class="panel-body">
+                <form action="{{route('update-affilite-info-data')}}" method="post" class="form-horizontal" name="affiliate_infos">
+                        @csrf
+                        <div class="form-group">
+                            <label for="commision-info" class="control-label col-md-3">Commision Amount</label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" name="commision_amount" id="commision-info" value="{{$affilaite_info->commision_amount}}">
+                                <input type="hidden" name="affiliate_id" value="{{$affilaite_info->id}}">
+                                <input type="hidden" name="claim_id" value="{{$claims->id}}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="percentage" class="control-label col-md-3">Percentage</label>
+                            <div class="col-md-9">
+                            <input type="text" class="form-control" name="percentage" id="percentage" value="{{$affilaite_info->percentage}}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="received-amount" class="control-label col-md-3">Received Amount</label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" name="received_amount" id="received-amount" value="{{$affilaite_info->received_amount}}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="payment-method" class="control-label col-md-3">Payment Method</label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" name="payment_method" id="payment-method" value="{{$affilaite_info->payment_method}}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="addition-description" class="control-label col-md-3">Additional Description</label>
+                            <div class="col-md-9">
+                                <textarea class="form-control" name="addition_description" id="addition-description" rows="3" cols="30">{{$affilaite_info->addition_description}}</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="approved" class="control-label col-md-3">Approved Status</label>
+                            <div class="col-md-9">
+                                <select name="approved" id="approved" class="form-control">
+                                    <option value="0">No</option>
+                                    <option value="1">Yes</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-9 col-md-offset-3">
+                                <button type="submit" class="btn btn-sm btn-success">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="row">
         <div class="col-lg-12">
             <div class="panel panel-default">
@@ -2667,6 +2727,7 @@ $('#note').froalaEditor()
     document.forms['clam_nextstep_status'].elements['claim_status'].value="{{$claimStatusData->id}}";
     document.forms['clam_nextstep_status'].elements['nextstep_status'].value="{{$NextStepData->id}}";
     document.forms['required_details'].elements['bank_details_id'].value="{{$claims->bank_details_id}}";
+    document.forms['affiliate_infos'].elements['approved'].value="{{$affilaite_info->approved}}";
 </script>
 @endsection
 @section('footer-script')
