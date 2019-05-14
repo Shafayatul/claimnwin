@@ -1094,7 +1094,8 @@
                                             <h4>Please upload all previous correspondence</h4>
                                         </div>
                                         <div class="form-group">
-                                            <input type="file" name="flight_cancel_correspondence_file" class="form-control-file" id="exampleFormControlFile1">
+                                            <input type="file" name="file_name[4]" class="form-control-file" id="exampleFormControlFile1">
+                                            <input type="hidden" value="Previous correspondence" name="file_name_to_show[4]">
                                         </div>
                                     </div>
                                 </div>
