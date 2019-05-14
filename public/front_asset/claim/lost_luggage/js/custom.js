@@ -8,7 +8,7 @@ $(document).ready(function() {
       window.localStorage.removeItem('airport1');
       window.localStorage.removeItem('airport2');
     }
-    $(document).on('click', '#continue_8', function(){
+    $(document).on('click', '#continue_7', function(){
         $("#step-form").submit();
     });
 
