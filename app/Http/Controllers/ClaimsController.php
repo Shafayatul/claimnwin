@@ -727,7 +727,6 @@ class ClaimsController extends Controller
 
         if ($claim_table_type == "missed_connection") {
             $amount_and_distance = $this->missed_calculaion($departed_from_id, $final_destination_id, $total_delay, $selected_connection_iata_codes, $claim->id);
-            \Log::debug($amount_and_distance);
         }elseif ($claim_table_type == 'flight_delay') {
             $amount_and_distance = $this->flight_delay_calculaion($departed_from_id, $final_destination_id, $total_delay, $selected_connection_iata_codes, $claim->id);
         }elseif ($claim_table_type == 'flight_cancellation') {
@@ -783,6 +782,27 @@ class ClaimsController extends Controller
     }
 
 
+    public function currency_converter_url(Request $request){
+
+
+        $amount_and_currency = $request->input('amount_and_currency');
+
+        $compensation_amount = explode(" ",$amount_and_currency);
+
+        $compensationAmount = $compensation_amount[0];
+        $compensationAmountCurrencyCode = $compensation_amount[1];
+
+        $currency_info=Currency::where('code',$compensationAmountCurrencyCode)->first();
+        $total_usd_compensation_amount = $compensationAmount*$currency_info->value;
+
+        $geoip = new GeoIPLocation();
+        $currentCurrencyCode = $geoip->getCurrencyCode();
+
+        $currentCurrencyInfo=Currency::where('code',$currentCurrencyCode)->first();
+        return $converted_expection_amount = round($total_usd_compensation_amount*$currentCurrencyInfo->value).' '.$currentCurrencyCode;
+
+
+    }
     public function ajax_fight_delay_calculation(Request $request){
 
         $total_delay = $request->total_delay;

@@ -29,6 +29,7 @@ Route::post('/ajax/calculate/fight_cancellation_calculation','ClaimsController@a
 Route::post('/ajax/calculate/lost_luggage_calculation','ClaimsController@ajax_lost_luggage_calculation');
 Route::post('/ajax/calculate/denied_bording_calculation','ClaimsController@ajax_denied_bording_calculation');
 
+Route::post('/ajax/currency_converter_url','ClaimsController@currency_converter_url');
 
 // Front Pages Starts
 Route::get('/about-us','FrontsController@aboutUs');
