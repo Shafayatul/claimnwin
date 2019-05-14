@@ -26,10 +26,10 @@ table thead tr th:first-child {
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-6 col-xs-6 col-sm-6">
                                 <h4>Latest 5 Refferals</h4>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6 col-xs-6 col-sm-6">
                                 <a href="" class="show-all"><h4>Show All</h4></a>
                             </div>
                         </div>
@@ -63,10 +63,10 @@ table thead tr th:first-child {
                     <div class="panel panel-success">
                         <div class="panel-body">
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-6 col-xs-6 col-sm-6">
                                     <h4>Latest 5 Commisions</h4>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-6 col-xs-6 col-sm-6">
                                     <a href="" class="show-all"><h4>Show All</h4></a>
                                 </div>
                             </div>
@@ -101,10 +101,10 @@ table thead tr th:first-child {
                         <div class="panel panel-primary">
                             <div class="panel-body">
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 col-xs-6 col-sm-6">
                                         <h4>Latest 5 Payments</h4>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-xs-6 col-sm-6">
                                         <a href="" class="show-all"><h4>Show All</h4></a>
                                     </div>
                                 </div>
