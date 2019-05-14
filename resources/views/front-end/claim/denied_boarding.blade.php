@@ -1155,6 +1155,7 @@
 @section('footer-script')
   <script type="text/javascript">
       var ajax_cal_url = "{{url('/ajax/calculate/denied_bording_calculation')}}";
+      var currency_converter_url = "{{url('/ajax/currency_converter_url')}}";
       auto_airport_complete();
       function auto_airport_complete(){
         $('.auto_airport_complete').autoComplete({
