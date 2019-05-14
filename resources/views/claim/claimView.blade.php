@@ -189,15 +189,24 @@
                                                                         </tr>
                                                                         <tr class="odd gradeX">
                                                                             <th>Airline</th>
-                                                                            <td>{{$single_intinerary_detail->name}}</td>
+                                                                            <td>
+                                                                                <a href="{{url('airlines/'.$single_intinerary_detail->airline_id)}}">
+                                                                                    {{$itinerary_detail_airlines[$single_intinerary_detail->airline_id]}}
+                                                                                </a>
+                                                                            </td>
                                                                         </tr>
-                                                                        {{-- <tr class="odd gradeX">
-                                                                            <th>Number Of Flight Journey</th>
-                                                                            <td>{{$flightCount}}</td>
-                                                                        </tr> --}}
+                                                                        
                                                                         <tr class="odd gradeX">
                                                                             <th>Flight Number</th>
                                                                             <td>{{$single_intinerary_detail->flight_number}}</td>
+                                                                        </tr>
+                                                                        <tr class="odd gradeX">
+                                                                            <th>Flight Segment</th>
+                                                                            <td>{{$single_intinerary_detail->flight_segment}}</td>
+                                                                        </tr>
+                                                                        <tr class="odd gradeX">
+                                                                            <th>Departure Date</th>
+                                                                            <td>{{$single_intinerary_detail->departure_date}}</td>
                                                                         </tr>
 
                                                                     </tbody>

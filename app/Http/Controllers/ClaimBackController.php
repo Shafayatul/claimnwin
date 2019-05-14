@@ -344,9 +344,14 @@ class ClaimBackController extends Controller
             $airlineId = $claims->airline_id;
             $airlineInfo = Airline::where('id',$airlineId)->first();
 
-            $intinerary_details = ItineraryDetail::where('claim_id',$id)->get();
+            $intinerary_details          = ItineraryDetail::where('claim_id',$id)->get();
+            $itinerary_detail_airline_id = [];
+            foreach ($intinerary_details as $row) {
+                array_push($itinerary_detail_airline_id, $row->airline_id);
+            }
+            $itinerary_detail_airlines = Airline::whereIn('id', $itinerary_detail_airline_id)->pluck('name', 'id');
 
-        return view('claim.claimView',compact('airlineInfo','airlineSents','inbox','affiliateNotes','expanses','aFolder','sents','notes', 'ticket_notes', 'ticket', 'claimFiles','affiliateComm','adminComm','NextStepData','claimStatusData','flightInfo','airline','departed_airport','destination_airport','reminders','claims','passengers','ittDetails','flightCount','passCount','claimsStatus','nextSteps','banks', 'affiliate_user', 'intinerary_details'));
+        return view('claim.claimView',compact('airlineInfo','airlineSents','inbox','affiliateNotes','expanses','aFolder','sents','notes', 'ticket_notes', 'ticket', 'claimFiles','affiliateComm','adminComm','NextStepData','claimStatusData','flightInfo','airline','departed_airport','destination_airport','reminders','claims','passengers','ittDetails','flightCount','passCount','claimsStatus','nextSteps','banks', 'affiliate_user', 'intinerary_details', 'itinerary_detail_airlines'));
     }
 
     public function downloadClaimFile($id)
