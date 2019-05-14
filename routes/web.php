@@ -15,7 +15,7 @@
 */
 
 
-Route::get('/test', 'TestsController@test');
+Route::get('/test_forword', 'TestsController@test_forword');
 
 /* ----- Access by all - not logged ----- */
 

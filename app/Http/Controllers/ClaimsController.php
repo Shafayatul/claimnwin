@@ -63,9 +63,20 @@ class ClaimsController extends Controller
         ];
 
         $result = $cPanel->execute('uapi', "Email", "add_pop", $parameters);
-        if (!$result->status == 1) {
+        if (!$result->status == 1){ 
             return "not okay";
         }
+
+        // forword email to ticket email
+        $add_mail_forwarder = $cPanel->api2(
+            'Email', 'addforward', 
+            array(
+                'domain'          => env('CPANEL_DOMAIN'),
+                'email'           => $email_name,
+                'fwdopt'          => 'fwd',
+                'fwdemail'        => env('MAIL_USERNAME'),
+            ) 
+        );
         return "okay";
     }
 
@@ -709,8 +720,9 @@ class ClaimsController extends Controller
         */
         $cpanel_password  = $this->randomPassword();
 
-        // $this->create_cpanel_email($cpanel_email_name, $cpanel_password);
+        $this->create_cpanel_email($cpanel_email_name, $cpanel_password);
         $cpanel_email     = $cpanel_email_name.'@freeflightclaim.com';
+
 
 
         if ($claim_table_type == "missed_connection") {
