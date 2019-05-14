@@ -14,6 +14,7 @@ use App\ClaimStatus;
 use Hash;
 use File;
 use Share;
+use App\Affiliate;
 
 class UserPanelController extends Controller
 {
@@ -151,7 +152,11 @@ class UserPanelController extends Controller
 
    public function affiliateInfoShow()
    {
-        return view('front-end.user.user_panel_affiliate_info');
+        $user_id=Auth::user()->id;
+        $referral_ids=Affiliate::where('affiliate_user_id',$user_id)->limit(5)->get();
+        $payments=Affiliate::where('affiliate_user_id',$user_id)->where('approved',1)->limit(5)->get();
+        $pending_payments=Affiliate::where('affiliate_user_id',$user_id)->where('approved',0)->limit(5)->get();
+        return view('front-end.user.user_panel_affiliate_info',compact('referral_ids','payments','pending_payments'));
    }
 
 

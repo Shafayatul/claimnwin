@@ -40,16 +40,24 @@ table thead tr th:first-child {
                                         <thead>
                                             <th>#</th>
                                             <th>DateTime</th>
-                                            <th>Claim Name</th>
+                                            <th>Claim Id</th>
                                             <th>Commsion Amount</th>
                                         </thead>
                                         <tbody>
+                                            @php
+                                                $i = 1;
+                                            @endphp
+                                            @foreach($referral_ids as $referral_id)
                                             <tr>
-                                                <td>1</td>
-                                                <td>23-05-2019</td>
-                                                <td>Lost Luggage</td>
-                                                <td>560</td>
+                                                <td>{{$i}}</td>
+                                                <td>{{Carbon\Carbon::parse($referral_id->created_at)->format('d-m-Y h:i:s')}}</td>
+                                                <td>{{$referral_id->claim_id}}</td>
+                                                <td>{{$referral_id->commision_amount}}</td>
                                             </tr>
+                                            @php
+                                                $i++;
+                                            @endphp
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>
@@ -64,7 +72,7 @@ table thead tr th:first-child {
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-md-6 col-xs-6 col-sm-6">
-                                    <h4>Latest 5 Commisions</h4>
+                                    <h4>Latest 5 Pending Payments</h4>
                                 </div>
                                 <div class="col-md-6 col-xs-6 col-sm-6">
                                     <a href="" class="show-all"><h4>Show All</h4></a>
@@ -77,16 +85,24 @@ table thead tr th:first-child {
                                             <thead>
                                                 <th>#</th>
                                                 <th>DateTime</th>
-                                                <th>Claim Name</th>
+                                                <th>Claim ID</th>
                                                 <th>Commsion Amount</th>
                                             </thead>
                                             <tbody>
+                                                    @php
+                                                    $i = 1;
+                                                @endphp
+                                                @foreach($pending_payments as $pending_payment)
                                                 <tr>
-                                                    <td>1</td>
-                                                    <td>23-05-2019</td>
-                                                    <td>Lost Luggage</td>
-                                                    <td>560</td>
+                                                    <td>{{$i}}</td>
+                                                    <td>{{Carbon\Carbon::parse($pending_payment->created_at)->format('d-m-Y h:i:s')}}</td>
+                                                    <td>{{$pending_payment->claim_id}}</td>
+                                                    <td>{{$pending_payment->commision_amount}}</td>
                                                 </tr>
+                                                @php
+                                                    $i++;
+                                                @endphp
+                                                @endforeach
                                             </tbody>
                                         </table>
                                     </div>
@@ -119,12 +135,20 @@ table thead tr th:first-child {
                                                     <th>Commsion Amount</th>
                                                 </thead>
                                                 <tbody>
+                                                        @php
+                                                        $i = 1;
+                                                    @endphp
+                                                    @foreach($payments as $payment)
                                                     <tr>
-                                                        <td>1</td>
-                                                        <td>23-05-2019</td>
-                                                        <td>Lost Luggage</td>
-                                                        <td>560</td>
+                                                        <td>{{$i}}</td>
+                                                        <td>{{Carbon\Carbon::parse($payment->created_at)->format('d-m-Y h:i:s')}}</td>
+                                                        <td>{{$payment->claim_id}}</td>
+                                                        <td>{{$payment->commision_amount}}</td>
                                                     </tr>
+                                                    @php
+                                                        $i++;
+                                                    @endphp
+                                                    @endforeach
                                                 </tbody>
                                             </table>
                                         </div>
@@ -133,7 +157,6 @@ table thead tr th:first-child {
                             </div>
                         </div>
                     </div>
-
         </div>
     </div>
 </div>
