@@ -37,6 +37,7 @@ use App\Mail\CustomerCompose;
 use App\Mail\AirlineCompose;
 use App\Mail\AirlineReply;
 use App\Mail\CustomerReply;
+use App\Affiliate;
 
 class ClaimBackController extends Controller
 {
@@ -351,7 +352,9 @@ class ClaimBackController extends Controller
             }
             $itinerary_detail_airlines = Airline::whereIn('id', $itinerary_detail_airline_id)->pluck('name', 'id');
 
-        return view('claim.claimView',compact('airlineInfo','airlineSents','inbox','affiliateNotes','expanses','aFolder','sents','notes', 'ticket_notes', 'ticket', 'claimFiles','affiliateComm','adminComm','NextStepData','claimStatusData','flightInfo','airline','departed_airport','destination_airport','reminders','claims','passengers','ittDetails','flightCount','passCount','claimsStatus','nextSteps','banks', 'affiliate_user', 'intinerary_details', 'itinerary_detail_airlines'));
+            $affilaite_info=Affiliate::where('claim_id',$claims->id)->first();
+
+        return view('claim.claimView',compact('affilaite_info','airlineInfo','airlineSents','inbox','affiliateNotes','expanses','aFolder','sents','notes', 'ticket_notes', 'ticket', 'claimFiles','affiliateComm','adminComm','NextStepData','claimStatusData','flightInfo','airline','departed_airport','destination_airport','reminders','claims','passengers','ittDetails','flightCount','passCount','claimsStatus','nextSteps','banks', 'affiliate_user', 'intinerary_details', 'itinerary_detail_airlines'));
     }
 
     public function downloadClaimFile($id)
@@ -736,6 +739,21 @@ class ClaimBackController extends Controller
         $file->compose_file= implode("|",$images);
         $file->save();
         return redirect('/claim-view/'.$id)->with('success','Sent Email Successfully!');
+    }
+
+    public function updateAffiliteInfoData(Request $request)
+    {
+        $id = $request->affiliate_id;
+        $claim_id = $request->claim_id;
+        $affiliate = Affiliate::where('id',$id)->first();
+        $affiliate->commision_amount = $request->commision_amount;
+        $affiliate->percentage = $request->percentage;
+        $affiliate->received_amount = $request->received_amount;
+        $affiliate->payment_method = $request->payment_method;
+        $affiliate->addition_description = $request->addition_description;
+        $affiliate->approved = $request->approved;
+        $affiliate->save();
+        return redirect('/claim-view/'.$claim_id)->with('success','Affiliate Info Update Successfully!');
     }
 
 
