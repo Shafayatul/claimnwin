@@ -173,7 +173,7 @@ $(document).ready(function() {
 
 
             // special necessary email
-            if (($("input[name='email_address']").val() == "") || ($("input[name='phone_number']").val() == ""))
+            if (($("input[name='email_address']").val() == ""))
             {
               return false;
             }
@@ -254,7 +254,7 @@ $(document).ready(function() {
             var is_post_code_empty = false;
             var is_phone_empty = false;
             var is_date_of_birth_empty = false;
-            
+
             $("input[name^='phone']").each(function(){
               if ($(this).val() == "") {
                 is_phone_empty = true;
@@ -389,7 +389,7 @@ $(document).ready(function() {
               }
             });
 
-            
+
           }
         },
         error: function(e) {
@@ -439,7 +439,7 @@ $(document).ready(function() {
     /*----------Connection Hide/Show-------*/
 
     $("#connection_div").hide();
-    
+
     $("input[name=is_direct_flight]:radio").click(function() {
         if ($(this).attr("value") == "1") {
             $("#connection_div").show(500);
