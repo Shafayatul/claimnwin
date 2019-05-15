@@ -133,7 +133,7 @@ $(document).ready(function() {
       var received_luggage_date       = $("input[name='received_luggage_date']").val();
 
 alert(departure_date);
-  
+
       $.ajax({
         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
         type: 'POST',
@@ -167,7 +167,7 @@ alert(departure_date);
               }
             });
 
-            
+
           }
         },
         error: function(e) {
@@ -244,7 +244,7 @@ alert(departure_date);
             }
         } else if (step == 4) {
             $("#continue_4").removeClass('active_button');
-        if (($("input[name='email_address']").val() != "") && ($("input[name='phone_number']").val() != "")){
+        if (($("input[name='email_address']").val() != "")){
                 $("#continue_4").addClass('active_button');
                 $("#continue_5").addClass('active_button');
                 return true;
