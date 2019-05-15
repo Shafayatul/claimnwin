@@ -15,6 +15,11 @@ use Hash;
 use File;
 use Share;
 use App\Affiliate;
+use Excel;
+use App\Exports\AffiliateExport;
+use App\Exports\PendingPaymentExport;
+use App\Exports\PaymentExport;
+use IlluminateAgnostic\Arr\Support\Carbon;
 
 class UserPanelController extends Controller
 {
@@ -157,6 +162,43 @@ class UserPanelController extends Controller
         $payments=Affiliate::where('affiliate_user_id',$user_id)->where('approved',1)->limit(5)->get();
         $pending_payments=Affiliate::where('affiliate_user_id',$user_id)->where('approved',0)->limit(5)->get();
         return view('front-end.user.user_panel_affiliate_info',compact('referral_ids','payments','pending_payments'));
+   }
+
+   public function allRefferalDataView($id)
+   {
+
+        $allReferral=Affiliate::where('affiliate_user_id',$id)->get();
+        return view('front-end.user.user_panel_refferal_all',compact('allReferral'));
+   }
+
+   public function exportRefferalData()
+   {
+    $today = Carbon::now()->format('d-m-Y').'-Refferal'.'.xlsx';
+    return Excel::download(new AffiliateExport, $today);
+   }
+
+   public function allPendingPaymentDataView($id)
+   {
+    $pending_payments=Affiliate::where('affiliate_user_id',$id)->where('approved',0)->get();
+    return view('front-end.user.user_panel_pending_all',compact('pending_payments'));
+   }
+
+   public function exportPendingPaymentData()
+   {
+    $today = Carbon::now()->format('d-m-Y').'-Pending'.'.xlsx';
+    return Excel::download(new PendingPaymentExport, $today);
+   }
+
+   public function allPaymentDataView($id)
+   {
+    $payments=Affiliate::where('affiliate_user_id',$id)->where('approved',1)->get();
+    return view('front-end.user.user_panel_payment_all',compact('payments'));
+   }
+
+   public function exportPaymentData()
+   {
+    $today = Carbon::now()->format('d-m-Y').'-Payment'.'.xlsx';
+    return Excel::download(new PaymentExport, $today);
    }
 
 

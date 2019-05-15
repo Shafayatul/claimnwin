@@ -876,7 +876,7 @@
                               </div>
                             </div>
 
-                            <div class="common_row">
+                            {{-- <div class="common_row">
                               <div class="email_div">
                                 <div class="label_field">
                                   <label for="phone_number">PLEASE ENTER YOUR PHONE NUMBER</label>
@@ -885,7 +885,7 @@
                                   <input type="text" class="common_input phone_number" id="common_input phone_number" name="phone_number" placeholder="+123-2345678">
                                 </div>
                               </div>
-                            </div>
+                            </div> --}}
 
                             <div class="common_row">
                               <div class="total_button_div">

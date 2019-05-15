@@ -168,7 +168,7 @@ $(document).ready(function() {
         } else if (step == 3) {
             $("#continue_3").removeClass('active_button');
             // special necessary email
-            if (($("input[name='email_address']").val() == "") || ($("input[name='phone_number']").val() == ""))
+            if (($("input[name='email_address']").val() == ""))
             {
               return false;
             }
@@ -378,7 +378,7 @@ $(document).ready(function() {
               }
             });
 
-            
+
           }
         },
         error: function(e) {

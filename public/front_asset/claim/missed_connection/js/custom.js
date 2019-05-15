@@ -239,7 +239,7 @@ $(document).ready(function(){
         $("#continue_4").removeClass('active_button');
 
         // special necessary email
-        if (($("input[name='email_address']").val() == "") || ($("input[name='phone_number']").val() == ""))
+        if (($("input[name='email_address']").val() == ""))
         {
           return false;
         }
@@ -341,7 +341,7 @@ $(document).ready(function(){
         var is_post_code_empty = false;
         var is_phone_empty = false;
         var is_date_of_birth_empty = false;
-        
+
         $("input[name^='phone']").each(function(){
           if ($(this).val() == "") {
             is_phone_empty = true;
@@ -476,7 +476,7 @@ $(document).ready(function(){
               }
             });
 
-            
+
           }
         },
         error: function(e) {
