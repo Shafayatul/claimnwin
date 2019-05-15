@@ -16,6 +16,7 @@
         "laravel/framework": "5.8.*",
         "laravel/socialite": "^4.1",
         "laravel/tinker": "^1.0",
+        "maatwebsite/excel": "^3.1",
         "monarobase/country-list": "^2.1",
         "pragmarx/countries": "^0.5.9",
         "soumen-dey/laravel-user-agent": "^1.0",

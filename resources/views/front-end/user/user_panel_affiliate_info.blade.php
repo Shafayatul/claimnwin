@@ -30,7 +30,10 @@ table thead tr th:first-child {
                                 <h4>Latest 5 Refferals</h4>
                             </div>
                             <div class="col-md-6 col-xs-6 col-sm-6">
-                                <a href="" class="show-all"><h4>Show All</h4></a>
+                                @php
+                                   $id = auth()->user()->id;
+                                @endphp
+                                <a href="{{URL::to('/refferal-all/'.$id)}}" class="show-all"><h4>Show All</h4></a>
                             </div>
                         </div>
                         <div class="row">
@@ -75,7 +78,8 @@ table thead tr th:first-child {
                                     <h4>Latest 5 Pending Payments</h4>
                                 </div>
                                 <div class="col-md-6 col-xs-6 col-sm-6">
-                                    <a href="" class="show-all"><h4>Show All</h4></a>
+
+                                    <a href="{{URL::to('/pending-payment/'.$id)}}" class="show-all"><h4>Show All</h4></a>
                                 </div>
                             </div>
                             <div class="row">
@@ -121,7 +125,7 @@ table thead tr th:first-child {
                                         <h4>Latest 5 Payments</h4>
                                     </div>
                                     <div class="col-xs-6 col-sm-6">
-                                        <a href="" class="show-all"><h4>Show All</h4></a>
+                                        <a href="{{URL::to('/payment/'.$id)}}" class="show-all"><h4>Show All</h4></a>
                                     </div>
                                 </div>
                                 <div class="row">

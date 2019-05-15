@@ -73,6 +73,15 @@ Route::group(['middleware' => ['auth']], function() {
         Route::post('/user-upload-file','UserPanelController@claimFileUpload');
         Route::get('/user-download-file/{id}','UserPanelController@claimFileDownload');
         Route::get('/affiliate-info','UserPanelController@affiliateInfoShow' );
+
+        Route::get('/refferal-all/{id}', 'UserPanelController@allRefferalDataView');
+        Route::get('/refferal-all-export', 'UserPanelController@exportRefferalData');
+
+        Route::get('/pending-payment/{id}', 'UserPanelController@allPendingPaymentDataView');
+        Route::get('/pending-payment-all-export', 'UserPanelController@exportPendingPaymentData');
+
+        Route::get('/payment/{id}', 'UserPanelController@allPaymentDataView');
+        Route::get('/payment-all-export', 'UserPanelController@exportPaymentData');
     });
 
     // Admin + SUper Admin
