@@ -20,6 +20,7 @@
                                     <th>Percentage</th>
                                     <th>Received Amount</th>
                                     <th>Payment Method</th>
+                                    <th>Approved</th>
                                     <th>ACTION</th>
                                 </tr>
                             </thead>
