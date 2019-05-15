@@ -636,8 +636,9 @@ class ClaimsController extends Controller
             foreach ($request->flight_code as $single_flight_code) {
                 if ($single_flight_code != "") {
                   if ($request->flight_segment[$cnt] == $selected_connection_iata_codes) {
-                    $is_selected = 1;
-                    $airline_id  = Airline::where('iata_code', $single_flight_code)->first()->id;
+                    $is_selected    = 1;
+                    $airline_id     = Airline::where('iata_code', $single_flight_code)->first()->id;
+                    $departure_date = $request->departure_date[$cnt];
                   }else{
                     $is_selected = 0;
                   }
@@ -646,7 +647,7 @@ class ClaimsController extends Controller
                   $itineraryDetail->flight_number     = $request->flight_number[$cnt];
                   $itineraryDetail->flight_segment    = $request->flight_segment[$cnt];
                   $itineraryDetail->departure_date    = $request->departure_date[$cnt];
-                  $itineraryDetail->is_selected        = $is_selected;
+                  $itineraryDetail->is_selected       = $is_selected;
                   $itineraryDetail->airline_id        = Airline::where('iata_code', $single_flight_code)->first()->id;
                   $itineraryDetail->save();
                 }
@@ -720,7 +721,7 @@ class ClaimsController extends Controller
         */
         $cpanel_password  = $this->randomPassword();
 
-        $this->create_cpanel_email($cpanel_email_name, $cpanel_password);
+        // $this->create_cpanel_email($cpanel_email_name, $cpanel_password);
         $cpanel_email     = $cpanel_email_name.'@freeflightclaim.com';
 
 
@@ -732,7 +733,7 @@ class ClaimsController extends Controller
         }elseif ($claim_table_type == 'flight_cancellation') {
             $amount_and_distance = $this->flight_cancellation_calculaion($departed_from_id, $final_destination_id, $total_delay, $selected_connection_iata_codes, $claim->id);
         }elseif ($claim_table_type == 'delay_luggage') {
-            $amount_and_distance = $this->delay_luggage_calculaion($departed_from_id, $final_destination_id, $total_delay, $selected_connection_iata_codes, $claim->id);
+            $amount_and_distance = $this->delay_luggage_calculaion($departed_from_id, $final_destination_id, $total_delay, $selected_connection_iata_codes, $claim->id, $received_luggage_date, $is_already_written_airline, $written_airline_date, $departure_date);
         }elseif ($claim_table_type == 'lost_luggage') {
             $amount_and_distance = $this->lost_luggage_calculaion($departed_from_id, $final_destination_id, $total_delay, $selected_connection_iata_codes, $claim->id, $is_luggage_received, $received_luggage_date, $is_already_written_airline);
         }elseif ($claim_table_type == 'denied_boarding') {
@@ -1541,13 +1542,63 @@ class ClaimsController extends Controller
   }
 }
 }
-return '0'.'-'.$distance;
+    return '0'.'-'.$distance;
 }
 
 
 
 
 
+
+    public function ajax_delay_luggage_calculation(Request $request){
+        $received_luggage_date          = new \DateTime('20'.substr($request->received_luggage_date,6,2).'-'.substr($request->received_luggage_date,3,2).'-'.substr($request->received_luggage_date,0,2));
+        if ($request->is_already_written_airline == 1) {
+            $written_airline_date       = new \DateTime('20'.substr($request->written_airline_date,6,2).'-'.substr($request->written_airline_date,3,2).'-'.substr($request->written_airline_date,0,2));
+        }else{
+            $written_airline_date       = 0; 
+        }
+        $departure_date             = new \DateTime('20'.substr($request->departure_date,6,2).'-'.substr($request->departure_date,3,2).'-'.substr($request->departure_date,0,2));
+
+        $today                      = new \DateTime(date('Y-m-d'));
+        $diff = $today->diff($departure_date);
+
+        if ($diff->format("%a") > (2*365)) {
+                return response()->json([
+                    'amount' => '0',
+                    'msg'    => ''
+                ]);
+        }else{
+            $diff = $departure_date->diff($received_luggage_date);
+            if ($diff->format("%a") < (21)) {
+                return response()->json([
+                    'amount' => '135011 EUR',
+                    'msg'    => ''
+                ]);
+            }else{
+                if ($request->is_already_written_airline == 1) {
+                    $diff = $departure_date->diff($written_airline_date);
+                    if ($diff->format("%a") < (21)) {
+                        return response()->json([
+                            'amount' => '135022 EUR',
+                            'msg'    => ''
+                        ]);
+                    }else{
+                        return response()->json([
+                            'amount' => '135033 EUR',
+                            'msg'    => 'although low cances but we can try to claim up'
+                        ]);
+                    }
+                }else{
+                    return response()->json([
+                        'amount' => '135044 EUR',
+                        'msg'    => 'although low cances but we can try to claim up'
+                    ]);
+                }
+            }
+        }
+
+        return '0';
+    }
 
 
 
@@ -1630,7 +1681,8 @@ return '0'.'-'.$distance;
 
 
 
-    public function delay_luggage_calculaion($departed_from_id, $final_destination_id, $total_delay, $selected_connection_iata_codes, $claim_id){
+    public function delay_luggage_calculaion($departed_from_id, $final_destination_id, $total_delay, $selected_connection_iata_codes, $claim_id, $received_luggage_date, $is_already_written_airline, $written_airline_date, $departure_date){
+
 
         $airline_id = ItineraryDetail::WHERE('claim_id', $claim_id)->WHERE('flight_segment', $selected_connection_iata_codes)->first()->airline_id;
 
@@ -1643,162 +1695,47 @@ return '0'.'-'.$distance;
 
         $distance = $this->distance($departed_from->latitude, $departed_from->longitude, $final_destination->latitude, $final_destination->longitude, 'K');
 
-        // stated from Europe
-        if ((in_array(strtolower($departed_from->country), $this->europe_countries)) || (in_array(strtolower($departed_from->country), $this->europe_countries_code))) {
-
-            // europe to europe
-            if ((in_array(strtolower($final_destination->country), $this->europe_countries)) || (in_array(strtolower($final_destination->country), $this->europe_countries_code))) {
-
-                if ($total_delay == "less_than_3_hours") {
-                  return '0'.'-'.$distance;
-                }else{
-                  if ($distance < 1500) {
-                    return '250 EUR'.'-'.$distance;
-                  }elseif ($distance <= 3500) {
-                    return '400 EUR'.'-'.$distance;
-                  }else{
-                    return '600 EUR'.'-'.$distance;
-                  }
-                }
-
-            // europe to israel
-            }elseif((strtolower($final_destination->country) == "il") || (strtolower($final_destination->country) == "israel") ) {
-
-                if ($total_delay == "3_to_8_hours") {
-                  if ($distance < 1500) {
-                    return '250 EUR'.'-'.$distance;
-                  }elseif ($distance <= 3500) {
-                    return '400 EUR'.'-'.$distance;
-                  }else{
-                    return '600 EUR'.'-'.$distance;
-                  }
-                }elseif($total_delay == "more_than_8_hours"){
-                  if ($distance < 2000) {
-                    return '1250 ILS'.'-'.$distance;
-                  }elseif ($distance <= 3500) {
-                    return '2000 ILS'.'-'.$distance;
-                  }elseif ($distance <= 4500) {
-                    return '600 EUR'.'-'.$distance;
-                  }else{
-                    return '3080 ILS'.'-'.$distance;
-                  }
-                }
 
 
-            // europe to other country
-            }else{
 
-              if ($total_delay == "less_than_3_hours") {
-                return '0'.'-'.$distance;
-              }else{
-                if ($distance < 1500) {
-                  return '250 EUR'.'-'.$distance;
-                }elseif ($distance <= 3500) {
-                  return '400 EUR'.'-'.$distance;
-                }else{
-                  return '600 EUR'.'-'.$distance;
-                }
-              }
-
-            }
-
-
-          // started from israel
-          }elseif ((strtolower($departed_from->country) == "il") || (strtolower($departed_from->country) == "israel") )  {
-            // israel to europe
-            if ((in_array(strtolower($final_destination->country), $this->europe_countries)) || (in_array(strtolower($final_destination->country), $this->europe_countries_code))) {
-              // europe airline
-              if ((in_array(strtolower($airline->country), $this->europe_countries)) || (in_array(strtolower($airline->country), $this->europe_countries_code)) ) {
-
-                if ($total_delay == "3_to_8_hours") {
-                  if ($distance < 1500) {
-                    return '250 EUR'.'-'.$distance;
-                  }elseif ($distance <= 3500) {
-                    return '400 EUR'.'-'.$distance;
-                  }else{
-                    return '600 EUR'.'-'.$distance;
-                  }
-                }elseif($total_delay == "more_than_8_hours"){
-                  if ($distance < 2000) {
-                    return '1250 ILS'.'-'.$distance;
-                  }elseif ($distance <= 3500) {
-                    return '2000 ILS'.'-'.$distance;
-                  }elseif ($distance <= 4500) {
-                    return '600 EUR'.'-'.$distance;
-                  }else{
-                    return '3080 ILS'.'-'.$distance;
-                  }
-                }
-
-              // israel airline
-              }elseif ($airline->country == "IL") {
-                if ($total_delay == "more_than_8_hours") {
-                  if ($distance < 2000) {
-                    return '1250 ILS'.'-'.$distance;
-                  }elseif ($distance <= 4500) {
-                    return '2000 ILS'.'-'.$distance;
-                  }else{
-                    return '3080 ILS'.'-'.$distance;
-                  }
-                }else{
-                  return '0'.'-'.$distance;
-                }
-              }
-
-            // israel to other
-            }else{
-              if ($total_delay == "more_than_8_hours") {
-                if ($distance < 2000) {
-                  return '1250 ILS'.'-'.$distance;
-                }elseif ($distance <= 4500) {
-                  return '2000 ILS'.'-'.$distance;
-                }else{
-                  return '3080 ILS'.'-'.$distance;
-                }
-              }else{
-                return '0'.'-'.$distance;
-              }
-            }
-
-          // started from other country
-          }else{
-
-            // other country to europe
-            if ((in_array(strtolower($final_destination->country), $this->europe_countries)) || (in_array(strtolower($final_destination->country), $this->europe_countries_code))) {
-              // europe airline
-              if ((in_array(strtolower($airline->country), $this->europe_countries)) || (in_array(strtolower($airline->country), $this->europe_countries_code)) ) {
-                if ($total_delay == "less_than_3_hours") {
-                  return '0'.'-'.$distance;
-                }else{
-                  if ($distance < 1500) {
-                    return '250 EUR'.'-'.$distance;
-                  }elseif ($distance <= 3500) {
-                    return '400 EUR'.'-'.$distance;
-                  }else{
-                    return '600 EUR'.'-'.$distance;
-                  }
-                }
-              }else{
-                return '0'.'-'.$distance;
-              }
-
-            // other country to israel
-            }elseif((strtolower($final_destination->country) == "il") || (strtolower($final_destination->country) == "israel") ) {
-              if ($total_delay == "more_than_8_hours") {
-                if ($distance < 2000) {
-                  return '1250 ILS'.'-'.$distance;
-                }elseif ($distance <= 4500) {
-                  return '2000 ILS'.'-'.$distance;
-                }else{
-                  return '3080 ILS'.'-'.$distance;
-                }
-              }else{
-                return '0'.'-'.$distance;
-              }
-            }
-          }
-          return '0'.'-'.$distance;
+        $received_luggage_date          = new \DateTime('20'.substr($received_luggage_date,6,2).'-'.substr($received_luggage_date,3,2).'-'.substr($received_luggage_date,0,2));
+        if ($is_already_written_airline == 1) {
+            $written_airline_date       = new \DateTime('20'.substr($written_airline_date,6,2).'-'.substr($written_airline_date,3,2).'-'.substr($written_airline_date,0,2));
+        }else{
+            $written_airline_date       = 0; 
         }
+        $departure_date             = new \DateTime('20'.substr($departure_date,6,2).'-'.substr($departure_date,3,2).'-'.substr($departure_date,0,2));
+
+        $today                      = new \DateTime(date('Y-m-d'));
+
+
+
+
+
+        $diff = $today->diff($departure_date);
+
+        if ($diff->format("%a") > (2*365)) {
+                return '0'.'-'.$distance;
+        }else{
+            $diff = $departure_date->diff($received_luggage_date);
+            if ($diff->format("%a") < (21)) {
+                return '1350 EUR'.'-'.$distance;
+            }else{
+                if ($is_already_written_airline == 1) {
+                    $diff = $departure_date->diff($written_airline_date);
+                    if ($diff->format("%a") < (21)) {
+                        return '1350 EUR'.'-'.$distance;
+                    }else{
+                        return '1350 EUR'.'-'.$distance;
+                    }
+                }else{
+                    return '1350 EUR'.'-'.$distance;
+                }
+            }
+        }
+
+        return '0'.'-'.$distance;
+    }
 
 
 

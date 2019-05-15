@@ -28,6 +28,7 @@ Route::post('/ajax/calculate/fight_delay_calculation','ClaimsController@ajax_fig
 Route::post('/ajax/calculate/fight_cancellation_calculation','ClaimsController@ajax_fight_cancellation_calculation');
 Route::post('/ajax/calculate/lost_luggage_calculation','ClaimsController@ajax_lost_luggage_calculation');
 Route::post('/ajax/calculate/denied_bording_calculation','ClaimsController@ajax_denied_bording_calculation');
+Route::post('/ajax/calculate/delay_luggage_calculation','ClaimsController@ajax_delay_luggage_calculation');
 
 Route::post('/ajax/currency_converter_url','ClaimsController@currency_converter_url');
 
