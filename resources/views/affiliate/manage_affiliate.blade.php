@@ -58,11 +58,13 @@
                             </tbody>
                         </table>
                         <div class="pagination-wrapper">  </div>
+                        @if(count($affliates) > 0)
                         <div class="row">
                             <div class="col-md-12 col-md-offset-5">
                             <a href="{{URL::to('/export-affliate-all')}}" class="btn btn-lg btn-success text-center"><i class="fa fa-file-excel-o"></i> Export All</a>
                             </div>
                         </div>
+                        @endif
                     </div>
                 </div>
             </div>
