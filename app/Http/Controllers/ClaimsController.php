@@ -1625,38 +1625,18 @@ class ClaimsController extends Controller
 
         $claim = Claim::where('id', $claim_id)->first();
         $Itinerary_detail = ItineraryDetail::WHERE('claim_id', $claim_id)->first();
-        $departure_date = strtotime($Itinerary_detail->departure_date);
-        $current_date = strtotime($claim->created_at);
-        $time_diff = $current_date - $departure_date;
 
-        if ($is_luggage_received==1) {
+        $departure_date = new \DateTime('20'.substr($Itinerary_detail->departure_date,6,2).'-'.substr($Itinerary_detail->departure_date,3,2).'-'.substr($Itinerary_detail->departure_date,0,2));
 
-            if ($time_diff > (2*365*24*60*60)) {
-                return '0'.'- ';
-            }else{
-                $received_luggage_date = strtotime($received_luggage_date);
-                $time_diff = $departure_date - $received_luggage_date;
-                if ($time_diff < (21*24*60*60)) {
-                    return '1350 EUR'.'- ';
-                }else{
-                    if ($is_already_written_airline == 1) {
-                        return '1350 EUR'.'- ';
-                    }else{
-                        return '1350 EUR'.'- ';
-                    }
-                }
-            }
+        $today = new \DateTime(date('Y-m-d'));
 
+        $diff = $today->diff($departure_date);
+
+        if ($diff->format("%a") > (2*365)) {
+            return '0'.'- ';
         }else{
-
-            if ($time_diff > (2*365*24*60*60)) {
-                return '0'.'- ';
-            }else{
-                return '1350 EUR'.'- ';
-            }
-
+            return '1350 EUR'.'- ';
         }
-        return '0'.'- ';
     }
 
 
