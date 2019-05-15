@@ -113,7 +113,7 @@
               <li><a href="{{route('role.assign')}}"><i class="fa fa-angle-right"></i>User List</a></li>
               </ul>
             </li>
-            <li><a href="{{url('/manage-affiliate')}}"><i class="fa fa-pie-chart"></i> Manage Affiliation Report</a></li>
+
             {{-- @hasrole('Super Admin') --}}
             <li><a href="{{url('/activity/index')}}"><i class="fa fa-pie-chart"></i> Activity Log</a></li>
             {{-- @endhasrole --}}
@@ -130,6 +130,19 @@
               <li><a href="{{URL::to('/claim-status/create')}}"><i class="fa fa-angle-right"></i> Add Claim Status</a></li>
               <li><a href="{{URL::to('/claim-status')}}"><i class="fa fa-angle-right"></i> Manage claim Status</a></li>
               </ul>
+            </li>
+
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-cog"></i>
+                    <span>Affiliate</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{URL::to('/affiliates')}}"><i class="fa fa-angle-right"></i> Manage Affiliate</a></li>
+                    <li><a href="{{url('/manage-affiliate')}}"><i class="fa fa-pie-chart"></i> Manage Affiliation Report</a></li>
+                    {{-- <li><a href="{{URL::to('')}}"><i class="fa fa-angle-right"></i> Manage claim Status</a></li> --}}
+                </ul>
             </li>
 
             <li class="treeview">
@@ -162,7 +175,7 @@
             <li><a href="{{url('/tickets-inbox')}}"><i class="fa fa-ticket-alt"></i>Tickets Inbox</a></li>
 
             <li><a href="{{url('/my-tickets')}}"><i class="fa fa-ticket-alt"></i> My Tickets</a></li>
-            
+
             <li><a href="{{url('/contact-messages')}}"><i class="fa fa-envelope"></i> Contact Messages</a></li>
 
             <li class="treeview">

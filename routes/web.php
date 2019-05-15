@@ -64,7 +64,7 @@ Route::get('/user/login','UserPanelController@user_login')->name('user/login');
 /* ----- Only Logged User ----- */
 Route::group(['middleware' => ['auth']], function() {
 
-    // user panel
+
     Route::group(['middleware' => ['role:User']], function () {
         Route::get('/user-home','UserPanelController@index');
         Route::get('/user-my-claim/{id}','UserPanelController@user_my_claim');
@@ -72,16 +72,16 @@ Route::group(['middleware' => ['auth']], function() {
         Route::post('/user-ticket-message','UserPanelController@user_ticket_message')->name('user-ticket-message');
         Route::post('/user-upload-file','UserPanelController@claimFileUpload');
         Route::get('/user-download-file/{id}','UserPanelController@claimFileDownload');
-        Route::get('/affiliate-info','UserPanelController@affiliateInfoShow' );
+        Route::get('/affiliate-info','UserPanelController@affiliateInfoShow');
 
-        Route::get('/refferal-all/{id}', 'UserPanelController@allRefferalDataView');
-        Route::get('/refferal-all-export', 'UserPanelController@exportRefferalData');
+        Route::get('/refferal-all/{id}','UserPanelController@allRefferalDataView');
+        Route::get('/refferal-all-export','UserPanelController@exportRefferalData');
 
-        Route::get('/pending-payment/{id}', 'UserPanelController@allPendingPaymentDataView');
-        Route::get('/pending-payment-all-export', 'UserPanelController@exportPendingPaymentData');
+        Route::get('/pending-payment/{id}','UserPanelController@allPendingPaymentDataView');
+        Route::get('/pending-payment-all-export','UserPanelController@exportPendingPaymentData');
 
-        Route::get('/payment/{id}', 'UserPanelController@allPaymentDataView');
-        Route::get('/payment-all-export', 'UserPanelController@exportPaymentData');
+        Route::get('/payment/{id}','UserPanelController@allPaymentDataView');
+        Route::get('/payment-all-export','UserPanelController@exportPaymentData');
     });
 
     // Admin + SUper Admin
@@ -173,6 +173,14 @@ Route::group(['middleware' => ['auth']], function() {
         Route::post('/ticket-reply-data', 'TicketsController@ticketReplyDataSave')->name('ticket-reply-data');
 
         Route::post('/update-affilite-info-data', 'ClaimBackController@updateAffiliteInfoData')->name('update-affilite-info-data');
+
+        Route::get('/affiliates', 'AffiliatesController@manageAffiliate');
+        Route::delete('/affiliate/{id}', 'AffiliatesController@destroy');
+        Route::get('/affliate/{id}/edit', 'AffiliatesController@edit');
+        Route::get('/affliate/{id}', 'AffiliatesController@show');
+        Route::patch('affliate/{id}', 'AffiliatesController@update');
+        Route::get('/export-affliate-all', 'AffiliatesController@exportAffiliate');
+
     });
 });
 
@@ -188,3 +196,5 @@ Route::get('/contact-messages','ContactsController@index');
 Route::get('/contact-show','ContactsController@index@show');
 
 Route::resource('contacts', 'ContactsController');
+
+
