@@ -1541,13 +1541,63 @@ class ClaimsController extends Controller
   }
 }
 }
-return '0'.'-'.$distance;
+    return '0'.'-'.$distance;
 }
 
 
 
 
 
+
+    public function ajax_delay_luggage_calculation(Request $request){
+        $received_luggage_date          = new \DateTime('20'.substr($request->received_luggage_date,6,2).'-'.substr($request->received_luggage_date,3,2).'-'.substr($request->received_luggage_date,0,2));
+        if ($request->is_already_written_airline == 1) {
+            $written_airline_date       = new \DateTime('20'.substr($request->written_airline_date,6,2).'-'.substr($request->written_airline_date,3,2).'-'.substr($request->written_airline_date,0,2));
+        }else{
+            $written_airline_date       = 0; 
+        }
+        $departure_date             = new \DateTime('20'.substr($request->departure_date,6,2).'-'.substr($request->departure_date,3,2).'-'.substr($request->departure_date,0,2));
+
+        $today                      = new \DateTime(date('Y-m-d'));
+        $diff = $today->diff($departure_date);
+
+        if ($diff->format("%a") > (2*365)) {
+                return response()->json([
+                    'amount' => '0',
+                    'msg'    => ''
+                ]);
+        }else{
+            $diff = $departure_date->diff($received_luggage_date);
+            if ($diff->format("%a") < (21)) {
+                return response()->json([
+                    'amount' => '135011 EUR',
+                    'msg'    => ''
+                ]);
+            }else{
+                if ($request->is_already_written_airline == 1) {
+                    $diff = $departure_date->diff($written_airline_date);
+                    if ($diff->format("%a") < (21)) {
+                        return response()->json([
+                            'amount' => '135022 EUR',
+                            'msg'    => ''
+                        ]);
+                    }else{
+                        return response()->json([
+                            'amount' => '135033 EUR',
+                            'msg'    => 'although low cances but we can try to claim up'
+                        ]);
+                    }
+                }else{
+                    return response()->json([
+                        'amount' => '135044 EUR',
+                        'msg'    => 'although low cances but we can try to claim up'
+                    ]);
+                }
+            }
+        }
+
+        return '0';
+    }
 
 
 

@@ -67,7 +67,7 @@ $(document).ready(function() {
 
       if (type=='single') {
         var value = $("input[name='departed_from']").attr('iata-code')+'-'+$("input[name='final_destination']").attr('iata-code');
-        var html = '<div class="common_row"><div class="parent_div"><div class="single_child_div"><div class="arrival_to_destination_text_div"><span class="arrival_to_destination_text_span">'+$("input[name='departed_from']").val()+'<i class="fas fa-plane"></i>'+$("input[name='final_destination']").val()+'</span></div></div></div><div class="parent_div"><div class="single_child_div"><div class="left_div"><div class="label_field"><label for="airline">AIRLINE</label></div><div class="input_field"><input type="text" serial="1" class="auto_airline_complete common_input airline" id="common_input airline" name="airline[]" placeholder="e.g. London Executive Aviation"><input type="hidden" name="flight_segment[]" value="'+value+'"></div></div><div class="right_div"><div class="flight_number_div"><div class="label_field"><label for="departure_airport">FLIGHT NO.</label></div><div class="two_input_field"><div class="child_two_input_field_left"><div class="input_field"><input type="text" class="common_input flight_code flight_code_1" id="common_input flight_code" name="flight_code[]" placeholder="ABC"></div></div><div class="child_two_input_field_right"><div class="input_field"><input type="text" class="common_input flight_number" id="common_input flight_number" name="flight_number[]" placeholder="1234"></div></div></div></div><div class="departure_date_div"><div class="label_field"><label for="departure_airport">DEPARTURE DATE</label></div><div class="two_input_field"><div class="input_field"><input type="text" class="common_input departure_airport date" id="common_input departure_airport date" name="departure_date[]" placeholder=" DD/MM/YY"></div></div></div></div></div></div></div>';
+        var html = '<div class="common_row"><div class="parent_div"><div class="single_child_div"><div class="arrival_to_destination_text_div"><span class="arrival_to_destination_text_span">'+$("input[name='departed_from']").val()+'<i class="fas fa-plane"></i>'+$("input[name='final_destination']").val()+'</span></div></div></div><div class="parent_div"><div class="single_child_div"><div class="left_div"><div class="label_field"><label for="airline">AIRLINE</label></div><div class="input_field"><input type="text" serial="1" class="auto_airline_complete common_input airline" id="common_input airline" name="airline[]" placeholder="e.g. London Executive Aviation"><input type="hidden" name="flight_segment[]" value="'+value+'"></div></div><div class="right_div"><div class="flight_number_div"><div class="label_field"><label for="departure_airport">FLIGHT NO.</label></div><div class="two_input_field"><div class="child_two_input_field_left"><div class="input_field"><input type="text" class="common_input flight_code flight_code_1" id="common_input flight_code" name="flight_code[]" placeholder="ABC"></div></div><div class="child_two_input_field_right"><div class="input_field"><input type="text" class="common_input flight_number" id="common_input flight_number" name="flight_number[]" placeholder="1234"></div></div></div></div><div class="departure_date_div"><div class="label_field"><label for="departure_airport">DEPARTURE DATE</label></div><div class="two_input_field"><div class="input_field"><input type="text" class="common_input departure_airport date" id="common_input departure_airport date" name="departure_date" placeholder=" DD/MM/YY"></div></div></div></div></div></div></div>';
         $('.itinerary_flight_element').html(html);
         console.log("hhhhh:" +value);
         // $("input[name='selected_connection_iata_codes']").attr('value').val(value);
@@ -120,6 +120,61 @@ $(document).ready(function() {
         $('.single_step').hide();
         $("#step_" + step).show();
     });
+
+
+
+
+    function ajax_calculation(){
+
+
+      var is_already_written_airline  = $("input[name='is_already_written_airline']:checked").val();
+      var written_airline_date        = $("input[name='written_airline_date']").val();
+      var departure_date              = $("input[name='departure_date']").val();
+      var received_luggage_date       = $("input[name='received_luggage_date']").val();
+
+  
+      $.ajax({
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        type: 'POST',
+        url: ajax_cal_url,
+        data: {
+          is_already_written_airline  : is_already_written_airline,
+          written_airline_date        : written_airline_date,
+          departure_date              : departure_date,
+          received_luggage_date       : received_luggage_date
+        },
+        success: function (data){
+          console.log(data);
+          if (data.amount == '0') {
+            $(".result_from_ajax_calculation").html('<div class="form_h3 text-center"><h3>SORRY!!!</h3></div><div class="form_show_message_paragraph"><p>Unfortunately, this flight is not eligible for compensation.Your claim details do not meet the criteria of Israeli or EU law to be compensated. Eligibility is calculated according the length of delay, air carriers and routes you have travelled on.</p></div>');
+             $("#continue_5").hide();
+          }else{
+
+            $.ajax({
+              headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+              type: 'POST',
+              url: currency_converter_url,
+              data: {
+                amount_and_currency: data.amount
+              },
+              success: function (newData){
+                var finalAmount = data.amount+' ('+newData+')';
+                if (data.msg != '') {
+                  finalAmount = finalAmount+data.msg;
+                }
+                $(".result_from_ajax_calculation").html('<div class="form_h3 text-center"><h3>CONGRATULATIONS!!!</h3></div><div class="form_show_message_paragraph"><p>You are eligible for compensation. Your claim amount will be up to '+finalAmount+'</p></div>');
+              }
+            });
+
+            
+          }
+        },
+        error: function(e) {
+          console.log(e);
+        }
+      });
+    }
+
 
     function check_next_step() {
       console.log('Step n0. '+step );
@@ -281,7 +336,12 @@ $(document).ready(function() {
 
     function next() {
         if (check_next_step()) {
-            step++;
+            if(step==4){
+                ajax_calculation();
+                step++;
+              }else{
+                step++;
+              }
             $('.single_step').hide();
             $("#step_" + step).show();
         }
