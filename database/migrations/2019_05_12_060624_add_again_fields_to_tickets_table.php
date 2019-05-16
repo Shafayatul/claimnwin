@@ -18,6 +18,7 @@ class AddAgainFieldsToTicketsTable extends Migration
             $table->string('to_email')->nullable();
             $table->string('priority')->nullable();
             $table->string('ticket_status')->nullable();
+            $table->string('imap_msg_no')->nullable();
         });
     }
 
@@ -33,6 +34,7 @@ class AddAgainFieldsToTicketsTable extends Migration
             $table->dropColumn('to_email');
             $table->dropColumn('priority');
             $table->dropColumn('ticket_status');
+            $table->dropColumn('imap_msg_no');
         });
     }
 }

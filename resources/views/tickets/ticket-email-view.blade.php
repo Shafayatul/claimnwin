@@ -37,22 +37,20 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-12">
+
                             <h4><i class="fa fa-envelope"></i>&nbsp;&nbsp; {{$ticket->subject}}</h4>
+
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <h6><strong>Sajal Kundu</strong> reported via email</h6>
+                        <h6><strong>{{$from_name}}</strong> reported via email</h6>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            @if($ticket->status == 1)
-                            <span style="background-color: #00E6DE; font-weight: bold;" class="btn btn-default btn-sm">New</span>
-                            @elseif($ticket->status == 2)
-                            <span style="color: #00CC3D;">Waiting For Reply</span>
-                            @else
-                            <span class="text-danger">Closed</span>
+                            @if($ticket->ticket_status != null)
+                            <span style="background-color: #00E6DE; font-weight: bold;" class="btn btn-default btn-sm">{{$ticket->ticket_status}}</span>
                             @endif
                         </div>
                     </div>
@@ -63,13 +61,13 @@
                                     <div class="panel-heading" style="height: auto!important;">
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <h6><strong>Sajal Kundu</strong> reported via email, 5 minutes ago(Tue, 14 May 2019 at 12:38 PM)</h6><br>
+                                                <h6><strong>{{$from_name}}</strong> reported via email ({{$date}} at {{$time}})</h6><br>
 
-                                                <h6><strong>to: </strong> info@freeflight.com</h6>
+                                                <h6><strong>to: </strong> {{$to}}</h6>
                                             </div>
                                             <div class="col-md-6">
                                                 <ul class="reply pull-right">
-                                                    <li><a href=""><i class="fa fa-share"></i></a></li>
+                                                <li><a href="{{URL::to('/ticket-reply-view/'.$ticket->id)}}"><i class="fa fa-share"></i></a></li>
                                                     <li><a href=""><i class="fa fa-pencil-square-o"></i></a></li>
                                                 </ul>
                                             </div>
@@ -86,6 +84,44 @@
                             </div>
                         </div>
                     </div>
+<!-------------------------------Start Reply Email--------------------------->
+                    @foreach($ticket_reply as $row)
+                    <div class="row">
+                            <div class="col-md-12">
+                                <div class="panel-group">
+                                    <div class="panel panel-success">
+                                        <div class="panel-heading" style="height: auto!important;">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    @php
+                                                        $date=Carbon\Carbon::parse($row->created_at)->format("D, d M Y");
+                                                        $time = Carbon\Carbon::parse($row->created_at)->format("h:i A");
+                                                    @endphp
+                                                    <h6><strong>{{$row->from_name}}</strong> reported via email ({{$date}} at {{$time}})</h6><br>
+
+                                                    <h6><strong>to: </strong> {{$row->to_email}}</h6>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <ul class="reply pull-right">
+                                                    <li><a href="{{URL::to('/ticket-reply-view/'.$row->ticket_id)}}"><i class="fa fa-share"></i></a></li>
+                                                        <li><a href=""><i class="fa fa-pencil-square-o"></i></a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="panel-body" style="background-color: #d6e9c6;">
+                                            {!! $row->ticket_reply_note !!}
+                                        </div>
+                                        <div class="panel-footer">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach
+<!-------------------------------End Reply Email--------------------------->
                 </div>
             </div>
         </div>

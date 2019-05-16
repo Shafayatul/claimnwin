@@ -27,13 +27,13 @@
 
                         <div class="form-group">
                             <div class="col-md-12">
-                            <input type="text" name="from_email"  id="from_email" class="form-control" placeholder="From Email" required/>
+                            <input type="text" name="from_email"  id="from_email" value="{{$ticket->to_email}}" class="form-control" placeholder="From Email" required/>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <div class="col-md-12">
-                            <input type="text" name="to_email" id="to_email" value="{{$ticket->from_email}}" class="form-control" placeholder="To Email" readonly/>
+                            <input type="text" name="to_email" id="to_email" value="{{$ticket->from_email}}" class="form-control" placeholder="To Email" />
                             </div>
                         </div>
 
