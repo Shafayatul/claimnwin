@@ -199,26 +199,23 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>Compensation from {{ $airline->name }}</td>
-                                            <td>
-                                                <span class="text-right">
-                                                    {{$claims->amount.' ('.$claims->converted_expection_amount.')'}}
-                                                </span>
-                                            </td>
-                                        </tr>
+                                        @foreach($expenses as $expense)
+                                            @if($expense->amount !="")
+                                                <tr>
+                                                    <td>{{ucwords($expense->name)}}</td>
+                                                    <td>
+                                                        <span class="text-right">
+                                                            {{$expense->amount}} {{$expense->currency}}
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                            @endif
+                                        @endforeach
                                         <tr class="compensation_table_result_row">
                                             <td>Your Compensation</td>
                                             <td>
                                                 <span class="text-right">
-                                                    {{-- @php
-                                                    // $string = $claims->converted_expection_amount;
-                                                    // $compensation_from_airline = preg_replace("/[^0-9\.]/", '', $string);
-                                                    // $welcome_success_fee = (($compensation_from_airline*10)/100);
-                                                    // echo ($compensation_from_airline - $welcome_success_fee);
-                                                    // echo $compensation_from_airline;
-                                                    @endphp --}}
-                                                    ??????
+                                                    {{$claims->amount.' ('.$claims->converted_expection_amount.')'}}
                                                 </span>
                                             </td>
                                         </tr>

@@ -11,6 +11,7 @@ use App\ClaimFile;
 use App\Ticket;
 use App\TicketNote;
 use App\ClaimStatus;
+use App\Expense;
 use Hash;
 use File;
 use Share;
@@ -53,9 +54,9 @@ class UserPanelController extends Controller
       $airline = Airline::where('id', $claims->airline_id)->first();
       $claim_files = ClaimFile::where('claim_id', $claims->id)->get();
       $claim_staus = ClaimStatus::where('id',$claims->claim_status_id)->first();
-       // $claim = Claim::where('id',$id)->get();
+      $expenses = Expense::where('claim_id',$id)->get();
        // $ticket = Ticket::where('claim_id', $id)->first();
-        return view('front-end.user.user_panel_my_claim', compact('claims', 'ticket_notes', 'airline', 'claim_files','claim_staus'));
+        return view('front-end.user.user_panel_my_claim', compact('claims', 'ticket_notes', 'airline', 'claim_files','claim_staus', 'expenses'));
     }
 
     public function claimFileUpload(Request $request)
