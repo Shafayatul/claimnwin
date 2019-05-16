@@ -300,4 +300,12 @@ class TicketsController extends Controller
         $ticketNote->save();
         return redirect('/tickets-inbox')->with('success','Sent Email Successfully!');
     }
+
+    public function ticketSingleEmailView($id)
+    {
+
+        $ticket=Ticket::find($id);
+        $ticket_note = TicketNote::where('ticket_id',$id)->first();
+        return view('tickets.ticket-email-view',compact('ticket','ticket_note'));
+    }
 }

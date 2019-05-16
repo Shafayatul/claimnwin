@@ -35,25 +35,30 @@
                     <br/>
                     <br/> --}}
                     <div class="table-responsive">
-                        <table class="table table-borderless">
+                        <table class="table table-borderd table-striped">
                             <thead>
                                 <tr>
-                                    <th>#</th>
+                                    <th></th>
+                                    <th>Contact</th>
                                     <th>Subject</th>
+                                    <th>State</th>
+                                    <th>Group/Agent</th>
+                                    <th>Priority</th>
                                     <th>Status</th>
-                                    <th>Is Assigned</th>
-                                    <th>Assigned Email</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
                             @foreach($tickets as $item)
                                 <tr>
-                                    <td>{{ $loop->iteration }}</td>
+                                    <td>
+                                        <input type="checkbox" name="" id="" class="cutom-checkbox">
+                                    </td>
+                                <td><a href="{{URL::to('/ticket-single-email/'.$item->id)}}">{{$item->from_email}}</a></td>
                                     <td>{{ ucfirst(str_replace('_', ' ', $item->subject)) }}</td>
                                     <td>
                                         @if($item->status == 1)
-                                        <span style="color: #FF9800;">Action Required</span>
+                                        <span style="background-color: #00E6DE; font-weight: bold;" class="btn btn-default btn-sm">New</span>
                                         @elseif($item->status == 2)
                                         <span style="color: #00CC3D;">Waiting For Reply</span>
                                         @else
@@ -61,16 +66,29 @@
                                         @endif
                                     </td>
                                     <td>
-                                        @if($item->assign_user_id == null)
-                                        <span style="color: #F44336;">Not Assigned</span>
-                                        @else
-                                        <span style="color: #00CC3D;">Assigned</span>
+                                        @if($item->assign_user_id != null)
+                                        <select name="assign_user_id" id="user" class="form-control">
+                                            @foreach($users as $key=>$value)
+                                            <option value="{{$key}}">{{$value}}</option>
+                                            @endforeach
+                                        </select>
                                         @endif
                                     </td>
                                     <td>
-                                        @if($item->assign_user_id != null)
-                                            {{$assign_users[$item->assign_user_id]}}
-                                        @endif
+                                        <select name="priority" id="priority" class="form-control">
+                                            <option>Low</option>
+                                            <option>Medium</option>
+                                            <option>High</option>
+                                            <option>Urgent</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select name="ticket_status" id="" class=" form-control">
+                                            <option value="1">Open</option>
+                                            <option value="2">Pending</option>
+                                            <option value="3">Resolved</option>
+                                            <option value="4">Closed</option>
+                                        </select>
                                     </td>
                                     <td>
                                         @if($item->claim_id !="")
@@ -78,9 +96,6 @@
                                         @endif
                                         <a href="{{ url('/tickets/' . $item->id) }}" title="View Ticket"><button class="btn btn-info btn-sm"><i class="fa fa-comment" aria-hidden="true"></i> Reply</button></a>
 
-                                        @if($item->claim_id =="")
-                                        <a class="btn btn-success btn-sm" data-toggle="modal" data-target="#reply_via-{{$item->id}}"><i class="fa fa-send"></i> Reply Via Email</a>
-                                        @endif
 
                                         @if($item->status != 3)
                                             {!! Form::open([
@@ -149,76 +164,6 @@
 
                                                 </div>
                                             </form>
-                                            </div>
-
-                                            </div>
-                                        </div>
-
-
-
-
-                                        <div class="modal fade" id="reply_via-{{$item->id}}" role="dialog">
-                                            <div class="modal-dialog">
-
-                                            <!-- Modal content-->
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                <h4 class="modal-title">Reply Email #{{$item->from_email}}</h4>
-                                                </div>
-
-                                                <div class="modal-body">
-                                                    <form action="{{route('ticket-reply-data')}}" method="post" class="form-horizontal" enctype="multipart/form-data">
-                                                        @csrf
-                                                        <div class="form-group">
-                                                            <div class="col-md-12">
-                                                                <input type="text" name="from_name" id="from_name" value="Claimand Win" class="form-control" placeholder="From Name" required/>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="form-group">
-                                                            <div class="col-md-12">
-                                                            <input type="text" name="from_email"  id="from_email" class="form-control" placeholder="From Email" required/>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="form-group">
-                                                            <div class="col-md-12">
-                                                            <input type="text" name="to_email" id="to_email" value="{{$item->from_email}}" class="form-control" placeholder="To Email" readonly/>
-                                                            </div>
-                                                        </div>
-
-
-
-                                                        <div class="form-group">
-                                                            <div class="col-md-12">
-                                                                <input type="text" name="sub" id="airline_sub" class="form-control" placeholder="Subject" required/>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="form-group">
-                                                            <div class="col-md-12">
-                                                                <textarea name="ticket_reply_note"  class="form-control ticket_textarea" rows="5" cols="50"></textarea>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="form-group">
-                                                            <div class="col-md-12">
-                                                                <input type="file" name="ticket_reply_files[]" id="" class="form-control" multiple/>
-                                                                <input type="hidden" name="ticket_id" value="{{$item->id}}">
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="form-group">
-                                                            <div class="col-md-12">
-                                                                <button type="submit" class="btn btn-sm btn-success">Send</button>
-                                                            </div>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                </div>
                                             </div>
 
                                             </div>
