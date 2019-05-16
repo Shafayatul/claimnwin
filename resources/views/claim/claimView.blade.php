@@ -2015,6 +2015,7 @@
                     <i class="fa fa-info-circle"></i> Affiliate Info Form
                 </div>
                 <div class="panel-body">
+                @if($claims->affiliate_user_id !="")   
                 <form action="{{route('update-affilite-info-data')}}" method="post" class="form-horizontal" name="affiliate_infos">
                         @csrf
                         <div class="form-group">
@@ -2053,8 +2054,8 @@
                             <label for="approved" class="control-label col-md-3">Approved Status</label>
                             <div class="col-md-9">
                                 <select name="approved" id="approved" class="form-control">
-                                    <option value="0">No</option>
-                                    <option value="1">Yes</option>
+                                    <option value="0" @if($affilaite_info == 0) selected @endif>No</option>
+                                    <option value="1" @if($affilaite_info == 1) selected @endif>Yes</option>
                                 </select>
                             </div>
                         </div>
@@ -2064,6 +2065,7 @@
                             </div>
                         </div>
                     </form>
+                @endif
                 </div>
             </div>
         </div>
@@ -2727,7 +2729,6 @@ $('#note').froalaEditor()
     document.forms['clam_nextstep_status'].elements['claim_status'].value="{{$claimStatusData->id}}";
     document.forms['clam_nextstep_status'].elements['nextstep_status'].value="{{$NextStepData->id}}";
     document.forms['required_details'].elements['bank_details_id'].value="{{$claims->bank_details_id}}";
-    document.forms['affiliate_infos'].elements['approved'].value="{{$affilaite_info->approved}}";
 </script>
 @endsection
 @section('footer-script')
