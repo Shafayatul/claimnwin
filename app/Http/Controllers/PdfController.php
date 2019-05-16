@@ -16,6 +16,7 @@ use App\Currency;
 use App\Airline;
 use App\Mail\LetterBeforeAction;
 use App\SentEmail;
+use App\Flight;
 
 class PdfController extends Controller
 {
@@ -104,8 +105,8 @@ class PdfController extends Controller
 
         $airline = Airline::where('id',$itt_details->airline_id)->first();
 
-
-        return view('pdf.letterBeforeAction',compact('airline','currency','bank_info','connection_airport','itt_details','dept_and_arrival_airport','departed_airport','final_destination_airport','claim','all_passenger','iternery','expense','reminder','connection','current_passenger', 'internal_connected_airport_names'));
+        $flights = Flight::where('flight_no', $itt_details->flight_number)->first();
+        return view('pdf.letterBeforeAction',compact('airline', 'flights', 'currency','bank_info','connection_airport','itt_details','dept_and_arrival_airport','departed_airport','final_destination_airport','claim','all_passenger','iternery','expense','reminder','connection','current_passenger', 'internal_connected_airport_names'));
     }
 
     public function pdfView($id)
