@@ -58,8 +58,8 @@
             </a>
             <ul class="treeview-menu">
             <li><a href="{{url('/manage-claim')}}"><i class="fa fa-angle-right"></i> Manage Claim</a></li>
-            <li><a href="{{url('/manage-unfinished-claim')}}"><i class="fa fa-angle-right"></i> Manage Unfinished Claim</a></li>
-            <li><a href="{{url('/manage-fills-claim')}}"><i class="fa fa-angle-right"></i> Manage Fills Claim</a></li>
+            {{-- <li><a href="{{url('/manage-unfinished-claim')}}"><i class="fa fa-angle-right"></i> Manage Unfinished Claim</a></li> --}}
+            {{-- <li><a href="{{url('/manage-fills-claim')}}"><i class="fa fa-angle-right"></i> Manage Fills Claim</a></li> --}}
             <li><a href="{{url('/archive-manage-claim')}}"><i class="fa fa-angle-right"></i> Archive Claims</a></li>
             </ul>
             </li>
@@ -169,7 +169,7 @@
               </ul>
             </li>
             {{-- @hasrole('Super Admin') --}}
-            <li><a href="{{url('/tickets')}}"><i class="fa fa-ticket-alt"></i> Manage Tickets</a></li>
+            {{-- <li><a href="{{url('/tickets')}}"><i class="fa fa-ticket-alt"></i> Manage Tickets</a></li> --}}
             {{-- @endhasrole --}}
 
             <li><a href="{{url('/tickets-inbox')}}"><i class="fa fa-ticket-alt"></i>Tickets Inbox</a></li>
