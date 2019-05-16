@@ -38,7 +38,7 @@ $(document).ready(function() {
              }
            });
            if (!is_connection_empty) {
-             itinerary_details_for_your_disrupted_flight_html('multiple');
+             itinerary_details_for_your_disrupted_flight_html('single');
            }
          }else{
            itinerary_details_for_your_disrupted_flight_html('single');
