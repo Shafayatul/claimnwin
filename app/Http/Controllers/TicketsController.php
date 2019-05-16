@@ -16,6 +16,7 @@ use Webklex\IMAP\Client;
 use App\TicketReplyEmail;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\TicketReply;
+use Carbon\Carbon;
 
 class TicketsController extends Controller
 {
@@ -51,24 +52,28 @@ class TicketsController extends Controller
             /** @var \Webklex\IMAP\Message $oMessage */
             foreach($aMessage as $oMessage){
 
-                $from_email = $oMessage->getTo()[0]->mail;
-                if (Claim::where('cpanel_email', $from_email)->count() !=0) {
-                    $old_claim_id      = Claim::where('cpanel_email', $from_email)->first()->id;
+                $to_email   = $oMessage->getTo()[0]->mail;
+                $from_email = $oMessage->getFrom()[0]->mail;
+                if (Claim::where('cpanel_email', $to_email)->count() !=0) {
+                    $old_claim_id      = Claim::where('cpanel_email', $to_email)->first()->id;
                 }else{
                     $old_claim_id      = "";
                 }
 
+                $imap_msg_no = $oMessage->getUid();
 
                 $sub =$oMessage->getSubject();
                 $date = $oMessage->getDate();
-                $longMsg=$oMessage->getBodies()['text']->content;
+                $longMsg=$oMessage->getHTMLBody(true);
                 $lines=explode("\n", $longMsg);
 
                 $ticket                 = new Ticket;
                 $ticket->subject        = $sub;
                 $ticket->claim_id       = $old_claim_id;
                 $ticket->status         = '1';
+                $ticket->to_email       = $to_email;
                 $ticket->from_email     = $from_email;
+                $ticket->imap_msg_no    = $imap_msg_no;
                 $ticket->save();
 
                 $ticketNote = new TicketNote;
@@ -166,6 +171,44 @@ class TicketsController extends Controller
         return redirect('tickets')->with('flash_message', 'Ticket added!');
     }
 
+
+
+    public function ajax_ticket_priority(Request $request)
+    {
+        $ticket_id = $request->ticket_id;
+        $ticket = Ticket::find($ticket_id);
+        $ticket->priority = $request->priority;
+        $ticket->save();
+        return response()->json([
+            'msg' => 'Success'
+        ]);
+    }
+
+
+    public function ajax_ticket_ticket_status(Request $request)
+    {
+        $ticket_id = $request->ticket_id;
+        $ticket = Ticket::find($ticket_id);
+        $ticket->ticket_status = $request->ticket_status;
+        $ticket->save();
+        return response()->json([
+            'msg' => 'Success'
+        ]);
+    }
+
+
+
+
+    public function ajax_ticket_assign(Request $request)
+    {
+        $ticket_id = $request->ticket_id;
+        $ticket = Ticket::find($ticket_id);
+        $ticket->assign_user_id = $request->assign_user_id;
+        $ticket->save();
+        return response()->json([
+            'msg' => 'Success'
+        ]);
+    }
 
     public function ticketAssignUser(Request $request)
     {
@@ -299,5 +342,43 @@ class TicketsController extends Controller
         $ticketNote->description    = $request->ticket_reply_note;
         $ticketNote->save();
         return redirect('/tickets-inbox')->with('success','Sent Email Successfully!');
+    }
+
+    public function ticketSingleEmailView($id)
+    {
+        $ticket=Ticket::find($id);
+        $ticket_note = TicketNote::where('ticket_id',$ticket->id)->first();
+        $ticket_reply = TicketReplyEmail::where('ticket_id',$id)->latest()->get();
+
+        $perPage = 25;
+        $oClient = new Client([
+            'host'          => 'premium39.web-hosting.com',
+            'port'          => 993,
+            'encryption'    => 'ssl',
+            'validate_cert' => true,
+            'username'      => 'info@freeflightclaim.com',
+            'password'      => 'oKwGE2vzcOYt',
+            // 'username'      =>'rtwh095@freeflightclaim.com',
+            // 'password'      => 'olMpHjWv',
+            'protocol'      => 'imap'
+        ]);
+        $oClient->connect();
+        $oFolder = $oClient->getFolder('INBOX');
+        $oMessage = $oFolder->getMessage($ticket->imap_msg_no);
+        $sub = $oMessage->getSubject();
+        $date=Carbon::parse($oMessage->getDate())->format("D, d M Y");
+        $time = Carbon::parse($oMessage->getDate())->format("h:i A");
+        $from = $oMessage->getFrom()[0]->mail;
+        $to = $oMessage->getTo()[0]->mail;
+        $from_name = $oMessage->getFrom()[0]->personal;
+        $to_name = $oMessage->getTo()[0]->personal;
+
+        return view('tickets.ticket-email-view',compact('ticket_reply','ticket_note','time','ticket','sub','date','from','to','from_name','to_name'));
+    }
+
+    public function ticketReplyView($id)
+    {
+        $ticket=Ticket::find($id);
+        return view('tickets.ticket-email-reply',compact('ticket'));
     }
 }
