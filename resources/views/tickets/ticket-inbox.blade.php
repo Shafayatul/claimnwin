@@ -66,7 +66,7 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <select name="assign_user_id" id="user" class="form-control">
+                                    <select name="assign_user_id" id="user" class="form-control select_assigned_user" ticket-id="{{$item->id}}">
                                             <option> Please select </option>
                                             @foreach($users as $key=>$value)
                                             <option value="{{$key}}" @if($key == $item->assign_user_id) selected @endif>{{$value}}</option>
@@ -74,7 +74,7 @@
                                         </select>
                                     </td>
                                     <td>
-                                        <select name="priority" id="priority" class="form-control">
+                                        <select name="priority" id="priority" class="form-control select_priority" ticket-id="{{$item->id}}">
                                             <option> Please select </option>
                                             <option value="Low" @if("Low" == $item->priority) selected @endif>Low</option>
                                             <option value="Medium" @if("Medium" == $item->priority) selected @endif>Medium</option>
@@ -83,7 +83,7 @@
                                         </select>
                                     </td>
                                     <td>
-                                        <select name="ticket_status" id="" class=" form-control">
+                                        <select name="ticket_status" id="" class=" form-control select_ticket_status" ticket-id="{{$item->id}}">
                                             <option> Please select </option>
                                             <option value="Open"  @if("Open" == $item->ticket_status) selected @endif>Open</option>
                                             <option value="Pending"  @if("Pending" == $item->ticket_status) selected @endif>Pending</option>
@@ -129,7 +129,7 @@
 
 
 
-                                        <a class="btn btn-info btn-sm" data-toggle="modal" data-target="#assignModal-{{$item->id}}"><i class="fa fa-tasks"></i></a>
+                                        {{-- <a class="btn btn-info btn-sm" data-toggle="modal" data-target="#assignModal-{{$item->id}}"><i class="fa fa-tasks"></i></a>
                                          <!-- Modal -->
                                         <div class="modal fade" id="assignModal-{{$item->id}}" role="dialog">
                                             <div class="modal-dialog">
@@ -168,7 +168,7 @@
                                             </div>
 
                                             </div>
-                                        </div>
+                                        </div> --}}
                                     </td>
                                 </tr>
                             @endforeach
@@ -184,6 +184,11 @@
     </div>
 </div>
 @endsection
+
+
+
+
+
 @section('footer-script')
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/froala-editor@2.9.0/js/froala_editor.pkgd.min.js"></script>
 <script>
@@ -192,10 +197,66 @@
 // });
 
 $(function() {
+
     $('.ticket_textarea').froalaEditor({
         heightMin: 200,
         heightMax: 800,
     });
+
+
+    $(document).on('change', '.select_assigned_user', function(){
+        var ticket_id           = $(this).attr('ticket-id');
+        var assign_user_id      = $(this).val();
+        $.ajax({
+                type:'POST',
+                url:'{{ url("/ajax/ticket/assign") }}',
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                data:{
+                'ticket_id'          : ticket_id,
+                'assign_user_id'     : assign_user_id
+                },
+                success:function(data){
+                console.log(data);
+                }
+        });
+    });
+
+    $(document).on('change', '.select_priority', function(){
+        var ticket_id     = $(this).attr('ticket-id');
+        var priority      = $(this).val();
+        $.ajax({
+                type:'POST',
+                url:'{{ url("/ajax/ticket/priority") }}',
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                data:{
+                'ticket_id'    : ticket_id,
+                'priority'     : priority
+                },
+                success:function(data){
+                console.log(data);
+                }
+        });
+    });
+
+    $(document).on('change', '.select_ticket_status', function(){
+        var ticket_id           = $(this).attr('ticket-id');
+        var ticket_status      = $(this).val();
+        $.ajax({
+                type:'POST',
+                url:'{{ url("/ajax/ticket/ticket_status") }}',
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                data:{
+                'ticket_id'          : ticket_id,
+                'ticket_status'      : ticket_status
+                },
+                success:function(data){
+                console.log(data);
+                }
+        });
+    });
+
+
+
 });
 </script>
 @endsection

@@ -169,6 +169,44 @@ class TicketsController extends Controller
     }
 
 
+
+    public function ajax_ticket_priority(Request $request)
+    {
+        $ticket_id = $request->ticket_id;
+        $ticket = Ticket::find($ticket_id);
+        $ticket->priority = $request->priority;
+        $ticket->save();
+        return response()->json([
+            'msg' => 'Success'
+        ]);
+    }
+
+
+    public function ajax_ticket_ticket_status(Request $request)
+    {
+        $ticket_id = $request->ticket_id;
+        $ticket = Ticket::find($ticket_id);
+        $ticket->ticket_status = $request->ticket_status;
+        $ticket->save();
+        return response()->json([
+            'msg' => 'Success'
+        ]);
+    }
+
+
+
+
+    public function ajax_ticket_assign(Request $request)
+    {
+        $ticket_id = $request->ticket_id;
+        $ticket = Ticket::find($ticket_id);
+        $ticket->assign_user_id = $request->assign_user_id;
+        $ticket->save();
+        return response()->json([
+            'msg' => 'Success'
+        ]);
+    }
+
     public function ticketAssignUser(Request $request)
     {
         $ticket_id = $request->ticket_id;
