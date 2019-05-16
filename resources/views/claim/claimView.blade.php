@@ -177,6 +177,7 @@
                                                         <div class="panel panel-default">
                                                             <div class="panel-heading">
                                                                 <i class="fa fa-comments"></i> Fligh Details
+                                                                <a href="{{url('flights/create/'.$single_intinerary_detail->flight_number)}}"><button class="btn btn-success btn-sm">Set Time</button></a>
                                                             </div>
                                                             <!-- /.panel-heading -->
                                                             <div class="panel-body">
@@ -217,34 +218,6 @@
                                                     <!-- /.panel -->
                                                     </div>
                                                 <!-- /.col-lg-12 -->
-                                                </div>
-                                                <div class="row">
-                                                    <h3 class="text-center">Airline Time Schedule</h3> <br>
-
-                                                    <div class="col-md-12">
-                                                        <form action="{{route('departure-arival-time-save')}}" method="post" class="form-horizontal">
-                                                            @csrf
-                                                            <div class="form-group">
-                                                                <label for="departure_time_by_claim" class="col-md-3 control-label">Departure Time</label>
-                                                                <div class="col-md-9">
-                                                                <input type="time" class="form-control" value="{{$single_intinerary_detail->departure_time}}" name="departure_time" id="departure_time" />
-                                                                <input type="hidden" name="claim_id" value="{{$claims->id}}">
-                                                                <input type="hidden" name="itinerary_detail_id" value="{{$single_intinerary_detail->id}}">
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for="arival_time" class="col-md-3 control-label">Arival Time</label>
-                                                                <div class="col-md-9">
-                                                                    <input type="time" class="form-control" value="{{$single_intinerary_detail->arival_time}}" name="arival_time" id="arival_time" />
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <div class="col-md-6 col-md-offset-3">
-                                                                    <button type="submit" class="btn btn-sm btn-success"><i class="fa fa-save"></i> Save</button>
-                                                                </div>
-                                                            </div>
-                                                        </form>
-                                                    </div>
                                                 </div>
                                             @endforeach
                                         </div>
