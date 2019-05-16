@@ -51,9 +51,10 @@ class TicketsController extends Controller
             /** @var \Webklex\IMAP\Message $oMessage */
             foreach($aMessage as $oMessage){
 
-                $from_email = $oMessage->getTo()[0]->mail;
-                if (Claim::where('cpanel_email', $from_email)->count() !=0) {
-                    $old_claim_id      = Claim::where('cpanel_email', $from_email)->first()->id;
+                $to_email   = $oMessage->getTo()[0]->mail;
+                $from_email = $oMessage->getFrom()[0]->mail;
+                if (Claim::where('cpanel_email', $to_email)->count() !=0) {
+                    $old_claim_id      = Claim::where('cpanel_email', $to_email)->first()->id;
                 }else{
                     $old_claim_id      = "";
                 }
@@ -68,6 +69,7 @@ class TicketsController extends Controller
                 $ticket->subject        = $sub;
                 $ticket->claim_id       = $old_claim_id;
                 $ticket->status         = '1';
+                $ticket->to_email       = $to_email;
                 $ticket->from_email     = $from_email;
                 $ticket->save();
 

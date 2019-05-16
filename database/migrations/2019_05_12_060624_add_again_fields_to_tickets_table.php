@@ -15,6 +15,7 @@ class AddAgainFieldsToTicketsTable extends Migration
     {
         Schema::table('tickets', function (Blueprint $table) {
             $table->string('from_email')->nullable();
+            $table->string('to_email')->nullable();
         });
     }
 
@@ -27,6 +28,7 @@ class AddAgainFieldsToTicketsTable extends Migration
     {
         Schema::table('tickets', function (Blueprint $table) {
             $table->dropColumn('from_email');
+            $table->dropColumn('to_email');
         });
     }
 }
