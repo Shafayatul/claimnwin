@@ -158,7 +158,7 @@
                                         <p>A Property Irregularity Report (PIR) reference number is a unique code that helps trace your delayed or damaged baggage.
                                             It has a combination of 10 letters and numbers and can be found above your name on the PIR receipt,
                                             which you received at the airport upon reporting your missing baggage.
-                                            For help locating your PIR please contact our <a style="font-weight: bold; color: #124478;" href="{{url('/contact-us')}}">Customer Service Department</a>.
+                                            For help locating your PIR please contact our <a  style="font-weight: bold; color: #124478;" target="_blank"  href="{{url('/contact-us')}}">Customer Service Department</a>.
                                         </p>
                                     </div>
                                 </div>
@@ -430,7 +430,7 @@
                                         <h3>What’s your booking reference?</h3>
                                     </div>
                                     <div class="parent_div" style="padding-bottom: 20px;">
-                                      <label>A booking reference is a code used by airlines to keep track of individual reservations. You can find your booking reference on your e-ticket or on any emails or documents you received from the airline after booking your trip. This code will most often be six digits, including both letters and numbers (for example: DF87G3, REDYYD, L5W4NW). Please make sure you don’t include spaces. For help locating your booking please contact our <a style="font-weight: bold; color: #124478;" href="{{ URL::to('/contact-us') }}">Customer Service Department.</a></label>
+                                      <label>A booking reference is a code used by airlines to keep track of individual reservations. You can find your booking reference on your e-ticket or on any emails or documents you received from the airline after booking your trip. This code will most often be six digits, including both letters and numbers (for example: DF87G3, REDYYD, L5W4NW). Please make sure you don’t include spaces. For help locating your booking please contact our <a  style="font-weight: bold; color: #124478;" target="_blank"  href="{{ URL::to('/contact-us') }}">Customer Service Department.</a></label>
                                     </div>
                                     <div class="parent_div">
                                         <div class="two_child_radio_div first_child">
@@ -808,7 +808,7 @@
                                         <div class="form-check">
                                             <label>
                                                 <input type="checkbox" name="is_signed_permission" id="no-use"> <span class="label-text">Write your signature below as it appears on your ID. It's required by airlines to collect the compensation for you. By signing you agree with
-                                                    the <a style="font-weight: bold; color: #124478;" href="{{URL::to('/pricing-list')}}">Assignment Form and Price List</a></span>
+                                                    the <a  style="font-weight: bold; color: #124478;" target="_blank"  href="{{URL::to('/pricing-list')}}">Assignment Form and Price List</a></span>
                                             </label>
                                         </div>
                                     </div>
