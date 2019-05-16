@@ -132,7 +132,6 @@ $(document).ready(function() {
       var departure_date              = $(".departure_airport_date").val();
       var received_luggage_date       = $("input[name='received_luggage_date']").val();
 
-alert(departure_date);
 
       $.ajax({
         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},

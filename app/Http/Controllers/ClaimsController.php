@@ -84,149 +84,84 @@ class ClaimsController extends Controller
        return view('front-end.claim.claim');
     }
 
-   public function missed_connection()
-   {
+    public function get_airline_for_auto_complete(){
+        $airlines_with_icao_code = Airline::where('icao_code', '!=', '')->select('name', 'icao_code')->get()->toArray();
+        $airlines_with_iata_code = Airline::where('icao_code', '=', '')->where('iata_code', '!=', '')->select('name', 'iata_code')->get()->toArray();
 
-        $airports = Airport::select('name', 'iata_code')->get()->toArray();
+        $airline_object = '[';
+
+
+        foreach ($airlines_with_icao_code as $airline) {
+            $airline_object .= "['".addslashes($airline['name'])."', '".addslashes($airline['icao_code'])."'],";
+        }
+        foreach ($airlines_with_iata_code as $airline2) {
+            $airline_object .= "['".addslashes($airline2['name'])."', '".addslashes($airline2['iata_code'])."'],";
+        }
+
+
+        $airline_object = rtrim($airline_object, ',');
+        $airline_object .= ']';
+        return $airline_object;
+    }
+
+
+    public function get_airport_for_auto_complete(){
+        $airports = Airport::where('iata_code', '!=', '')->select('name', 'iata_code')->get()->toArray();
         $airport_object = '[';
         foreach ($airports as $airport) {
             $airport_object .= "['".addslashes($airport['name'])."', '".addslashes($airport['iata_code'])."'],";
         }
         $airport_object = rtrim($airport_object, ',');
         $airport_object .= ']';
+        return $airport_object;
+    }
 
-        $airlines = Airline::select('name', 'iata_code')->get()->toArray();
-        $airline_object = '[';
-        foreach ($airlines as $airline) {
-            $airline_object .= "['".addslashes($airline['name'])."', '".addslashes($airline['iata_code'])."'],";
-        }
-        $airline_object = rtrim($airline_object, ',');
-        $airline_object .= ']';
 
+   public function missed_connection()
+   {
+        $airport_object = $this->get_airport_for_auto_complete();
+        $airline_object = $this->get_airline_for_auto_complete();
         $currencies = Countries::currencies();
-
         return view('front-end.claim.missed_connection', compact('airport_object', 'airline_object', 'currencies'));
    }
 
    public function flight_delay()
    {
-
-        $airports = Airport::select('name', 'iata_code')->get()->toArray();
-        $airport_object = '[';
-        foreach ($airports as $airport) {
-            $airport_object .= "['".addslashes($airport['name'])."', '".addslashes($airport['iata_code'])."'],";
-        }
-        $airport_object = rtrim($airport_object, ',');
-        $airport_object .= ']';
-
-        $airlines = Airline::select('name', 'iata_code')->get()->toArray();
-        $airline_object = '[';
-        foreach ($airlines as $airline) {
-            $airline_object .= "['".addslashes($airline['name'])."', '".addslashes($airline['iata_code'])."'],";
-        }
-        $airline_object = rtrim($airline_object, ',');
-        $airline_object .= ']';
-
+        $airport_object = $this->get_airport_for_auto_complete();
+        $airline_object = $this->get_airline_for_auto_complete();
         $currencies = Countries::currencies();
-
-
        return view('front-end.claim.flight_delay', compact('airport_object', 'airline_object', 'currencies'));
    }
 
    public function flight_cancellation()
    {
-        $airports = Airport::select('name', 'iata_code')->get()->toArray();
-        $airport_object = '[';
-        foreach ($airports as $airport) {
-            $airport_object .= "['".addslashes($airport['name'])."', '".addslashes($airport['iata_code'])."'],";
-        }
-        $airport_object = rtrim($airport_object, ',');
-        $airport_object .= ']';
-
-        $airlines = Airline::select('name', 'iata_code')->get()->toArray();
-        $airline_object = '[';
-        foreach ($airlines as $airline) {
-            $airline_object .= "['".addslashes($airline['name'])."', '".addslashes($airline['iata_code'])."'],";
-        }
-        $airline_object = rtrim($airline_object, ',');
-        $airline_object .= ']';
-
+        $airport_object = $this->get_airport_for_auto_complete();
+        $airline_object = $this->get_airline_for_auto_complete();
         $currencies = Countries::currencies();
-
-
        return view('front-end.claim.flight_cancellation', compact('airport_object', 'airline_object', 'currencies'));
    }
 
    public function delay_luggage()
    {
-
-        $airports = Airport::select('name', 'iata_code')->get()->toArray();
-        $airport_object = '[';
-        foreach ($airports as $airport) {
-            $airport_object .= "['".addslashes($airport['name'])."', '".addslashes($airport['iata_code'])."'],";
-        }
-        $airport_object = rtrim($airport_object, ',');
-        $airport_object .= ']';
-
-        $airlines = Airline::select('name', 'iata_code')->get()->toArray();
-        $airline_object = '[';
-        foreach ($airlines as $airline) {
-            $airline_object .= "['".addslashes($airline['name'])."', '".addslashes($airline['iata_code'])."'],";
-        }
-        $airline_object = rtrim($airline_object, ',');
-        $airline_object .= ']';
-
+        $airport_object = $this->get_airport_for_auto_complete();
+        $airline_object = $this->get_airline_for_auto_complete();
         $currencies = Countries::currencies();
-
-
        return view('front-end.claim.delay_luggage', compact('airport_object', 'airline_object', 'currencies'));
    }
 
    public function lost_luggage()
    {
-
-
-        $airports = Airport::select('name', 'iata_code')->get()->toArray();
-        $airport_object = '[';
-        foreach ($airports as $airport) {
-            $airport_object .= "['".addslashes($airport['name'])."', '".addslashes($airport['iata_code'])."'],";
-        }
-        $airport_object = rtrim($airport_object, ',');
-        $airport_object .= ']';
-
-        $airlines = Airline::select('name', 'iata_code')->get()->toArray();
-        $airline_object = '[';
-        foreach ($airlines as $airline) {
-            $airline_object .= "['".addslashes($airline['name'])."', '".addslashes($airline['iata_code'])."'],";
-        }
-        $airline_object = rtrim($airline_object, ',');
-        $airline_object .= ']';
-
+        $airport_object = $this->get_airport_for_auto_complete();
+        $airline_object = $this->get_airline_for_auto_complete();
         $currencies = Countries::currencies();
-
        return view('front-end.claim.lost_luggage', compact('airport_object', 'airline_object', 'currencies'));
    }
 
    public function denied_boarding()
    {
-        $airports = Airport::select('name', 'iata_code')->get()->toArray();
-        $airport_object = '[';
-        foreach ($airports as $airport) {
-            $airport_object .= "['".addslashes($airport['name'])."', '".addslashes($airport['iata_code'])."'],";
-        }
-        $airport_object = rtrim($airport_object, ',');
-        $airport_object .= ']';
-
-        $airlines = Airline::select('name', 'iata_code')->get()->toArray();
-        $airline_object = '[';
-        foreach ($airlines as $airline) {
-            $airline_object .= "['".addslashes($airline['name'])."', '".addslashes($airline['iata_code'])."'],";
-        }
-        $airline_object = rtrim($airline_object, ',');
-        $airline_object .= ']';
-
+        $airport_object = $this->get_airport_for_auto_complete();
+        $airline_object = $this->get_airline_for_auto_complete();
         $currencies = Countries::currencies();
-
        return view('front-end.claim.denied_boarding', compact('airport_object', 'airline_object', 'currencies'));
    }
 
@@ -637,18 +572,25 @@ class ClaimsController extends Controller
                 if ($single_flight_code != "") {
                   if ($request->flight_segment[$cnt] == $selected_connection_iata_codes) {
                     $is_selected    = 1;
-                    $airline_id     = Airline::where('iata_code', $single_flight_code)->first()->id;
                     $departure_date = $request->departure_date[$cnt];
                   }else{
                     $is_selected = 0;
                   }
+
+                if (strlen($single_flight_code) == 2) {
+                    $airline_id     =  Airline::WHERE('icao_code', $single_flight_code)->first()->id;
+                }else{
+                    $airline_id     =  Airline::WHERE('iata_code', $single_flight_code)->first()->id;
+                }
+
+
                   $itineraryDetail                    = new ItineraryDetail();
                   $itineraryDetail->claim_id          = $claim->id;
                   $itineraryDetail->flight_number     = $request->flight_number[$cnt];
                   $itineraryDetail->flight_segment    = $request->flight_segment[$cnt];
                   $itineraryDetail->departure_date    = $request->departure_date[$cnt];
                   $itineraryDetail->is_selected       = $is_selected;
-                  $itineraryDetail->airline_id        = Airline::where('iata_code', $single_flight_code)->first()->id;
+                  $itineraryDetail->airline_id        = $airline_id;
                   $itineraryDetail->save();
                 }
                 $cnt++;
@@ -810,7 +752,7 @@ class ClaimsController extends Controller
         $departed_from_id = $this->get_airport_id_name_and_iata_code($request->departed_from);
         $final_destination_id = $this->get_airport_id_name_and_iata_code($request->final_destination);
 
-        $airline = Airline::WHERE('iata_code', $request->flight_code)->first();
+        $airline = $this->get_airport_from_iata_or_icao_code($request->flight_code);
 
         $departed_from = Airport::WHERE('id', $departed_from_id)->first();
         $final_destination = Airport::WHERE('id', $final_destination_id)->first();
@@ -997,7 +939,7 @@ class ClaimsController extends Controller
         $departed_from_id = $this->get_airport_id_name_and_iata_code($request->departed_from);
         $final_destination_id = $this->get_airport_id_name_and_iata_code($request->final_destination);
 
-        $airline = Airline::WHERE('iata_code', $request->flight_code)->first();
+        $airline = $this->get_airport_from_iata_or_icao_code($request->flight_code);
 
 
         $departed_from = Airport::WHERE('id', $departed_from_id)->first();
@@ -1124,7 +1066,7 @@ class ClaimsController extends Controller
             $total_delay = $request->total_delay;
             $departed_from_id = $this->get_airport_id_name_and_iata_code($request->departed_from);
             $final_destination_id = $this->get_airport_id_name_and_iata_code($request->final_destination);
-            $airline = Airline::WHERE('iata_code', $request->flight_code)->first();
+            $airline = $this->get_airport_from_iata_or_icao_code($request->flight_code);
 
             $departed_from = Airport::WHERE('id', $departed_from_id)->first();
             $final_destination = Airport::WHERE('id', $final_destination_id)->first();
@@ -1243,6 +1185,12 @@ class ClaimsController extends Controller
             return '0';
         }
 
+    public function get_airport_from_iata_or_icao_code($flight_code){
+        if (strlen($flight_code) == 2) {
+            return Airline::WHERE('icao_code', $flight_code)->first();
+        }
+        return Airline::WHERE('iata_code', $flight_code)->first();
+    }
 
     public function ajax_missed_calculation(Request $request){
 
@@ -1250,7 +1198,11 @@ class ClaimsController extends Controller
         $departed_from_id = $this->get_airport_id_name_and_iata_code($request->departed_from);
         $final_destination_id = $this->get_airport_id_name_and_iata_code($request->final_destination);
 
-        $airline = Airline::WHERE('iata_code', $request->flight_code)->first();
+        $airline = $this->get_airport_from_iata_or_icao_code($request->flight_code);
+
+
+
+        
 
         $departed_from = Airport::WHERE('id', $departed_from_id)->first();
         $final_destination = Airport::WHERE('id', $final_destination_id)->first();
