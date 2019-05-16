@@ -66,13 +66,12 @@
                                         @endif
                                     </td>
                                     <td>
-                                        @if($item->assign_user_id != null)
                                         <select name="assign_user_id" id="user" class="form-control">
+                                            <option> Please select </option>
                                             @foreach($users as $key=>$value)
-                                            <option value="{{$key}}">{{$value}}</option>
+                                            <option value="{{$key}}" @if($key == $item->assign_user_id) selected @endif>{{$value}}</option>
                                             @endforeach
                                         </select>
-                                        @endif
                                     </td>
                                     <td>
                                         <select name="priority" id="priority" class="form-control">
