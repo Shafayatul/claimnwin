@@ -75,18 +75,20 @@
                                     </td>
                                     <td>
                                         <select name="priority" id="priority" class="form-control">
-                                            <option>Low</option>
-                                            <option>Medium</option>
-                                            <option>High</option>
-                                            <option>Urgent</option>
+                                            <option> Please select </option>
+                                            <option value="Low" @if("Low" == $item->priority) selected @endif>Low</option>
+                                            <option value="Medium" @if("Medium" == $item->priority) selected @endif>Medium</option>
+                                            <option value="High" @if("High" == $item->priority) selected @endif>High</option>
+                                            <option value="Urgent" @if("Urgent" == $item->priority) selected @endif>Urgent</option>
                                         </select>
                                     </td>
                                     <td>
                                         <select name="ticket_status" id="" class=" form-control">
-                                            <option value="1">Open</option>
-                                            <option value="2">Pending</option>
-                                            <option value="3">Resolved</option>
-                                            <option value="4">Closed</option>
+                                            <option> Please select </option>
+                                            <option value="Open"  @if("Open" == $item->ticket_status) selected @endif>Open</option>
+                                            <option value="Pending"  @if("Pending" == $item->ticket_status) selected @endif>Pending</option>
+                                            <option value="Resolved"  @if("Resolved" == $item->ticket_status) selected @endif>Resolved</option>
+                                            <option value="Closed"  @if("Closed" == $item->ticket_status) selected @endif>Closed</option>
                                         </select>
                                     </td>
                                     <td>
