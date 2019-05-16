@@ -177,7 +177,11 @@
                                                         <div class="panel panel-default">
                                                             <div class="panel-heading">
                                                                 <i class="fa fa-comments"></i> Fligh Details
-                                                                <a href="{{url('flights/create/'.$single_intinerary_detail->flight_number)}}"><button class="btn btn-success btn-sm">Set Time</button></a>
+                                                                @if(!array_key_exists($single_intinerary_detail->flight_number, $all_flights))
+                                                                    <a href="{{url('flights/create/')}}"><button class="btn btn-success btn-sm">Set Time</button></a>
+                                                                @else
+                                                                    <a href="{{url('flights/'.$all_flights[$single_intinerary_detail->flight_number]["id"].'/edit')}}"><button class="btn btn-danger btn-sm">Update Time</button></a>
+                                                                @endif
                                                             </div>
                                                             <!-- /.panel-heading -->
                                                             <div class="panel-body">
@@ -209,6 +213,24 @@
                                                                             <th>Departure Date</th>
                                                                             <td>{{$single_intinerary_detail->departure_date}}</td>
                                                                         </tr>
+                                                                        @if(array_key_exists($single_intinerary_detail->flight_number, $all_flights))
+                                                                            <tr class="odd gradeX">
+                                                                                <th>scheduled_departure_time_and_date</th>
+                                                                                <td>{{$all_flights[$single_intinerary_detail->flight_number]['scheduled_departure_time_and_date']}}</td>
+                                                                            </tr>
+                                                                            <tr class="odd gradeX">
+                                                                                <th>actual_departure_time_and_date</th>
+                                                                                <td>{{$all_flights[$single_intinerary_detail->flight_number]['actual_departure_time_and_date']}}</td>
+                                                                            </tr>
+                                                                            <tr class="odd gradeX">
+                                                                                <th>scheduled_arrival_time_and_date</th>
+                                                                                <td>{{$all_flights[$single_intinerary_detail->flight_number]['scheduled_arrival_time_and_date']}}</td>
+                                                                            </tr>
+                                                                            <tr class="odd gradeX">
+                                                                                <th>actual_arrival_time_and_date</th>
+                                                                                <td>{{$all_flights[$single_intinerary_detail->flight_number]['actual_arrival_time_and_date']}}</td>
+                                                                            </tr>
+                                                                        @endif
 
                                                                     </tbody>
                                                                 </table>
