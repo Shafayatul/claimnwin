@@ -463,6 +463,7 @@ $(document).ready(function(){
              $("#continue_5").hide();
           }else{
 
+
             $.ajax({
               headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
               type: 'POST',
