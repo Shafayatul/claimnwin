@@ -43,6 +43,8 @@ class TicketsController extends Controller
         $oClient->connect();
         $aFolder = $oClient->getFolders();
 
+
+
         foreach($aFolder as $oFolder){
 
             //Get all Messages of the current Mailbox $oFolder
@@ -62,9 +64,11 @@ class TicketsController extends Controller
 
                 $imap_msg_no = $oMessage->getUid();
 
+
                 $sub =$oMessage->getSubject();
                 $date = $oMessage->getDate();
                 $longMsg=$oMessage->getHTMLBody(true);
+                $textMsg=$oMessage->getTextBody();
                 $lines=explode("\n", $longMsg);
 
                 $ticket                 = new Ticket;
@@ -74,6 +78,9 @@ class TicketsController extends Controller
                 $ticket->to_email       = $to_email;
                 $ticket->from_email     = $from_email;
                 $ticket->imap_msg_no    = $imap_msg_no;
+
+                $ticket->text           = $textMsg;
+                $ticket->email_date     = $date;
                 $ticket->save();
 
                 $ticketNote = new TicketNote;
@@ -346,6 +353,8 @@ class TicketsController extends Controller
 
     public function ticketSingleEmailView($id)
     {
+
+
         $ticket=Ticket::find($id);
         $ticket_note = TicketNote::where('ticket_id',$ticket->id)->first();
         $ticket_reply = TicketReplyEmail::where('ticket_id',$id)->latest()->get();
@@ -363,7 +372,15 @@ class TicketsController extends Controller
             'protocol'      => 'imap'
         ]);
         $oClient->connect();
-        $oFolder = $oClient->getFolder('INBOX');
+        // $oFolder = $oClient->getFolder('INBOX');
+
+$oFolder = $oClient->getFolder('INBOX');
+// // $aMessage = $oFolder->search()->text('sdf sadf sdf sdfsada')->get();
+// $aMessage = $oFolder->search()->uid($ticket->imap_msg_no)->get();
+
+// dd($aMessage);
+
+
         $oMessage = $oFolder->getMessage($ticket->imap_msg_no);
         $sub = $oMessage->getSubject();
         $date=Carbon::parse($oMessage->getDate())->format("D, d M Y");
