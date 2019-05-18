@@ -78,7 +78,12 @@
                                         {!! $ticket_note->description !!}
                                     </div>
                                     <div class="panel-footer">
-
+                                        @foreach($attachments as $attachment)
+                                            <a class="btn btn-success btn-xs" href='{{ 'data:'.$attachment->content_type.';base64,'.base64_encode($attachment->content) }}' download='{{$attachment->name}}'>
+                                                <i class="fa fa-download" aria-hidden="true"></i>
+                                                <b>Attachment - {{$loop->iteration}}</b>
+                                            </a>
+                                        @endforeach
                                     </div>
                                 </div>
                             </div>

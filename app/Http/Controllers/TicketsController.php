@@ -68,7 +68,7 @@ class TicketsController extends Controller
                 $sub =$oMessage->getSubject();
                 $date = $oMessage->getDate();
                 $longMsg=$oMessage->getHTMLBody(true);
-                $textMsg=$oMessage->getTextBody();
+                $textMsg=  str_replace(array("\n", "\r"), '',$oMessage->getTextBody(true));
                 $lines=explode("\n", $longMsg);
 
                 $ticket                 = new Ticket;
@@ -374,23 +374,24 @@ class TicketsController extends Controller
         $oClient->connect();
         // $oFolder = $oClient->getFolder('INBOX');
 
-$oFolder = $oClient->getFolder('INBOX');
-// // $aMessage = $oFolder->search()->text('sdf sadf sdf sdfsada')->get();
-// $aMessage = $oFolder->search()->uid($ticket->imap_msg_no)->get();
-
-// dd($aMessage);
-
-
-        $oMessage = $oFolder->getMessage($ticket->imap_msg_no);
-        $sub = $oMessage->getSubject();
-        $date=Carbon::parse($oMessage->getDate())->format("D, d M Y");
-        $time = Carbon::parse($oMessage->getDate())->format("h:i A");
-        $from = $oMessage->getFrom()[0]->mail;
-        $to = $oMessage->getTo()[0]->mail;
-        $from_name = $oMessage->getFrom()[0]->personal;
-        $to_name = $oMessage->getTo()[0]->personal;
-
-        return view('tickets.ticket-email-view',compact('ticket_reply','ticket_note','time','ticket','sub','date','from','to','from_name','to_name'));
+        $oFolder = $oClient->getFolder('INBOX');
+        // $aMessage = $oFolder->search()->text('sdf sadf sdf sdfsada')->get();
+        $aMessage = $oFolder->search()->text($ticket->text)->get();
+        foreach ($aMessage as $oMessage) {
+            if ($oMessage->getUid() == $ticket->imap_msg_no) {
+                $attachments = $oMessage->attachments;
+                $oMessage = $oFolder->getMessage($ticket->imap_msg_no);
+                $sub = $oMessage->getSubject();
+                $date=Carbon::parse($oMessage->getDate())->format("D, d M Y");
+                $time = Carbon::parse($oMessage->getDate())->format("h:i A");
+                $from = $oMessage->getFrom()[0]->mail;
+                $to = $oMessage->getTo()[0]->mail;
+                $from_name = $oMessage->getFrom()[0]->personal;
+                $to_name = $oMessage->getTo()[0]->personal;
+            }
+        }
+// dd($attachments);
+        return view('tickets.ticket-email-view',compact('ticket_reply','ticket_note','time','ticket','sub','date','from','to','from_name','to_name', 'attachments'));
     }
 
     public function ticketReplyView($id)
