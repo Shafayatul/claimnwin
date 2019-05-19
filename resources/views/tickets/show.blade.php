@@ -133,7 +133,7 @@
 
                                         <!-- Body -->
                                         <div class="panel-body">
-                                            {{$row->description}}
+                                            {!! $row->description !!}
                                         </div>
                                         <!-- /Body -->
 

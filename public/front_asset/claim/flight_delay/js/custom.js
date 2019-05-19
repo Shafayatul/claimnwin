@@ -333,7 +333,11 @@ $(document).ready(function() {
                 amount_and_currency: data
               },
               success: function (newData){
-                var finalAmount = data+' ('+newData+')';
+                if (newData == '') {
+                  var finalAmount = data;   
+                }else{
+                  var finalAmount = data+' ('+newData+')';                  
+                }
                 $(".result_from_ajax_calculation").html('<div class="form_h3 text-center"><h3>CONGRATULATIONS!!!</h3></div><div class="form_show_message_paragraph"><p>You are eligible for compensation. Your claim amount will be up to '+finalAmount+'</p></div>');
               }
             });

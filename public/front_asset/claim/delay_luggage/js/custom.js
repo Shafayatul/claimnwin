@@ -158,7 +158,11 @@ $(document).ready(function() {
                 amount_and_currency: data.amount
               },
               success: function (newData){
-                var finalAmount = data.amount+' ('+newData+')';
+                if (newData == '') {
+                  var finalAmount = data;   
+                }else{
+                  var finalAmount = data+' ('+newData+')';                  
+                }
                 if (data.msg != '') {
                   finalAmount = finalAmount+data.msg;
                 }

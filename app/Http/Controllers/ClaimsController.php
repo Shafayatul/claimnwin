@@ -693,14 +693,19 @@ class ClaimsController extends Controller
         $compensationAmount = $compensation_amount[0];
         $compensationAmountCurrencyCode = $compensation_amount[1];
 
-        $currency_info=Currency::where('code',$compensationAmountCurrencyCode)->first();
-        $total_usd_compensation_amount = $compensationAmount*$currency_info->value;
+        if ((Currency::where('code',$compensationAmountCurrencyCode)->count() > 0) || (Currency::where('code',$currentCurrencyCode)->count() > 0)) {
+            $converted_expection_amount = '';
+        }else{
+            $currency_info=Currency::where('code',$compensationAmountCurrencyCode)->first();
+            $total_usd_compensation_amount = $compensationAmount*$currency_info->value;
 
-        $geoip = new GeoIPLocation();
-        $currentCurrencyCode = $geoip->getCurrencyCode();
+            $geoip = new GeoIPLocation();
+            $currentCurrencyCode = $geoip->getCurrencyCode();
 
-        $currentCurrencyInfo=Currency::where('code',$currentCurrencyCode)->first();
-        $converted_expection_amount = round($total_usd_compensation_amount*$currentCurrencyInfo->value).' '.$currentCurrencyCode;
+            $currentCurrencyInfo=Currency::where('code',$currentCurrencyCode)->first();
+            $converted_expection_amount = round($total_usd_compensation_amount*$currentCurrencyInfo->value).' '.$currentCurrencyCode;            
+        }
+
 
 
         // <--------------------------------End Convert Amount Code----------------------->
@@ -734,15 +739,17 @@ class ClaimsController extends Controller
 
         $compensationAmount = $compensation_amount[0];
         $compensationAmountCurrencyCode = $compensation_amount[1];
-
-        $currency_info=Currency::where('code',$compensationAmountCurrencyCode)->first();
-        $total_usd_compensation_amount = $compensationAmount*$currency_info->value;
-
         $geoip = new GeoIPLocation();
         $currentCurrencyCode = $geoip->getCurrencyCode();
 
-        $currentCurrencyInfo=Currency::where('code',$currentCurrencyCode)->first();
-        return $converted_expection_amount = round($total_usd_compensation_amount*$currentCurrencyInfo->value).' '.$currentCurrencyCode;
+        if ((Currency::where('code',$compensationAmountCurrencyCode)->count() > 0) || (Currency::where('code',$currentCurrencyCode)->count() > 0)) {
+            return '';
+        }else{
+            $currency_info=Currency::where('code',$compensationAmountCurrencyCode)->first();
+            $total_usd_compensation_amount = $compensationAmount*$currency_info->value;
+            $currentCurrencyInfo=Currency::where('code',$currentCurrencyCode)->first();
+            return $converted_expection_amount = round($total_usd_compensation_amount*$currentCurrencyInfo->value).' '.$currentCurrencyCode;
+        }
 
 
     }
