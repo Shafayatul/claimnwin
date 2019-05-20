@@ -424,9 +424,7 @@
                                                             @if($passengers)
                                                             <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                                                 <thead>
-                                                                    <th>Claim Id</th>
-                                                                    <th>Passengers First Name</th>
-                                                                    <th>Passengers Last Name</th>
+                                                                    <th>Name</th>
                                                                     <th>Address</th>
                                                                     <th>Post Code</th>
                                                                     <th>Date Of Birth</th>
@@ -438,9 +436,11 @@
                                                                 <tbody>
                                                                     @foreach($passengers as $all_passenger)
                                                                     <tr>
-                                                                        <td>{{$all_passenger->claim_id}}</td>
-                                                                        <td>{{$all_passenger->first_name}}</td>
-                                                                        <td>{{$all_passenger->last_name}}</td>
+                                                                        <td>
+                                                                            <a href="{{url('/passengers/'.$all_passenger->id.'/edit')}}">
+                                                                                {{$all_passenger->first_name}} {{$all_passenger->last_name}}
+                                                                            </a>
+                                                                        </td>
                                                                         <td>{{$all_passenger->address}}</td>
                                                                         <td>{{$all_passenger->post_code}}</td>
                                                                         <td>{{Carbon\Carbon::parse($all_passenger->date_of_birth)->format("d-m-Y")}}</td>
@@ -454,11 +454,7 @@
                                                                             @endif
                                                                         </td>
                                                                         <td>
-                                                                            @if($all_passenger->is_booking_reference == 0)
-
-                                                                            @else
                                                                             {{$all_passenger->booking_refernece}}
-                                                                            @endif
                                                                         </td>
                                                                     </tr>
                                                                     @endforeach
