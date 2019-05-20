@@ -20,7 +20,7 @@
 </div>
 <div class="form-group {{ $errors->has('date_of_birth') ? 'has-error' : ''}}">
     {!! Form::label('date_of_birth', 'Date Of Birth', ['class' => 'control-label']) !!}
-    {!! Form::text('date_of_birth', null, ('' == 'required') ? ['class' => 'form-control', 'required' => 'required'] : ['class' => 'form-control']) !!}
+    {!! Form::text('date_of_birth', null, ('' == 'required') ? ['class' => 'form-control datepicker', 'required' => 'required'] : ['class' => 'form-control datepicker']) !!}
     {!! $errors->first('date_of_birth', '<p class="help-block">:message</p>') !!}
 </div>
 <div class="form-group {{ $errors->has('email') ? 'has-error' : ''}}">
@@ -30,7 +30,7 @@
 </div>
 <div class="form-group {{ $errors->has('is_booking_reference') ? 'has-error' : ''}}">
     {!! Form::label('is_booking_reference', 'Is Booking Reference', ['class' => 'control-label']) !!}
-    {!! Form::text('is_booking_reference', null, ('' == 'required') ? ['class' => 'form-control', 'required' => 'required'] : ['class' => 'form-control']) !!}
+    {!! Form::select('is_booking_reference', ['1'=>'Yes', '0'=>'No'], null, ('' == 'required') ? ['class' => 'form-control', 'required' => 'required'] : ['class' => 'form-control']) !!}
     {!! $errors->first('is_booking_reference', '<p class="help-block">:message</p>') !!}
 </div>
 <div class="form-group {{ $errors->has('booking_refernece') ? 'has-error' : ''}}">

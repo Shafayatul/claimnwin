@@ -437,13 +437,13 @@
                                                                     @foreach($passengers as $all_passenger)
                                                                     <tr>
                                                                         <td>
-                                                                            <a href="{{url('/passengers/'.$all_passenger->id.'/edit')}}">
+                                                                            <a target="_blank" href="{{url('/passengers/'.$all_passenger->id.'/edit')}}">
                                                                                 {{$all_passenger->first_name}} {{$all_passenger->last_name}}
                                                                             </a>
                                                                         </td>
                                                                         <td>{{$all_passenger->address}}</td>
                                                                         <td>{{$all_passenger->post_code}}</td>
-                                                                        <td>{{Carbon\Carbon::parse($all_passenger->date_of_birth)->format("d-m-Y")}}</td>
+                                                                        <td>{{$all_passenger->date_of_birth}}</td>
                                                                         <td>{{$all_passenger->email}}</td>
                                                                         <td>{{$all_passenger->phone}}</td>
                                                                         <td>

@@ -27,8 +27,8 @@ class Passenger extends Model
      *
      * @var array
      */
-    protected $fillable = ['claim_id', 'first_name', 'last_name', 'address', 'post_code', 'date_of_birth', 'email', 'is_booking_reference', 'booking_refernece'];
-    protected static $logAttributes = ['claim_id', 'first_name', 'last_name', 'address', 'post_code', 'date_of_birth', 'email', 'is_booking_reference', 'booking_refernece'];
+    protected $fillable = ['claim_id', 'first_name', 'last_name', 'address', 'post_code', 'date_of_birth', 'email', 'is_booking_reference', 'booking_refernece', 'phone'];
+    protected static $logAttributes = ['claim_id', 'first_name', 'last_name', 'address', 'post_code', 'date_of_birth', 'email', 'is_booking_reference', 'booking_refernece', 'phone'];
 
     
 }

@@ -108,8 +108,7 @@ class PassengersController extends Controller
         
         $passenger = Passenger::findOrFail($id);
         $passenger->update($requestData);
-
-        return redirect('passengers')->with('flash_message', 'Passenger updated!');
+        return redirect()->back()->with('success', 'Passenger updated!');
     }
 
     /**
