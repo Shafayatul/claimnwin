@@ -70,7 +70,7 @@
               @if($claim->converted_expection_amount != "")
                 <a href="{{ URL::to('/user-my-claim/'.$claim->id)}}">{{$claim->converted_expection_amount}}</a>
               @else
-                <a href="{{ URL::to('/user-my-claim/'.$claim->id)}}">---</a>
+                <a href="{{ URL::to('/user-my-claim/'.$claim->id)}}">{{$claim->amount}}</a>
               @endif
             </a>
           </div>

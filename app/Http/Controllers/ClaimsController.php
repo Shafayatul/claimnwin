@@ -692,15 +692,15 @@ class ClaimsController extends Controller
 
         $compensationAmount = $compensation_amount[0];
         $compensationAmountCurrencyCode = $compensation_amount[1];
-
-        if ((Currency::where('code',$compensationAmountCurrencyCode)->count() > 0) || (Currency::where('code',$currentCurrencyCode)->count() > 0)) {
+        $geoip = new GeoIPLocation();
+        $currentCurrencyCode = $geoip->getCurrencyCode();
+        if ((Currency::where('code',$compensationAmountCurrencyCode)->count() == 0) || (Currency::where('code',$currentCurrencyCode)->count() == 0)) {
             $converted_expection_amount = '';
         }else{
             $currency_info=Currency::where('code',$compensationAmountCurrencyCode)->first();
             $total_usd_compensation_amount = $compensationAmount*$currency_info->value;
 
-            $geoip = new GeoIPLocation();
-            $currentCurrencyCode = $geoip->getCurrencyCode();
+
 
             $currentCurrencyInfo=Currency::where('code',$currentCurrencyCode)->first();
             $converted_expection_amount = round($total_usd_compensation_amount*$currentCurrencyInfo->value).' '.$currentCurrencyCode;            
@@ -742,7 +742,7 @@ class ClaimsController extends Controller
         $geoip = new GeoIPLocation();
         $currentCurrencyCode = $geoip->getCurrencyCode();
 
-        if ((Currency::where('code',$compensationAmountCurrencyCode)->count() > 0) || (Currency::where('code',$currentCurrencyCode)->count() > 0)) {
+        if ((Currency::where('code',$compensationAmountCurrencyCode)->count() == 0) || (Currency::where('code',$currentCurrencyCode)->count() == 0)) {
             return '';
         }else{
             $currency_info=Currency::where('code',$compensationAmountCurrencyCode)->first();
