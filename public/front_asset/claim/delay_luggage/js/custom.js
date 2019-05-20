@@ -159,9 +159,9 @@ $(document).ready(function() {
               },
               success: function (newData){
                 if (newData == '') {
-                  var finalAmount = data;   
+                  var finalAmount = data.amount;   
                 }else{
-                  var finalAmount = data+' ('+newData+')';                  
+                  var finalAmount = data.amount+' ('+newData+')';                  
                 }
                 if (data.msg != '') {
                   finalAmount = finalAmount+data.msg;
