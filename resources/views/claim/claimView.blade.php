@@ -149,7 +149,7 @@
                                                                     </tr>
                                                                     <tr class="odd gradeX">
                                                                         <th>Claim Type</th>
-                                                                        <td>{{$claims->claim_table_type}}</td>
+                                                                        <td>{{str_replace('_', ' ', ucfirst($claims->claim_table_type)) }}</td>
                                                                     </tr>
                                                                     <tr class="odd gradeX">
                                                                         <th>Claim Closed Date</th>
@@ -257,7 +257,7 @@
                                                                 <tbody>
                                                                     <tr class="odd gradeX">
                                                                         <th>What reason was given for the delay</th>
-                                                                        <td>{{$claims->reason}}</td>
+                                                                        <td>{{str_replace('_', ' ', ucfirst($claims->reason)) }}</td>
                                                                     </tr>
                                                                     <tr class="odd gradeX">
                                                                         <th>Number of passengers:</th>
@@ -265,11 +265,11 @@
                                                                     </tr>
                                                                     <tr class="odd gradeX">
                                                                         <th>What Happened To The Flight?</th>
-                                                                        <td>{{$claims->what_happened_to_the_flight}}</td>
+                                                                        <td>{{str_replace('_', ' ', ucfirst($claims->what_happened_to_the_flight)) }}</td>
                                                                     </tr>
                                                                     <tr class="odd gradeX">
                                                                         <th>What was the total delay once you arrived?</th>
-                                                                        <td>{{$claims->total_delay}}</td>
+                                                                        <td>{{str_replace('_', ' ', ucfirst($claims->total_delay)) }}</td>
                                                                     </tr>
                                                                     <tr class="odd gradeX">
                                                                         <th>Did notify before 14 days?</th>
