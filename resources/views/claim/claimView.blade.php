@@ -271,6 +271,16 @@
                                                                         <th>What was the total delay once you arrived?</th>
                                                                         <td>{{$claims->total_delay}}</td>
                                                                     </tr>
+                                                                    <tr class="odd gradeX">
+                                                                        <th>Did notify before 14 days?</th>
+                                                                        <td>
+                                                                            @if($claims->is_notify_before_forteen_days == 1)
+                                                                                Yes
+                                                                            @else
+                                                                                No
+                                                                            @endif
+                                                                        </td>
+                                                                    </tr>
                                                                 </tbody>
                                                             </table>
                                                         </div>
