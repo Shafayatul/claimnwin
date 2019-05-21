@@ -1,5 +1,7 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,7 +22,7 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <style>
-      /* textarea {
+        /* textarea {
         min-height: 1000px;
       } */
       .total_div {
@@ -66,13 +68,14 @@
       }
     </style>
 </head>
+
 <body>
-<form action="{{route('letter.before.email')}}" method="post" enctype="multipart/form-data">
+    <form action="{{route('letter.before.email')}}" method="post" enctype="multipart/form-data">
         {{ csrf_field() }}
-    <input type="hidden" name="claim_id" value="{{$claim->id}}" />
-    <input type="hidden" name="airline_id" value="{{$claim->airline_id}}" />
-    <input type="hidden" name="cpanel_email" value="{{$claim->cpanel_email}}" />
-    <textarea  id="pdf" name="letter_before_content">
+        <input type="hidden" name="claim_id" value="{{$claim->id}}" />
+        <input type="hidden" name="airline_id" value="{{$claim->airline_id}}" />
+        <input type="hidden" name="cpanel_email" value="{{$claim->cpanel_email}}" />
+        <textarea id="pdf" name="letter_before_content">
             @php
                 $claim_type = ucwords(str_replace("_"," ",$claim->claim_table_type));
             @endphp
@@ -184,43 +187,60 @@
       <p style="text-decoration:underline; padding-top: 5px; padding-bottom: 1px;">Claim Details</p>
       <p>
         @if ($claim->what_happened_to_the_flight == 'canceled_flight')
-          @if ($claim->is_direct_flight == 1)
-            The claim relates to flight number {{ $airline->name }} {{ $itt_details->departure_date }}, which was scheduled to depart from {{ $departed_airport->name }}({{ $departed_airport->iata_code }}) on {{ $flights->scheduled_departure_time_and_date }} and arrive at {{ $final_destination_airport->name }}({{ $final_destination_airport->iata_code }}) on {{ $flights->scheduled_arrival_time_and_date }}. Unfortunately, the flight was cancelled.</br>
-            Due to this, the passengers listed in Annex A of this letter missed their connecting flight. flight number {{$itt_details->flight_number}} {{ $itt_details->departure_date }}, which was scheduled to depart from {{ $departed_airport->name }}({{ $departed_airport->iata_code }}) on {{ $flights->scheduled_departure_time_and_date }} and arrive at {{ $final_destination_airport->name }}({{ $final_destination_airport->iata_code }}) on {{ $flights->scheduled_arrival_time_and_date }}.
-            The distance between the departure airport and the final destination airport is {{ $claim->distance }} and in accordance with …… we submit that each passenger is entitled to {{$claim->amount == '' ? '0' : $claim->amount}}.
-
-          @else
-            The claim relates to flight number {{ $airline->name }} {{ $itt_details->departure_date }}, which was scheduled to depart from {{ $departed_airport->name }}({{ $departed_airport->iata_code }}) on {{ $flights->scheduled_departure_time_and_date }} and arrive at {{ $final_destination_airport->name }}({{ $final_destination_airport->iata_code }}) on {{ $flights->scheduled_arrival_time_and_date }}. Unfortunately, the flight was cancelled.
-            The distance between these two airports is {{ $claim->distance }} km and in accordance the ……. we submit that each passenger is entitled to {{$claim->amount == '' ? '0' : $claim->amount}}.
+          The claim relates to flight number {{ $airline->name }} {{ $itt_details->departure_date }}, which was scheduled to depart from {{ $departed_airport->name }}({{ $departed_airport->iata_code }}) on {{ $flights->scheduled_departure_time_and_date }} and arrive at {{ $final_destination_airport->name }}({{ $final_destination_airport->iata_code }}) on {{ $flights->scheduled_arrival_time_and_date }}. Unfortunately, the flight was cancelled.</br>
+          @if ($is_connecting_flight)
+          Due to this, the passengers listed in Annex A of this letter missed their connecting flight.
+          @foreach ($iternery as $row)
+            @php
+              $flight_segments = $row->flight_segment;
+              $flight_segment_array = explode('-', $flight_segments);
+            @endphp
+           flight number {{$row->flight_number}} {{ $row->departure_date }}, which was scheduled to depart from {{ $all_iternery_airport[$flight_segment_array[0]]->name }}({{ $all_iternery_airport[$flight_segment_array[0]]->iata_code }}) on {{ $all_iternery_flight[$row->flight_number]->scheduled_departure_time_and_date }} and arrive at {{ $all_iternery_airport[$flight_segment_array[1]]->name }}({{ $all_iternery_airport[$flight_segment_array[1]]->iata_code }}) on {{ $all_iternery_flight[$row->flight_number]->scheduled_arrival_time_and_date }}.
+         @endforeach
           @endif
+          <br>
+          The distance between the departure airport and the final destination airport is {{ $claim->distance }} and in accordance with {{$law}} we submit that each passenger is entitled to {{$claim->amount == '' ? '0' : $claim->amount}}.
 
         @elseif ($claim->what_happened_to_the_flight == 'delayed_flight')
-          @if ($claim->is_direct_flight == 0)
-            @if ($claim->total_delay == '3_to_8_hours')
-              The claim relates to flight number {{ $airline->name }} {{ $itt_details->departure_date }}, which was scheduled to depart from {{ $departed_airport->name }}({{ $departed_airport->iata_code }}) on {{ $flights->scheduled_departure_time_and_date }} and arrive at {{ $final_destination_airport->name }}({{ $final_destination_airport->iata_code }}) on {{ $flights->scheduled_arrival_time_and_date }}. Unfortunately, the flight was delayed more than 3 hours.
-              The distance between these two airports is {{ $claim->distance }} km and in accordance the ……. we submit that each passenger is entitled to {{$claim->amount == '' ? '0' : $claim->amount}}.
+          @if ($is_connecting_flight)
+            @if ($claim->total_delay == 'less_than_3_hours')
+              The claim relates to flight number {{ $airline->name }} {{ $itt_details->departure_date }}, which was scheduled to depart from {{ $departed_airport->name }}({{ $departed_airport->iata_code }}) on {{ $flights->scheduled_departure_time_and_date }} and arrive at {{ $final_destination_airport->name }}({{ $final_destination_airport->iata_code }}) on {{ $flights->scheduled_arrival_time_and_date }}. Unfortunately, the flight was delayed.</br></br>
+              Due to this, the passengers listed in Annex A of this letter missed their connecting flight.
+              @foreach ($iternery as $row)
+                @php
+                  $flight_segments = $row->flight_segment;
+                  $flight_segment_array = explode('-', $flight_segments);
+                @endphp
+               flight number {{$row->flight_number}} {{ $row->departure_date }}, which was scheduled to depart from {{ $all_iternery_airport[$flight_segment_array[0]]->name }}({{ $all_iternery_airport[$flight_segment_array[0]]->iata_code }}) on {{ $all_iternery_flight[$row->flight_number]->scheduled_departure_time_and_date }} and arrive at {{ $all_iternery_airport[$flight_segment_array[1]]->name }}({{ $all_iternery_airport[$flight_segment_array[1]]->iata_code }}) on {{ $all_iternery_flight[$row->flight_number]->scheduled_arrival_time_and_date }}.
+             @endforeach
+             The distance between the departure airport and the final destination airport is {{ $claim->distance }} and in accordance with {{$law}} we submit that each passenger is entitled to {{$claim->amount == '' ? '0' : $claim->amount}}.
+             @else
+               @if ($claim->total_delay == '3_to_8_hours')
+                 The claim relates to flight number {{ $airline->name }} {{ $itt_details->departure_date }}, which was scheduled to depart from {{ $departed_airport->name }}({{ $departed_airport->iata_code }}) on {{ $flights->scheduled_departure_time_and_date }} and arrive at {{ $final_destination_airport->name }}({{ $final_destination_airport->iata_code }}) on {{ $flights->scheduled_arrival_time_and_date }}. Unfortunately, the flight was delayed more than 3 hours.</br></br>
+                 The distance between the departure airport and the final destination airport is {{ $claim->distance }} and in accordance with {{$law}} we submit that each passenger is entitled to {{$claim->amount == '' ? '0' : $claim->amount}}.
+               @endif
             @endif
-
-          @elseif ($claim->is_direct_flight == 1 && $claim->total_delay == 'less_than_3_hours')
-            The claim relates to flight number {{ $airline->name }} {{ $itt_details->departure_date }}, which was scheduled to depart from {{ $departed_airport->name }}({{ $departed_airport->iata_code }}) on {{ $flights->scheduled_departure_time_and_date }} and arrive at {{ $final_destination_airport->name }}({{ $final_destination_airport->iata_code }}) on {{ $flights->scheduled_arrival_time_and_date }}. Unfortunately, the flight was delayed.
-            Due to this, the passengers listed in Annex A of this letter missed their connecting flight. flight number {{ $airline->name }} {{ $itt_details->departure_date }}, which was scheduled to depart from {{ $departed_airport->name }}({{ $departed_airport->iata_code }}) on {{ $flights->scheduled_departure_time_and_date }} and arrive at {{ $final_destination_airport->name }}({{ $final_destination_airport->iata_code }}) on {{ $flights->scheduled_arrival_time_and_date }}.
-            The distance between the departure airport and the final destination airport is {{ $claim->distance }} and in accordance with …… we submit that each passenger is entitled to {{$claim->amount == '' ? '0' : $claim->amount}}.
+          @else
           @endif
 
         @elseif ($claim->what_happened_to_the_flight == 'denied_boarding')
-          @if ($claim->is_direct_flight == 0)
-            The claim relates to flight number {{ $airline->name }} {{ $itt_details->departure_date }}, which was scheduled to depart from {{ $departed_airport->name }}({{ $departed_airport->iata_code }}) on {{ $flights->scheduled_departure_time_and_date }} and arrive at {{ $final_destination_airport->name }}({{ $final_destination_airport->iata_code }}) on {{ $flights->scheduled_arrival_time_and_date }}. Unfortunately, the passengers listed at Annex A of this letter were denied boarding against their will.
-            The distance between these two airports is {{ $claim->distance }} km and in accordance the ……. we submit that each passenger is entitled to {{$claim->amount == '' ? '0' : $claim->amount}}.
+          @if ($is_connecting_flight)
+            The claim relates to flight number {{ $airline->name }} {{ $itt_details->departure_date }}, which was scheduled to depart from {{ $departed_airport->name }}({{ $departed_airport->iata_code }}) on {{ $flights->scheduled_departure_time_and_date }} and arrive at {{ $final_destination_airport->name }}({{ $final_destination_airport->iata_code }}) on {{ $flights->scheduled_arrival_time_and_date }}. Unfortunately, the passengers listed at Annex A of this letter were denied boarding against their will.</br></br>
+            Due to this, the passengers listed in Annex A of this letter missed their connecting flight.
+            @foreach ($iternery as $row)
+              @php
+                $flight_segments = $row->flight_segment;
+                $flight_segment_array = explode('-', $flight_segments);
+              @endphp
+             flight number {{$row->flight_number}} {{ $row->departure_date }}, which was scheduled to depart from {{ $all_iternery_airport[$flight_segment_array[0]]->name }}({{ $all_iternery_airport[$flight_segment_array[0]]->iata_code }}) on {{ $all_iternery_flight[$row->flight_number]->scheduled_departure_time_and_date }} and arrive at {{ $all_iternery_airport[$flight_segment_array[1]]->name }}({{ $all_iternery_airport[$flight_segment_array[1]]->iata_code }}) on {{ $all_iternery_flight[$row->flight_number]->scheduled_arrival_time_and_date }}.
+           @endforeach
+           The distance between the departure airport and the final destination airport is {{ $claim->distance }} and in accordance with {{$law}} we submit that each passenger is entitled to {{$claim->amount == '' ? '0' : $claim->amount}}.
           @else
-            The claim relates to flight number {{ $airline->name }} {{ $itt_details->departure_date }}, which was scheduled to depart from {{ $departed_airport->name }}({{ $departed_airport->iata_code }}) on {{ $flights->scheduled_departure_time_and_date }} and arrive at {{ $final_destination_airport->name }}({{ $final_destination_airport->iata_code }}) on {{ $flights->scheduled_arrival_time_and_date }}. Unfortunately, the passengers listed at Annex A of this letter were denied boarding against their will.
-            Due to this, the passengers listed in Annex A of this letter missed their connecting flight. flight number {{ $flights->flight_no }}, which was scheduled to depart from {{$dept_and_arrival_airport[0]['name']}} ({{$dept_and_arrival_airport[0]['iata_code']}}) on {{ $flights->scheduled_departure_time_and_date }} and arrive at {{$dept_and_arrival_airport[1]['name']}} ({{$dept_and_arrival_airport[1]['iata_code']}}) on {{ $flights->scheduled_arrival_time_and_date }}.
-            The distance between the departure airport and the final destination airport is {{ $claim->distance }} and in accordance with …… we submit that each passenger is entitled to {{$claim->amount == '' ? '0' : $claim->amount}}.
-
-          @endif
-
+            The claim relates to flight number {{ $airline->name }} {{ $itt_details->departure_date }}, which was scheduled to depart from {{ $departed_airport->name }}({{ $departed_airport->iata_code }}) on {{ $flights->scheduled_departure_time_and_date }} and arrive at {{ $final_destination_airport->name }}({{ $final_destination_airport->iata_code }}) on {{ $flights->scheduled_arrival_time_and_date }}. Unfortunately, the passengers listed at Annex A of this letter were denied boarding against their will.</br></br>
+            The distance between the departure airport and the final destination airport is {{ $claim->distance }} and in accordance with {{$law}} we submit that each passenger is entitled to {{$claim->amount == '' ? '0' : $claim->amount}}.
         @endif
 
-
+@endif
 
 
 
@@ -360,25 +380,25 @@
 
 
 </textarea>
-<div class="col-md-4 col-md-offset-4">
-    <br>
-    <br>
-    <button type="submit"  class="btn btn-lg btn-success btn-block"> <i class="fa fa-envelope"></i> Email</button>
-</div>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-</div>
-</form>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/froala-editor@2.9.0/js/froala_editor.pkgd.min.js"></script>
-<script>
-$(function() {
-    $('#pdf').froalaEditor()
-});
-</script>
+        <div class="col-md-4 col-md-offset-4">
+            <br>
+            <br>
+            <button type="submit" class="btn btn-lg btn-success btn-block"> <i class="fa fa-envelope"></i> Email</button>
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        </div>
+    </form>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/froala-editor@2.9.0/js/froala_editor.pkgd.min.js"></script>
+    <script>
+        $(function() {
+            $('#pdf').froalaEditor()
+        });
+    </script>
 </body>
 
 </html>

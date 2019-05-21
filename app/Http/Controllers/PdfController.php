@@ -23,13 +23,44 @@ class PdfController extends Controller
     public function letterBeforeActionView($id)
     {
 
-        $claim=Claim::find($id);
-
-
-
-
+        $claim = Claim::find($id);
 
         $iternery = ItineraryDetail::where('claim_id',$id)->get();
+        $all_iternery_airport = [];
+        $all_flight_segment   = '';
+        $all_flight_seg       = [];
+        $all_airline_ids      = [];
+        $all_iternery_airline = [];
+        $all_iternery_flight  = [];
+        $all_flight_number    = [];
+
+        if(count($iternery) == 1){
+
+          $is_connecting_flight = false;
+
+        }else{
+
+          $is_connecting_flight = true;
+
+          foreach ($iternery as $row) {
+            $all_flight_segment .= $row->flight_segment.'-';
+            array_push($all_airline_ids, $row->airline_id);
+            array_push($all_flight_number, $row->flight_number);
+          }
+
+          $all_flight_segment = rtrim($all_flight_segment, '-');
+          $all_flight_seg = explode("-",$all_flight_segment);
+
+          $all_iternery_airport = Airport::whereIn('iata_code',$all_flight_seg)->get()->keyBy('iata_code');
+          $all_iternery_airline = Airline::whereIn('id',$all_airline_ids)->get()->keyBy('id');
+          $all_iternery_flight  = Flight::whereIn('flight_no',$all_flight_number)->get()->keyBy('flight_no');
+        }
+        $pos = strpos(strtolower($claim->amount), 'eur');
+        if ($pos != false) {
+          $law = 'EC Regulation 261/2004';
+        }else{
+          $law = 'Israeli Aviation Services Law';
+        }
 
         // all segmented flights
         $all_flight_seg = [];
@@ -70,12 +101,7 @@ class PdfController extends Controller
 
 
         $all_passenger = Passenger::where('claim_id',$id)->get();
-
         $current_passenger = Passenger::where('claim_id',$id)->first();
-
-
-
-
 
         $expense = Expense::where('claim_id',$id)->get();
 
@@ -84,7 +110,6 @@ class PdfController extends Controller
 
 
         $connection = Connection::where('claim_id',$id)->first();
-
         if($connection != null){
             $connection_airport = Airport::where('id',$connection->airport_id)->first();
         }else{
@@ -95,7 +120,6 @@ class PdfController extends Controller
 
 
         $bank_info=BankAccount::where('id',$claim->bank_details_id)->first();
-
         if($bank_info != null){
             $currency=Currency::where('id',$bank_info->currency_of_account)->first();
         }else{
@@ -104,9 +128,9 @@ class PdfController extends Controller
 
 
         $airline = Airline::where('id',$itt_details->airline_id)->first();
-
         $flights = Flight::where('flight_no', $itt_details->flight_number)->first();
-        return view('pdf.letterBeforeAction',compact('airline', 'flights', 'currency','bank_info','connection_airport','itt_details','dept_and_arrival_airport','departed_airport','final_destination_airport','claim','all_passenger','iternery','expense','reminder','connection','current_passenger', 'internal_connected_airport_names'));
+
+        return view('pdf.letterBeforeAction',compact('airline', 'flights', 'currency','bank_info','connection_airport','itt_details','dept_and_arrival_airport','departed_airport','final_destination_airport','claim','all_passenger','iternery','expense','reminder','connection','current_passenger', 'internal_connected_airport_names', 'is_connecting_flight', 'all_iternery_airport', 'all_iternery_airline', 'all_iternery_flight', 'law'));
     }
 
     public function pdfView($id)
