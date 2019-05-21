@@ -87,6 +87,7 @@ Route::group(['middleware' => ['auth']], function() {
 
     // Admin + SUper Admin
     Route::group(['middleware' => ['role:Admin|Super Admin']], function () {
+        Route::resource('email-templates', 'EmailTemplatesController');
         Route::get('/activity/index', 'ActivityController@index');
         Route::get('/admin', 'AdminsController@index');
         Route::get('/home', 'HomeController@index')->name('home');
@@ -203,5 +204,3 @@ Route::get('/contact-messages','ContactsController@index');
 Route::get('/contact-show','ContactsController@index@show');
 
 Route::resource('contacts', 'ContactsController');
-
-

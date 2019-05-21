@@ -67,6 +67,19 @@
             <li class="treeview">
             <a href="#">
             <i class="fa fa-university"></i>
+            <span>Email templates</span>
+            <i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="treeview-menu">
+            <li><a href="{{URL::to('/email-templates/create')}}"><i class="fa fa-angle-right"></i> Add Email templates</a></li>
+                <li><a href="{{URL::to('/email-templates')}}"><i class="fa fa-angle-right"></i> Manage Email templates</a></li>
+            </ul>
+            </li>
+
+
+            <li class="treeview">
+            <a href="#">
+            <i class="fa fa-university"></i>
             <span>Bank Accounts</span>
             <i class="fa fa-angle-left pull-right"></i>
             </a>

@@ -378,6 +378,7 @@ class TicketsController extends Controller
         // $aMessage = $oFolder->search()->text('sdf sadf sdf sdfsada')->get();
         $aMessage = $oFolder->search()->text($ticket->text)->get();
         foreach ($aMessage as $oMessage) {
+// dd($oMessage);
             if ($oMessage->getUid() == $ticket->imap_msg_no) {
                 $attachments = $oMessage->attachments;
                 $oMessage = $oFolder->getMessage($ticket->imap_msg_no);
