@@ -1126,7 +1126,6 @@
 
                             @php
                                 $airlineData=DB::table('airlines')->where('id',$claims->airline_id)->first();
-
                             @endphp
 
                             <div class="form-group">

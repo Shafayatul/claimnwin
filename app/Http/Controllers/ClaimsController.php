@@ -27,6 +27,7 @@ use App\Classes\cPanel;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\PasswordSent;
 use Victorybiz\GeoIPLocation\GeoIPLocation;
+use App\Affiliate;
 
 class ClaimsController extends Controller
 {
@@ -711,7 +712,6 @@ class ClaimsController extends Controller
         // <--------------------------------End Convert Amount Code----------------------->
 
 
-
         $update_claim                               = Claim::find($claim->id);
         $update_claim->amount                       = $amount_and_distance[0];
         $update_claim->airline_id                   = $airline_id;
@@ -721,7 +721,21 @@ class ClaimsController extends Controller
         $update_claim->converted_expection_amount   = $converted_expection_amount;
         $update_claim->save();
 
-        $amount = $amount_and_distance[0];
+        $just_amount =  explode(' ', $amount_and_distance[0]) ;
+
+
+
+        $commision_amount = round(($just_amount[0]*$affiliateCom->fieldValue)/100);
+        
+        if ($user->affiliate_user_id != null) {
+            $affiliate = new Affiliate; 
+            $affiliate->affiliate_user_id       = $user->affiliate_user_id;
+            $affiliate->claim_id                = $claim->id;
+            $affiliate->commision_amount        = $commision_amount. ' ' . $amount_and_distance[1];
+            $affiliate->percentage              = $affiliateCom->fieldValue;
+            $affiliate->approved                = 0;
+            $affiliate->save();
+        }
 
 
         // return 'success';
