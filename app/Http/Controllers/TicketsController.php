@@ -17,6 +17,7 @@ use App\TicketReplyEmail;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\TicketReply;
 use Carbon\Carbon;
+use App\EmailTemplate;
 
 class TicketsController extends Controller
 {
@@ -398,6 +399,8 @@ class TicketsController extends Controller
     public function ticketReplyView($id)
     {
         $ticket=Ticket::find($id);
-        return view('tickets.ticket-email-reply',compact('ticket'));
+        $EmailTemplate = EmailTemplate::all()->pluck('title', 'id');
+        $main_email = TicketNote::where('ticket_id', $id)->first()->description;
+        return view('tickets.ticket-email-reply',compact('ticket', 'EmailTemplate', 'main_email'));
     }
 }

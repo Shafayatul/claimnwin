@@ -88,6 +88,7 @@ Route::group(['middleware' => ['auth']], function() {
     // Admin + SUper Admin
     Route::group(['middleware' => ['role:Admin|Super Admin']], function () {
         Route::resource('email-templates', 'EmailTemplatesController');
+        Route::post('ajax/get-email-template', 'EmailTemplatesController@get_email_template');
         Route::get('/activity/index', 'ActivityController@index');
         Route::get('/admin', 'AdminsController@index');
         Route::get('/home', 'HomeController@index')->name('home');

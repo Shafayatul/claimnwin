@@ -37,6 +37,18 @@ class EmailTemplatesController extends Controller
      *
      * @return \Illuminate\View\View
      */
+    public function get_email_template(Request $request)
+    {
+        $id = $request->input('id');
+        $content = EmailTemplate::where('id', $id)->first()->content;
+        return $content;
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\View\View
+     */
     public function create()
     {
         return view('email-templates.create');

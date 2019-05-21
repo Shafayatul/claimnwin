@@ -47,7 +47,24 @@
 
                         <div class="form-group">
                             <div class="col-md-12">
-                                <textarea name="ticket_reply_note"  class="form-control ticket_textarea" rows="5" cols="50"></textarea>
+                                <select id="select-template" class="form-control">
+                                    <option value="0">Email template</option>
+                                    @foreach($EmailTemplate as $key=>$val)
+                                        <option value="{{$key}}">{{$val}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <textarea name="ticket_reply_note" id="ticket_reply_note"  class="form-control ticket_textarea" rows="5" cols="50">
+                                    
+                                    <br>
+                                    <br>
+                                    <h3>Reply to:</h3>
+                                    {!! $main_email !!}
+                                </textarea>
                             </div>
                         </div>
 
@@ -56,6 +73,13 @@
                                 <input type="file" name="ticket_reply_files[]" id="" class="form-control" multiple/>
                                 <input type="hidden" name="ticket_id" value="{{$ticket->id}}">
                             </div>
+                        </div>
+
+                        <div class="main-email-html-body" style="display: none;">
+                            <br>
+                            <br>
+                            <h3>Reply to:</h3>
+                            {!! $main_email !!}
                         </div>
 
                         <div class="form-group">
@@ -82,6 +106,26 @@ $(function() {
         heightMin: 200,
         heightMax: 800,
     });
+    $('#select-template').change(function(){
+        var current_option_value = $(this).val();
+        if (current_option_value != 0) {
+            $.ajax({
+                type:'POST',
+                url:'{{ url("/ajax/get-email-template") }}',
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                data:{
+                'id'          : current_option_value
+                },
+                success:function(data){
+                    var newEmailBody = data + $('.main-email-html-body').html();
+                    console.log(newEmailBody);
+                    $(".fr-view").html(newEmailBody);
+
+                }
+            });
+        }
+    });
+    
 });
 </script>
 @endsection
