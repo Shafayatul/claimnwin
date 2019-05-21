@@ -18,6 +18,7 @@ use App\ClaimStatus;
 use App\NextStep;
 use App\BankAccount;
 use App\Setting;
+use App\EmailTemplate;
 use App\User;
 use App\Flight;
 use File;
@@ -357,8 +358,9 @@ class ClaimBackController extends Controller
             $itinerary_detail_airlines = Airline::whereIn('id', $itinerary_detail_airline_id)->pluck('name', 'id');
 
             $affilaite_info=Affiliate::where('claim_id',$claims->id)->first();
+            $EmailTemplate=EmailTemplate::all()->pluck('title', 'id');
 
-        return view('claim.claimView',compact('affilaite_info','airlineInfo','airlineSents','inbox','affiliateNotes','expanses','aFolder','sents','notes', 'ticket_notes', 'ticket', 'claimFiles','affiliateComm','adminComm','NextStepData','claimStatusData','flightInfo','airline','departed_airport','destination_airport','reminders','claims','passengers','ittDetails','flightCount','passCount','claimsStatus','nextSteps','banks', 'affiliate_user', 'intinerary_details', 'itinerary_detail_airlines', 'all_flights'));
+        return view('claim.claimView',compact('affilaite_info','airlineInfo','airlineSents','inbox','affiliateNotes','expanses','aFolder','sents','notes', 'ticket_notes', 'ticket', 'claimFiles','affiliateComm','adminComm','NextStepData','claimStatusData','flightInfo','airline','departed_airport','destination_airport','reminders','claims','passengers','ittDetails','flightCount','passCount','claimsStatus','nextSteps','banks', 'affiliate_user', 'intinerary_details', 'itinerary_detail_airlines', 'all_flights', 'EmailTemplate'));
     }
 
     public function downloadClaimFile($id)

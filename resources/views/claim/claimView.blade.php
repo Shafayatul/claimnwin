@@ -629,6 +629,17 @@
 
                                                     <div class="form-group">
                                                         <div class="col-md-12">
+                                                            <select id="" class="form-control select-template">
+                                                                <option value="0">Email template</option>
+                                                                @foreach($EmailTemplate as $key=>$val)
+                                                                    <option value="{{$key}}">{{$val}}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <div class="col-md-12">
                                                             <textarea name="compose_text" class="form-control Compose" cols="30" rows="10"></textarea>
                                                             <input type="hidden" name="claim_id" value="{{$claims->id}}">
                                                         </div>
@@ -1129,6 +1140,17 @@
                             <div class="form-group">
                                 <div class="col-md-12">
                                     <input type="text" name="sub" id="airline_sub" class="form-control" placeholder="Subject" required/>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <select id="" class="form-control select-template">
+                                        <option value="0">Email template</option>
+                                        @foreach($EmailTemplate as $key=>$val)
+                                            <option value="{{$key}}">{{$val}}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
 
@@ -2756,6 +2778,25 @@ $(function() {
     });
     $('#note-info').froalaEditor();
     $('.edit-note').froalaEditor();
+
+
+    $('.select-template').change(function(){
+        var current_option_value = $(this).val();
+        if (current_option_value != 0) {
+            $.ajax({
+                type:'POST',
+                url:'{{ url("/ajax/get-email-template") }}',
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                data:{
+                'id'          : current_option_value
+                },
+                success:function(data){
+                    $(".fr-view").html(data);
+                }
+            });
+        }
+    });
+
 });
 
 
