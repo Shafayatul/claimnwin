@@ -62,7 +62,7 @@
                     <div class="panel" style="background-color: #486f84;">
                         <div class="panel-heading cus_pan_heading">
                             <p class="text-center p1">Claim Category</p>
-                            <h5 class="text-center p2">{{$claims->claim_table_type}}</h5>
+                            <h5 class="text-center p2">{{str_replace('_', ' ', ucfirst($claims->claim_table_type)) }}</h5>
                         </div>
                     </div>
                 </div>
@@ -334,7 +334,11 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-lg-12">
-                                                    <a href="{{URL::to('/letter-before-action/'.$claims->id)}}" class="btn btn-success btn-sm">Download Pdf</a>
+                                                    @if($is_all_flight_time_exists)
+                                                    <a  href="{{URL::to('/letter-before-action/'.$claims->id)}}" class="btn btn-success btn-sm" >Download Pdf</a>
+                                                    @else
+                                                    <a class="btn btn-success btn-sm time-input-required" >Download Pdf</a>
+                                                    @endif
                                                     <a href="{{URL::to('/poa-pdf/'.$claims->id)}}" class="btn btn-primary btn-sm">Download POA Pdf</a>
                                                     <div class="panel panel-default">
                                                         <!-- /.panel-heading -->
@@ -2779,6 +2783,9 @@ $(function() {
     $('.edit-note').froalaEditor();
 
 
+    $('.time-input-required').click(function(){
+        alert("You have to input all flights time.");
+    });
     $('.select-template').change(function(){
         var current_option_value = $(this).val();
         if (current_option_value != 0) {
