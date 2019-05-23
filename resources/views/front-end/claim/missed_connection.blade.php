@@ -891,7 +891,7 @@
                               <div class="total_button_div">
                                 <div class="two_button_child_div_right">
                                   <div class="continue_button_div">
-                                    <button type="button" class="continue_button pull-right" id="continue_4" name="button">Continue <i class="fas fa-arrow-right"></i></button>
+                                    <button type="button" onclick="horizontalCustomStyle();" class="continue_button pull-right" id="continue_4" name="button">Continue <i class="fas fa-arrow-right"></i></button>
                                   </div>
                                 </div>
                                 <div class="two_button_child_div_left">
@@ -1419,22 +1419,38 @@ $(document).ready(function() {
     });
     </script>
 
-    {{-- <script>
-$(document).ready(function(){
-    var control = $('input[type="file"]');
-         clearBn = $("#reset_file");
+    <script>
+// $(document).ready(function(){
+//     var control = $('input[type="file"]');
+//          clearBn = $("#reset_file");
+//
+//
+//         // Setup the clear functionality
+//         clearBn.on("click", function(){
+//             control.replaceWith( control.val('').clone( true ) );
+//         });
+//         control.on({
+//             change: function(){ console.log( "Changed" ) },
+//             focus: function(){ console.log(  "Focus"  ) }
+//         });
+//     });
 
+function loadingOut(loading) {
+				setTimeout(() => loading.out(), 3000);
+			}
 
-        // Setup the clear functionality
-        clearBn.on("click", function(){
-            control.replaceWith( control.val('').clone( true ) );
-        });
-        control.on({
-            change: function(){ console.log( "Changed" ) },
-            focus: function(){ console.log(  "Focus"  ) }
-        });
-    });
-    </script> --}}
+function horizontalCustomStyle() {
+
+      var loading = new Loading({
+        title: ' Please wait',
+        direction: 'hor',
+        discription: 'Calculating...',
+          defaultApply: 	true,
+      });
+
+      loadingOut(loading);
+    }
+    </script>
 
  <script src="{{asset('signature/js/numeric-1.2.6.min.js')}}"></script>
  <script src="{{asset('signature/js/bezier.js')}}"></script>

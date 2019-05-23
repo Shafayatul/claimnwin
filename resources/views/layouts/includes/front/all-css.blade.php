@@ -5,3 +5,5 @@
 <link href="{{asset('front_asset/style.css')}}" rel="stylesheet">
 <link href="{{asset('front_asset/css/responsive.css')}}" rel="stylesheet">
 <link href="{{asset('autocomplete/jquery.auto-complete.css')}}" rel="stylesheet">
+<link href="{{asset('front_asset/css/modal-loading.css')}}" rel="stylesheet">
+<link href="{{asset('front_asset/css/modal-loading-animate.css')}}" rel="stylesheet">
