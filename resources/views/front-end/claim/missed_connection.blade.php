@@ -1436,7 +1436,7 @@ $(document).ready(function() {
 //     });
 
 function loadingOut(loading) {
-				setTimeout(() => loading.out(), 3000);
+				setTimeout(() => loading.out(), 2000);
 			}
 
 function horizontalCustomStyle() {
