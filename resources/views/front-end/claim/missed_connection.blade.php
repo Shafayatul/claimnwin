@@ -912,6 +912,81 @@
 
                           <div class="single_step" id="step_5" style="display:none;">
 
+                            <div class="common_row">
+                              <p>We're running checks against thousands of pieces of information relating to your flight to give you an accurate decision on your claim.</p>
+                            </div>
+                            <div class="common_row">
+                              <div class="row">
+                                <div class="col-md-6">
+                                  <div class="parent_div" style="margin-bottom: 15px;">
+                                    <div class="checked_icon_div">
+                                      <div class="icon_container_div">
+                                        <i class="fas fa-check"></i>
+                                      </div>
+                                    </div>
+                                    <div class="checked_icon_text_div">
+                                      Time Limit checked
+                                    </div>
+                                  </div>
+                                  <div class="parent_div" style="margin-bottom: 15px;">
+                                    <div class="checked_icon_div">
+                                      <div class="icon_container_div">
+                                        <i class="fas fa-check"></i>
+                                      </div>
+                                    </div>
+                                    <div class="checked_icon_text_div">
+                                      Distance of flight checked
+                                    </div>
+                                  </div>
+                                  <div class="parent_div" style="margin-bottom: 15px;">
+                                    <div class="checked_icon_div">
+                                      <div class="icon_container_div">
+                                        <i class="fas fa-check"></i>
+                                      </div>
+                                    </div>
+                                    <div class="checked_icon_text_div">
+                                      Length of delay checked
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-md-6">
+                                  <div class="parent_div" style="margin-bottom: 15px;">
+                                    <div class="checked_icon_div">
+                                      <div class="icon_container_div">
+                                        <i class="fas fa-check"></i>
+                                      </div>
+                                    </div>
+                                    <div class="checked_icon_text_div">
+                                      Weather condition checked
+                                    </div>
+                                  </div>
+                                  <div class="parent_div" style="margin-bottom: 15px;">
+                                    <div class="checked_icon_div">
+                                      <div class="icon_container_div">
+                                        <i class="fas fa-check"></i>
+                                      </div>
+                                    </div>
+                                    <div class="checked_icon_text_div">
+                                      Legal validity of claim checked
+                                    </div>
+                                  </div>
+                                  <div class="parent_div" style="margin-bottom: 15px;">
+                                    <div class="checked_icon_div">
+                                      <div class="icon_container_div">
+                                        <i class="fas fa-check"></i>
+                                      </div>
+                                    </div>
+                                    <div class="checked_icon_text_div">
+                                      Cross referenced against database of existing claims
+                                    </div>
+                                  </div>
+
+                                </div>
+                              </div>
+                            </div>
+
+                            <hr>
+
                             <div class="common_row result_from_ajax_calculation">
 
                             </div>
