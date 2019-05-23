@@ -54,7 +54,6 @@ class TicketsController extends Controller
 
             /** @var \Webklex\IMAP\Message $oMessage */
             foreach($aMessage as $oMessage){
-
                 $to_email   = $oMessage->getTo()[0]->mail;
                 $from_email = $oMessage->getFrom()[0]->mail;
                 if (Claim::where('cpanel_email', $to_email)->count() !=0) {
@@ -69,8 +68,17 @@ class TicketsController extends Controller
                 $sub =$oMessage->getSubject();
                 $date = $oMessage->getDate();
                 $longMsg=$oMessage->getHTMLBody(true);
-                $textMsg=  str_replace(array("\n", "\r"), '',$oMessage->getTextBody(true));
-                $lines=explode("\n", $longMsg);
+                $textMsg=  $oMessage->getTextBody(true);
+                if (strpos($textMsg, "\r\n") !== false) {
+                    $lines=explode("\r\n", $longMsg)[0];
+                }elseif (strpos($textMsg, "\n") !== false) {
+                    $lines=explode("\n", $longMsg)[0];
+                }elseif (strpos($textMsg, "\r") !== false) {
+                    $lines=explode("\r", $longMsg)[0];
+                }else{
+                    $lines= $textMsg;
+                }
+                
 
                 $ticket                 = new Ticket;
                 $ticket->subject        = $sub;
@@ -79,8 +87,7 @@ class TicketsController extends Controller
                 $ticket->to_email       = $to_email;
                 $ticket->from_email     = $from_email;
                 $ticket->imap_msg_no    = $imap_msg_no;
-
-                $ticket->text           = $textMsg;
+                $ticket->text           = $lines;
                 $ticket->email_date     = $date;
                 $ticket->save();
 
@@ -355,7 +362,6 @@ class TicketsController extends Controller
     public function ticketSingleEmailView($id)
     {
 
-
         $ticket=Ticket::find($id);
         $ticket_note = TicketNote::where('ticket_id',$ticket->id)->first();
         $ticket_reply = TicketReplyEmail::where('ticket_id',$id)->latest()->get();
@@ -374,10 +380,11 @@ class TicketsController extends Controller
         ]);
         $oClient->connect();
         // $oFolder = $oClient->getFolder('INBOX');
-
         $oFolder = $oClient->getFolder('INBOX');
         // $aMessage = $oFolder->search()->text('sdf sadf sdf sdfsada')->get();
+        // dd($ticket->text);
         $aMessage = $oFolder->search()->text($ticket->text)->get();
+        // dd($aMessage);
         foreach ($aMessage as $oMessage) {
 // dd($oMessage);
             if ($oMessage->getUid() == $ticket->imap_msg_no) {
