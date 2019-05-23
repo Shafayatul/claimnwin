@@ -1,3 +1,32 @@
+.checked_icon_div {
+  width: 15%;
+  float: left;
+}
+.checked_icon_text_div {
+  width: 85%;
+  float: left;
+}
+
+.icon_container_div {
+  width: 20px;
+  height: 20px;
+  border: 1px solid #3F6784;
+  border-radius: 50%;
+  display: block;
+  overflow: hidden;
+  /* margin-top: 5px; */
+  position: relative;
+  /* background-color: #3F6784; */
+}
+
+.icon_container_div i {
+  color: #3F6784;
+  font-size: 12px;
+  position: absolute;
+  top: 20%;
+  left: 20%;
+}
+
 /*New CSS for Denied Boarding starts*/
 
 .form_claim_main_content_div {
