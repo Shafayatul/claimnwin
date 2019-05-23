@@ -799,7 +799,7 @@
                                     <div class="total_button_div">
                                         <div class="two_button_child_div_right">
                                             <div class="continue_button_div">
-                                                <button type="button" class="continue_button pull-right" id="continue_4" name="button">Continue <i class="fas fa-arrow-right"></i></button>
+                                                <button type="button" onclick="horizontalCustomStyle();" class="continue_button pull-right" id="continue_4" name="button">Continue <i class="fas fa-arrow-right"></i></button>
                                             </div>
                                         </div>
                                         <div class="two_button_child_div_left">
@@ -1268,6 +1268,22 @@
 <script src="{{asset('front_asset/claim/flight_cancellation/js/custom.js')}}"></script>
 
 <script>
+function loadingOut(loading) {
+				setTimeout(() => loading.out(), 2000);
+			}
+
+function horizontalCustomStyle() {
+
+      var loading = new Loading({
+        title: ' Please wait',
+        direction: 'hor',
+        discription: 'Calculating...',
+          defaultApply: 	true,
+      });
+
+      loadingOut(loading);
+    }
+
     $(document).ready(function() {
             $('#signArea1').signaturePad({drawOnly:true, drawBezierCurves:true, lineTop:90});
             });
