@@ -1004,24 +1004,6 @@
 
 @section('footer-script')
   <script type="text/javascript">
-
-  function loadingOut(loading) {
-          setTimeout(() => loading.out(), 2000);
-        }
-
-  function horizontalCustomStyle() {
-
-        var loading = new Loading({
-          title: ' Please wait',
-          direction: 'hor',
-          discription: 'Calculating...',
-            defaultApply: 	true,
-        });
-
-        loadingOut(loading);
-      }
-
-
       var ajax_cal_url = "{{url('/ajax/calculate/lost_luggage_calculation')}}";
       var currency_converter_url = "{{url('/ajax/currency_converter_url')}}";
       auto_airport_complete();
@@ -1077,6 +1059,21 @@
 <script src="{{('front_asset/claim/lost_luggage/js/custom.js')}}"></script>
 
 <script>
+function loadingOut(loading) {
+        setTimeout(() => loading.out(), 2000);
+      }
+
+function horizontalCustomStyle() {
+
+      var loading = new Loading({
+        title: ' Please wait',
+        direction: 'hor',
+        discription: 'Calculating...',
+          defaultApply: 	true,
+      });
+
+      loadingOut(loading);
+    }
     $(document).ready(function() {
             $('#signArea1').signaturePad({drawOnly:true, drawBezierCurves:true, lineTop:90});
             });
