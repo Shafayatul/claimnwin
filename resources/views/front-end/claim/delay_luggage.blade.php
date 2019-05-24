@@ -135,7 +135,7 @@
                                           <label for="departed_from">DEPARTED FROM: </label>
                                         </div>
                                         <div class="input_field">
-                                          <input type="text" class="auto_airport_complete common_input departed_from" id="advanced-demo common_input departed_from" name="departed_from" placeholder="e.g. New York State Police Heliport">
+                                          <input type="text" class="auto_airport_complete common_input departed_from" id="advanced-demo common_input departed_from" name="departed_from" placeholder="e.g. JFK">
                                         </div>
                                       </div>
                                       <div class="two_child_div_right">
@@ -143,7 +143,7 @@
                                           <label for="final_destination">FINAL DESTINATION: </label>
                                         </div>
                                         <div class="input_field">
-                                          <input type="text" class="auto_airport_complete common_input final_destination" id="common_input final_destination" name="final_destination" placeholder="e.g. London Airport">
+                                          <input type="text" class="auto_airport_complete common_input final_destination" id="common_input final_destination" name="final_destination" placeholder="e.g. LHR">
                                         </div>
                                       </div>
                                     </div>
