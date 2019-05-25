@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
+use App\Airline;
 use App\Flight;
 use Illuminate\Http\Request;
 use Auth;
@@ -21,6 +21,8 @@ class FlightsController extends Controller
         $keyword = $request->get('search');
         $perPage = 25;
 
+        $airline = Airline::orderBy('name', 'asc')->get()->pluck('name', 'id');
+
         if (!empty($keyword)) {
             $flights = Flight::where('user_id', 'LIKE', "%$keyword%")
                 ->orWhere('flight_no', 'LIKE', "%$keyword%")
@@ -34,7 +36,7 @@ class FlightsController extends Controller
             $flights = Flight::latest()->paginate($perPage);
         }
 
-        return view('flights.index', compact('flights'));
+        return view('flights.index', compact('flights', 'airline'));
     }
 
     /**
@@ -44,7 +46,8 @@ class FlightsController extends Controller
      */
     public function create()
     {
-        return view('flights.create');
+        $airline = Airline::orderBy('name', 'asc')->get()->pluck('name', 'id');
+        return view('flights.create', compact('airline'));
     }
 
     /**
@@ -87,9 +90,10 @@ class FlightsController extends Controller
      */
     public function edit($id)
     {
+        $airline = Airline::orderBy('name', 'asc')->get()->pluck('name', 'id');
         $flight = Flight::findOrFail($id);
 
-        return view('flights.edit', compact('flight'));
+        return view('flights.edit', compact('flight', 'airline'));
     }
 
     /**

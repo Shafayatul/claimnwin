@@ -437,7 +437,7 @@ class ClaimsController extends Controller
             if ($user_count ==0) {
                 $user = User::create(
                     [
-                     'name'             => $email,
+                     'name'             => $request->first_name[0].' '.$request->last_name[0],
                      'email'            => $email,
                      'password'         => Hash::make($pass)
                     ]);
@@ -664,7 +664,7 @@ class ClaimsController extends Controller
         */
         $cpanel_password  = $this->randomPassword();
 
-        $this->create_cpanel_email($cpanel_email_name, $cpanel_password);
+        // $this->create_cpanel_email($cpanel_email_name, $cpanel_password);
         $cpanel_email     = $cpanel_email_name.'@freeflightclaim.com';
 
 

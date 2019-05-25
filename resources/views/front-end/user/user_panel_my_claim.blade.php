@@ -27,7 +27,11 @@
             </div>
             <div class="col-md-2">
                 <div class="parent_div text-center">
-                    <span class="bold_span">Value:</span> {!! $claims->amount.'<br> ('.$claims->converted_expection_amount.')' !!}
+                    <span class="bold_span">Value:</span> 
+                    {!! $claims->amount !!}
+                    @if(($claims->converted_expection_amount != "") && ($claims->converted_expection_amount != null))
+                        {!! $claims->amount.'<br> ('.$claims->converted_expection_amount.')' !!}
+                    @endif
                 </div>
             </div>
             <div class="col-md-4">

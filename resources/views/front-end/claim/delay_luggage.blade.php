@@ -155,7 +155,7 @@
                                 <div class="show_on_airport_selected">
                                   <div class="parent_div">
                                       <div class="form_h3">
-                                          <h3>Itinerary details for your disrupted flight</h3>
+                                          <h3>Itinerary details for your disrupted flight on which luggage was delayed</h3>
                                       </div>
                                       {{-- <div class="form_h4">
                                           <h4>Please give us the full itinerary so we can make sure we claim for the full amount.</h4>
@@ -885,7 +885,7 @@
                                         <div class="form-check">
                                             <label>
                                                 <input type="checkbox" name="is_signed_permission" id="no-use"> <span class="label-text">Write your signature below as it appears on your ID. It's required by airlines to collect the compensation for you. By signing you agree with
-                                                    the <a  style="font-weight: bold; color: #124478;" target="_blank"  href="{{URL::to('/pricing-list')}}">Assignment Form and Price List</a></span>
+                                                    the <a  style="font-weight: bold; color: #124478;" target="_blank"  href="{{URL::to('/terms-and-conditions')}}">Terms and Conditions</a> and <a  style="font-weight: bold; color: #124478;" target="_blank"  href="{{URL::to('/pricing-list')}}">Price List</a></span>
                                             </label>
                                         </div>
                                     </div>

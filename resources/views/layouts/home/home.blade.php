@@ -34,9 +34,9 @@
             <div class="col-md-12" style="margin: 0px; padding: 0px;">
               <div class="home_top_header_title_ul_div">
                 <ul class="fa-ul">
-                  <li> <div class="li_mother_div"> <div class="li_icon_div"><i class="fas fa-check-circle"></i></div><div class="li_text_div">Get up to €1300 for a cancelled, overbooked or delayed flight.</div></div></li>
-                  <li> <div class="li_mother_div"> <div class="li_icon_div"><i class="fas fa-check-circle"></i></div><div class="li_text_div">Get up to €3400 for a luggage issue.</div></div></li>
-                  <li> <div class="li_mother_div"> <div class="li_icon_div"><i class="fas fa-check-circle"></i></div><div class="li_text_div">Get up to €7000 for expenses you incurred as a result of your distrupted flight.</div></div></li>
+                  <li> <div class="li_mother_div"> <div class="li_icon_div"><i class="fas fa-check-circle"></i></div><div class="li_text_div">Get up to {{$amount1}} for a cancelled, overbooked or delayed flight.</div></div></li>
+                  <li> <div class="li_mother_div"> <div class="li_icon_div"><i class="fas fa-check-circle"></i></div><div class="li_text_div">Get up to {{$amount2}} for a luggage issue.</div></div></li>
+                  <li> <div class="li_mother_div"> <div class="li_icon_div"><i class="fas fa-check-circle"></i></div><div class="li_text_div">Get up to {{$amount3}} for expenses you incurred as a result of your distrupted flight.</div></div></li>
                 </ul>
               </div>
             </div>
@@ -90,7 +90,7 @@
                       </div>
                       <div class="col-md-9 col-xs-9" style="margin: 0px; padding: 0px;">
                         <div class="home_top_header_option_text_div text-center">
-                          <p class="home_top_header_option_text_p_title_div">Up to €600</p>
+                          <p class="home_top_header_option_text_p_title_div">Up to {{$amount4}}</p>
                           <p class="home_top_header_option_text_p_normal_div">compensation</p>
                         </div>
                       </div>

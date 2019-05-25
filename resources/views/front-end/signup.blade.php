@@ -21,8 +21,8 @@
             </div>
             <div class="col-xs-6 col-sm-6">
                 <a href="{{url('socialauth/google')}}" class="btn btn-lg btn-block omb_btn-google">
-                    <i class="fab fa-google-plus-g"></i>
-                    <span class="hidden-sm hidden-xs">Google+</span>
+                    <i class="fab fa-google"></i>
+                    <span class="hidden-sm hidden-xs">Google</span>
                 </a>
             </div>
         </div>

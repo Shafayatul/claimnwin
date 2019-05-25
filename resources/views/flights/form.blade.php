@@ -1,6 +1,17 @@
 <div class="grids widget-shadow">
     <div class="row">
         <div class="col-md-6 grid-box1">
+            <div class="form-group {{ $errors->has('airline_id') ? 'has-error' : ''}}">
+                {!! Form::label('airline_id', 'Airline', ['class' => 'control-label']) !!}
+                {!! Form::select('airline_id', $airline, null, ('' == 'required') ? ['class' => 'form-control', 'required' => 'required'] : ['class' => 'form-control']) !!}
+                {!! $errors->first('airline_id', '<p class="help-block">:message</p>') !!}
+            </div>
+        </div>
+        <div class="col-md-6">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 grid-box1">
             <div class="form-group {{ $errors->has('flight_no') ? 'has-error' : ''}}">
                 {!! Form::label('flight_no', 'Flight No', ['class' => 'control-label']) !!}
                 {!! Form::text('flight_no', null, ('' == 'required') ? ['class' => 'form-control', 'required' => 'required'] : ['class' => 'form-control']) !!}

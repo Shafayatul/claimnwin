@@ -654,13 +654,19 @@ footer {
 .footer-bottom p {
   margin-top: 15px;
 }
-
+.justify-content-center{
+  margin: 10% 0;
+}
 .footer-bottom a + a {
   margin-left: 35px;
 }
 
 
-
+.forget-password-form{
+    padding: 32px;
+    border: 3px solid gray;
+    border-radius: 12px;
+}
 
 
 /*@media (max-width: 1405px) {

@@ -35,6 +35,7 @@
                       <tr>
                           <th>#</th>
                           <th>Flight No</th>
+                          <th>Airline</th>
                           <th>Date</th>
                           <th>Scheduled Departure Time</th>
                           <th>Scheduled Arrival Time And Date</th>
@@ -48,6 +49,7 @@
                       <tr>
                           <td>{{ $loop->iteration }}</td>
                           <td>{{ $item->flight_no }}</td>
+                          <td>{{ $airline[$item->airline_id] }}</td>
                           <td>{{ $item->date }}</td>
                           <td>{{ $item->scheduled_departure_time_and_date }}</td>
                           <td>{{ $item->scheduled_arrival_time_and_date }}</td>
