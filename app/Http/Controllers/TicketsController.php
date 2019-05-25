@@ -366,6 +366,9 @@ class TicketsController extends Controller
         $ticket_note = TicketNote::where('ticket_id',$ticket->id)->first();
         $ticket_reply = TicketReplyEmail::where('ticket_id',$id)->latest()->get();
 
+        $email_date = substr($ticket->email_date,8,2).'.'.substr($ticket->email_date,5,2).'.'.substr($ticket->email_date,0,4);
+
+
         $perPage = 25;
         $oClient = new Client([
             'host'          => 'premium39.web-hosting.com',
@@ -379,12 +382,12 @@ class TicketsController extends Controller
             'protocol'      => 'imap'
         ]);
         $oClient->connect();
-        // $oFolder = $oClient->getFolder('INBOX');
         $oFolder = $oClient->getFolder('INBOX');
-        // $aMessage = $oFolder->search()->text('sdf sadf sdf sdfsada')->get();
-        // dd($ticket->text);
-        $aMessage = $oFolder->search()->text($ticket->text)->get();
-        // dd($aMessage);
+        // $aMessage = $oFolder->search()->get();
+        $aMessage = $oFolder->search()->whereFrom('mdshafayatul@gmail.com')->whereOn($email_date)->get();
+        dd($aMessage);
+
+        
         foreach ($aMessage as $oMessage) {
 // dd($oMessage);
             if ($oMessage->getUid() == $ticket->imap_msg_no) {

@@ -171,7 +171,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <div class="col-md-12">
-                                                        <button type="submit" class="btn btn-lg btn-success">Responde to Ticket</button>
+                                                        <button type="submit" class="btn btn-lg btn-success">Respond to Ticket</button>
                                                     <a href="{{URL::to('/close-ticket/'.$ticket->id)}}" onclick="return confirm('Are you sure close the ticket?');" class="btn btn-danger btn-sm pull-right">Close Ticket</a>
                                                     </div>
                                                 </div>
