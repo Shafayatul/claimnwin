@@ -113,14 +113,14 @@
 
                         </div>
                         <div class="user_message">
-                            <form class="user_message_form" action="{{ route('user-ticket-message') }}" method="post">
+                            <form class="user_message_form single-submit" action="{{ route('user-ticket-message') }}" method="post">
                                 {{ csrf_field() }}
                                 <i class="fas fa-pencil-alt prefix"></i>
                                 <textarea id="" class="" name="description" placeholder="Write a message"></textarea>
                                 <input type="hidden" name="ticket_id" value="{{ $claims->ticket_id }}">
                                 <div class="row">
                                     <div class="col-md-12 text-right">
-                                        <button type="submit" name="button">Send</button>
+                                        <button type="submit" name="button" class="disable-after-first-click">Send</button>
                                     </div>
                                 </div>
                             </form>

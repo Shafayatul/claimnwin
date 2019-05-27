@@ -94,6 +94,25 @@
         the_return.innerHTML = this.value;
       });
 
+    $(function(){
+        // $('.single-submit').trigger('submit');
+        // $('.disable-after-first-click').click(function(){
+        //     $('.single-submit').submit();
+        //     $(this).attr("disabled", true);
+        // });
+        $('.disable-after-first-click').click(function (e) {
+            console.log('ssssssssssss');
+
+            //stop submitting the form to see the disabled button effect
+            e.preventDefault();
+
+            //disable the submit button
+            $('.disable-after-first-click').attr("disabled", "disabled");
+
+            $('.single-submit').trigger('submit');
+
+        });
+    });
     </script>
     <script src="{{ asset('js/share.js') }}"></script>
 

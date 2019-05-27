@@ -47,6 +47,9 @@ Route::get('/affiliate-page','FrontsController@affiliatePage');
 Route::get('/form-claim','FrontsController@formClaim');
 // auth
 Auth::routes();
+// social login
+Route::get('socialauth/{provider}','SocialAuthController@redirectToProvider');
+Route::get('socialauth/{provider}/callback','SocialAuthController@handleProviderCallback');
 // claim
 Route::post('/claim','ClaimsController@store');
 Route::get('/claim','ClaimsController@claim')->name('claim');
@@ -102,8 +105,7 @@ Route::group(['middleware' => ['auth']], function() {
         Route::delete('/reminders-delete/{id}','RemindersController@destroy');
         Route::get('/reminder-status-dismiss/{id}', 'RemindersController@reminderStatusDismiss');
         Route::get('/reminder-status-markasdone/{id}', 'RemindersController@reminderStatusMarkasdone');
-        Route::get('socialauth/{provider}','SocialAuthController@redirectToProvider');
-        Route::get('socialauth/{provider}/callback','SocialAuthController@handleProviderCallback');
+
 
         Route::post('/update-password', 'UsersController@update_password');
         Route::get('/update-password', 'UsersController@show_update_password');

@@ -37,7 +37,7 @@
               </div>
               <div class="col-md-6">
                 <div class="contact_us_main_content_left_div_paragraph text-right">
-                  <p><span style="color: #114478;"><i class="fas fa-phone-volume"></i></span> or call us on <span style="color: #114478;">+180 000 1234</span></p>
+                  <p><span style="color: #114478;"><i class="fas fa-phone-volume"></i></span> or call us on <span style="color: #114478;">{{$ip_phone_number}}</span></p>
                 </div>
               </div>
             </div>
@@ -82,7 +82,7 @@
             <div class="row">
               <div class="col-md-12">
                 <div class="google_map_iframe_div">
-                  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.4113982101535!2d90.4213037149817!3d23.76836028458052!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c788c8f61b57%3A0x954685dc33a0d16e!2sRampura+Bridge%2C+Dhaka+1212!5e0!3m2!1sen!2sbd!4v1554624183570!5m2!1sen!2sbd" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+                  <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2479.9485775853004!2d-0.0758379!3d51.5691762!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48761c685f22c247%3A0xda47559619f45af!2sMontefiore+Court%2C+Stamford+Hill%2C+London+N16+5TY%2C+UK!5e0!3m2!1sen!2sbd!4v1558851700333!5m2!1sen!2sbd" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
                 </div>
               </div>
             </div>
@@ -101,7 +101,12 @@
                           <h2>Registered Office</h2>
                         </div>
                         <div class="child_div_content_paragraph">
-                          <p>Fulham Court Road, Chelsea, London, England, M25 4WS </br> Company No: 0665xxxx | Reg No: CRM00000|</br> Reg In: England & Wales, ICO number CAC98765</p>
+                          <p>
+                            Registered Office</br>
+                            39 Montefiore Court, Stamford Hill, London, England, N16 5TY</br>
+                            Company No: 09748199</br>
+                            ICO Registration number: ZA137982
+                          </p>
                         </div>
                       </div>
                     </div>
@@ -147,7 +152,7 @@
                           <h2>Talk To Us</h2>
                         </div>
                         <div class="child_div_content_paragraph">
-                          <p>+180 000 1234</p>
+                          <p>{{$ip_phone_number}}</p>
                         </div>
                       </div>
                     </div>

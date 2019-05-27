@@ -19,7 +19,7 @@
               <ul class="nav navbar-nav navbar-right">
                 <li class="call"><a href="#">
                     <img src="{{asset('front_asset/')}}/img/phone.png" alt="phone icon">
-                    +180 000 1234
+                    {{$ip_phone_number}}
                 </a></li>
 
                 @role('User')
