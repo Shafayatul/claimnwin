@@ -26,7 +26,7 @@ table thead tr th:first-child {
       <div class="row">
         <div class="col-md-8">
           <div class="content_div">
-            <p>Hello Ayumi Hamasaki,</br></br>Welcome to your affiliate control panel. Please manage your accounts via the left hand menu. To view the menu click the hamburger icon above. Please keep your contact/payment details up to date and we recommend you change your password from time to time for security.</br></br>To get started, view the product section for promotional materials and commission information.</br></br>Any problems, please let us know.</p>
+            <p>Hello {{ Auth::user()->name }},</br></br>Welcome to your affiliate control panel. Please manage your accounts via the left hand menu. To view the menu click the hamburger icon above. Please keep your contact/payment details up to date and we recommend you change your password from time to time for security.</br></br>To get started, view the product section for promotional materials and commission information.</br></br>Any problems, please let us know.</p>
           </div>
           <div class="content_div">
             <div class="row">
@@ -177,11 +177,11 @@ table thead tr th:first-child {
             <div class="row">
               <div class="col-md-12">
                 <div class="content_div_text">
-                  <p>Referrals : </p>
-                  <p>Commissions : </p>
-                  <p>Payments : </p>
+                  <p>Referrals : {{ $referral_count_data }}</p>
+                  <p>Commissions : {{ $commision_sum_amount }}</p>
+                  <p>Payments : {{ $all_payments->sum('received_amount') }}</p>
                   <hr>
-                  <p>Last Payment: </p>
+                  <p>Last Payment: {{ ($last_payments == null) ? '0' :  $last_payments  }}</p>
                 </div>
               </div>
             </div>
@@ -193,8 +193,9 @@ table thead tr th:first-child {
             <div class="row">
               <div class="col-md-12">
                 <div class="content_div_text">
-                  <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's.</p><br>
-                  <a href="#">More Information</a>
+                  <p>We may collect personal identification information from Users, including, but not limited to, when Users visit our site, register their
+information on the website by completing, ...</p><br>
+                  <a href="{{ URL::to('/terms-and-conditions') }}">More Information</a>
                 </div>
               </div>
             </div>
@@ -207,7 +208,7 @@ table thead tr th:first-child {
               <div class="col-md-12">
                 <div class="content_div_text">
                   <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's.</p><br>
-                  <a href="#">More Information</a>
+                  <a href="{{ URL::to('/contact-us') }}">More Information</a>
                 </div>
               </div>
             </div>
