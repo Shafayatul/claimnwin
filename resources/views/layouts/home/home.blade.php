@@ -2,11 +2,6 @@
 
 @section('header-script')
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-<link  href="{{asset('front_asset/front_pages_asset/css/slick.css')}}" rel="stylesheet">
-<link  href="{{asset('front_asset/front_pages_asset/css/slick-theme.css')}}" rel="stylesheet">
-<link  href="{{asset('front_asset/front_pages_asset/css/home.css')}}" rel="stylesheet">
-{{-- autocomplete --}}
-<link href="{{asset('autocomplete/jquery.auto-complete.css')}}" rel="stylesheet">
 
 @endsection
 
@@ -429,8 +424,6 @@
 @endsection
 
 @section('footer-script')
-  <script src="{{asset('front_asset/front_pages_asset/js/slick.js')}}"></script>
-  <script src="{{asset('autocomplete/jquery.auto-complete.js')}}"></script>
   <script type="text/javascript">
     $(document).ready(function(){
 

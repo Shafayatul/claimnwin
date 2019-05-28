@@ -4,4 +4,5 @@
 {{-- <script src="{{asset('front_asset/js/SmoothScroll.js')}}"></script> --}}
 <script src="{{asset('front_asset/js/main.js')}}"></script>
 <script src="{{asset('front_asset/js/modal-loading.js')}}"></script>
+<script src="{{asset('front_asset/front_pages_asset/js/slick.js')}}"></script>
 <script src="{{asset('autocomplete/jquery.auto-complete.js')}}"></script>
