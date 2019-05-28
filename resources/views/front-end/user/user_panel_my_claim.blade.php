@@ -30,7 +30,7 @@
                     <span class="bold_span">Value:</span> 
                     {!! $claims->amount !!}
                     @if(($claims->converted_expection_amount != "") && ($claims->converted_expection_amount != null))
-                        {!! $claims->amount.'<br> ('.$claims->converted_expection_amount.')' !!}
+                        {!! '<br> ('.$claims->converted_expection_amount.')' !!}
                     @endif
                 </div>
             </div>
@@ -60,7 +60,7 @@
                     <a class="nav-link text-center" id="message-tab" data-toggle="tab" href="#message" role="tab" aria-controls="message" aria-selected="false"><i class="far fa-comment-alt"></i> Message</a>
                 </li> --}}
                 <li class="nav-item claim_options_ul_li">
-                    <a class="nav-link text-center" id="document-tab" data-toggle="tab" href="#document" role="tab" aria-controls="document" aria-selected="false"><i class="far fa-file-alt"></i> Document</a>
+                    <a class="nav-link text-center" id="document-tab" data-toggle="tab" href="#document" role="tab" aria-controls="document" aria-selected="false"><i class="far fa-file-alt"></i> Documents</a>
                 </li>
             </ul>
             <div class="tab-content" id="myTabContent">

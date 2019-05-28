@@ -2258,43 +2258,33 @@
                                                     {{-- <div class="line text-muted"></div> --}}
 
                                                     <!-- Separator -->
-{{-- <div class="separator text-muted">
-<time>26. 3. 2015</time>
-</div> --}}
-<!-- /Separator -->
-@if($ticket_notes != null)
-@foreach($ticket_notes as $row)
-<!-- Panel -->
-<article class="panel panel-primary">
 
-    <!-- Icon -->
+@if($ticket_notes != null)
+
+
+@foreach($ticket_notes as $row)
+<article class="panel panel-primary">
     <div class="panel-heading icon">
         <i class="fa fa-comment"></i>
     </div>
-    <!-- /Icon -->
-
-    <!-- Heading -->
     <div class="panel-heading">
-        <h2 class="panel-title pull-left">{{-- Name --}}</h2>
+        <h2 class="panel-title pull-left">
+            @if($row->user_id == $claims->user_id)
+                User
+            @else
+                Admin
+            @endif
+        </h2>
         <h2 class="panel-title pull-right">{{Carbon\Carbon::parse($row->created_at)->format('d-m-Y')}} at {{Carbon\Carbon::parse($row->created_at)->format('H:i A')}}</h2>
     </div>
-    <!-- /Heading -->
-
-    <!-- Body -->
     <div class="panel-body">
         {{$row->description}}
     </div>
-    <!-- /Body -->
-
-    <!-- Footer -->
-{{--     <div class="panel-footer">
-        <h2 class="panel-title pull-right" style="margin-top:-8px;">No File attachment</h2>
-    </div> --}}
-    <!-- /Footer -->
-
 </article>
-<!-- /Panel -->
+
 @endforeach
+
+
 @endif
 
 </div>
