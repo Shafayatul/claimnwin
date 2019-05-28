@@ -26,14 +26,15 @@ class WelcomeController extends Controller
         $compensationAmountCurrencyCode = $compensation_amount[1];
         $geoip = new GeoIPLocation();
         $currentCurrencyCode = $geoip->getCurrencyCode();
+        $currentCurrencySymbol = $geoip->getCurrencySymbol();
 
         if ((Currency::where('code',$compensationAmountCurrencyCode)->count() == 0) || (Currency::where('code',$currentCurrencyCode)->count() == 0)) {
-            return $amount_and_currency;
+            return $converted_expection_amount = mb_convert_encoding('&#8364;', 'UTF-8', 'HTML-ENTITIES'). ' '. $compensationAmount;
         }else{
             $currency_info=Currency::where('code',$compensationAmountCurrencyCode)->first();
             $total_usd_compensation_amount = $compensationAmount*$currency_info->value;
             $currentCurrencyInfo=Currency::where('code',$currentCurrencyCode)->first();
-            return $converted_expection_amount = round($total_usd_compensation_amount/$currentCurrencyInfo->value).' '.$currentCurrencyCode;
+            return $converted_expection_amount = mb_convert_encoding($currentCurrencySymbol, 'UTF-8', 'HTML-ENTITIES'). ' '. round($total_usd_compensation_amount/$currentCurrencyInfo->value);
         }
 
 

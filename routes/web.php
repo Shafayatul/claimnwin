@@ -157,6 +157,7 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get('/tickets-inbox', 'TicketsController@ticketInbox');
         Route::get('/ticket-single-email/{id}','TicketsController@ticketSingleEmailView');
         // Route::get('/contact-messages','TicketsController@contactMessages');
+        Route::get('flights/from-claim/{claim_id}/{airline_id}/{flight_number}/{date}', 'FlightsController@create_from_claim');
         Route::resource('flights', 'FlightsController');
         Route::get('/letter-before-action/{id}', 'PdfController@letterBeforeActionView');
         Route::get('/poa-pdf/{id}', 'PdfController@pdfView');

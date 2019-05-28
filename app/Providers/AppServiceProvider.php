@@ -20,7 +20,7 @@ class AppServiceProvider extends ServiceProvider
 
         $geoip = new GeoIPLocation();
         $currentCurrencyCode = $geoip->getCurrencyCode();
-        if ($currentCurrencyCode == "USA") {
+        if (($currentCurrencyCode == "USD") || ($currentCurrencyCode == "usd")) {
             $ip_phone_number = '+1-718-475-1181';
         }else{
             $ip_phone_number = '+44 20 3808 6632';

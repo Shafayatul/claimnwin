@@ -49,6 +49,11 @@ class FlightsController extends Controller
         $airline = Airline::orderBy('name', 'asc')->get()->pluck('name', 'id');
         return view('flights.create', compact('airline'));
     }
+    public function create_from_claim($claim_id, $airline_id, $flight_number, $date)
+    {
+        $airline = Airline::orderBy('name', 'asc')->get()->pluck('name', 'id');
+        return view('flights.create-from-claim', compact('airline', 'claim_id', 'airline_id', 'flight_number', 'date'));
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -64,7 +69,13 @@ class FlightsController extends Controller
 
         Flight::create($requestData + ['user_id' => Auth::user()->id]);
 
-        return redirect('flights/create')->with('success', 'Flight added!');
+        if ($request->input('claim_id') != '') {
+            return redirect('claim-view/'.$request->input('claim_id'))->with('success', 'Flight added!');
+        }else{
+            return redirect('flights/create')->with('success', 'Flight added!');
+        }
+
+        
     }
 
     /**
@@ -112,7 +123,7 @@ class FlightsController extends Controller
         $flight = Flight::findOrFail($id);
         $flight->update($requestData);
 
-        return redirect('flights')->with('success', 'Flight updated!');
+        return redirect()->back()->with('success', 'Flight updated!');
     }
 
     /**

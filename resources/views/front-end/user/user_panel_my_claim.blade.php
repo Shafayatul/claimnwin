@@ -72,7 +72,7 @@
                             <i class="fas fa-sync" style="color: #EFF30B"></i>
                         </div>
                         <div class="claim_status_refresh_text text-center">
-                        <p style="color: #EFF30B">Claim assessment in {{$claim_staus->name}}</p>
+                        <p style="color: #EFF30B">Claim assessment {{$claim_staus->name}}</p>
                         </div>
                         <div class="claim_status_message text-center">
                             <p>Your claim is under review. Our legal team will contact you if we require any further information</p>

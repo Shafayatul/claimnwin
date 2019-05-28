@@ -177,8 +177,9 @@
                                                         <div class="panel panel-default">
                                                             <div class="panel-heading">
                                                                 <i class="fa fa-comments"></i> Fligh Details
+                                                                
                                                                 @if(!array_key_exists($single_intinerary_detail->flight_number, $all_flights))
-                                                                    <a href="{{url('flights/create/')}}"><button class="btn btn-success btn-sm">Set Time</button></a>
+                                                                    <a href="{{url('flights/from-claim/'.$claims->id.'/'.$single_intinerary_detail->airline_id.'/'.$single_intinerary_detail->flight_number.'/'.str_replace('/','-',$single_intinerary_detail->departure_date))}}"><button class="btn btn-success btn-sm">Set Time</button></a>
                                                                 @else
                                                                     <a href="{{url('flights/'.$all_flights[$single_intinerary_detail->flight_number]["id"].'/edit')}}"><button class="btn btn-danger btn-sm">Update Time</button></a>
                                                                 @endif
