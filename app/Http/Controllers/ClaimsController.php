@@ -64,19 +64,19 @@ class ClaimsController extends Controller
         ];
 
         $result = $cPanel->execute('uapi', "Email", "add_pop", $parameters);
-        if (!$result->status == 1){ 
+        if (!$result->status == 1){
             return "not okay";
         }
 
         // forword email to ticket email
         $add_mail_forwarder = $cPanel->api2(
-            'Email', 'addforward', 
+            'Email', 'addforward',
             array(
                 'domain'          => env('CPANEL_DOMAIN'),
                 'email'           => $email_name,
                 'fwdopt'          => 'fwd',
                 'fwdemail'        => env('MAIL_USERNAME'),
-            ) 
+            )
         );
         return "okay";
     }
@@ -664,7 +664,7 @@ class ClaimsController extends Controller
         */
         $cpanel_password  = $this->randomPassword();
 
-        $this->create_cpanel_email($cpanel_email_name, $cpanel_password);
+        // $this->create_cpanel_email($cpanel_email_name, $cpanel_password);
         $cpanel_email     = $cpanel_email_name.'@freeflightclaim.com';
 
 
@@ -702,7 +702,7 @@ class ClaimsController extends Controller
             $total_usd_compensation_amount = $compensationAmount*$currency_info->value;
 
             $currentCurrencyInfo=Currency::where('code',$currentCurrencyCode)->first();
-            $converted_expection_amount = round($total_usd_compensation_amount/$currentCurrencyInfo->value).' '.$currentCurrencyCode;            
+            $converted_expection_amount = round($total_usd_compensation_amount/$currentCurrencyInfo->value).' '.$currentCurrencyCode;
         }
 
 
@@ -724,9 +724,9 @@ class ClaimsController extends Controller
 
 
         $commision_amount = round(($just_amount[0]*$affiliateCom->fieldValue)/100);
-        
+
         if ($user->affiliate_user_id != null) {
-            $affiliate = new Affiliate; 
+            $affiliate = new Affiliate;
             $affiliate->affiliate_user_id       = $user->affiliate_user_id;
             $affiliate->claim_id                = $claim->id;
             $affiliate->commision_amount        = $commision_amount. ' ' . $amount_and_distance[1];
@@ -1221,7 +1221,7 @@ class ClaimsController extends Controller
 
 
 
-        
+
 
         $departed_from = Airport::WHERE('id', $departed_from_id)->first();
         $final_destination = Airport::WHERE('id', $final_destination_id)->first();
@@ -1526,7 +1526,7 @@ class ClaimsController extends Controller
         if ($request->is_already_written_airline == 1) {
             $written_airline_date       = new \DateTime('20'.substr($request->written_airline_date,6,2).'-'.substr($request->written_airline_date,3,2).'-'.substr($request->written_airline_date,0,2));
         }else{
-            $written_airline_date       = 0; 
+            $written_airline_date       = 0;
         }
         $departure_date             = new \DateTime('20'.substr($request->departure_date,6,2).'-'.substr($request->departure_date,3,2).'-'.substr($request->departure_date,0,2));
 
@@ -1637,7 +1637,7 @@ class ClaimsController extends Controller
         if ($is_already_written_airline == 1) {
             $written_airline_date       = new \DateTime('20'.substr($written_airline_date,6,2).'-'.substr($written_airline_date,3,2).'-'.substr($written_airline_date,0,2));
         }else{
-            $written_airline_date       = 0; 
+            $written_airline_date       = 0;
         }
         $departure_date             = new \DateTime('20'.substr($departure_date,6,2).'-'.substr($departure_date,3,2).'-'.substr($departure_date,0,2));
 

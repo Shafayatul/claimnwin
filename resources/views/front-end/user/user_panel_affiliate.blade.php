@@ -24,8 +24,8 @@
         margin-right: 20px;
     }
 
-    #google{
-        color: #E75A5A;
+    #linkedin{
+        color: #0077B5;
         font-size: 60px;
         margin-right: 20px;
     }
@@ -56,7 +56,7 @@
 
         {!! $twitter !!}
 
-        {!! $google !!}
+        {!! $linkedin !!}
 
         {!! $whatsapp !!}
 
