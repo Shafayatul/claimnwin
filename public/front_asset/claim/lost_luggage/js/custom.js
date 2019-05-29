@@ -8,7 +8,7 @@ $(document).ready(function() {
       window.localStorage.removeItem('airport1');
       window.localStorage.removeItem('airport2');
     }
-    $(document).on('click', '#continue_7', function(){
+    $(document).on('click', '#continue_8', function(){
         $("#step-form").submit();
     });
 
@@ -157,19 +157,22 @@ $(document).ready(function() {
             $("#continue_2").removeClass('active_button');
             if ($("input[name='pir']").val() != "") {
                 $("#continue_2").addClass('active_button');
-                return true;
-            }
-        } else if (step == 3) {
-            $("#continue_3").removeClass('active_button');
-            if (($("input[name='email_address']").val() != "")){
                 $("#continue_3").addClass('active_button');
-                $("#continue_4").addClass('active_button');
                 return true;
             }
-        }else if (step == 4) {
+        }else if (step == 3) {
           return true;
-        } else if (step ==5) {
-            $("#continue_5").removeClass('active_button');
+        } else if (step == 4) {
+            $("#continue_4").removeClass('active_button');
+            if (($("input[name='email_address']").val() != "")){
+                $("#continue_4").addClass('active_button');
+                $("#continue_5").addClass('active_button');
+                return true;
+            }
+        }else if (step == 5) {
+          return true;
+        } else if (step ==6) {
+            $("#continue_6").removeClass('active_button');
 
             var is_first_name_empty = false;
             var is_last_name_empty = false;
@@ -211,7 +214,7 @@ $(document).ready(function() {
             });
 
             if (!is_phone_empty && !is_first_name_empty && !is_last_name_empty && !is_address_empty && !is_post_code_empty && !is_date_of_birth_empty) {
-                $("#continue_5").addClass('active_button');
+                $("#continue_6").addClass('active_button');
                 return true;
               // setTimeout(function(){
 
@@ -239,11 +242,11 @@ $(document).ready(function() {
             }else {
               return false;
             }
-        } else if (step == 6) {
-            $("#continue_6").removeClass('active_button');
+        } else if (step == 7) {
+            $("#continue_7").removeClass('active_button');
             if (($("input[name='is_signed_permission']").is(':checked'))) {
-                $("#continue_6").addClass('active_button');
                 $("#continue_7").addClass('active_button');
+                $("#continue_8").addClass('active_button');
                 return true;
             }
         }
@@ -279,7 +282,7 @@ $(document).ready(function() {
         success: function (data){
           if (data == '0') {
             $(".result_from_ajax_calculation").html('<div class="form_h3 text-center"><h3>SORRY!!!</h3></div><div class="form_show_message_paragraph"><p>Unfortunately, this flight is not eligible for compensation.Your claim details do not meet the criteria of Israeli or EU law to be compensated. Eligibility is calculated according the length of delay, air carriers and routes you have travelled on.</p></div>');
-             $("#continue_4").hide();
+             $("#continue_5").hide();
           }else{
 
             $.ajax({
@@ -291,9 +294,9 @@ $(document).ready(function() {
               },
               success: function (newData){
                 if (newData == '') {
-                  var finalAmount = data;   
+                  var finalAmount = data;
                 }else{
-                  var finalAmount = data+' ('+newData+')';                  
+                  var finalAmount = data+' ('+newData+')';
                 }
                 $(".result_from_ajax_calculation").html('<div class="form_h3 text-center"><h3>CONGRATULATIONS!!!</h3></div><div class="form_show_message_paragraph"><p>You are eligible for compensation. Your claim amount will be up to '+finalAmount+'</p></div>');
               }
@@ -310,7 +313,7 @@ $(document).ready(function() {
 
     function next() {
         if (check_next_step()) {
-            if(step==3){
+            if(step==4){
                 ajax_calculation();
                 step++;
               }else{
