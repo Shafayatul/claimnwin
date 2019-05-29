@@ -2,19 +2,13 @@
 
 @section('header-script')
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-<link  href="{{asset('front_asset/front_pages_asset/css/slick.css')}}" rel="stylesheet">
-<link  href="{{asset('front_asset/front_pages_asset/css/slick-theme.css')}}" rel="stylesheet">
-<link  href="{{asset('front_asset/front_pages_asset/css/home.css')}}" rel="stylesheet">
-{{-- autocomplete --}}
-<link href="{{asset('autocomplete/jquery.auto-complete.css')}}" rel="stylesheet">
-
 
 @endsection
 
 @section('page-title')
   <div class="container">
     <div class="row">
-      <div class="col-md-7">
+      <div class="col-md-9">
         <div class="home_top_header_div">
           <div class="row">
             <div class="col-md-12" style="margin: 0px; padding: 0px;">
@@ -46,14 +40,6 @@
               <div class="home_top_header_departed_destination_div">
                 {{-- <form class="" action="index.html" method="post"> --}}
                   <div class="row">
-                    {{-- <div class="col-md-4 col-xs-4" style="margin: 0px; padding: 0px;">
-                      <input class="common_input no_right_border auto_airport_complete" type="text" name="" value=""
-                             placeholder="Departed From">
-                    </div>
-                    <div class="col-md-4 col-xs-4" style="margin: 0px; padding: 0px;">
-                      <input class="common_input auto_airport_complete" type="text" name="" value=""
-                             placeholder="Final Destination">
-                    </div> --}}
                     <div class="col-md-6 col-xs-6 " style="margin: 0px; padding: 0px;">
                       <button class="common_button set_cache_claim" type="button" name="button">CHECK COMPENSATION</button>
                     </div>
@@ -62,7 +48,63 @@
               </div>
             </div>
           </div>
-          <div class="row">
+
+          <div class="options_div">
+            <div class="total_box_1">
+              <div class="box_left_part_1">
+                <div class="box_left_part_img_container">
+                  <img src="{{ asset('/front_asset/front_pages_asset/img/homepage_top_header_free_icon.png') }}" alt="">
+                </div>
+              </div>
+              <div class="box_right_part_1">
+                <div class="box_right_part_text_container">
+                  <p class="home_top_header_option_text_p_title_div">It's FREE</p>
+                  <p class="home_top_header_option_text_p_normal_div">to claim</p>
+                </div>
+              </div>
+            </div>
+            <div class="total_box_2">
+              <div class="box_left_part_2">
+                <div class="box_left_part_img_container">
+                  <img src="{{ asset('/front_asset/front_pages_asset/img/homepage_top_header_dollar_icon.png') }}" alt="">
+                </div>
+              </div>
+              <div class="box_right_part_2">
+                <div class="box_right_part_text_container">
+                  <p class="home_top_header_option_text_p_title_div">Up to {{$amount4}}</p>
+                  <p class="home_top_header_option_text_p_normal_div">compensation</p>
+                </div>
+              </div>
+            </div>
+            <div class="total_box_3">
+              <div class="box_left_part_3">
+                <div class="box_left_part_img_container">
+                  <img src="{{ asset('/front_asset/front_pages_asset/img/homepage_top_header_group_icon.png') }}" alt="">
+                </div>
+              </div>
+              <div class="box_right_part_3">
+                <div class="box_right_part_text_container">
+                  <p class="home_top_header_option_text_p_title_div">Trusted</p>
+                  <p class="home_top_header_option_text_p_normal_div">by millions</p>
+                </div>
+              </div>
+            </div>
+            <div class="total_box_4">
+              <div class="box_left_part_4">
+                <div class="box_left_part_img_container">
+                  <img src="{{ asset('/front_asset/front_pages_asset/img/homepage_top_header_bank_icon.png') }}" alt="">
+                </div>
+              </div>
+              <div class="box_right_part_4">
+                <div class="box_right_part_text_container">
+                  <p class="home_top_header_option_text_p_title_div">8 Billion EUR</p>
+                  <p class="home_top_header_option_text_p_normal_div">available to claim</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          {{-- <div class="row">
             <div class="col-md-12" style="margin: 0px; padding: 0px;">
               <div class="home_top_header_options_div">
                 <div class="row">
@@ -129,7 +171,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> --}}
         </div>
       </div>
     </div>
@@ -382,8 +424,6 @@
 @endsection
 
 @section('footer-script')
-  <script src="{{asset('front_asset/front_pages_asset/js/slick.js')}}"></script>
-  <script src="{{asset('autocomplete/jquery.auto-complete.js')}}"></script>
   <script type="text/javascript">
     $(document).ready(function(){
 

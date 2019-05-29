@@ -28,7 +28,7 @@
                     </div><!-- /.col-lg-3 col-md-6 -->
                     <div class="col-lg-3 col-xs-6">
                         <div class="footer-col">
-                            <h2>TEARMS</h2>
+                            <h2>TERMS</h2>
                             <ul>
                                 <li><a href="{{url('/privacy-policy')}}">Privacy policy </a></li>
                                 <li><a href="{{url('/terms-and-conditions')}}">Terms & conditions</a></li>

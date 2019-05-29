@@ -159,10 +159,16 @@ class UserPanelController extends Controller
    public function affiliateInfoShow()
    {
         $user_id=Auth::user()->id;
+        $encrypt_user_id = '09Xohf'.$user_id;
         $referral_ids=Affiliate::where('affiliate_user_id',$user_id)->limit(5)->get();
+        $referral_count_data = Affiliate::where('affiliate_user_id',$user_id)->count();
+        $comsion_all_amount = Affiliate::where('affiliate_user_id',$user_id)->get();
+        $commision_sum_amount = $comsion_all_amount->sum('commision_amount');
         $payments=Affiliate::where('affiliate_user_id',$user_id)->where('approved',1)->limit(5)->get();
+        $all_payments=Affiliate::where('affiliate_user_id',$user_id)->where('approved',1)->get();
+        $last_payments = Affiliate::where('affiliate_user_id',$user_id)->where('approved',1)->latest()->first();
         $pending_payments=Affiliate::where('affiliate_user_id',$user_id)->where('approved',0)->limit(5)->get();
-        return view('front-end.user.user_panel_affiliate_info',compact('referral_ids','payments','pending_payments'));
+        return view('front-end.user.user_panel_affiliate_info',compact('last_payments','all_payments','commision_sum_amount','referral_count_data','referral_ids','payments','pending_payments', 'encrypt_user_id'));
    }
 
    public function allRefferalDataView($id)

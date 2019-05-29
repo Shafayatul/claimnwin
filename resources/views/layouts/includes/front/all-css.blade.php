@@ -7,3 +7,7 @@
 <link href="{{asset('autocomplete/jquery.auto-complete.css')}}" rel="stylesheet">
 <link href="{{asset('front_asset/css/modal-loading.css')}}" rel="stylesheet">
 <link href="{{asset('front_asset/css/modal-loading-animate.css')}}" rel="stylesheet">
+<link  href="{{asset('front_asset/front_pages_asset/css/slick.css')}}" rel="stylesheet">
+<link  href="{{asset('front_asset/front_pages_asset/css/slick-theme.css')}}" rel="stylesheet">
+<link  href="{{asset('front_asset/front_pages_asset/css/home.css')}}" rel="stylesheet">
+<link href="{{asset('autocomplete/jquery.auto-complete.css')}}" rel="stylesheet">

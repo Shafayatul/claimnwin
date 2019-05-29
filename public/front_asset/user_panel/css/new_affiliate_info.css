@@ -1,0 +1,26 @@
+.affiliate_info_body {
+  padding: 20px;
+}
+
+.content_div {
+  margin: 20px 0px;
+  padding: 20px;
+  border: 1px solid #cecece;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+.table {
+  margin-top: 20px;
+}
+
+.content_div_text {
+  padding-top: 15px;
+}
+
+.content_div_text p {
+  padding-bottom: 5px;
+}
+
+.content_div_text a {
+  color: #0084e4;
+}
