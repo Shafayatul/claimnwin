@@ -7,6 +7,14 @@
   @include('layouts.includes.front.all-css')
   @yield('header-script')
   <meta name="csrf-token" content="{{ csrf_token() }}">
+
+  <style>
+    @auth
+    #mainMenu a {
+      font-size: smaller;
+    }
+    @endauth
+  </style>
 </head>
 
 <body>
