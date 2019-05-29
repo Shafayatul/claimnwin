@@ -1,6 +1,14 @@
-@extends('front-end.user.user_panel_layout')
+@extends('layouts.user_front_layout')
 
-@section('user_panel_main_section')
+@section('header-script')
+  <style>
+    .blockquote-footer {
+      padding-top: 10px;
+    }
+  </style>
+@endsection
+
+@section('content')
 <div class="user_panel_main_section">
     <div class="container">
 
@@ -27,7 +35,7 @@
             </div>
             <div class="col-md-2">
                 <div class="parent_div text-center">
-                    <span class="bold_span">Value:</span> 
+                    <span class="bold_span">Value:</span>
                     {!! $claims->amount !!}
                     @if(($claims->converted_expection_amount != "") && ($claims->converted_expection_amount != null))
                         {!! '<br> ('.$claims->converted_expection_amount.')' !!}
@@ -91,7 +99,7 @@
                     <div class="wrapper">
                         <blockquote class="blockquote text-right">
                           <p class="mb-0">Ticket ID: {{ $claims->ticket_id}}</p>
-                          <footer class="blockquote-footer">
+                          <div class="blockquote-footer">
                             Status:
                             @if ($claims->ticket_status == '1')
                             Waiting For Reply
@@ -100,7 +108,7 @@
                             @else
                             Closed
                             @endif
-                          </footer>
+                          </div>
                         </blockquote>
                         @if ($claims->ticket_status != '3')
                         <div class="message_icon text-center">

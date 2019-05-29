@@ -2,6 +2,15 @@
 box-sizing: border-box;
 }
 
+.main_nav_container {
+background-image: url(../../front_pages_asset/img/homepage_header_img.jpg);
+background-repeat: no-repeat;
+background-position: left bottom;
+background-size: cover;
+padding: 10px 0px;
+border-bottom: 1px solid #8dac2d;
+}
+
 body {
 font-family: "Times New Roman", Times, serif;
 font-size: 16px;
@@ -99,6 +108,7 @@ border-radius: 0;
 
 .user_panel_main_section {
   min-height: 90vh;
+  padding: 50px;
 }
 .affiliate_mother_div {
   width: 80%;
