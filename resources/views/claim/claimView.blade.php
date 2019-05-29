@@ -74,7 +74,7 @@
                         <li role="presentation" class="active"><a href="#claim_overview" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="false"><i class="fa fa-bookmark" aria-hidden="true"></i> Claim Overview</a></li>
                         <li role="presentation"><a href="#messaging" role="tab" id="messaging-tab" data-toggle="tab" aria-controls="messaging" aria-expanded="true"><i class="fa fa-envelope" aria-hidden="true"></i> Messaging</a></li>
                         <li role="presentation"><a href="#airline_response" role="tab" id="airline_response-tab" data-toggle="tab" aria-controls="airline_response" aria-expanded="true"><i class="fa fa-info-circle" aria-hidden="true"></i> Airline Response</a></li>
-                        <li role="presentation"><a href="#customer_final_comm" role="tab" id="customer_final_comm-tab" data-toggle="tab" aria-controls="customer_final_comm" aria-expanded="true"><i class="fa fa-info-circle" aria-hidden="true"></i> Customer Final Comments</a></li>
+                        {{-- <li role="presentation"><a href="#customer_final_comm" role="tab" id="customer_final_comm-tab" data-toggle="tab" aria-controls="customer_final_comm" aria-expanded="true"><i class="fa fa-info-circle" aria-hidden="true"></i> Customer Final Comments</a></li> --}}
                         <li role="presentation"><a href="#reminder" role="tab" id="reminder-tab" data-toggle="tab" aria-controls="reminder" aria-expanded="true"><i class="fa fa-bell" aria-hidden="true"></i> Reminders</a></li>
                         <li role="presentation"><a href="#required-details" role="tab" id="required-details-tab" data-toggle="tab" aria-controls="required-details" aria-expanded="true"><i class="fa fa-bell" aria-hidden="true"></i> Required Details</a></li>
                         <li role="presentation"><a href="#claim-status" role="tab" id="claim-status-tab" data-toggle="tab" aria-controls="claim-status" aria-expanded="true"><i class="fa fa-bell" aria-hidden="true"></i> Status</a></li>
@@ -82,7 +82,7 @@
                         <li role="presentation"><a href="#ticket-info" role="tab" id="ticket-info-tab" data-toggle="tab" aria-controls="ticket-info" aria-expanded="true"><i class="fas fa-ticket-alt" aria-hidden="true"></i> Ticket Info</a></li>
                         <li role="presentation"><a href="#note" role="tab" id="note-tab" data-toggle="tab" aria-controls="note" aria-expanded="true"><i class="fas fa-ticket-alt" aria-hidden="true"></i> Note Info</a></li>
                         <li role="presentation"><a href="#affiliate-note" role="tab" id="affiliate-note-tab" data-toggle="tab" aria-controls="affiliate-note" aria-expanded="true"><i class="fas fa-ticket-alt" aria-hidden="true"></i> Affiliate Note Info</a></li>
-                        <li role="presentation"><a href="#expanse" role="tab" id="expanse-tab" data-toggle="tab" aria-controls="expanse" aria-expanded="true"><i class="fas fa-money-bill-alt" aria-hidden="true"></i> Expanse Info</a></li>
+                        <li role="presentation"><a href="#expanse" role="tab" id="expanse-tab" data-toggle="tab" aria-controls="expanse" aria-expanded="true"><i class="fas fa-money-bill-alt" aria-hidden="true"></i> Expense Info</a></li>
                         <li role="presentation"><a href="#airline" role="tab" id="airline-tab" data-toggle="tab" aria-controls="airline" aria-expanded="true"><i class="fas fa-plane" aria-hidden="true"></i> Airline Info</a></li>
                     </ul>
                     <div id="myTabContent" class="tab-content">
@@ -2249,50 +2249,38 @@
                                 <div class="card">
                                     <div class="card-body">
 
-
+                                       
                                         <div class="row">
                                             <div class="col-md-12">
+                                             @if(count($ticket_notes) > 0)
                                                 <!-- Timeline -->
                                                 <div class="timeline">
+                                                    @foreach($ticket_notes as $row)
+                                                    <article class="panel panel-primary">
+                                                        <div class="panel-heading icon">
+                                                            <i class="fa fa-comment"></i>
+                                                        </div>
+                                                        <div class="panel-heading">
+                                                            <h2 class="panel-title pull-left">
+                                                                @if($row->user_id == $claims->user_id)
+                                                                    User
+                                                                @else
+                                                                    Admin
+                                                                @endif
+                                                            </h2>
+                                                            <h2 class="panel-title pull-right">{{Carbon\Carbon::parse($row->created_at)->format('d-m-Y')}} at {{Carbon\Carbon::parse($row->created_at)->format('H:i A')}}</h2>
+                                                        </div>
+                                                        <div class="panel-body">
+                                                            {{$row->description}}
+                                                        </div>
+                                                    </article>
 
-                                                    <!-- Line component -->
-                                                    {{-- <div class="line text-muted"></div> --}}
-
-                                                    <!-- Separator -->
-
-@if($ticket_notes != null)
-
-
-@foreach($ticket_notes as $row)
-<article class="panel panel-primary">
-    <div class="panel-heading icon">
-        <i class="fa fa-comment"></i>
-    </div>
-    <div class="panel-heading">
-        <h2 class="panel-title pull-left">
-            @if($row->user_id == $claims->user_id)
-                User
-            @else
-                Admin
-            @endif
-        </h2>
-        <h2 class="panel-title pull-right">{{Carbon\Carbon::parse($row->created_at)->format('d-m-Y')}} at {{Carbon\Carbon::parse($row->created_at)->format('H:i A')}}</h2>
-    </div>
-    <div class="panel-body">
-        {{$row->description}}
-    </div>
-</article>
-
-@endforeach
-
-
-@endif
-
-</div>
-<!-- /Timeline -->
-
-</div>
-</div>
+                                                    @endforeach
+                                                </div>
+                                                @endif
+                                            </div>
+                                        </div>
+                                        
 @if($ticket->status != '3')
 <div class="row">
     <div class="col-md-12">
@@ -2313,7 +2301,7 @@
                         <div class="form-group">
                             <div class="col-md-12">
                                 <button type="submit" class="btn btn-lg btn-success">Respond To Ticket</button>
-                                <a href="{{URL::to('/close-ticket/'.$ticket->id)}}" onclick="return confirm('Are you sure close the ticket?');" class="btn btn-danger btn-sm pull-right">Close Ticket</a>
+                                <a href="{{URL::to('/close-ticket/'.$ticket->id)}}" onclick="return confirm('Are you sure close the ticket?');" class="btn btn-lg btn-danger pull-right">Close Ticket</a>
                             </div>
                         </div>
                     </form>
