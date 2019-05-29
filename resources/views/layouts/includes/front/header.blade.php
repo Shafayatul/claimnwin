@@ -58,6 +58,7 @@
               <ul class="nav navbar-nav navbar-right text-uppercase main-menu">
                 <li><a href="{{url('/faq')}}">faq</a></li>
                 <li><a href="{{url('/press-blog')}}">blog</a></li>
+                <li><a href="{{url('/your-rights')}}">Your Rights</a></li>
                 <li><a href="{{url('/partner')}}">become a partner</a></li>
               </ul>
             </div><!-- /.navbar-collapse -->
