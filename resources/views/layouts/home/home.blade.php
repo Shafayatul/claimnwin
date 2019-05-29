@@ -2,7 +2,7 @@
 
 @section('header-script')
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-
+<link  href="{{asset('front_asset/front_pages_asset/css/home.css')}}" rel="stylesheet">
 @endsection
 
 @section('page-title')
