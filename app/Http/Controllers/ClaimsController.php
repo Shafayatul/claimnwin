@@ -1542,7 +1542,7 @@ class ClaimsController extends Controller
             $diff = $departure_date->diff($received_luggage_date);
             if ($diff->format("%a") < (21)) {
                 return response()->json([
-                    'amount' => '135011 EUR',
+                    'amount' => '1350 EUR',
                     'msg'    => ''
                 ]);
             }else{
@@ -1550,18 +1550,18 @@ class ClaimsController extends Controller
                     $diff = $departure_date->diff($written_airline_date);
                     if ($diff->format("%a") < (21)) {
                         return response()->json([
-                            'amount' => '135022 EUR',
+                            'amount' => '1350 EUR',
                             'msg'    => ''
                         ]);
                     }else{
                         return response()->json([
-                            'amount' => '135033 EUR',
+                            'amount' => '1350 EUR',
                             'msg'    => 'although low cances but we can try to claim up'
                         ]);
                     }
                 }else{
                     return response()->json([
-                        'amount' => '135044 EUR',
+                        'amount' => '1350 EUR',
                         'msg'    => 'although low cances but we can try to claim up'
                     ]);
                 }
