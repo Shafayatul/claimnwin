@@ -132,11 +132,13 @@ class UserPanelController extends Controller
     ->facebook();
     $twitter=Share::page($link,null,['id' => 'twitter'])
     ->twitter();
-    $google=Share::page($link,null,['id' => 'google'])
-    ->googlePlus();
+    // $google=Share::page($link,null,['id' => 'google'])
+    // ->googlePlus();
+    $linkedin=Share::page($link,null,['id' => 'linkedin'])
+    ->linkedin('Extra linkedin summary can be passed here');
     $whatsapp=Share::page($link,null,['id' => 'whatsapp'])
     ->whatsapp();
-      return view ('front-end.user.user_panel_affiliate', compact('encrypt_user_id','facebook','twitter','google','whatsapp'));
+      return view ('front-end.user.user_panel_affiliate', compact('encrypt_user_id','facebook','twitter','linkedin','whatsapp'));
     }
 
     public function user_ticket_message(Request $request)

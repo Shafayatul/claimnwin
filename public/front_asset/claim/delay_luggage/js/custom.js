@@ -8,7 +8,7 @@ $(document).ready(function() {
       window.localStorage.removeItem('airport2');
     }
 
-    $(document).on('click', '#continue_7', function(){
+    $(document).on('click', '#continue_8', function(){
         $("#step-form").submit();
     });
 
@@ -156,9 +156,9 @@ $(document).ready(function() {
               },
               success: function (newData){
                 if (newData == '') {
-                  var finalAmount = data.amount;   
+                  var finalAmount = data.amount;
                 }else{
-                  var finalAmount = data.amount+' ('+newData+')';                  
+                  var finalAmount = data.amount+' ('+newData+')';
                 }
                 if (data.msg != '') {
                   finalAmount = finalAmount+data.msg;
@@ -232,25 +232,28 @@ $(document).ready(function() {
             $("#continue_2").removeClass('active_button');
             if ($("input[name='pir']").val() != "") {
                 $("#continue_2").addClass('active_button');
-                return true;
-            }
-        } else if (step == 3) {
-            $("#continue_3").removeClass('active_button');
-            if ($("input[name='received_luggage_date']").val() != "") {
                 $("#continue_3").addClass('active_button');
                 return true;
             }
-        } else if (step == 4) {
+        } else if (step == 3) {
+          return true;
+        }else if (step == 4) {
             $("#continue_4").removeClass('active_button');
-        if (($("input[name='email_address']").val() != "")){
+            if ($("input[name='received_luggage_date']").val() != "") {
                 $("#continue_4").addClass('active_button');
-                $("#continue_5").addClass('active_button');
                 return true;
             }
-          } else if (step == 5) {
+        } else if (step == 5) {
+            $("#continue_5").removeClass('active_button');
+        if (($("input[name='email_address']").val() != "")){
+                $("#continue_5").addClass('active_button');
+                $("#continue_6").addClass('active_button');
+                return true;
+            }
+          } else if (step == 6) {
           return true;
-        }else if (step == 6) {
-        $("#continue_6").removeClass('active_button');
+        }else if (step == 7) {
+        $("#continue_7").removeClass('active_button');
 
         var is_first_name_empty = false;
         var is_last_name_empty = false;
@@ -292,7 +295,7 @@ $(document).ready(function() {
         });
 
         if (!is_phone_empty && !is_first_name_empty && !is_last_name_empty && !is_address_empty && !is_post_code_empty && !is_date_of_birth_empty) {
-            $("#continue_6").addClass('active_button');
+            $("#continue_7").addClass('active_button');
             return true;
           // setTimeout(function(){
 
@@ -320,11 +323,11 @@ $(document).ready(function() {
         }else {
           return false;
         }
-      } else if (step == 7) {
-            $("#continue_7").removeClass('active_button');
+      } else if (step == 8) {
+            $("#continue_8").removeClass('active_button');
             if (($("input[name='is_signed_permission']").is(':checked'))) {
-                $("#continue_7").addClass('active_button');
                 $("#continue_8").addClass('active_button');
+                $("#continue_9").addClass('active_button');
                 return true;
             }
         }
@@ -335,7 +338,7 @@ $(document).ready(function() {
 
     function next() {
         if (check_next_step()) {
-            if(step==4){
+            if(step==5){
                 ajax_calculation();
                 step++;
               }else{

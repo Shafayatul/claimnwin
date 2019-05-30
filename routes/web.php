@@ -44,6 +44,7 @@ Route::get('/terms-and-conditions','FrontsController@termsAndConditions');
 Route::get('/privacy-policy','FrontsController@privacyPolicy');
 Route::get('/pricing-list','FrontsController@pricingList');
 Route::get('/press-blog','FrontsController@pressBlog');
+Route::get('/your-rights','FrontsController@yourRights');
 Route::get('/single-blog/{title}/{id}','FrontsController@singleBlogView');
 Route::get('/app','FrontsController@app');
 Route::get('/partner','FrontsController@partner');

@@ -1,25 +1,28 @@
-@extends('layouts.front_layout')
+@extends('layouts.user_front_layout')
+
+@section('header-script')
+  <style>
+  .affiliate_info_mother_div{
+      margin-top: 20px;
+  }
+
+  table thead tr th:first-child {
+      width: 0%!important;
+  }
+
+  .show-all{
+      float: right;
+      color: #337ab7;
+      padding: 0px;
+      margin: 0px;
+  }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" >
+  <link rel="stylesheet" href="{{asset('front_asset/user_panel/css/new_affiliate_info.css')}}">
+
+@endsection
 
 @section('content')
-<style>
-.affiliate_info_mother_div{
-    margin-top: 20px;
-}
-
-table thead tr th:first-child {
-    width: 0%!important;
-}
-
-.show-all{
-    float: right;
-    color: #337ab7;
-    padding: 0px;
-    margin: 0px;
-}
-</style>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" >
-<link rel="stylesheet" href="{{asset('front_asset/user_panel/css/new_affiliate_info.css')}}">
-
 <div class="affiliate_info_body">
   <div class="container">
     <div class="affilite_info_total_div">

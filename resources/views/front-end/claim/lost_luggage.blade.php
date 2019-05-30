@@ -199,6 +199,54 @@
                                                       STEP 3 STARTS
                             .................................................................... -->
 
+                            <div class="single_step" id="step_3" style="display:none;">
+                              <div class="common_row">
+                                <div class="parent_div">
+                                  <div class="pir_box">
+                                    <p>Property Irregularity Report</p>
+                                    <p>Malaysia Airlines Berhad: baggage services</p>
+                                    <p>Kota Kinabalu International Airport</p>
+                                    <p>Business hours 08:30-24:00</p>
+                                    <p>Tel no. 088-515312</p>
+                                    <p>Email <span style="color: #002cd4;">mhlbag@malaysiaairlines.com</span></p>
+                                    <br>
+                                    <br>
+                                    <p>File ref &nbsp;&nbsp;&nbsp;<span style="background-color: yellow;">BKIMH78514</span>/10NOV17/0947GMT 5312</p>
+                                    <p>Name &nbsp;&nbsp;&nbsp; Sample</p>
+                                    <p>Title/initials &nbsp;&nbsp;&nbsp; MR</p>
+                                    <p>Given name</p>
+                                    <p>Flight/date: &nbsp;&nbsp;&nbsp; MH2614/10NOV</p>
+                                    <p>Number of bags: &nbsp;&nbsp;&nbsp; 2</p>
+                                    <p>Ticket number: &nbsp;&nbsp;&nbsp; ETK</p>
+                                    <p>Color/type</p>
+                                    <p>Bag number</p>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="common_row">
+                                  <div class="total_button_div">
+                                      <div class="two_button_child_div_right">
+                                          <div class="continue_button_div">
+                                              <button type="button" class="continue_button pull-right" id="continue_3" name="button">Continue <i class="fas fa-arrow-right"></i></button>
+                                          </div>
+                                      </div>
+                                      <div class="two_button_child_div_left">
+                                          <div class="previous_button_div">
+                                              <button type="button" class="previous_button pull-left" id="previous_button" name="button"><i class="fas fa-arrow-left"></i> Previous</button>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+
+                            </div>
+
+                            <!-- ...................................................................
+                                                      STEP 3 ENDS
+                            .................................................................... -->
+                            <!-- ...................................................................
+                                                      STEP HIDDEN STARTS
+                            .................................................................... -->
+
                             <div class="" id="" style="display:none;">
                               <div class="common_row">
                                 {{-- <div class="form_h3">
@@ -281,13 +329,13 @@
                             </div>
 
                             <!-- ...................................................................
-                                                      STEP 3 ENDS
+                                                      STEP HIDDEN ENDS
                             .................................................................... -->
                             <!-- ...................................................................
                                                       STEP 4 STARTS
                             .................................................................... -->
 
-                            <div class="single_step" id="step_3" style="display:none;">
+                            <div class="single_step" id="step_4" style="display:none;">
 
                                 <div class="common_row">
                                     <div class="email_div">
@@ -313,7 +361,7 @@
                                     <div class="total_button_div">
                                         <div class="two_button_child_div_right">
                                             <div class="continue_button_div">
-                                                <button type="button" onclick="horizontalCustomStyle();" class="continue_button pull-right" id="continue_3" name="button">Continue <i class="fas fa-arrow-right"></i></button>
+                                                <button type="button" onclick="horizontalCustomStyle();" class="continue_button pull-right" id="continue_4" name="button">Continue <i class="fas fa-arrow-right"></i></button>
                                             </div>
                                         </div>
                                         <div class="two_button_child_div_left">
@@ -332,7 +380,7 @@
                             <!-- ...................................................................
                                                       STEP 5 STARTS NEW
                             .................................................................... -->
-                            <div class="single_step" id="step_4" style="display:none;">
+                            <div class="single_step" id="step_5" style="display:none;">
 
                               <div class="common_row">
                                 <p>We're running checks against thousands of pieces of information relating to your flight to give you an accurate decision on your claim.</p>
@@ -419,7 +467,7 @@
                                 <div class="total_button_div">
                                     <div class="two_button_child_div_right">
                                         <div class="continue_button_div">
-                                            <button type="button" class="continue_button pull-right" id="continue_4" name="button">Continue <i class="fas fa-arrow-right"></i></button>
+                                            <button type="button" class="continue_button pull-right" id="continue_5" name="button">Continue <i class="fas fa-arrow-right"></i></button>
                                         </div>
                                     </div>
                                     <div class="two_button_child_div_left">
@@ -439,7 +487,7 @@
                                                       STEP 6 STARTS
                             .................................................................... -->
 
-                            <div class="single_step" id="step_5" style="display:none;">
+                            <div class="single_step" id="step_6" style="display:none;">
                                 <div class="common_row">
                                     <div class="form_h3">
                                         <h3>Passenger details</h3>
@@ -548,7 +596,7 @@
                                     <div class="total_button_div">
                                         <div class="two_button_child_div_right">
                                             <div class="continue_button_div">
-                                                <button type="button" class="continue_button pull-right" id="continue_5" name="button">Continue <i class="fas fa-arrow-right"></i></button>
+                                                <button type="button" class="continue_button pull-right" id="continue_6" name="button">Continue <i class="fas fa-arrow-right"></i></button>
                                             </div>
                                         </div>
                                         <div class="two_button_child_div_left">
@@ -568,7 +616,7 @@
                                                       STEP 7 STARTS
                             .................................................................... -->
 
-                            <div class="single_step" id="step_6" style="display:none;">
+                            <div class="single_step" id="step_7" style="display:none;">
                                 <div class="common_row table_show_on_large_screen">
                                     <div class="parent_div">
                                         <div class="form_h3">
@@ -896,7 +944,7 @@
                                     <div class="total_button_div">
                                         <div class="two_button_child_div_right">
                                             <div class="continue_button_div">
-                                                <button type="button" class="continue_button pull-right" id="continue_6" name="button">Continue <i class="fas fa-arrow-right"></i></button>
+                                                <button type="button" class="continue_button pull-right" id="continue_7" name="button">Continue <i class="fas fa-arrow-right"></i></button>
                                             </div>
                                         </div>
                                         <div class="two_button_child_div_left">
@@ -915,7 +963,7 @@
                                                       STEP 8 STARTS
                             .................................................................... -->
 
-                            <div class="single_step" id="step_7" style="display:none;">
+                            <div class="single_step" id="step_8" style="display:none;">
                                 <div class="common_row">
                                     <div class="form_h3">
                                         <h3>Optional: Additional information</h3>
@@ -1045,7 +1093,7 @@
                                     <div class="total_button_div">
                                         <div class="two_button_child_div_right">
                                             <div class="continue_button_div">
-                                                <button type="button" class="continue_button pull-right" id="continue_7" name="button">Continue <i class="fas fa-arrow-right"></i></button>
+                                                <button type="button" class="continue_button pull-right" id="continue_8" name="button">Continue <i class="fas fa-arrow-right"></i></button>
                                             </div>
                                         </div>
                                         <div class="two_button_child_div_left">

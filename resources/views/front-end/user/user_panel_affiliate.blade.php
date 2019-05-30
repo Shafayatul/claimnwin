@@ -1,41 +1,45 @@
-@extends('front-end.user.user_panel_layout')
+@extends('layouts.user_front_layout')
 
-@section('user_panel_main_section')
-<style>
-    ul{
-        padding: 0px;
-        margin: 0px;
-    }
-    ul li{
-        list-style: none;
-        float: left;
-    }
+@section('header-script')
+  <style>
+      ul{
+          padding: 0px;
+          margin: 0px;
+      }
+      ul li{
+          list-style: none;
+          float: left;
+      }
 
-    #facebook{
-        color: blue;
-        font-size: 60px;
-        margin-right: 20px;
-    }
+      #facebook{
+          color: blue;
+          font-size: 60px;
+          margin-right: 20px;
+      }
 
 
-    #twitter{
-        color: #2EFAFA;
-        font-size: 60px;
-        margin-right: 20px;
-    }
+      #twitter{
+          color: #2EFAFA;
+          font-size: 60px;
+          margin-right: 20px;
+      }
 
-    #google{
-        color: #E75A5A;
-        font-size: 60px;
-        margin-right: 20px;
-    }
+      #linkedin{
+          color: #0077B5;
+          font-size: 60px;
+          margin-right: 20px;
+      }
 
-    #whatsapp{
-        color: #82DC28;
-        font-size: 60px;
-    }
+      #whatsapp{
+          color: #82DC28;
+          font-size: 60px;
+      }
 
-</style>
+  </style>
+@endsection
+
+@section('content')
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" >
 
 <div class="user_panel_main_section">
@@ -56,7 +60,7 @@
 
         {!! $twitter !!}
 
-        {!! $google !!}
+        {!! $linkedin !!}
 
         {!! $whatsapp !!}
 

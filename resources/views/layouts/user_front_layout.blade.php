@@ -5,6 +5,7 @@
   <title>Claim'n Win</title>
   <link rel="shortcut icon" href="favicon.png">
   @include('layouts.includes.front.all-css')
+  <link rel="stylesheet" href="{{asset('front_asset/user_panel/css/style.css')}}">
   @yield('header-script')
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -20,7 +21,7 @@
 <body>
 	<!-- page-wrapper start -->
 	<div class="page-wrapper">
-		@include('layouts.includes.front.header')
+		@include('layouts.includes.front.user_header')
 
 		@yield('content')
 
@@ -59,6 +60,45 @@ s1.charset='UTF-8';
 s1.setAttribute('crossorigin','*');
 s0.parentNode.insertBefore(s1,s0);
 })();
+
+
+      document.querySelector("html").classList.add('js');
+      var fileInput  = document.querySelector( ".input-file" ),
+        button     = document.querySelector( ".input-file-trigger" ),
+        the_return = document.querySelector(".file-return");
+
+      button.addEventListener( "keydown", function( event ) {
+        if ( event.keyCode == 13 || event.keyCode == 32 ) {
+            fileInput.focus();
+        }
+      });
+      button.addEventListener( "click", function( event ) {
+       fileInput.focus();
+       return false;
+      });
+      fileInput.addEventListener( "change", function( event ) {
+        the_return.innerHTML = this.value;
+      });
+
+    $(function(){
+        // $('.single-submit').trigger('submit');
+        // $('.disable-after-first-click').click(function(){
+        //     $('.single-submit').submit();
+        //     $(this).attr("disabled", true);
+        // });
+        $('.disable-after-first-click').click(function (e) {
+            console.log('ssssssssssss');
+
+            //stop submitting the form to see the disabled button effect
+            e.preventDefault();
+
+            //disable the submit button
+            $('.disable-after-first-click').attr("disabled", "disabled");
+
+            $('.single-submit').trigger('submit');
+
+        });
+    });
 </script>
 <!--End of Tawk.to Script-->
 

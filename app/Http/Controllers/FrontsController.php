@@ -36,6 +36,10 @@ class FrontsController extends Controller
     $blogs=Post::latest()->paginate(6);
     return view('front-pages.press_blog',compact('blogs'));
   }
+  public function yourRights()
+  {
+    return view('front-pages.your_rights');
+  }
   public function singleBlogView($title,$id)
   {
     $post=Post::find($id);
@@ -56,5 +60,5 @@ class FrontsController extends Controller
   public function formClaim()
   {
     return view('front-pages.form_claim');
-  }  
+  }
 }

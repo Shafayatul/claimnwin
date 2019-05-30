@@ -1,6 +1,21 @@
-@extends('front-end.user.user_panel_layout')
+@extends('layouts.user_front_layout')
 
-@section('user_panel_main_section')
+@section('header-script')
+  <title>My Claim - Claimnwin</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <style>
+    .user_panel_h1 h1 {
+      margin-top: 0px;
+    }
+  </style>
+@endsection
+
+@section('content')
 <div class="user_panel_main_section">
   <div class="container">
     <div class="row">

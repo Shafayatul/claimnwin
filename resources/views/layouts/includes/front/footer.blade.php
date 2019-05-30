@@ -9,7 +9,7 @@
                                 <li><a href="{{url('/form-claim')}}">Start a claim</a></li>
                                 <li><a href="{{url('/faq')}}">FAQ</a></li>
                                 <li><a href="{{url('/pricing-list')}}">Pricing</a></li>
-                                {{-- <li><a href="{{url('/faq')}}">Your Air Passenger Rights</a></li> --}}
+                                <li><a href="{{url('/your-rights')}}">Your Air Passenger Rights</a></li>
                                 <li><a href="{{url('/partner')}}">Become a partner </a></li>
                             </ul>
                         </div><!-- /.footer-col -->

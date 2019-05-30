@@ -1,3 +1,14 @@
+.pir_box {
+  width: 80%;
+  margin: auto;
+  border: 1px solid #8dac2d;
+  padding: 15px;
+}
+
+.pir_box p {
+  line-height: 30px;
+}
+
 .checked_icon_div {
   width: 15%;
   float: left;
