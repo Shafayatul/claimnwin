@@ -6,30 +6,30 @@
         -o-transform: translateY(14px);
         transform: translateY(14px);
     }
-    .navbar-header { 
-        float: none; 
-      }
-      .navbar-left,
-      .navbar-right { 
-        float: none !important;
-      }
-      .navbar-toggle { 
-        display: block; 
-      }
-      .navbar-fixed-top { 
-        top: 0; 
-        border-width: 0 0 1px; 
-      }
-      .navbar-collapse.collapse { 
-        display: none!important; 
-      }
-      .navbar-nav { 
-        float: none!important; 
-      }
-      .navbar-nav > li { 
+    .navbar-header {
         float: none;
       }
-      .collapse.in { 
+      .navbar-left,
+      .navbar-right {
+        float: none !important;
+      }
+      .navbar-toggle {
+        display: block;
+      }
+      .navbar-fixed-top {
+        top: 0;
+        border-width: 0 0 1px;
+      }
+      .navbar-collapse.collapse {
+        display: none!important;
+      }
+      .navbar-nav {
+        float: none!important;
+      }
+      .navbar-nav > li {
+        float: none;
+      }
+      .collapse.in {
         display:block !important;
       }
 
@@ -42,7 +42,7 @@
       }
 
       #mainMenu > ul:first-of-type > li {
-        display: inline-block !important;
+        /* display: inline-block !important; */
       }
 
       .dropdown.country .dropdown-menu {
@@ -68,7 +68,7 @@
     .inner-banner {
       padding: 50px 0;
     }
-    
+
     .features {
       padding: 30px 0 0;
     }
