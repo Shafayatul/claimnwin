@@ -129,7 +129,7 @@
                           <h2>Email Us</h2>
                         </div>
                         <div class="child_div_content_paragraph">
-                          <p>info@claimwin.com</p>
+                          <p>info@claimNwin.com</p>
                         </div>
                       </div>
                     </div>

@@ -20,13 +20,13 @@ class AppServiceProvider extends ServiceProvider
 
         $geoip = new GeoIPLocation();
         $currentCurrencyCode = $geoip->getCurrencyCode();
-        if (($currentCurrencyCode == "USD") || ($currentCurrencyCode == "usd")) {
-            $ip_phone_number = '+1-718-475-1181';
-        }else{
+        if (($currentCurrencyCode == "EUR") || ($currentCurrencyCode == "eur")) {
             $ip_phone_number = '+44 20 3808 6632';
+        }else{
+            $ip_phone_number = '+1-718-475-1181';
         }
 
-        View::share('ip_phone_number', $ip_phone_number);
+        View::share('ip_phone_number', $currentCurrencyCode);
     }
 
     /**

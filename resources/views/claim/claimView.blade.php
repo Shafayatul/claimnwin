@@ -114,7 +114,9 @@
                                         <li class="nav-item">
                                             <a class="nav-link" data-toggle="tab" href="#claim_user_info" role="tab" aria-controls="claim_user_info">User Others Info</a>
                                         </li>
-
+                                        <li class="nav-item">
+                                            <a class="nav-link" data-toggle="tab" href="#additional_info" role="tab" aria-controls="additional_info">Additional Info</a>
+                                        </li>
                                     </ul>
                                 </div>
                                 <div class="col-md-10" style="margin-top: 5px;">
@@ -134,10 +136,6 @@
                                                                     <tr class="odd gradeX">
                                                                         <th>Claim ID</th>
                                                                         <td>{{$claims->id}}</td>
-                                                                    </tr>
-                                                                    <tr class="odd gradeX">
-                                                                        <th>Passenger Representative</th>
-                                                                        <td>Claimnwins</td>
                                                                     </tr>
                                                                     <tr class="odd gradeX">
                                                                         <th>Claim Create Date</th>
@@ -422,6 +420,9 @@
                                                     <div class="panel panel-default">
                                                         <div class="panel-heading">
                                                             <i class="fa fa-comments"></i> Passengers
+                                                            <a href="{{url('/passengers/create-from-claim/'.$claims->id)}}" class="btn btn-success btn-xs pull-right" target="_blank">
+                                                                Add New
+                                                            </a>
                                                         </div>
                                                             <!-- /.panel-heading -->
                                                         <div class="panel-body">
@@ -553,13 +554,57 @@
                                                                 </tbody>
                                                             </table>
                                                         </div>
-                                        <!-- /.panel-body -->
                                                     </div>
-                                        <!-- /.panel -->
                                                 </div>
-                                        <!-- /.col-lg-12 -->
                                             </div>
                                         </div>
+
+
+
+
+                                        <div class="tab-pane" id="additional_info" role="tabpanel">
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="panel panel-default">
+                                                        <div class="panel-heading">
+                                                            <i class="fa fa-comments"></i> Additional Info
+                                                        </div>
+                                                            <!-- /.panel-heading -->
+                                                        <div class="panel-body">
+                                                            <div class="table-responsive">
+                                                                <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <th>Where did you hear about Claim’N Win?</th>
+                                                                            <td>{{$claims->here_from_where}}</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th>Have you contacted the airline regarding the claim?</th>
+                                                                            <td>
+                                                                                @if($claims->is_contacted_airline == 1)
+                                                                                    Yes {{-- <a href="">Download previous correspondence</a> --}}
+                                                                                @else
+                                                                                    No
+                                                                                @endif
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th>What Happened?</th>
+                                                                            <td>{{$claims->what_happened}}</td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
+
                                     </div>
                                 </div>
                             </div>
@@ -2692,6 +2737,23 @@
                             <th>Alias</th>
                             <td>{{$airlineInfo->alias}}</td>
                         </tr>
+                        <tr>
+                            <th>Address Line 1</th>
+                            <td>{{$airlineInfo->address_line_1}}</td>
+                        </tr>
+                        <tr>
+                            <th>Address Line 2</th>
+                            <td>{{$airlineInfo->address_line_2}}</td>
+                        </tr>
+                        <tr>
+                            <th>Address Line 3</th>
+                            <td>{{$airlineInfo->address_line_3}}</td>
+                        </tr>
+                        <tr>
+                            <th>Address Line 4</th>
+                            <td>{{$airlineInfo->address_line_4}}</td>
+                        </tr>
+                        
                         <tr>
                             <th>Status</th>
                             <td>

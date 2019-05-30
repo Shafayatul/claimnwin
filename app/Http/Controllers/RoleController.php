@@ -17,10 +17,34 @@ class RoleController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function assign()
+
+    public function assign(Request $request)
     {
+
+        $name       = $request->get('name');
+        $email      = $request->get('email');
+        $perPage = 25;
+
+
+
+        if( (!empty($name)) || (!empty($email)) ) {
+
+            $user = User::whereNotNull('id');
+
+            if(!empty($name)){
+                $user = $user->Where('name', 'LIKE', "%$name%");
+            }
+            if(!empty($email)){
+                $user = $user->Where('email', $email);
+            }
+
+            $user = $user->latest()->paginate($perPage);
+
+        } else {
+            $user = User::latest()->paginate($perPage);
+        }
+
         $roles = Role::all();
-        $user = User::paginate(30);
         return view('role.assign', compact('roles','user'));
     }
 

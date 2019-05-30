@@ -47,6 +47,10 @@ class PassengersController extends Controller
     {
         return view('passengers.create');
     }
+    public function create_from_claim($claim_id)
+    {
+        return view('passengers.create', compact('claim_id'));
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -62,7 +66,7 @@ class PassengersController extends Controller
         
         Passenger::create($requestData);
 
-        return redirect('passengers')->with('flash_message', 'Passenger added!');
+        return redirect('/claim-view/'.$request->input('claim_id'))->with('flash_message', 'Passenger added!');
     }
 
     /**

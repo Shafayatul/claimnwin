@@ -22,6 +22,10 @@ Route::get('/test_forword', 'TestsController@test_forword');
 // FrontEnd Route
 Route::get('/','WelcomeController@index');
 
+
+Route::get('/laravel-filemanager', '\UniSharp\LaravelFilemanager\Controllers\LfmController@show');
+Route::post('/laravel-filemanager/upload', '\UniSharp\LaravelFilemanager\Controllers\UploadController@upload');
+
 // Ajax - calculation
 Route::post('/ajax/calculate/missed_calculation','ClaimsController@ajax_missed_calculation');
 Route::post('/ajax/calculate/fight_delay_calculation','ClaimsController@ajax_fight_delay_calculation');
@@ -121,6 +125,8 @@ Route::group(['middleware' => ['auth']], function() {
         Route::resource('connections', 'ConnectionsController');
         Route::resource('itinerary-details', 'ItineraryDetailsController');
         Route::resource('expenses', 'ExpensesController');
+
+        Route::get('passengers/create-from-claim/{claim_id}', 'PassengersController@create_from_claim');
         Route::resource('passengers', 'PassengersController');
         Route::resource('claims', 'ClaimsController');
         Route::resource('claim-status', 'ClaimStatusController');

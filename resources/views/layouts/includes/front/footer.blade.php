@@ -77,7 +77,8 @@
                         <p>© 2018 Claim Win | All Rights Reserved.</p>
                     </div><!-- /.col-md-6 -->
                     <div class="col-md-6 text-right">
-                        <img style="width: 90px; height: 40px;" src="{{asset('front_asset/')}}/img/add/01.png" alt="Add">&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
+                        <a href="https://uk.trustpilot.com/review/claimnwin.com">
+                        <img style="width: 90px; height: 40px;" src="{{asset('front_asset/')}}/img/add/01.png" alt="Add"></a>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
                         <img style="width: 90px; height: 40px;" src="{{asset('front_asset/')}}/img/add/02.png" alt="Add">&nbsp; &nbsp;
                         <img style="width: 90px; height: 40px;" src="{{asset('front_asset/')}}/img/add/03.png" alt="Add">
                     </div><!-- /.col-md-6 -->

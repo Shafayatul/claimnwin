@@ -9,55 +9,79 @@
         </div>
 
         <div class="form-body">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-hover dashboard-task-infos" id="users-table">
-                                    <thead>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Email</th>
-                                            <th>Role</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach($user as $row)
-                                        <tr>
-                                        <td>{{$row->name}}</td>
-                                        <td>{{$row->email}}</td>
-                                        <td>{{$row->getRoleNames()}}</td>
-                                        <td>
-                                          @if($row->getRoleNames() != '["Admin"]')
-                                            <a href="{{url('/manage-claim/user/'.$row->id)}}" class="btn btn-sm btn-primary">View Claims</a>
-                                          @else
-                                              <a class="btn btn-sm btn-primary">Admin User</a>
-                                          @endif
-                                        <a href="{{url('/user-info/'.$row->id)}}" class="btn btn-sm btn-success">View/Edit</a>
-                                        {!! Form::open([
-                                            'method'=>'DELETE',
-                                            'url' => ['/user-delete', $row->id],
-                                            'style' => 'display:inline'
-                                            ]) !!}
-                                        {!! Form::button('<i class="fa fa-trash"></i>', array(
-                                            'type' => 'submit',
-                                            'class' => 'btn btn-danger btn-sm',
-                                            'title' => 'Delete User',
-                                            'onclick'=>'return confirm("Confirm delete?")'
-                                            )) !!}
-                                            {!! Form::close() !!}
-                                        <a title="Change Role" type="button" data-toggle="modal" user_id="{{$row->id}}" class="btn btn-sm btn-dark change-user-role"  data-target="#assign-user-model"><i class="fa fa-edit"></i></a>
+            <div class="card">
+                <div class="card-body">
+                  {!! Form::open(['method' => 'GET', 'url' => url('/admin/role/assign'), 'class' => 'form-inline my-2 my-lg-0 float-right', 'role' => 'search']) !!}
+                  <div class="row">
+                    <div class="col-md-2">
+                      <div class="input-group">
+                          <input type="text" class="form-control" name="name" placeholder="Name" value="{{ request('name') }}">
+                      </div>
+                    </div>
+                    <div class="col-md-2">
+                      <div class="input-group">
+                          <input type="text" class="form-control" name="email" placeholder="Email" value="{{ request('email') }}">
+                      </div>
+                    </div>
+                    <div class="col-md-2">
+                      <span class="input-group-append">
+                          <button class="btn btn-secondary" type="submit">
+                              <i class="fa fa-search"></i>
+                          </button>
+                      </span>
+                    </div>
+                  </div>
+                  {!! Form::close() !!}
 
-                                        </td>
-                                        </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                                {{ $user->links() }}
-                            </div>
-                        </div>
+                  <br />
+                  <br />
+                    <div class="table-responsive">
+                        <table class="table table-hover dashboard-task-infos" id="users-table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Role</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($user as $row)
+                                <tr>
+                                <td>{{$row->name}}</td>
+                                <td>{{$row->email}}</td>
+                                <td>{{$row->getRoleNames()}}</td>
+                                <td>
+                                  @if($row->getRoleNames() != '["Admin"]')
+                                    <a href="{{url('/manage-claim/user/'.$row->id)}}" class="btn btn-sm btn-primary">View Claims</a>
+                                  @else
+                                      <a class="btn btn-sm btn-primary">Admin User</a>
+                                  @endif
+                                <a href="{{url('/user-info/'.$row->id)}}" class="btn btn-sm btn-success">View/Edit</a>
+                                {!! Form::open([
+                                    'method'=>'DELETE',
+                                    'url' => ['/user-delete', $row->id],
+                                    'style' => 'display:inline'
+                                    ]) !!}
+                                {!! Form::button('<i class="fa fa-trash"></i>', array(
+                                    'type' => 'submit',
+                                    'class' => 'btn btn-danger btn-sm',
+                                    'title' => 'Delete User',
+                                    'onclick'=>'return confirm("Confirm delete?")'
+                                    )) !!}
+                                    {!! Form::close() !!}
+                                <a title="Change Role" type="button" data-toggle="modal" user_id="{{$row->id}}" class="btn btn-sm btn-dark change-user-role"  data-target="#assign-user-model"><i class="fa fa-edit"></i></a>
+
+                                </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                        {{ $user->links() }}
                     </div>
                 </div>
+            </div>
+        </div>
                 <!-- #END# Task Info -->
                 <!-- Modal -->
 

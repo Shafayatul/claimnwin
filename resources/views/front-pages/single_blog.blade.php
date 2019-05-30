@@ -15,19 +15,18 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="title_row">
-                    <h1>About all things concerning aviation</h1>
+                    <h1>{{asset($post->title)}}</h1>
                 </div>
                 <div class="first_row_p no_padding_bottom">
                     <p>
-                        Every week we illustrate various subjects regarding our service, passenger rights and commercial aviation. Of course, as we have a lot of experience on the matter,
-                        we also provide you with tips & tricks regarding air travel.
+                        {!! $post->body !!}
                     </p>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="blog_row">
+{{--     <div class="blog_row">
         <div class="row">
             <div class="col-md-12">
 
@@ -63,6 +62,6 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 </div>
 @endsection
