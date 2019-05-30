@@ -1437,6 +1437,7 @@
             onSelect: function(e, term, item){
                 // console.log('Item "'+item.data('langname')+' ('+item.data('lang')+')" selected by '+(e.type == 'keydown' ? 'pressing enter or tab' : 'mouse click')+'.');
                 $(':focus').val(item.data('langname')+' ('+item.data('lang')+')').attr('iata-code',item.data('lang'));
+                $(':focus').blur();
             }
         });
       }
@@ -1459,6 +1460,7 @@
             },
             onSelect: function(e, term, item){
                 $(':focus').val(item.data('langname')).attr('iata_code',item.data('lang'));
+                $(':focus').blur();
             }
         });
       }
