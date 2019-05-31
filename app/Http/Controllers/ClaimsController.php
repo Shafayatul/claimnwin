@@ -748,8 +748,12 @@ class ClaimsController extends Controller
         }
 
 
-        // return 'success';
-        return  redirect(url('/user-home'));
+        if ($converted_expection_amount != '') {
+            $amount = $amount_and_distance[0].'('.$converted_expection_amount.')';
+        }else{
+            $amount = $amount_and_distance[0];
+        }
+        return view('front-end.claim.success',compact('amount'));
 
     }
 

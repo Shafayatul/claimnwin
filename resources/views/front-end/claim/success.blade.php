@@ -21,7 +21,7 @@
 					<div class="col-md-12">
 						@if($amount!='0')
 						<p>
-							Your claim has been submitted successfully! Ready, set, go! Let’s start the process. Our experienced flight experts will verify the eligibility of your claim and to make sure that you can obtain your compensation of {{$amount}}. To check your claim status, simply visit your Dashboard. 
+							Your claim has been submitted successfully! Ready, set, go! Let’s start the process. Our experienced flight experts will verify the eligibility of your claim and to make sure that you can obtain your compensation of {{$amount}}. To check your claim status, simply visit your Dashboard. An email has been sent to you with your password to log-in.
 						</p>
 						@else
 						<p>
