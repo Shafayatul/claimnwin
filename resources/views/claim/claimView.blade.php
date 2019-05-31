@@ -2047,9 +2047,11 @@
     <div class="row" style="margin-top:1%;">
         <form action="{{route('claim-nextstep-status-change')}}" method="post" name="clam_nextstep_status">
             {{ csrf_field() }}
-            <div class="col-sm-4">
+            <a class="btn btn-success btn-xs" href="{{url('next-step/create')}}" target="_blank">Add New Status</a>
+            <hr>
+            <div class="col-sm-6">
                 <div class="form-group">
-                    <label> Status </label>
+                    <label> Status  </label>
                     <select class="form-control" id="status" name="claim_status">
                         <option value="">Select Status</option>
                         @foreach($claimsStatus as $claims_status)
@@ -2059,7 +2061,7 @@
                     <input type="hidden" name="claim_id" value="{{$claims->id}}">
                 </div>
             </div>
-            <div class="col-sm-4">
+           {{--  <div class="col-sm-4">
                 <div class="form-group">
                     <label> Next Step </label>
                     <select class="form-control" id="next_step" name="nextstep_status">
@@ -2069,9 +2071,9 @@
                         @endforeach
                     </select>
                 </div>
-            </div>
+            </div> --}}
 
-            <div class="col-sm-4">
+            <div class="col-sm-6">
                 <button type="submit" class="btn btn-success" id="status_btn">Submit</button>
             </div>
             <div class="clearfix"></div>
