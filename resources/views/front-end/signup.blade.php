@@ -65,7 +65,6 @@
                     <span class="help-block"></span>
                 </div>
             </div>
-            <input type="hidden" name="encrypt_user_id" value="{{$encrypt_user_id}}"  autocomplete='off'>
             <div class="row text-center">
               <div class="col-xs-12 col-sm-12">
                   <button class="btn btn-lg btn-primary" type="submit">Signup</button>

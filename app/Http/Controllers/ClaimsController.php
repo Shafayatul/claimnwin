@@ -28,6 +28,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\PasswordSent;
 use Victorybiz\GeoIPLocation\GeoIPLocation;
 use App\Affiliate;
+use Illuminate\Support\Facades\Cache;
 
 class ClaimsController extends Controller
 {
@@ -441,7 +442,18 @@ class ClaimsController extends Controller
                      'email'            => $email,
                      'password'         => Hash::make($pass)
                     ]);
+
                 $user->syncRoles('User');
+
+                if (Cache::get($request->ip()) != null ) {
+                    $affiliate_user_id = Cache::get($request->ip());
+                }else{
+                    $affiliate_user_id = '';
+                }
+                $user                     = User::find($user->id);
+                $user->affiliate_user_id  = $affiliate_user_id;
+                $user->save();
+
                 Mail::to($email)->send(new PasswordSent($email,$pass));
             }else{
                 $user = User::where('email', $email)->first();

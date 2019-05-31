@@ -15,7 +15,7 @@
 */
 
 
-Route::get('/test_forword', 'TestsController@test_forword');
+Route::get('/test', 'TestsController@test');
 
 /* ----- Access by all - not logged ----- */
 
@@ -66,7 +66,8 @@ Route::get('/lost-luggage','ClaimsController@lost_luggage')->name('lost-luggage'
 Route::get('/denied-boarding','ClaimsController@denied_boarding')->name('denied-boarding');
 // signup and login
 Route::post('/user/signup','UserPanelController@userSignup');
-Route::get('/user/signup/{encrypt_user_id?}','UserPanelController@user_signup')->name('user/signup');
+Route::get('/user/signup/{encrypt_user_id}','UserPanelController@store_affiliate_info_in_cache');
+Route::get('/user/signup/','UserPanelController@user_signup')->name('user/signup');
 Route::get('/user/login','UserPanelController@user_login')->name('user/login');
 
 

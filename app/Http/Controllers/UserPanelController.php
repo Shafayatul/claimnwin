@@ -21,6 +21,7 @@ use App\Exports\AffiliateExport;
 use App\Exports\PendingPaymentExport;
 use App\Exports\PaymentExport;
 use IlluminateAgnostic\Arr\Support\Carbon;
+use Illuminate\Support\Facades\Cache;
 
 class UserPanelController extends Controller
 {
@@ -91,7 +92,12 @@ class UserPanelController extends Controller
 
     public function userSignup(Request $request)
     {
-      $affiliate_user_id = str_replace('09Xohf', '', $request->encrypt_user_id);
+      if (Cache::get($request->ip()) != null ) {
+        $affiliate_user_id = Cache::get($request->ip());
+      }else{
+        $affiliate_user_id = '';
+      }
+      
       if($request->password == $request->confirm_password)
         {
             $authUser=User::create([
@@ -104,6 +110,9 @@ class UserPanelController extends Controller
                 $new_user                     = User::find($authUser->id);
                 $new_user->affiliate_user_id  = $affiliate_user_id;
                 $new_user->save();
+
+                Cache::forget($request->ip());
+
             }
             auth()->login($authUser);
             return redirect(url('/'));
@@ -112,9 +121,17 @@ class UserPanelController extends Controller
         }
     }
 
-    public function user_signup($encrypt_user_id=null)
+    public function user_signup()
     {
-        return view('front-end.signup',compact('encrypt_user_id'));
+      return view('front-end.signup');
+    }
+
+    public function store_affiliate_info_in_cache(Request $request, $encrypt_user_id=null)
+    {
+      $affiliate_user_id = str_replace('09Xohf', '', $request->encrypt_user_id);
+      $ip = $request->ip();
+      Cache::put($ip, $affiliate_user_id);
+      return redirect('/');
     }
 
     public function user_login()
