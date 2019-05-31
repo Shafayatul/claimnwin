@@ -182,7 +182,7 @@ class UserPanelController extends Controller
         $referral_ids=Affiliate::where('affiliate_user_id',$user_id)->limit(5)->get();
         $referral_count_data = Affiliate::where('affiliate_user_id',$user_id)->count();
         $comsion_all_amount = Affiliate::where('affiliate_user_id',$user_id)->get();
-        $commision_sum_amount = $comsion_all_amount->sum('commision_amount');
+        $commision_sum_amount = ''; //$comsion_all_amount->sum('commision_amount');
         $payments=Affiliate::where('affiliate_user_id',$user_id)->where('approved',1)->limit(5)->get();
         $all_payments=Affiliate::where('affiliate_user_id',$user_id)->where('approved',1)->get();
         $last_payments = Affiliate::where('affiliate_user_id',$user_id)->where('approved',1)->latest()->first();
