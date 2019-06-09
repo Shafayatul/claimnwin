@@ -216,3 +216,5 @@ Route::get('/contact-messages','ContactsController@index');
 Route::get('/contact-show','ContactsController@index@show');
 
 Route::resource('contacts', 'ContactsController');
+
+Route::resource('faqs', 'FaqsController');

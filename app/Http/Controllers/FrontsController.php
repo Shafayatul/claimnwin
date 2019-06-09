@@ -62,11 +62,11 @@ class FrontsController extends Controller
         return view('front-pages.form_claim');
     }
 
-    public function single_post($slug = null)
+    public function single_post(Request $request, $slug = null)
     {
         if ($slug == null)
         {
-            return view('layouts.home.home');
+            return redirect('/');
         }else
         {
             $single_post = Post::where('slug', $slug)->count();
