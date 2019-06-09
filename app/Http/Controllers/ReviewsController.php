@@ -52,12 +52,12 @@ class ReviewsController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         $requestData = $request->all();
-        
+
         Review::create($requestData);
 
-        return redirect('reviews')->with('flash_message', 'Review added!');
+        return redirect('reviews/create')->with('success', 'Review added!');
     }
 
     /**
@@ -98,13 +98,13 @@ class ReviewsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+
         $requestData = $request->all();
-        
+
         $review = Review::findOrFail($id);
         $review->update($requestData);
 
-        return redirect('reviews')->with('flash_message', 'Review updated!');
+        return redirect('reviews')->with('success', 'Review updated!');
     }
 
     /**
@@ -118,6 +118,6 @@ class ReviewsController extends Controller
     {
         Review::destroy($id);
 
-        return redirect('reviews')->with('flash_message', 'Review deleted!');
+        return redirect('reviews')->with('success', 'Review deleted!');
     }
 }

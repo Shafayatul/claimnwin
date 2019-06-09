@@ -218,8 +218,8 @@ Route::get('/contact-show','ContactsController@index@show');
 Route::resource('contacts', 'ContactsController');
 
 Route::resource('faqs', 'FaqsController');
+Route::resource('reviews', 'ReviewsController');
 
 Route::get('/{slug}', 'FrontsController@single_post');
 Route::get('/','WelcomeController@index');
 
-Route::resource('reviews', 'ReviewsController');
