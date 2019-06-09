@@ -4,13 +4,6 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 */
-
-.message li{
-    float: none!important;
-}
-
-
-
 h4, h5, h6,
 h1, h2, h3 {margin: 0;}
 ul, ol {margin: 0;}
@@ -7214,7 +7207,7 @@ h4.asd label {
 	}
 	.cbp-spmenu-vertical {
 
-		left: -309px;
+		/*left: -309px;*/
 	}
 	.activity-desc-sub:before {
 		left: -3.4%;

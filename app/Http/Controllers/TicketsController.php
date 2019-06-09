@@ -78,7 +78,7 @@ class TicketsController extends Controller
                 }else{
                     $lines= $textMsg;
                 }
-                
+
 
                 $ticket                 = new Ticket;
                 $ticket->subject        = $sub;
@@ -385,9 +385,8 @@ class TicketsController extends Controller
         $oFolder = $oClient->getFolder('INBOX');
         // $aMessage = $oFolder->search()->get();
         $aMessage = $oFolder->search()->whereFrom('mdshafayatul@gmail.com')->whereOn($email_date)->get();
-        dd($aMessage);
 
-        
+
         foreach ($aMessage as $oMessage) {
 // dd($oMessage);
             if ($oMessage->getUid() == $ticket->imap_msg_no) {
