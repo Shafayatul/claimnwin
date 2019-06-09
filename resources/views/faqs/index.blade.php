@@ -47,7 +47,7 @@
                                             'url' => ['/faqs', $item->id],
                                             'style' => 'display:inline'
                                         ]) !!}
-                                            {!! Form::button('<i class="fa fa-trash-o" aria-hidden="true"></i> Delete', array(
+                                            {!! Form::button('<i class="fa fa-trash" aria-hidden="true"></i> Delete', array(
                                                     'type' => 'submit',
                                                     'class' => 'btn btn-danger btn-sm',
                                                     'title' => 'Delete Faq',
