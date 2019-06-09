@@ -9,6 +9,13 @@
         <div class="form-body">
             <div class="card">
                 <div class="card-body">
+                    @if ($errors->any())
+                        <ul class="alert alert-danger">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    @endif
 
                     {!! Form::open(['url' => '/faqs', 'files' => true]) !!}
 
