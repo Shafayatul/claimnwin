@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
+use App\Faq;
 
 class FrontsController extends Controller
 {
@@ -17,7 +18,8 @@ class FrontsController extends Controller
     }
     public function faq()
     {
-        return view('front-pages.faq');
+        $faqs = Faq::all();
+        return view('front-pages.faq',compact('faqs'));
     }
     public function termsAndConditions()
     {
