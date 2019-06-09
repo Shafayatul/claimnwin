@@ -28,7 +28,7 @@ class CreateClaimsTable extends Migration
 
         Schema::create('claims', function (Blueprint $table) {
 
-            $table->increments('id')->start_from(10000000);
+            $table->increments('id', 10000000);
 
             $table->string('user_id')->nullable();
 
