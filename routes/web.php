@@ -221,3 +221,5 @@ Route::resource('faqs', 'FaqsController');
 
 Route::get('/{slug}', 'FrontsController@single_post');
 Route::get('/','WelcomeController@index');
+
+Route::resource('reviews', 'ReviewsController');
