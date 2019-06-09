@@ -1,6 +1,6 @@
 <div class="form-group {{ $errors->has('star') ? 'has-error' : ''}}">
     {!! Form::label('star', 'Star', ['class' => 'control-label']) !!}
-    {!! Form::number('star', null, ('' == 'required') ? ['class' => 'form-control', 'required' => 'required'] : ['class' => 'form-control']) !!}
+    {!! Form::select('star', (['1'=>'1','2'=>'2','3'=>'3','4'=>'4','5'=>'5']), null, ('' == 'required') ? ['class' => 'form-control', 'required' => 'required'] : ['class' => 'form-control']) !!}
     {!! $errors->first('star', '<p class="help-block">:message</p>') !!}
 </div>
 <div class="form-group {{ $errors->has('title') ? 'has-error' : ''}}">
