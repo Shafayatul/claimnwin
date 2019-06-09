@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Airport;
 use App\Currency;
 use Victorybiz\GeoIPLocation\GeoIPLocation;
+use App\Review;
 
 class WelcomeController extends Controller
 {
@@ -14,8 +15,9 @@ class WelcomeController extends Controller
     	$amount1 = $this->currency_converter_url('1300 EUR');
     	$amount2 = $this->currency_converter_url('3400 EUR');
     	$amount3 = $this->currency_converter_url('7000 EUR');
-    	$amount4 = $this->currency_converter_url('600 EUR');
-        return view('layouts.home.home', compact('amount1','amount2','amount3','amount4'));
+        $amount4 = $this->currency_converter_url('600 EUR');
+        $reviews = Review::all();
+        return view('layouts.home.home', compact('amount1','amount2','amount3','amount4','reviews'));
     }
 
     public function currency_converter_url($amount_and_currency){
