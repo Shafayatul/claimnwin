@@ -38,7 +38,7 @@ $(document).ready(function() {
              }
            });
            if (!is_connection_empty) {
-             itinerary_details_for_your_disrupted_flight_html('single');
+             itinerary_details_for_your_disrupted_flight_html('multiple');
            }
          }else{
            itinerary_details_for_your_disrupted_flight_html('single');
@@ -55,7 +55,6 @@ $(document).ready(function() {
         console.log("hhhhh:" +value);
         // $("input[name='selected_connection_iata_codes']").attr('value').val(value);
         $("input[name='selected_connection_iata_codes']").val(value);
-
       }else if (type=='multiple') {
 
         var airport_array_temp = new Array();
@@ -334,9 +333,9 @@ $(document).ready(function() {
               },
               success: function (newData){
                 if (newData == '') {
-                  var finalAmount = data;   
+                  var finalAmount = data;
                 }else{
-                  var finalAmount = data+' ('+newData+')';                  
+                  var finalAmount = data+' ('+newData+')';
                 }
                 $(".result_from_ajax_calculation").html('<div class="form_h3 text-center"><h3>CONGRATULATIONS!!!</h3></div><div class="form_show_message_paragraph"><p>You are eligible for compensation. Your claim amount will be up to '+finalAmount+'</p></div>');
               }

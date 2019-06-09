@@ -1,3 +1,7 @@
+.facebook_login {
+  margin-bottom: 20px;
+}
+
 .signup_login_form
 {
   width: 75%;
@@ -35,9 +39,34 @@
     color: white;
 	opacity:1;
 }
-.omb_login .omb_socialButtons .omb_btn-facebook {background: #3b5998;}
+
+.fa-facebook-square, .connect_with_facebook {
+  color: #3b5998;
+}
+
+.connect_with_google {
+  color: #4285F5;
+}
+
+.connect_with_facebook, .connect_with_google {
+  font-size: 16px;
+}
+
+.facebook_login i, .google_login i {
+  font-size: 25px;
+}
+.facebook_login {
+  text-align: center;
+}
+
+.google-icon {
+  width: 24px;
+  float: left;
+}
+
+.omb_login .omb_socialButtons .omb_btn-facebook {background: #ffffff; border: 1px solid #3b5998;}
 .omb_login .omb_socialButtons .omb_btn-twitter {background: #00aced;}
-.omb_login .omb_socialButtons .omb_btn-google {background: #c32f10;}
+.omb_login .omb_socialButtons .omb_btn-google {background: #ffffff; border: 1px solid #4285F5;}
 
 
 .omb_login .omb_loginOr {
@@ -85,6 +114,9 @@
   {
     width: 95%;
     padding: 2% 10%;
+  }
+  .connect_with_facebook, .connect_with_google {
+    font-size: 13px;
   }
 }
 
