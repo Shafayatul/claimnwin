@@ -14,11 +14,11 @@ class CreateReviewsTable extends Migration
     {
         Schema::create('reviews', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
             $table->integer('star')->nullable();
             $table->string('title')->nullable();
             $table->text('description')->nullable();
             $table->string('name')->nullable();
+            $table->timestamps();
             });
     }
 
