@@ -50,12 +50,12 @@ class FaqsController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         $requestData = $request->all();
-        
+
         Faq::create($requestData);
 
-        return redirect('faqs')->with('flash_message', 'Faq added!');
+        return redirect('faqs/create')->with('success', 'Faq added!');
     }
 
     /**
@@ -96,13 +96,13 @@ class FaqsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+
         $requestData = $request->all();
-        
+
         $faq = Faq::findOrFail($id);
         $faq->update($requestData);
 
-        return redirect('faqs')->with('flash_message', 'Faq updated!');
+        return redirect('faqs')->with('success', 'Faq updated!');
     }
 
     /**
@@ -116,6 +116,6 @@ class FaqsController extends Controller
     {
         Faq::destroy($id);
 
-        return redirect('faqs')->with('flash_message', 'Faq deleted!');
+        return redirect('faqs')->with('success', 'Faq deleted!');
     }
 }
