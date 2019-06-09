@@ -21,7 +21,7 @@
 
 // FrontEnd Route
 Route::get('/','WelcomeController@index');
-Route::get('/{slug}', 'FrontsController@single_post');
+// Route::get('/{slug}', 'FrontsController@single_post');
 
 Route::get('/laravel-filemanager', '\UniSharp\LaravelFilemanager\Controllers\LfmController@show');
 Route::post('/laravel-filemanager/upload', '\UniSharp\LaravelFilemanager\Controllers\UploadController@upload');

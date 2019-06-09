@@ -5,7 +5,7 @@
 </div>
 <div class="form-group {{ $errors->has('content') ? 'has-error' : ''}}">
     {!! Form::label('content', 'Content', ['class' => 'control-label']) !!}
-    {!! Form::textarea('content', null, ('' == 'required') ? ['class' => 'form-control', 'required' => 'required'] : ['class' => 'form-control']) !!}
+    {!! Form::textarea('content', null, ('' == 'required') ? ['class' => 'form-control', 'required' => 'required', 'rows'=>'3'] : ['class' => 'form-control','rows'=>'3']) !!}
     {!! $errors->first('content', '<p class="help-block">:message</p>') !!}
 </div>
 
