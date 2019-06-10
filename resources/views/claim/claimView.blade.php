@@ -175,7 +175,7 @@
                                                         <div class="panel panel-default">
                                                             <div class="panel-heading">
                                                                 <i class="fa fa-comments"></i> Fligh Details
-                                                                
+
                                                                 @if(!array_key_exists($single_intinerary_detail->flight_number, $all_flights))
                                                                     <a href="{{url('flights/from-claim/'.$claims->id.'/'.$single_intinerary_detail->airline_id.'/'.$single_intinerary_detail->flight_number.'/'.str_replace('/','-',$single_intinerary_detail->departure_date))}}"><button class="btn btn-success btn-sm">Set Time</button></a>
                                                                 @else
@@ -1038,7 +1038,7 @@
                                                                         <td></td>
                                                                         <td></td>
                                                                         <td>
-                                                                            <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#SentEmailShow">View Email</button>
+                                                                            {{-- <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#SentEmailShow">View Email</button> --}}
                                                                             <!-- Modal -->
                                                                             <div id="SentEmailShow" class="modal modal-wide fade" role="dialog">
                                                                                 <div class="modal-dialog">
@@ -1549,7 +1549,7 @@
                                                 <td></td>
                                                 <td></td>
                                                 <td>
-                                                    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#SentEmailShow">View Email</button>
+                                                    {{-- <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#SentEmailShow">View Email</button> --}}
                                                     <!-- Modal -->
                                                     <div id="SentEmailShow" class="modal modal-wide fade" role="dialog">
                                                         <div class="modal-dialog">
@@ -2296,7 +2296,7 @@
                                 <div class="card">
                                     <div class="card-body">
 
-                                       
+
                                         <div class="row">
                                             <div class="col-md-12">
                                              @if(count($ticket_notes) > 0)
@@ -2327,7 +2327,7 @@
                                                 @endif
                                             </div>
                                         </div>
-                                        
+
 @if($ticket->status != '3')
 <div class="row">
     <div class="col-md-12">
@@ -2755,7 +2755,7 @@
                             <th>Address Line 4</th>
                             <td>{{$airlineInfo->address_line_4}}</td>
                         </tr>
-                        
+
                         <tr>
                             <th>Status</th>
                             <td>
