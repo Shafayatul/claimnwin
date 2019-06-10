@@ -1,11 +1,10 @@
 <?php
 
-
+use Illuminate\Support\Facades\Schema;
 
 use Illuminate\Database\Migrations\Migration;
 
 use Illuminate\Database\Schema\Blueprint;
-
 
 
 class CreateClaimsTable extends Migration
@@ -28,7 +27,7 @@ class CreateClaimsTable extends Migration
 
         Schema::create('claims', function (Blueprint $table) {
 
-            $table->increments('id', 10000000);
+            $table->increments('id');
 
             $table->string('user_id')->nullable();
 
@@ -120,6 +119,7 @@ class CreateClaimsTable extends Migration
 
             });
 
+            DB::update("ALTER TABLE demo56_claims AUTO_INCREMENT = 10000000;");
     }
 
 
