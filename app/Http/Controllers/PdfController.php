@@ -130,7 +130,12 @@ class PdfController extends Controller
         $airline = Airline::where('id',$itt_details->airline_id)->first();
         $flights = Flight::where('flight_no', $itt_details->flight_number)->first();
 
-        return view('pdf.letterBeforeAction',compact('airline', 'flights', 'currency','bank_info','connection_airport','itt_details','dept_and_arrival_airport','departed_airport','final_destination_airport','claim','all_passenger','iternery','expense','reminder','connection','current_passenger', 'internal_connected_airport_names', 'is_connecting_flight', 'all_iternery_airport', 'all_iternery_airline', 'all_iternery_flight', 'law'));
+        if ($bank_info && $airline) {
+          return view('pdf.letterBeforeAction',compact('airline', 'flights', 'currency','bank_info','connection_airport','itt_details','dept_and_arrival_airport','departed_airport','final_destination_airport','claim','all_passenger','iternery','expense','reminder','connection','current_passenger', 'internal_connected_airport_names', 'is_connecting_flight', 'all_iternery_airport', 'all_iternery_airline', 'all_iternery_flight', 'law'));
+        }else {
+          return redirect()->back()->with('error', 'Please fill up all required fields.');
+        }
+
     }
 
     public function pdfView($id)

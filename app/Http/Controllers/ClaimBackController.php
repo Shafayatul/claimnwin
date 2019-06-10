@@ -319,6 +319,7 @@ class ClaimBackController extends Controller
         $banks = BankAccount::join('currencies','bank_accounts.currency_of_account','=','currencies.id')
                     ->where('bank_accounts.status',1)
                     ->where('currencies.status',1)
+                    ->select('bank_accounts.*','currencies.title','currencies.code','currencies.value')
                     ->get();
         $adminComm = Setting::where(['fieldKey'=>'_admin_comm'])->first();
         $affiliateComm = Setting::where(['fieldKey'=>'_affiliate_comm'])->first();
