@@ -190,6 +190,8 @@ Route::group(['middleware' => ['auth']], function() {
         Route::post('/airline-reply-data', 'ClaimBackController@airlineReplyDataSave')->name('airline-reply-data');
         Route::post('/reply-customer-data', 'ClaimBackController@customerReplyDataSave')->name('reply-customer-data');
         Route::get('/ticket-reply-view/{id}', 'TicketsController@ticketReplyView');
+        Route::get('/from-email-view-pdf/{id}', 'TicketsController@fromEmailViewPdf');
+        Route::get('/reply-email-view-pdf/{id}','TicketsController@replyEmailViewPdf');
         Route::post('/ticket-reply-data', 'TicketsController@ticketReplyDataSave')->name('ticket-reply-data');
 
         Route::post('/update-affilite-info-data', 'ClaimBackController@updateAffiliteInfoData')->name('update-affilite-info-data');

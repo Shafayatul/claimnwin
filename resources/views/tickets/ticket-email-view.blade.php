@@ -67,8 +67,8 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <ul class="reply pull-right">
-                                                <li><a href="{{URL::to('/ticket-reply-view/'.$ticket->id)}}"><i class="fa fa-share"></i></a></li>
-                                                    <li><a href=""><i class="fa fa-pencil-square-o"></i></a></li>
+                                                    <li><a href="{{URL::to('/ticket-reply-view/'.$ticket->id)}}"><i class="fa fa-share"></i></a></li>
+                                                    <li><a href="{{URL::to('/from-email-view-pdf/'.$ticket->id)}}"><i class="fa fa-file-pdf-o"></i></a></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -90,6 +90,7 @@
                         </div>
                     </div>
 <!-------------------------------Start Reply Email--------------------------->
+                    <h1 class="text-center">Reply Email Start Here</h1><br>
                     @foreach($ticket_reply as $row)
                     <div class="row">
                             <div class="col-md-12">
@@ -109,7 +110,7 @@
                                                 <div class="col-md-6">
                                                     <ul class="reply pull-right">
                                                     <li><a href="{{URL::to('/ticket-reply-view/'.$row->ticket_id)}}"><i class="fa fa-share"></i></a></li>
-                                                        <li><a href=""><i class="fa fa-pencil-square-o"></i></a></li>
+                                                    <li><a href="{{URL::to('/reply-email-view-pdf/'.$row->ticket_id)}}"><i class="fa fa-file-pdf-o"></i></a></li>
                                                     </ul>
                                                 </div>
                                             </div>

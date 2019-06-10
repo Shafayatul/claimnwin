@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\TicketReply;
 use Carbon\Carbon;
 use App\EmailTemplate;
+use PDF;
 
 class TicketsController extends Controller
 {
@@ -411,5 +412,59 @@ class TicketsController extends Controller
         $EmailTemplate = EmailTemplate::all()->pluck('title', 'id');
         $main_email = TicketNote::where('ticket_id', $id)->first()->description;
         return view('tickets.ticket-email-reply',compact('ticket', 'EmailTemplate', 'main_email'));
+    }
+
+    public function fromEmailViewPdf($id)
+    {
+        $ticket=Ticket::find($id);
+        $ticket_note = TicketNote::where('ticket_id',$ticket->id)->first();
+        $ticket_reply = TicketReplyEmail::where('ticket_id',$id)->latest()->get();
+
+        $email_date = substr($ticket->email_date,8,2).'.'.substr($ticket->email_date,5,2).'.'.substr($ticket->email_date,0,4);
+
+
+        $perPage = 25;
+        $oClient = new Client([
+            'host'          => 'premium39.web-hosting.com',
+            'port'          => 993,
+            'encryption'    => 'ssl',
+            'validate_cert' => true,
+            'username'      => 'info@freeflightclaim.com',
+            'password'      => 'oKwGE2vzcOYt',
+            // 'username'      =>'rtwh095@freeflightclaim.com',
+            // 'password'      => 'olMpHjWv',
+            'protocol'      => 'imap'
+        ]);
+        $oClient->connect();
+        $oFolder = $oClient->getFolder('INBOX');
+        // $aMessage = $oFolder->search()->get();
+        $aMessage = $oFolder->search()->whereFrom($ticket->from_email)->whereOn($email_date)->get();
+
+
+        foreach ($aMessage as $oMessage) {
+// dd($oMessage);
+            if ($oMessage->getUid() == $ticket->imap_msg_no) {
+                $attachments = $oMessage->attachments;
+                $oMessage = $oFolder->getMessage($ticket->imap_msg_no);
+                $sub = $oMessage->getSubject();
+                $date=Carbon::parse($oMessage->getDate())->format("D, d M Y");
+                $time = Carbon::parse($oMessage->getDate())->format("h:i A");
+                $from = $oMessage->getFrom()[0]->mail;
+                $to = $oMessage->getTo()[0]->mail;
+                $from_name = $oMessage->getFrom()[0]->personal;
+                $to_name = $oMessage->getTo()[0]->personal;
+            }
+        }
+
+        $pdf = PDF::loadView('pdf.from_email_view',['ticket_note'=>$ticket_note,'time'=>$time,'ticket'=>$ticket,'date'=>$date,'from'=>$from,'to'=>$to,'from_name'=>$from_name]);
+        return $pdf->download($from_name.'-email'.'.'.'pdf');
+
+    }
+
+    public function replyEmailViewPdf($id)
+    {
+        $ticket_reply = TicketReplyEmail::where('ticket_id',$id)->first();
+        $pdf = PDF::loadView('pdf.reply_email_view',['ticket_reply'=>$ticket_reply]);
+        return $pdf->download($ticket_reply->from_name.'-email'.'.'.'pdf');
     }
 }
