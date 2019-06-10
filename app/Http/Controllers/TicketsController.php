@@ -384,7 +384,7 @@ class TicketsController extends Controller
         $oClient->connect();
         $oFolder = $oClient->getFolder('INBOX');
         // $aMessage = $oFolder->search()->get();
-        $aMessage = $oFolder->search()->whereFrom('mdshafayatul@gmail.com')->whereOn($email_date)->get();
+        $aMessage = $oFolder->search()->whereFrom($ticket->from_email)->whereOn($email_date)->get();
 
 
         foreach ($aMessage as $oMessage) {
