@@ -10,15 +10,17 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 class ClaimClosed extends Mailable
 {
     use Queueable, SerializesModels;
+    public $user,$ittDetails;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($user,$ittDetails)
     {
-        //
+        $this->user         = $user;
+        $this->ittDetails   = $ittDetails;
     }
 
     /**

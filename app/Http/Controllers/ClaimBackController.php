@@ -447,7 +447,8 @@ class ClaimBackController extends Controller
         $isDelete = $claim->is_deleted;
         if($isDelete == 0){
             $claim->is_deleted = "1";
-            Mail::to($user->email)->send(new ClaimClosed());
+            $ittDetails = ItineraryDetail::where('claim_id',$id)->where('is_selected','1')->first();
+            Mail::to($user->email)->send(new ClaimClosed($user,$ittDetails));
         }else{
             $claim->is_deleted = "0";
         }
