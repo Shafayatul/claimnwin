@@ -122,7 +122,8 @@
       {{-- <h5>{{$airline->country}}</h5> --}}
     </div>
     <div class="date_time_div text-right">
-      <h5>Date: {{Carbon\Carbon::today()}}</h5>
+      <!-- <h5>Date: {{Carbon\Carbon::today()}}</h5> -->
+      <h5>Date: {{$itt_details->departure_date}}</h5>
       <h5>Our Ref: CLAIM/000{{$claim->id}}</h5>
       <h5>Your Ref: Your Ref: {{$current_passenger->booking_refernece == null ? 'No Reference Found' : $current_passenger->booking_refernece}}
     </div>
