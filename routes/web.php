@@ -15,12 +15,12 @@
 */
 
 
-Route::get('/test', 'TestsController@test');
+// Route::get('/test', 'TestsController@test');
 
 /* ----- Access by all - not logged ----- */
 
 // FrontEnd Route
-Route::get('/','WelcomeController@index');
+
 
 
 Route::get('/laravel-filemanager', '\UniSharp\LaravelFilemanager\Controllers\LfmController@show');
@@ -216,3 +216,10 @@ Route::get('/contact-messages','ContactsController@index');
 Route::get('/contact-show','ContactsController@index@show');
 
 Route::resource('contacts', 'ContactsController');
+
+Route::resource('faqs', 'FaqsController');
+Route::resource('reviews', 'ReviewsController');
+
+Route::get('/{slug}', 'FrontsController@single_post');
+Route::get('/','WelcomeController@index');
+

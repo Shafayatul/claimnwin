@@ -1,7 +1,7 @@
     @section('header-script')
       {{-- dropzone single file upload --}}
-      {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/min/dropzone.min.css"> --}}
-      {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/dropzone.js"></script>
+      {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/min/dropzone.min.css">
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/dropzone.js"></script>
       <link rel="stylesheet" href="{{url('dropzone/dropzone.css')}}">
       <script src="{{asset('dropzone/dropzone.js')}}"></script>
       <script type="text/javascript">
@@ -51,7 +51,7 @@
                   this.removeFile(file);
                 }
               };
-      </script>--}}
+      </script> --}}
     @endsection
 <div class="grids widget-shadow">
     <div class="row">

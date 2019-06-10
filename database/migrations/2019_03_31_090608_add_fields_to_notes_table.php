@@ -54,11 +54,11 @@ class AddFieldsToNotesTable extends Migration
 
         Schema::table('notes', function (Blueprint $table) {
 
-            $table->dropColumn('user_id');
+            // $table->dropColumn('user_id');
 
-            $table->dropColumn('note_status');
+            // $table->dropColumn('note_status');
 
-            $table->dropColumn('airline_ref');
+            // $table->dropColumn('airline_ref');
 
         });
 

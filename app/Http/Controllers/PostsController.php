@@ -33,7 +33,7 @@ class PostsController extends Controller
 
         return view('posts.index', compact('posts'));
     }
-    
+
     public function index_with_type($type)
     {
         $posts = Post::latest()->where('type', $type)->paginate(20);
@@ -68,9 +68,9 @@ class PostsController extends Controller
         $validatedData = $request->validate([
             'title'                     => 'required|max:255',
             'slug'                      => 'required|alpha_dash|unique:posts|max:255',
-            'type'                      => 'required|max:255',
-            'body'                      => 'required',
-            'image'                     => 'required|mimes:jpeg,jpg,gif,png'
+            // 'type'                      => 'required|max:255',
+            // 'body'                      => 'required',
+            // 'image'                     => 'required|mimes:jpeg,jpg,gif,png'
             // 'preview' => 'required',
         ]);
 
@@ -83,27 +83,19 @@ class PostsController extends Controller
             $smallimgFullName=$SmallImgName.'.'.$smallext;
             $smalluploadPath='BlogImage/';
             $smallimgUrl=$smalluploadPath.$smallimgFullName;
-            $success1=$smallImage->move($smalluploadPath,$smallimgFullName);
-
-
-
-            if($success1){
-                $post = new Post;
-                $post->title                     = $request->title;
-                $post->slug                      = $request->slug;
-                $post->type                      = $request->type;
-                $post->body                      = $request->body;
-                $post->user_id                   = Auth::user()->id;
-                $post->image                     = $smallimgUrl;
-                $post->save();
-                return redirect('/admin/posts/'.$request->input('type'))->with('flash_message', 'Post added!');
-            }else{
-                return redirect('/admin/posts/'.$request->input('type'))->with('flash_message', 'Post added not successfull!');
-            }
-
+            $smallImage->move($smalluploadPath,$smallimgFullName);
         }else{
-            return redirect('/admin/posts/'.$request->input('type'))->with('flash_message', 'Please Insert Valid Image!!!');
+            $smallimgUrl=null;
         }
+        $post = new Post;
+        $post->title                     = $request->title;
+        $post->slug                      = $request->slug;
+        $post->type                      = $request->type;
+        $post->body                      = $request->body;
+        $post->user_id                   = Auth::user()->id;
+        $post->image                     = $smallimgUrl;
+        $post->save();
+        return redirect('/admin/posts/'.$request->input('type'))->with('success', 'Post added!');
     }
 
     /**
@@ -178,7 +170,7 @@ class PostsController extends Controller
         $old_post->image                     = $small_img_Url;
         $old_post->save();
 
-        return redirect('/admin/posts/'.$request->input('type'))->with('flash_message', 'Post updated!');
+        return redirect('/admin/posts/'.$request->input('type'))->with('success', 'Post updated!');
     }
 
     /**
@@ -201,6 +193,6 @@ class PostsController extends Controller
         }
         // Delete post
         Post::destroy($id);
-        return redirect('/admin/posts/'.$post->type)->with('flash_message', 'Post deleted!');
+        return redirect('/admin/posts/'.$post->type)->with('success', 'Post deleted!');
     }
 }
