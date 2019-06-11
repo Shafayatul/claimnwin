@@ -2,10 +2,7 @@
 Hello ,
 <br>
 <h4 style="font-weight: bolder;">{{$toEmail}}</h4>
-<br>
 {!! $composeData !!}
-<br>
-<br>
 Regards,<br>
 FreeflightClaim
 @endcomponent
