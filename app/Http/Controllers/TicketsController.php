@@ -34,50 +34,31 @@ class TicketsController extends Controller
         if ($request->has('submit')){
             $contact                    = $request->get('contact');
             $subject                    = $request->get('subject');
-            $group                      = $request->get('group');
-            $phone                      = $request->get('state');
-            $state                      = $request->get('priority');
+            $agent                      = $request->get('agent');
+            $state                      = $request->get('state');
+            $priority                   = $request->get('priority');
             $status                     = $request->get('status');
 
-            $claims = Claim::whereNotNull('id');
-            if(!empty($first_name)){
-                $claim_id=Passenger::where('first_name', 'LIKE', "%$first_name%")->select('claim_id')->get();
-
-                $claims = $claims->whereIn('id',$claim_id)->latest()->paginate($perPage);
+            $tickets = Ticket::whereNotNull('id');
+            if(!empty($contact)){
+                $tickets=$tickets->where('from_email',$contact);
             }
-            if(!empty($last_name)){
-                $claim_id=Passenger::where('last_name', 'LIKE', "%$last_name%")->select('claim_id')->get();
-
-                $claims = $claims->whereIn('id',$claim_id)->latest()->paginate($perPage);
+            if(!empty($subject)){
+                $tickets=$tickets->where('subject',$subject);
             }
-            if(!empty($email)){
-                $claim_id=Passenger::where('email', 'LIKE', "%$email%")->select('claim_id')->get();
-
-                $claims = $claims->whereIn('id',$claim_id)->latest()->paginate($perPage);
+            if(!empty($agent)){
+                $tickets = $tickets->where('assign_user_id',$agent);
             }
-            if(!empty($phone)){
-                $claim_id=Passenger::where('phone', 'LIKE', "%$phone%")->select('claim_id')->get();
-                $claims = $claims->whereIn('id',$claim_id)->latest()->paginate($perPage);
+            if(!empty($state)){
+                $tickets=$tickets->where('status',$state);
             }
-            if(!empty($note)){
-                $notes = Note::where('note', 'LIKE', "%$note%")->select('claim_id')->get();
-                $claims = $claims->whereIn('id',$notes)->latest()->paginate($perPage);
+            if(!empty($priority)){
+                $tickets=$tickets->where('priority',$priority);
             }
-            if(!empty($airline_ref)){
-                $claims = $claims->where('airline_ref', 'LIKE', "%$airline_ref%")->latest()->paginate($perPage);
+            if(!empty($status)){
+                $tickets=$tickets->where('ticket_status',$status);
             }
-            if(!empty($caa_ref)){
-                $claims = $claims->where('caa_ref', 'LIKE', "%$caa_ref%")->latest()->paginate($perPage);
-            }
-            if(!empty($adr_ref)){
-                $claims = $claims->where('adr_ref', 'LIKE', "%$adr_ref%")->latest()->paginate($perPage);
-            }
-            if(!empty($court_no)){
-                $claims = $claims->where('court_no', 'LIKE', "%$court_no%")->latest()->paginate($perPage);
-            }
-
-            // $airlines = $airlines->Where('status', $status)->latest()->paginate($perPage);
-
+            $tickets = $tickets->latest()->paginate($perPage);
         }else {
         $oClient = new Client([
             'host'          => 'premium39.web-hosting.com',

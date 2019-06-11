@@ -170,40 +170,40 @@ class ClaimBackController extends Controller
             if(!empty($first_name)){
                 $claim_id=Passenger::where('first_name', 'LIKE', "%$first_name%")->select('claim_id')->get();
 
-                $claims = $claims->whereIn('id',$claim_id)->latest()->paginate($perPage);
+                $claims = $claims->whereIn('id',$claim_id);
             }
             if(!empty($last_name)){
                 $claim_id=Passenger::where('last_name', 'LIKE', "%$last_name%")->select('claim_id')->get();
 
-                $claims = $claims->whereIn('id',$claim_id)->latest()->paginate($perPage);
+                $claims = $claims->whereIn('id',$claim_id);
             }
             if(!empty($email)){
                 $claim_id=Passenger::where('email', 'LIKE', "%$email%")->select('claim_id')->get();
 
-                $claims = $claims->whereIn('id',$claim_id)->latest()->paginate($perPage);
+                $claims = $claims->whereIn('id',$claim_id);
             }
             if(!empty($phone)){
                 $claim_id=Passenger::where('phone', 'LIKE', "%$phone%")->select('claim_id')->get();
-                $claims = $claims->whereIn('id',$claim_id)->latest()->paginate($perPage);
+                $claims = $claims->whereIn('id',$claim_id);
             }
             if(!empty($note)){
                 $notes = Note::where('note', 'LIKE', "%$note%")->select('claim_id')->get();
-                $claims = $claims->whereIn('id',$notes)->latest()->paginate($perPage);
+                $claims = $claims->whereIn('id',$notes);
             }
             if(!empty($airline_ref)){
-                $claims = $claims->where('airline_ref', 'LIKE', "%$airline_ref%")->latest()->paginate($perPage);
+                $claims = $claims->where('airline_ref', 'LIKE', "%$airline_ref%");
             }
             if(!empty($caa_ref)){
-                $claims = $claims->where('caa_ref', 'LIKE', "%$caa_ref%")->latest()->paginate($perPage);
+                $claims = $claims->where('caa_ref', 'LIKE', "%$caa_ref%");
             }
             if(!empty($adr_ref)){
-                $claims = $claims->where('adr_ref', 'LIKE', "%$adr_ref%")->latest()->paginate($perPage);
+                $claims = $claims->where('adr_ref', 'LIKE', "%$adr_ref%");
             }
             if(!empty($court_no)){
-                $claims = $claims->where('court_no', 'LIKE', "%$court_no%")->latest()->paginate($perPage);
+                $claims = $claims->where('court_no', 'LIKE', "%$court_no%");
             }
 
-            // $airlines = $airlines->Where('status', $status)->latest()->paginate($perPage);
+            $claims = $claims->latest()->paginate($perPage);
 
         }else{
             $claims = Claim::where('is_deleted',0)->latest()->paginate($perPage);

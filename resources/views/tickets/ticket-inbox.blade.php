@@ -17,61 +17,81 @@
         <div class="form-body">
             <div class="card">
                 <div class="card-body">
-                    {!! Form::open(['method' => 'GET', 'url' => url('/tickets'), 'class' => 'form-inline', 'role' => 'search']) !!}
+                    {!! Form::open(['method' => 'GET', 'url' => url('/tickets-inbox'), 'class' => 'form-inline', 'role' => 'search']) !!}
+
+
                     <div class="row">
                     {{-- <div class="col-md-2">
                         <div class="input-group">
                             <input type="text" class="form-control" name="alias" placeholder="Alias" value="{{ request('alias') }}">
                         </div>
                     </div> --}}
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <div class="input-group">
-                            <input type="text" class="form-control" name="contact" placeholder="Contact" value="{{ request('contact') }}">
+                            <input type="text" class="form-control" name="contact" placeholder="From Email" value="{{ request('contact') }}">
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <div class="input-group">
                             <input type="text" class="form-control" name="subject" placeholder="Subject" value="{{ request('subject') }}">
                         </div>
                     </div>
 
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <div class="input-group">
-                            <input type="text" class="form-control" name="group" placeholder="Group/Agent" value="{{ request('group') }}">
+                            <select name="agent" id="agent" class="form-control">
+                                <option value="">---Select Agent---</option>
+                                @foreach($users as $key=>$value)
+                                <option value="{{$key}}">{{$value}}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <div class="input-group">
-                            <input type="text" class="form-control" name="state" placeholder="State" value="{{ request('state') }}">
+                            <select name="state" id="state" class="form-control">
+                                <option value="">---Select State---</option>
+                                <option value="1">New</option>
+                                <option value="2">Waiting For Reply</option>
+                                <option value="3">Closed</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="input-group">
+                            <select name="priority" id="priority" class="form-control">
+                                <option value="">---Select Priority---</option>
+                                <option value="Low">Low</option>
+                                <option value="Medium">Medium</option>
+                                <option value="High">High</option>
+                                <option value="Urgent">Urgent</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-2">
+                        <div class="input-group">
+                            <select name="status" id="status" class="form-control">
+                                <option value="">---Select Status---</option>
+                                <option value="Open">Open</option>
+                                <option value="Pending">Pending</option>
+                                <option value="Resolved">Resolved</option>
+                                <option value="Closed">Closed</option>
+                            </select>
                         </div>
                     </div>
                     </div>
 
                     <div class="row">
-                        <div class="col-md-3">
-                            <div class="input-group">
-                                <input type="text" class="form-control" name="priority" placeholder="Priority" value="{{ request('priority') }}">
-                            </div>
-                        </div>
-
-                        <div class="col-md-3">
-                            <div class="input-group">
-                                <input type="text" class="form-control" name="status" placeholder="Status" value="{{ request('status') }}">
-                            </div>
-                        </div>
-
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <span class="input-group-append">
-                                <button class="btn btn-secondary" type="submit" name="submit">
-                                    <i class="fa fa-search"></i>
+                                <button class="btn btn-secondary btn-lg btn-block" type="submit" name="submit">
+                                    <i class="fa fa-search"></i> Search
                                 </button>
                             </span>
                         </div>
                     </div>
                     {!! Form::close() !!}
-
-                    <br>
-                    <br>
                     <div class="table-responsive">
                         <table class="table table-borderd table-striped">
                             <thead>
@@ -80,7 +100,7 @@
                                     <th>Contact</th>
                                     <th>Subject</th>
                                     <th>State</th>
-                                    <th>Group/Agent</th>
+                                    <th>Agent</th>
                                     <th>Priority</th>
                                     <th>Status</th>
                                     <th>Actions</th>
@@ -92,7 +112,7 @@
                                     <td>
                                         <input type="checkbox" name="" id="" class="cutom-checkbox">
                                     </td>
-                                <td><a href="{{URL::to('/ticket-single-email/'.$item->id)}}">{{$item->from_email}}</a></td>
+                                    <td><a href="{{URL::to('/ticket-single-email/'.$item->id)}}">{{$item->from_email}}</a></td>
                                     <td>{{ ucfirst(str_replace('_', ' ', $item->subject)) }}</td>
                                     <td>
                                         @if($item->status == 1)
