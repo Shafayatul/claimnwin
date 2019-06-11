@@ -59,14 +59,16 @@ class TicketsController extends Controller
                 $from_email = $oMessage->getFrom()[0]->mail;
                 if (Claim::where('cpanel_email', $to_email)->count() !=0) {
                     $old_claim_id      = Claim::where('cpanel_email', $to_email)->first()->id;
+                    $sub = 'Ticket';
                 }else{
                     $old_claim_id      = "";
+                    $sub = 'Email';
                 }
 
                 $imap_msg_no = $oMessage->getUid();
 
 
-                $sub =$oMessage->getSubject();
+                // $sub =$oMessage->getSubject();
                 $date = $oMessage->getDate();
                 $longMsg=$oMessage->getHTMLBody(true);
                 $textMsg=  $oMessage->getTextBody(true);
@@ -319,7 +321,6 @@ class TicketsController extends Controller
     {
 
         $composeData = $request->ticket_reply_note;
-
         if($request->hasFile('ticket_reply_files')){
             $files = $request->file('ticket_reply_files');
             // dd($files);

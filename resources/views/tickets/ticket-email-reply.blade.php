@@ -59,11 +59,10 @@
                         <div class="form-group">
                             <div class="col-md-12">
                                 <textarea name="ticket_reply_note" id="ticket_reply_note"  class="form-control ticket_textarea" rows="5" cols="50">
-                                    
-                                    <br>
-                                    <br>
-                                    <h3>Reply to:</h3>
+
+                                    <div class="main-email-html-body">
                                     {!! $main_email !!}
+                                    </div>
                                 </textarea>
                             </div>
                         </div>
@@ -75,12 +74,10 @@
                             </div>
                         </div>
 
-                        <div class="main-email-html-body" style="display: none;">
-                            <br>
-                            <br>
-                            <h3>Reply to:</h3>
+                        {{-- <div class="main-email-html-body" style="display: none;">
+
                             {!! $main_email !!}
-                        </div>
+                        </div> --}}
 
                         <div class="form-group">
                             <div class="col-md-12">
@@ -125,7 +122,7 @@ $(function() {
             });
         }
     });
-    
+
 });
 </script>
 @endsection
