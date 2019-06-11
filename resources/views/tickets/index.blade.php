@@ -13,9 +13,9 @@
                 <div class="card-body">
                     {{-- <a href="{{ url('/tickets/create') }}" class="btn btn-success btn-sm" title="Add New Ticket">
                         <i class="fa fa-plus" aria-hidden="true"></i> Add New
-                    </a>
+                    </a>--}}
 
-                    {!! Form::open(['method' => 'GET', 'url' => '/tickets', 'class' => 'form-inline my-2 my-lg-0 float-right', 'role' => 'search'])  !!}
+                    {{-- {!! Form::open(['method' => 'GET', 'url' => '/tickets', 'class' => 'form-inline my-2 my-lg-0 float-right', 'role' => 'search'])  !!}
                     <div class="input-group">
                         <input type="text" class="form-control" name="search" placeholder="Search..." value="{{ request('search') }}">
                         <span class="input-group-append">
@@ -68,7 +68,7 @@
                                     </td>
                                     <td>
                                         <a href="{{ url('/tickets/' . $item->id) }}" title="View Ticket"><button class="btn btn-info btn-sm"><i class="fa fa-comment" aria-hidden="true"></i> Reply</button></a>
-                                        
+
                                         @if($item->status != 3)
                                             {!! Form::open([
                                                 'method'=>'DELETE',

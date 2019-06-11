@@ -31,6 +31,54 @@ class TicketsController extends Controller
     public function ticketInbox(Request $request)
     {
         $perPage = 25;
+        if ($request->has('submit')){
+            $contact                    = $request->get('contact');
+            $subject                    = $request->get('subject');
+            $group                      = $request->get('group');
+            $phone                      = $request->get('state');
+            $state                      = $request->get('priority');
+            $status                     = $request->get('status');
+
+            $claims = Claim::whereNotNull('id');
+            if(!empty($first_name)){
+                $claim_id=Passenger::where('first_name', 'LIKE', "%$first_name%")->select('claim_id')->get();
+
+                $claims = $claims->whereIn('id',$claim_id)->latest()->paginate($perPage);
+            }
+            if(!empty($last_name)){
+                $claim_id=Passenger::where('last_name', 'LIKE', "%$last_name%")->select('claim_id')->get();
+
+                $claims = $claims->whereIn('id',$claim_id)->latest()->paginate($perPage);
+            }
+            if(!empty($email)){
+                $claim_id=Passenger::where('email', 'LIKE', "%$email%")->select('claim_id')->get();
+
+                $claims = $claims->whereIn('id',$claim_id)->latest()->paginate($perPage);
+            }
+            if(!empty($phone)){
+                $claim_id=Passenger::where('phone', 'LIKE', "%$phone%")->select('claim_id')->get();
+                $claims = $claims->whereIn('id',$claim_id)->latest()->paginate($perPage);
+            }
+            if(!empty($note)){
+                $notes = Note::where('note', 'LIKE', "%$note%")->select('claim_id')->get();
+                $claims = $claims->whereIn('id',$notes)->latest()->paginate($perPage);
+            }
+            if(!empty($airline_ref)){
+                $claims = $claims->where('airline_ref', 'LIKE', "%$airline_ref%")->latest()->paginate($perPage);
+            }
+            if(!empty($caa_ref)){
+                $claims = $claims->where('caa_ref', 'LIKE', "%$caa_ref%")->latest()->paginate($perPage);
+            }
+            if(!empty($adr_ref)){
+                $claims = $claims->where('adr_ref', 'LIKE', "%$adr_ref%")->latest()->paginate($perPage);
+            }
+            if(!empty($court_no)){
+                $claims = $claims->where('court_no', 'LIKE', "%$court_no%")->latest()->paginate($perPage);
+            }
+
+            // $airlines = $airlines->Where('status', $status)->latest()->paginate($perPage);
+
+        }else {
         $oClient = new Client([
             'host'          => 'premium39.web-hosting.com',
             'port'          => 993,
@@ -101,6 +149,7 @@ class TicketsController extends Controller
             }
         }
         $tickets=Ticket::latest()->paginate($perPage);
+        }
         $user_array = [];
         foreach($tickets as $row){
             if($row->assign_user_id != null){
@@ -110,7 +159,6 @@ class TicketsController extends Controller
         $assign_users=User::whereIn('id',$user_array)->pluck('email','id');
 
         $users = User::role('Admin')->pluck('email','id');
-
         return view('tickets.ticket-inbox', compact('tickets','users','assign_users'));
     }
 

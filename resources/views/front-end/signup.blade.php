@@ -12,7 +12,7 @@
 
     <div class="omb_login">
         <h3 class="omb_authTitle">Signup</h3>
-        <div class="row omb_socialButtons">
+        {{-- <div class="row omb_socialButtons">
             <div class="col-xs-6 col-sm-6">
             <a href="{{url('socialauth/facebook')}}" class="btn btn-lg btn-block omb_btn-facebook">
                     <i class="fab fa-facebook-f"></i>
@@ -25,7 +25,23 @@
                     <span class="hidden-sm hidden-xs">Google</span>
                 </a>
             </div>
-        </div>
+        </div> --}}
+
+        <div class="row omb_socialButtons">
+                <div class="col-xs-12 col-sm-12 facebook_login">
+                    <a href="{{url('socialauth/facebook')}}" class="btn btn-lg btn-block omb_btn-facebook">
+                        <i class="fab fa-facebook-square pull-left"></i>
+                        <span class="connect_with_facebook">Connect With Facebook</span>
+                        <!-- <span class="hidden-sm  hidden-xs">Facebook</span> -->
+                    </a>
+                </div>
+                <div class="col-xs-12 col-sm-12 google_login">
+                    <a href="{{url('socialauth/google')}}" class="btn btn-lg btn-block omb_btn-google">
+                        <img class="google-icon" src="{{ asset('front_asset/signup_login_asset/img/google_logo_icon.png') }}" alt="google">
+                        <span class="connect_with_google">Connect With Google</span>
+                    </a>
+                </div>
+            </div>
 
         <div class="row omb_loginOr">
             <div class="col-xs-12 col-sm-12">

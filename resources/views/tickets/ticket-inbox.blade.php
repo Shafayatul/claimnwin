@@ -17,23 +17,61 @@
         <div class="form-body">
             <div class="card">
                 <div class="card-body">
-                    {{-- <a href="{{ url('/tickets/create') }}" class="btn btn-success btn-sm" title="Add New Ticket">
-                        <i class="fa fa-plus" aria-hidden="true"></i> Add New
-                    </a>
+                    {!! Form::open(['method' => 'GET', 'url' => url('/tickets'), 'class' => 'form-inline', 'role' => 'search']) !!}
+                    <div class="row">
+                    {{-- <div class="col-md-2">
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="alias" placeholder="Alias" value="{{ request('alias') }}">
+                        </div>
+                    </div> --}}
+                    <div class="col-md-3">
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="contact" placeholder="Contact" value="{{ request('contact') }}">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="subject" placeholder="Subject" value="{{ request('subject') }}">
+                        </div>
+                    </div>
 
-                    {!! Form::open(['method' => 'GET', 'url' => '/tickets', 'class' => 'form-inline my-2 my-lg-0 float-right', 'role' => 'search'])  !!}
-                    <div class="input-group">
-                        <input type="text" class="form-control" name="search" placeholder="Search..." value="{{ request('search') }}">
-                        <span class="input-group-append">
-                            <button class="btn btn-secondary" type="submit">
-                                <i class="fa fa-search"></i>
-                            </button>
-                        </span>
+                    <div class="col-md-3">
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="group" placeholder="Group/Agent" value="{{ request('group') }}">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="state" placeholder="State" value="{{ request('state') }}">
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="priority" placeholder="Priority" value="{{ request('priority') }}">
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="status" placeholder="Status" value="{{ request('status') }}">
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <span class="input-group-append">
+                                <button class="btn btn-secondary" type="submit" name="submit">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
+                        </div>
                     </div>
                     {!! Form::close() !!}
 
-                    <br/>
-                    <br/> --}}
+                    <br>
+                    <br>
                     <div class="table-responsive">
                         <table class="table table-borderd table-striped">
                             <thead>
