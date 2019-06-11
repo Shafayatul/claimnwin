@@ -989,12 +989,15 @@
                                                                             <div class="col-md-12">
                                                                                 @php
                                                                                 $custome_single_files=explode("|",$cutomSent->compose_file);
-
                                                                                 @endphp
+
                                                                                 @foreach($custome_single_files as $key=>$value)
+                                                                                @if($value != "")
                                                                                 <a href="{{URL::to($value)}}" download class="btn btn-sm btn-info">Download File-{{$loop->iteration}}</a>
                                                                                 &nbsp; &nbsp; &nbsp;
+                                                                                @endif
                                                                                 @endforeach
+
                                                                             </div>
                                                                         </div>
 
@@ -1507,8 +1510,10 @@
 
                                                             @endphp
                                                             @foreach($airline_single_files as $key=>$value)
+                                                            @if($value != "")
                                                             <a href="{{URL::to($value)}}" download class="btn btn-sm btn-info">Download File-{{$loop->iteration}}</a>
                                                             &nbsp; &nbsp; &nbsp;
+                                                            @endif
                                                             @endforeach
                                                         </div>
                                                     </div>

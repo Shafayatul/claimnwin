@@ -244,7 +244,7 @@ class TicketsController extends Controller
      */
     public function show($id)
     {
-            $ticket  = Ticket::findOrFail($id);
+        $ticket  = Ticket::findOrFail($id);
         $ticket_notes = TicketNote::where('ticket_id',$ticket->id)->get();
         return view('tickets.show', compact('ticket','ticket_notes'));
     }
