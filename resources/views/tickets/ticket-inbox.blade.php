@@ -158,14 +158,14 @@
 
                                         @if($item->status != 3)
                                             {!! Form::open([
-                                                'method'=>'DELETE',
-                                                'url' => ['/tickets', $item->id],
+                                                'method'=>'POST',
+                                                'url' => ['/close-ticket/', $item->id],
                                                 'style' => 'display:inline'
                                             ]) !!}
-                                            {!! Form::button('<i class="fa fa-trash" aria-hidden="true"></i> Close', array(
+                                            {!! Form::button('<i class="fa fa-window-close" aria-hidden="true"></i> Close', array(
                                                         'type' => 'submit',
-                                                        'class' => 'btn btn-danger btn-sm',
-                                                        'title' => 'Delete Ticket',
+                                                        'class' => 'btn btn-warning btn-sm',
+                                                        'title' => 'Close Ticket',
                                                         'onclick'=>'return confirm("Confirm close?")'
                                             )) !!}
                                             {!! Form::close() !!}
@@ -175,17 +175,27 @@
                                                 'url' => url('/tickets/reopen/'.$item->id),
                                                 'style' => 'display:inline'
                                             ]) !!}
-                                            {!! Form::button('<i class="fa fa-trash" aria-hidden="true"></i> Re-open', array(
+                                            {!! Form::button('<i class="fa fa-folder-open" aria-hidden="true"></i> Re-open', array(
                                                         'type' => 'submit',
-                                                        'class' => 'btn btn-danger btn-sm',
+                                                        'class' => 'btn btn-success btn-sm',
                                                         'title' => 'Re-open Ticket',
                                                         'onclick'=>'return confirm("Confirm re-open?")'
                                             )) !!}
                                             {!! Form::close() !!}
                                         @endif
 
-
-
+                                        {!! Form::open([
+                                            'method'=>'DELETE',
+                                            'url' => ['/tickets',$item->id],
+                                            'style' => 'display:inline'
+                                        ]) !!}
+                                        {!! Form::button('<i class="fa fa-trash" aria-hidden="true"></i> Delete', array(
+                                                    'type' => 'submit',
+                                                    'class' => 'btn btn-danger btn-sm',
+                                                    'title' => 'Delete Ticket',
+                                                    'onclick'=>'return confirm("Confirm Delete?")'
+                                        )) !!}
+                                        {!! Form::close() !!}
 
                                         {{-- <a class="btn btn-info btn-sm" data-toggle="modal" data-target="#assignModal-{{$item->id}}"><i class="fa fa-tasks"></i></a>
                                          <!-- Modal -->
