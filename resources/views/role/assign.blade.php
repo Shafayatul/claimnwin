@@ -41,6 +41,7 @@
                                 <tr>
                                     <th>Name</th>
                                     <th>Email</th>
+                                    <th>Status</th>
                                     <th>Role</th>
                                     <th>Action</th>
                                 </tr>
@@ -50,6 +51,13 @@
                                 <tr>
                                 <td>{{$row->name}}</td>
                                 <td>{{$row->email}}</td>
+                                <td>
+                                    @if($row->status == 0)
+                                        <span class="badge badge-dark">Blocked</span>
+                                    @else
+                                        <span class="badge badge-success">Activated</span>
+                                    @endif
+                                </td>
                                 <td>{{$row->getRoleNames()}}</td>
                                 <td>
                                   @if($row->getRoleNames() != '["Admin"]')
@@ -58,18 +66,33 @@
                                       <a class="btn btn-sm btn-primary">Admin User</a>
                                   @endif
                                 <a href="{{url('/user-info/'.$row->id)}}" class="btn btn-sm btn-success">View/Edit</a>
+                                @if($row->status == 0)
                                 {!! Form::open([
-                                    'method'=>'DELETE',
+                                    'method'=>'GET',
                                     'url' => ['/user-delete', $row->id],
                                     'style' => 'display:inline'
                                     ]) !!}
-                                {!! Form::button('<i class="fa fa-trash"></i>', array(
+                                {!! Form::button('Activate', array(
                                     'type' => 'submit',
-                                    'class' => 'btn btn-danger btn-sm',
-                                    'title' => 'Delete User',
-                                    'onclick'=>'return confirm("Confirm delete?")'
+                                    'class' => 'btn btn-info btn-sm',
+                                    'title' => 'Activate User',
+                                    'onclick'=>'return confirm("Confirm Activate?")'
                                     )) !!}
                                     {!! Form::close() !!}
+                                @else
+                                {!! Form::open([
+                                    'method'=>'GET',
+                                    'url' => ['/user-delete', $row->id],
+                                    'style' => 'display:inline'
+                                    ]) !!}
+                                {!! Form::button('Block', array(
+                                    'type' => 'submit',
+                                    'class' => 'btn btn-warning btn-sm',
+                                    'title' => 'Block User',
+                                    'onclick'=>'return confirm("Confirm Block?")'
+                                    )) !!}
+                                    {!! Form::close() !!}
+                                @endif
                                 <a title="Change Role" type="button" data-toggle="modal" user_id="{{$row->id}}" class="btn btn-sm btn-dark change-user-role"  data-target="#assign-user-model"><i class="fa fa-edit"></i></a>
 
                                 </td>

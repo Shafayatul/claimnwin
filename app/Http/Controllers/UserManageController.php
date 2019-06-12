@@ -26,8 +26,16 @@ class UserManageController extends Controller
 
     public function destroy($id)
     {
-        User::destroy($id);
-
-        return redirect('admin/role/assign')->with('success', 'Role deleted!');
+        $user = User::find($id);
+        if($user->status == '1')
+        {
+            $user->status = "0";
+            $msg = 'User Blocked';
+        }else{
+            $user->status = "1";
+            $msg = 'User Activated';
+        }
+        $user->save();
+        return redirect('admin/role/assign')->with('success',$msg);
     }
 }

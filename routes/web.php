@@ -123,7 +123,7 @@ Route::group(['middleware' => ['auth']], function() {
         Route::resource('/admin/role',  'RoleController');
         Route::get('/user-info/{id}', 'UserManageController@editUserinfo');
         Route::post('/update-user-info', 'UserManageController@updateUserInfo')->name('update-user-info');
-        Route::delete('/user-delete/{id}', 'UserManageController@destroy');
+        Route::get('/user-delete/{id}', 'UserManageController@destroy');
         Route::resource('connections', 'ConnectionsController');
         Route::resource('itinerary-details', 'ItineraryDetailsController');
         Route::resource('expenses', 'ExpensesController');

@@ -12,6 +12,10 @@ class User extends Authenticatable
 {
     use LogsActivity, Notifiable, HasRoles;
 
+    public function findForPassport($identifier) {
+        return User::orWhere('email', $identifier)->where('status', 1)->first();
+    }
+
     /**
      * The attributes that are mass assignable.
      *
