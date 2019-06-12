@@ -2052,7 +2052,7 @@
     <div class="row" style="margin-top:1%;">
         <form action="{{route('claim-nextstep-status-change')}}" method="post" name="clam_nextstep_status">
             {{ csrf_field() }}
-            <a class="btn btn-success btn-xs" href="{{url('next-step/create')}}" target="_blank">Add New Status</a>
+            <a class="btn btn-success btn-xs" href="{{url('claim-status/create')}}" target="_blank">Add New Status</a>
             <hr>
             <div class="col-sm-6">
                 <div class="form-group">

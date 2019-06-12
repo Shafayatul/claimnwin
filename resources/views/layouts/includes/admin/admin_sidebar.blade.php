@@ -158,7 +158,7 @@
                 </ul>
             </li>
 
-            <li class="treeview">
+            {{-- <li class="treeview">
               <a href="#">
               <i class="fa fa-cog"></i>
               <span>Next Step</span>
@@ -168,7 +168,7 @@
               <li><a href="{{URL::to('/next-step/create')}}"><i class="fa fa-angle-right"></i> Add Next Step</a></li>
               <li><a href="{{URL::to('/next-step')}}"><i class="fa fa-angle-right"></i> Manage Next Step</a></li>
               </ul>
-            </li>
+            </li> --}}
 
             <li class="treeview">
               <a href="#">
