@@ -1078,14 +1078,14 @@
                                 <label>Where did you hear about Claim’N Win?</label>
                               </div>
                               <div class="select_reason_class">
-                                <select class="form-control custom_select" class="hear_from_where" name="hear_from_where">
+                                <select class="form-control custom_select" class="hear_from_where" name="here_from_where">
                                   <option hidden>Open this select menu</option>
-                                  <option value="1">Google</option>
-                                  <option value="2">Friends</option>
-                                  <option value="3">Social media</option>
-                                  <option value="4">Tv</option>
-                                  <option value="5">Article or blog</option>
-                                  <option value="6">Others</option>
+                                  <option value="Google">Google</option>
+                                  <option value="Friends">Friends</option>
+                                  <option value="Social media">Social media</option>
+                                  <option value="Tv">Tv</option>
+                                  <option value="Article or blog">Article or blog</option>
+                                  <option value="Others">Others</option>
                                 </select>
                               </div>
                             </div>
