@@ -1128,7 +1128,7 @@
                                       <label>Where did you hear about Claim’N Win?</label>
                                     </div>
                                     <div class="select_reason_class">
-                                        <select class="form-control custom_select" class="hear_from_where">
+                                        <select class="form-control custom_select" class="hear_from_where" name="here_from_where">
                                             <option hidden>Open this select menu</option>
                                             <option value="1">Google</option>
                                             <option value="2">Friends</option>
@@ -1187,7 +1187,7 @@
                                     </div>
                                     <div class="parent_div">
                                         <div class="form-group">
-                                            <textarea class="form-control" rows="5" id="comment" name="text" placeholder="Additional Information"></textarea>
+                                            <textarea class="form-control" rows="5" id="comment" name="what_happened" placeholder="Additional Information"></textarea>
                                         </div>
                                     </div>
                                 </div>
