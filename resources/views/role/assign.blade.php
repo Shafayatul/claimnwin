@@ -66,6 +66,7 @@
                                       <a class="btn btn-sm btn-primary">Admin User</a>
                                   @endif
                                 <a href="{{url('/user-info/'.$row->id)}}" class="btn btn-sm btn-success">View/Edit</a>
+                                @if($row->id != 1)
                                 @if($row->status == 0)
                                 {!! Form::open([
                                     'method'=>'GET',
@@ -92,6 +93,7 @@
                                     'onclick'=>'return confirm("Confirm Block?")'
                                     )) !!}
                                     {!! Form::close() !!}
+                                @endif
                                 @endif
                                 <a title="Change Role" type="button" data-toggle="modal" user_id="{{$row->id}}" class="btn btn-sm btn-dark change-user-role"  data-target="#assign-user-model"><i class="fa fa-edit"></i></a>
 
