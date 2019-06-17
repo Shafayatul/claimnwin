@@ -10,7 +10,7 @@
 </div>
 <div class="form-group {{ $errors->has('content') ? 'has-error' : ''}}">
     {!! Form::label('content', 'Content', ['class' => 'control-label']) !!}
-    {!! Form::textarea('content', null, ('' == 'required') ? ['class' => 'form-control ticket_textarea', 'required' => 'required'] : ['class' => 'form-control ticket_textarea']) !!}
+    {!! Form::textarea('content', null, ('' == 'required') ? ['class' => 'form-control tinymce-editor', 'required' => 'required'] : ['class' => 'form-control tinymce-editor']) !!}
     {!! $errors->first('content', '<p class="help-block">:message</p>') !!}
 </div>
 

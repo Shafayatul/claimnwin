@@ -10,9 +10,7 @@
   overflow-y: auto;
 }
 </style>
-    <!-- Include Editor style. -->
-    <link href="https://cdn.jsdelivr.net/npm/froala-editor@2.9.0/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
-    <link href="https://cdn.jsdelivr.net/npm/froala-editor@2.9.0/css/froala_style.min.css" rel="stylesheet" type="text/css" />
+
 @endsection
 @include('layouts.includes.partial.alert')
 <div class="forms">
@@ -690,7 +688,7 @@
 
                                                     <div class="form-group">
                                                         <div class="col-md-12">
-                                                            <textarea name="compose_text" class="form-control Compose" cols="30" rows="10"></textarea>
+                                                            <textarea name="compose_text" class="form-control tinymce-editor" cols="30" rows="10"></textarea>
                                                             <input type="hidden" name="claim_id" value="{{$claims->id}}">
                                                         </div>
                                                     </div>
@@ -1208,7 +1206,7 @@
 
                             <div class="form-group">
                                 <div class="col-md-12">
-                                    <textarea name="airline_compose_text" class="form-control airline_compose_text" rows="5" cols="50"></textarea>
+                                    <textarea name="airline_compose_text" class="form-control tinymce-editor" rows="5" cols="50"></textarea>
                                 </div>
                             </div>
 
@@ -2392,7 +2390,7 @@
                         {{ csrf_field() }}
                         <div class="form-group">
                             <div class="col-md-12">
-                                <textarea name="note" id="note-info" cols="30" rows="5" class="form-control"></textarea>
+                                <textarea name="note"  cols="30" rows="5" class="form-control tinymce-editor"></textarea>
                                 <input type="hidden" name="claim_id" value="{{$claims->id}}">
                             </div>
                         </div>
@@ -2794,11 +2792,7 @@
 </div>
 </div>
 </div>
-{{-- <script>
-$(function() {
-$('#note').froalaEditor()
-});
-</script> --}}
+
 <script>
     document.forms['clam_nextstep_status'].elements['claim_status'].value="{{$claimStatusData->id}}";
     document.forms['clam_nextstep_status'].elements['nextstep_status'].value="{{$NextStepData->id}}";
@@ -2812,24 +2806,8 @@ $('#note').froalaEditor()
   $(this).find(".modal-body").css("max-height", height);
 });
 </script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/froala-editor@2.9.0/js/froala_editor.pkgd.min.js"></script>
 <script>
-// $(function() {
-
-// });
-
 $(function() {
-    $('.Compose').froalaEditor({
-        heightMin: 200,
-        heightMax: 800,
-    });
-    $('.airline_compose_text').froalaEditor({
-        heightMin: 200,
-        heightMax: 800,
-    });
-    $('#note-info').froalaEditor();
-    $('.edit-note').froalaEditor();
-
 
     $('.time-input-required').click(function(){
         alert("You have to input all flights time.");

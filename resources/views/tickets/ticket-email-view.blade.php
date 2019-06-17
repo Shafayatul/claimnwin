@@ -25,9 +25,7 @@
             padding: 15px 10px;
         }
     </style>
-    <!-- Include Editor style. -->
-    <link href="https://cdn.jsdelivr.net/npm/froala-editor@2.9.0/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
-    <link href="https://cdn.jsdelivr.net/npm/froala-editor@2.9.0/css/froala_style.min.css" rel="stylesheet" type="text/css" />
+
 @endsection
 @include('layouts.includes.partial.alert')
 <div class="forms">

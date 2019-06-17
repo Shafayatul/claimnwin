@@ -3,9 +3,6 @@
 @section('main_content')
 @section('header-css')
 
-    <!-- Include Editor style. -->
-    <link href="https://cdn.jsdelivr.net/npm/froala-editor@2.9.0/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
-    <link href="https://cdn.jsdelivr.net/npm/froala-editor@2.9.0/css/froala_style.min.css" rel="stylesheet" type="text/css" />
 @endsection
 @include('layouts.includes.partial.alert')
 <div class="forms">
@@ -258,20 +255,8 @@
 
 
 @section('footer-script')
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/froala-editor@2.9.0/js/froala_editor.pkgd.min.js"></script>
 <script>
-// $(function() {
-
-// });
-
 $(function() {
-
-    $('.ticket_textarea').froalaEditor({
-        heightMin: 200,
-        heightMax: 800,
-    });
-
-
     $(document).on('change', '.select_assigned_user', function(){
         var ticket_id           = $(this).attr('ticket-id');
         var assign_user_id      = $(this).val();

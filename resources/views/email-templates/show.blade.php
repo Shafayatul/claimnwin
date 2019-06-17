@@ -47,21 +47,6 @@
 @endsection
 
 
-@section('footer-script')
-
-<script type="text/javascript">
-
-$(function() {
-    $('.ticket_textarea').froalaEditor({
-        heightMin: 200,
-        heightMax: 800,
-    });
-});
-
-</script>
-@endsection
-
-
 
 
 @extends('layouts.admin_layout')
