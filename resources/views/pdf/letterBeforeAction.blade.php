@@ -9,9 +9,6 @@
     <title>Letter Before Action</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     {{-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> --}}
-    <!-- Include Editor style. -->
-    <link href="https://cdn.jsdelivr.net/npm/froala-editor@2.9.0/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
-    <link href="https://cdn.jsdelivr.net/npm/froala-editor@2.9.0/css/froala_style.min.css" rel="stylesheet" type="text/css" />
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ asset('/admin_asset/pdf/style.css') }}">
@@ -75,7 +72,7 @@
         <input type="hidden" name="claim_id" value="{{$claim->id}}" />
         <input type="hidden" name="airline_id" value="{{$claim->airline_id}}" />
         <input type="hidden" name="cpanel_email" value="{{$claim->cpanel_email}}" />
-        <textarea id="pdf" name="letter_before_content">
+        <textarea id="pdf" name="letter_before_content" class="tinymce-editor">
             @php
                 $claim_type = ucwords(str_replace("_"," ",$claim->claim_table_type));
             @endphp
@@ -394,12 +391,6 @@
         <br>
         </div>
     </form>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/froala-editor@2.9.0/js/froala_editor.pkgd.min.js"></script>
-    <script>
-        $(function() {
-            $('#pdf').froalaEditor()
-        });
-    </script>
 </body>
 
 </html>

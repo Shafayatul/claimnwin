@@ -1,12 +1,7 @@
 @extends('layouts.admin_layout')
 
 @section('main_content')
-@section('header-css')
 
-    <!-- Include Editor style. -->
-    <link href="https://cdn.jsdelivr.net/npm/froala-editor@2.9.0/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
-    <link href="https://cdn.jsdelivr.net/npm/froala-editor@2.9.0/css/froala_style.min.css" rel="stylesheet" type="text/css" />
-@endsection
 @include('layouts.includes.partial.alert')
 <div class="forms">
     <div class="form-grids row widget-shadow" data-example-id="basic-forms">
@@ -58,7 +53,7 @@
 
                         <div class="form-group">
                             <div class="col-md-12">
-                                <textarea name="ticket_reply_note" id="ticket_reply_note"  class="form-control ticket_textarea" rows="5" cols="50">
+                                <textarea name="ticket_reply_note" id="ticket_reply_note"  class="form-control tinymce-editor" rows="5" cols="50">
 
                                     <div class="main-email-html-body">
                                     {!! $main_email !!}
@@ -92,17 +87,8 @@
 </div>
 @endsection
 @section('footer-script')
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/froala-editor@2.9.0/js/froala_editor.pkgd.min.js"></script>
 <script>
-// $(function() {
-
-// });
-
 $(function() {
-    $('.ticket_textarea').froalaEditor({
-        heightMin: 200,
-        heightMax: 800,
-    });
     $('#select-template').change(function(){
         var current_option_value = $(this).val();
         if (current_option_value != 0) {

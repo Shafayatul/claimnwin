@@ -190,9 +190,4 @@
         </div>
     </div>
 </div>
-{{-- <script>
-$(function() {
-    $('#description').froalaEditor()
-});
-</script> --}}
 @endsection

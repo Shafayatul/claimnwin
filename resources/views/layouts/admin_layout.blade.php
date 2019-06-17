@@ -22,9 +22,6 @@
 <!-- Include CSS for icons. -->
 {{-- <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" /> --}}
 
-<!-- Include Editor style. -->
-<link href="https://cdn.jsdelivr.net/npm/froala-editor@2.9.0/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
-<link href="https://cdn.jsdelivr.net/npm/froala-editor@2.9.0/css/froala_style.min.css" rel="stylesheet" type="text/css" />
 <!-- //font-awesome icons CSS-->
 
 <!-- side nav css file -->
@@ -116,9 +113,6 @@
 	<!-- for index page weekly sales java script -->
 	<script src="{{ asset('admin_asset/js/SimpleChart.js')}}"></script>
 
-<!-- Include Editor JS files. -->
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/froala-editor@2.9.0/js/froala_editor.pkgd.min.js"></script>
-
 	<!-- Bootstrap Core JavaScript -->
    <script src="{{ asset('admin_asset/js/bootstrap.js')}}"> </script>
     <!-- //Bootstrap Core JavaScript -->
@@ -127,5 +121,46 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
     @yield('footer-script')
+
+
+    {{-- Tinymce with file upload option --}}
+    <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+    <script>
+        var editor_config = {
+          path_absolute : "/",
+          selector: ".tinymce-editor",
+          plugins: [
+            "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+            "searchreplace wordcount visualblocks visualchars code fullscreen",
+            "insertdatetime media nonbreaking save table contextmenu directionality",
+            "emoticons template paste textcolor colorpicker textpattern"
+          ],
+          toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media | forecolor backcolor",
+          relative_urls: false,
+          file_browser_callback : function(field_name, url, type, win) {
+            var x = window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth;
+            var y = window.innerHeight|| document.documentElement.clientHeight|| document.getElementsByTagName('body')[0].clientHeight;
+
+            var cmsURL = editor_config.path_absolute + 'laravel-filemanager?field_name=' + field_name;
+            if (type == 'image') {
+              cmsURL = cmsURL + "&type=Images";
+            } else {
+              cmsURL = cmsURL + "&type=Files";
+            }
+
+            tinyMCE.activeEditor.windowManager.open({
+              file : cmsURL,
+              title : 'Filemanager',
+              width : x * 0.8,
+              height : y * 0.8,
+              resizable : "yes",
+              close_previous : "no"
+            });
+          }
+        };
+
+        tinymce.init(editor_config);
+	</script>
+
 </body>
 </html>
