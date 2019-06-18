@@ -10,13 +10,31 @@
     <div class="row">
         <div class="col-md-12">
             <div class="page_title">
-                <h1>Be there for your customers, <br> even when things don't go as <br> planned.</h1>
+                <h1>
+                  @if ($responseDecoded)
+                    {!! $responseDecoded['data']['translations'][0]['translatedText'] !!}
+                  @else
+                    {!! $text[0] !!}
+                  @endif
+                </h1>
             </div>
             <div class="page_p">
-                <p>Opportunities that will bring money to you and your customers.</p>
+                <p>
+                  @if ($responseDecoded)
+                    {!! $responseDecoded['data']['translations'][1]['translatedText'] !!}
+                  @else
+                    {!! $text[1] !!}
+                  @endif
+                </p>
             </div>
             <div class="page_btn">
-                <a href="{{ url('/contact-us') }}" class="btn text-uppercase">contact us</a>
+                <a href="{{ url('/contact-us') }}" class="btn text-uppercase">
+                  @if ($responseDecoded)
+                    {!! $responseDecoded['data']['translations'][2]['translatedText'] !!}
+                  @else
+                    {!! $text[2] !!}
+                  @endif
+                </a>
             </div>
         </div>
     </div>
@@ -32,7 +50,13 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="how_it_works_title_div text-center">
-                        <h1>Partnership programs</h1>
+                        <h1>
+                          @if ($responseDecoded)
+                            {!! $responseDecoded['data']['translations'][3]['translatedText'] !!}
+                          @else
+                            {!! $text[3] !!}
+                          @endif
+                        </h1>
                         </div>
                     </div>
                 </div>
@@ -45,8 +69,20 @@
                         </div>
                     </div>
                     <div class="how_it_works_text_div">
-                        <p class="how_it_works_text_upper_p_div">21 million</p>
-                        <p class="how_it_works_text_lower_p_div">21 million passengers are entitled <br> to compensation</p>
+                        <p class="how_it_works_text_upper_p_div">
+                          @if ($responseDecoded)
+                            {!! $responseDecoded['data']['translations'][4]['translatedText'] !!}
+                          @else
+                            {!! $text[4] !!}
+                          @endif
+                        </p>
+                        <p class="how_it_works_text_lower_p_div">
+                          @if ($responseDecoded)
+                            {!! $responseDecoded['data']['translations'][5]['translatedText'] !!}
+                          @else
+                            {!! $text[5] !!}
+                          @endif
+                        </p>
                     </div>
                     </div>
                     <div class="col-md-4 text-center margin_bottom">
@@ -56,8 +92,20 @@
                         </div>
                     </div>
                     <div class="how_it_works_text_div">
-                        <p class="how_it_works_text_upper_p_div">8 Billion Euro</p>
-                        <p class="how_it_works_text_lower_p_div">8 Billion Euro available to claim annually</p>
+                        <p class="how_it_works_text_upper_p_div">
+                          @if ($responseDecoded)
+                            {!! $responseDecoded['data']['translations'][6]['translatedText'] !!}
+                          @else
+                            {!! $text[6] !!}
+                          @endif
+                        </p>
+                        <p class="how_it_works_text_lower_p_div">
+                          @if ($responseDecoded)
+                            {!! $responseDecoded['data']['translations'][7]['translatedText'] !!}
+                          @else
+                            {!! $text[7] !!}
+                          @endif
+                        </p>
                     </div>
                     </div>
                     <div class="col-md-4 text-center margin_bottom">
@@ -67,8 +115,20 @@
                         </div>
                     </div>
                     <div class="how_it_works_text_div">
-                        <p class="how_it_works_text_upper_p_div">Millions</p>
-                        <p class="how_it_works_text_lower_p_div">Millions in potential ancillary revenues</p>
+                        <p class="how_it_works_text_upper_p_div">
+                          @if ($responseDecoded)
+                            {!! $responseDecoded['data']['translations'][8]['translatedText'] !!}
+                          @else
+                            {!! $text[8] !!}
+                          @endif
+                        </p>
+                        <p class="how_it_works_text_lower_p_div">
+                          @if ($responseDecoded)
+                            {!! $responseDecoded['data']['translations'][9]['translatedText'] !!}
+                          @else
+                            {!! $text[9] !!}
+                          @endif
+                        </p>
                     </div>
                     </div>
                 </div>
@@ -87,15 +147,21 @@
             </div>
             <div class="col-md-6">
                 <div class="claim_compass_title">
-                    <h1>ClaimCompass API</h1>
+                    <h1>
+                      @if ($responseDecoded)
+                        {!! $responseDecoded['data']['translations'][10]['translatedText'] !!}
+                      @else
+                        {!! $text[10] !!}
+                      @endif
+                    </h1>
                 </div>
                 <div class="claim_compass_p">
                     <p>
-                        Developed in partnership with Microsoft, the ClaimCompass API uses cutting edge
-                        technology and monitors in real-time all of your bookings, notifying you and your
-                        clients when they're entitled to compensation. Our API is first of its kind and is built in
-                        a way, which does not require any personal data - all we need is the flight number
-                        and the date.
+                      @if ($responseDecoded)
+                        {!! $responseDecoded['data']['translations'][11]['translatedText'] !!}
+                      @else
+                        {!! $text[11] !!}
+                      @endif
                     </p>
                 </div>
             </div>
@@ -108,14 +174,21 @@
         <div class="row">
             <div class="col-md-6 margin_bottom">
                 <div class="affiliate_title">
-                    <h1>Affiliate</h1>
+                    <h1>
+                      @if ($responseDecoded)
+                        {!! $responseDecoded['data']['translations'][12]['translatedText'] !!}
+                      @else
+                        {!! $text[12] !!}
+                      @endif
+                    </h1>
                 </div>
                 <div class="affiliate_p">
                     <p>
-                        Become an affiliate partner and help us reach even more passengers, while earning
-                        money for each successful claim. Choose from either placing an affiliate link or
-                        embedding your very own ClaimCompass Widget on your website.  We'll still do all
-                        the work, but you'll get all the credit!
+                      @if ($responseDecoded)
+                        {!! $responseDecoded['data']['translations'][13]['translatedText'] !!}
+                      @else
+                        {!! $text[13] !!}
+                      @endif
                     </p>
                 </div>
             </div>
@@ -135,7 +208,13 @@
           <div class="row">
             <div class="col-md-12">
               <div class="what_customer_say_title_div text-center">
-                <h1>WHAT OUR CUSTOMERS SAY</h1>
+                <h1>
+                  @if ($responseDecoded)
+                    {!! $responseDecoded['data']['translations'][14]['translatedText'] !!}
+                  @else
+                    {!! $text[14] !!}
+                  @endif
+                </h1>
               </div>
             </div>
           </div>
@@ -152,13 +231,31 @@
                       <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
                     </div>
                     <div class="sliding_div_title_p_div">
-                      <p>Great advisor and transparent...</p>
+                      <p>
+                        @if ($responseDecoded)
+                          {!! $responseDecoded['data']['translations'][15]['translatedText'] !!}
+                        @else
+                          {!! $text[15] !!}
+                        @endif
+                      </p>
                     </div>
                     <div class="sliding_div_text_p_div">
-                      <p>Great advisor and transparent communication<br> about the process. Fast turn around too.<br> Strongly recomend it</p>
+                      <p>
+                        @if ($responseDecoded)
+                          {!! $responseDecoded['data']['translations'][16]['translatedText'] !!}
+                        @else
+                          {!! $text[16] !!}
+                        @endif
+                      </p>
                     </div>
                     <div class="sliding_div_customer_name_div">
-                      <p>Denise Roberts</p>
+                      <p>
+                        @if ($responseDecoded)
+                          {!! $responseDecoded['data']['translations'][17]['translatedText'] !!}
+                        @else
+                          {!! $text[17] !!}
+                        @endif
+                      </p>
                     </div>
                   </div>
                   <div class="sliding_div">
@@ -170,13 +267,31 @@
                       <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
                     </div>
                     <div class="sliding_div_title_p_div">
-                      <p>Great advisor and transparent...</p>
+                      <p>
+                        @if ($responseDecoded)
+                          {!! $responseDecoded['data']['translations'][18]['translatedText'] !!}
+                        @else
+                          {!! $text[18] !!}
+                        @endif
+                      </p>
                     </div>
                     <div class="sliding_div_text_p_div">
-                      <p>Great advisor and transparent communication<br> about the process. Fast turn around too.<br> Strongly recomend it</p>
+                      <p>
+                        @if ($responseDecoded)
+                          {!! $responseDecoded['data']['translations'][19]['translatedText'] !!}
+                        @else
+                          {!! $text[19] !!}
+                        @endif
+                      </p>
                     </div>
                     <div class="sliding_div_customer_name_div">
-                      <p>Clare Burchell</p>
+                      <p>
+                        @if ($responseDecoded)
+                          {!! $responseDecoded['data']['translations'][20]['translatedText'] !!}
+                        @else
+                          {!! $text[20] !!}
+                        @endif
+                      </p>
                     </div>
                   </div>
                   <div class="sliding_div">
@@ -188,13 +303,31 @@
                       <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
                     </div>
                     <div class="sliding_div_title_p_div">
-                      <p>Great advisor and transparent...</p>
+                      <p>
+                        @if ($responseDecoded)
+                          {!! $responseDecoded['data']['translations'][21]['translatedText'] !!}
+                        @else
+                          {!! $text[21] !!}
+                        @endif
+                      </p>
                     </div>
                     <div class="sliding_div_text_p_div">
-                      <p>Great advisor and transparent communication<br> about the process. Fast turn around too.<br> Strongly recomend it</p>
+                      <p>
+                        @if ($responseDecoded)
+                          {!! $responseDecoded['data']['translations'][22]['translatedText'] !!}
+                        @else
+                          {!! $text[22] !!}
+                        @endif
+                      </p>
                     </div>
                     <div class="sliding_div_customer_name_div">
-                      <p>Kjell Caminha</p>
+                      <p>
+                        @if ($responseDecoded)
+                          {!! $responseDecoded['data']['translations'][23]['translatedText'] !!}
+                        @else
+                          {!! $text[23] !!}
+                        @endif
+                      </p>
                     </div>
                   </div>
                   <div class="sliding_div">
@@ -206,13 +339,31 @@
                       <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
                     </div>
                     <div class="sliding_div_title_p_div">
-                      <p>Great advisor and transparent...</p>
+                      <p>
+                        @if ($responseDecoded)
+                          {!! $responseDecoded['data']['translations'][24]['translatedText'] !!}
+                        @else
+                          {!! $text[24] !!}
+                        @endif
+                      </p>
                     </div>
                     <div class="sliding_div_text_p_div">
-                      <p>Great advisor and transparent communication<br> about the process. Fast turn around too.<br> Strongly recomend it</p>
+                      <p>
+                        @if ($responseDecoded)
+                          {!! $responseDecoded['data']['translations'][25]['translatedText'] !!}
+                        @else
+                          {!! $text[25] !!}
+                        @endif
+                      </p>
                     </div>
                     <div class="sliding_div_customer_name_div">
-                      <p>Sarah Green</p>
+                      <p>
+                        @if ($responseDecoded)
+                          {!! $responseDecoded['data']['translations'][26]['translatedText'] !!}
+                        @else
+                          {!! $text[26] !!}
+                        @endif
+                      </p>
                     </div>
                   </div>
                   <div class="sliding_div">
@@ -224,13 +375,31 @@
                       <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
                     </div>
                     <div class="sliding_div_title_p_div">
-                      <p>Great advisor and transparent...</p>
+                      <p>
+                        @if ($responseDecoded)
+                          {!! $responseDecoded['data']['translations'][27]['translatedText'] !!}
+                        @else
+                          {!! $text[27] !!}
+                        @endif
+                      </p>
                     </div>
                     <div class="sliding_div_text_p_div">
-                      <p>Great advisor and transparent communication<br> about the process. Fast turn around too.<br> Strongly recomend it</p>
+                      <p>
+                        @if ($responseDecoded)
+                          {!! $responseDecoded['data']['translations'][28]['translatedText'] !!}
+                        @else
+                          {!! $text[28] !!}
+                        @endif
+                      </p>
                     </div>
                     <div class="sliding_div_customer_name_div">
-                      <p>Denise Roberts</p>
+                      <p>
+                        @if ($responseDecoded)
+                          {!! $responseDecoded['data']['translations'][29]['translatedText'] !!}
+                        @else
+                          {!! $text[29] !!}
+                        @endif
+                      </p>
                     </div>
                   </div>
                 </div>
