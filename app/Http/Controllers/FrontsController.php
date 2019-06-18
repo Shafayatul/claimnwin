@@ -68,7 +68,31 @@ class FrontsController extends Controller
 
     public function contactUs()
     {
-        return view('front-pages.contact_us');
+        $text[0]    = 'Contact Us';
+        $text[1]    = 'Do you have any question';
+        $text[2]    = 'or call us on';
+        $text[3]    = 'Your name (required)';
+        $text[4]    = 'Your email (required)';
+        $text[5]    = 'Subject';
+        $text[6]    = 'your message';
+        $text[7]    = 'SUBMIT';
+        $text[8]    = 'Registered Office';
+        $text[9]    = '39 Montefiore Court, Stamford Hill, London, England, N16 5TY';
+        $text[10]   = 'Company No: 09748199';
+        $text[11]   = 'ICO Registration number: ZA137982';
+        $text[12]   = 'Email Us';
+        $text[13]   = 'info@claimNwin.com';
+        $text[14]   = 'Talk To Us';
+
+        if (Session::has('locale')) {
+            // dd("HAS SESSION");
+            $responseDecoded = $this->get_translation($text);
+            return view('front-pages.contact_us', compact('responseDecoded', 'text'));
+        }else {
+            // dd("NO SESSION");
+            $responseDecoded = null;
+            return view('front-pages.contact_us', compact('responseDecoded', 'text'));
+        }
     }
     public function faq()
     {
@@ -144,12 +168,11 @@ class FrontsController extends Controller
             // dd("HAS SESSION");
             $responseDecoded = $this->get_translation($text);
             return view('front-pages.privacy_policy', compact('responseDecoded', 'text'));
-
-          }else {
+        }else {
             // dd("NO SESSION");
             $responseDecoded = null;
             return view('front-pages.privacy_policy', compact('responseDecoded', 'text'));
-          }
+        }
     }
     public function pricingList()
     {
