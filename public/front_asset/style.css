@@ -473,7 +473,7 @@ nav {
 
 
 .country .dropdown-menu {
-  min-width: 60px !important;
+  min-width: 40px !important;
   height: 300px !important;
   overflow: scroll;
   width: 30px !important;
@@ -492,6 +492,10 @@ nav {
 
 .country .dropdown-menu a {
   padding: 0 !important;
+}
+
+.country .dropdown-menu a img {
+  border: 1px solid #000;
 }
 
 ::-webkit-scrollbar {
