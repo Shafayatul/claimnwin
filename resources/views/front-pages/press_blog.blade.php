@@ -5,7 +5,13 @@
 
 @section('page-title')
   <div class="page_title">
-    <h1 class="text-center">Blog Page</h1>
+    <h1 class="text-center">
+      @if ($responseDecoded)
+        {!! $responseDecoded['data']['translations'][0]['translatedText'] !!}
+      @else
+        {!! $text[0] !!}
+      @endif
+    </h1>
   </div>
 @endsection
 
@@ -15,12 +21,21 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="title_row">
-                    <h1>About all things concerning aviation</h1>
+                    <h1>
+                      @if ($responseDecoded)
+                        {!! $responseDecoded['data']['translations'][1]['translatedText'] !!}
+                      @else
+                        {!! $text[1] !!}
+                      @endif
+                    </h1>
                 </div>
                 <div class="first_row_p no_padding_bottom">
                     <p>
-                        Every week we illustrate various subjects regarding our service, passenger rights and commercial aviation. Of course, as we have a lot of experience on the matter,
-                        we also provide you with tips & tricks regarding air travel.
+                      @if ($responseDecoded)
+                        {!! $responseDecoded['data']['translations'][2]['translatedText'] !!}
+                      @else
+                        {!! $text[2] !!}
+                      @endif
                     </p>
                 </div>
             </div>

@@ -231,7 +231,20 @@ class FrontsController extends Controller
     public function pressBlog()
     {
         $blogs=Post::latest()->paginate(6);
-        return view('front-pages.press_blog',compact('blogs'));
+
+        $text[0] = "Blog Page";
+        $text[1] = "About all things concerning aviation";
+        $text[2] = "Every week we illustrate various subjects regarding our service, passenger rights and commercial aviation. Of course, as we have a lot of experience on the matter, we also provide you with tips & tricks regarding air travel.";
+
+        if (Session::has('locale')) {
+            // dd("HAS SESSION");
+            $responseDecoded = $this->get_translation($text);
+            return view('front-pages.press_blog', compact('blogs', 'responseDecoded', 'text'));
+        }else {
+            // dd("NO SESSION");
+            $responseDecoded = null;
+            return view('front-pages.press_blog', compact('blogs', 'responseDecoded', 'text'));
+        }
     }
     public function yourRights()
     {
