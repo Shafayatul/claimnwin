@@ -688,7 +688,7 @@
 
                                                     <div class="form-group">
                                                         <div class="col-md-12">
-                                                            <textarea name="compose_text" class="form-control tinymce-editor" cols="30" rows="10"></textarea>
+                                                            <textarea name="compose_text" class="form-control tinymce-editor" id="my_editor" cols="30" rows="10"></textarea>
                                                             <input type="hidden" name="claim_id" value="{{$claims->id}}">
                                                         </div>
                                                     </div>
@@ -1206,7 +1206,7 @@
 
                             <div class="form-group">
                                 <div class="col-md-12">
-                                    <textarea name="airline_compose_text" class="form-control tinymce-editor" rows="5" cols="50"></textarea>
+                                    <textarea name="airline_compose_text" class="form-control tinymce-editor" id="airline_editor" rows="5" cols="50"></textarea>
                                 </div>
                             </div>
 
@@ -1953,7 +1953,7 @@
                     <select class="form-control" id="status" name="bank_details_id">
                         <option value="">Select Status</option>
                         @foreach($banks as $bank)
-                        <option value="{{$bank->id}}">{{$bank->account_name.' '.'('.$bank->title.')'}}</option>
+                        <option value="{{$bank->id}}" @if($claims->bank_details_id == $bank->id) selected @endif>{{$bank->account_name.' '.'('.$bank->title.')'}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -2812,6 +2812,7 @@ $(function() {
     $('.time-input-required').click(function(){
         alert("You have to input all flights time.");
     });
+
     $('.select-template').change(function(){
         var current_option_value = $(this).val();
         if (current_option_value != 0) {
@@ -2823,7 +2824,9 @@ $(function() {
                 'id'          : current_option_value
                 },
                 success:function(data){
-                    $(".fr-view").html(data);
+                    // console.log(data);
+                    tinyMCE.get('my_editor').setContent(data);
+                    tinyMCE.get('airline_editor').setContent(data);
                 }
             });
         }

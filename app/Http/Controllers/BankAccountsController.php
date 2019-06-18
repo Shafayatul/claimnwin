@@ -23,22 +23,19 @@ class BankAccountsController extends Controller
         $perPage = 25;
 
         if (!empty($keyword)) {
-            $bankaccounts = BankAccount::join('currencies','bank_accounts.currency_of_account','=','currencies.id')
-                ->where('bank_accounts.user_id', 'LIKE', "%$keyword%")
+            $bankaccounts = BankAccount::where('user_id', 'LIKE', "%$keyword%")
                 ->orWhere('account_name', 'LIKE', "%$keyword%")
                 ->orWhere('bank_name', 'LIKE', "%$keyword%")
                 ->orWhere('iban_no', 'LIKE', "%$keyword%")
                 ->orWhere('swift_bic_code', 'LIKE', "%$keyword%")
                 ->orWhere('currency_of_account', 'LIKE', "%$keyword%")
-                ->orWhere('bank_accounts.status', 'LIKE', "%$keyword%")
-                ->select('bank_accounts.*','currencies.code')
+                ->orWhere('status', 'LIKE', "%$keyword%")
                 ->latest()->paginate($perPage);
         } else {
-            $bankaccounts = BankAccount::join('currencies','bank_accounts.currency_of_account','=','currencies.id')
-            ->select('bank_accounts.*','currencies.code')
-                ->latest()->paginate($perPage);
+            $bankaccounts = BankAccount::latest()->paginate($perPage);
         }
-        return view('bank-accounts.index', compact('bankaccounts'));
+        $currency = Currency::pluck('code','id');
+        return view('bank-accounts.index', compact('bankaccounts','currency'));
     }
 
     /**

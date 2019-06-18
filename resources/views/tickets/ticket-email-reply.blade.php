@@ -53,11 +53,8 @@
 
                         <div class="form-group">
                             <div class="col-md-12">
-                                <textarea name="ticket_reply_note" id="ticket_reply_note"  class="form-control tinymce-editor" rows="5" cols="50">
-
-                                    <div class="main-email-html-body">
+                                <textarea name="ticket_reply_note" id="ticket_reply_note"  class="form-control tinymce-editor ticket_reply_note" rows="5" cols="50">
                                     {!! $main_email !!}
-                                    </div>
                                 </textarea>
                             </div>
                         </div>
@@ -100,9 +97,9 @@ $(function() {
                 'id'          : current_option_value
                 },
                 success:function(data){
-                    var newEmailBody = data + $('.main-email-html-body').html();
-                    console.log(newEmailBody);
-                    $(".fr-view").html(newEmailBody);
+                    var current_data = $('.ticket_reply_note').val();
+                    var newEmailBody = data + current_data;
+                    tinyMCE.get('ticket_reply_note').setContent(newEmailBody);
 
                 }
             });

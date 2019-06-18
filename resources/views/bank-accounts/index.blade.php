@@ -70,7 +70,7 @@
                                         <td>{{ $item->bank_name }}</td>
                                         <td>{{ $item->iban_no }}</td>
                                         <td>{{ $item->swift_bic_code }}</td>
-                                        <td>{{ $item->code }}</td>
+                                        <td>{{ $currency[$item->currency_of_account] }}</td>
                                         <td>
                                             <a href="{{ url('/bank-accounts/' . $item->id) }}" title="View BankAccount"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
                                             <a href="{{ url('/bank-accounts/' . $item->id . '/edit') }}" title="Edit BankAccount"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
