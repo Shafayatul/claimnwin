@@ -5,12 +5,42 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Post;
 use App\Faq;
+use Session;
 
 class FrontsController extends Controller
 {
+
+   public function change_lang($locale)
+   {
+     Session::put('locale', $locale);
+     return redirect()->back();
+   }
     public function aboutUs()
     {
-        return view('front-pages.about_us');
+        $text[0] = 'We Are Experts In Delayed Flight Compensation.';
+        $text[1] = 'bdasdaad';
+        $responseDecoded = $this->get_translation($text);
+
+        return view('front-pages.about_us', compact('responseDecoded'));
+    }
+    public function get_translation($text){
+      $a = Session::get('locale');
+      $apiKey = env('GOOGLE_TRANSLATION_KEY');
+
+      $url = 'https://www.googleapis.com/language/translate/v2?key=' . $apiKey;
+
+      foreach ($text as $single_text) {
+        $url .= '&q=' . rawurlencode($single_text);
+      }
+      $url .= '&source=en&target='.$a;
+
+      $handle = curl_init($url);
+          curl_setopt($handle, CURLOPT_RETURNTRANSFER, true);
+          $response = curl_exec($handle);
+          $responseDecoded = json_decode($response, true);
+          $responseCode = curl_getinfo($handle, CURLINFO_HTTP_CODE);      //Here we fetch the HTTP response code
+          curl_close($handle);
+          return $responseDecoded;
     }
     public function contactUs()
     {

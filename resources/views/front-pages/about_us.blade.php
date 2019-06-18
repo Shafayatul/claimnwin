@@ -20,8 +20,7 @@
         </div>
         <div class="col-md-6">
           <div class="about_us_top_content_title">
-            <h2>We Are Experts In
-              Delayed Flight Compensation.</h2>
+            <h2>{{ $responseDecoded['data']['translations'][0]['translatedText']}}</h2>
           </div>
           <div class="about_us_top_content_paragraph">
             <p>Our team of Delayed Flight experts and solicitors will manage your claim from
