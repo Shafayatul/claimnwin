@@ -41,16 +41,14 @@ class FrontsController extends Controller
    }
     public function aboutUs()
     {
-        $text[0] = 'About Us';
-        $text[1] = 'We Are Experts In Delayed Flight Compensation.';
-        $text[2] = 'Our team of Delayed Flight experts and solicitors will manage your claim from start to finish while keeping you updated along the way.';
-        $text[3] = 'We are dedicated to ensuring the best possible outcome for your claim. You will receive all of the money you are entitled to and we will save you the time and hassle of going it alone.';
-        $text[4] = 'START YOUR CLAIM';
-        $text[5] = 'Our Services are 100% no win no fee, ';
-        $text[6] = "meaning there's no financial risk to you, ";
-        $text[7] = 'even if your claim is unsuccessfull.';
-        $text[8] = 'CLAIM MY MONEY';
-        $text[9] = 'We Work With All Airlines, Including...';
+        $text[0] = "About Us";
+        $text[1] = "We Are Experts In Delayed Flight Compensation.";
+        $text[2] = "<p>Our team of Delayed Flight experts and solicitors will manage your claim from start to finish while keeping you updated along the way.</p> <p>We are dedicated to ensuring the best possible outcome for your claim. You will receive all of the money you are entitled to and we will save you the time and hassle of going it alone.</p>";
+        $text[3] = "START YOUR CLAIM";
+        $text[4] = "Our Services are 100% no win no fee, </br>meaning there's no financial risk to you, </br> even if your claim is unsuccessfull.";
+        $text[5] = 'CLAIM MY MONEY';
+        $text[6] = 'We Work With All Airlines, Including...';
+
         if (Session::has('locale')) {
           $responseDecoded = $this->get_translation($text);
           return view('front-pages.about_us', compact('responseDecoded', 'text'));

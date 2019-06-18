@@ -32,31 +32,22 @@
               @else
                 {!! $text[1] !!}
               @endif
-          </h2>
+            </h2>
           </div>
           <div class="about_us_top_content_paragraph">
-            <p>
-              @if ($responseDecoded)
-                {{ $responseDecoded['data']['translations'][2]['translatedText']}}
-              @else
-                {{ $text[2]}}
-              @endif
-          </p>
-            <p>
-              @if ($responseDecoded)
-                {{ $responseDecoded['data']['translations'][3]['translatedText']}}
-              @else
-                {{ $text[3]}}
-              @endif
-          </p>
+            @if ($responseDecoded)
+              {!! $responseDecoded['data']['translations'][2]['translatedText'] !!}
+            @else
+              {!! $text[2] !!}
+            @endif
           </div>
             <a href="{{ url('/form-claim') }}">
               <div class="about_us_top_content_button text-center">
                 <button type="button" name="button">
                   @if ($responseDecoded)
-                    {{ $responseDecoded['data']['translations'][4]['translatedText']}}
+                    {!! $responseDecoded['data']['translations'][3]['translatedText'] !!}
                   @else
-                    {{ $text[4]}}
+                    {!! $text[3] !!}
                   @endif
                 </button>
               </div>
@@ -72,21 +63,9 @@
             <div class="about_us_middle_content_paragraph">
               <p>
                 @if ($responseDecoded)
-                  {{ $responseDecoded['data']['translations'][5]['translatedText']}}
+                  {!! $responseDecoded['data']['translations'][4]['translatedText'] !!}
                 @else
-                  {{ $text[5]}}
-                @endif
-                </br>
-                @if ($responseDecoded)
-                  {{ $responseDecoded['data']['translations'][6]['translatedText']}}
-                @else
-                  {{ $text[6]}}
-                @endif
-                </br>
-                @if ($responseDecoded)
-                  {{ $responseDecoded['data']['translations'][7]['translatedText']}}
-                @else
-                  {{ $text[7]}}
+                  {!! $text[4] !!}
                 @endif
               </p>
             </div>
@@ -96,9 +75,9 @@
             <div class="about_us_middle_content_button text-center">
               <button type="button" name="button">
                 @if ($responseDecoded)
-                  {{ $responseDecoded['data']['translations'][8]['translatedText']}}
+                  {!! $responseDecoded['data']['translations'][5]['translatedText'] !!}
                 @else
-                  {{ $text[8]}}
+                  {!! $text[5] !!}
                 @endif
               </button>
             </div>
@@ -112,9 +91,9 @@
             <div class="about_us_bottom_content_title_div text-center">
               <h2>
                 @if ($responseDecoded)
-                  {{ $responseDecoded['data']['translations'][9]['translatedText']}}
+                  {!! $responseDecoded['data']['translations'][6]['translatedText'] !!}
                 @else
-                  {{ $text[9]}}
+                  {!! $text[6] !!}
                 @endif
               </h2>
             </div>
@@ -381,7 +360,6 @@
 @section('footer-script')
   <script type="text/javascript">
     $(document).ready(function(){
-
       // $(".slider-area").slick({
       //   dots: true,
       //   infinite: true,
@@ -390,9 +368,6 @@
       //   autoplay: true,
       //   autoplaySpeed: 10000
       // });
-
-
-
       if ($( window ).width() > 767) {
         $(".slider-area").slick({
           dots: true,
@@ -401,7 +376,6 @@
           slidesToScroll: 1,
           // autoplay: true,
           // autoplaySpeed: 1000
-
           });
       }else {
         $(".slider-area").slick({
@@ -411,12 +385,8 @@
             slidesToScroll: 1,
             // autoplay: true,
             // autoplaySpeed: 1000
-
           });
       }
-
   });
-
-
   </script>
 @endsection
