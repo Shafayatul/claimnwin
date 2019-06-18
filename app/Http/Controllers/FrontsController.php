@@ -244,7 +244,29 @@ class FrontsController extends Controller
     }
     public function app()
     {
-        return view('front-pages.app_page');
+
+      $text[0] = "Get our free mobile app";
+      $text[1] = "Submit your claim from the airport. Download our app now!";
+      $text[2] = "<h2>Get our free mobile app</h2> <p>Our team of Delayed Flight experts and solicitors will manage your claim from start to finish while keeping you updated along the way.</p> <p>We are dedicated to ensuring the best possible outcome for your claim. You will  receive all of the money you are entitled to and we will save you the time and hassle of going it alone.</p> <h3>Check for delays </h3> <p>You need to download our app to do this. Thousands of customers have benefited from this app so far!</p> <h3>Don’t forget to check on past flights! </h3> <p>The latest regulations entitle you to claim compensation for delayed or cancelled flights dating back several years (as well as some denied boarding on domestic flights). Download the Claim’N Win app to check past flights!</p>";
+      $text[3] = "Get compensation when your travel plans don’t go as planned.";
+      $text[4] = "If you’ve been on a delayed, cancelled, or diverted flight in the last three years, the airlines might owe you money for your troubles. Check with Claim’N Win to see if your flight qualifies for compensation.";
+      $text[5] = "Check your compensation";
+      $text[6] = "Get our free mobile app";
+      $text[7] = "You could receive up to €600 if your flight is delayed, canceled, or you were denied boarding. We handle your claim on a “No Win, No Fee” basis.";
+      $text[8] = "Get our free mobile app";
+      $text[9] = "You could receive up to €600 if your flight is delayed, canceled, or you were denied boarding. We handle your claim on a “No Win, No Fee” basis.";
+      $text[10] = "Get our free mobile app";
+      $text[11] = "You could receive up to €600 if your flight is delayed, canceled, or you were denied boarding. We handle your claim on a “No Win, No Fee” basis.";
+
+      if (Session::has('locale')) {
+          // dd("HAS SESSION");
+          $responseDecoded = $this->get_translation($text);
+          return view('front-pages.app_page', compact('responseDecoded', 'text'));
+      }else {
+          // dd("NO SESSION");
+          $responseDecoded = null;
+          return view('front-pages.app_page', compact('responseDecoded', 'text'));
+      }
     }
     public function partner()
     {
