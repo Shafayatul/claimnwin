@@ -52,18 +52,13 @@ class FrontsController extends Controller
         $text[8] = 'CLAIM MY MONEY';
         $text[9] = 'We Work With All Airlines, Including...';
         if (Session::has('locale')) {
-          // dd("HAS SESSION");
           $responseDecoded = $this->get_translation($text);
           return view('front-pages.about_us', compact('responseDecoded', 'text'));
 
         }else {
-          // dd("NO SESSION");
           $responseDecoded = null;
           return view('front-pages.about_us', compact('responseDecoded','text'));
         }
-
-
-
     }
 
     public function contactUs()
@@ -73,7 +68,17 @@ class FrontsController extends Controller
     public function faq()
     {
         $faqs = Faq::all();
-        return view('front-pages.faq',compact('faqs'));
+        $text[0] = "FAQ's";
+        $text[1] = "Frequently Asked Questions";
+        $text[2] = "No Faqs Here Now";
+        if (Session::has('locale')) {
+          $responseDecoded = $this->get_translation($text);
+          return view('front-pages.faq',compact('faqs', 'responseDecoded', 'text'));
+        }else {
+          $responseDecoded = null;
+          return view('front-pages.faq',compact('faqs', 'responseDecoded', 'text'));
+        }
+
     }
     public function termsAndConditions()
     {
