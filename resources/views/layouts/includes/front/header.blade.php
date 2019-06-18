@@ -63,7 +63,7 @@
                     <li><a href="{{url('change-language/pl')}}"> <img src="{{ asset('front_asset/img/country-flags/Flag_of_Poland.png')}}" alt=""> </a></li>
                     <li><a href="{{url('change-language/nl')}}"> <img src="{{ asset('front_asset/img/country-flags/Flag_of_the_Netherlands.png')}}" alt=""> </a></li>
                     <li><a href="{{url('change-language/pt')}}"> <img src="{{ asset('front_asset/img/country-flags/Flag_of_Portugal.png')}}" alt=""> </a></li>
-                    <li><a href="{{url('change-language/en')}}"> <img src="{{asset('front_asset/')}}/img/phone.png" alt=""> </a></li>
+                    <li><a href="{{url('change-language/en')}}"> <img src="{{asset('front_asset/img/country-flags/flag.png')}}" alt=""> </a></li>
                     <li><a href="{{url('change-language/ro')}}"> <img src="{{ asset('front_asset/img/country-flags/Flag_of_Romania.png')}}" alt=""> </a></li>
                     {{-- <li><a href="{{url('change-language/eo')}}">Esperanto</a></li> --}}
                     <li><a href="{{url('change-language/ru')}}"> <img src="{{ asset('front_asset/img/country-flags/Flag_of_Russia.png')}}" alt=""> </a></li>

@@ -22,7 +22,7 @@
 // FrontEnd Route
 
 
-
+Route::get('change-language/{locale}', 'FrontsController@change_lang');
 Route::get('/laravel-filemanager', '\UniSharp\LaravelFilemanager\Controllers\LfmController@show');
 Route::post('/laravel-filemanager/upload', '\UniSharp\LaravelFilemanager\Controllers\UploadController@upload');
 
@@ -224,4 +224,3 @@ Route::resource('reviews', 'ReviewsController');
 
 Route::get('/{slug}', 'FrontsController@single_post');
 Route::get('/','WelcomeController@index');
-
