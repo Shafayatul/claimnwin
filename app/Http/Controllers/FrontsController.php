@@ -226,7 +226,46 @@ class FrontsController extends Controller
     }
     public function pricingList()
     {
-        return view('front-pages.pricing_list');
+      $text1[0] = "Pricing List";
+      $text1[1] = "1. DEFINITIONS";
+      $text1[2] = "Our Price List should be read in conjunction with our Terms, where you will find all the defined terms used in our Price List.";
+      $text1[3] = "2. FREE SERVICES";
+      $text1[4] = "ClaimWin does not charge anything for its delivery of Eligibility Service, ClaimWin Connect, Information Service and unsuccessful Justice as a Service.";
+      $text1[5] = "3. FREE SERVICES";
+      $text1[6] = "If ClaimWin is successful with providing Justice as a Service and the Client receives Flight Compensation, ClaimWin is entitled to its Service Fee, which will be deducted from Flight Compensation.";
+      $text1[7] = "For EC 261 Claims, the Service Fee is as follows:";
+      $text1[8] = "<p>In case of all flights of 1,500 km or less, where the Client is entitled to a compensation of 250 EUR, the Client will pay a Service Fee of 63 EUR, including applicable VAT.</p><p>In case of all intra-Community flights of more than 1,500 km and for all flights between 1,500 km and 3,500 km, where the Client is entitled to a compensation of <br> 400 EUR, the Client will pay a Service Fee of 100 EUR, including applicable VAT.</p><p>In case of all flights not described above, where the Client is entitled to a compensation of 600 EUR, the Client will pay a Service Fee of 150 EUR,<br> including applicable VAT.</p><p>In case of a flight as described above, where the Client is not entitled to EUR 250, EUR 400 or EUR 600, the Client shall pay a Service Fee of 25% of received Flight Compensation, including applicable VAT.</p>";
+      $text1[9] = "For other Claims than EC 261 Claims, the Service Fee is as follows:";
+      $text1[10] = "In case the Client receives Flight Compensation of 100 EUR or less, the Client will pay a Service Fee of 25 EUR, including applicable VAT.<br>In case the Client receives Flight Compensation of 101-200 EUR, the Client will pay a Service Fee of 40 EUR, including applicable VAT.<br>In case the Client receives Flight Compensation of 201-300 EUR, the Client will pay a Service Fee of 65 EUR, including applicable VAT.<br>In case the Client receives Flight Compensation of 301-400 EUR, the Client will pay a Service Fee of 90 EUR, including applicable VAT.<br>In case the Client receives Flight Compensation of 401-500 EUR, the Client will pay a Service Fee of 120 EUR, including applicable VAT.<br>In case the Client receives Flight Compensation of 501-600 EUR, the Client will pay a Service Fee of 150 EUR, including applicable VAT.<br>In case the Client receives Flight Compensation of 601-800 EUR, the Client will pay a Service Fee of 200 EUR, including applicable VAT.<br>In case the Client receives Flight Compensation of 801-1,000 EUR, the Client will pay a Service Fee of 250 EUR, including applicable VAT";
+      $text1[11] = "The lock-step of an extra 50 EUR in fee for each increase of 200 EUR in Flight Compensation applies to all amounts above 1,000 EUR. As an example, if the Flight Compensation is EUR 2,000, the Client will pay a Service Fee of 500 EUR, including applicable VAT.";
+      $text1[12] = "4. LEGAL ACTION FEE";
+      $text1[13] = "The Legal Action Fee is only charged, if Legal Action was necessary to provide successful Justice as a Service and will be deducted from your Flight Compensation in addition to the Service Fee.";
+      $text1[14] = "The Legal Action Fee is only applicable to EC 261 Claims, where it is as follows:";
+      $text1[15] = "<p>In case of all flights of 1,500 km or less, where the Client is entitled to a compensation of 250 EUR, the Client will pay a Legal Action Fee of 63 EUR, including applicable VAT.</p><p>In case of all intra-Community flights of more than 1,500 km and for all flights between 1,500 km and 3,500 km, where the Client is entitled to a compensation of 400 EUR, the Client will pay a Legal Action Fee of 100 EUR, including applicable VAT.</p><p>In case of all flights not described above, where the Client is entitled to a compensation of 600 EUR, the Client will pay a Legal Action Fee of 150 EUR, including applicable VAT.</p><p>In case of a flight as described above, where the Client is not entitled to 250, 400 or 600 EUR, the Client shall pay a Legal Action Fee of 25% of received Flight Compensation,including applicable VAT.</p>";
+      $text2[16] = "The Legal Action Fee is not applicable to Claims that are covered by a booking connected with an ClaimWin+ purchase.";
+      $text2[17] = "5. CUSTOMERS FROM TRAVEL AGENCIES AND OTHER CORPORATE AGREEMENTS";
+      $text2[18] = "If you have entered into an Agreement with ClaimWin via a travel agency or another corporate agreement, the fee structure, payout options, currency conversion and similar might be different depending on the specific level of services provided and individual terms agreed upon. However, in no event will the combined total of the Service Fee and the Legal Action Fee that applies to you exceed the combined total of the Service Fee and the Legal Action Fee as described above.";
+      $text2[19] = "6. FLIGHT COMPENSATION AMOUNT GUARANTEE";
+      $text2[20] = "ClaimWin guarantees that the Client will always get the correct amount of compensation. If the Clients claim is filed in accordance with EC261, the Client is guaranteed the correct amount in EUR. If the Clients claim is filed in accordance with other Air Passenger Rights Regulation, the Client is guaranteed the correct amount in the applicable currency.";
+      $text2[21] = "This applies despite that ClaimWin might be paid in another currency by the airlines and incur fees and FX cost related to receiving the funds. ClaimWin will therefore never reduce the correct amount of compensation with potential FX cost and bank charges related to receiving funds.";
+      $text2[22] = "All compensation is therefore always paid in EUR for EC261 claims and the applicable currency for other Air Passenger Rights claims, unless otherwise specifically requested by the Client and accepted by ClaimWin.";
+      $text2[23] = "This gives the Client transparency on the compensation paid out and the ability to always be able to check that ClaimWin has transferred the correct amount in accordance with EC261 or the applicable Air Passenger Rights Regulation.";
+      $text2[24] = "7. FREE INTERNATIONAL BANK TRANSFER";
+      $text2[25] = "ClaimWin offers free international bank transfers via its commercial partner. There will not be any transaction charges/fees of any type charged by neither ClaimWin nor the commercial partner. All transaction fees/costs related to the sending bank will be fully covered by ClaimWin. However, ClaimWin will not cover any additional fees/costs related to Intermediaries/beneficiary banks.";
+      $text2[26] = "8. FREE CHECK PAYMENTS IN USD";
+      $text2[27] = "ClaimWin offers check payments in USD as a payout method only if you are a resident of the USA. There will not be any charges/fees of any type charged by ClaimWin. All fees/costs related to issuing checks will be fully covered by ClaimWin. However, ClaimWin will not cover any additional fees/costs related to the cashing of the checks.";
+      $text2[28] = "9. VALUE ADDED TAX (VAT)";
+      $text2[29] = "All fees and charges stated in this Price List include applicable VAT, unless otherwise specified.";
+      $text2[30] = "Published";
+      if (Session::has('locale')) {
+          $responseDecoded1 = $this->get_translation($text1);
+          $responseDecoded2 = $this->get_translation($text2);
+          return view('front-pages.pricing_list', compact('responseDecoded1', 'responseDecoded2', 'text'));
+      }else {
+          $responseDecoded1 = null;
+          $responseDecoded2 = null;
+          return view('front-pages.pricing_list', compact('responseDecoded1', 'responseDecoded2', 'text'));
+      }
     }
     public function pressBlog()
     {
@@ -381,7 +420,15 @@ class FrontsController extends Controller
             if($single_post > 0)
             {
                 $singlePost = Post::where('slug', $slug)->first();
-                return view('front-pages.page',compact('singlePost'));
+                $text[0] = $singlePost->title;
+                $text[1] = $singlePost->body;
+                if (Session::has('locale')) {
+                  $responseDecoded = $this->get_translation($text);
+                  return view('front-pages.page',compact('singlePost', 'responseDecoded', 'text'));
+                }else {
+                  $responseDecoded = null;
+                  return view('front-pages.page',compact('singlePost', 'responseDecoded', 'text'));
+                }
             }else
             {
                 return redirect('404');

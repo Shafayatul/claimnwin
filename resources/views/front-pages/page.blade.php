@@ -5,7 +5,13 @@
 
 @section('page-title')
   <div class="page_title">
-    <h1 class="text-center">{{$singlePost->title}}</h1>
+    <h1 class="text-center">
+      @if ($responseDecoded)
+        {!! $responseDecoded['data']['translations'][0]['translatedText'] !!}
+      @else
+        {{$singlePost->title}}
+      @endif
+      </h1>
   </div>
 @endsection
 
@@ -14,7 +20,12 @@
     <div class="first_row">
         <div class="row">
             <div class="col-md-12">
+              @if ($responseDecoded)
+                {!! $responseDecoded['data']['translations'][0]['translatedText'] !!}
+              @else
                 {!! $singlePost->body !!}
+              @endif
+
             </div>
         </div>
     </div>
