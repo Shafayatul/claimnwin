@@ -287,7 +287,18 @@ class FrontsController extends Controller
     }
     public function yourRights()
     {
-        return view('front-pages.your_rights');
+      $text[0] = "Your Rights";
+      $text[1] = 'Section 1.10.32 of "de Finibus Bonorum et Malorum", written by Cicero in 45 BC';
+      $text[2] = 'START YOUR CLAIM';
+      if (Session::has('locale')) {
+          // dd("HAS SESSION");
+          $responseDecoded = $this->get_translation($text);
+          return view('front-pages.your_rights', compact('responseDecoded', 'text'));
+      }else {
+          // dd("NO SESSION");
+          $responseDecoded = null;
+          return view('front-pages.your_rights', compact('responseDecoded', 'text'));
+      }
     }
     public function singleBlogView($title,$id)
     {
