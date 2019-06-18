@@ -6,7 +6,13 @@
 
 @section('page-title')
   <div class="page_title">
-    <h1 class="text-center">Contact Us</h1>
+    <h1 class="text-center">
+        @if ($responseDecoded)
+            {{ $responseDecoded['data']['translations'][0]['translatedText']}}
+        @else
+            {{ $text[0]}}
+        @endif
+    </h1>
   </div>
 @endsection
 
@@ -32,12 +38,25 @@
             <div class="row">
               <div class="col-md-6">
                 <div class="contact_us_main_content_left_div_paragraph text-left">
-                  <p style="color: #114478;">Do you have any question?</p>
+                    <p style="color: #114478;">
+                        @if ($responseDecoded)
+                            {{ $responseDecoded['data']['translations'][1]['translatedText']}}
+                        @else
+                            {{ $text[1]}}
+                        @endif
+                        ?
+                    </p>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="contact_us_main_content_left_div_paragraph text-right">
-                  <p><span style="color: #114478;"><i class="fas fa-phone-volume"></i></span> or call us on <span style="color: #114478;">{{$ip_phone_number}}</span></p>
+                  <p><span style="color: #114478;"><i class="fas fa-phone-volume"></i></span>
+                    @if ($responseDecoded)
+                        {{ $responseDecoded['data']['translations'][2]['translatedText']}}
+                    @else
+                        {{ $text[2]}}
+                    @endif
+                    <span style="color: #114478;">{{$ip_phone_number}}</span></p>
                 </div>
               </div>
             </div>
@@ -48,26 +67,26 @@
                     {{ csrf_field() }}
                     <div class="row" style="padding-bottom:15px;">
                       <div class="col-md-6 input_name">
-                        <input type="text" name="name" placeholder="Your name (required)" required>
+                        <input type="text" name="name" placeholder="@if ($responseDecoded){{ $responseDecoded['data']['translations'][3]['translatedText']}} @else {{ $text[3]}} @endif" required>
                       </div>
                       <div class="col-md-6">
-                        <input type="email" name="email" placeholder="Your email (required)" required>
+                        <input type="email" name="email" placeholder="@if ($responseDecoded){{ $responseDecoded['data']['translations'][4]['translatedText']}} @else {{ $text[4]}} @endif" required>
                       </div>
                     </div>
                     <div class="row" style="padding-bottom:15px;">
                       <div class="col-md-12">
-                        <input type="text" name="subject" placeholder="Subject" required>
+                        <input type="text" name="subject" placeholder="@if ($responseDecoded){{ $responseDecoded['data']['translations'][5]['translatedText']}} @else {{ $text[5]}} @endif" required>
                       </div>
                     </div>
                     <div class="row" style="padding-bottom:15px;">
                       <div class="col-md-12">
-                        <textarea name="message" rows="8" cols="80" placeholder="your message" required></textarea>
+                        <textarea name="message" rows="8" cols="80" placeholder="@if ($responseDecoded){{ $responseDecoded['data']['translations'][6]['translatedText']}} @else {{ $text[6]}} @endif" required></textarea>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-12">
                           <div class="contact_us_form_button text-center">
-                            <button type="submit" name="button">SUBMIT</button>
+                            <button type="submit" name="button">@if ($responseDecoded){{ $responseDecoded['data']['translations'][7]['translatedText']}} @else {{ $text[7]}} @endif</button>
                           </div>
                       </div>
                     </div>
@@ -98,14 +117,17 @@
                     <div class="col-md-10 col-xs-9">
                       <div class="child_div_content">
                         <div class="child_div_content_title">
-                          <h2>Registered Office</h2>
+                          <h2>@if ($responseDecoded){{ $responseDecoded['data']['translations'][8]['translatedText']}} @else {{ $text[8]}} @endif</h2>
                         </div>
                         <div class="child_div_content_paragraph">
                           <p>
-                            Registered Office</br>
-                            39 Montefiore Court, Stamford Hill, London, England, N16 5TY</br>
-                            Company No: 09748199</br>
-                            ICO Registration number: ZA137982
+                            @if ($responseDecoded){{ $responseDecoded['data']['translations'][8]['translatedText']}} @else {{ $text[8]}} @endif
+                            </br>
+                            @if ($responseDecoded){{ $responseDecoded['data']['translations'][9]['translatedText']}} @else {{ $text[9]}} @endif
+                            </br>
+                            @if ($responseDecoded){{ $responseDecoded['data']['translations'][10]['translatedText']}} @else {{ $text[10]}} @endif
+                            </br>
+                            @if ($responseDecoded){{ $responseDecoded['data']['translations'][11]['translatedText']}} @else {{ $text[11]}} @endif
                           </p>
                         </div>
                       </div>
@@ -126,10 +148,22 @@
                     <div class="col-md-10 col-xs-9">
                       <div class="child_div_content">
                         <div class="child_div_content_title">
-                          <h2>Email Us</h2>
+                          <h2>
+                            @if ($responseDecoded)
+                                {{ $responseDecoded['data']['translations'][12]['translatedText']}}
+                            @else
+                                {{ $text[12]}}
+                            @endif
+                          </h2>
                         </div>
                         <div class="child_div_content_paragraph">
-                          <p>info@claimNwin.com</p>
+                          <p>
+                            @if ($responseDecoded)
+                                {{ $responseDecoded['data']['translations'][13]['translatedText']}}
+                            @else
+                                {{ $text[13]}}
+                            @endif
+                          </p>
                         </div>
                       </div>
                     </div>
@@ -149,7 +183,13 @@
                     <div class="col-md-10 col-xs-9">
                       <div class="child_div_content">
                         <div class="child_div_content_title">
-                          <h2>Talk To Us</h2>
+                          <h2>
+                            @if ($responseDecoded)
+                                {{ $responseDecoded['data']['translations'][14]['translatedText']}}
+                            @else
+                                {{ $text[14]}}
+                            @endif
+                          </h2>
                         </div>
                         <div class="child_div_content_paragraph">
                           <p>{{$ip_phone_number}}</p>
