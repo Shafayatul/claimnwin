@@ -7,9 +7,9 @@
   <div class="page_title">
     <h1 class="text-center">
       @if ($responseDecoded)
-        {{ $responseDecoded['data']['translations'][0]['translatedText']}}
+        {!! $responseDecoded['data']['translations'][0]['translatedText'] !!}
       @else
-        {{ $text[0]}}
+        {!! $text[0] !!}
       @endif
     </h1>
   </div>
@@ -28,9 +28,9 @@
           <div class="about_us_top_content_title">
             <h2>
               @if ($responseDecoded)
-                {{ $responseDecoded['data']['translations'][1]['translatedText']}}
+                {!! $responseDecoded['data']['translations'][1]['translatedText'] !!}
               @else
-                {{ $text[1]}}
+                {!! $text[1] !!}
               @endif
           </h2>
           </div>

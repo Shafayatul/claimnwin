@@ -163,7 +163,42 @@ class FrontsController extends Controller
     }
     public function affiliatePage()
     {
-        return view('front-pages.affiliate_page');
+      $text[0] = "Get paid if you're in travel";
+      $text[1] = "Join our affiliate program and begin earning money while helping fellow travellers in need.";
+      $text[2] = "sign up";
+      $text[3] = "HIGH COMMISSION RATES";
+      $text[4] = "Claim'N Win offers some of the highest commision rates in the industry. Earn up to €185 per referral!";
+      $text[5] = "EASY TO SET UP";
+      $text[6] = "No programming knowledge needed. Simply sign up and pick the option you prefer.";
+      $text[7] = "LONGEST LASTING COOKIES";
+      $text[8] = "Our cookie data lasts for 3 months! So even if users come back at a later point, we'll still allocate them to you.";
+      $text[9] = "LOVED BY TRAVELLERS";
+      $text[10] = "Claim'N Win is rated 4.9 out of 5 stars. Show your visitors that you care about them too!";
+      $text[11] = "WE ARE GLOBAL";
+      $text[12] = "We are a truly global team and support travellers in 17 different languages It's a small world, after all.";
+      $text[13] = "WE SUPPORT YOU";
+      $text[14] = "Just as we do for our customers, we're here to offer the support you need to get you started!";
+      $text[15] = "Get paid if you're in travel";
+      $text[16] = "Our affiliate program aims at reaching and helping even more <br> passengers get compensated when their flights are disrupted.";
+      $text[17] = "If you have a travel related website, a blog, or you are an influencer, <br> you can now earn money while providing even more value to your <br> audience. Simply sign up and get your unique link to post on <br> your website.";
+      $text[18] = "We'll still do all the work, but you'll get all the credit.";
+      $text[19] = "HOW IT WORKS";
+      $text[20] = "Register in just a few simple steps and get access to your dashboard";
+      $text[21] = "PICK A REFERRAL METHOD";
+      $text[22] = "Register in just a few simple steps and get a referral link.";
+      $text[23] = "BEGIN EARNING MONEY";
+      $text[24] = "Promote your new service to your users and begin earning money!";
+      $text[25] = "Help fellow travellers and earn money";
+      $text[26] = "Claim'N Win helps passengers get compensated when their flights <br> are disrupted. Join one of the best affiliate programs in travel <br> today! Our affiliate program aims at reaching and helping even <br> more passengers get compensated when their flights are disrupted.";
+      $text[27] = "BECOME AN AFFILIATE";
+
+      if (Session::has('locale')) {
+        $responseDecoded = $this->get_translation($text);
+        return view('front-pages.affiliate_page',compact('responseDecoded', 'text'));
+      }else {
+        $responseDecoded = null;
+        return view('front-pages.affiliate_page',compact('responseDecoded', 'text'));
+      }
     }
     public function formClaim()
     {
