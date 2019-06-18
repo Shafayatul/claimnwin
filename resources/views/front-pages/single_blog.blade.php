@@ -5,7 +5,20 @@
 
 @section('page-title')
   <div class="page_title">
-  <h1 class="text-center">Blog Page <span style="color: green;">/</span> {{$post->title}}</h1>
+  <h1 class="text-center">
+    @if ($responseDecoded)
+      {!! $responseDecoded['data']['translations'][2]['translatedText'] !!}
+    @else
+      {!! $text[2] !!}
+    @endif
+     <span style="color: green;">/</span>
+    @if ($responseDecoded)
+      {!! $responseDecoded['data']['translations'][0]['translatedText'] !!}
+    @else
+      {{$post->title}}
+    @endif
+
+  </h1>
   </div>
 @endsection
 
@@ -15,11 +28,22 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="title_row">
-                    <h1>{{asset($post->title)}}</h1>
+                    <h1>
+                      @if ($responseDecoded)
+                        {!! $responseDecoded['data']['translations'][0]['translatedText'] !!}
+                      @else
+                        {{$post->title}}
+                      @endif
+                    </h1>
                 </div>
                 <div class="first_row_p no_padding_bottom">
                     <p>
+                      @if ($responseDecoded)
+                        {!! $responseDecoded['data']['translations'][0]['translatedText'] !!}
+                      @else
                         {!! $post->body !!}
+                      @endif
+
                     </p>
                 </div>
             </div>

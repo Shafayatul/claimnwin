@@ -292,7 +292,19 @@ class FrontsController extends Controller
     public function singleBlogView($title,$id)
     {
         $post=Post::find($id);
-        return view('front-pages.single_blog',compact('post'));
+
+        $text[0] = $post->title;
+        $text[1] = $post->body;
+        $text[2] = "Blog Page";
+        if (Session::has('locale')) {
+            // dd("HAS SESSION");
+            $responseDecoded = $this->get_translation($text);
+            return view('front-pages.single_blog', compact('post', 'responseDecoded', 'text'));
+        }else {
+            // dd("NO SESSION");
+            $responseDecoded = null;
+            return view('front-pages.single_blog', compact('post', 'responseDecoded', 'text'));
+        }
     }
     public function app()
     {
