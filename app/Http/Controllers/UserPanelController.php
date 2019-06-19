@@ -181,8 +181,19 @@ class UserPanelController extends Controller
     ->linkedin('Extra linkedin summary can be passed here');
     $whatsapp=Share::page($link,null,['id' => 'whatsapp'])
     ->whatsapp();
-      return view ('front-end.user.user_panel_affiliate', compact('encrypt_user_id','facebook','twitter','linkedin','whatsapp'));
+
+    $text[0] = "Share link and earn";
+
+    if (Session::has('locale')) {
+      $responseDecoded = $this->get_translation($text);
+      return view ('front-end.user.user_panel_affiliate', compact('encrypt_user_id','facebook','twitter','linkedin','whatsapp', 'responseDecoded', 'text'));
+
+    }else {
+      $responseDecoded = null;
+      return view ('front-end.user.user_panel_affiliate', compact('encrypt_user_id','facebook','twitter','linkedin','whatsapp', 'responseDecoded', 'text'));
     }
+
+  }
 
     public function user_ticket_message(Request $request)
     {
