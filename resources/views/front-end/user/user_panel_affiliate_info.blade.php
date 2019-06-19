@@ -29,18 +29,46 @@
       <div class="row">
         <div class="col-md-8">
           <div class="content_div">
-            <p>Hello {{ Auth::user()->name }},</br></br>Welcome to your affiliate control panel. Please manage your accounts via the left hand menu. To view the menu click the hamburger icon above. Please keep your contact/payment details up to date and we recommend you change your password from time to time for security.</br></br>To get started, view the product section for promotional materials and commission information.</br></br>Any problems, please let us know.</p>
+            <p>
+              @if ($responseDecoded)
+                {!! $responseDecoded['data']['translations'][0]['translatedText'] !!}
+              @else
+                {!! $text[0] !!}
+              @endif
+
+               {{ Auth::user()->name }},
+
+             @if ($responseDecoded)
+               {!! $responseDecoded['data']['translations'][1]['translatedText'] !!}
+             @else
+               {!! $text[1] !!}
+             @endif
+             </p>
           </div>
           <div class="content_div">
             <div class="row">
                 <div class="col-md-6 col-xs-6 col-sm-6">
-                    <h4>Latest 5 Refferals</h4>
+                    <h4>
+                      @if ($responseDecoded)
+                        {!! $responseDecoded['data']['translations'][2]['translatedText'] !!}
+                      @else
+                        {!! $text[2] !!}
+                      @endif
+                    </h4>
                 </div>
                 <div class="col-md-6 col-xs-6 col-sm-6">
                     @php
                        $id = auth()->user()->id;
                     @endphp
-                    <a href="{{URL::to('/refferal-all/'.$id)}}" class="show-all"><h4>Show All</h4></a>
+                    <a href="{{URL::to('/refferal-all/'.$id)}}" class="show-all">
+                      <h4>
+                        @if ($responseDecoded)
+                          {!! $responseDecoded['data']['translations'][3]['translatedText'] !!}
+                        @else
+                          {!! $text[3] !!}
+                        @endif
+                      </h4>
+                    </a>
                 </div>
             </div>
             <div class="row">
@@ -48,9 +76,27 @@
                 <table class="table table-striped text-center">
                   <thead>
                     <tr>
-                      <th scope="col" class="text-center">DateTime</th>
-                      <th scope="col" class="text-center">Claim Id</th>
-                      <th scope="col" class="text-center">	Commsion Amount</th>
+                      <th scope="col" class="text-center">
+                        @if ($responseDecoded)
+                          {!! $responseDecoded['data']['translations'][4]['translatedText'] !!}
+                        @else
+                          {!! $text[4] !!}
+                        @endif
+                      </th>
+                      <th scope="col" class="text-center">
+                        @if ($responseDecoded)
+                          {!! $responseDecoded['data']['translations'][5]['translatedText'] !!}
+                        @else
+                          {!! $text[5] !!}
+                        @endif
+                      </th>
+                      <th scope="col" class="text-center">
+                        @if ($responseDecoded)
+                          {!! $responseDecoded['data']['translations'][6]['translatedText'] !!}
+                        @else
+                          {!! $text[6] !!}
+                        @endif
+                      </th>
                     </tr>
                   </thead>
                   <tbody>
@@ -79,11 +125,25 @@
           <div class="content_div">
             <div class="row">
                 <div class="col-md-6 col-xs-6 col-sm-6">
-                    <h4>Latest 5 Pending Payments</h4>
+                    <h4>
+                      @if ($responseDecoded)
+                        {!! $responseDecoded['data']['translations'][7]['translatedText'] !!}
+                      @else
+                        {!! $text[7] !!}
+                      @endif
+                    </h4>
                 </div>
                 <div class="col-md-6 col-xs-6 col-sm-6">
 
-                    <a href="{{URL::to('/pending-payment/'.$id)}}" class="show-all"><h4>Show All</h4></a>
+                  <a href="{{URL::to('/pending-payment/'.$id)}}" class="show-all">
+                    <h4>
+                      @if ($responseDecoded)
+                        {!! $responseDecoded['data']['translations'][3]['translatedText'] !!}
+                      @else
+                        {!! $text[3] !!}
+                      @endif
+                    </h4>
+                  </a>
                 </div>
             </div>
             <div class="row">
@@ -91,9 +151,27 @@
                 <table class="table table-striped text-center">
                   <thead>
                     <tr>
-                      <th scope="col" class="text-center">DateTime</th>
-                      <th scope="col" class="text-center">Claim Id</th>
-                      <th scope="col" class="text-center">	Commsion Amount</th>
+                      <th scope="col" class="text-center">
+                        @if ($responseDecoded)
+                          {!! $responseDecoded['data']['translations'][4]['translatedText'] !!}
+                        @else
+                          {!! $text[4] !!}
+                        @endif
+                      </th>
+                      <th scope="col" class="text-center">
+                        @if ($responseDecoded)
+                          {!! $responseDecoded['data']['translations'][5]['translatedText'] !!}
+                        @else
+                          {!! $text[5] !!}
+                        @endif
+                      </th>
+                      <th scope="col" class="text-center">
+                        @if ($responseDecoded)
+                          {!! $responseDecoded['data']['translations'][6]['translatedText'] !!}
+                        @else
+                          {!! $text[6] !!}
+                        @endif
+                      </th>
                     </tr>
                   </thead>
                   <tbody>
@@ -122,10 +200,24 @@
           <div class="content_div">
             <div class="row">
                 <div class="col-md-6 col-xs-6 col-sm-6">
-                    <h4>Latest 5 Payments</h4>
+                    <h4>
+                      @if ($responseDecoded)
+                        {!! $responseDecoded['data']['translations'][8]['translatedText'] !!}
+                      @else
+                        {!! $text[8] !!}
+                      @endif
+                    </h4>
                 </div>
                 <div class="col-xs-6 col-sm-6">
-                    <a href="{{URL::to('/payment/'.$id)}}" class="show-all"><h4>Show All</h4></a>
+                    <a href="{{URL::to('/payment/'.$id)}}" class="show-all">
+                      <h4>
+                        @if ($responseDecoded)
+                          {!! $responseDecoded['data']['translations'][3]['translatedText'] !!}
+                        @else
+                          {!! $text[3] !!}
+                        @endif
+                      </h4>
+                    </a>
                 </div>
             </div>
             <div class="row">
@@ -133,9 +225,27 @@
                 <table class="table table-striped text-center">
                   <thead>
                     <tr>
-                      <th scope="col" class="text-center">DateTime</th>
-                      <th scope="col" class="text-center">Claim Id</th>
-                      <th scope="col" class="text-center">	Commsion Amount</th>
+                      <th scope="col" class="text-center">
+                        @if ($responseDecoded)
+                          {!! $responseDecoded['data']['translations'][4]['translatedText'] !!}
+                        @else
+                          {!! $text[4] !!}
+                        @endif
+                      </th>
+                      <th scope="col" class="text-center">
+                        @if ($responseDecoded)
+                          {!! $responseDecoded['data']['translations'][5]['translatedText'] !!}
+                        @else
+                          {!! $text[5] !!}
+                        @endif
+                      </th>
+                      <th scope="col" class="text-center">
+                        @if ($responseDecoded)
+                          {!! $responseDecoded['data']['translations'][6]['translatedText'] !!}
+                        @else
+                          {!! $text[6] !!}
+                        @endif
+                      </th>
                     </tr>
                   </thead>
                   <tbody>
@@ -163,7 +273,13 @@
         <div class="col-md-4">
           <div class="content_div">
             <div class="content_div_logo_title text-center" style="background-color: #cecece; margin-left: -20px; margin-right: -20px; margin-top: -20px; padding: 20px;">
-              <span><i class="fa fa-user"></i></span> <span style="padding-left: 15px;">Unique Affiliate Code</span>
+              <span><i class="fa fa-user"></i></span> <span style="padding-left: 15px;">
+                @if ($responseDecoded)
+                  {!! $responseDecoded['data']['translations'][9]['translatedText'] !!}
+                @else
+                  {!! $text[9] !!}
+                @endif
+              </span>
             </div>
             <div class="row">
               <div class="col-md-12 text-center">
@@ -175,43 +291,118 @@
           </div>
           <div class="content_div">
             <div class="content_div_logo_title text-center" style="background-color: #cecece; margin-left: -20px; margin-right: -20px; margin-top: -20px; padding: 20px;">
-              <span><i class="fa fa-bar-chart-o fa-fw"></i></span> <span style="padding-left: 15px;">Affiliate Overview</span>
+              <span><i class="fa fa-bar-chart-o fa-fw"></i></span> <span style="padding-left: 15px;">
+                @if ($responseDecoded)
+                  {!! $responseDecoded['data']['translations'][10]['translatedText'] !!}
+                @else
+                  {!! $text[10] !!}
+                @endif
+              </span>
             </div>
             <div class="row">
               <div class="col-md-12">
                 <div class="content_div_text">
-                  <p>Referrals : {{ $referral_count_data }}</p>
-                  <p>Commissions : {{ $commision_sum_amount }}</p>
-                  <p>Payments : {{ $all_payments->sum('received_amount') }}</p>
+                  <p>
+                    @if ($responseDecoded)
+                      {!! $responseDecoded['data']['translations'][11]['translatedText'] !!}
+                    @else
+                      {!! $text[11] !!}
+                    @endif
+                    :
+                    {{ $referral_count_data }}
+                  </p>
+                  <p>
+                    @if ($responseDecoded)
+                      {!! $responseDecoded['data']['translations'][12]['translatedText'] !!}
+                    @else
+                      {!! $text[12] !!}
+                    @endif
+                    :
+                    {{ $commision_sum_amount }}
+                  </p>
+                  <p>
+                    @if ($responseDecoded)
+                      {!! $responseDecoded['data']['translations'][13]['translatedText'] !!}
+                    @else
+                      {!! $text[13] !!}
+                    @endif
+                    :
+                    {{ $all_payments->sum('received_amount') }}
+                  </p>
                   <hr>
-                  <p>Last Payment: {{ ($last_payments == null) ? '0' :  $last_payments  }}</p>
+                  <p>
+                    @if ($responseDecoded)
+                      {!! $responseDecoded['data']['translations'][14]['translatedText'] !!}
+                    @else
+                      {!! $text[14] !!}
+                    @endif
+                    :
+                    {{ ($last_payments == null) ? '0' :  $last_payments  }}
+                  </p>
                 </div>
               </div>
             </div>
           </div>
           <div class="content_div">
             <div class="content_div_logo_title text-center" style="background-color: #cecece; margin-left: -20px; margin-right: -20px; margin-top: -20px; padding: 20px;">
-              <span><i class="fa fa-sticky-note"></i></span> <span style="padding-left: 15px;">Terms & Condition</span>
+              <span><i class="fa fa-sticky-note"></i></span> <span style="padding-left: 15px;">
+                @if ($responseDecoded)
+                  {!! $responseDecoded['data']['translations'][15]['translatedText'] !!}
+                @else
+                  {!! $text[15] !!}
+                @endif
+              </span>
             </div>
             <div class="row">
               <div class="col-md-12">
                 <div class="content_div_text">
-                  <p>We may collect personal identification information from Users, including, but not limited to, when Users visit our site, register their
-information on the website by completing, ...</p><br>
-                  <a href="{{ URL::to('/terms-and-conditions') }}">More Information</a>
+                  <p>
+                    @if ($responseDecoded)
+                      {!! $responseDecoded['data']['translations'][16]['translatedText'] !!}
+                    @else
+                      {!! $text[16] !!}
+                    @endif
+                  </p>
+                  <br>
+                  <a href="{{ URL::to('/terms-and-conditions') }}">
+                    @if ($responseDecoded)
+                      {!! $responseDecoded['data']['translations'][17]['translatedText'] !!}
+                    @else
+                      {!! $text[17] !!}
+                    @endif
+                  </a>
                 </div>
               </div>
             </div>
           </div>
           <div class="content_div">
             <div class="content_div_logo_title text-center" style="background-color: #cecece; margin-left: -20px; margin-right: -20px; margin-top: -20px; padding: 20px;">
-              <span><i class="fa fa-envelope"></i></span> <span style="padding-left: 15px;">Contact Us</span>
+              <span><i class="fa fa-envelope"></i></span> <span style="padding-left: 15px;">
+                @if ($responseDecoded)
+                  {!! $responseDecoded['data']['translations'][18]['translatedText'] !!}
+                @else
+                  {!! $text[18] !!}
+                @endif
+              </span>
             </div>
             <div class="row">
               <div class="col-md-12">
                 <div class="content_div_text">
-                  <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's.</p><br>
-                  <a href="{{ URL::to('/contact-us') }}">More Information</a>
+                  <p>
+                    @if ($responseDecoded)
+                      {!! $responseDecoded['data']['translations'][19]['translatedText'] !!}
+                    @else
+                      {!! $text[19] !!}
+                    @endif
+                  </p>
+                  <br>
+                  <a href="{{ URL::to('/contact-us') }}">
+                    @if ($responseDecoded)
+                      {!! $responseDecoded['data']['translations'][17]['translatedText'] !!}
+                    @else
+                      {!! $text[17] !!}
+                    @endif
+                  </a>
                 </div>
               </div>
             </div>

@@ -22,9 +22,35 @@ use App\Exports\PendingPaymentExport;
 use App\Exports\PaymentExport;
 use IlluminateAgnostic\Arr\Support\Carbon;
 use Illuminate\Support\Facades\Cache;
+use Session;
 
 class UserPanelController extends Controller
 {
+
+  public function get_translation($text)
+  {
+    $a = Session::get('locale');
+    $apiKey = env('GOOGLE_TRANSLATION_KEY');
+    $url = 'https://www.googleapis.com/language/translate/v2?key=' . $apiKey;
+
+    foreach ($text as $single_text) {
+      $url .= '&q=' . rawurlencode($single_text);
+    }
+    $url .= '&source=en&target='.$a;
+
+    $handle = curl_init($url);
+        curl_setopt($handle, CURLOPT_RETURNTRANSFER, true);
+        $response = curl_exec($handle);
+        $responseDecoded = json_decode($response, true);
+        $responseCode = curl_getinfo($handle, CURLINFO_HTTP_CODE);      //Here we fetch the HTTP response code
+        curl_close($handle);
+        if ($responseCode != 200) {
+          return false;
+        }else{
+          return $responseDecoded;
+        }
+
+  }
     public function index()
     {
         if (!Auth::check())
@@ -97,7 +123,7 @@ class UserPanelController extends Controller
       }else{
         $affiliate_user_id = '';
       }
-      
+
       if($request->password == $request->confirm_password)
         {
             $authUser=User::create([
@@ -155,7 +181,38 @@ class UserPanelController extends Controller
     ->linkedin('Extra linkedin summary can be passed here');
     $whatsapp=Share::page($link,null,['id' => 'whatsapp'])
     ->whatsapp();
-      return view ('front-end.user.user_panel_affiliate', compact('encrypt_user_id','facebook','twitter','linkedin','whatsapp'));
+
+    $text[0] = "Hello";
+    $text[1] = "</br></br>Welcome to your affiliate control panel. Please manage your accounts via the left hand menu. To view the menu click the hamburger icon above. Please keep your contact/payment details up to date and we recommend you change your password from time to time for security.</br></br>To get started, view the product section for promotional materials and commission information.</br></br>Any problems, please let us know.";
+    $text[2] = "Latest 5 Refferals";
+    $text[3] = "Show All";
+    $text[4] = "DateTime";
+    $text[5] = "Claim Id";
+    $text[6] = "Commsion Amount";
+    $text[7] = "Latest 5 Pending Payments";
+    $text[8] = "Latest 5 Payments";
+    $text[9] = "Unique Affiliate Code";
+    $text[10] = "Affiliate Overview";
+    $text[11] = "Referrals";
+    $text[12] = "Commissions";
+    $text[13] = "Payments";
+    $text[14] = "Last Payment";
+    $text[15] = "Terms & Condition";
+    $text[16] = "We may collect personal identification information from Users, including but not limited to, when Users visit our site, register their information on the website by completing, ...";
+    $text[17] = "More Information";
+    $text[18] = "Contact Us";
+    $text[19] = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's.";
+
+    if (Session::has('locale')) {
+      $responseDecoded = $this->get_translation($text);
+      return view ('front-end.user.user_panel_affiliate', compact('encrypt_user_id','facebook','twitter','linkedin','whatsapp', 'responseDecoded', 'text'));
+
+    }else {
+      $responseDecoded = null;
+      return view ('front-end.user.user_panel_affiliate', compact('encrypt_user_id','facebook','twitter','linkedin','whatsapp', 'responseDecoded', 'text'));
+    }
+
+
     }
 
     public function user_ticket_message(Request $request)
