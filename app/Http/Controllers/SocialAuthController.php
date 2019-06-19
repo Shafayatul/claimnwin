@@ -18,7 +18,7 @@ class SocialAuthController extends Controller
     {
 
         $user = Socialite::driver($provider)->user();
-        $authUser = User::where(['provider_id' => $user->id])->first();
+        $authUser = User::where('provider_id', $user->id)->first();
         if($authUser){
             auth()->login($authUser,true);
             return redirect('/user-home');
@@ -28,7 +28,7 @@ class SocialAuthController extends Controller
             $authUser->email           = $user->email;
             $authUser->provider        = $provider;
             $authUser->provider_id     = $user->id;
-            $authUser->password        = Hash::make('12345678');
+            $authUser->password        = Hash::make(rand(10000, 10000000));
 
             $authUser->save();
             if($authUser){

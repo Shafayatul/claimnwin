@@ -9,6 +9,7 @@ use App\Mail\OrderShipped;
 use Illuminate\Support\Facades\Mail;
 
 use Illuminate\Support\Facades\Cache;
+use Artisan;
 
 class TestsController extends Controller
 {
@@ -27,8 +28,8 @@ class TestsController extends Controller
     }
     public function test(Request $request){
     	
-        // Cache::put($request->ip(), 'test222');
-        dd(Cache::get($request->ip()));
+        $exitCode = Artisan::call('storage:link', [] );
+dd($exitCode); // 0 exit code for no errors.
     }
 
 
