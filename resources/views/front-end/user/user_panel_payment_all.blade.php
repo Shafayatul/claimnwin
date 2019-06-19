@@ -27,11 +27,23 @@ table thead tr th:first-child {
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-md-6 col-xs-6 col-sm-6">
-                                <h4>All Payments</h4>
+                                <h4>
+                                  @if ($responseDecoded)
+                                    {!! $responseDecoded['data']['translations'][0]['translatedText'] !!}
+                                  @else
+                                    {!! $text[0] !!}
+                                  @endif
+                                </h4>
                             </div>
                             <div class="col-md-6 col-xs-6 col-sm-6">
                                 @if(count($payments) > 0)
-                                    <a href="{{URL::to('/payment-all-export')}}" class="btn btn-success btn-sm" style="float: right;">Export CSV</a>
+                                    <a href="{{URL::to('/payment-all-export')}}" class="btn btn-success btn-sm" style="float: right;">
+                                      @if ($responseDecoded)
+                                        {!! $responseDecoded['data']['translations'][1]['translatedText'] !!}
+                                      @else
+                                        {!! $text[1] !!}
+                                      @endif
+                                    </a>
                                 @endif
                         </div>
                         </div>
@@ -41,9 +53,27 @@ table thead tr th:first-child {
                                     <table class="table table-bordered table-striped">
                                         <thead>
                                             <th>#</th>
-                                            <th>DateTime</th>
-                                            <th>Claim Id</th>
-                                            <th>Commsion Amount</th>
+                                            <th>
+                                              @if ($responseDecoded)
+                                                {!! $responseDecoded['data']['translations'][2]['translatedText'] !!}
+                                              @else
+                                                {!! $text[2] !!}
+                                              @endif
+                                            </th>
+                                            <th>
+                                              @if ($responseDecoded)
+                                                {!! $responseDecoded['data']['translations'][3]['translatedText'] !!}
+                                              @else
+                                                {!! $text[3] !!}
+                                              @endif
+                                            </th>
+                                            <th>
+                                              @if ($responseDecoded)
+                                                {!! $responseDecoded['data']['translations'][4]['translatedText'] !!}
+                                              @else
+                                                {!! $text[4] !!}
+                                              @endif
+                                            </th>
                                         </thead>
                                         <tbody>
                                             @php

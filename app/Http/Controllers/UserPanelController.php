@@ -313,7 +313,22 @@ class UserPanelController extends Controller
    public function allPaymentDataView($id)
    {
     $payments=Affiliate::where('affiliate_user_id',$id)->where('approved',1)->get();
-    return view('front-end.user.user_panel_payment_all',compact('payments'));
+
+    $text[0] = "All Payments";
+    $text[1] = "Export CSV";
+    $text[2] = "DateTime";
+    $text[3] = "Claim Id";
+    $text[4] = "Commsion Amount";
+
+    if (Session::has('locale')) {
+      $responseDecoded = $this->get_translation($text);
+      return view('front-end.user.user_panel_payment_all',compact('payments', 'responseDecoded', 'text'));
+
+    }else {
+      $responseDecoded = null;
+      return view('front-end.user.user_panel_payment_all',compact('payments', 'responseDecoded', 'text'));
+    }
+
    }
 
    public function exportPaymentData()
