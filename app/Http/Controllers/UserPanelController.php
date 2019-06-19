@@ -64,7 +64,24 @@ class UserPanelController extends Controller
 
           $airline = Airline::whereIn('id', $airline_id_array)->pluck('name', 'id')->toArray();
           $claim_status = ClaimStatus::pluck('name', 'id')->toArray();
-          return view('front-end.user.user_panel', compact('claims', 'airline', 'claim_status'));
+
+          $text[0] = "My Claim List";
+          $text[1] = "Claim";
+          $text[2] = "Created at";
+          $text[3] = "Defendant";
+          $text[4] = "Value";
+          $text[5] = "Status";
+          $text[6] = "Not eligible for compensation";
+          $text[7] = "No status defined";
+
+          if (Session::has('locale')) {
+            $responseDecoded = $this->get_translation($text);
+            return view('front-end.user.user_panel', compact('claims', 'airline', 'claim_status', 'responseDecoded', 'text'));
+
+          }else {
+            $responseDecoded = null;
+            return view('front-end.user.user_panel', compact('claims', 'airline', 'claim_status', 'responseDecoded', 'text'));
+          }
         }
     }
 

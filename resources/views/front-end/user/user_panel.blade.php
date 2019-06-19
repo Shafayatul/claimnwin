@@ -22,7 +22,13 @@
       <div class="col-md-12">
         <div class="parent_div">
           <div class="user_panel_h1">
-            <h1>My Claim List</h1>
+            <h1>
+              @if ($responseDecoded)
+                {!! $responseDecoded['data']['translations'][0]['translatedText'] !!}
+              @else
+                {!! $text[0] !!}
+              @endif
+            </h1>
           </div>
         </div>
       </div>
@@ -31,27 +37,57 @@
     <div class="row">
       <div class="col-md-2 col-md-offset-1">
         <div class="parent_div text-center">
-          <span class="bold_span">Claim</span>
+          <span class="bold_span">
+            @if ($responseDecoded)
+              {!! $responseDecoded['data']['translations'][1]['translatedText'] !!}
+            @else
+              {!! $text[1] !!}
+            @endif
+          </span>
         </div>
       </div>
       <div class="col-md-2">
         <div class="parent_div text-center">
-          <span class="bold_span">Created at</span>
+          <span class="bold_span">
+            @if ($responseDecoded)
+              {!! $responseDecoded['data']['translations'][2]['translatedText'] !!}
+            @else
+              {!! $text[2] !!}
+            @endif
+          </span>
         </div>
       </div>
       <div class="col-md-2 text-center">
         <div class="parent_div text-center">
-          <span class="bold_span">Defendant</span>
+          <span class="bold_span">
+            @if ($responseDecoded)
+              {!! $responseDecoded['data']['translations'][3]['translatedText'] !!}
+            @else
+              {!! $text[3] !!}
+            @endif
+          </span>
         </div>
       </div>
       <div class="col-md-2">
         <div class="parent_div text-center">
-          <span class="bold_span">Value</span>
+          <span class="bold_span">
+            @if ($responseDecoded)
+              {!! $responseDecoded['data']['translations'][4]['translatedText'] !!}
+            @else
+              {!! $text[4] !!}
+            @endif
+          </span>
         </div>
       </div>
       <div class="col-md-2">
         <div class="parent_div text-center">
-          <span class="bold_span">Status</span>
+          <span class="bold_span">
+            @if ($responseDecoded)
+              {!! $responseDecoded['data']['translations'][5]['translatedText'] !!}
+            @else
+              {!! $text[5] !!}
+            @endif
+          </span>
         </div>
       </div>
     </div>
@@ -95,14 +131,24 @@
             @if(isset($claim_status[$claim->claim_status_id]))
               <a href="{{ URL::to('/user-my-claim/'.$claim->id)}}" class="claim_status_a">
                 @if ($claim->amount == '0')
-                  Not eligible for compensation
+                  @if ($responseDecoded)
+                    {!! $responseDecoded['data']['translations'][6]['translatedText'] !!}
+                  @else
+                    {!! $text[6] !!}
+                  @endif
                 @else
                 {{$claim_status[$claim->claim_status_id]}}
                 @endif
 
               </a>
             @else
-              <a href="{{ URL::to('/user-my-claim/'.$claim->id)}}" class="claim_status_a">No status defined</a>
+              <a href="{{ URL::to('/user-my-claim/'.$claim->id)}}" class="claim_status_a">
+                @if ($responseDecoded)
+                  {!! $responseDecoded['data']['translations'][7]['translatedText'] !!}
+                @else
+                  {!! $text[7] !!}
+                @endif
+              </a>
             @endif
           </div>
         </div>
