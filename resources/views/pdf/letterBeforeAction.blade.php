@@ -22,7 +22,7 @@
         /* textarea {
         min-height: 1000px;
       } */
-      .total_div {
+/*      .total_div {
         width: 968px;
         margin: 0 auto;
         display: block;
@@ -62,7 +62,9 @@
         bottom: 1%;
         padding-top: 30px;
         left: 25%;
-      }
+      }*/
+
+
     </style>
 </head>
 
@@ -78,23 +80,26 @@
             @endphp
             <div class="container">
 
+            <div class="total_div" style="width: 100%; display: block; overflow: hidden;">
+              <div class="logo_div" style="width: 50%;  float: left; padding-top: 20px; ">
+                <div class="logo_img_div">
+                  <img src="{{asset('front_asset/img/logo.png')}}" alt="" >
+                </div>
+              </div>
+              <div class="text_div text-right" style="width: 50%;  float: left; text-align: right">
+                <h4 style="color: #76A154;">Claim'n Win Ltd</h4>
+                <h4 style="color: #76A154;">T: <span style="color: #000000;font-size: 15px; font-weight:bold;">020 3808 6632</span></h4>
+                <h4 style="color: #76A154;">E: <span style="color: #000000;font-size: 15px; font-weight:bold;">info@claimnwin@co.uk</span></h4>
+              </div>
+            </div>
+
+
+
   <div class="total_div">
-    <div class="logo_div">
-      <div class="logo_img_div">
-        <img src="{{asset('front_asset/img/logo.png')}}" alt="" >
-      </div>
-    </div>
-    <div class="text_div text-right">
-      <h4 style="color: #76A154;">Claim'n Win Ltd</h4>
-      <h4 style="color: #76A154;">T: <span style="color: #000000;font-size: 15px; font-weight:bold;">020 3808 6632</span></h4>
-      <h4 style="color: #76A154;">E: <span style="color: #000000;font-size: 15px; font-weight:bold;">info@claimnwin@co.uk</span></h4>
-    </div>
+    <h5 style="font-size: 15px;font-weight:bold; text-align: right;">Private and Confidential</h5>
   </div>
-  <div class="total_div">
-    <h5 style="font-size: 15px;padding: 25px 0px 15px 0px; font-weight:bold; text-align: right;">Private and Confidential</h5>
-  </div>
-  <div class="total_div">
-    <div class="address_div">
+  <div class="total_div" style="width: 100%; display: block; overflow: hidden;">
+    <div class="address_div" style="width: 50%;  float: left;">
       {{-- <h5 style="width: 150px; line-height: 30px;">{{$passenger->address}}</h5> --}}
 
       @if ($airline->name)
@@ -118,7 +123,7 @@
       {{-- <h5>{{$airline->address_line_2}}</h5> --}}
       {{-- <h5>{{$airline->country}}</h5> --}}
     </div>
-    <div class="date_time_div text-right">
+    <div class="date_time_div text-right"  style="width: 50%;  float: left; text-align: right">
       <!-- <h5>Date: {{Carbon\Carbon::today()}}</h5> -->
       <h5>Date: {{$itt_details->departure_date}}</h5>
       <h5>Our Ref: CLAIM/000{{$claim->id}}</h5>
@@ -378,7 +383,7 @@
 
 
 </textarea>
-        <div class="col-md-4 col-md-offset-4">
+        {{-- <div class="col-md-4 col-md-offset-4">
             <br>
             <br>
             <button type="submit" class="btn btn-lg btn-success btn-block"> <i class="fa fa-envelope"></i> Email</button>
@@ -388,7 +393,7 @@
         <br>
         <br>
         <br>
-        <br>
+        <br> --}}
         </div>
     </form>
 {{-- Tinymce with file upload option --}}

@@ -15,7 +15,7 @@
 */
 
 
-// Route::get('/test', 'TestsController@test');
+Route::get('/test', 'TestsController@test');
 
 /* ----- Access by all - not logged ----- */
 
@@ -23,8 +23,8 @@
 
 
 Route::get('change-language/{locale}', 'FrontsController@change_lang');
-Route::get('/laravel-filemanager', '\UniSharp\LaravelFilemanager\Controllers\LfmController@show');
-Route::post('/laravel-filemanager/upload', '\UniSharp\LaravelFilemanager\Controllers\UploadController@upload');
+Route::get('laravel-filemanager', '\UniSharp\LaravelFilemanager\Controllers\LfmController@show');
+Route::post('laravel-filemanager/upload', '\UniSharp\LaravelFilemanager\Controllers\UploadController@upload');
 
 // Ajax - calculation
 Route::post('/ajax/calculate/missed_calculation','ClaimsController@ajax_missed_calculation');

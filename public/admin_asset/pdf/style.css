@@ -19,3 +19,18 @@
 .second_child_total_div:nth-child(4) {
   padding-top: 30px;
 }
+
+.total_div{
+  width: 100%;
+  display: block;
+  overflow: hidden;
+}
+
+.logo_div{
+  width: 50%;
+  float: left;
+}
+.text_div{
+  width: 50%;
+  float: left;
+}
