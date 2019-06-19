@@ -301,7 +301,23 @@ class UserPanelController extends Controller
    public function allPendingPaymentDataView($id)
    {
     $pending_payments=Affiliate::where('affiliate_user_id',$id)->where('approved',0)->get();
-    return view('front-end.user.user_panel_pending_all',compact('pending_payments'));
+
+    $text[0] = "All Payments";
+    $text[1] = "Export CSV";
+    $text[2] = "DateTime";
+    $text[3] = "Claim Id";
+    $text[4] = "Commsion Amount";
+
+    if (Session::has('locale')) {
+      $responseDecoded = $this->get_translation($text);
+      return view('front-end.user.user_panel_pending_all',compact('pending_payments', 'responseDecoded', 'text'));
+
+    }else {
+      $responseDecoded = null;
+      return view('front-end.user.user_panel_pending_all',compact('pending_payments', 'responseDecoded', 'text'));
+    }
+
+
    }
 
    public function exportPendingPaymentData()
