@@ -289,7 +289,21 @@ class UserPanelController extends Controller
    {
 
         $allReferral=Affiliate::where('affiliate_user_id',$id)->get();
-        return view('front-end.user.user_panel_refferal_all',compact('allReferral'));
+
+        $text[0] = "All Refferals";
+        $text[1] = "Export CSV";
+        $text[2] = "DateTime";
+        $text[3] = "Claim Id";
+        $text[4] = "Commsion Amount";
+
+        if (Session::has('locale')) {
+          $responseDecoded = $this->get_translation($text);
+          return return view('front-end.user.user_panel_refferal_all',compact('allReferral', 'responseDecoded', 'text'));
+
+        }else {
+          $responseDecoded = null;
+          return return view('front-end.user.user_panel_refferal_all',compact('allReferral', 'responseDecoded', 'text'));
+        }
    }
 
    public function exportRefferalData()
