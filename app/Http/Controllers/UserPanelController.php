@@ -83,7 +83,36 @@ class UserPanelController extends Controller
       $claim_staus = ClaimStatus::where('id',$claims->claim_status_id)->first();
       $expenses = Expense::where('claim_id',$id)->get();
        // $ticket = Ticket::where('claim_id', $id)->first();
-        return view('front-end.user.user_panel_my_claim', compact('claims', 'ticket_notes', 'airline', 'claim_files','claim_staus', 'expenses'));
+
+       $text[0] = "My Claim Details";
+       $text[1] = "Claim";
+       $text[2] = "Defendant";
+       $text[3] = "Value";
+       $text[4] = "Status";
+       $text[5] = "Claim status";
+       $text[6] = "Ticket details";
+       $text[7] = "Claim details";
+       $text[8] = "Documents";
+       $text[9] = "Claim assessment ";
+       $text[10] = "Your claim is under review. Our legal team will contact you if we require any further information";
+       $text[11] = "Waiting For Reply";
+       $text[12] = "Action Required";
+       $text[13] = "Closed";
+       $text[14] = "How can we help you today?";
+       $text[15] = "Send";
+       $text[16] = "Chat Messages";
+       $text[17] = "Me";
+       $text[18] = "Admin";
+
+       if (Session::has('locale')) {
+         $responseDecoded = $this->get_translation($text);
+         return view('front-end.user.user_panel_my_claim', compact('claims', 'ticket_notes', 'airline', 'claim_files','claim_staus', 'expenses', 'responseDecoded', 'text'));
+
+       }else {
+         $responseDecoded = null;
+         return view('front-end.user.user_panel_my_claim', compact('claims', 'ticket_notes', 'airline', 'claim_files','claim_staus', 'expenses', 'responseDecoded', 'text'));
+       }
+
     }
 
     public function claimFileUpload(Request $request)
