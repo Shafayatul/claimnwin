@@ -8,7 +8,13 @@
 
 @section('page-title')
   <div class="page_title">
-    <h1 class="text-center">FAQ's</h1>
+    <h1 class="text-center">
+      @if ($responseDecoded)
+        {!! $responseDecoded['data']['translations'][0]['translatedText'] !!}
+      @else
+        {!! $text[0] !!}
+      @endif
+    </h1>
   </div>
 @endsection
 
@@ -18,7 +24,13 @@
       <div class="row">
         <div class="col-md-12">
           <div class="content_title_div text-center">
-            <h2>Frequently Asked Questions</h2>
+            <h2>
+              @if ($responseDecoded)
+                {!! $responseDecoded['data']['translations'][1]['translatedText'] !!}
+              @else
+                {!! $text[1] !!}
+              @endif
+            </h2>
           </div>
         </div>
       </div>
@@ -46,7 +58,14 @@
               </div>
             @endforeach
             @else
-                <h3 class="text-center text-info">No Faqs Here Now!!!</h3>
+                <h3 class="text-center text-info">
+                  @if ($responseDecoded)
+                    {!! $responseDecoded['data']['translations'][2]['translatedText'] !!}
+                  @else
+                    {!! $text[2] !!}
+                  @endif
+                  !!!
+                </h3>
             @endif
             </div>
             </div>

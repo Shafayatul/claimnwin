@@ -8,17 +8,32 @@
     <div class="row">
         <div class="col-md-12">
             <div class="page_title">
-                <h1>Get paid if you're in travel</h1>
+                <h1>
+                  @if ($responseDecoded)
+                    {!! $responseDecoded['data']['translations'][0]['translatedText'] !!}
+                  @else
+                    {!! $text[0] !!}
+                  @endif
+                </h1>
             </div>
             <div class="page_p">
                 <p>
-                    Join our affiliate program and begin earning money while helping
-                    fellow travellers in need.
+                  @if ($responseDecoded)
+                    {!! $responseDecoded['data']['translations'][1]['translatedText'] !!}
+                  @else
+                    {!! $text[1] !!}
+                  @endif
                 </p>
             </div>
             <div class="page_btn">
                 {{-- <a href="#" class="btn text-uppercase">sign up</a> --}}
-                <a href="{{route('user/signup')}}" class="btn text-uppercase">sign up</a>
+                <a href="{{route('user/signup')}}" class="btn text-uppercase">
+                  @if ($responseDecoded)
+                    {!! $responseDecoded['data']['translations'][2]['translatedText'] !!}
+                  @else
+                    {!! $text[2] !!}
+                  @endif
+                </a>
             </div>
         </div>
     </div>
@@ -40,8 +55,20 @@
                   </div>
                 </div>
                 <div class="how_it_works_text_div">
-                  <p class="how_it_works_text_upper_p_div">HIGH COMMISSION RATES</p>
-                  <p class="how_it_works_text_lower_p_div text-center">Claim'N Win offers some of the highest commision rates in the industry. Earn up to €185 per referral!</p>
+                  <p class="how_it_works_text_upper_p_div">
+                    @if ($responseDecoded)
+                      {!! $responseDecoded['data']['translations'][3]['translatedText'] !!}
+                    @else
+                      {!! $text[3] !!}
+                    @endif
+                  </p>
+                  <p class="how_it_works_text_lower_p_div text-center">
+                    @if ($responseDecoded)
+                      {!! $responseDecoded['data']['translations'][4]['translatedText'] !!}
+                    @else
+                      {!! $text[4] !!}
+                    @endif
+                  </p>
                 </div>
               </div>
               <div class="col-md-4 text-center margin_bottom">
@@ -51,10 +78,19 @@
                   </div>
                 </div>
                 <div class="how_it_works_text_div">
-                  <p class="how_it_works_text_upper_p_div">EASY TO SET UP</p>
+                  <p class="how_it_works_text_upper_p_div">
+                    @if ($responseDecoded)
+                      {!! $responseDecoded['data']['translations'][5]['translatedText'] !!}
+                    @else
+                      {!! $text[5] !!}
+                    @endif
+                  </p>
                   <p class="how_it_works_text_lower_p_div text-center">
-                    No programming knowledge needed. Simply
-                    sign up and pick the option you prefer.
+                    @if ($responseDecoded)
+                      {!! $responseDecoded['data']['translations'][6]['translatedText'] !!}
+                    @else
+                      {!! $text[6] !!}
+                    @endif
                   </p>
                 </div>
               </div>
@@ -65,11 +101,19 @@
                   </div>
                 </div>
                 <div class="how_it_works_text_div">
-                  <p class="how_it_works_text_upper_p_div">LONGEST LASTING COOKIES</p>
+                  <p class="how_it_works_text_upper_p_div">
+                    @if ($responseDecoded)
+                      {!! $responseDecoded['data']['translations'][7]['translatedText'] !!}
+                    @else
+                      {!! $text[7] !!}
+                    @endif
+                  </p>
                   <p class="how_it_works_text_lower_p_div text-center">
-                    Our cookie data lasts for 3 months!
-                    So even if users come back at a later point,
-                    we'll still allocate them to you.
+                    @if ($responseDecoded)
+                      {!! $responseDecoded['data']['translations'][8]['translatedText'] !!}
+                    @else
+                      {!! $text[8] !!}
+                    @endif
                   </p>
                 </div>
               </div>
@@ -89,9 +133,19 @@
                     </div>
                   </div>
                   <div class="how_it_works_text_div">
-                    <p class="how_it_works_text_upper_p_div">LOVED BY TRAVELLERS</p>
+                    <p class="how_it_works_text_upper_p_div">
+                      @if ($responseDecoded)
+                        {!! $responseDecoded['data']['translations'][9]['translatedText'] !!}
+                      @else
+                        {!! $text[9] !!}
+                      @endif
+                    </p>
                     <p class="how_it_works_text_lower_p_div text-center">
-                        Claim'N Win is rated 4.9 out of 5 stars. Show your visitors that you care about them too!
+                      @if ($responseDecoded)
+                        {!! $responseDecoded['data']['translations'][10]['translatedText'] !!}
+                      @else
+                        {!! $text[10] !!}
+                      @endif
                     </p>
                   </div>
                 </div>
@@ -102,11 +156,19 @@
                     </div>
                   </div>
                   <div class="how_it_works_text_div">
-                    <p class="how_it_works_text_upper_p_div">WE ARE GLOBAL</p>
+                    <p class="how_it_works_text_upper_p_div">
+                      @if ($responseDecoded)
+                        {!! $responseDecoded['data']['translations'][11]['translatedText'] !!}
+                      @else
+                        {!! $text[11] !!}
+                      @endif
+                    </p>
                     <p class="how_it_works_text_lower_p_div text-center">
-                        We are a truly global team and support
-                        travellers in 17 different languages.
-                        It's a small world, after all.
+                      @if ($responseDecoded)
+                        {!! $responseDecoded['data']['translations'][12]['translatedText'] !!}
+                      @else
+                        {!! $text[12] !!}
+                      @endif
                     </p>
                   </div>
                 </div>
@@ -117,11 +179,19 @@
                     </div>
                   </div>
                   <div class="how_it_works_text_div">
-                    <p class="how_it_works_text_upper_p_div">WE SUPPORT YOU</p>
+                    <p class="how_it_works_text_upper_p_div">
+                      @if ($responseDecoded)
+                        {!! $responseDecoded['data']['translations'][13]['translatedText'] !!}
+                      @else
+                        {!! $text[13] !!}
+                      @endif
+                    </p>
                     <p class="how_it_works_text_lower_p_div text-center">
-                        Just as we do for our customers,
-                        we're here to offer the support you need
-                        to get you started!
+                      @if ($responseDecoded)
+                        {!! $responseDecoded['data']['translations'][14]['translatedText'] !!}
+                      @else
+                        {!! $text[14] !!}
+                      @endif
                     </p>
                   </div>
                 </div>
@@ -138,25 +208,39 @@
         <div class="row margin_bottom">
             <div class="col-md-6">
                 <div class="travel_title">
-                    <h1>Get paid if you're in travel</h1>
+                    <h1>
+                      @if ($responseDecoded)
+                        {!! $responseDecoded['data']['translations'][15]['translatedText'] !!}
+                      @else
+                        {!! $text[15] !!}
+                      @endif
+                    </h1>
                 </div>
                 <div class="travel_p">
                     <p>
-                        Our affiliate program aims at reaching and helping even more <br>
-                        passengers get compensated when their flights are disrupted.
+                      @if ($responseDecoded)
+                        {!! $responseDecoded['data']['translations'][16]['translatedText'] !!}
+                      @else
+                        {!! $text[16] !!}
+                      @endif
                     </p>
                 </div>
                 <div class="travel_p">
                     <p>
-                        If you have a travel related website, a blog, or you are an influencer, <br>
-                        you can now earn money while providing even more value to your <br>
-                        audience. Simply sign up and get your unique link to post on <br>
-                        your website.
+                      @if ($responseDecoded)
+                        {!! $responseDecoded['data']['translations'][17]['translatedText'] !!}
+                      @else
+                        {!! $text[17] !!}
+                      @endif
                     </p>
                 </div>
                 <div class="travel_p">
                     <p>
-                        We'll still do all the work, but you'll get all the credit.
+                      @if ($responseDecoded)
+                        {!! $responseDecoded['data']['translations'][18]['translatedText'] !!}
+                      @else
+                        {!! $text[18] !!}
+                      @endif
                     </p>
                 </div>
             </div>
@@ -170,7 +254,13 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="what_customer_say_title_div text-center">
-                <h1>HOW IT WORKS</h1>
+                <h1>
+                  @if ($responseDecoded)
+                    {!! $responseDecoded['data']['translations'][19]['translatedText'] !!}
+                  @else
+                    {!! $text[19] !!}
+                  @endif
+                </h1>
                 </div>
             </div>
         </div>
@@ -184,12 +274,21 @@
 
                                 <div class="work_text">
                                     <div class="work_text_h1">
-                                        <h1>SIGN UP</h1>
+                                        <h1>
+                                          @if ($responseDecoded)
+                                            {!! $responseDecoded['data']['translations'][2]['translatedText'] !!}
+                                          @else
+                                            {!! $text[2] !!}
+                                          @endif
+                                        </h1>
                                     </div>
                                     <div class="work_text_p">
                                         <p>
-                                            Register in just a few simple steps and get
-                                            access to your dashboard
+                                          @if ($responseDecoded)
+                                            {!! $responseDecoded['data']['translations'][20]['translatedText'] !!}
+                                          @else
+                                            {!! $text[20] !!}
+                                          @endif
                                         </p>
                                     </div>
                                 </div>
@@ -202,12 +301,21 @@
                         </div>
                         <div class="work_text">
                             <div class="work_text_h1">
-                                <h1>PICK A REFERRAL METHOD</h1>
+                                <h1>
+                                  @if ($responseDecoded)
+                                    {!! $responseDecoded['data']['translations'][21]['translatedText'] !!}
+                                  @else
+                                    {!! $text[21] !!}
+                                  @endif
+                                </h1>
                             </div>
                             <div class="work_text_p">
                                 <p>
-                                    Register in just a few simple steps and get
-                                    a referral link.
+                                  @if ($responseDecoded)
+                                    {!! $responseDecoded['data']['translations'][22]['translatedText'] !!}
+                                  @else
+                                    {!! $text[22] !!}
+                                  @endif
                                 </p>
                             </div>
                         </div>
@@ -220,12 +328,21 @@
                         </div>
                         <div class="work_text">
                             <div class="work_text_h1">
-                                <h1>BEGIN EARNING MONEY</h1>
+                                <h1>
+                                  @if ($responseDecoded)
+                                    {!! $responseDecoded['data']['translations'][23]['translatedText'] !!}
+                                  @else
+                                    {!! $text[23] !!}
+                                  @endif
+                                </h1>
                             </div>
                             <div class="work_text_p">
                                 <p>
-                                    Promote your new service to your users
-                                    and begin earning money!
+                                  @if ($responseDecoded)
+                                    {!! $responseDecoded['data']['translations'][24]['translatedText'] !!}
+                                  @else
+                                    {!! $text[24] !!}
+                                  @endif
                                 </p>
                             </div>
                         </div>
@@ -243,18 +360,31 @@
         <div class="row margin_top_70">
             <div class="col-md-6">
                 <div class="become_an_affiliate_title">
-                    <h1>Help fellow travellers and earn money</h1>
+                    <h1>
+                      @if ($responseDecoded)
+                        {!! $responseDecoded['data']['translations'][25]['translatedText'] !!}
+                      @else
+                        {!! $text[25] !!}
+                      @endif
+                    </h1>
                 </div>
                 <div class="become_an_affiliate_p">
                     <p>
-                        Claim'N Win helps passengers get compensated when their flights <br>
-                        are disrupted. Join one of the best affiliate programs in travel <br>
-                        today! Our affiliate program aims at reaching and helping even <br>
-                        more passengers get compensated when their flights are disrupted.
+                      @if ($responseDecoded)
+                        {!! $responseDecoded['data']['translations'][26]['translatedText'] !!}
+                      @else
+                        {!! $text[26] !!}
+                      @endif
                     </p>
                 </div>
                 <div class="become_an_affiliate_btn">
-                    <a href="{{route('user/signup')}}" class="btn">BECOME AN AFFILIATE</a>
+                    <a href="{{route('user/signup')}}" class="btn">
+                      @if ($responseDecoded)
+                        {!! $responseDecoded['data']['translations'][27]['translatedText'] !!}
+                      @else
+                        {!! $text[27] !!}
+                      @endif
+                    </a>
                 </div>
             </div>
         </div>

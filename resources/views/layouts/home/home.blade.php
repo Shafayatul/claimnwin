@@ -19,19 +19,6 @@
                   @else
                     {!! $text[0] !!}
                   @endif
-                  <span class="extra_color">
-                    @if ($responseDecoded)
-                      {!! $responseDecoded['data']['translations'][1]['translatedText'] !!}
-                    @else
-                      {!! $text[1] !!}
-                    @endif
-                  </br>
-                    @if ($responseDecoded)
-                      {!! $responseDecoded['data']['translations'][2]['translatedText'] !!}
-                    @else
-                      {!! $text[2] !!}
-                    @endif
-                  </span>
                 </h1>
               </div>
             </div>
@@ -41,9 +28,9 @@
               <div class="home_top_header_title_p_div">
                 <p>
                   @if ($responseDecoded)
-                    {!! $responseDecoded['data']['translations'][3]['translatedText'] !!}
+                    {!! $responseDecoded['data']['translations'][1]['translatedText'] !!}
                   @else
-                    {!! $text[3] !!}
+                    {!! $text[1] !!}
                   @endif
                 </p>
               </div>
@@ -60,55 +47,55 @@
                       </div>
                       <div class="li_text_div">
                         @if ($responseDecoded)
+                          {!! $responseDecoded['data']['translations'][2]['translatedText'] !!}
+                        @else
+                          {!! $text[2] !!}
+                        @endif
+                        {!! $amount1 !!}
+                        @if ($responseDecoded)
+                          {!! $responseDecoded['data']['translations'][3]['translatedText'] !!}
+                        @else
+                          {!! $text[3] !!}
+                        @endif
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="li_mother_div">
+                      <div class="li_icon_div">
+                        <i class="fas fa-check-circle"></i>
+                      </div>
+                      <div class="li_text_div">
+                        @if ($responseDecoded)
+                          {!! $responseDecoded['data']['translations'][2]['translatedText'] !!}
+                        @else
+                          {!! $text[2] !!}
+                        @endif
+                        {!! $amount2 !!}
+                        @if ($responseDecoded)
                           {!! $responseDecoded['data']['translations'][4]['translatedText'] !!}
                         @else
                           {!! $text[4] !!}
                         @endif
-                        {!! $amount1 !!}
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="li_mother_div">
+                      <div class="li_icon_div">
+                        <i class="fas fa-check-circle"></i>
+                      </div>
+                      <div class="li_text_div">
+                        @if ($responseDecoded)
+                          {!! $responseDecoded['data']['translations'][2]['translatedText'] !!}
+                        @else
+                          {!! $text[2] !!}
+                        @endif
+                        {!! $amount3 !!}
                         @if ($responseDecoded)
                           {!! $responseDecoded['data']['translations'][5]['translatedText'] !!}
                         @else
                           {!! $text[5] !!}
-                        @endif
-                      </div>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="li_mother_div">
-                      <div class="li_icon_div">
-                        <i class="fas fa-check-circle"></i>
-                      </div>
-                      <div class="li_text_div">
-                        @if ($responseDecoded)
-                          {!! $responseDecoded['data']['translations'][4]['translatedText'] !!}
-                        @else
-                          {!! $text[4] !!}
-                        @endif
-                        {!! $amount2 !!}
-                        @if ($responseDecoded)
-                          {!! $responseDecoded['data']['translations'][6]['translatedText'] !!}
-                        @else
-                          {!! $text[6] !!}
-                        @endif
-                      </div>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="li_mother_div">
-                      <div class="li_icon_div">
-                        <i class="fas fa-check-circle"></i>
-                      </div>
-                      <div class="li_text_div">
-                        @if ($responseDecoded)
-                          {!! $responseDecoded['data']['translations'][4]['translatedText'] !!}
-                        @else
-                          {!! $text[4] !!}
-                        @endif
-                        {!! $amount3 !!}
-                        @if ($responseDecoded)
-                          {!! $responseDecoded['data']['translations'][7]['translatedText'] !!}
-                        @else
-                          {!! $text[7] !!}
                         @endif
                       </div>
                     </div>
@@ -125,9 +112,9 @@
                     <div class="col-md-6 col-xs-6 " style="margin: 0px; padding: 0px;">
                       <button class="common_button set_cache_claim" type="button" name="button">
                         @if ($responseDecoded)
-                          {!! $responseDecoded['data']['translations'][8]['translatedText'] !!}
+                          {!! $responseDecoded['data']['translations'][6]['translatedText'] !!}
                         @else
-                          {!! $text[8] !!}
+                          {!! $text[6] !!}
                         @endif
                       </button>
                     </div>
@@ -148,16 +135,16 @@
                 <div class="box_right_part_text_container">
                   <p class="home_top_header_option_text_p_title_div">
                     @if ($responseDecoded)
-                      {!! $responseDecoded['data']['translations'][9]['translatedText'] !!}
+                      {!! $responseDecoded['data']['translations'][7]['translatedText'] !!}
                     @else
-                      {!! $text[9] !!}
+                      {!! $text[7] !!}
                     @endif
                   </p>
                   <p class="home_top_header_option_text_p_normal_div">
                     @if ($responseDecoded)
-                      {!! $responseDecoded['data']['translations'][10]['translatedText'] !!}
+                      {!! $responseDecoded['data']['translations'][8]['translatedText'] !!}
                     @else
-                      {!! $text[10] !!}
+                      {!! $text[8] !!}
                     @endif
                   </p>
                 </div>
@@ -173,17 +160,17 @@
                 <div class="box_right_part_text_container">
                   <p class="home_top_header_option_text_p_title_div">
                     @if ($responseDecoded)
-                      {!! $responseDecoded['data']['translations'][11]['translatedText'] !!}
+                      {!! $responseDecoded['data']['translations'][9]['translatedText'] !!}
                     @else
-                      {!! $text[11] !!}
+                      {!! $text[9] !!}
                     @endif
                     {{$amount4}}
                   </p>
                   <p class="home_top_header_option_text_p_normal_div">
                     @if ($responseDecoded)
-                      {!! $responseDecoded['data']['translations'][12]['translatedText'] !!}
+                      {!! $responseDecoded['data']['translations'][10]['translatedText'] !!}
                     @else
-                      {!! $text[12] !!}
+                      {!! $text[10] !!}
                     @endif
                   </p>
                 </div>
@@ -199,16 +186,16 @@
                 <div class="box_right_part_text_container">
                   <p class="home_top_header_option_text_p_title_div">
                     @if ($responseDecoded)
-                      {!! $responseDecoded['data']['translations'][13]['translatedText'] !!}
+                      {!! $responseDecoded['data']['translations'][11]['translatedText'] !!}
                     @else
-                      {!! $text[13] !!}
+                      {!! $text[11] !!}
                     @endif
                   </p>
                   <p class="home_top_header_option_text_p_normal_div">
                     @if ($responseDecoded)
-                      {!! $responseDecoded['data']['translations'][14]['translatedText'] !!}
+                      {!! $responseDecoded['data']['translations'][12]['translatedText'] !!}
                     @else
-                      {!! $text[14] !!}
+                      {!! $text[12] !!}
                     @endif
                   </p>
                 </div>
@@ -224,16 +211,16 @@
                 <div class="box_right_part_text_container">
                   <p class="home_top_header_option_text_p_title_div">
                     @if ($responseDecoded)
-                      {!! $responseDecoded['data']['translations'][15]['translatedText'] !!}
+                      {!! $responseDecoded['data']['translations'][13]['translatedText'] !!}
                     @else
-                      {!! $text[15] !!}
+                      {!! $text[13] !!}
                     @endif
                   </p>
                   <p class="home_top_header_option_text_p_normal_div">
                     @if ($responseDecoded)
-                      {!! $responseDecoded['data']['translations'][16]['translatedText'] !!}
+                      {!! $responseDecoded['data']['translations'][14]['translatedText'] !!}
                     @else
-                      {!! $text[16] !!}
+                      {!! $text[14] !!}
                     @endif
                   </p>
                 </div>
@@ -326,9 +313,9 @@
             <div class="how_it_works_title_div text-center">
               <h1>
                 @if ($responseDecoded)
-                  {!! $responseDecoded['data']['translations'][17]['translatedText'] !!}
+                  {!! $responseDecoded['data']['translations'][15]['translatedText'] !!}
                 @else
-                  {!! $text[17] !!}
+                  {!! $text[15] !!}
                 @endif
               </h1>
             </div>
@@ -340,6 +327,29 @@
               <div class="how_it_works_background_icon_div">
                 <div class="how_it_works_icon_div">
                   <img src="{{ asset('/front_asset/front_pages_asset/img/homepage_how_it_works_compensation.png') }}" alt="">
+                </div>
+              </div>
+              <div class="how_it_works_text_div">
+                <p class="how_it_works_text_upper_p_div">
+                  @if ($responseDecoded)
+                    {!! $responseDecoded['data']['translations'][16]['translatedText'] !!}
+                  @else
+                    {!! $text[16] !!}
+                  @endif
+                </p>
+                <p class="how_it_works_text_lower_p_div">
+                  @if ($responseDecoded)
+                    {!! $responseDecoded['data']['translations'][17]['translatedText'] !!}
+                  @else
+                    {!! $text[17] !!}
+                  @endif
+                </p>
+              </div>
+            </div>
+            <div class="col-md-4 text-center margin_bottom">
+              <div class="how_it_works_background_icon_div">
+                <div class="how_it_works_icon_div">
+                  <img src="{{ asset('/front_asset/front_pages_asset/img/homepage_how_it_works_admin_setting_male.png') }}" alt="">
                 </div>
               </div>
               <div class="how_it_works_text_div">
@@ -362,7 +372,7 @@
             <div class="col-md-4 text-center margin_bottom">
               <div class="how_it_works_background_icon_div">
                 <div class="how_it_works_icon_div">
-                  <img src="{{ asset('/front_asset/front_pages_asset/img/homepage_how_it_works_admin_setting_male.png') }}" alt="">
+                  <img src="{{ asset('/front_asset/front_pages_asset/img/homepage_how_it_works_receive_cash.png') }}" alt="">
                 </div>
               </div>
               <div class="how_it_works_text_div">
@@ -378,29 +388,6 @@
                     {!! $responseDecoded['data']['translations'][21]['translatedText'] !!}
                   @else
                     {!! $text[21] !!}
-                  @endif
-                </p>
-              </div>
-            </div>
-            <div class="col-md-4 text-center margin_bottom">
-              <div class="how_it_works_background_icon_div">
-                <div class="how_it_works_icon_div">
-                  <img src="{{ asset('/front_asset/front_pages_asset/img/homepage_how_it_works_receive_cash.png') }}" alt="">
-                </div>
-              </div>
-              <div class="how_it_works_text_div">
-                <p class="how_it_works_text_upper_p_div">
-                  @if ($responseDecoded)
-                    {!! $responseDecoded['data']['translations'][22]['translatedText'] !!}
-                  @else
-                    {!! $text[22] !!}
-                  @endif
-                </p>
-                <p class="how_it_works_text_lower_p_div">
-                  @if ($responseDecoded)
-                    {!! $responseDecoded['data']['translations'][23]['translatedText'] !!}
-                  @else
-                    {!! $text[23] !!}
                   @endif
                 </p>
               </div>
@@ -422,9 +409,9 @@
                 <div class="what_customer_say_title_div text-center">
                 <h1>
                   @if ($responseDecoded)
-                    {!! $responseDecoded['data']['translations'][24]['translatedText'] !!}
+                    {!! $responseDecoded['data']['translations'][22]['translatedText'] !!}
                   @else
-                    {!! $text[24] !!}
+                    {!! $text[22] !!}
                   @endif
                 </h1>
                 </div>
@@ -460,13 +447,13 @@
                                 @endif
                             </div>
                             <div class="sliding_div_title_p_div">
-                                <p>{!! $review->title !!}</p>
+                                <p>{{ $review->title }}</p>
                             </div>
                             <div class="sliding_div_text_p_div" style="overflow:hidden;">
                                 {!! $review->description !!}
                             </div>
                             <div class="sliding_div_customer_name_div">
-                                <p>{!! $review->name !!}</p>
+                                <p>{{ $review->name }}</p>
                             </div>
                         </div>
                         @endforeach
@@ -487,9 +474,9 @@
           <div class="our_process_div_title_div text-center">
             <h1>
               @if ($responseDecoded)
-                {!! $responseDecoded['data']['translations'][25]['translatedText'] !!}
+                {!! $responseDecoded['data']['translations'][23]['translatedText'] !!}
               @else
-                {!! $text[25] !!}
+                {!! $text[23] !!}
               @endif
             </h1>
           </div>
@@ -504,22 +491,10 @@
             <div class="our_process_lower_div_icon_text_div text-center">
               <p>
                 @if ($responseDecoded)
-                  {!! $responseDecoded['data']['translations'][26]['translatedText'] !!}
+                  {!! $responseDecoded['data']['translations'][24]['translatedText'] !!}
                 @else
-                  {!! $text[26] !!}
+                  {!! $text[24] !!}
                 @endif
-              </br>
-              @if ($responseDecoded)
-                {!! $responseDecoded['data']['translations'][27]['translatedText'] !!}
-              @else
-                {!! $text[27] !!}
-              @endif
-              </br>
-              @if ($responseDecoded)
-                {!! $responseDecoded['data']['translations'][28]['translatedText'] !!}
-              @else
-                {!! $text[28] !!}
-              @endif
               </p>
             </div>
           </div>
@@ -530,15 +505,9 @@
             <div class="our_process_lower_div_icon_text_div text-center">
               <p>
                 @if ($responseDecoded)
-                  {!! $responseDecoded['data']['translations'][29]['translatedText'] !!}
+                  {!! $responseDecoded['data']['translations'][25]['translatedText'] !!}
                 @else
-                  {!! $text[29] !!}
-                @endif
-              </br>
-                @if ($responseDecoded)
-                  {!! $responseDecoded['data']['translations'][30]['translatedText'] !!}
-                @else
-                  {!! $text[30] !!}
+                  {!! $text[25] !!}
                 @endif
               </p>
             </div>
@@ -551,21 +520,9 @@
             <div class="our_process_lower_div_icon_text_div text-center">
               <p>
                 @if ($responseDecoded)
-                  {!! $responseDecoded['data']['translations'][31]['translatedText'] !!}
+                  {!! $responseDecoded['data']['translations'][26]['translatedText'] !!}
                 @else
-                  {!! $text[31] !!}
-                @endif
-              </br>
-                @if ($responseDecoded)
-                  {!! $responseDecoded['data']['translations'][32]['translatedText'] !!}
-                @else
-                  {!! $text[32] !!}
-                @endif
-              </br>
-                @if ($responseDecoded)
-                  {!! $responseDecoded['data']['translations'][33]['translatedText'] !!}
-                @else
-                  {!! $text[33] !!}
+                  {!! $text[26] !!}
                 @endif
               </p>
             </div>
@@ -577,21 +534,9 @@
             <div class="our_process_lower_div_icon_text_div text-center">
               <p>
                 @if ($responseDecoded)
-                  {!! $responseDecoded['data']['translations'][34]['translatedText'] !!}
+                  {!! $responseDecoded['data']['translations'][27]['translatedText'] !!}
                 @else
-                  {!! $text[34] !!}
-                @endif
-              </br>
-                @if ($responseDecoded)
-                  {!! $responseDecoded['data']['translations'][35]['translatedText'] !!}
-                @else
-                  {!! $text[35] !!}
-                @endif
-              </br>
-                @if ($responseDecoded)
-                  {!! $responseDecoded['data']['translations'][36]['translatedText'] !!}
-                @else
-                  {!! $text[36] !!}
+                  {!! $text[27] !!}
                 @endif
               </p>
             </div>
@@ -610,21 +555,9 @@
           <div class="about_us_middle_content_paragraph">
             <p>
               @if ($responseDecoded)
-                {!! $responseDecoded['data']['translations'][37]['translatedText'] !!}
+                {!! $responseDecoded['data']['translations'][28]['translatedText'] !!}
               @else
-                {!! $text[37] !!}
-              @endif
-            </br>
-              @if ($responseDecoded)
-                {!! $responseDecoded['data']['translations'][38]['translatedText'] !!}
-              @else
-                {!! $text[38] !!}
-              @endif
-            </br>
-              @if ($responseDecoded)
-                {!! $responseDecoded['data']['translations'][39]['translatedText'] !!}
-              @else
-                {!! $text[39] !!}
+                {!! $text[28] !!}
               @endif
             </p>
           </div>
@@ -634,9 +567,9 @@
           <div class="about_us_middle_content_button text-center">
             <button type="button" name="button">
               @if ($responseDecoded)
-                {!! $responseDecoded['data']['translations'][40]['translatedText'] !!}
+                {!! $responseDecoded['data']['translations'][29]['translatedText'] !!}
               @else
-                {!! $text[40] !!}
+                {!! $text[29] !!}
               @endif
             </button>
           </div>
@@ -653,15 +586,12 @@
 @section('footer-script')
   <script type="text/javascript">
     $(document).ready(function(){
-
-
       if ($( window ).width() > 767) {
         $(".slider-area").slick({
             dots: true,
             infinite: true,
             slidesToShow: 4,
             slidesToScroll: 1
-
           });
       }else {
         $(".slider-area").slick({
@@ -669,27 +599,16 @@
             infinite: true,
             slidesToShow: 1,
             slidesToScroll: 1
-
           });
       }
-
-
       if ($( window ).width() < 360) {
         $('.clearfix_display_none').show();
       }else {
         $('.clearfix_display_none').hide();
       }
-
-
-
       $('.set_cache_claim').click(function(){
           window.location.href = "{{url('/form-claim')}}";
       });
-
-
-
     });
-
-
   </script>
 @endsection
