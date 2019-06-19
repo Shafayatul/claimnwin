@@ -181,38 +181,7 @@ class UserPanelController extends Controller
     ->linkedin('Extra linkedin summary can be passed here');
     $whatsapp=Share::page($link,null,['id' => 'whatsapp'])
     ->whatsapp();
-
-    $text[0] = "Hello";
-    $text[1] = "</br></br>Welcome to your affiliate control panel. Please manage your accounts via the left hand menu. To view the menu click the hamburger icon above. Please keep your contact/payment details up to date and we recommend you change your password from time to time for security.</br></br>To get started, view the product section for promotional materials and commission information.</br></br>Any problems, please let us know.";
-    $text[2] = "Latest 5 Refferals";
-    $text[3] = "Show All";
-    $text[4] = "DateTime";
-    $text[5] = "Claim Id";
-    $text[6] = "Commsion Amount";
-    $text[7] = "Latest 5 Pending Payments";
-    $text[8] = "Latest 5 Payments";
-    $text[9] = "Unique Affiliate Code";
-    $text[10] = "Affiliate Overview";
-    $text[11] = "Referrals";
-    $text[12] = "Commissions";
-    $text[13] = "Payments";
-    $text[14] = "Last Payment";
-    $text[15] = "Terms & Condition";
-    $text[16] = "We may collect personal identification information from Users, including but not limited to, when Users visit our site, register their information on the website by completing, ...";
-    $text[17] = "More Information";
-    $text[18] = "Contact Us";
-    $text[19] = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's.";
-
-    if (Session::has('locale')) {
-      $responseDecoded = $this->get_translation($text);
-      return view ('front-end.user.user_panel_affiliate', compact('encrypt_user_id','facebook','twitter','linkedin','whatsapp', 'responseDecoded', 'text'));
-
-    }else {
-      $responseDecoded = null;
-      return view ('front-end.user.user_panel_affiliate', compact('encrypt_user_id','facebook','twitter','linkedin','whatsapp', 'responseDecoded', 'text'));
-    }
-
-
+      return view ('front-end.user.user_panel_affiliate', compact('encrypt_user_id','facebook','twitter','linkedin','whatsapp'));
     }
 
     public function user_ticket_message(Request $request)
@@ -244,7 +213,36 @@ class UserPanelController extends Controller
         $all_payments=Affiliate::where('affiliate_user_id',$user_id)->where('approved',1)->get();
         $last_payments = Affiliate::where('affiliate_user_id',$user_id)->where('approved',1)->latest()->first();
         $pending_payments=Affiliate::where('affiliate_user_id',$user_id)->where('approved',0)->limit(5)->get();
-        return view('front-end.user.user_panel_affiliate_info',compact('last_payments','all_payments','commision_sum_amount','referral_count_data','referral_ids','payments','pending_payments', 'encrypt_user_id'));
+
+        $text[0] = "Hello";
+        $text[1] = "</br></br>Welcome to your affiliate control panel. Please manage your accounts via the left hand menu. To view the menu click the hamburger icon above. Please keep your contact/payment details up to date and we recommend you change your password from time to time for security.</br></br>To get started, view the product section for promotional materials and commission information.</br></br>Any problems, please let us know.";
+        $text[2] = "Latest 5 Refferals";
+        $text[3] = "Show All";
+        $text[4] = "DateTime";
+        $text[5] = "Claim Id";
+        $text[6] = "Commsion Amount";
+        $text[7] = "Latest 5 Pending Payments";
+        $text[8] = "Latest 5 Payments";
+        $text[9] = "Unique Affiliate Code";
+        $text[10] = "Affiliate Overview";
+        $text[11] = "Referrals";
+        $text[12] = "Commissions";
+        $text[13] = "Payments";
+        $text[14] = "Last Payment";
+        $text[15] = "Terms & Condition";
+        $text[16] = "We may collect personal identification information from Users, including but not limited to, when Users visit our site, register their information on the website by completing, ...";
+        $text[17] = "More Information";
+        $text[18] = "Contact Us";
+        $text[19] = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's.";
+
+        if (Session::has('locale')) {
+          $responseDecoded = $this->get_translation($text);
+          return view('front-end.user.user_panel_affiliate_info',compact('last_payments','all_payments','commision_sum_amount','referral_count_data','referral_ids','payments','pending_payments', 'encrypt_user_id', 'responseDecoded', 'text'));
+
+        }else {
+          $responseDecoded = null;
+          return view('front-end.user.user_panel_affiliate_info',compact('last_payments','all_payments','commision_sum_amount','referral_count_data','referral_ids','payments','pending_payments', 'encrypt_user_id', 'responseDecoded', 'text'));
+        }
    }
 
    public function allRefferalDataView($id)
