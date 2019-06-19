@@ -29,10 +29,12 @@
 
                 <li class="dropdown country">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                    <img src="{{asset('front_asset/')}}/img/flag.png" alt="Flag">
+                    <img src="{{asset($flag_url)}}" alt="Flag" style="width:30px">
                     <span class="caret"></span>
                   </a>
                   <ul class="dropdown-menu">
+                    <li><a href="{{url('change-language/en')}}"> <img src="{{asset('front_asset/img/country-flags/flag.png')}}" alt=""> </a></li>
+                    <li><a href="{{url('change-language/yi')}}"> <img src="{{ asset('front_asset/img/country-flags/Flag_of_Israel.png')}}" alt=""> </a></li>
                     <li><a href="{{url('change-language/af')}}"> <img src="{{ asset('front_asset/img/country-flags/Flag_of_South_Africa.png')}}" alt=""></a></li>
                     <li><a href="{{url('change-language/ga')}}"><img src="{{ asset('front_asset/img/country-flags/Flag_of_Ireland.png')}}" alt=""> </a></li>
                     <li><a href="{{url('change-language/sq')}}"><img src="{{ asset('front_asset/img/country-flags/Flag_of_Albania.png')}}" alt=""> </a></li>
@@ -63,7 +65,6 @@
                     <li><a href="{{url('change-language/pl')}}"> <img src="{{ asset('front_asset/img/country-flags/Flag_of_Poland.png')}}" alt=""> </a></li>
                     <li><a href="{{url('change-language/nl')}}"> <img src="{{ asset('front_asset/img/country-flags/Flag_of_the_Netherlands.png')}}" alt=""> </a></li>
                     <li><a href="{{url('change-language/pt')}}"> <img src="{{ asset('front_asset/img/country-flags/Flag_of_Portugal.png')}}" alt=""> </a></li>
-                    <li><a href="{{url('change-language/en')}}"> <img src="{{asset('front_asset/img/country-flags/flag.png')}}" alt=""> </a></li>
                     <li><a href="{{url('change-language/ro')}}"> <img src="{{ asset('front_asset/img/country-flags/Flag_of_Romania.png')}}" alt=""> </a></li>
                     {{-- <li><a href="{{url('change-language/eo')}}">Esperanto</a></li> --}}
                     <li><a href="{{url('change-language/ru')}}"> <img src="{{ asset('front_asset/img/country-flags/Flag_of_Russia.png')}}" alt=""> </a></li>
@@ -96,22 +97,38 @@
                     <li><a href="{{url('change-language/is')}}"> <img src="{{ asset('front_asset/img/country-flags/Flag_of_Iceland.png')}}" alt=""> </a></li>
                     {{-- <li><a href="{{url('change-language/cy')}}">Welsh</a></li> --}}
                     <li><a href="{{url('change-language/id')}}"> <img src="{{ asset('front_asset/img/country-flags/Flag_of_Indonesia.png')}}" alt=""> </a></li>
-                    <li><a href="{{url('change-language/yi')}}"> <img src="{{ asset('front_asset/img/country-flags/Flag_of_Israel.png')}}" alt=""> </a></li>
                   </ul>
                 </li>
                 @guest
                 <li class="login">
                   <a href="{{ route('user/login') }}">
                     <img src="{{asset('front_asset/')}}/img/lock.png" alt="lock icon">
-                    login
+                    @if ($translated_menu)
+                      {{ $translated_menu['data']['translations'][4]['translatedText']}}
+                    @else
+                        {{ $menu_t[4]}}
+                    @endif
                   </a>
                 </li>
-                <li class="signup"><a href="{{route('user/signup')}}">sign up</a></li>
+                <li class="signup"><a href="{{route('user/signup')}}">
+                    @if ($translated_menu)
+                      {{ $translated_menu['data']['translations'][5]['translatedText']}}
+                    @else
+                        {{ $menu_t[5]}}
+                    @endif
+                </a></li>
                 @endguest
 
                 @auth
                    <li class="signup">
-                      <a href="{{ route('logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-sign-out-alt"></i> Logout</a>
+                      <a href="{{ route('logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-sign-out-alt"></i> 
+                        @if ($translated_menu)
+                          {{ $translated_menu['data']['translations'][26]['translatedText']}}
+                        @else
+                            {{ $menu_t[26]}}
+                        @endif
+
+                      </a>
                       <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                           @csrf
                       </form>
@@ -120,10 +137,42 @@
 
               </ul>
               <ul class="nav navbar-nav navbar-right text-uppercase main-menu">
-                <li><a href="{{url('/faq')}}">faq</a></li>
-                <li><a href="{{url('/press-blog')}}">blog</a></li>
-                <li><a href="{{url('/your-rights')}}">Your Rights</a></li>
-                <li><a href="{{url('/partner')}}">become a partner</a></li>
+                 <li>
+                  <a href="{{url('/faq')}}">
+                    @if ($translated_menu)
+                      {{ $translated_menu['data']['translations'][0]['translatedText']}}
+                    @else
+                        {{ $menu_t[0]}}
+                    @endif
+                  </a>
+                </li>
+                <li>
+                  <a href="{{url('/press-blog')}}">
+                    @if ($translated_menu)
+                      {{ $translated_menu['data']['translations'][1]['translatedText']}}
+                    @else
+                        {{ $menu_t[1]}}
+                    @endif
+                  </a>
+                </li>
+                <li>
+                  <a href="{{url('/your-rights')}}">
+                    @if ($translated_menu)
+                      {{ $translated_menu['data']['translations'][2]['translatedText']}}
+                    @else
+                        {{ $menu_t[2]}}
+                    @endif
+                  </a>
+                </li>
+                <li>
+                  <a href="{{url('/partner')}}">
+                    @if ($translated_menu)
+                      {{ $translated_menu['data']['translations'][3]['translatedText']}}
+                    @else
+                        {{ $menu_t[3]}}
+                    @endif
+                  </a>
+                </li> 
               </ul>
             </div><!-- /.navbar-collapse -->
           </div><!-- /.container-fluid -->
