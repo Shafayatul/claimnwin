@@ -553,7 +553,7 @@ class ClaimsController extends Controller
             foreach ($request->first_name as $single_first_name) {
                 if ($single_first_name != "") {
                     if ($cnt==0) {
-                        $cpanel_email_name      = $request->first_name[0].'0'.$claim->id;
+                        $cpanel_email_name      = $this->get_cpanel_email_name($request->first_name[0], $claim->id);
                         $passenger_address      = $request->address[$cnt];
                         $passenger_email        = $email;
                     }else{
@@ -677,8 +677,7 @@ class ClaimsController extends Controller
         * Create custom email
         */
         $cpanel_password  = $this->randomPassword();
-
-        // $this->create_cpanel_email($cpanel_email_name, $cpanel_password);
+        $this->create_cpanel_email($cpanel_email_name, $cpanel_password);
         $cpanel_email     = $cpanel_email_name.'@freeflightclaim.com';
 
 
@@ -759,6 +758,14 @@ class ClaimsController extends Controller
 
     }
 
+
+
+    public function get_cpanel_email_name($first_name, $claim_id){
+        $id = $claim_id-10000000;
+        $first_word_of_first_name = explode(' ', preg_replace("/[^A-Za-z0-9 ]/", '', $first_name));
+        return $first_word_of_first_name[0].'0'.$id;
+
+    }
 
     public function currency_converter_url(Request $request){
 
