@@ -473,17 +473,19 @@ nav {
 
 
 .country .dropdown-menu {
-  min-width: 40px !important;
+  min-width: 170px !important;
   height: 300px !important;
   overflow: scroll;
   width: 30px !important;
   padding: 5px;
+  padding-bottom: 15px;
   top: calc(100% - 10px);
   left: calc(50% - 5px);
   -webkit-transform: translateX(-50%);
   -ms-transform: translateX(-50%);
   -o-transform: translateX(-50%);
   transform: translateX(-50%);
+  background-color: #fff !important;
 }
 
 .country .dropdown-menu li {
@@ -492,10 +494,15 @@ nav {
 
 .country .dropdown-menu a {
   padding: 0 !important;
+  -webkit-transform:scale(1) !important;
+  transition-duration: 1s !important;
+  font-size: 9px;
 }
 
 .country .dropdown-menu a img {
   border: 1px solid #000;
+  width: 25px;
+  margin-right: 4px;
 }
 
 ::-webkit-scrollbar {
@@ -695,7 +702,6 @@ footer {
     border: 3px solid gray;
     border-radius: 12px;
 }
-
 
 /*@media (max-width: 1405px) {
   .container {
