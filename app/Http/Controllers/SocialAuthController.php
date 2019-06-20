@@ -19,7 +19,7 @@ class SocialAuthController extends Controller
 
         $user = Socialite::driver($provider)->user();
         $authUser = User::where('provider_id', $user->id)->first();
-        if($authUser){
+        if($authUser != ''){
             auth()->login($authUser,true);
             return redirect('/user-home');
         }else{

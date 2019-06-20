@@ -344,7 +344,6 @@ class TicketsController extends Controller
 
     public function ticketReplyDataSave(Request $request)
     {
-
         $composeData = $request->ticket_reply_note;
         if($request->hasFile('ticket_reply_files')){
             $files = $request->file('ticket_reply_files');

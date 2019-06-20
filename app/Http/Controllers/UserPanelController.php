@@ -315,11 +315,11 @@ class UserPanelController extends Controller
 
         if (Session::has('locale')) {
           $responseDecoded = $this->get_translation($text);
-          return return view('front-end.user.user_panel_refferal_all',compact('allReferral', 'responseDecoded', 'text'));
+          return view('front-end.user.user_panel_refferal_all',compact('allReferral', 'responseDecoded', 'text'));
 
         }else {
           $responseDecoded = null;
-          return return view('front-end.user.user_panel_refferal_all',compact('allReferral', 'responseDecoded', 'text'));
+          return view('front-end.user.user_panel_refferal_all',compact('allReferral', 'responseDecoded', 'text'));
         }
    }
 

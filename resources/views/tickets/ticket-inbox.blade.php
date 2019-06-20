@@ -156,7 +156,7 @@
                                         @if($item->status != 3)
                                             {!! Form::open([
                                                 'method'=>'POST',
-                                                'url' => ['/close-ticket/', $item->id],
+                                                'url' => ['/close-ticket', $item->id],
                                                 'style' => 'display:inline'
                                             ]) !!}
                                             {!! Form::button('<i class="fa fa-window-close" aria-hidden="true"></i> Close', array(

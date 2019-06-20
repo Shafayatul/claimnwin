@@ -155,7 +155,7 @@ Route::group(['middleware' => ['auth']], function() {
         Route::resource('tickets', 'TicketsController');
         Route::resource('ticket-notes', 'TicketNotesController');
         Route::post('/ticket-description', 'TicketNotesController@ticketDescriptionSave')->name('ticket-description');
-        Route::get('/close-ticket/{id}', 'TicketsController@closeTicket');
+        Route::post('/close-ticket/{id}', 'TicketsController@closeTicket');
         Route::post('/ticket-assign-user', 'TicketsController@ticketAssignUser')->name('ticket.user.assign');
         Route::post('/ajax/ticket/assign', 'TicketsController@ajax_ticket_assign');
         Route::post('/ajax/ticket/priority', 'TicketsController@ajax_ticket_priority');
@@ -192,7 +192,7 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get('/ticket-reply-view/{id}', 'TicketsController@ticketReplyView');
         Route::get('/from-email-view-pdf/{id}', 'TicketsController@fromEmailViewPdf');
         Route::get('/reply-email-view-pdf/{id}','TicketsController@replyEmailViewPdf');
-        Route::post('/ticket-reply-data', 'TicketsController@ticketReplyDataSave')->name('ticket-reply-data');
+
 
         Route::post('/update-affilite-info-data', 'ClaimBackController@updateAffiliteInfoData')->name('update-affilite-info-data');
 
@@ -207,7 +207,7 @@ Route::group(['middleware' => ['auth']], function() {
 });
 
 
-
+        Route::post('/ticket-reply-data', 'TicketsController@ticketReplyDataSave')->name('ticket-reply-data');
 
 Route::resource('sent-emails', 'SentEmailsController');
 
