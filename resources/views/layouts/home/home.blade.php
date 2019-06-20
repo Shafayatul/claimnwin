@@ -447,10 +447,13 @@
                                 @endif
                             </div>
                             <div class="sliding_div_title_p_div">
-                                <p>{{ $review->title }}</p>
+                                <p>
+                                  {!! Str::limit($review->title, 30) !!}
+                                  {{-- {{ $review->title }} --}}
+                                </p>
                             </div>
                             <div class="sliding_div_text_p_div" style="overflow:hidden;">
-                                {!! $review->description !!}
+                                {!! Str::limit($review->description, 100) !!}
                             </div>
                             <div class="sliding_div_customer_name_div">
                                 <p>{{ $review->name }}</p>
