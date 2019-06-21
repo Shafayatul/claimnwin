@@ -61,7 +61,7 @@
                 <li><a href="{{url('/your-rights')}}">Your Rights</a></li>
                 <li><a href="{{url('/partner')}}">become a partner</a></li> --}}
                 <li><a href="{{ URL::to('/user-home') }}">My Claims</a></li>
-                <li><a href="{{ URL::to('/affiliate-info') }}">Affiliate</a></li>
+                <li><a href="{{ URL::to('/affiliate') }}">Affiliate</a></li>
                 {{-- <li><a href="{{URL::to('/affiliate-info')}}">Affiliate Info</a></li> --}}
                 <li><a href="{{ URL('/faq') }}">FAQs</a></li>
               </ul>
