@@ -26,6 +26,7 @@ use App\ClaimFile;
 use App\Classes\cPanel;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\PasswordSent;
+use App\Mail\ClaimCompleted;
 use Victorybiz\GeoIPLocation\GeoIPLocation;
 use App\Affiliate;
 use Illuminate\Support\Facades\Cache;
@@ -457,6 +458,7 @@ class ClaimsController extends Controller
                 $user->save();
 
                 Mail::to($email)->send(new PasswordSent($email,$pass));
+                
             }else{
                 $user = User::where('email', $email)->first();
             }
@@ -677,7 +679,7 @@ class ClaimsController extends Controller
         * Create custom email
         */
         $cpanel_password  = $this->randomPassword();
-        $this->create_cpanel_email($cpanel_email_name, $cpanel_password);
+        // $this->create_cpanel_email($cpanel_email_name, $cpanel_password);
         $cpanel_email     = $cpanel_email_name.'@freeflightclaim.com';
 
 
@@ -754,6 +756,15 @@ class ClaimsController extends Controller
         }else{
             $amount = $amount_and_distance[0];
         }
+
+
+        // 
+        $ittDetails = ItineraryDetail::where('claim_id',$claim->id)->where('is_selected','1')->first();
+        $passengers = Passenger::where('claim_id',$claim->id)->get();
+        Mail::to($user->email)->send(new ClaimCompleted($user, $ittDetails, $passengers));
+
+
+
         return view('front-end.claim.success',compact('amount'));
 
     }

@@ -9,6 +9,11 @@ use App\Mail\OrderShipped;
 use Illuminate\Support\Facades\Mail;
 
 use Illuminate\Support\Facades\Cache;
+use App\Claim;
+use App\User;
+use App\ItineraryDetail;
+use App\Passenger;
+use App\Mail\ClaimCompleted;
 use Artisan;
 
 class TestsController extends Controller
@@ -27,9 +32,11 @@ class TestsController extends Controller
         );
     }
     public function test(Request $request){
-    	
-        $exitCode = Artisan::call('storage:link', [] );
-dd($exitCode); // 0 exit code for no errors.
+        $claim = Claim::where('id', '10000022')->first();
+        $user = User::where('id', '84')->first();
+        $ittDetails = ItineraryDetail::where('claim_id',$claim->id)->where('is_selected','1')->first();
+        $passengers = Passenger::where('claim_id',$claim->id)->get();
+        Mail::to($user->email)->send(new ClaimCompleted($user, $ittDetails, $passengers));
     }
 
 
