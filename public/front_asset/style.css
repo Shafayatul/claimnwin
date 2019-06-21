@@ -519,8 +519,21 @@ nav {
     background: #eee
 }​
 
-
-
+/**/
+.flag-dropdown::-webkit-scrollbar {
+    width: 0em;
+    height: 0em
+}
+.flag-dropdown::-webkit-scrollbar-button {
+    background: #fff;
+    display: none;
+}
+.flag-dropdown::-webkit-scrollbar-track-piece {
+    background: #fff;
+}
+.flag-dropdown::-webkit-scrollbar-thumb {
+    background: #fff;
+}​
 
 
 .login img {

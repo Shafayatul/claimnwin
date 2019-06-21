@@ -42,7 +42,7 @@ Route::get('/contact-us','FrontsController@contactUs');
 Route::get('/faq','FrontsController@faq');
 Route::get('/terms-and-conditions','FrontsController@termsAndConditions');
 Route::get('/privacy-policy','FrontsController@privacyPolicy');
-Route::get('/pricing-list','FrontsController@pricingList');
+// Route::get('/pricing-list','FrontsController@pricingList');
 Route::get('/press-blog','FrontsController@pressBlog');
 Route::get('/your-rights','FrontsController@yourRights');
 Route::get('/single-blog/{title}/{id}','FrontsController@singleBlogView');
@@ -207,7 +207,7 @@ Route::group(['middleware' => ['auth']], function() {
 });
 
 
-        Route::post('/ticket-reply-data', 'TicketsController@ticketReplyDataSave')->name('ticket-reply-data');
+Route::post('/ticket-reply-data', 'TicketsController@ticketReplyDataSave')->name('ticket-reply-data');
 
 Route::resource('sent-emails', 'SentEmailsController');
 
