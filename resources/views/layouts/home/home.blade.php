@@ -446,17 +446,32 @@
                                 <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
                                 @endif
                             </div>
+
                             <div class="sliding_div_title_p_div">
                                 <p>
-                                  {!! Str::limit($review->title, 30) !!}
-                                  {{-- {{ $review->title }} --}}
+                                  @if ($responseDecoded)
+                                    {!! $review_title['data']['translations'][$loop->index]['translatedText'] !!}
+                                  @else
+                                    {!! $review_title[$loop->index] !!}
+                                  @endif
                                 </p>
                             </div>
                             <div class="sliding_div_text_p_div" style="overflow:hidden;">
-                                {!! Str::limit($review->description, 100) !!}
+                                  @if ($responseDecoded)
+                                    {!! $review_description['data']['translations'][$loop->index]['translatedText'] !!}
+                                  @else
+                                    {!! $review_description[$loop->index] !!}
+                                  @endif
+                                {{-- {!! Str::limit($review->description, 100) !!} --}}
                             </div>
                             <div class="sliding_div_customer_name_div">
-                                <p>{{ $review->name }}</p>
+                                <p>
+                                  @if ($responseDecoded)
+                                    {!! $review_name['data']['translations'][$loop->index]['translatedText'] !!}
+                                  @else
+                                    {!! $review_name[$loop->index] !!}
+                                  @endif
+                                </p>
                             </div>
                         </div>
                         @endforeach

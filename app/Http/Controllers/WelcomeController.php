@@ -8,6 +8,7 @@ use App\Currency;
 use Victorybiz\GeoIPLocation\GeoIPLocation;
 use App\Review;
 use Session;
+use Illuminate\Support\Str;
 
 class WelcomeController extends Controller
 {
@@ -40,8 +41,42 @@ class WelcomeController extends Controller
     	$amount1 = $this->currency_converter_url('1300 EUR');
     	$amount2 = $this->currency_converter_url('3400 EUR');
     	$amount3 = $this->currency_converter_url('7000 EUR');
-        $amount4 = $this->currency_converter_url('600 EUR');
-        $reviews = Review::all();
+      $amount4 = $this->currency_converter_url('600 EUR');
+
+      $reviews = Review::limit(7)->latest()->get();
+
+      $review_text      = [];
+      $data_star        = [];
+      $data_title       = [];
+      $data_description = [];
+      $data_name        = [];
+
+      $all_title        = '';
+      $all_description  = '';
+      $all_name         = '';
+      $cnt = 0;
+      foreach ($reviews as $single_review) {
+        array_push($data_star, $single_review->star);
+        array_push($data_title, Str::limit($single_review->title, 30));
+        array_push($data_description, Str::limit($single_review->description, 100));
+        array_push($data_name, Str::limit($single_review->name, 30));
+      }
+      $review_title       = $this->get_translation($data_title);
+      $review_description = $this->get_translation($data_description);
+      $review_name        = $this->get_translation($data_name);
+
+      if (!$review_title) {
+        $review_title = $data_title;
+      }
+
+      if (!$review_description) {
+        $review_description = $data_description;
+      }
+
+      if (!$review_name) {
+        $review_name = $data_name;
+      }
+
 
       $text[0] = 'When travel goes wrong, <span class="extra_color">we </br>make it right.</span>';
       $text[1] = "Travel disruptions happen, but that doesn't mean you have to accept them.";
@@ -75,16 +110,16 @@ class WelcomeController extends Controller
       $text[29] = "CLAIM MY MONEY";
 
 
-        if (Session::has('locale')) {
-          // dd("HAS SESSION");
-          $responseDecoded = $this->get_translation($text);
-          return view('layouts.home.home', compact('amount1','amount2','amount3','amount4','reviews', 'responseDecoded', 'text'));
+      if (Session::has('locale')) {
+        // dd("HAS SESSION");
+        $responseDecoded = $this->get_translation($text);
+        return view('layouts.home.home', compact('amount1','amount2','amount3','amount4','reviews', 'responseDecoded', 'text','review_title', 'review_description', 'review_name'));
 
-        }else {
-          // dd("NO SESSION");
-          $responseDecoded = null;
-          return view('layouts.home.home', compact('amount1','amount2','amount3','amount4','reviews', 'responseDecoded', 'text'));
-        }
+      }else {
+        // dd("NO SESSION");
+        $responseDecoded = null;
+        return view('layouts.home.home', compact('amount1','amount2','amount3','amount4','reviews', 'responseDecoded', 'text','review_title', 'review_description', 'review_name'));
+      }
 
 
     }
