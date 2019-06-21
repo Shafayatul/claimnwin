@@ -16,9 +16,56 @@
       padding: 0px;
       margin: 0px;
   }
+
+
+  .social-p ul{
+      padding: 0px;
+      margin: 0px;
+  }
+  .social-p ul li{
+      list-style: none;
+      float: left;
+  }
+
+  #facebook{
+      color: blue;
+      font-size: 40px;
+      margin-right: 20px;
+  }
+
+
+  #twitter{
+      color: #2EFAFA;
+      font-size: 40px;
+      margin-right: 20px;
+  }
+
+  #linkedin{
+      color: #0077B5;
+      font-size: 40px;
+      margin-right: 20px;
+  }
+
+  #whatsapp{
+      color: #82DC28;
+      font-size: 40px;
+  }
+
+  .social-p{
+    display: block;
+    overflow: hidden;
+    text-align: center;
+    float: center;
+    width: 204px;
+    margin: 0 auto; 
+  }
+
+
   </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" >
   <link rel="stylesheet" href="{{asset('front_asset/user_panel/css/new_affiliate_info.css')}}">
+
+
 
 @endsection
 
@@ -284,7 +331,16 @@
             <div class="row">
               <div class="col-md-12 text-center">
                 <div class="content_div_text">
-                  <p>{{url('user/signup/'.$encrypt_user_id)}}</p>
+                  <p style="word-wrap: break-word;">{{url('user/signup/'.$encrypt_user_id)}}</p>
+                  <div class="social-p">
+                    {!! $facebook !!}
+
+                    {!! $twitter !!}
+
+                    {!! $linkedin !!}
+
+                    {!! $whatsapp !!}
+                  </div>
                 </div>
               </div>
             </div>

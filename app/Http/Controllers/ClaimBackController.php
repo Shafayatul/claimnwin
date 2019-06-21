@@ -29,7 +29,7 @@ use Webklex\IMAP\Client;
 use App\Expense;
 use App\affiliate_notes;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\ClaimClosed;
+// use App\Mail\ClaimClosed;
 use App\Currency;
 use Victorybiz\GeoIPLocation\GeoIPLocation;
 use App\CustomerComposerFile;
@@ -449,7 +449,7 @@ class ClaimBackController extends Controller
         if($isDelete == 0){
             $claim->is_deleted = "1";
             $ittDetails = ItineraryDetail::where('claim_id',$id)->where('is_selected','1')->first();
-            Mail::to($user->email)->send(new ClaimClosed($user,$ittDetails));
+            // Mail::to($user->email)->send(new ClaimClosed($user,$ittDetails));
         }else{
             $claim->is_deleted = "0";
         }

@@ -78,11 +78,12 @@ Route::group(['middleware' => ['auth']], function() {
     Route::group(['middleware' => ['role:User']], function () {
         Route::get('/user-home','UserPanelController@index');
         Route::get('/user-my-claim/{id}','UserPanelController@user_my_claim');
-        Route::get('/affiliate','UserPanelController@affiliate');
+        Route::get('/affiliate','UserPanelController@affiliateInfoShow');
+        // Route::get('/affiliate-info','UserPanelController@affiliateInfoShow');
         Route::post('/user-ticket-message','UserPanelController@user_ticket_message')->name('user-ticket-message');
         Route::post('/user-upload-file','UserPanelController@claimFileUpload');
         Route::get('/user-download-file/{id}','UserPanelController@claimFileDownload');
-        Route::get('/affiliate-info','UserPanelController@affiliateInfoShow');
+
 
         Route::get('/refferal-all/{id}','UserPanelController@allRefferalDataView');
         Route::get('/refferal-all-export','UserPanelController@exportRefferalData');

@@ -213,31 +213,32 @@ class UserPanelController extends Controller
 
     public function affiliate()
     {
+
       $user_id = Auth::user()->id;
       $encrypt_user_id = '09Xohf'.$user_id;
       $link = url('user/signup/'.$encrypt_user_id);
 
-    $facebook=Share::page($link,null,['id' => 'facebook'])
-    ->facebook();
-    $twitter=Share::page($link,null,['id' => 'twitter'])
-    ->twitter();
-    // $google=Share::page($link,null,['id' => 'google'])
-    // ->googlePlus();
-    $linkedin=Share::page($link,null,['id' => 'linkedin'])
-    ->linkedin('Extra linkedin summary can be passed here');
-    $whatsapp=Share::page($link,null,['id' => 'whatsapp'])
-    ->whatsapp();
+      $facebook=Share::page($link,null,['id' => 'facebook'])
+      ->facebook();
+      $twitter=Share::page($link,null,['id' => 'twitter'])
+      ->twitter();
+      // $google=Share::page($link,null,['id' => 'google'])
+      // ->googlePlus();
+      $linkedin=Share::page($link,null,['id' => 'linkedin'])
+      ->linkedin('Extra linkedin summary can be passed here');
+      $whatsapp=Share::page($link,null,['id' => 'whatsapp'])
+      ->whatsapp();
 
-    $text[0] = "Share link and earn";
+      $text[0] = "Share link and earn";
 
-    if (Session::has('locale')) {
-      $responseDecoded = $this->get_translation($text);
-      return view ('front-end.user.user_panel_affiliate', compact('encrypt_user_id','facebook','twitter','linkedin','whatsapp', 'responseDecoded', 'text'));
+      if (Session::has('locale')) {
+        $responseDecoded = $this->get_translation($text);
+        return view ('front-end.user.user_panel_affiliate', compact('encrypt_user_id','facebook','twitter','linkedin','whatsapp', 'responseDecoded', 'text'));
 
-    }else {
-      $responseDecoded = null;
-      return view ('front-end.user.user_panel_affiliate', compact('encrypt_user_id','facebook','twitter','linkedin','whatsapp', 'responseDecoded', 'text'));
-    }
+      }else {
+        $responseDecoded = null;
+        return view ('front-end.user.user_panel_affiliate', compact('encrypt_user_id','facebook','twitter','linkedin','whatsapp', 'responseDecoded', 'text'));
+      }
 
   }
 
@@ -271,6 +272,15 @@ class UserPanelController extends Controller
         $last_payments = Affiliate::where('affiliate_user_id',$user_id)->where('approved',1)->latest()->first();
         $pending_payments=Affiliate::where('affiliate_user_id',$user_id)->where('approved',0)->limit(5)->get();
 
+
+        $link = url('user/signup/'.$encrypt_user_id);
+        $facebook = Share::page($link,null,['id' => 'facebook'])->facebook();
+        $twitter  = Share::page($link,null,['id' => 'twitter'])->twitter();
+        $linkedin = Share::page($link,null,['id' => 'linkedin'])->linkedin();
+        // $linkedin = Share::page($link,null,['id' => 'linkedin'])->linkedin('Extra linkedin summary can be passed here');
+        $whatsapp = Share::page($link,null,['id' => 'whatsapp'])->whatsapp();
+
+
         $text[0] = "Hello";
         $text[1] = "</br></br>Welcome to your affiliate control panel. Please manage your accounts via the left hand menu. To view the menu click the hamburger icon above. Please keep your contact/payment details up to date and we recommend you change your password from time to time for security.</br></br>To get started, view the product section for promotional materials and commission information.</br></br>Any problems, please let us know.";
         $text[2] = "Latest 5 Refferals";
@@ -294,11 +304,11 @@ class UserPanelController extends Controller
 
         if (Session::has('locale')) {
           $responseDecoded = $this->get_translation($text);
-          return view('front-end.user.user_panel_affiliate_info',compact('last_payments','all_payments','commision_sum_amount','referral_count_data','referral_ids','payments','pending_payments', 'encrypt_user_id', 'responseDecoded', 'text'));
+          return view('front-end.user.user_panel_affiliate_info',compact('last_payments','all_payments','commision_sum_amount','referral_count_data','referral_ids','payments','pending_payments', 'encrypt_user_id', 'responseDecoded', 'text','facebook','twitter','linkedin','whatsapp'));
 
         }else {
           $responseDecoded = null;
-          return view('front-end.user.user_panel_affiliate_info',compact('last_payments','all_payments','commision_sum_amount','referral_count_data','referral_ids','payments','pending_payments', 'encrypt_user_id', 'responseDecoded', 'text'));
+          return view('front-end.user.user_panel_affiliate_info',compact('last_payments','all_payments','commision_sum_amount','referral_count_data','referral_ids','payments','pending_payments', 'encrypt_user_id', 'responseDecoded', 'text','facebook','twitter','linkedin','whatsapp'));
         }
    }
 
