@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Post;
 use App\Faq;
+use App\Review;
 use Session;
+use Illuminate\Support\Str;
 
 class FrontsController extends Controller
 {
@@ -346,46 +348,64 @@ class FrontsController extends Controller
     public function partner()
     {
 
-      $text[0] = "Be there for your customers, <br> even when things don't go as <br> planned.";
-      $text[1] = "Opportunities that will bring money to you and your customers.";
-      $text[2] = "contact us";
-      $text[3] = "Partnership programs";
-      $text[4] = "21 million";
-      $text[5] = "21 million passengers are entitled <br> to compensation";
-      $text[6] = "8 Billion Euro";
-      $text[7] = "8 Billion Euro available to claim annually";
-      $text[8] = "Millions";
-      $text[9] = "Millions in potential ancillary revenues";
-      $text[10] = "ClaimCompass API";
-      $text[11] = "Developed in partnership with Microsoft, the ClaimCompass API uses cutting edge technology and monitors in real-time all of your bookings, notifying you and your clients when they're entitled to compensation. Our API is first of its kind and is built in a way, which does not require any personal data - all we need is the flight number and the date.";
-      $text[12] = "Affiliate";
-      $text[13] = "Become an affiliate partner and help us reach even more passengers, while earning money for each successful claim. Choose from either placing an affiliate link or embedding your very own ClaimCompass Widget on your website.  We'll still do all the work, but you'll get all the credit!";
-      $text[14] = "WHAT OUR CUSTOMERS SAY";
-      $text[15] = "Great advisor and transparent...";
-      $text[16] = "Great advisor and transparent communication<br> about the process. Fast turn around too.<br> Strongly recomend it";
-      $text[17] = "Denise Roberts";
-      $text[18] = "Great advisor and transparent...";
-      $text[19] = "Great advisor and transparent communication<br> about the process. Fast turn around too.<br> Strongly recomend it";
-      $text[20] = "Clare Burchell";
-      $text[21] = "Great advisor and transparent...";
-      $text[22] = "Great advisor and transparent communication<br> about the process. Fast turn around too.<br> Strongly recomend it";
-      $text[23] = "Kjell Caminha";
-      $text[24] = "Great advisor and transparent...";
-      $text[25] = "Great advisor and transparent communication<br> about the process. Fast turn around too.<br> Strongly recomend it";
-      $text[26] = "Sarah Green";
-      $text[27] = "Great advisor and transparent...";
-      $text[28] = "Great advisor and transparent communication<br> about the process. Fast turn around too.<br> Strongly recomend it";
-      $text[29] = "Denise Roberts";
+        $text[0] = "Be there for your customers, <br> even when things don't go as <br> planned.";
+        $text[1] = "Opportunities that will bring money to you and your customers.";
+        $text[2] = "contact us";
+        $text[3] = "Partnership programs";
+        $text[4] = "21 million";
+        $text[5] = "21 million passengers are entitled <br> to compensation";
+        $text[6] = "8 Billion Euro";
+        $text[7] = "8 Billion Euro available to claim annually";
+        $text[8] = "Millions";
+        $text[9] = "Millions in potential ancillary revenues";
+        $text[10] = "ClaimCompass API";
+        $text[11] = "Developed in partnership with Microsoft, the ClaimCompass API uses cutting edge technology and monitors in real-time all of your bookings, notifying you and your clients when they're entitled to compensation. Our API is first of its kind and is built in a way, which does not require any personal data - all we need is the flight number and the date.";
+        $text[12] = "Affiliate";
+        $text[13] = "Become an affiliate partner and help us reach even more passengers, while earning money for each successful claim. Choose from either placing an affiliate link or embedding your very own ClaimCompass Widget on your website.  We'll still do all the work, but you'll get all the credit!";
+        $text[14] = "WHAT OUR CUSTOMERS SAY";
 
-      if (Session::has('locale')) {
-          // dd("HAS SESSION");
-          $responseDecoded = $this->get_translation($text);
-          return view('front-pages.partner', compact('responseDecoded', 'text'));
-      }else {
-          // dd("NO SESSION");
-          $responseDecoded = null;
-          return view('front-pages.partner', compact('responseDecoded', 'text'));
-      }
+        $reviews = Review::limit(7)->latest()->get();
+        $review_text      = [];
+        $data_star        = [];
+        $data_title       = [];
+        $data_description = [];
+        $data_name        = [];
+
+        $all_title        = '';
+        $all_description  = '';
+        $all_name         = '';
+        $cnt = 0;
+        foreach ($reviews as $single_review) {
+            array_push($data_star, $single_review->star);
+            array_push($data_title, Str::limit($single_review->title, 30));
+            array_push($data_description, Str::limit($single_review->description, 100));
+            array_push($data_name, Str::limit($single_review->name, 30));
+        }
+        $review_title       = $this->get_translation($data_title);
+        $review_description = $this->get_translation($data_description);
+        $review_name        = $this->get_translation($data_name);
+
+        if (!$review_title) {
+            $review_title = $data_title;
+        }
+
+        if (!$review_description) {
+            $review_description = $data_description;
+        }
+
+        if (!$review_name) {
+            $review_name = $data_name;
+        }
+
+        if (Session::has('locale')) {
+            // dd("HAS SESSION");
+            $responseDecoded = $this->get_translation($text);
+            return view('front-pages.partner', compact('responseDecoded', 'text', 'reviews','review_title', 'review_description', 'review_name'));
+        }else {
+            // dd("NO SESSION");
+            $responseDecoded = null;
+            return view('front-pages.partner', compact('responseDecoded', 'text', 'reviews','review_title', 'review_description', 'review_name'));
+        }
     }
     public function affiliatePage()
     {

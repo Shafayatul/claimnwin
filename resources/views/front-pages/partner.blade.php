@@ -204,10 +204,10 @@
 <!-- What customer say div starts -->
 
 <div class="what_customer_say_div">
-        <div class="container">
-          <div class="row">
+    <div class="container">
+        <div class="row">
             <div class="col-md-12">
-              <div class="what_customer_say_title_div text-center">
+                <div class="what_customer_say_title_div text-center">
                 <h1>
                   @if ($responseDecoded)
                     {!! $responseDecoded['data']['translations'][14]['translatedText'] !!}
@@ -215,199 +215,73 @@
                     {!! $text[14] !!}
                   @endif
                 </h1>
-              </div>
-            </div>
-          </div>
-          <div class="what_customer_say_lower_div">
-            <div class="row">
-              <div class="col-md-12">
-                <div class="slider-area slider">
-                  <div class="sliding_div">
-                    <div class="sliding_div_rating_div">
-                      <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
-                      <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
-                      <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
-                      <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
-                      <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
-                    </div>
-                    <div class="sliding_div_title_p_div">
-                      <p>
-                        @if ($responseDecoded)
-                          {!! $responseDecoded['data']['translations'][15]['translatedText'] !!}
-                        @else
-                          {!! $text[15] !!}
-                        @endif
-                      </p>
-                    </div>
-                    <div class="sliding_div_text_p_div">
-                      <p>
-                        @if ($responseDecoded)
-                          {!! $responseDecoded['data']['translations'][16]['translatedText'] !!}
-                        @else
-                          {!! $text[16] !!}
-                        @endif
-                      </p>
-                    </div>
-                    <div class="sliding_div_customer_name_div">
-                      <p>
-                        @if ($responseDecoded)
-                          {!! $responseDecoded['data']['translations'][17]['translatedText'] !!}
-                        @else
-                          {!! $text[17] !!}
-                        @endif
-                      </p>
-                    </div>
-                  </div>
-                  <div class="sliding_div">
-                    <div class="sliding_div_rating_div">
-                      <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
-                      <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
-                      <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
-                      <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
-                      <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
-                    </div>
-                    <div class="sliding_div_title_p_div">
-                      <p>
-                        @if ($responseDecoded)
-                          {!! $responseDecoded['data']['translations'][18]['translatedText'] !!}
-                        @else
-                          {!! $text[18] !!}
-                        @endif
-                      </p>
-                    </div>
-                    <div class="sliding_div_text_p_div">
-                      <p>
-                        @if ($responseDecoded)
-                          {!! $responseDecoded['data']['translations'][19]['translatedText'] !!}
-                        @else
-                          {!! $text[19] !!}
-                        @endif
-                      </p>
-                    </div>
-                    <div class="sliding_div_customer_name_div">
-                      <p>
-                        @if ($responseDecoded)
-                          {!! $responseDecoded['data']['translations'][20]['translatedText'] !!}
-                        @else
-                          {!! $text[20] !!}
-                        @endif
-                      </p>
-                    </div>
-                  </div>
-                  <div class="sliding_div">
-                    <div class="sliding_div_rating_div">
-                      <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
-                      <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
-                      <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
-                      <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
-                      <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
-                    </div>
-                    <div class="sliding_div_title_p_div">
-                      <p>
-                        @if ($responseDecoded)
-                          {!! $responseDecoded['data']['translations'][21]['translatedText'] !!}
-                        @else
-                          {!! $text[21] !!}
-                        @endif
-                      </p>
-                    </div>
-                    <div class="sliding_div_text_p_div">
-                      <p>
-                        @if ($responseDecoded)
-                          {!! $responseDecoded['data']['translations'][22]['translatedText'] !!}
-                        @else
-                          {!! $text[22] !!}
-                        @endif
-                      </p>
-                    </div>
-                    <div class="sliding_div_customer_name_div">
-                      <p>
-                        @if ($responseDecoded)
-                          {!! $responseDecoded['data']['translations'][23]['translatedText'] !!}
-                        @else
-                          {!! $text[23] !!}
-                        @endif
-                      </p>
-                    </div>
-                  </div>
-                  <div class="sliding_div">
-                    <div class="sliding_div_rating_div">
-                      <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
-                      <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
-                      <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
-                      <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
-                      <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
-                    </div>
-                    <div class="sliding_div_title_p_div">
-                      <p>
-                        @if ($responseDecoded)
-                          {!! $responseDecoded['data']['translations'][24]['translatedText'] !!}
-                        @else
-                          {!! $text[24] !!}
-                        @endif
-                      </p>
-                    </div>
-                    <div class="sliding_div_text_p_div">
-                      <p>
-                        @if ($responseDecoded)
-                          {!! $responseDecoded['data']['translations'][25]['translatedText'] !!}
-                        @else
-                          {!! $text[25] !!}
-                        @endif
-                      </p>
-                    </div>
-                    <div class="sliding_div_customer_name_div">
-                      <p>
-                        @if ($responseDecoded)
-                          {!! $responseDecoded['data']['translations'][26]['translatedText'] !!}
-                        @else
-                          {!! $text[26] !!}
-                        @endif
-                      </p>
-                    </div>
-                  </div>
-                  <div class="sliding_div">
-                    <div class="sliding_div_rating_div">
-                      <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
-                      <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
-                      <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
-                      <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
-                      <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
-                    </div>
-                    <div class="sliding_div_title_p_div">
-                      <p>
-                        @if ($responseDecoded)
-                          {!! $responseDecoded['data']['translations'][27]['translatedText'] !!}
-                        @else
-                          {!! $text[27] !!}
-                        @endif
-                      </p>
-                    </div>
-                    <div class="sliding_div_text_p_div">
-                      <p>
-                        @if ($responseDecoded)
-                          {!! $responseDecoded['data']['translations'][28]['translatedText'] !!}
-                        @else
-                          {!! $text[28] !!}
-                        @endif
-                      </p>
-                    </div>
-                    <div class="sliding_div_customer_name_div">
-                      <p>
-                        @if ($responseDecoded)
-                          {!! $responseDecoded['data']['translations'][29]['translatedText'] !!}
-                        @else
-                          {!! $text[29] !!}
-                        @endif
-                      </p>
-                    </div>
-                  </div>
                 </div>
-              </div>
             </div>
-          </div>
         </div>
-      </div>
+        <div class="what_customer_say_lower_div">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="slider-area slider">
+                        @foreach($reviews as $review)
+                        <div class="sliding_div">
+                            <div class="sliding_div_rating_div">
+                                @if($review->star == 5)
+                                <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
+                                <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
+                                <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
+                                <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
+                                <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
+                                @elseif($review->star == 4)
+                                <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
+                                <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
+                                <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
+                                <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
+                                @elseif($review->star == 3)
+                                <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
+                                <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
+                                <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
+                                @elseif($review->star == 2)
+                                <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
+                                <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
+                                @else
+                                <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
+                                @endif
+                            </div>
+
+                            <div class="sliding_div_title_p_div">
+                                <p>
+                                  @if ($responseDecoded)
+                                    {!! $review_title['data']['translations'][$loop->index]['translatedText'] !!}
+                                  @else
+                                    {!! $review_title[$loop->index] !!}
+                                  @endif
+                                </p>
+                            </div>
+                            <div class="sliding_div_text_p_div" style="overflow:hidden;">
+                                  @if ($responseDecoded)
+                                    {!! $review_description['data']['translations'][$loop->index]['translatedText'] !!}
+                                  @else
+                                    {!! $review_description[$loop->index] !!}
+                                  @endif
+                                {{-- {!! Str::limit($review->description, 100) !!} --}}
+                            </div>
+                            <div class="sliding_div_customer_name_div">
+                                <p>
+                                  @if ($responseDecoded)
+                                    {!! $review_name['data']['translations'][$loop->index]['translatedText'] !!}
+                                  @else
+                                    {!! $review_name[$loop->index] !!}
+                                  @endif
+                                </p>
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
       <!-- What customer say div ends -->
 @endsection
