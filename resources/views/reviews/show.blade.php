@@ -46,6 +46,10 @@
                                     <th> Description </th>
                                     <td> {!! $review->description !!} </td>
                                 </tr>
+                                <tr>
+                                    <th> Name </th>
+                                    <td> {!! $review->name !!} </td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
