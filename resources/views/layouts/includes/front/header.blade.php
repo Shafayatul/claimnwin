@@ -106,17 +106,17 @@
                   <a href="{{ route('user/login') }}">
                       <img src="{{asset('front_asset/')}}/img/lock.png" alt="lock icon">
                       @if ($translated_menu)
-                      {{ $translated_menu['data']['translations'][4]['translatedText']}}
+                      {!! $translated_menu['data']['translations'][4]['translatedText'] !!}
                       @else
-                      {{ $menu_t[4]}}
+                      {!! $menu_t[4] !!}
                       @endif
                   </a>
               </li>
               <li class="signup"><a href="{{route('user/signup')}}">
                       @if ($translated_menu)
-                      {{ $translated_menu['data']['translations'][5]['translatedText']}}
+                      {!! $translated_menu['data']['translations'][5]['translatedText'] !!}
                       @else
-                      {{ $menu_t[5]}}
+                      {!! $menu_t[5] !!}
                       @endif
                   </a></li>
               @endguest

@@ -17,6 +17,7 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="mainMenu">
               <ul class="nav navbar-nav navbar-right">
+
                 {{-- <li class="call"><a href="#">
                     <img src="{{asset('front_asset/')}}/img/phone.png" alt="phone icon">
                     {{$ip_phone_number}}
@@ -47,22 +48,19 @@
 
                 @auth
                    <li class="signup">
-                      <a href="{{ route('logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-sign-out-alt"></i> Logout</a>
-                      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                          @csrf
-                      </form>
+                        <a href="{{ route('logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-sign-out-alt"></i>
+                         Logout
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
                    </li>
                 @endauth
 
               </ul>
               <ul class="nav navbar-nav navbar-right text-uppercase main-menu">
-                {{-- <li><a href="{{url('/faq')}}">faq</a></li>
-                <li><a href="{{url('/press-blog')}}">blog</a></li>
-                <li><a href="{{url('/your-rights')}}">Your Rights</a></li>
-                <li><a href="{{url('/partner')}}">become a partner</a></li> --}}
                 <li><a href="{{ URL::to('/user-home') }}">My Claims</a></li>
                 <li><a href="{{ URL::to('/affiliate') }}">Affiliate</a></li>
-                {{-- <li><a href="{{URL::to('/affiliate-info')}}">Affiliate Info</a></li> --}}
                 <li><a href="{{ URL('/faq') }}">FAQs</a></li>
               </ul>
             </div><!-- /.navbar-collapse -->

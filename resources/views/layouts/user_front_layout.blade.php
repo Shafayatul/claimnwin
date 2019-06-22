@@ -8,14 +8,15 @@
   <link rel="stylesheet" href="{{asset('front_asset/user_panel/css/style.css')}}">
   @yield('header-script')
   <meta name="csrf-token" content="{{ csrf_token() }}">
-
+  @auth
   <style>
-    @auth
+
     #mainMenu a {
       font-size: smaller;
     }
-    @endauth
+
   </style>
+  @endauth
 </head>
 
 <body>

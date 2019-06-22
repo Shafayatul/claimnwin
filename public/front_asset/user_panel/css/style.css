@@ -652,9 +652,6 @@ padding-top: 20px;
 
 
 
-
-
-
 /* .............................................................................
 .............................................................................
 RESPONSIVE MEDIA QUERY
@@ -665,9 +662,11 @@ RESPONSIVE MEDIA QUERY
 /* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 320 TO 480 XXXXXXXXXXXXXXXXXXXXXXXXXXXX*/
 
 @media (min-width: 320px) and (max-width: 480px) {
+
 body {
 font-size: 14px;
 }
+
 .user_panel_h1 h1 {
 text-align: center;
 }
@@ -689,7 +688,6 @@ font-size: 40px;
 width: 100%;
 }
 }
-
 
 
 
