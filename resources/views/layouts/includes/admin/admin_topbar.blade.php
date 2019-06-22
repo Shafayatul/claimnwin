@@ -178,8 +178,10 @@
             <div class="profile_img">
               <span class="prfil-img"><img src="{{ URL::asset('admin_asset/images/2.jpg')}}" alt=""> </span>
               <div class="user-name">
+              @auth
                 <p>{{Auth::user()->name}}</p>
                 <span>{{Auth::user()->email}}</span>
+              @endauth
               </div>
               <i class="fa fa-angle-down lnr"></i>
               <i class="fa fa-angle-up lnr"></i>

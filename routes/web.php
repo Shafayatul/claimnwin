@@ -204,6 +204,15 @@ Route::group(['middleware' => ['auth']], function() {
         Route::patch('affliate/{id}', 'AffiliatesController@update');
         Route::get('/export-affliate-all', 'AffiliatesController@exportAffiliate');
 
+        Route::post('/contacts/create','ContactsController@store');
+        Route::get('/contact-messages','ContactsController@index');
+        Route::get('/contact-show','ContactsController@index@show');
+
+        Route::resource('contacts', 'ContactsController');
+
+        Route::resource('faqs', 'FaqsController');
+        Route::resource('reviews', 'ReviewsController');
+
     });
 });
 
@@ -214,14 +223,7 @@ Route::resource('sent-emails', 'SentEmailsController');
 
 Route::get('404', ['as' => '404', 'uses' => 'ErrorController@notfound404']);
 Route::get('404', ['as' => '403', 'uses' => 'ErrorController@notfound403']);
-Route::post('/contacts/create','ContactsController@store');
-Route::get('/contact-messages','ContactsController@index');
-Route::get('/contact-show','ContactsController@index@show');
 
-Route::resource('contacts', 'ContactsController');
-
-Route::resource('faqs', 'FaqsController');
-Route::resource('reviews', 'ReviewsController');
 
 Route::get('/{slug}', 'FrontsController@single_post');
 Route::get('/','WelcomeController@index');
