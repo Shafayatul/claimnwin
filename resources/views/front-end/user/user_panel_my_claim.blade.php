@@ -38,7 +38,7 @@
                         {!! $text[1] !!}
                       @endif
                       :
-                    </span> {{ str_replace('_', ' ', ucfirst( $claims->subject)) }}
+                    </span> {{ $claims->id }}
                 </div>
             </div>
             <div class="col-md-3 text-center">
@@ -173,7 +173,7 @@
                 <div class="tab-pane fade" id="ticket" role="tabpanel" aria-labelledby="ticket-tab">
                     <div class="wrapper">
                         <blockquote class="blockquote text-right">
-                          <p class="mb-0">Ticket ID: {{ $claims->ticket_id}}</p>
+                          {{-- <p class="mb-0">Ticket ID: {{ $claims->ticket_id}}</p> --}}
                           <div class="blockquote-footer">
                             @if ($responseDecoded)
                               {!! $responseDecoded['data']['translations'][4]['translatedText'] !!}
