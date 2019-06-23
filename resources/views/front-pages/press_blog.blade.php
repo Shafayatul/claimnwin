@@ -50,25 +50,50 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="single_row_img">
-                                <img src="{{asset($row->image)}}" alt="">
+                                <img src="{{asset($row['image'])}}" alt="">
                             </div>
                         </div>
                         <div class="col-md-8">
                             <div class="blog_title_row">
-                                <h1>{{$row->title}}</h1>
+
+                                  @if ($row['title'] )
+                                    <h1>{!! $row['title']['data']['translations'][0]['translatedText'] !!}</h1>
+                                  @else
+                                    <h1>{!! $row['main_title'] !!}</h1>
+                                  @endif
+
+                                
                             </div>
                             <div class="blog_p">
                                 <p>
-                                    <strong>Posted at {{Carbon\Carbon::parse($row->created_at)->format('h:i A')}}</strong> in Lifestyle by phpyouth  |  3 Comments  |  0 Likes
+                                    <strong>
+                                      @if ($responseDecoded)
+                                        {!! $responseDecoded['data']['translations'][3]['translatedText'] !!}
+                                      @else
+                                        {!! $text[3] !!}
+                                      @endif
+
+                                     {{Carbon\Carbon::parse($row['created_at'])->format('d-m-Y h:i A')}}</strong>
                                 </p>
                             </div>
                             <div class="blog_p no_bottom_padding">
                                 <p>
-                                    {!! str_limit(strip_tags($row->body), 100) !!}
+
+                                  @if ($row['body'] )
+                                    {!! $row['body']['data']['translations'][0]['translatedText'] !!}
+                                  @else
+                                    {!! $row['main_body'] !!}
+                                  @endif
                                 </p>
                             </div>
                             <div class="blog_btn">
-                                <a href="{{url('/single-blog/'.str_slug($row->title).'/'.$row->id)}}" class="btn btn-lg btn-primary">Read More</a>
+                                <a href="{{url($row['slug']) }}" class="btn btn-lg btn-primary">
+                                      @if ($responseDecoded)
+                                        {!! $responseDecoded['data']['translations'][4]['translatedText'] !!}
+                                      @else
+                                        {!! $text[4] !!}
+                                      @endif
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -83,7 +108,7 @@
                 {{-- <div class="read_more_btn">
                     <a href="#" class="btn btn-lg">READ MORE</a>
                 </div> --}}
-                {{$blogs->links()}}
+                {{$all_blogs->links()}}
             </div>
         </div>
     </div>

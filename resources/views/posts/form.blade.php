@@ -1,4 +1,3 @@
-
 <div class="grids widget-shadow">
     <div class="row">
         <div class="col-md-12">
@@ -48,12 +47,12 @@
 
 
 
-
     @section('footer-script')
+    <script type="text/javascript">
 
-        <script type="text/javascript">
 
-                // creating dynamic slug
+
+        {{-- creating dynamic slug --}}
           $(document).ready(function(){
             $('.title').focusout(function(){
                 var title = $('.title').val();

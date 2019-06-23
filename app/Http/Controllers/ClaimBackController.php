@@ -338,10 +338,10 @@ class ClaimBackController extends Controller
                 'port'          => 993,
                 'encryption'    => 'ssl',
                 'validate_cert' => true,
-                'username'      => $claims->cpanel_email,
-                'password'      => $claims->cpanel_password,
-                // 'username'      =>'rtwh095@freeflightclaim.com',
-                // 'password'      => 'olMpHjWv',
+                // 'username'      => $claims->cpanel_email,
+                // 'password'      => $claims->cpanel_password,
+                'username'      =>'rtwh095@freeflightclaim.com',
+                'password'      => 'olMpHjWv',
                 'protocol'      => 'imap'
             ]);
             $oClient->connect();

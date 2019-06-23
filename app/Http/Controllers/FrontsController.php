@@ -271,20 +271,43 @@ class FrontsController extends Controller
     }
     public function pressBlog()
     {
-        $blogs=Post::latest()->paginate(6);
+        $all_blogs = Post::where('type', 'blog')->latest()->paginate(6);
+        $blogs = [];
+        foreach ($all_blogs as $single_blog) {
+          $data = [];
+          $data['id']         = $single_blog->id;
+          $data['slug']       = $single_blog->slug;
+          $data['id']         = $single_blog->id;
+          $data['image']      = $single_blog->image;
+          $data['created_at'] = $single_blog->created_at;
+
+          $text_t[0]          = $single_blog->title;
+          $data['main_title'] = $text_t[0];
+          $data['title']      = $this->get_translation($text_t);
+
+          $text_b[0]          = str_limit(strip_tags($single_blog->body), 100);
+          $data['main_body']  = $text_b[0];
+          $data['body']       = $this->get_translation($text_b);
+
+          array_push($blogs, $data);
+
+        }
+
 
         $text[0] = "Blog Page";
         $text[1] = "About all things concerning aviation";
         $text[2] = "Every week we illustrate various subjects regarding our service, passenger rights and commercial aviation. Of course, as we have a lot of experience on the matter, we also provide you with tips & tricks regarding air travel.";
+        $text[3] = "Posted at";
+        $text[4] = "Read More";
 
         if (Session::has('locale')) {
             // dd("HAS SESSION");
             $responseDecoded = $this->get_translation($text);
-            return view('front-pages.press_blog', compact('blogs', 'responseDecoded', 'text'));
+            return view('front-pages.press_blog', compact('blogs', 'all_blogs', 'responseDecoded', 'text'));
         }else {
             // dd("NO SESSION");
             $responseDecoded = null;
-            return view('front-pages.press_blog', compact('blogs', 'responseDecoded', 'text'));
+            return view('front-pages.press_blog', compact('blogs', 'all_blogs', 'responseDecoded', 'text'));
         }
     }
     public function yourRights()
