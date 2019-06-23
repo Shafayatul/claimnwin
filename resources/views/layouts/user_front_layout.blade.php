@@ -14,6 +14,10 @@
     #mainMenu a {
       font-size: smaller;
     }
+    .country .dropdown-menu {
+      top: calc(100% - 10px);
+      left: calc(50% - 5px);
+    }
 
   </style>
   @endauth
@@ -46,6 +50,7 @@
 
   $(document).ready(function(e){
     $('#signArea').signaturePad({drawOnly:true, drawBezierCurves:true, lineTop:90});
+    $(".dropdown-toggle").dropdown();
   });
   </script>
 {{-- signature ends --}}
