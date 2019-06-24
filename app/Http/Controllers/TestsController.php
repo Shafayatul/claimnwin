@@ -22,13 +22,13 @@ class TestsController extends Controller
         $cPanel = new cPanel(env('CPANEL_USERNAME'), env('CPANEL_PASSWORD'), env('CPANEL_IP'));
         // Forward mail from forwardme@example.com to fwdtome@example.com
         $add_mail_forwarder = $cPanel->api2(
-            'Email', 'addforward', 
+            'Email', 'addforward',
             array(
                 'domain'          => 'freeflightclaim.com',
                 'email'           => 'md082@freeflightclaim.com',
                 'fwdopt'          => 'fwd',
                 'fwdemail'        => 'info@freeflightclaim.com',
-            ) 
+            )
         );
     }
     public function test(Request $request){
@@ -36,7 +36,8 @@ class TestsController extends Controller
         $user = User::where('id', '84')->first();
         $ittDetails = ItineraryDetail::where('claim_id',$claim->id)->where('is_selected','1')->first();
         $passengers = Passenger::where('claim_id',$claim->id)->get();
-        Mail::to($user->email)->send(new ClaimCompleted($user, $ittDetails, $passengers));
+        Mail::to('sharafat.sohan047@gmail.com')->send(new ClaimCompleted($user, $ittDetails, $passengers));
+        // return view('email.claim_completed', compact('user', 'ittDetails', 'passengers'));
     }
 
 

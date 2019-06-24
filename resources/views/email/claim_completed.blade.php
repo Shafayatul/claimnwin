@@ -3,39 +3,49 @@
 <head>
     <title></title>
     <style type="text/css">
-        .red{
-            color: red;
-        }
+      * {
+        text-align: left;
+        background-color: #fff !important;
+      }
+      .lh-28 {
+        line-height: 28px;
+      }
+
+      .lower-part p {
+        line-height: 20px;
+        margin-bottom: 0px;
+        font-size: 12px;
+      }
     </style>
 </head>
 <body>
 
 
-@component('mail::message')
+{{-- @component('mail::message') --}}
 
 
     <div>
 
-    Dear <span class="red">{{$user->name}}</span>,
-    <br>
-    <p>
-        You are receiving this email as confirmation of receipt of your recent flight claim made online at <a href="www.claimnwin.com">www.claimnwin.com</a> for flight <span class="red">{{$ittDetails->flight_number}}</span> on <span class="red">{{Carbon\Carbon::parse($ittDetails->created_at)->format('d/m/Y')}}</span>
+    <p> Dear {{$user->name}},</p>
+
+    <p class="lh-28">
+        You are receiving this email as confirmation of receipt of your recent flight claim made online at <a href="www.claimnwin.com">www.claimnwin.com</a> for flight {{$ittDetails->flight_number}} on {{Carbon\Carbon::parse($ittDetails->created_at)->format('d/m/Y')}}
     </p>
 
-    <p>
-        Thank you for submitting your flight claim with Bott and Co using our 100% no-win no-fee service. Your enquiry reference number is <span class="red">CLAIM/{{$ittDetails->claim_id}}</span>.
+    <p class="lh-28">
+        Thank you for submitting your flight claim with Bott and Co using our 100% no-win no-fee service. Your enquiry reference number is CLAIM/{{$ittDetails->claim_id}}.
     </p>
 
     <p>
         We'll now work on verifying the flight information you've provided and will confirm the status of your claim by email shortly.
     </p>
 
-    <p>
+    <p class="lh-28">
         We can see you have submitted Claims for: <br>
         @foreach($passengers as $passenger)
-            <strong>{{$passenger->first_name}} {{$passenger->last_name}}</strong><br>
+            {{$passenger->first_name}} {{$passenger->last_name}}<br>
         @endforeach
-        
+
     </p>
 
     <p>
@@ -43,22 +53,25 @@
     </p>
 
     <ul>
-        <li>full name</li>
-        <li>postal address</li>
-        <li>date of birth</li>
-        <li>email address</li>
+        <li><p>full name</p></li>
+        <li><p>ostal address</p></li>
+        <li><p>date of birth</p></li>
+        <li><p>email address</p></li>
     </ul>
 
-    <p>
+    <p class="lh-28">
         We've secured payments from Airlines in as little as a few hours and in others we've gone all the way to court. No other flight Claims company or law firm will do this in the; Claim’N Win are the industry leaders by a considerable distance.
     </p>
 
-    Kind regrads,
-    <br>
-    Claim’N Win
+    <p>
+      Kind regrads,
+    </p>
+    <p>
+      Claim’N Win
+    </p>
 
     <br><br><br><br>
-    <div>
+    <div class="lower-part">
         <div class="row">
             <div class="col-md-12">
                 <img src="{{asset('front_asset/img/logo.png')}}" alt="Claimnwin">
@@ -66,26 +79,26 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                <h3 style="color: blue;">UK</h3>
-                <h3 style="color: limegreen;">T: 020 3808 6632</h3>
+                <p style="color: #114479;">UK</p>
+                <p style="color: #91AF2D;">T: 020 3808 6632</p>
             </div>
         </div>
         <div class="row">
             <div class="col-md-12">
-                <h3 style="color: blue;">USA</h3>
-                <h3 style="color: limegreen;">T: 972 72-333-4835</h3>
+                <p style="color: #114479;">USA</p>
+                <p style="color: #91AF2D;">T: 972 72-333-4835</p>
             </div>
         </div>
         <div class="row">
             <div class="col-md-12">
-                <h3><span style="color: limegreen;">F:</span> <span style="color: blue;">1-718- 228-9443</span> <span style="color: limegreen;">Email:</span> <span style="color: blue;">info@claimnwin.com</span> <span style="color: limegreen;">| Web:</span> <span style="color: blue;">www.claimnwin.com</span></h3>
+                <p><span style="color: #91AF2D;">F:</span> <span style="color: #114479;">1-718- 228-9443</span> <span style="color: #91AF2D;">| Email:</span> <span style="color: #114479;">info@claimnwin.com</span> <span style="color: #91AF2D;">| Web:</span> <span style="color: #114479;">www.claimnwin.com</span></p>
             </div>
         </div>
         <br>
         <br>
         <div class="row">
             <div class="col-md-12">
-                <p style="font-size: 6px;">
+                <p>
                     This e-mail and any attachments are confidential. They may contain privileged information and are intended for the named addressee(s) only. They must not be distributed without consent. If you are not the
                     intended recipient, please notify us immediately and do not disclose, distribute, or retain this e-mail or any part of it. Unless expressly stated, opinions in this e-mail are those of the individual sender and not of
                     Claim’N Win Ltd. We believe but do not warrant that this e-mail and any attachments are virus free. You must therefore take full responsibility for virus checking. If you have received this transmission in error,
@@ -95,7 +108,7 @@
             </div>
         </div>
     </div>
-        </div>
-    @endcomponent
+      </div>
+    {{-- @endcomponent --}}
 </body>
 </html>
