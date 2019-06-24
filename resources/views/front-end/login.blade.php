@@ -37,7 +37,7 @@
 
 
     <form class="omb_loginForm" action="{{route('login')}}" autocomplete="off" method="POST">
-        {{csrf_field()}}
+        @csrf
             <div class="row">
                 <div class="col-xs-12 col-sm-12">
                     <div class="input-group">

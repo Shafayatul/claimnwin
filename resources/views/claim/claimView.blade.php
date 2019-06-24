@@ -296,7 +296,7 @@
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <form action="{{route('claim-file-upload')}}" class="form-horizontal" method="post" enctype="multipart/form-data">
-                                                        {{ csrf_field() }}
+                                                        @csrf
                                                         <div class="form-group">
 
                                                             <label for="file_name" class="control-label"></label>
@@ -1656,7 +1656,7 @@
                         </div>
                         <div class="modal-body">
                             <form action="{{route('reminder-create')}}" method="post">
-                                {{ csrf_field() }}
+                                @csrf
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
@@ -1816,7 +1816,7 @@
             </div>
             <div class="modal-body">
                 <form action="{{route('update-reminder')}}" method="post">
-                    {{ csrf_field() }}
+                    @csrf
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
@@ -1873,7 +1873,7 @@
             </div>
             <div class="modal-body">
                 <form action="{{route('update-reminder')}}" method="post">
-                    {{ csrf_field() }}
+                    @csrf
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
@@ -1945,7 +1945,7 @@
 <div role="tabpanel" class="tab-pane" id="required-details" aria-labelledby="required-details-tab">
 
     <form action="{{route('required-details')}}" method="post" name="required_details">
-        {{ csrf_field() }}
+        @csrf
         <div class="row" style="margin-top:1%;">
             <div class="col-sm-4">
                 <div class="form-group">
@@ -2049,7 +2049,7 @@
 <div role="tabpanel" class="tab-pane" id="claim-status" aria-labelledby="claim-status-tab">
     <div class="row" style="margin-top:1%;">
         <form action="{{route('claim-nextstep-status-change')}}" method="post" name="clam_nextstep_status">
-            {{ csrf_field() }}
+            @csrf
             <a class="btn btn-success btn-xs" href="{{url('claim-status/create')}}" target="_blank">Add New Status</a>
             <hr>
             <div class="col-sm-6">
@@ -2341,7 +2341,7 @@
                 </div>
                 <div class="panel-body">
                     <form action="{{route('ticket-description')}}" method="post" class="form-horizontal">
-                        {{ csrf_field() }}
+                        @csrf
                         <div class="form-group">
                             <div class="col-md-12">
                                 <textarea name="description" id="description" cols="30" rows="5" class="form-control"></textarea>
@@ -2387,7 +2387,7 @@
                     </div>
                     <div class="panel-body">
                     <form action="{{url('/save-note')}}" method="post" class="form-horizontal" enctype="multipart/form-data">
-                        {{ csrf_field() }}
+                        @csrf
                         <div class="form-group">
                             <div class="col-md-12">
                                 <textarea name="note"  cols="30" rows="5" class="form-control tinymce-editor"></textarea>
@@ -2451,7 +2451,7 @@
                                             <!-- Modal content-->
                                             <div class="modal-content">
                                             <form action="{{route('update-note')}}" method="post" class="form-horizontal">
-                                                    {{ csrf_field() }}
+                                                    @csrf
                                                 <div class="modal-header">
                                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                                                     <h4 class="modal-title">Edit Note Data</h4>
@@ -2544,7 +2544,7 @@
                 </div>
                 <div class="panel-body">
                 <form action="{{route('affiliate-note-add')}}" method="post" class="form-horizontal">
-                    {{ csrf_field() }}
+                    @csrf
                     <div class="form-group">
                         <div class="col-md-12">
                             <textarea name="affiliate_note" id="note" cols="30" rows="5" class="form-control"></textarea>
@@ -2597,7 +2597,7 @@
                                         <!-- Modal content-->
                                         <div class="modal-content">
                                         <form action="{{route('update-affiliate-note')}}" method="post" class="form-horizontal">
-                                                {{ csrf_field() }}
+                                                @csrf
                                             <div class="modal-header">
                                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                                                 <h4 class="modal-title">Edit Note Data</h4>

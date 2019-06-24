@@ -220,7 +220,7 @@
                         </div>
                         <div class="user_message">
                             <form class="user_message_form single-submit" action="{{ route('user-ticket-message') }}" method="post">
-                                {{ csrf_field() }}
+                                @csrf
                                 <i class="fas fa-pencil-alt prefix"></i>
                                 <textarea id="" class="" name="description" placeholder="Write a message"></textarea>
                                 <input type="hidden" name="ticket_id" value="{{ $claims->ticket_id }}">
@@ -371,7 +371,7 @@
     <div class="wrapper">
         <div class="parent_div">
             <form action="{{ url('/user-upload-file') }}" method="post" class="" enctype='multipart/form-data'>
-                {{ csrf_field() }}
+                @csrf
                 <div class="row justify-content-center">
                     <div class="col-md-6 text-center">
                         <input type="text" class="common_input change_placeholder" id="" name="user_upload_file_name" placeholder="File Name" required="required">
