@@ -17,7 +17,9 @@
         font-size: 12px;
       }
       .button-a {
-        display: block;
+        display: inline-block !important;
+        cursor: pointer !important;
+        margin-bottom: 10px !important;
       }
       .button {
         text-transform: uppercase !important;
