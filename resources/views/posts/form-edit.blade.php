@@ -104,7 +104,7 @@
         <div class="col-md-12">
             {!! Form::label('image', 'Image(360*239)', ['class' => 'control-label']) !!}
             {!! Form::file('image',null,('' == 'required') ? ['class' => 'form-control', 'required' => 'required'] : ['class' => 'form-control']) !!}
-            <img src="{{asset($post->image)}}"  alt="Econosurance" style="width: 80px; height: 80px; padding: 5px; background-color:black; margin-top: 5px;" />
+            <img src="{{asset($post->image)}}"  alt="Claim'n Win" style="width: 80px; height: 80px; padding: 5px; background-color:black; margin-top: 5px;" />
             {{ Form::hidden('old_image', $post->image) }}
         </div>
     </div>
