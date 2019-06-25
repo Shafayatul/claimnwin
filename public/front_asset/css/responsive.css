@@ -150,6 +150,7 @@
 
     #mainMenu {
       margin-top: 20px;
+      overflow-x: hidden;
     }
 }
 
