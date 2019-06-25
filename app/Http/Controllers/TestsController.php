@@ -24,10 +24,10 @@ class TestsController extends Controller
         $add_mail_forwarder = $cPanel->api2(
             'Email', 'addforward',
             array(
-                'domain'          => 'freeflightclaim.com',
-                'email'           => 'md082@freeflightclaim.com',
+                'domain'          => 'claimnwin.com',
+                'email'           => 'md082@claimnwin.com',
                 'fwdopt'          => 'fwd',
-                'fwdemail'        => 'info@freeflightclaim.com',
+                'fwdemail'        => 'info@claimnwin.com',
             )
         );
     }

@@ -23,8 +23,20 @@
                       </a></li>
 
                   @role('User')
-                  <li><a href="{{ URL::to('/user-home') }}">My Claims</a></li>
-                  <li><a href="{{ URL::to('/affiliate') }}">Affiliate</a></li>
+                  <li><a href="{{ URL::to('/user-home') }}">
+                      @if ($translated_menu)
+                      {!! $translated_menu['data']['translations'][28]['translatedText'] !!}
+                      @else
+                      {!! $menu_t[28] !!}
+                      @endif
+                  </a></li>
+                  <li><a href="{{ URL::to('/affiliate') }}">
+                      @if ($translated_menu)
+                      {!! $translated_menu['data']['translations'][29]['translatedText'] !!}
+                      @else
+                      {!! $menu_t[29] !!}
+                      @endif
+                      </a></li>
                   @endrole
 
                   <li class="dropdown country">
@@ -125,9 +137,9 @@
               <li class="signup">
                   <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-sign-out-alt"></i>
                       @if ($translated_menu)
-                      {{ $translated_menu['data']['translations'][26]['translatedText']}}
+                      {{ $translated_menu['data']['translations'][27]['translatedText']}}
                       @else
-                      {{ $menu_t[26]}}
+                      {{ $menu_t[27]}}
                       @endif
 
                   </a>

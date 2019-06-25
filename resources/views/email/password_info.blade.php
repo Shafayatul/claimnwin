@@ -10,5 +10,5 @@ Your
 <br>
 <br>
 Regards,
-FreeflightClaim
+Claim'N Win
 @endcomponent

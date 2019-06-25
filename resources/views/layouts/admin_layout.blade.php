@@ -162,5 +162,8 @@
         tinymce.init(editor_config);
 	</script>
 
+
+	
+
 </body>
 </html>

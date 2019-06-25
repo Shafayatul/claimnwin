@@ -49,7 +49,11 @@
                         @auth
                         <li class="signup">
                             <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-sign-out-alt"></i>
-                                Logout
+                              @if ($translated_menu)
+                              {!! $translated_menu['data']['translations'][27]['translatedText'] !!}
+                              @else
+                              {!! $menu_t[27] !!}
+                              @endif
                             </a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 @csrf
@@ -133,9 +137,27 @@
                       <li><a href="{{url('change-language/id')}}"> <img src="{{ asset('front_asset/img/country-flags/Flag_of_Indonesia.png')}}" alt="">Indonesian (id)</a></li>
                   </ul>
                   </li>
-                        <li><a href="{{ URL::to('/user-home') }}">My Claims</a></li>
-                        <li><a href="{{ URL::to('/affiliate') }}">Affiliate</a></li>
-                        <li><a href="{{ URL('/faq') }}">FAQs</a></li>
+                        <li><a href="{{ URL::to('/user-home') }}">
+                          @if ($translated_menu)
+                          {!! $translated_menu['data']['translations'][28]['translatedText'] !!}
+                          @else
+                          {!! $menu_t[28] !!}
+                          @endif
+                        </a></li>
+                        <li><a href="{{ URL::to('/affiliate') }}">
+                          @if ($translated_menu)
+                          {!! $translated_menu['data']['translations'][29]['translatedText'] !!}
+                          @else
+                          {!! $menu_t[29] !!}
+                          @endif
+                        </a></li>
+                        <li><a href="{{ URL('/faq') }}">
+                          @if ($translated_menu)
+                          {!! $translated_menu['data']['translations'][8]['translatedText'] !!}
+                          @else
+                          {!! $menu_t[8] !!}
+                          @endif
+                        </a></li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->

@@ -74,7 +74,7 @@
     <div class="lower-part">
         <div class="row">
             <div class="col-md-12">
-                <img src="{{asset('front_asset/img/logo.png')}}" alt="Claimnwin">
+                <img src="{{public_path('front_asset/img/logo.png')}}" alt="Claimnwin">
             </div>
         </div>
         <div class="row">

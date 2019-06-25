@@ -118,9 +118,9 @@
                                 </a></li>
                                 <li><a href="{{url('/affiliate-page')}}">
                                     @if ($translated_menu)
-                                      {{ $translated_menu['data']['translations'][20]['translatedText']}}
+                                      {{ $translated_menu['data']['translations'][29]['translatedText']}}
                                     @else
-                                        {{ $menu_t[20]}}
+                                        {{ $menu_t[29]}}
                                     @endif
                                 </a></li>
                             </ul>
@@ -186,7 +186,14 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">
-                        <p>© 2018 Claim Win | All Rights Reserved.</p>
+                        <p>
+                        ©
+                              @if ($translated_menu)
+                              {!! $translated_menu['data']['translations'][26]['translatedText'] !!}
+                              @else
+                              {!! $menu_t[26] !!}
+                              @endif
+                          </p>
                     </div><!-- /.col-md-6 -->
                     <div class="col-md-6 text-right">
                         <a href="https://uk.trustpilot.com/review/claimnwin.com">

@@ -41,7 +41,7 @@
             <div class="row">
                 <div class="col-xs-12 col-sm-12">
                     <div class="input-group">
-                        <span class="input-group-addon"><i class="fas fa-user"></i></span>
+                        <span class="input-group-addon"><i class="fas fa-envelope"></i></span>
                         <input type="text" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" placeholder="Email address" required>
 
                     </div>

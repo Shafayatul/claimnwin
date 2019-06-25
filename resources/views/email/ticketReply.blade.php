@@ -8,7 +8,7 @@ Hello ,
 <h4 style="font-weight: bolder;">{{$toEmail}}</h4>
 {!! $composeData !!}
 Regards,<br>
-FreeflightClaim
+Claim'N Win
 </body>
 </html>
 

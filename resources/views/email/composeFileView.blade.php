@@ -7,5 +7,5 @@ Hello ,
 <br>
 <br>
 Regards,<br>
-FreeflightClaim
+Claim'N Win
 @endcomponent

@@ -60,7 +60,7 @@
                     </div>
                     <span class="help-block"></span>
                     <div class="input-group">
-                        <span class="input-group-addon"><i class="fas fa-user"></i></span>
+                        <span class="input-group-addon"><i class="fas fa-envelope"></i></span>
                         <input type="text" class="form-control" name="email" placeholder="Email address" required>
                     </div>
                     <span class="help-block"></span>

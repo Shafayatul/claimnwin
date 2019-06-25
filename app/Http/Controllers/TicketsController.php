@@ -65,8 +65,8 @@ class TicketsController extends Controller
             'port'          => 993,
             'encryption'    => 'ssl',
             'validate_cert' => true,
-            'username'      => 'info@freeflightclaim.com',
-            'password'      => 'oKwGE2vzcOYt',
+            'username'      => env('MAIL_USERNAME'),
+            'password'      => env('MAIL_PASSWORD'),
             // 'username'      =>'rtwh095@freeflightclaim.com',
             // 'password'      => 'olMpHjWv',
             'protocol'      => 'imap'
@@ -401,8 +401,8 @@ class TicketsController extends Controller
             'port'          => 993,
             'encryption'    => 'ssl',
             'validate_cert' => true,
-            'username'      => 'info@freeflightclaim.com',
-            'password'      => 'oKwGE2vzcOYt',
+            'username'      => env('MAIL_USERNAME'),
+            'password'      => env('MAIL_PASSWORD'),
             // 'username'      =>'rtwh095@freeflightclaim.com',
             // 'password'      => 'olMpHjWv',
             'protocol'      => 'imap'
@@ -454,8 +454,8 @@ class TicketsController extends Controller
             'port'          => 993,
             'encryption'    => 'ssl',
             'validate_cert' => true,
-            'username'      => 'info@freeflightclaim.com',
-            'password'      => 'oKwGE2vzcOYt',
+            'username'      => env('MAIL_USERNAME'),
+            'password'      => env('MAIL_PASSWORD'),
             // 'username'      =>'rtwh095@freeflightclaim.com',
             // 'password'      => 'olMpHjWv',
             'protocol'      => 'imap'

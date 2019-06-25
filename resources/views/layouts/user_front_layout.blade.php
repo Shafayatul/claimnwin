@@ -86,7 +86,7 @@ s0.parentNode.insertBefore(s1,s0);
         //     $(this).attr("disabled", true);
         // });
         $('.disable-after-first-click').click(function (e) {
-            console.log('ssssssssssss');
+            // console.log('ssssssssssss');
             //stop submitting the form to see the disabled button effect
             e.preventDefault();
             //disable the submit button
