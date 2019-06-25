@@ -45,7 +45,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 				<div class="widget-shadow">
 					<div class="login-body">
 						<form action="{{url('/login')}}" method="post">
-							{{ csrf_field() }}
+							@csrf
                             <input type="email" class="user{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" placeholder="Enter Your Email" required="">
                             @if ($errors->has('email'))
                             <span class="invalid-feedback" role="alert">

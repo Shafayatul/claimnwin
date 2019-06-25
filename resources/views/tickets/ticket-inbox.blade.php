@@ -202,7 +202,7 @@
                                             <!-- Modal content-->
                                             <div class="modal-content">
                                             <form action="{{route('ticket.user.assign')}}" method="post" class="form-horizontal">
-                                                    {{ csrf_field() }}
+                                                    @csrf
                                                 <div class="modal-header">
                                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                                                 <h4 class="modal-title">Assign Specialist</h4>

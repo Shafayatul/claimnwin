@@ -70,7 +70,7 @@
 
 <body>
     <form action="{{route('letter.before.email')}}" method="post" enctype="multipart/form-data">
-        {{ csrf_field() }}
+        @csrf
         <input type="hidden" name="claim_id" value="{{$claim->id}}" />
         <input type="hidden" name="airline_id" value="{{$claim->airline_id}}" />
         <input type="hidden" name="cpanel_email" value="{{$claim->cpanel_email}}" />

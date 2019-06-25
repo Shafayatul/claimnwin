@@ -177,7 +177,7 @@
                                     </div>
                                     <div class="modal-body">
                                     <form action="{{route('update-reminder')}}" method="post">
-                                            {{ csrf_field() }}
+                                            @csrf
                                        <div class="row">
                                            <div class="col-md-6">
                                                 <div class="form-group">
@@ -237,7 +237,7 @@
                                     </div>
                                     <div class="modal-body">
                                     <form action="{{route('update-reminder')}}" method="post">
-                                            {{ csrf_field() }}
+                                            @csrf
                                        <div class="row">
                                            <div class="col-md-6">
                                                 <div class="form-group">

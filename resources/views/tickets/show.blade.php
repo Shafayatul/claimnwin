@@ -163,7 +163,7 @@
                                         </div>
                                         <div class="panel-body">
                                         <form action="{{route('ticket-description')}}" method="post" class="form-horizontal">
-                                                {{ csrf_field() }}
+                                                @csrf
                                                 <div class="form-group">
                                                     <div class="col-md-12">
                                                         <textarea name="description" id="description" cols="30" rows="5" class="form-control"></textarea>

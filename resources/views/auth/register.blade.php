@@ -45,7 +45,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 				<div class="sign-up-row widget-shadow">
 					<h5>Personal Information :</h5>
 				<form action="{{ route('register') }}" method="post">
-					{{ csrf_field() }}
+					@csrf
 					<div class="sign-u">
 								<input type="text" name="name" placeholder="Name" required="">
 						<div class="clearfix"> </div>

@@ -44,7 +44,7 @@
 
                                         <tr>
                                             <th>Image </th>
-                                            <td> <img src="{{asset($post->image)}}" class="img-thumbnail img-responsive" alt="Econosurance"> </td>
+                                            <td> <img src="{{asset($post->image)}}" class="img-thumbnail img-responsive" alt="Claim'n Win"> </td>
                                         </tr>
 
                                         <tr>
