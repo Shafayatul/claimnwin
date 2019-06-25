@@ -5,7 +5,7 @@ box-sizing: border-box;
 .main_nav_container {
 background-image: url(../../front_pages_asset/img/homepage_header_img.jpg);
 background-repeat: no-repeat;
-background-position: left bottom;
+background-position: unset;
 background-size: cover;
 padding: 10px 0px;
 border-bottom: 1px solid #8dac2d;

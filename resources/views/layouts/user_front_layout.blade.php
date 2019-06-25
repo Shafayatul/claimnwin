@@ -10,7 +10,6 @@
   <meta name="csrf-token" content="{{ csrf_token() }}">
   @auth
   <style>
-
     #mainMenu a {
       font-size: smaller;
     }
@@ -18,7 +17,6 @@
       top: calc(100% - 10px);
       left: calc(50% - 5px);
     }
-
   </style>
   @endauth
 </head>
@@ -47,7 +45,6 @@
   <script type='text/javascript' src="{{asset('front_asset/signature/js/html2canvas.js')}}"></script>
   <script src="{{asset('front_asset/signature/js/json2.min.js')}}"></script>
   <script>
-
   $(document).ready(function(e){
     $('#signArea').signaturePad({drawOnly:true, drawBezierCurves:true, lineTop:90});
     $(".dropdown-toggle").dropdown();
@@ -66,13 +63,10 @@ s1.charset='UTF-8';
 s1.setAttribute('crossorigin','*');
 s0.parentNode.insertBefore(s1,s0);
 })();
-
-
       document.querySelector("html").classList.add('js');
       var fileInput  = document.querySelector( ".input-file" ),
         button     = document.querySelector( ".input-file-trigger" ),
         the_return = document.querySelector(".file-return");
-
       button.addEventListener( "keydown", function( event ) {
         if ( event.keyCode == 13 || event.keyCode == 32 ) {
             fileInput.focus();
@@ -85,7 +79,6 @@ s0.parentNode.insertBefore(s1,s0);
       fileInput.addEventListener( "change", function( event ) {
         the_return.innerHTML = this.value;
       });
-
     $(function(){
         // $('.single-submit').trigger('submit');
         // $('.disable-after-first-click').click(function(){
@@ -94,15 +87,11 @@ s0.parentNode.insertBefore(s1,s0);
         // });
         $('.disable-after-first-click').click(function (e) {
             console.log('ssssssssssss');
-
             //stop submitting the form to see the disabled button effect
             e.preventDefault();
-
             //disable the submit button
             $('.disable-after-first-click').attr("disabled", "disabled");
-
             $('.single-submit').trigger('submit');
-
         });
     });
 </script>
