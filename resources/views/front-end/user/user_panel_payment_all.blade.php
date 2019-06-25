@@ -1,6 +1,7 @@
-@extends('front-end.user.user_panel_layout')
+{{-- @extends('front-end.user.user_panel_layout') --}}
+@extends('layouts.user_front_layout')
 
-@section('user_panel_main_section')
+@section('content')
 <style>
 .affiliate_info_mother_div{
     margin-top: 20px;
