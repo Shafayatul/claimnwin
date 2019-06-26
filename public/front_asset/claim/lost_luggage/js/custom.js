@@ -298,6 +298,9 @@ $(document).ready(function() {
                 }else{
                   var finalAmount = data+' ('+newData+')';
                 }
+
+                $("#continue_5").show();
+
                 $(".result_from_ajax_calculation").html('<div class="form_h3 text-center"><h3>CONGRATULATIONS!!!</h3></div><div class="form_show_message_paragraph"><p>you are eligible for a refund of expenses incurred. You are eligible to a refund of up to '+finalAmount+' per passenger.</p></div>');
               }
             });

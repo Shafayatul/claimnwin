@@ -123,6 +123,7 @@
                 <table class="table table-striped text-center">
                   <thead>
                     <tr>
+                      <th></th>
                       <th scope="col" class="text-center">
                         @if ($responseDecoded)
                           {!! $responseDecoded['data']['translations'][4]['translatedText'] !!}
@@ -198,6 +199,7 @@
                 <table class="table table-striped text-center">
                   <thead>
                     <tr>
+                      <th></th>
                       <th scope="col" class="text-center">
                         @if ($responseDecoded)
                           {!! $responseDecoded['data']['translations'][4]['translatedText'] !!}
@@ -272,6 +274,7 @@
                 <table class="table table-striped text-center">
                   <thead>
                     <tr>
+                      <th></th>
                       <th scope="col" class="text-center">
                         @if ($responseDecoded)
                           {!! $responseDecoded['data']['translations'][4]['translatedText'] !!}
@@ -445,11 +448,11 @@
               <div class="col-md-12">
                 <div class="content_div_text">
                   <p>
-                    @if ($responseDecoded)
+                    {{-- @if ($responseDecoded)
                       {!! $responseDecoded['data']['translations'][19]['translatedText'] !!}
                     @else
                       {!! $text[19] !!}
-                    @endif
+                    @endif --}}
                   </p>
                   <br>
                   <a href="{{ URL::to('/contact-us') }}">

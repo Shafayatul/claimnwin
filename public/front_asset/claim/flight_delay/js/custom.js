@@ -337,6 +337,9 @@ $(document).ready(function() {
                 }else{
                   var finalAmount = data+' ('+newData+')';
                 }
+
+                $("#continue_5").show();
+                
                 $(".result_from_ajax_calculation").html('<div class="form_h3 text-center"><h3>CONGRATULATIONS!!!</h3></div><div class="form_show_message_paragraph"><p>You are eligible for compensation. Your claim amount will be up to '+finalAmount+'</p></div>');
               }
             });
