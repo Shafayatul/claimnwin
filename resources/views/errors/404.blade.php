@@ -43,7 +43,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<!-- //main -->
 	<!-- copyright -->
 	<div class="copyright w3-agile">
-		<p>© 2018 Claim'n Win. All rights reserved</p>
+		<p>Copyright © 2019 Claim'N Win</p>
 	</div>
 	</div>
 	<!-- //copyright -->
