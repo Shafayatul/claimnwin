@@ -197,9 +197,9 @@
                     </div><!-- /.col-md-6 -->
                     <div class="col-md-6 text-right">
                         <a href="https://uk.trustpilot.com/review/claimnwin.com">
-                        <img style="width: 90px; height: 40px;" src="{{asset('front_asset/')}}/img/add/01.png" alt="Add"></a>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
-                        <img style="width: 90px; height: 40px;" src="{{asset('front_asset/')}}/img/add/02.png" alt="Add">&nbsp; &nbsp;
-                        <img style="width: 90px; height: 40px;" src="{{asset('front_asset/')}}/img/add/03.png" alt="Add">
+                        <img style="width: 90px; height: 40px;" src="{{asset('front_asset/')}}/img/add/01.png" alt="Add"></a>
+                        <a href="https://www.instantssl.com/ssl-certificate-products/multi-domain-ssl-certificate.html">
+<img src="https://ssl.comodo.com/images/trusted-site-seal.png" alt="Multi Domain SSL" width="113" height="59" style="border: 0px;"></a>
                     </div><!-- /.col-md-6 -->
                 </div><!-- /.row -->
             </div><!-- /.container -->

@@ -744,7 +744,7 @@ class ClaimsController extends Controller
             $affiliate = new Affiliate;
             $affiliate->affiliate_user_id       = $user->affiliate_user_id;
             $affiliate->claim_id                = $claim->id;
-            // $affiliate->commision_amount        = $commision_amount. ' ' . $amount_and_distance[1];
+            $affiliate->commision_amount        = $commision_amount. ' ' . $just_amount[1];
             $affiliate->percentage              = $affiliateCom->fieldValue;
             $affiliate->approved                = 0;
             $affiliate->save();
