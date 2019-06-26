@@ -63,7 +63,7 @@
                 {!! $text[4] !!}
               @endif
             </p>
-            <a href="{{ url('/user-home') }}">
+            <a href="{{ url('/form-claim') }}">
               @if ($responseDecoded)
                 {!! $responseDecoded['data']['translations'][5]['translatedText'] !!}
               @else
