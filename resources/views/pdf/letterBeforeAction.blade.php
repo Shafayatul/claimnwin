@@ -83,7 +83,7 @@
             <div class="total_div" style="width: 100%; display: block; overflow: hidden;">
               <div class="logo_div" style="width: 50%;  float: left; padding-top: 20px; ">
                 <div class="logo_img_div">
-                  <img src="{{asset('front_asset/img/logo.png')}}" alt="" >
+                  <img src="{{asset('front_asset/img/logo.webp')}}" alt="" >
                 </div>
               </div>
               <div class="text_div text-right" style="width: 50%;  float: left; text-align: right">
@@ -134,7 +134,7 @@
   {{-- <div class="common_row">
     <div class="first_child">
       <div class="logo">
-        <img src="http://webencoder.net/demo/logo.png" alt="QR" title="QR" style="display:block;" data-auto-embed="attachment" />
+        <img src="http://webencoder.net/demo/logo.webp" alt="QR" title="QR" style="display:block;" data-auto-embed="attachment" />
       </div>
       <div class="total_div">
         <h5 style="font-size: 15px; font-weight:bold;">Private and Confidential</h5>

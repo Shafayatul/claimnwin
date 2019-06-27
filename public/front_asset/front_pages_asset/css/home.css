@@ -87,7 +87,7 @@
   box-sizing: border-box;
 }
 .main_nav_container {
-  background-image: url('../img/homepage_header_img.jpg');
+  background-image: url('../img/homepage_header_img.webp');
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -299,7 +299,7 @@ input[type="text"]:focus {
 
 .what_customer_say_div {
   padding: 80px 0px 60px 0px;
-  background-image: url('../img/homepage_what_customer_say_background.png');
+  background-image: url('../img/homepage_what_customer_say_background.webp');
   background-position: center;
   background-repeat: no-repeat;
 }
@@ -370,7 +370,7 @@ input[type="text"]:focus {
 
 .our_process_div {
   padding: 80px 0px 80px 0px;
-  background-image: url('../img/homepage_our_process_main-background.png');
+  background-image: url('../img/homepage_our_process_main-background.webp');
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -425,7 +425,7 @@ input[type="text"]:focus {
 /* Free Service Starts */
 
 .about_us_middle_content {
-  background-image: url('../img/about_us_middle_content_img.jpg');
+  background-image: url('../img/about_us_middle_content_img.webp');
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;

@@ -3,7 +3,7 @@ box-sizing: border-box;
 }
 
 .main_nav_container {
-background-image: url(../../front_pages_asset/img/homepage_header_img.jpg);
+background-image: url(../../front_pages_asset/img/homepage_header_img.webp);
 background-repeat: no-repeat;
 background-position: unset;
 background-size: cover;
