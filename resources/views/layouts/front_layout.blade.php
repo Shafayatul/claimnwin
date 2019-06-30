@@ -3,7 +3,7 @@
 <head>
   @include('layouts.includes.front.meta')
   <title>Claim'n Win</title>
-  <link rel="shortcut icon" href="favicon.png">
+  <link rel="shortcut icon" href="{{ asset('favicon.png') }}">
   @include('layouts.includes.front.all-css')
   @yield('header-script')
   <meta name="csrf-token" content="{{ csrf_token() }}">

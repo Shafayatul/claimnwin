@@ -208,7 +208,24 @@ class UserPanelController extends Controller
 
     public function user_login()
     {
-        return view('front-end.login');
+        $text[0] = "Login";
+        $text[1] = "Connect With Facebook";
+        $text[2] = "Connect With Google";
+        $text[3] = "or";
+        $text[4] = "Email address";
+        $text[5] = "Password";
+        $text[6] = "Remember Me";
+        $text[7] = "Forgot password";
+
+
+      if (Session::has('locale')) {
+         $responseDecoded = $this->get_translation($text);
+         return view('front-end.login',compact('responseDecoded', 'text'));
+
+       }else {
+         $responseDecoded = null;
+         return view('front-end.login',compact('responseDecoded', 'text'));
+       }
     }
 
     public function affiliate()
