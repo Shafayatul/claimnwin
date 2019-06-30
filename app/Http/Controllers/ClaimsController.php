@@ -457,7 +457,8 @@ class ClaimsController extends Controller
                 $user->affiliate_user_id  = $affiliate_user_id;
                 $user->save();
 
-                Mail::to($email)->send(new PasswordSent($email,$pass));
+                $new_name = $request->first_name[0].' '.$request->last_name[0];
+                Mail::to($email)->send(new PasswordSent($new_name, $email,$pass));
                 
             }else{
                 $user = User::where('email', $email)->first();

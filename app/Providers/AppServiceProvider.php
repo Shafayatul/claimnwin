@@ -97,10 +97,12 @@ class AppServiceProvider extends ServiceProvider
             $menu_t[23] = "Twitter";
             $menu_t[24] = "Youtube";
             $menu_t[25] = "Linkedin";
-            $menu_t[26] = "2018 Claim Win | All Rights Reserved.";
+            $menu_t[26] = " Claim'N Win 2019.";
+            // $menu_t[26] = "2018 Claim Win | All Rights Reserved.";
             $menu_t[27] = "Logout";
             $menu_t[28] = "My Claims";
             $menu_t[29] = "Affiliate";
+            $menu_t[30] = "Copyright ";
 
             if (Session::has('locale')) {
                 $translated_menu = $this->get_translation($menu_t);

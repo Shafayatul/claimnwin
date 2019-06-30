@@ -187,6 +187,11 @@
                 <div class="row">
                     <div class="col-md-6">
                         <p>
+                              @if ($translated_menu)
+                              {!! $translated_menu['data']['translations'][30]['translatedText'] !!}
+                              @else
+                              {!! $menu_t[30] !!}
+                              @endif
                         ©
                               @if ($translated_menu)
                               {!! $translated_menu['data']['translations'][26]['translatedText'] !!}
@@ -198,8 +203,10 @@
                     <div class="col-md-6 text-right">
                         <a href="https://uk.trustpilot.com/review/claimnwin.com">
                         <img style="width: 90px; height: 40px;" src="{{asset('front_asset/')}}/img/add/01.png" alt="Add"></a>
-                        <a href="https://www.instantssl.com/ssl-certificate-products/multi-domain-ssl-certificate.html">
-<img src="https://ssl.comodo.com/images/trusted-site-seal.png" alt="Multi Domain SSL" width="113" height="59" style="border: 0px;"></a>
+                        <script language="JavaScript" type="text/javascript">
+                            TrustLogo("https://claimnwin.com/TrustL.png", "SC5", "none");
+                        </script>
+                        <a href="https://www.instantssl.com/wildcard-ssl.html" id="comodoTL">Wildcard SSL</a>
                     </div><!-- /.col-md-6 -->
                 </div><!-- /.row -->
             </div><!-- /.container -->

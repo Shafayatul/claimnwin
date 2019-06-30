@@ -10,17 +10,18 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 class PasswordSent extends Mailable
 {
     use Queueable, SerializesModels;
-    public $email,$pass;
+    public $email, $pass, $name;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($email,$pass)
+    public function __construct($name, $email,$pass)
     {
-        $this->email = $email;
-        $this->pass = $pass;
+        $this->name     = $name;
+        $this->email    = $email;
+        $this->pass     = $pass;
     }
 
     /**

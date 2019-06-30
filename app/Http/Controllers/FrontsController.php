@@ -381,10 +381,10 @@ class FrontsController extends Controller
         $text[7] = "8 Billion Euro available to claim annually";
         $text[8] = "Millions";
         $text[9] = "Millions in potential ancillary revenues";
-        $text[10] = "ClaimCompass API";
-        $text[11] = "Developed in partnership with Microsoft, the ClaimCompass API uses cutting edge technology and monitors in real-time all of your bookings, notifying you and your clients when they're entitled to compensation. Our API is first of its kind and is built in a way, which does not require any personal data - all we need is the flight number and the date.";
+        $text[10] = "Claim'N Win API";
+        $text[11] = "Developed in partnership with Microsoft, the Claim'N Win API uses cutting edge technology and monitors in real-time all of your bookings, notifying you and your clients when they're entitled to compensation. Our API is first of its kind and is built in a way, which does not require any personal data - all we need is the flight number and the date.";
         $text[12] = "Affiliate";
-        $text[13] = "Become an affiliate partner and help us reach even more passengers, while earning money for each successful claim. Choose from either placing an affiliate link or embedding your very own ClaimCompass Widget on your website.  We'll still do all the work, but you'll get all the credit!";
+        $text[13] = "Become an affiliate partner and help us reach even more passengers, while earning money for each successful claim. Choose from either placing an affiliate link or embedding your very own Claim'N Win Widget on your website.  We'll still do all the work, but you'll get all the credit!";
         $text[14] = "WHAT OUR CUSTOMERS SAY";
 
         $reviews = Review::limit(7)->latest()->get();

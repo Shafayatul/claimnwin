@@ -36,8 +36,8 @@ class TestsController extends Controller
         $user = User::where('id', '84')->first();
         $ittDetails = ItineraryDetail::where('claim_id',$claim->id)->where('is_selected','1')->first();
         $passengers = Passenger::where('claim_id',$claim->id)->get();
-        Mail::to('sharafat.sohan047@gmail.com')->send(new ClaimCompleted($user, $ittDetails, $passengers));
-        // return view('email.claim_completed', compact('user', 'ittDetails', 'passengers'));
+        // dd(Mail::to('sharafat.sohan047@gmail.com')->send(new ClaimCompleted($user, $ittDetails, $passengers)));
+        return view('email.test', compact('user', 'ittDetails', 'passengers'));
     }
 
 
