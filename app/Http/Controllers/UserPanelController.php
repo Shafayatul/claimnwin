@@ -195,7 +195,25 @@ class UserPanelController extends Controller
 
     public function user_signup()
     {
-      return view('front-end.signup');
+        $text[0] = "Signup";
+        $text[1] = "Connect With Facebook";
+        $text[2] = "Connect With Google";
+        $text[3] = "or";
+        $text[4] = "Name";
+        $text[5] = "Email address";
+        $text[6] = "Password";
+        $text[7] = "Confirm Password";
+        $text[8] = "Remember Me";
+        $text[9] = "Forgot password";
+
+      if (Session::has('locale')) {
+         $responseDecoded = $this->get_translation($text);
+         return view('front-end.signup',compact('responseDecoded', 'text'));
+
+       }else {
+         $responseDecoded = null;
+         return view('front-end.signup',compact('responseDecoded', 'text'));
+       }
     }
 
     public function store_affiliate_info_in_cache(Request $request, $encrypt_user_id=null)
