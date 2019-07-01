@@ -1,15 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	    <meta charset="utf-8">
 </head>
 <body>
-Hello ,
-<h4 style="font-weight: bolder;">{{$toEmail}}</h4>
-{!! $composeData !!}
-Regards,<br>
-Claim'N Win
+	<h1>Name cheap</h1>
+	<img src="https://claimnwin.com/TrustL.png">
+	<h2>GOdaddy hosting</h2>
+	<img src="http://webencoder.net/wp-content/uploads/2017/12/39.png">
+	{!! $composeData !!}
 </body>
 </html>
-
-
