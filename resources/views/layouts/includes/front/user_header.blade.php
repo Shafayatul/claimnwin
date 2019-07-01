@@ -69,7 +69,11 @@
                               <span class="caret"></span>
                           </a> --}}
                           <button style="background-color: transparent; color: #000; border-color: transparent; font-weight: 600; line-height: 2.5;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                            {{ strtoupper(\Session::get('locale')) }}
+                            @if (Session::has('locale'))
+                              {{ strtoupper(\Session::get('locale')) }}
+                            @else
+                              EN
+                            @endif
                             <span class="caret"></span>
                           </button>
 
