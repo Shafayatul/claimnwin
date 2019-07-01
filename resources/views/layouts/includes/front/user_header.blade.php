@@ -64,79 +64,96 @@
                     </ul>
                     <ul class="nav navbar-nav navbar-right text-uppercase main-menu">
                       <li class="dropdown country">
-                          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                              <img src="{{asset($flag_url)}}" alt="Flag" style="width:30px">
-                              <span class="caret"></span>
-                          </a>
-                          <ul class="dropdown-menu flag-dropdown">
-                              <li><a href="{{url('change-language/en')}}"> <img src="{{asset('front_asset/img/country-flags/flag.png')}}" alt="">British (en)</a></li>
-                              <li><a href="{{url('change-language/yi')}}"> <img src="{{ asset('front_asset/img/country-flags/Flag_of_Israel.png')}}" alt="">Yiddish (yi)</a></li>
-                              <li><a href="{{url('change-language/af')}}"> <img src="{{ asset('front_asset/img/country-flags/Flag_of_South_Africa.png')}}" alt="">Afrikaans (af)</a></li>
-                              <li><a href="{{url('change-language/ga')}}"><img src="{{ asset('front_asset/img/country-flags/Flag_of_Ireland.png')}}" alt=""> Irish (ga)</a></li>
-                              <li><a href="{{url('change-language/sq')}}"><img src="{{ asset('front_asset/img/country-flags/Flag_of_Albania.png')}}" alt=""> Albanian (sq)</a></li>
-                              <li><a href="{{url('change-language/it')}}"><img src="{{ asset('front_asset/img/country-flags/Flag_of_Italy.png')}}" alt=""> Italian (it)</a></li>
-                              <li><a href="{{url('change-language/ar')}}"><img src="{{ asset('front_asset/img/country-flags/Flag_of_Saudi_Arabia.png')}}" alt="">Arabic (ar)</a></li>
-                              <li><a href="{{url('change-language/ja')}}"><img src="{{ asset('front_asset/img/country-flags/Flag_of_Japan.png')}}" alt=""> Japanese (ja)</a></li>
-                              <li><a href="{{url('change-language/az')}}"><img src="{{ asset('front_asset/img/country-flags/Flag_of_Azerbaijan.png')}}" alt=""> Azerbaijani (az)</a></li>
-                              <li><a href="{{url('change-language/kn')}}"><img src="{{ asset('front_asset/img/country-flags/Flag_of_Canada.png')}}" alt=""> Kannada (kn)</a></li>
-                              <li><a href="{{url('change-language/eu')}}"> <img src="{{ asset('front_asset/img/country-flags/Flag_of_Spain.png')}}" alt=""> Basque (eu)</a></li>
-                              <li><a href="{{url('change-language/ko')}}"> <img src="{{ asset('front_asset/img/country-flags/Flag_of_South_Korea.png')}}" alt=""> Korean (ko)</a></li>
-                              <li><a href="{{url('change-language/bn')}}"> <img src="{{ asset('front_asset/img/country-flags/Flag_of_Bangladesh.png')}}" alt=""> Bengali (bn)</a></li>
-                              <li><a href="{{url('change-language/la')}}"> <img src="{{ asset('front_asset/img/country-flags/Flag_of_Italy.png')}}" alt=""> Latin (la)</a></li>
-                              <li><a href="{{url('change-language/be')}}"> <img src="{{ asset('front_asset/img/country-flags/Flag_of_Belarus.png')}}" alt=""> Belarusian (be)</a></li>
-                              <li><a href="{{url('change-language/lv')}}"> <img src="{{ asset('front_asset/img/country-flags/Flag_of_Latvia.png')}}" alt=""> Latvian (lv)</a></li>
-                              <li><a href="{{url('change-language/bg')}}"> <img src="{{ asset('front_asset/img/country-flags/Flag_of_Bulgaria.png')}}" alt=""> Bulgarian (bg)</a></li>
-                              <li><a href="{{url('change-language/lt')}}"> <img src="{{ asset('front_asset/img/country-flags/Flag_of_Lithuania.png')}}" alt=""> Lithuanian (lt)</a></li>
-                              {{-- <li><a href="{{url('change-language/ca')}}">Catalan</a>
-                      </li> --}}
-                      <li><a href="{{url('change-language/mk')}}"> <img src="{{ asset('front_asset/img/country-flags/Flag_of_Macedonia.png')}}" alt="">Macedonian (mk)</a></li>
-                      <li><a href="{{url('change-language/zh-CN')}}"> <img src="{{ asset('front_asset/img/country-flags/Flag_of_the_Peoples_Republic_of_China.png')}}" alt="">Chinese Simplified/(zh-CN)</a></li>
-                      <li><a href="{{url('change-language/ms')}}"> <img src="{{ asset('front_asset/img/country-flags/Flag_of_Malaysia.png')}}" alt="">Malay (ms)</a></li>
-                      <li><a href="{{url('change-language/zh-TW')}}"> <img src="{{ asset('front_asset/img/country-flags/Flag_of_the_Peoples_Republic_of_China.png')}}" alt="">Chinese Traditional/(zh-TW)</a></li>
-                      <li><a href="{{url('change-language/mt')}}"> <img src="{{ asset('front_asset/img/country-flags/Flag_of_Malta.png')}}" alt="">Maltese (mt)</a></li>
-                      <li><a href="{{url('change-language/hr')}}"> <img src="{{ asset('front_asset/img/country-flags/Flag_of_Croatia.png')}}" alt="">Croatian (hr)</a></li>
-                      <li><a href="{{url('change-language/no')}}"> <img src="{{ asset('front_asset/img/country-flags/Flag_of_Norway.png')}}" alt="">Norwegian (no)</a></li>
-                      <li><a href="{{url('change-language/cs')}}"> <img src="{{ asset('front_asset/img/country-flags/Flag_of_the_Czech_Republic.png')}}" alt=""> Czech (cs)</a></li>
-                      <li><a href="{{url('change-language/fa')}}"> <img src="{{ asset('front_asset/img/country-flags/Flag_of_Iran.png')}}" alt="">Persian (fa)</a></li>
-                      <li><a href="{{url('change-language/da')}}"> <img src="{{ asset('front_asset/img/country-flags/Flag_of_Denmark.png')}}" alt="">Danish (da)</a></li>
-                      <li><a href="{{url('change-language/pl')}}"> <img src="{{ asset('front_asset/img/country-flags/Flag_of_Poland.png')}}" alt="">Polish (pl)</a></li>
-                      <li><a href="{{url('change-language/nl')}}"> <img src="{{ asset('front_asset/img/country-flags/Flag_of_the_Netherlands.png')}}" alt=""> Dutch (nl)</a></li>
-                      <li><a href="{{url('change-language/pt')}}"> <img src="{{ asset('front_asset/img/country-flags/Flag_of_Portugal.png')}}" alt="">
-                              Portuguese (pt)</a></li>
-                      <li><a href="{{url('change-language/ro')}}"> <img src="{{ asset('front_asset/img/country-flags/Flag_of_Romania.png')}}" alt="">Romanian (ro)</a></li>
-                      {{-- <li><a href="{{url('change-language/eo')}}" (Esperanto)</a></li> --}}
-                      <li><a href="{{url('change-language/ru')}}"> <img src="{{ asset('front_asset/img/country-flags/Flag_of_Russia.png')}}" alt="">Russian (ru)</a></li>
-                      <li><a href="{{url('change-language/et')}}"> <img src="{{ asset('front_asset/img/country-flags/Flag_of_Estonia.png')}}" alt="">Estonian (et)</a></li>
-                      <li><a href="{{url('change-language/sr')}}"> <img src="{{ asset('front_asset/img/country-flags/Flag_of_Serbia.png')}}" alt="">Serbian (sr)</a></li>
-                      <li><a href="{{url('change-language/tl')}}"> <img src="{{ asset('front_asset/img/country-flags/Flag_of_the_Philippines.png')}}" alt=""> Filipino (tl)</a></li>
-                      <li><a href="{{url('change-language/sk')}}"> <img src="{{ asset('front_asset/img/country-flags/Flag_of_Slovakia.png')}}" alt="">Slovak (sk)</a></li>
-                      <li><a href="{{url('change-language/fi')}}"> <img src="{{ asset('front_asset/img/country-flags/Flag_of_Finland.png')}}" alt="">Finnish (fi)</a></li>
-                      <li><a href="{{url('change-language/sl')}}"> <img src="{{ asset('front_asset/img/country-flags/Flag_of_Slovenia.png')}}" alt="">Slovenian (sl)</a></li>
-                      <li><a href="{{url('change-language/fr')}}"> <img src="{{ asset('front_asset/img/country-flags/Flag_of_France.png')}}" alt="">French (fr)</a></li>
-                      <li><a href="{{url('change-language/es')}}"> <img src="{{ asset('front_asset/img/country-flags/Flag_of_Spain.png')}}" alt="">Spanish (es)</a></li>
-                      {{-- <li><a href="{{url('change-language/gl')}}" (Galician)</a></li> --}}
-                      <li><a href="{{url('change-language/sw')}}"> <img src="{{ asset('front_asset/img/country-flags/Flag_of_Kenya.png')}}" alt="">Swahili (sw)</a></li>
-                      <li><a href="{{url('change-language/ka')}}"> <img src="{{ asset('front_asset/img/country-flags/Flag_of_Georgia.png')}}" alt="">Georgian (ka)</a></li>
-                      <li><a href="{{url('change-language/sv')}}"> <img src="{{ asset('front_asset/img/country-flags/Flag_of_Sweden.png')}}" alt="">Swedish (sv)</a></li>
-                      <li><a href="{{url('change-language/de')}}"> <img src="{{ asset('front_asset/img/country-flags/Flag_of_Germany.png')}}" alt="">German (de)</a></li>
-                      {{-- <li><a href="{{url('change-language/ta')}}" (Tamil)</a></li> --}}
-                      <li><a href="{{url('change-language/el')}}"> <img src="{{ asset('front_asset/img/country-flags/Flag_of_Greece.png')}}" alt="">Greek (el)</a></li>
-                      {{-- <li><a href="{{url('change-language/te')}}" (Telugu)</a></li> --}}
-                      {{-- <li><a href="{{url('change-language/gu')}}" (Gujarati)</a></li> --}}
-                      <li><a href="{{url('change-language/th')}}"> <img src="{{ asset('front_asset/img/country-flags/Flag_of_Thailand.png')}}" alt="">Thai (th)</a></li>
-                      <li><a href="{{url('change-language/ht')}}"> <img src="{{ asset('front_asset/img/country-flags/Flag_of_Haiti.png')}}" alt="">Haitian (ht)</a></li>
-                      <li><a href="{{url('change-language/tr')}}"> <img src="{{ asset('front_asset/img/country-flags/Flag_of_Turkey.png')}}" alt="">Turkish (tr)</a></li>
-                      <li><a href="{{url('change-language/iw')}}"> <img src="{{ asset('front_asset/img/country-flags/Flag_of_Israel.png')}}" alt="">Hebrew (iw)</a></li>
-                      <li><a href="{{url('change-language/uk')}}"> <img src="{{ asset('front_asset/img/country-flags/Flag_of_Ukraine.png')}}" alt="">Ukrainian (uk)</a></li>
-                      <li><a href="{{url('change-language/hi')}}"> <img src="{{ asset('front_asset/img/country-flags/Flag_of_India.png')}}" alt="">Hindi (hi)</a></li>
-                      <li><a href="{{url('change-language/ur')}}"> <img src="{{ asset('front_asset/img/country-flags/Flag_of_Pakistan.png')}}" alt="">Urdu (ur)</a></li>
-                      <li><a href="{{url('change-language/hu')}}"> <img src="{{ asset('front_asset/img/country-flags/Flag_of_Hungary.png')}}" alt="">Hungarian (hu)</a></li>
-                      <li><a href="{{url('change-language/vi')}}"> <img src="{{ asset('front_asset/img/country-flags/Flag_of_Vietnam.png')}}" alt="">Vietnamese (vi)</a></li>
-                      <li><a href="{{url('change-language/is')}}"> <img src="{{ asset('front_asset/img/country-flags/Flag_of_Iceland.png')}}" alt="">Icelandic (is)</a></li>
-                      {{-- <li><a href="{{url('change-language/cy')}}" (Welsh)</a></li> --}}
-                      <li><a href="{{url('change-language/id')}}"> <img src="{{ asset('front_asset/img/country-flags/Flag_of_Indonesia.png')}}" alt="">Indonesian (id)</a></li>
-                  </ul>
-                  </li>
+                        {{-- <a href="{{url('change-language/en')}}" class="dropdown-toggle" data-toggle="modal" data-target="#exampleModal">
+                            EN
+                            <span class="caret"></span>
+                        </a> --}}
+                        <button style="background-color: transparent; color: #000; border-color: transparent; font-weight: 600; line-height: 2.5;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                          <a href="{{url('change-language/en')}}" >EN</a>
+                          <span class="caret"></span>
+                        </button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Select Language</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                <ul style="overflow-y:scroll; padding-bottom: 80px;">
+                                  <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/af')}}"> Afrikaans (af)</a></li>
+                                  <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/sq')}}"> Albanian (sq)</a></li>
+                                  <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/ar')}}"> Arabic (ar)</a></li>
+                                  <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/az')}}"> Azerbaijani (az)</a></li>
+                                  <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/eu')}}"> Basque (eu)</a></li>
+                                  <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/be')}}"> Belarusian (be)</a></li>
+                                  <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/bn')}}"> Bengali (bn)</a></li>
+                                  <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/en')}}"> British (en)</a></li>
+                                  <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/bg')}}">  Bulgarian (bg)</a></li>
+                                  <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/zh-CN')}}"> Chinese Simplified/(zh-CN)</a></li>
+                                  <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/zh-TW')}}"> Chinese Traditional/(zh-TW)</a></li>
+                                  <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/hr')}}"> Croatian (hr)</a></li>
+                                  <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/cs')}}">  Czech (cs)</a></li>
+                                  <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/da')}}"> Danish (da)</a></li>
+                                  <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/nl')}}">  Dutch (nl)</a></li>
+                                  <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/et')}}"> Estonian (et)</a></li>
+                                  <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/tl')}}">  Filipino (tl)</a></li>
+                                  <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/fi')}}"> Finnish (fi)</a></li>
+                                  <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/fr')}}"> French (fr)</a></li>
+                                  <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/ka')}}"> Georgian (ka)</a></li>
+                                  <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/de')}}"> German (de)</a></li>
+                                  <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/el')}}"> Greek (el)</a></li>
+                                  <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/ht')}}"> Haitian (ht)</a></li>
+                                  <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/iw')}}"> Hebrew (iw)</a></li>
+                                  <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/hi')}}"> Hindi (hi)</a></li>
+                                  <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/hu')}}"> Hungarian (hu)</a></li>
+                                  <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/is')}}"> Icelandic (is)</a></li>
+                                  <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/id')}}"> Indonesian (id)</a></li>
+                                  <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/ga')}}"> Irish (ga)</a></li>
+                                  <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/it')}}"> Italian (it)</a></li>
+                                  <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/ja')}}"> Japanese (ja)</a></li>
+                                  <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/kn')}}"> Kannada (kn)</a></li>
+                                  <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/ko')}}">  Korean (ko)</a></li>
+                                  <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/la')}}">  Latin (la)</a></li>
+                                  <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/lv')}}">  Latvian (lv)</a></li>
+                                  <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/lt')}}">  Lithuanian (lt)</a></li>
+                                  <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/mk')}}"> Macedonian (mk)</a></li>
+                                  <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/ms')}}"> Malay (ms)</a></li>
+                                  <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/mt')}}"> Maltese (mt)</a></li>
+                                  <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/no')}}"> Norwegian (no)</a></li>
+                                  <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/fa')}}"> Persian (fa)</a></li>
+                                  <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/pl')}}"> Polish (pl)</a></li>
+                                  <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/pt')}}">
+                                  Portuguese (pt)</a></li>
+                                  <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/ro')}}"> Romanian (ro)</a></li>
+                                  <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/ru')}}"> Russian (ru)</a></li>
+                                  <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/sr')}}"> Serbian (sr)</a></li>
+                                  <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/sk')}}"> Slovak (sk)</a></li>
+                                  <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/sl')}}"> Slovenian (sl)</a></li>
+                                  <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/es')}}"> Spanish (es)</a></li>
+                                  <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/sw')}}"> Swahili (sw)</a></li>
+                                  <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/sv')}}"> Swedish (sv)</a></li>
+                                  <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/th')}}"> Thai (th)</a></li>
+                                  <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/tr')}}"> Turkish (tr)</a></li>
+                                  <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/uk')}}"> Ukrainian (uk)</a></li>
+                                  <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/ur')}}"> Urdu (ur)</a></li>
+                                  <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/vi')}}"> Vietnamese (vi)</a></li>
+                                  <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/yi')}}"> Yiddish (yi)</a></li>
+
+                                </ul>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </li>
                         <li><a href="{{ URL::to('/user-home') }}">
                           @if ($translated_menu)
                           {!! $translated_menu['data']['translations'][28]['translatedText'] !!}
