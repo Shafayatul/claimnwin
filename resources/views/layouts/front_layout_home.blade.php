@@ -79,7 +79,7 @@ s0.parentNode.insertBefore(s1,s0);
 {{-- <link href="{{asset('autocomplete/jquery.auto-complete.css')}}" rel="stylesheet"> --}}
 
 <link  href="{{asset('front_asset/front_pages_asset/css/home.css')}}" rel="stylesheet">
-{{-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous"> --}}
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
 
 
