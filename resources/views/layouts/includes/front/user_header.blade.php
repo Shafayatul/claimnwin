@@ -10,7 +10,7 @@
                         </span>
                     </button>
                     <a class="navbar-brand" href="{{url('/')}}">
-                        <img src="{{asset('front_asset/')}}/img/logo.webp" alt="Logo">
+                        <img src="{{asset('front_asset/img/logo.webp')}}" id="main-logo-top" alt="Logo">
                     </a>
                 </div>
 
@@ -64,27 +64,44 @@
                     </ul>
                     <ul class="nav navbar-nav navbar-right text-uppercase main-menu">
                       <li class="dropdown country">
-                        {{-- <a href="{{url('change-language/en')}}" class="dropdown-toggle" data-toggle="modal" data-target="#exampleModal">
-                            EN
+                          {{-- <a href="{{url('change-language/en')}}" class="dropdown-toggle" data-toggle="modal" data-target="#exampleModal">
+                              EN
+                              <span class="caret"></span>
+                          </a> --}}
+                          <button style="background-color: transparent; color: #000; border-color: transparent; font-weight: 600; line-height: 2.5;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                            @if (Session::has('locale'))
+                              {{ strtoupper(\Session::get('locale')) }}
+                            @else
+                              EN
+                            @endif
                             <span class="caret"></span>
-                        </a> --}}
-                        <button style="background-color: transparent; color: #000; border-color: transparent; font-weight: 600; line-height: 2.5;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                          <a href="{{url('change-language/en')}}" >EN</a>
-                          <span class="caret"></span>
-                        </button>
+                          </button>
 
                         <!-- Modal -->
                         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                           <div class="modal-dialog" role="document">
                             <div class="modal-content">
                               <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Select Language</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">Suggested Language</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                   <span aria-hidden="true">&times;</span>
                                 </button>
+                                <div class="" style="padding-top: 20px; padding-bottom: 20px;">
+                                  <ul>
+                                    <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/en')}}"> British (en)</a></li>
+                                    <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/fr')}}"> French (fr)</a></li>
+                                    <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/de')}}"> German (de)</a></li>
+                                    <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/iw')}}"> Hebrew (iw)</a></li>
+                                    <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/pt')}}">
+                                    Portuguese (pt)</a></li>
+                                    <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/es')}}"> Spanish (es)</a></li>
+
+                                  </ul>
+                                </div>
                               </div>
                               <div class="modal-body">
-                                <ul style="overflow-y:scroll; padding-bottom: 80px;">
+                                <h5 class="modal-title" id="exampleModalLabel">Select Language</h5>
+                                <ul style="overflow-y:scroll; padding-bottom: 80px; padding-top: 20px;">
                                   <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/af')}}"> Afrikaans (af)</a></li>
                                   <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/sq')}}"> Albanian (sq)</a></li>
                                   <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/ar')}}"> Arabic (ar)</a></li>
@@ -153,7 +170,7 @@
                             </div>
                           </div>
                         </div>
-                      </li>
+                  </li>
                         <li><a href="{{ URL::to('/user-home') }}">
                           @if ($translated_menu)
                           {!! $translated_menu['data']['translations'][28]['translatedText'] !!}
