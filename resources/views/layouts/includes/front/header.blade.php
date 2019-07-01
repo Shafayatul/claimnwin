@@ -54,13 +54,26 @@
                       <div class="modal-dialog" role="document">
                         <div class="modal-content">
                           <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Select Language</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Suggested Language</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                               <span aria-hidden="true">&times;</span>
                             </button>
+                            <div class="" style="padding-top: 20px; padding-bottom: 20px;">
+                              <ul>
+                                <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/en')}}"> British (en)</a></li>
+                                <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/fr')}}"> French (fr)</a></li>
+                                <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/de')}}"> German (de)</a></li>
+                                <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/iw')}}"> Hebrew (iw)</a></li>
+                                <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/pt')}}">
+                                Portuguese (pt)</a></li>
+                                <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/es')}}"> Spanish (es)</a></li>
+
+                              </ul>
+                            </div>
                           </div>
                           <div class="modal-body">
-                            <ul style="overflow-y:scroll; padding-bottom: 80px;">
+                            <h5 class="modal-title" id="exampleModalLabel">Select Language</h5>
+                            <ul style="overflow-y:scroll; padding-bottom: 80px; padding-top: 20px;">
                               <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/af')}}"> Afrikaans (af)</a></li>
                               <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/sq')}}"> Albanian (sq)</a></li>
                               <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/ar')}}"> Arabic (ar)</a></li>
