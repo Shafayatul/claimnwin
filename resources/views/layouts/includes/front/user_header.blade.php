@@ -10,7 +10,7 @@
                         </span>
                     </button>
                     <a class="navbar-brand" href="{{url('/')}}">
-                        <img src="{{asset('front_asset/')}}/img/logo.webp" alt="Logo">
+                        <img src="{{asset('front_asset/img/logo.webp')}}" id="main-logo-top" alt="Logo">
                     </a>
                 </div>
 

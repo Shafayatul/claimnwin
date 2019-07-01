@@ -57,7 +57,7 @@
     text-align: center;
     float: center;
     width: 204px;
-    margin: 0 auto; 
+    margin: 0 auto;
   }
 
 
