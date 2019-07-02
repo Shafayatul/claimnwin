@@ -32,13 +32,24 @@
               <table class="table table-borderless">
                   <tbody>
                       <tr>
-                          <th>ID</th><td>{{ $emailtemplate->id }}</td>
+                          <th>ID</th>
+                          <td>{{ $emailtemplate->id }}</td>
                       </tr>
-                      <tr><th> Id </th><td> {{ $emailtemplate->id }} </td></tr><tr><th> Title </th><td> {{ $emailtemplate->title }} </td></tr><tr><th> Content </th><td> {{ $emailtemplate->content }} </td></tr>
+                      <tr>
+                        <th> Id </th>
+                        <td> {{ $emailtemplate->id }} </td>
+                      </tr>
+                      <tr>
+                        <th> Title </th>
+                        <td> {{ $emailtemplate->title }} </td>
+                      </tr>
+                      <tr>
+                        <th> Content </th>
+                        <td> {!! htmlspecialchars_decode($emailtemplate->content) !!} </td>
+                      </tr>
                   </tbody>
               </table>
           </div>
-
       </div>
   </div>
 </div>
@@ -48,7 +59,7 @@
 
 
 
-
+{{-- 
 @extends('layouts.admin_layout')
 
 @section('main_content')
@@ -61,3 +72,4 @@
       </div>
   </div>
 @endsection
+ --}}
