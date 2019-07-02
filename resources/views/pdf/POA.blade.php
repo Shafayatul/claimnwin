@@ -86,7 +86,7 @@
       <div class="total_div">
         <div class="logo_div">
           <div class="logo_img_div">
-            <img src="{{asset('front_asset/img/logo.webp')}}" alt="" >
+            <img src="{{asset('front_asset/img/logo.png')}}" alt="" >
           </div>
         </div>
         <div class="text_div text-right">
@@ -117,7 +117,7 @@
         {{-- <div class="row">
           <div class="col-md-4">
             <div class="logo_div">
-              <img src="{{asset('front_asset/img/logo.webp')}}" alt="" >
+              <img src="{{asset('front_asset/img/logo.png')}}" alt="" >
             </div>
           </div>
 

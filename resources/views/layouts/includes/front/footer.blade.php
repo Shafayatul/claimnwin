@@ -215,24 +215,26 @@
     <script type="text/javascript">
     if (/MSIE 10/i.test(navigator.userAgent)) {
      // This is internet explorer 10
-     window.alert('isIE10');
+     // window.alert('isIE10');
      change_logo_type();
     }
 
     if (/MSIE 9/i.test(navigator.userAgent) || /rv:11.0/i.test(navigator.userAgent)) {
       // This is internet explorer 9 or 11
-      window.alert('isIE10');
+      // window.alert('isIE10');
       change_logo_type();
     }
 
     if (/Edge\/\d./i.test(navigator.userAgent)){
      // This is Microsoft Edge
-     window.alert('Microsoft Edge');
+     // window.alert('Microsoft Edge');
      change_logo_type();
     }
 
     function change_logo_type(){
-      var mainLogoTop = document.getElementById('main-logo-top').setAttribute('src', "{{asset('front_asset/img/logo.png')}}");
+        var url_bg = "{{asset('url(img/homepage_header_img.jpg)')}}";
+        document.getElementById("main-logo-top").src = "{{asset('front_asset/img/logo.png')}}";
+        document.getElementsByClassName("main_nav_container").style.backgroundImage  = "url('"+url_bg+"'')";
     }
 
     </script>
