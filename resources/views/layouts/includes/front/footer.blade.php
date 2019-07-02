@@ -213,28 +213,12 @@
         </div><!-- /.footer-bottom -->
     </footer>
     <script type="text/javascript">
-    if (/MSIE 10/i.test(navigator.userAgent)) {
-     // This is internet explorer 10
-     // window.alert('isIE10');
-     change_logo_type();
-    }
+      if ((/MSIE (\d+\.\d+);/.test(navigator.userAgent) || navigator.userAgent.indexOf("Trident/") > -1) || (navigator.userAgent.toLowerCase().indexOf('firefox') > -1) ){
+        change_logo_type();
+      }
 
-    if (/MSIE 9/i.test(navigator.userAgent) || /rv:11.0/i.test(navigator.userAgent)) {
-      // This is internet explorer 9 or 11
-      // window.alert('isIE10');
-      change_logo_type();
-    }
 
-    if (/Edge\/\d./i.test(navigator.userAgent)){
-     // This is Microsoft Edge
-     // window.alert('Microsoft Edge');
-     change_logo_type();
-    }
-
-    function change_logo_type(){
-        var url_bg = "{{asset('url(img/homepage_header_img.jpg)')}}";
-        document.getElementById("main-logo-top").src = "{{asset('front_asset/img/logo.png')}}";
-        document.getElementsByClassName("main_nav_container").style.backgroundImage  = "url('"+url_bg+"'')";
-    }
-
+      function change_logo_type(){
+        document.getElementById("main-logo-top").src = "{{asset('front_asset/')}}/img/logo.png";
+      }
     </script>
