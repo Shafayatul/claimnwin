@@ -59,7 +59,7 @@
 				<span style="font-family:'Lucida Handwriting'; color:#222222">Claim’N Win</span>
 			</p>
 			<p style="margin-top:0pt; margin-bottom:8pt; line-height:107%; font-size:11pt; background-color:#ffffff">
-				<img src="https://myfiles.space/user_files/31870_cbc05cdaea37bc66/1561656008_email-template-new-account-claimnwin/1561656008_email-template-new-account-claimnwin.001.png" width="218" height="69" alt="" >
+				<img src="{{ asset('front_asset/img/logo.png') }}" width="218" height="69" alt="" >
 			</p>
 			<p style="margin-top:0pt; margin-bottom:8pt; line-height:107%; font-size:11pt; background-color:#ffffff">
 				<span style="font-family:Calibri">&#xa0;</span>

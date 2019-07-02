@@ -49,7 +49,7 @@
                                                 </div>
                                             </div>
                                             <div class="li_text_div">
-                                                <span>Cliam Submission</span>
+                                                <span>Claim Submission</span>
                                             </div>
                                         </div>
                                     </li>

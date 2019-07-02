@@ -1,9 +1,3 @@
-@component('mail::message')
-
-
-
-    
-    
 <html>
     <head>
         <title>Claim'n Win</title>
@@ -16,5 +10,3 @@
             {!! $email_content !!}
     </body>
 </html>
-
-@endcomponent
