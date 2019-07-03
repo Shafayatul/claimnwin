@@ -18,7 +18,8 @@
           <div class="collapse navbar-collapse" id="mainMenu">
               <ul class="nav navbar-nav navbar-right">
                   <li class="call"><a href="#">
-                          <img src="{{asset('front_asset/')}}/img/phone.png" alt="phone icon">
+                          {{-- <img src="{{asset('front_asset/')}}/img/phone.png" alt="phone icon"> --}}
+                          <i class="sprite sprite-phone"></i>
                           {{$ip_phone_number}}
                       </a></li>
 
@@ -151,7 +152,8 @@
               @guest
               <li class="login">
                   <a href="{{ route('user/login') }}">
-                      <img src="{{asset('front_asset/')}}/img/lock.png" alt="lock icon">
+                      {{-- <img src="{{asset('front_asset/')}}/img/lock.png" alt="lock icon"> --}}
+                      <i class="sprite sprite-lock"></i>
                       @if ($translated_menu)
                       {!! $translated_menu['data']['translations'][4]['translatedText'] !!}
                       @else

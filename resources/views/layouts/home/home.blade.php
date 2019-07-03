@@ -156,6 +156,7 @@
               <div class="box_left_part_2">
                 <div class="box_left_part_img_container">
                   <img src="{{ asset('/front_asset/front_pages_asset/img/homepage_top_header_dollar_icon.png') }}" alt="">
+                  {{-- <i class="sprite sprite-homepage_top_header_dollar_icon"></i> --}}
                 </div>
               </div>
               <div class="box_right_part_2">
@@ -181,7 +182,8 @@
             <div class="total_box_3">
               <div class="box_left_part_3">
                 <div class="box_left_part_img_container">
-                  <img src="{{ asset('/front_asset/front_pages_asset/img/homepage_top_header_group_icon.png') }}" alt="">
+                  {{-- <img src="{{ asset('/front_asset/front_pages_asset/img/homepage_top_header_group_icon.png') }}" alt=""> --}}
+                  <i class="sprite sprite-homepage_top_header_group_icon"></i>
                 </div>
               </div>
               <div class="box_right_part_3">
@@ -206,7 +208,8 @@
             <div class="total_box_4">
               <div class="box_left_part_4">
                 <div class="box_left_part_img_container">
-                  <img src="{{ asset('/front_asset/front_pages_asset/img/homepage_top_header_bank_icon.png') }}" alt="">
+                  {{-- <img src="{{ asset('/front_asset/front_pages_asset/img/homepage_top_header_bank_icon.png') }}" alt=""> --}}
+                  <i class="sprite sprite-homepage_top_header_bank_icon"></i>
                 </div>
               </div>
               <div class="box_right_part_4">
@@ -328,7 +331,8 @@
             <div class="col-md-4 text-center margin_bottom">
               <div class="how_it_works_background_icon_div">
                 <div class="how_it_works_icon_div">
-                  <img src="{{ asset('/front_asset/front_pages_asset/img/homepage_how_it_works_compensation.png') }}" alt="">
+                  {{-- <img src="{{ asset('/front_asset/front_pages_asset/img/homepage_how_it_works_compensation.png') }}" alt=""> --}}
+                  <i class="sprite sprite-homepage_how_it_works_compensation"></i>
                 </div>
               </div>
               <div class="how_it_works_text_div">
@@ -427,25 +431,40 @@
                         <div class="sliding_div">
                             <div class="sliding_div_rating_div">
                                 @if($review->star == 5)
+                                {{-- <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
                                 <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
                                 <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
                                 <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
-                                <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
-                                <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
+                                <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span> --}}
+                                <span class="rating_span"><i class="sprite sprite-rating_img"></i></span>
+                                <span class="rating_span"><i class="sprite sprite-rating_img"></i></span>
+                                <span class="rating_span"><i class="sprite sprite-rating_img"></i></span>
+                                <span class="rating_span"><i class="sprite sprite-rating_img"></i></span>
+                                <span class="rating_span"><i class="sprite sprite-rating_img"></i></span>
                                 @elseif($review->star == 4)
+                                {{-- <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
                                 <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
                                 <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
-                                <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
-                                <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
+                                <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span> --}}
+                                <span class="rating_span"><i class="sprite sprite-rating_img"></i></span>
+                                <span class="rating_span"><i class="sprite sprite-rating_img"></i></span>
+                                <span class="rating_span"><i class="sprite sprite-rating_img"></i></span>
+                                <span class="rating_span"><i class="sprite sprite-rating_img"></i></span>
                                 @elseif($review->star == 3)
+                                {{-- <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
                                 <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
-                                <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
-                                <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
+                                <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span> --}}
+                                <span class="rating_span"><i class="sprite sprite-rating_img"></i></span>
+                                <span class="rating_span"><i class="sprite sprite-rating_img"></i></span>
+                                <span class="rating_span"><i class="sprite sprite-rating_img"></i></span>
                                 @elseif($review->star == 2)
-                                <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
-                                <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
+                                {{-- <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
+                                <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span> --}}
+                                <span class="rating_span"><i class="sprite sprite-rating_img"></i></span>
+                                <span class="rating_span"><i class="sprite sprite-rating_img"></i></span>
                                 @else
-                                <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span>
+                                {{-- <span class="rating_span"> <img src="{{ asset('/front_asset/front_pages_asset/img/rating_img.png') }}" alt=""> </span> --}}
+                                <span class="rating_span"><i class="sprite sprite-rating_img"></i></span>
                                 @endif
                             </div>
 
@@ -506,7 +525,8 @@
         <div class="row">
           <div class="col-md-3 col-xs-6 our_process_padding_bottom">
             <div class="our_process_lower_div_icon_div text-center">
-              <img class="" src="{{ asset('/front_asset/front_pages_asset/img/homepage_our_process_calculator.png') }}" alt="">
+              {{-- <img class="" src="{{ asset('/front_asset/front_pages_asset/img/homepage_our_process_calculator.png') }}" alt=""> --}}
+              <i class="sprite sprite-homepage_our_process_calculator"></i>
             </div>
             <div class="our_process_lower_div_icon_text_div text-center">
               <p>
@@ -535,7 +555,8 @@
           <div class="clearfix clearfix_display_none"></div>
           <div class="col-md-3 col-xs-6 our_process_padding_bottom">
             <div class="our_process_lower_div_icon_div text-center">
-              <img class="" src="{{ asset('/front_asset/front_pages_asset/img/homepage_our_process_collaboration.png') }}" alt="">
+              {{-- <img class="" src="{{ asset('/front_asset/front_pages_asset/img/homepage_our_process_collaboration.png') }}" alt=""> --}}
+              <i class="sprite sprite-homepage_our_process_collaboration"></i>
             </div>
             <div class="our_process_lower_div_icon_text_div text-center">
               <p>
@@ -549,7 +570,8 @@
           </div>
           <div class="col-md-3 col-xs-6 our_process_padding_bottom">
             <div class="our_process_lower_div_icon_div text-center">
-              <img class="" src="{{ asset('/front_asset/front_pages_asset/img/homepage_our_process_cash_in_hand.png') }}" alt="">
+              {{-- <img class="" src="{{ asset('/front_asset/front_pages_asset/img/homepage_our_process_cash_in_hand.png') }}" alt=""> --}}
+              <i class="sprite sprite-homepage_our_process_cash_in_hand"></i>
             </div>
             <div class="our_process_lower_div_icon_text_div text-center">
               <p>
