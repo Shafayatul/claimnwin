@@ -138,7 +138,7 @@
                             <ul class="social">
                                 <li>
                                     <a href="#">
-                                        <span><img src="{{asset('front_asset/')}}/img/fb.png" alt="social icon"></span>
+                                        <span><i class="fab fa-facebook-f"></i></span>
                                         @if ($translated_menu)
                                           {{ $translated_menu['data']['translations'][22]['translatedText']}}
                                         @else
@@ -148,7 +148,7 @@
                                 </li>
                                 <li>
                                     <a href="#">
-                                        <span><img src="{{asset('front_asset/')}}/img/tw.png" alt="social icon"></span>
+                                        <span><i class="fab fa-twitter"></i></span>
                                         @if ($translated_menu)
                                           {{ $translated_menu['data']['translations'][23]['translatedText']}}
                                         @else
@@ -158,7 +158,7 @@
                                 </li>
                                 <li>
                                     <a href="#">
-                                        <span><img src="{{asset('front_asset/')}}/img/yt.png" alt="social icon"></span>
+                                        <span><i class="fab fa-youtube"></i></span>
                                         @if ($translated_menu)
                                           {{ $translated_menu['data']['translations'][24]['translatedText']}}
                                         @else
@@ -168,7 +168,7 @@
                                 </li>
                                 <li>
                                     <a href="#">
-                                        <span><img src="{{asset('front_asset/')}}/img/lin.png" alt="social icon"></span>
+                                        <span><i class="fab fa-linkedin"></i></span>
                                         @if ($translated_menu)
                                           {{ $translated_menu['data']['translations'][25]['translatedText']}}
                                         @else
