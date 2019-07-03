@@ -132,7 +132,7 @@
                               </div>
                               <div class="parent_div">
                                 <div class="child_div">
-                                  <input type="text" class="common_input connection" id="common_input connection" name="connection[]" placeholder="East-West Paris Airport">
+                                  <input type="text" class="auto_airport_complete common_input connection" id="common_input connection" name="connection[]" placeholder="East-West Paris Airport">
                                 </div>
                                 <div class="property" id="property">
 
