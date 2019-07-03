@@ -96,7 +96,7 @@ class WelcomeController extends Controller
         $text[15] = "HOW IT WORKS";
         $text[16] = "Check your compensation";
         $text[17] = "Submit your details and we run a quick flight check to see if the airline owes you money.";
-        $text[18] = "Claim'N Win manages you  claim";
+        $text[18] = "Claim'N Win manages your  claim";
         $text[19] = "We're very good at this, so you sit back and relax while we jump into action.";
         $text[20] = "We send you the money";
         $text[21] = "We get it to you as quickly as we can, with regular updates along the way.";
