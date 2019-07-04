@@ -30,6 +30,6 @@ class ClaimClosed extends Mailable
      */
     public function build()
     {
-        return $this->markdown('email.claim_closed');
+        return $this->subject('Claim Closed')->markdown('email.claim_closed');
     }
 }

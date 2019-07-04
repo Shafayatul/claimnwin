@@ -14,7 +14,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="panel-group">
-                            <div class="panel panel-success">
+                            <div class="panel">
                                 <div class="panel-heading" style="height: auto!important;">
                                     <div class="row">
                                         <div class="col-md-12">

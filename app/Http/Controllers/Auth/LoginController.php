@@ -51,6 +51,13 @@ class LoginController extends Controller
     return array_add($credentials, 'status', '1');
     }
 
+
+    public function showLoginForm()
+    {
+        // return view('auth.login');
+        return redirect('/user/login');
+    }
+
     /**
      * Check user's role and redirect user based on their role
      * @return

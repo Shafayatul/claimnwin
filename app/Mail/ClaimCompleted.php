@@ -31,6 +31,6 @@ class ClaimCompleted extends Mailable
      */
     public function build()
     {
-        return $this->markdown('email.claim_completed');
+        return $this->subject('Claim Completed')->markdown('email.claim_completed');
     }
 }

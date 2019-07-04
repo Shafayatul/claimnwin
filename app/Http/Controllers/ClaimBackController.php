@@ -604,8 +604,9 @@ class ClaimBackController extends Controller
 
 
         $userName =$request->to_email;
+        $customerComposeSubject = $request->sub;
 
-        Mail::to($request->to_email)->send(new CustomerCompose($file__names,$composeData,$userName,$from_email,$from_name));
+        Mail::to($request->to_email)->send(new CustomerCompose($file__names,$composeData,$userName,$from_email,$from_name,$customerComposeSubject));
         $file= new CustomerComposerFile();
         $file->compose_text = $request->compose_text;
         $file->from_email = $request->from_email;
@@ -645,9 +646,9 @@ class ClaimBackController extends Controller
        $from_email  = $request->from_email;
        $from_name   = $request->from_name;
 
-
+       $airlineComposeSubject = $request->sub;
         $userName = $request->to_email;
-        Mail::to($request->to_email)->send(new AirlineCompose($file_names,$composeData,$userName,$from_email,$from_name));
+        Mail::to($request->to_email)->send(new AirlineCompose($file_names,$composeData,$userName,$from_email,$from_name,$airlineComposeSubject));
         $file = new AirlineComposeFile();
         $file->airline_compose_text = $request->airline_compose_text;
         $file->from_email           = $request->from_email;
@@ -698,9 +699,10 @@ class ClaimBackController extends Controller
        $from_email  = $request->from_email;
        $from_name   = $request->from_name;
 
+       $airlineReplySubject = $request->sub;
 
         $userName = $request->to_email;
-        Mail::to($request->to_email)->send(new AirlineReply($file_names,$composeData,$userName,$from_email,$from_name));
+        Mail::to($request->to_email)->send(new AirlineReply($file_names,$composeData,$userName,$from_email,$from_name,$airlineReplySubject));
         $file = new AirlineComposeFile();
         $file->airline_compose_text = $request->airline_compose_text;
         $file->from_email           = $request->from_email;
@@ -739,10 +741,12 @@ class ClaimBackController extends Controller
        $from_email  = $request->from_email;
        $from_name   = $request->from_name;
 
+       $customerReplySubject = $request->sub;
+
 
         $userName =$request->to_email;
 
-        Mail::to($request->to_email)->send(new CustomerReply($file__names,$composeData,$userName,$from_email,$from_name));
+        Mail::to($request->to_email)->send(new CustomerReply($file__names,$composeData,$userName,$from_email,$from_name,$customerReplySubject));
         $file= new CustomerComposerFile();
         $file->compose_text = $request->compose_text;
         $file->from_email = $request->from_email;

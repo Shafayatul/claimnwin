@@ -16,7 +16,7 @@
                         @csrf
                         <div class="form-group">
                             <div class="col-md-12">
-                                <input type="text" name="from_name" id="from_name" value="Claimand Win" class="form-control" placeholder="From Name" required/>
+                                <input type="text" name="from_name" id="from_name" value="Claim'N Win" class="form-control" placeholder="From Name" required/>
                             </div>
                         </div>
 
@@ -36,7 +36,7 @@
 
                         <div class="form-group">
                             <div class="col-md-12">
-                                <input type="text" name="sub" id="airline_sub" class="form-control" placeholder="Subject" required/>
+                                <input type="text" name="sub" id="airline_sub" value="{{'Re: '.$ticket->subject}}" class="form-control" placeholder="Subject" required/>
                             </div>
                         </div>
 
@@ -54,6 +54,10 @@
                         <div class="form-group">
                             <div class="col-md-12">
                                 <textarea name="ticket_reply_note" id="ticket_reply_note"  class="form-control tinymce-editor ticket_reply_note" rows="5" cols="50">
+                                    {!! 'From: '.$ticket->from_name.'<'.$ticket->from_email.'>'."<br/>" !!}
+                                    {!! 'Sent: '.Carbon\Carbon::parse($ticket->email_date)->format("d M Y h:i")."<br/>" !!}
+                                    {!! 'To: '.$ticket->to_email."<br/>" !!}
+                                    {!! 'Subject: '.$ticket->subject."<br/>" !!}
                                     {!! $main_email !!}
                                 </textarea>
                             </div>

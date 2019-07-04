@@ -213,11 +213,13 @@ Route::group(['middleware' => ['auth']], function() {
         Route::resource('faqs', 'FaqsController');
         Route::resource('reviews', 'ReviewsController');
 
+        Route::post('/ticket-reply-data', 'TicketsController@ticketReplyDataSave')->name('ticket-reply-data');
+
     });
 });
 
 
-Route::post('/ticket-reply-data', 'TicketsController@ticketReplyDataSave')->name('ticket-reply-data');
+
 
 Route::resource('sent-emails', 'SentEmailsController');
 

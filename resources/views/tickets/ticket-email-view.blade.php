@@ -1,6 +1,4 @@
 @extends('layouts.admin_layout')
-
-@section('main_content')
 @section('header-css')
     <style>
         #reply-icon{
@@ -17,45 +15,58 @@
             list-style-type: none;
             float: left;
         }
+
         .reply li a i{
             text-align: center;
             display: block;
             width: 40px;
-            background-color: white;
+            background-color: #337AB7;
             padding: 15px 10px;
+            color: white;
         }
     </style>
 
 @endsection
+@section('main_content')
+
 @include('layouts.includes.partial.alert')
 <div class="forms">
     <div class="form-grids row widget-shadow" data-example-id="basic-forms">
         <div class="form-body">
             <div class="card">
                 <div class="card-body">
-                    <div class="row">
+                    <div class="row" style="background-color: #337AB7; padding: 10px; color: white;">
                         <div class="col-md-12">
 
-                            <h4><i class="fa fa-envelope"></i>&nbsp;&nbsp; {{$ticket->subject}}</h4>
+                            <h4 style="color: white;"><i class="fa fa-envelope" ></i>&nbsp;&nbsp; {{$ticket->subject}}</h4>
 
                         </div>
-                    </div>
-                    <div class="row">
+                        <br>
                         <div class="col-md-12">
-                        <h6><strong>{{$from_name}}</strong> reported via email</h6>
+                            <h6><strong>{{$from_name}}</strong> reported via email</h6>
                         </div>
-                    </div>
-                    <div class="row">
                         <div class="col-md-12">
                             @if($ticket->ticket_status != null)
                             <span style="background-color: #00E6DE; font-weight: bold;" class="btn btn-default btn-sm">{{$ticket->ticket_status}}</span>
                             @endif
                         </div>
                     </div>
+                    {{-- <div class="row">
+                        <div class="col-md-12">
+                            <h6><strong>{{$from_name}}</strong> reported via email</h6>
+                        </div>
+                    </div> --}}
+                    {{-- <div class="row">
+                        <div class="col-md-12">
+                            @if($ticket->ticket_status != null)
+                            <span style="background-color: #00E6DE; font-weight: bold;" class="btn btn-default btn-sm">{{$ticket->ticket_status}}</span>
+                            @endif
+                        </div>
+                    </div> --}}
                     <div class="row">
                         <div class="col-md-12">
                             <div class="panel-group">
-                                <div class="panel panel-success">
+                                <div class="panel">
                                     <div class="panel-heading" style="height: auto!important;">
                                         <div class="row">
                                             <div class="col-md-6">
@@ -72,7 +83,7 @@
                                         </div>
 
                                     </div>
-                                    <div class="panel-body" style="background-color: #d6e9c6;">
+                                    <div class="panel-body">
                                         {!! $ticket_note->description !!}
                                     </div>
                                     <div class="panel-footer">
@@ -87,13 +98,14 @@
                             </div>
                         </div>
                     </div>
+                    <hr/>
 <!-------------------------------Start Reply Email--------------------------->
                     <h1 class="text-center">Reply Email Start Here</h1><br>
                     @foreach($ticket_reply as $row)
                     <div class="row">
                             <div class="col-md-12">
                                 <div class="panel-group">
-                                    <div class="panel panel-success">
+                                    <div class="panel">
                                         <div class="panel-heading" style="height: auto!important;">
                                             <div class="row">
                                                 <div class="col-md-6">
@@ -114,7 +126,7 @@
                                             </div>
 
                                         </div>
-                                        <div class="panel-body" style="background-color: #d6e9c6;">
+                                        <div class="panel-body">
                                             {!! $row->ticket_reply_note !!}
                                         </div>
                                         <div class="panel-footer">

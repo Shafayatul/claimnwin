@@ -1,6 +1,4 @@
 @extends('layouts.admin_layout')
-
-@section('main_content')
 @section('header-css')
 <style>
 .timeline {
@@ -93,6 +91,7 @@
 }
 </style>
 @endsection
+@section('main_content')
 @include('layouts.includes.partial.alert')
 <div class="forms">
     <div class="form-grids row widget-shadow" data-example-id="basic-forms">
@@ -128,7 +127,10 @@
                                         <div class="panel-heading">
                                             <h2 class="panel-title pull-left">
                                             </h2>
-                                        <h2 class="panel-title pull-right">{{Carbon\Carbon::parse($row->created_at)->format('d-m-Y')}} at {{Carbon\Carbon::parse($row->created_at)->format('H:i A')}}</h2>
+                                        <h2 class="panel-title pull-right">
+                                            {{Carbon\Carbon::parse($row->created_at)->format('d-m-Y')}} at 
+                                            {{Carbon\Carbon::parse($row->created_at)->format('H:i A')}}
+                                        </h2>
                                         </div>
                                         <!-- /Heading -->
 
@@ -140,7 +142,7 @@
 
                                         <!-- Footer -->
                                         <div class="panel-footer">
-                                            <h2 class="panel-title pull-right" style="margin-top:-8px;">{{-- No File attachment --}}</h2>
+                                            <h2 class="panel-title pull-right">{{-- No File attachment --}}</h2>
                                         </div>
                                         <!-- /Footer -->
 
@@ -182,9 +184,8 @@
                                 </div>
                             </div>
                         </div>
-                        @endif
+                    @endif
 
-                    </div>
                 </div>
             </div>
         </div>

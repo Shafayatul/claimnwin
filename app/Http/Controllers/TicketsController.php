@@ -73,6 +73,7 @@ class TicketsController extends Controller
         ]);
         $oClient->connect();
         $aFolder = $oClient->getFolders();
+        // dd($aFolder);
 
 
 
@@ -82,10 +83,12 @@ class TicketsController extends Controller
             /** @var \Webklex\IMAP\Support\MessageCollection $aMessage */
             $aMessage = $oFolder->getUnseenMessages()->all();
 
+
             /** @var \Webklex\IMAP\Message $oMessage */
             foreach($aMessage as $oMessage){
                 $to_email   = $oMessage->getTo()[0]->mail;
                 $from_email = $oMessage->getFrom()[0]->mail;
+                $from_name = $oMessage->getFrom()[0]->personal;
                 if (Claim::where('cpanel_email', $to_email)->count() !=0) {
                     $old_claim_id      = Claim::where('cpanel_email', $to_email)->first()->id;
                     $sub = 'Ticket';
@@ -110,14 +113,13 @@ class TicketsController extends Controller
                 }else{
                     $lines= $textMsg;
                 }
-
-
                 $ticket                 = new Ticket;
                 $ticket->subject        = $sub;
                 $ticket->claim_id       = $old_claim_id;
                 $ticket->status         = '1';
                 $ticket->to_email       = $to_email;
                 $ticket->from_email     = $from_email;
+                $ticket->from_name      = $from_name;
                 $ticket->imap_msg_no    = $imap_msg_no;
                 $ticket->text           = $lines;
                 $ticket->email_date     = $date;
@@ -277,7 +279,7 @@ class TicketsController extends Controller
     {
         $ticket  = Ticket::findOrFail($id);
         $ticket_notes = TicketNote::where('ticket_id',$ticket->id)->get();
-        return view('tickets.show', compact('ticket','ticket_notes','claims'));
+        return view('tickets.show', compact('ticket','ticket_notes'));
     }
 
     /**
@@ -365,9 +367,10 @@ class TicketsController extends Controller
        $from_email  = $request->from_email;
        $from_name   = $request->from_name;
 
+       $ticketReplySubject = $request->sub;
 
         $toEmail = $request->to_email;
-        Mail::to($toEmail)->send(new TicketReply($file_names,$composeData,$toEmail,$from_email,$from_name));
+        Mail::to($toEmail)->send(new TicketReply($file_names,$composeData,$toEmail,$from_email,$from_name,$ticketReplySubject));
         $file = new TicketReplyEmail;
         $file->ticket_reply_note    = $request->ticket_reply_note;
         $file->from_email           = $request->from_email;
@@ -409,9 +412,9 @@ class TicketsController extends Controller
         ]);
         $oClient->connect();
         $oFolder = $oClient->getFolder('INBOX');
+        // dd($oFolder);
         // $aMessage = $oFolder->search()->get();
-        $aMessage = $oFolder->search()->whereFrom($ticket->from_email)->whereOn($email_date)->get();
-
+        $aMessage = $oFolder->search()->from($ticket->from_email)->since($email_date)->get();
 
         foreach ($aMessage as $oMessage) {
 // dd($oMessage);
@@ -436,6 +439,7 @@ class TicketsController extends Controller
         $ticket=Ticket::find($id);
         $EmailTemplate = EmailTemplate::all()->pluck('title', 'id');
         $main_email = TicketNote::where('ticket_id', $id)->first()->description;
+        // dd($main_email);
         return view('tickets.ticket-email-reply',compact('ticket', 'EmailTemplate', 'main_email'));
     }
 
@@ -464,6 +468,7 @@ class TicketsController extends Controller
         $oFolder = $oClient->getFolder('INBOX');
         // $aMessage = $oFolder->search()->get();
         $aMessage = $oFolder->search()->whereFrom($ticket->from_email)->whereOn($email_date)->get();
+        
 
 
         foreach ($aMessage as $oMessage) {

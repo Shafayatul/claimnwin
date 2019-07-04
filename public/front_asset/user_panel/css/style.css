@@ -51,7 +51,7 @@ margin: 0px;
     -ms-border-radius: 3px;
     -o-border-radius: 3px;
     border-radius: 3px;
-    background-color: #13DA93;
+    background-color: #99B53A;
     color: #FFF;
     box-shadow: 0 8px 16px 0 rgba(83,99,115,.32);
     -webkit-box-shadow: 0 8px 16px 0 rgba(83,99,115,.32);
@@ -380,11 +380,11 @@ color : #929292;
 }
 
 .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
-color: #13DA93;
+color: #99B53A;
 cursor: default;
 background-color: #fff;
 border: none;
-border-bottom: 2px solid #13DA93;
+border-bottom: 2px solid #99B53A;
 }
 
 .wrapper {
@@ -405,7 +405,7 @@ font-size: 20px;
 .message_icon i {
 padding: 40px 0px 20px 0px;
 font-size: 40px;
-color: #13DA93;
+color: #99B53A;
 }
 
 .claim_status_message p {
@@ -478,7 +478,7 @@ background-color: #efefef;
 }
 
 .compensation_table_result_row {
-background-color: #13DA93;
+background-color: #99B53A;
 color: #fff;
 }
 

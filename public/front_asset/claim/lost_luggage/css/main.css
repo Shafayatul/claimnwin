@@ -270,7 +270,7 @@ input[type="radio"]:checked + .label{
     background: -webkit-linear-gradient(top, #313137 0%,#1e1e24 100%) !important; /* Chrome10+,Safari5.1+ */
     background: -o-linear-gradient(top, #313137 0%,#1e1e24 100%) !important; /* Opera 11.10+ */
     background: -ms-linear-gradient(top, #313137 0%,#1e1e24 100%) !important; /* IE10+ */
-    background: linear-gradient(to bottom, #3aff87 0%,#1e1e24 100%) !important; /* W3C */
+    background: linear-gradient(to bottom, #99B53A 0%,#1e1e24 100%) !important; /* W3C */
 }
 .group > .label {
     border-radius: 2px !important;
@@ -326,7 +326,7 @@ input[type="radio"]:checked + .label{
 
 /* When the radio button is checked, add a blue background */
 .container_radio input:checked ~ .checkmark {
-  background-color: #3aff87;
+  background-color: #99B53A;
 }
 
 /* Create the indicator (the dot/circle - hidden when not checked) */
@@ -505,7 +505,7 @@ input[type="radio"]:checked + .label{
     -ms-border-radius: 3px;
     -o-border-radius: 3px;
     border-radius: 3px;
-    background-color: #13DA93;
+    background-color: #99B53A;
     color: #FFF;
     min-height: 32px;
     padding: 0 16px;
@@ -531,7 +531,7 @@ input[type="radio"]:checked + .label{
   -ms-border-radius: 3px;
   -o-border-radius: 3px;
   border-radius: 3px;
-  background-color: #13DA93;
+  background-color: #99B53A;
   color: #FFF;
   min-height: 32px;
   padding: 0 16px;
@@ -560,7 +560,7 @@ input[type="radio"]:checked + .label{
     -ms-border-radius: 3px;
     -o-border-radius: 3px;
     border-radius: 3px;
-    background-color: #13DA93;
+    background-color: #99B53A;
     color: #FFF;
     box-shadow: 0 8px 16px 0 rgba(83,99,115,.32);
     -webkit-box-shadow: 0 8px 16px 0 rgba(83,99,115,.32);
@@ -677,7 +677,7 @@ input[type="radio"]:checked + .label{
   padding-left: 25px;
   padding-right: 25px;
   /* color: #CEDDE5; */
-  color: #13DA93;
+  color: #99B53A;
   font-size: 17px;
 }
 

@@ -31,6 +31,6 @@ class PasswordSent extends Mailable
      */
     public function build()
     {
-        return $this->markdown('email.password_info');
+        return $this->subject("Password-Claim'N Win")->markdown('email.password_info');
     }
 }

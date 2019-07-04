@@ -31,7 +31,7 @@
                                         <tr>
                                             <td>{{$row->id}}</td>
                                             <td>{{$row->log_name}}</td>
-                                            <td>{{$row->description}}</td>
+                                            <td>{{  $row->description }}</td>
                                             <td>{{$row->subject_id}}</td>
                                             <td>{{$row->subject_type}}</td>
                                             <td>
@@ -45,7 +45,7 @@
                                             </td>
                                             <td>{{$row->causer_type}}</td>
                                             <td>{{$row->created_at}}</td>
-                                            <td>{!! str_replace(['{"attributes":{"','}','{','"', ',', ':'],['','','<br>', '', ', ', ' : '],$row->properties) !!}</td>
+                                            <td>{{  htmlspecialchars_decode(str_replace(['{"attributes":{"','}','{','"', ',', ':'],['','','<br>', '', ', ', ' : '],$row->properties)) }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>
