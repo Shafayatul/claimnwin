@@ -53,7 +53,7 @@ $(document).ready(function() {
 
       if (type=='single') {
         var value = $("input[name='departed_from']").attr('iata-code')+'-'+$("input[name='final_destination']").attr('iata-code');
-        var html = '<div class="common_row"><div class="parent_div"><div class="single_child_div"><div class="arrival_to_destination_text_div"><span class="arrival_to_destination_text_span">'+$("input[name='departed_from']").val()+'<i class="fas fa-plane"></i>'+$("input[name='final_destination']").val()+'</span></div></div></div><div class="parent_div"><div class="single_child_div"><div class="left_div"><div class="label_field"><label for="airline">AIRLINE</label></div><div class="input_field"><input type="text" serial="1" class="auto_airline_complete common_input airline" id="common_input airline" name="airline[]" placeholder="e.g. British Airways"><input type="hidden" name="flight_segment[]" value="'+value+'"></div></div><div class="right_div"><div class="flight_number_div"><div class="label_field"><label for="departure_airport">FLIGHT NO.</label></div><div class="two_input_field"><div class="child_two_input_field_left"><div class="input_field"><input type="text" class="common_input flight_code flight_code_1" id="common_input flight_code" disabled name="flight_code[]" placeholder="BA"></div></div><div class="child_two_input_field_right"><div class="input_field"><input type="text" class="common_input flight_number" id="common_input flight_number" name="flight_number[]" placeholder="189"></div></div></div></div><div class="departure_date_div"><div class="label_field"><label for="departure_airport">DEPARTURE DATE</label></div><div class="two_input_field"><div class="input_field"><input type="text" class="common_input departure_airport date" id="common_input departure_airport date" name="departure_date[]" placeholder=" DD/MM/YY"></div></div></div></div></div></div></div>';
+        var html = '<div class="common_row"><div class="parent_div"><div class="single_child_div"><div class="arrival_to_destination_text_div"><span class="arrival_to_destination_text_span">'+$("input[name='departed_from']").val()+'<i class="fas fa-plane"></i>'+$("input[name='final_destination']").val()+'</span></div></div></div><div class="parent_div"><div class="single_child_div"><div class="left_div"><div class="label_field"><label for="airline">AIRLINE</label></div><div class="input_field"><input type="text" serial="1" class="auto_airline_complete common_input airline" id="common_input airline" name="airline[]" placeholder="e.g. British Airways"><input type="hidden" name="flight_segment[]" value="'+value+'"></div></div><div class="right_div"><div class="flight_number_div"><div class="label_field"><label for="departure_airport">FLIGHT NO.</label></div><div class="two_input_field"><div class="child_two_input_field_left"><div class="input_field"><input type="text" class="common_input flight_code flight_code_1" id="common_input flight_code" readonly name="flight_code[]" placeholder="BA"></div></div><div class="child_two_input_field_right"><div class="input_field"><input type="text" class="common_input flight_number" id="common_input flight_number" name="flight_number[]" placeholder="189"></div></div></div></div><div class="departure_date_div"><div class="label_field"><label for="departure_airport">DEPARTURE DATE</label></div><div class="two_input_field"><div class="input_field"><input type="text" class="common_input departure_airport date" id="common_input departure_airport date" name="departure_date[]" placeholder=" DD/MM/YY"></div></div></div></div></div></div></div>';
         $('.itinerary_flight_element').html(html);
         console.log("hhhhh:" +value);
         // $("input[name='selected_connection_iata_codes']").attr('value').val(value);
@@ -80,7 +80,7 @@ $(document).ready(function() {
         for (var i = 0; i < airport_array_temp.length-1; i++) {
           j=i+1;
           var value = airport_array_iata_code_temp[i]+'-'+airport_array_iata_code_temp[j];
-          html += '<div class="common_row"><div class="parent_div"><div class="single_child_div"><div class="arrival_to_destination_text_div"><span class="arrival_to_destination_text_span">'+airport_array_temp[i]+'<i class="fas fa-plane"></i>'+airport_array_temp[j]+'</span></div></div></div><div class="parent_div"><div class="single_child_div"><div class="left_div"><div class="label_field"><label for="airline">AIRLINE</label></div><div class="input_field"><input type="text" serial="'+j+'" class="auto_airline_complete common_input airline" id="common_input airline" name="airline[]" placeholder="e.g. New York or JFK"><input type="hidden" name="flight_segment[]" value="'+value+'"></div></div><div class="right_div"><div class="flight_number_div"><div class="label_field"><label for="departure_airport">FLIGHT NO.</label></div><div class="two_input_field"><div class="child_two_input_field_left"><div class="input_field"><input type="text" class="common_input flight_code flight_code_'+j+'" id="common_input flight_code" disabled name="flight_code[]" placeholder="BA"></div></div><div class="child_two_input_field_right"><div class="input_field"><input type="text" class="common_input flight_number" id="common_input flight_number" name="flight_number[]" placeholder="1234"></div></div></div></div><div class="departure_date_div"><div class="label_field"><label for="departure_airport">DEPARTURE DATE</label></div><div class="two_input_field"><div class="input_field"><input type="text" class="common_input departure_airport date" id="common_input departure_airport date" name="departure_date[]" placeholder=" DD/MM/YY"></div></div></div></div></div></div></div>';
+          html += '<div class="common_row"><div class="parent_div"><div class="single_child_div"><div class="arrival_to_destination_text_div"><span class="arrival_to_destination_text_span">'+airport_array_temp[i]+'<i class="fas fa-plane"></i>'+airport_array_temp[j]+'</span></div></div></div><div class="parent_div"><div class="single_child_div"><div class="left_div"><div class="label_field"><label for="airline">AIRLINE</label></div><div class="input_field"><input type="text" serial="'+j+'" class="auto_airline_complete common_input airline" id="common_input airline" name="airline[]" placeholder="e.g. New York or JFK"><input type="hidden" name="flight_segment[]" value="'+value+'"></div></div><div class="right_div"><div class="flight_number_div"><div class="label_field"><label for="departure_airport">FLIGHT NO.</label></div><div class="two_input_field"><div class="child_two_input_field_left"><div class="input_field"><input type="text" class="common_input flight_code flight_code_'+j+'" id="common_input flight_code" readonly name="flight_code[]" placeholder="BA"></div></div><div class="child_two_input_field_right"><div class="input_field"><input type="text" class="common_input flight_number" id="common_input flight_number" name="flight_number[]" placeholder="1234"></div></div></div></div><div class="departure_date_div"><div class="label_field"><label for="departure_airport">DEPARTURE DATE</label></div><div class="two_input_field"><div class="input_field"><input type="text" class="common_input departure_airport date" id="common_input departure_airport date" name="departure_date[]" placeholder=" DD/MM/YY"></div></div></div></div></div></div></div>';
         }
         $('.itinerary_flight_element').html(html);
       }
@@ -126,6 +126,7 @@ $(document).ready(function() {
                 where_did_you_fly = true;
                 var step_two_airline = true;
                 var step_two_flight_number = true;
+                var step_two_flight_code   = true;
                 var step_two_departure_date = true;
 
                 $("input[name^='airline']").each(function() {
@@ -140,39 +141,37 @@ $(document).ready(function() {
                     }
                 });
 
+                $("input[name^='flight_code']").each(function() {
+                    if ($(this).val() == "") {
+                        step_two_flight_code = false;
+                    }
+                });
+
                 $("input[name^='departure_date']").each(function() {
                     if ($(this).val() == "") {
                         step_two_departure_date = false;
                     }
                 });
 
-                if (step_two_airline && step_two_flight_number && step_two_departure_date) {
+                if (step_two_airline && step_two_flight_number && step_two_departure_date && step_two_flight_code) {
 
-                    // checking the iata-code
-                    var is_iata_code_set = true;
-                    $('.auto_airport_complete').each(function(){
-                      if (($(this).val().indexOf('(') == -1 ) && ($(this).val().indexOf(')') == -1 )) {
-                          $(this).val('');               
-                          $(this).focus();           
-                          is_iata_code_set = false;
-                      }
-                    });
-                    $('.auto_airline_complete').each(function(){
-                      var serial = $(this).attr('serial');
-                      if ($('.flight_code_'+serial).val() == '') {
-                          $(this).val('');               
-                          $(this).focus();           
-                          is_iata_code_set = false;
-                      }
-                    });
-
-                    if (is_iata_code_set) {
-                      $("#continue_1").addClass('active_button');
-                      return true;  
-                    }else{
-                      return false;
+                  // checking the iata-code
+                  var is_iata_code_set = true;
+                  $('.auto_airport_complete').each(function(){
+                    if (($(this).val().indexOf('(') == -1 ) && ($(this).val().indexOf(')') == -1 )) {
+                        $(this).val('');               
+                        $(this).focus();           
+                        is_iata_code_set = false;
                     }
-                    
+                  });
+
+                  if (is_iata_code_set) {
+                    $("#continue_1").addClass('active_button');
+                    return true;  
+                  }else{
+                    return false;
+                  }
+
                 } else {
                     return false;
                 }

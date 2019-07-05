@@ -929,7 +929,7 @@ input[type="radio"]:checked + .label{
 .js .input-file-trigger {
   display: block;
   padding: 14px 45px;
-  background: #39D2B4;
+  background: #99B53A;
   color: #fff;
   font-size: 1em;
   transition: all .4s;
@@ -948,7 +948,7 @@ input[type="radio"]:checked + .label{
 .js .input-file-trigger:hover,
 .js .input-file-trigger:focus {
   background: #34495E;
-  color: #39D2B4;
+  color: #99B53A;
 }
 
 .file-return {

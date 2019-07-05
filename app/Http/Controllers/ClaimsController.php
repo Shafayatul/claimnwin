@@ -270,7 +270,7 @@ class ClaimsController extends Controller
 
     public function store(Request $request)
     {
-
+        // dd($request->flight_code);
         // dd($request);
         $user_agent = Agent::all();
 
