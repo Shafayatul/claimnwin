@@ -41,6 +41,7 @@ Route::post('/ajax/send-email-for-new-claim','ClaimsController@send_email_for_ne
 // Front Pages Starts
 Route::get('/about-us','FrontsController@aboutUs');
 Route::get('/contact-us','FrontsController@contactUs');
+Route::post('/contacts-create','ContactsController@store');
 Route::get('/faq','FrontsController@faq');
 Route::get('/terms-and-conditions','FrontsController@termsAndConditions');
 // Route::get('/privacy-policy','FrontsController@privacyPolicy');

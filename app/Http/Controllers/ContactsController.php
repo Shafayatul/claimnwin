@@ -7,6 +7,9 @@ use App\Http\Controllers\Controller;
 
 use App\Contact;
 use Illuminate\Http\Request;
+use App\Ticket;
+use App\TicketNote;
+use Carbon\Carbon;
 
 class ContactsController extends Controller
 {
@@ -53,10 +56,28 @@ class ContactsController extends Controller
     public function store(Request $request)
     {
 
-        $requestData = $request->all();
+        $requestData                = $request->all();
+        $email_date                 = Carbon::now()->format("Y-m-d h:i:s");
 
         Contact::create($requestData);
 
+
+
+        $ticket                     = new Ticket;
+        $ticket->subject            = 'Contact Us: '.$request->subject;
+        $ticket->status             = "1";
+        $ticket->from_email         = $request->email;
+        $ticket->to_email           = "info@claimnwin.com";
+        $ticket->text               = $request->message;
+        $ticket->email_date         = $email_date;
+        $ticket->from_name          = $request->name;
+        $ticket->save();
+
+
+        $ticket_note                = new TicketNote;
+        $ticket_note->ticket_id     = $ticket->id;
+        $ticket_note->description   = $request->message;
+        $ticket_note->save();
         return redirect('/contact-us')->with('flash_message', 'Your message sent successfully!!!');
     }
 

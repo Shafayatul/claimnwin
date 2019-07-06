@@ -63,7 +63,7 @@
             <div class="row">
               <div class="col-md-12">
                 <div class="contact_us_form">
-                  <form class="" action="{{ url('contacts/create') }}" method="post">
+                  <form class="" action="{{ url('/contacts-create') }}" method="post">
                     @csrf
                     <div class="row" style="padding-bottom:15px;">
                       <div class="col-md-6 input_name">
