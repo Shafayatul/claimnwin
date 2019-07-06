@@ -23,9 +23,9 @@ class ClaimStatusController extends Controller
         if (!empty($keyword)) {
             $claimstatus = ClaimStatus::where('name', 'LIKE', "%$keyword%")
                 ->orWhere('description', 'LIKE', "%$keyword%")
-                ->latest()->paginate($perPage);
+                ->paginate($perPage);
         } else {
-            $claimstatus = ClaimStatus::latest()->paginate($perPage);
+            $claimstatus = ClaimStatus::paginate($perPage);
         }
 
         return view('claim-status.index', compact('claimstatus'));
