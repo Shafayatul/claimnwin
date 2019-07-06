@@ -157,7 +157,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#">
+                                    <a href="https://www.youtube.com/channel/UCzUC3c5sXttoshGkWjOThJg" target="_blank">
                                         <span><i class="fab fa-youtube"></i></span>
                                         @if ($translated_menu)
                                           {{ $translated_menu['data']['translations'][24]['translatedText']}}
