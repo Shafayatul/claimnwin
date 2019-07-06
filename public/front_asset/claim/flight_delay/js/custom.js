@@ -387,6 +387,22 @@ $(document).ready(function() {
 
 
           }
+
+          $.ajax({
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            type: 'POST',
+            url: '/ajax/send-email-for-new-claim',
+            data: {
+              from: departed_from,
+              to: final_destination,
+              client_email: $('input[name="email_address"]').val(),
+              data: data
+            },
+            success: function (data){
+              console.log(data)
+            }
+          });
+          
         },
         error: function(e) {
           console.log(e);
