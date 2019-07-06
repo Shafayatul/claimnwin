@@ -28,6 +28,6 @@ class OrderShipped extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.orders.shipped');
+        return $this->markdown('email.test');
     }
 }
