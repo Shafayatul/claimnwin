@@ -7,10 +7,10 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class CustomerReply extends Mailable
+class NewClaimEmail extends Mailable
 {
     use Queueable, SerializesModels;
-   public $from_airport,$to_airport,$client_email,$is_eligible;
+    public $from_airport,$to_airport,$client_email,$is_eligible;
 
     /**
      * Create a new message instance.
@@ -32,6 +32,6 @@ class CustomerReply extends Mailable
      */
     public function build()
     {
-        $mail =$this->subject("New Claim")->markdown('email.new_claim');
+        return $this->markdown('email.new_claim_email')->with(['from_airport' => $this->from_airport, 'to_airport' => $this->to_airport, 'client_email' => $this->client_email, 'is_eligible' => $this->is_eligible]);
     }
 }
