@@ -4,7 +4,7 @@ $(document).ready(function() {
     if ((window.localStorage.getItem('airport1') !== null) && (window.localStorage.getItem('airport2') !== null)) {
       $("input[name='departed_from']").val(window.localStorage.getItem('airport1'));
       $("input[name='final_destination']").val(window.localStorage.getItem('airport2'));
-      flight_list_checkbox_html('single');
+      itinerary_details_for_your_disrupted_flight_html('single');
       window.localStorage.removeItem('airport1');
       window.localStorage.removeItem('airport2');
     }
@@ -161,8 +161,7 @@ $(document).ready(function() {
                     }
 
                 }
-                }
-            }
+              }
         }  else if (step == 2) {
             $("#continue_2").removeClass('active_button');
             if (($("input[name='total_delay']").is(':checked')) && ($(".reason").val() != "")) {

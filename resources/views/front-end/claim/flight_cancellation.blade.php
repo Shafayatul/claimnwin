@@ -125,7 +125,7 @@
                                     </div>
                                 </div>
 
-                              <div class="common_row" id="connection_div">
+                              <div class="common_row" id="connection_div" style="display: none">
                                 <div class="form_h3">
                                   <h3>Where did you have connections?</h3>
                                 </div>
