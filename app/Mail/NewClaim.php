@@ -10,18 +10,18 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 class NewClaim extends Mailable
 {
     use Queueable, SerializesModels;
-    public $from,$to,$airline,$is_eligible;
+    public $from,$to,$client_email,$is_eligible;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($from, $to, $airline, $is_eligible)
+    public function __construct($from, $to, $client_email, $is_eligible)
     {
-        $this->from         = $from;
-        $this->to           = $to;
-        $this->airline      = $airline;
-        $this->is_eligible  = $is_eligible;
+        $this->from              = $from;
+        $this->to                = $to;
+        $this->client_email      = $client_email;
+        $this->is_eligible       = $is_eligible;
 
     }
 
@@ -32,6 +32,6 @@ class NewClaim extends Mailable
      */
     public function build()
     {
-        return $this->from('info@claimnwin.com',"claimnwin.com")->subject('New Claim')->markdown('email.new_claim');
+        return $this->markdown('email.new_claim');
     }
 }

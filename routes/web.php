@@ -36,6 +36,8 @@ Route::post('/ajax/calculate/delay_luggage_calculation','ClaimsController@ajax_d
 
 Route::post('/ajax/currency_converter_url','ClaimsController@currency_converter_url');
 
+Route::post('/ajax/send-email-for-new-claim','ClaimsController@send_email_for_new_claim');
+
 // Front Pages Starts
 Route::get('/about-us','FrontsController@aboutUs');
 Route::get('/contact-us','FrontsController@contactUs');

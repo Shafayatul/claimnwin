@@ -25,6 +25,7 @@ use File;
 use App\ClaimFile;
 use App\Classes\cPanel;
 use Illuminate\Support\Facades\Mail;
+use App\Mail\NewClaim;
 use App\Mail\PasswordSent;
 use App\Mail\ClaimCompleted;
 use Victorybiz\GeoIPLocation\GeoIPLocation;
@@ -768,6 +769,27 @@ class ClaimsController extends Controller
 
         return view('front-end.claim.success',compact('amount'));
 
+    }
+
+
+
+    public function send_email_for_new_claim(Request $request){
+        $from           = $request->input('from');
+        $to             = $request->input('to');
+        $client_email   = $request->input('client_email');
+        $data           = $request->input('data');
+        if ($data = '0') {
+            $is_eligible = 0;
+        }else{
+            $is_eligible = 1;
+        }
+        
+
+        Mail::to(env('ADMIN_EMAIL'))->send(new NewClaim($from, $to, $client_email, $is_eligible));
+
+        return response()->json([
+            'msg'    => 'Message sent.'
+        ]);
     }
 
 
