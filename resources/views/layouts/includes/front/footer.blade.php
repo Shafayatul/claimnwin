@@ -202,11 +202,13 @@
                     </div><!-- /.col-md-6 -->
                     <div class="col-md-6 text-right">
                         <a href="https://uk.trustpilot.com/review/claimnwin.com">
-                        <img style="width: 90px; height: 40px;" src="{{asset('front_asset/')}}/img/add/01.png" alt="Add"></a>
-                        <script language="JavaScript" type="text/javascript">
+                            <img style="width: 90px; height: 40px;" src="{{asset('front_asset/')}}/img/add/01.png" alt="Add">
+                        </a>
+                        <img src="{{asset('TrustL.png')}}" alt="Add">
+                        {{-- <script language="JavaScript" type="text/javascript">
                             TrustLogo("https://claimnwin.com/TrustL.png", "SC5", "none");
                         </script>
-                        <a href="https://www.instantssl.com/wildcard-ssl.html" id="comodoTL">Wildcard SSL</a>
+                        <a href="https://www.instantssl.com/wildcard-ssl.html" id="comodoTL">Wildcard SSL</a> --}}
                     </div><!-- /.col-md-6 -->
                 </div><!-- /.row -->
             </div><!-- /.container -->

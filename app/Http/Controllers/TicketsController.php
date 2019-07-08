@@ -100,7 +100,7 @@ class TicketsController extends Controller
                 $imap_msg_no = $oMessage->getUid();
 
 
-                // $sub =$oMessage->getSubject();
+                $sub =$oMessage->getSubject();
                 $date = $oMessage->getDate();
                 $longMsg=$oMessage->getHTMLBody(true);
                 $textMsg=  $oMessage->getTextBody(true);

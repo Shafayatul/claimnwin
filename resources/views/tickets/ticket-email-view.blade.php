@@ -70,8 +70,8 @@
                                     <div class="panel-heading" style="height: auto!important;">
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <h6><strong>{{$from_name}}</strong> reported via email ({{$date}} at {{$time}})</h6><br>
-
+                                                <h6><strong>{{$from_name}}</strong> reported via email ({{$date}} at {{$time}})</h6>
+                                                <h6><strong>Email: </strong> {{$ticket->from_email}}</h6>
                                                 <h6><strong>to: </strong> {{$to}}</h6>
                                             </div>
                                             <div class="col-md-6">
@@ -115,7 +115,8 @@
                                                     @endphp
                                                     <h6><strong>{{$row->from_name}}</strong> reported via email ({{$date}} at {{$time}})</h6><br>
 
-                                                    <h6><strong>to: </strong> {{$row->to_email}}</h6>
+
+                                                    <h6><strong>To: </strong> {{$row->to_email}}</h6>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <ul class="reply pull-right">
