@@ -215,12 +215,14 @@
         </div><!-- /.footer-bottom -->
     </footer>
     <script type="text/javascript">
-      if ((/MSIE (\d+\.\d+);/.test(navigator.userAgent) || navigator.userAgent.indexOf("Trident/") > -1) || (navigator.userAgent.toLowerCase().indexOf('firefox') > -1) ){
+    if ((/MSIE (\d+\.\d+);/.test(navigator.userAgent) || navigator.userAgent.indexOf("Trident/") > -1) || (navigator.userAgent.toLowerCase().indexOf('firefox') > -1) ){
         change_logo_type();
-      }
+    }
+    if (/Edge/.test(navigator.userAgent)) {
+        change_logo_type();
+    }
 
-
-      function change_logo_type(){
+    function change_logo_type(){
         document.getElementById("main-logo-top").src = "{{asset('front_asset/')}}/img/logo.png";
-      }
+    }
     </script>
