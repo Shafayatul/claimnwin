@@ -90,17 +90,19 @@
     <div class="parent-div">
       <div class="signature-date-div">
         <div class="signature-div">
-          <img class="vb" src="{{ asset('/uploads/sig/10000015.png') }}" alt="">
+          <img class="vb" src="{{ asset('/uploads/sig/'.$claim->id.'.png') }}" alt="">
+          <p class="fs-16 tc pr">Signature</p>
         </div>
         <div class="date-div">
           <p class="vb-c">{{Carbon\Carbon::today()}}</p>
+          <p class="fs-16 tc pr-2">Date</p>
         </div>
-        <div class="left">
-          <p class="fs-16 tc">Signature</p>
+{{--         <div class="left">
+          
         </div>
         <div class="right">
-          <p class="fs-16 tc">Date</p>
-        </div>
+          
+        </div> --}}
       </div>
     </div>
     <div class="parent-div">

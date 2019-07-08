@@ -73,18 +73,21 @@
   width: 767px;
   display: block;
   overflow: hidden;
+  height: 180px;
 }
+
 .signature-div {
+
   width: 45%;
   float: left;
-  min-height: 150px;
+  min-height: 140px;
   /* border-bottom: 2px solid #949494; */
   position: relative;
 }
 .date-div {
   width: 45%;
   float: right;
-  min-height: 150px;
+  min-height: 130px;
   border-bottom: 2px solid #cecece;
   position: relative;
 }
@@ -114,4 +117,14 @@ footer {
 }
 .nm {
   margin: 0px;
+}
+.pr{
+    position: absolute;
+    top: 134px;
+    left: 99px;
+}
+.pr-2{
+    position: absolute;
+    top: 134px;
+    left: 162px;
 }
