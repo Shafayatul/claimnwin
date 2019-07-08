@@ -1,0 +1,117 @@
+.wrapper {
+  width: 1100px;
+  margin: 0 auto;
+}
+.parent-div {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 15px;
+}
+.left-child {
+  width: 45%;
+  float: left;
+  min-height: 100px;
+  border-bottom: 2px solid #949494;
+  position: relative;
+}
+.right-child {
+  width: 45%;
+  float: right;
+  min-height: 100px;
+  border-bottom: 2px solid #949494;
+  position: relative;
+}
+.vb {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+}
+
+.left {
+  width: 45%;
+  float: left;
+}
+
+.right {
+  width: 45%;
+  float: right;
+}
+
+.fs-16 {
+  font-size: 16px;
+  margin: 0px;
+  padding-top: 10px;
+}
+.address {
+  width: 100%;
+  display: block;
+  min-height: 100px;
+  border-bottom: 2px solid #949494;
+  position: relative;
+}
+.vb {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+}
+
+.paragraph-div {
+  padding-top: 40px;
+  width: 767px;
+}
+
+.paragraph-div p {
+  line-height: 27px;
+  font-size: 12px;
+}
+
+.pb-20 {
+  padding-bottom: 20px;
+}
+
+.signature-date-div {
+  width: 767px;
+  display: block;
+  overflow: hidden;
+}
+.signature-div {
+  width: 45%;
+  float: left;
+  min-height: 150px;
+  /* border-bottom: 2px solid #949494; */
+  position: relative;
+}
+.date-div {
+  width: 45%;
+  float: right;
+  min-height: 150px;
+  border-bottom: 2px solid #cecece;
+  position: relative;
+}
+
+.vb-c {
+  position: absolute;
+  bottom: 0px;
+  left: 30%;
+}
+.tc {
+  text-align: center;
+}
+
+.terms-n-condition {
+  padding-top: 20px;
+}
+
+footer {
+  border-top: 1px solid #cecece;
+}
+.fb {
+  font-weight: bold;
+}
+
+.tr {
+  text-align: right;
+}
+.nm {
+  margin: 0px;
+}
