@@ -648,7 +648,7 @@
                                                     @csrf
                                                     <div class="form-group">
                                                         <div class="col-md-12">
-                                                            <input type="text" name="from_name" id="from_name" value="Claimand Win" class="form-control" placeholder="From Name" required/>
+                                                            <input type="text" name="from_name" id="from_name" value="Claim'N Win" class="form-control" placeholder="From Name" required/>
                                                         </div>
                                                     </div>
 
@@ -865,7 +865,7 @@
                                                                             @csrf
                                                                             <div class="form-group">
                                                                                 <div class="col-md-12">
-                                                                                    <input type="text" name="from_name" id="from_name" value="Claimand Win" class="form-control" placeholder="From Name" required/>
+                                                                                    <input type="text" name="from_name" id="from_name" value="Claim'N Win" class="form-control" placeholder="From Name" required/>
                                                                                 </div>
                                                                             </div>
 
@@ -976,9 +976,18 @@
 
                                                                     </div>
                                                                     <div class="modal-body">
+
                                                                         <div class="row" id="sent_msgs">
                                                                             <h4 class="text-center">Sent Message Details</h4> <br>
-                                                                            <div class="col-md-12">
+                                                                            <div class="col-md-12">        
+                                                                                <p>
+                                                                                    <h5><b>From:</b> {{ $cutomSent->from_name }}<{{ $cutomSent->from_email }}></h5>
+                                                                                    <h5><b>To:</b> {{ $cutomSent->to_email }}</h5>
+                                                                                    <h5><b>Date:</b> {{ $cutomSent->created_at }}</h5>
+                                                                                    <h5><b>Subject:</b> {{ $cutomSent->sub }}</h5>
+                                                                                    <br>
+                                                                                    <br>
+                                                                                </p>
                                                                                 {!!$cutomSent->compose_text!!}
                                                                             </div>
                                                                         </div>
@@ -1165,7 +1174,7 @@
                             @csrf
                             <div class="form-group">
                                 <div class="col-md-12">
-                                    <input type="text" name="from_name" id="from_name" value="Claimand Win" class="form-control" placeholder="From Name" required/>
+                                    <input type="text" name="from_name" id="from_name" value="Claim'N Win" class="form-control" placeholder="From Name" required/>
                                 </div>
                             </div>
 
@@ -1387,7 +1396,7 @@
                                                     @csrf
                                                     <div class="form-group">
                                                         <div class="col-md-12">
-                                                            <input type="text" name="from_name" id="from_name" value="Claimand Win" class="form-control" placeholder="From Name" required/>
+                                                            <input type="text" name="from_name" id="from_name" value="Claim'N Win" class="form-control" placeholder="From Name" required/>
                                                         </div>
                                                     </div>
 
@@ -1496,6 +1505,14 @@
                                                     <div class="row" id="airline_sent_msgs">
                                                     <h4 class="text-center">Sub: {{$airlineSent->sub}}</h4> <br>
                                                         <div class="col-md-12">
+                                                            <p>
+                                                                <h5><b>From:</b> {{ $airlineSent->from_name }}<{{ $airlineSent->from_email }}></h5>
+                                                                <h5><b>To:</b> {{ $airlineSent->to_email }}</h5>
+                                                                <h5><b>Date:</b> {{ $airlineSent->created_at }}</h5>
+                                                                <h5><b>Subject:</b> {{ $airlineSent->sub }}</h5>
+                                                                <br>
+                                                                <br>
+                                                            </p>
                                                             {!! $airlineSent->airline_compose_text !!}
                                                         </div>
                                                     </div>
