@@ -28,7 +28,7 @@ class TicketNote extends Model
      * @var array
      */
     protected $fillable = ['ticket_id', 'description','user_id'];
-    protected static $logAttributes = ['ticket_id', 'description','user_id'];
+    protected static $logAttributes = ['ticket_id','user_id'];
 
 
 }

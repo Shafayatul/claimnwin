@@ -144,4 +144,7 @@
         </div>
     </div>
 </div>
+<!-- side nav css file -->
+<link href='{{ asset('admin_asset/css/SidebarNav.min.css')}}' media='all' rel='stylesheet' type='text/css'/>
+<!-- //side nav css file -->
 @endsection

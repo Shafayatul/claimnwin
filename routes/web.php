@@ -43,7 +43,7 @@ Route::get('/about-us','FrontsController@aboutUs');
 Route::get('/contact-us','FrontsController@contactUs');
 Route::post('/contacts-create','ContactsController@store');
 Route::get('/faq','FrontsController@faq');
-Route::get('/terms-and-conditions','FrontsController@termsAndConditions');
+// Route::get('/terms-and-conditions','FrontsController@termsAndConditions');
 // Route::get('/privacy-policy','FrontsController@privacyPolicy');
 // Route::get('/pricing-list','FrontsController@pricingList');
 Route::get('/press-blog','FrontsController@pressBlog');

@@ -153,7 +153,7 @@
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="{{URL::to('/affiliates')}}"><i class="fa fa-angle-right"></i> Manage Affiliate</a></li>
-                    <li><a href="{{url('/manage-affiliate')}}"><i class="fa fa-pie-chart"></i> Manage Affiliation Report</a></li>
+                    {{-- <li><a href="{{url('/manage-affiliate')}}"><i class="fa fa-pie-chart"></i> Manage Affiliation Report</a></li> --}}
                     {{-- <li><a href="{{URL::to('')}}"><i class="fa fa-angle-right"></i> Manage claim Status</a></li> --}}
                 </ul>
             </li>

@@ -86,7 +86,7 @@
     <div class="row">
         <div class="col-md-12">
             {!! Form::label('body', 'Body', ['class' => 'control-label']) !!}
-            {!! Form::textarea('body', null, ('' == 'required') ? ['class' => 'form-control', 'required' => 'required'] : ['class' => 'form-control']) !!}
+            {!! Form::textarea('body', null, ('' == 'required') ? ['class' => 'form-control tinymce-editor', 'required' => 'required'] : ['class' => 'form-control tinymce-editor']) !!}
         </div>
     </div>
 
