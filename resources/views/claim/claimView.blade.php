@@ -2822,7 +2822,7 @@
 
 <script>
     document.forms['clam_nextstep_status'].elements['claim_status'].value="{{$claimStatusData->id}}";
-    document.forms['clam_nextstep_status'].elements['nextstep_status'].value="{{$NextStepData->id}}";
+    {{-- document.forms['clam_nextstep_status'].elements['nextstep_status'].value="{{$NextStepData->id}}"; --}}
     document.forms['required_details'].elements['bank_details_id'].value="{{$claims->bank_details_id}}";
 </script>
 @endsection
