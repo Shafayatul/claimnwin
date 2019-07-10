@@ -87,14 +87,16 @@ class UserPanelController extends Controller
 
     public function user_my_claim($id)
     {
-      $claims = Claim::join('tickets', 'claims.id', '=', 'tickets.claim_id')
-                      ->where('claims.id', $id)
-                      ->select('tickets.id as ticket_id','tickets.subject', 'tickets.status as ticket_status', 'claims.*')
-                      ->first();
+      $claims = Claim::where('claims.id', $id)->first();
 
       $ticket = Ticket::where('claim_id', $claims->id)->first();
       // dd($ticket->id);
-      $ticket_notes = TicketNote::where('ticket_id', $ticket->id)->get();
+      if ($ticket) {
+        $ticket_notes = TicketNote::where('ticket_id', $ticket->id)->get();
+      }else{
+        $ticket_notes = [];
+      }
+      
       $airline = Airline::where('id', $claims->airline_id)->first();
       $claim_files = ClaimFile::where('claim_id', $claims->id)->get();
       $claim_staus = ClaimStatus::where('id',$claims->claim_status_id)->first();
@@ -110,8 +112,8 @@ class UserPanelController extends Controller
        $text[6] = "Ticket details";
        $text[7] = "Claim details";
        $text[8] = "Documents";
-       $text[9] = "Claim assessment ";
-       $text[10] = "Your claim is under review. Our legal team will contact you if we require any further information";
+       $text[9] = "Claim Status ".$claim_staus->name;
+       $text[10] = $claim_staus->description;
        $text[11] = "Waiting For Reply";
        $text[12] = "Action Required";
        $text[13] = "Closed";
@@ -123,11 +125,11 @@ class UserPanelController extends Controller
 
        if (Session::has('locale')) {
          $responseDecoded = $this->get_translation($text);
-         return view('front-end.user.user_panel_my_claim', compact('claims', 'ticket_notes', 'airline', 'claim_files','claim_staus', 'expenses', 'responseDecoded', 'text'));
+         return view('front-end.user.user_panel_my_claim', compact('claims', 'ticket_notes', 'airline', 'claim_files','claim_staus', 'expenses', 'responseDecoded', 'text', 'ticket'));
 
        }else {
          $responseDecoded = null;
-         return view('front-end.user.user_panel_my_claim', compact('claims', 'ticket_notes', 'airline', 'claim_files','claim_staus', 'expenses', 'responseDecoded', 'text'));
+         return view('front-end.user.user_panel_my_claim', compact('claims', 'ticket_notes', 'airline', 'claim_files','claim_staus', 'expenses', 'responseDecoded', 'text', 'ticket'));
        }
 
     }
@@ -279,16 +281,35 @@ class UserPanelController extends Controller
 
     public function user_ticket_message(Request $request)
     {
-      // $user_id = Auth::user()->id;
-      // $user_ticket_notes = new TicketNote;
-      // $user_ticket_notes->description  =  $request->description;
-      // $user_ticket_notes->ticket_id = $request->ticket_id;
-      // $user_ticket_notes->user_id = Auth::user()->id;
 
       $reqData = $request->all();
       TicketNote::create($reqData + ['user_id'=>Auth::user()->id]);
       $ticket=Ticket::find($request->ticket_id);
-      $ticket->update(['status'=>1]);
+      $ticket->status =  1;
+      $ticket->save;
+
+
+
+
+        $ticket                     = new Ticket;
+        $ticket->subject            = 'Message within claim';
+        $ticket->status             = "1";
+        // $ticket->from_email         = Auth::user()->email;
+        $ticket->to_email           = $request->cpanel_email;
+        $ticket->text               = $request->description;
+        $ticket->claim_id           = $request->claim_id;
+        $ticket->from_name          = Auth::user()->name;
+        $ticket->save();
+
+
+        $ticket_note                = new TicketNote;
+        $ticket_note->ticket_id     = $ticket->id;
+        $ticket_note->description   = $request->description;
+        $ticket_note->save();
+
+
+
+
       return redirect()->back()->with('success','Message Send Successfully.');
 
 

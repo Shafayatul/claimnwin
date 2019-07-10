@@ -2348,35 +2348,37 @@
                                             </div>
                                         </div>
 
-@if($ticket->status != '3')
-<div class="row">
-    <div class="col-md-12">
-        <div class="panel-group">
-            <div class="panel panel-default">
-                <div class="panel-heading bg-dark">
-                    <h4 style="color: white;">Respond</h4>
-                </div>
-                <div class="panel-body">
-                    <form action="{{route('ticket-description')}}" method="post" class="form-horizontal">
-                        @csrf
-                        <div class="form-group">
-                            <div class="col-md-12">
-                                <textarea name="description" id="description" cols="30" rows="5" class="form-control"></textarea>
-                                <input type="hidden" name="ticket_id" value="{{$ticket->id}}">
+@if($ticket)
+    @if($ticket->status != '3')
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel-group">
+                <div class="panel panel-default">
+                    <div class="panel-heading bg-dark">
+                        <h4 style="color: white;">Respond</h4>
+                    </div>
+                    <div class="panel-body">
+                        <form action="{{route('ticket-description')}}" method="post" class="form-horizontal">
+                            @csrf
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <textarea name="description" id="description" cols="30" rows="5" class="form-control"></textarea>
+                                    <input type="hidden" name="ticket_id" value="{{$ticket->id}}">
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-md-12">
-                                <button type="submit" class="btn btn-lg btn-success">Respond To Ticket</button>
-                                <a href="{{URL::to('/close-ticket/'.$ticket->id)}}" onclick="return confirm('Are you sure close the ticket?');" class="btn btn-lg btn-danger pull-right">Close Ticket</a>
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <button type="submit" class="btn btn-lg btn-success">Respond To Ticket</button>
+                                    <a href="{{URL::to('/close-ticket/'.$ticket->id)}}" onclick="return confirm('Are you sure close the ticket?');" class="btn btn-lg btn-danger pull-right">Close Ticket</a>
+                                </div>
                             </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+    @endif
 @endif
 
 </div>
@@ -2431,6 +2433,8 @@
                                     <thead>
                                         <th>#</th>
                                         <th>Note</th>
+                                        <th>Created by</th>
+                                        <th>Date</th>
                                         <th>Action</th>
                                     </thead>
                                     <tbody>
@@ -2441,6 +2445,8 @@
                                         <tr>
                                             <td>{{$i}}</td>
                                             <td>{!! $note->note !!}</td>
+                                            <td>{{ $user_who_created_note[$note->user_id] }}</td>
+                                            <td>{{ $note->created_at }}</td>
                                             <td>
                                                 {!! Form::open([
                                                     'method'=>'DELETE',
@@ -2456,13 +2462,13 @@
                                                     )) !!}
                                                 {!! Form::close() !!}
                                                 <a class="btn btn-primary btn-sm" data-toggle="modal" data-target="#viewNote-{{$note->id}}"><i class="fa fa-eye"></i></a>
-                                                {{-- <a class="btn btn-info btn-sm" data-toggle="modal" data-target="#editNote-{{$note->id}}"><i class="fa fa-edit"></i></a> --}}
+                                                <a class="btn btn-info btn-sm" data-toggle="modal" data-target="#editNote-{{$note->id}}"><i class="fa fa-edit"></i></a>
                                             </td>
                                         </tr>
                                         @php
                                             $i++;
                                         @endphp
-                                        {{-- <div class="modal fade" id="editNote-{{$note->id}}" role="dialog">
+                                        <div class="modal fade" id="editNote-{{$note->id}}" role="dialog">
                                             <div class="modal-dialog modal-lg">
 
                                             <!-- Modal content-->
@@ -2477,7 +2483,7 @@
                                                 <div class="modal-body">
 
                                                     <div class="form-group">
-                                                            <textarea name="note" cols="30" rows="5" class="form-control edit-note">{{$note->note}}</textarea>
+                                                            <textarea name="note" cols="30" rows="5" class="form-control edit-note tinymce-editor">{{$note->note}}</textarea>
                                                             <input type="hidden" name="note_id" value="{{$note->id}}">
                                                             <input type="hidden" name="claim_id" value="{{$note->claim_id}}" />
                                                     </div>
@@ -2491,7 +2497,7 @@
                                             </div>
 
                                             </div>
-                                            </div> --}}
+                                            </div>
 
 
 
@@ -2696,7 +2702,7 @@
                                 </td>
                                 <td>{{$expense->currency}}</td>
                                 <td>
-                                    @if($expense->is_receipt == null)
+                                    @if($expense->is_receipt == 0)
                                     <span style="color: red;">No</span>
                                     @else
                                     <span style="color: green;">Yes</span>
@@ -2774,6 +2780,10 @@
                         <tr>
                             <th>Address Line 4</th>
                             <td>{{$airlineInfo->address_line_4}}</td>
+                        </tr>
+                        <tr>
+                            <th>Online Form Link</th>
+                            <td>{{$airlineInfo->online_form_link}}</td>
                         </tr>
 
                         <tr>

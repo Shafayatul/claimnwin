@@ -310,6 +310,8 @@ class ClaimBackController extends Controller
 
 
         $notes = Note::where('claim_id',$id)->latest()->get();
+        $user_who_created_note_ids = Note::where('claim_id',$id)->pluck('user_id')->toArray();
+        $user_who_created_note = User::whereIn('id', $user_who_created_note_ids)->pluck('name', 'id')->toArray();
 
 
         $flightCount=ItineraryDetail::where('claim_id',$id)->count();
@@ -327,7 +329,7 @@ class ClaimBackController extends Controller
 
         $ticket = Ticket::where('claim_id', $claims->id)->first();
         if($ticket == null){
-            $ticket_notes = '';
+            $ticket_notes = [];
         }else{
             $ticket_notes = TicketNote::where('ticket_id', $ticket->id)->get();
         }
@@ -338,10 +340,10 @@ class ClaimBackController extends Controller
                 'port'          => 993,
                 'encryption'    => 'ssl',
                 'validate_cert' => true,
-                // 'username'      => $claims->cpanel_email,
-                // 'password'      => $claims->cpanel_password,
-                'username'      =>'rtwh095@freeflightclaim.com',
-                'password'      => 'olMpHjWv',
+                'username'      => $claims->cpanel_email,
+                'password'      => $claims->cpanel_password,
+                // 'username'      =>'rtwh095@freeflightclaim.com',
+                // 'password'      => 'olMpHjWv',
                 'protocol'      => 'imap'
             ]);
             $oClient->connect();
@@ -367,7 +369,7 @@ class ClaimBackController extends Controller
             $affilaite_info=Affiliate::where('claim_id',$claims->id)->first();
             $EmailTemplate=EmailTemplate::all()->pluck('title', 'id');
 
-        return view('claim.claimView',compact('affilaite_info','airlineInfo','airlineSents','inbox','affiliateNotes','expanses','aFolder','sents','notes', 'ticket_notes', 'ticket', 'claimFiles','affiliateComm','adminComm','NextStepData','claimStatusData','flightInfo','airline','departed_airport','destination_airport','reminders','claims','passengers','ittDetails','flightCount','passCount','claimsStatus','nextSteps','banks', 'affiliate_user', 'intinerary_details', 'itinerary_detail_airlines', 'all_flights', 'EmailTemplate', 'is_all_flight_time_exists'));
+        return view('claim.claimView',compact('affilaite_info','airlineInfo','airlineSents','inbox','affiliateNotes','expanses','aFolder','sents','notes', 'ticket_notes', 'ticket', 'claimFiles','affiliateComm','adminComm','NextStepData','claimStatusData','flightInfo','airline','departed_airport','destination_airport','reminders','claims','passengers','ittDetails','flightCount','passCount','claimsStatus','nextSteps','banks', 'affiliate_user', 'intinerary_details', 'itinerary_detail_airlines', 'all_flights', 'EmailTemplate', 'is_all_flight_time_exists', 'user_who_created_note'));
     }
 
     public function downloadClaimFile($id)

@@ -778,14 +778,16 @@ class ClaimsController extends Controller
         $to_airport             = $request->input('to');
         $client_email   = $request->input('client_email');
         $data           = $request->input('data');
-        if ($data = '0') {
-            $is_eligible = '0';
-        }else{
-            $is_eligible = '1';
-        }
+        $airline = $this->get_airport_from_iata_or_icao_code($request->flight_code);
+        // if ($data = '0') {
+        //     $is_eligible = '0';
+        // }else{
+        //     $is_eligible = '1';
+        // }
+        $is_eligible = $data;
         
 
-        Mail::to(env('ADMIN_EMAIL'), 'Admin')->send(new NewClaimEmail($from_airport, $to_airport, $client_email, $is_eligible));
+        Mail::to(env('ADMIN_EMAIL'), 'Admin')->send(new NewClaimEmail($from_airport, $to_airport, $client_email, $is_eligible, $airline));
         // Mail::to(env('ADMIN_EMAIL'), 'Admin')->send(new NewClaim($from_airport, $to_airport, $client_email, $is_eligible));
 
         return response()->json([

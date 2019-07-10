@@ -330,15 +330,15 @@ $(document).ready(function() {
 
 
           }
-
           $.ajax({
             headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
             type: 'POST',
             url: '/ajax/send-email-for-new-claim',
             data: {
-              from: departed_from,
-              to: final_destination,
+              from: $('input[name="departed_from"]').val(),
+              to: $('input[name="final_destination"]').val(),
               client_email: $('input[name="email_address"]').val(),
+              flight_code: $('.flight_code_1').val(),
               data: data
             },
             success: function (data){

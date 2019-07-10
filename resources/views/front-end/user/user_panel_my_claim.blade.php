@@ -64,8 +64,11 @@
                       :
                     </span>
                     {!! $claims->amount !!}
-                    @if(($claims->converted_expection_amount != "") && ($claims->converted_expection_amount != null))
-                        {!! '<br> ('.$claims->converted_expection_amount.')' !!}
+
+                    @if(($claims->converted_expection_amount == null) || ($claims->converted_expection_amount == '0'))
+                      
+                    @else
+                      {!! '<br> ('.$claims->converted_expection_amount.')' !!}
                     @endif
                 </div>
             </div>
@@ -139,16 +142,15 @@
 
                     <div class="wrapper">
                         <div class="claim_status_refresh_icon text-center">
-                            <i class="fas fa-sync" style="color: #EFF30B"></i>
+                            <i class="fas fa-sync" style="color: #99B53A"></i>
                         </div>
                         <div class="claim_status_refresh_text text-center">
-                        <p style="color: #EFF30B">
+                        <p style="color: #99B53A">
                           @if ($responseDecoded)
                             {!! $responseDecoded['data']['translations'][9]['translatedText'] !!}
                           @else
                             {!! $text[9] !!}
                           @endif
-                          {{$claim_staus->name}}
                         </p>
                         </div>
                         <div class="claim_status_message text-center">
@@ -181,17 +183,25 @@
                               {!! $text[4] !!}
                             @endif
                             :
-                            @if ($claims->ticket_status == '1')
-                              @if ($responseDecoded)
-                                {!! $responseDecoded['data']['translations'][11]['translatedText'] !!}
+                            @if($ticket)
+                              @if ($ticket->status == '1')
+                                @if ($responseDecoded)
+                                  {!! $responseDecoded['data']['translations'][11]['translatedText'] !!}
+                                @else
+                                  {!! $text[11] !!}
+                                @endif
+                              @elseif ($ticket->status == '2')
+                                @if ($responseDecoded)
+                                  {!! $responseDecoded['data']['translations'][12]['translatedText'] !!}
+                                @else
+                                  {!! $text[12] !!}
+                                @endif
                               @else
-                                {!! $text[11] !!}
-                              @endif
-                            @elseif ($claims->ticket_status == '2')
-                              @if ($responseDecoded)
-                                {!! $responseDecoded['data']['translations'][12]['translatedText'] !!}
-                              @else
-                                {!! $text[12] !!}
+                                @if ($responseDecoded)
+                                  {!! $responseDecoded['data']['translations'][13]['translatedText'] !!}
+                                @else
+                                  {!! $text[13] !!}
+                                @endif
                               @endif
                             @else
                               @if ($responseDecoded)
@@ -202,41 +212,45 @@
                             @endif
                           </div>
                         </blockquote>
-                        @if ($claims->ticket_status != '3')
-                        <div class="message_icon text-center">
-                            <i class="far fa-comment-alt"></i>
-                        </div>
-                        <div class="message_text text-center">
-                            <p>
-                              @if ($responseDecoded)
-                                {!! $responseDecoded['data']['translations'][14]['translatedText'] !!}
-                              @else
-                                {!! $text[14] !!}
-                              @endif
-                            </p>
-                        </div>
-                        <div class="message_underline_row">
+                        @if ($ticket)
+                          @if ($ticket->status != '3')
+                            <div class="message_icon text-center">
+                                <i class="far fa-comment-alt"></i>
+                            </div>
+                            <div class="message_text text-center">
+                                <p>
+                                  @if ($responseDecoded)
+                                    {!! $responseDecoded['data']['translations'][14]['translatedText'] !!}
+                                  @else
+                                    {!! $text[14] !!}
+                                  @endif
+                                </p>
+                            </div>
+                            <div class="message_underline_row">
 
-                        </div>
-                        <div class="user_message">
-                            <form class="user_message_form single-submit" action="{{ route('user-ticket-message') }}" method="post">
-                                @csrf
-                                <i class="fas fa-pencil-alt prefix"></i>
-                                <textarea id="" class="" name="description" placeholder="Write a message"></textarea>
-                                <input type="hidden" name="ticket_id" value="{{ $claims->ticket_id }}">
-                                <div class="row">
-                                    <div class="col-md-12 text-right">
-                                        <button type="submit" name="button" class="disable-after-first-click">
-                                          @if ($responseDecoded)
-                                            {!! $responseDecoded['data']['translations'][15]['translatedText'] !!}
-                                          @else
-                                            {!! $text[15] !!}
-                                          @endif
-                                        </button>
+                            </div>
+                            <div class="user_message">
+                                <form class="user_message_form single-submit" action="{{ route('user-ticket-message') }}" method="post">
+                                    @csrf
+                                    <i class="fas fa-pencil-alt prefix"></i>
+                                    <textarea id="" class="" name="description" placeholder="Write a message"></textarea>
+                                    <input type="hidden" name="ticket_id" value="{{ $ticket->id }}">
+                                    <input type="hidden" name="claim_id" value="{{ $claims->id }}">
+                                    <input type="hidden" name="cpanel_email" value="{{ $claims->cpanel_email }}">
+                                    <div class="row">
+                                        <div class="col-md-12 text-right">
+                                            <button type="submit" name="button" class="disable-after-first-click">
+                                              @if ($responseDecoded)
+                                                {!! $responseDecoded['data']['translations'][15]['translatedText'] !!}
+                                              @else
+                                                {!! $text[15] !!}
+                                              @endif
+                                            </button>
+                                        </div>
                                     </div>
-                                </div>
-                            </form>
-                        </div>
+                                </form>
+                            </div>
+                          @endif
                         @endif
 
                         <div class="parent_div message_text">
@@ -349,7 +363,11 @@
                                             <td>Your Compensation</td>
                                             <td>
                                                 <span class="text-right">
+                                                  @if(($claims->converted_expection_amount == null) || ($claims->converted_expection_amount == '0'))
+                                                    {{$claims->amount}}
+                                                  @else
                                                     {{$claims->amount.' ('.$claims->converted_expection_amount.')'}}
+                                                  @endif
                                                 </span>
                                             </td>
                                         </tr>

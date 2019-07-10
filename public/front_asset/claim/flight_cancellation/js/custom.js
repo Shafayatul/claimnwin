@@ -182,7 +182,7 @@ $(document).ready(function() {
             $("#continue_3").removeClass('active_button');
             var step_three_airline = true;
             var step_three_flight_number = true;
-            var step_three_flight_code   = false;
+            var step_three_flight_code   = true;
             var step_three_departure_date = true;
             $("input[name^='airline']").each(function() {
                 if ($(this).val() == "") {
@@ -450,6 +450,7 @@ $(document).ready(function() {
               from: departed_from,
               to: final_destination,
               client_email: $('input[name="email_address"]').val(),
+              flight_code: flight_code,
               data: data
             },
             success: function (data){

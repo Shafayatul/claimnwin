@@ -160,6 +160,7 @@ Route::group(['middleware' => ['auth']], function() {
         Route::resource('ticket-notes', 'TicketNotesController');
         Route::post('/ticket-description', 'TicketNotesController@ticketDescriptionSave')->name('ticket-description');
         Route::post('/close-ticket/{id}', 'TicketsController@closeTicket');
+        Route::get('/close-ticket/{id}', 'TicketsController@closeTicket');
         Route::post('/ticket-assign-user', 'TicketsController@ticketAssignUser')->name('ticket.user.assign');
         Route::post('/ajax/ticket/assign', 'TicketsController@ajax_ticket_assign');
         Route::post('/ajax/ticket/priority', 'TicketsController@ajax_ticket_priority');
