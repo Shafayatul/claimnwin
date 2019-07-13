@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\Traits\LogsActivity;
+
 
 class Review extends Model
 {
@@ -26,6 +28,7 @@ class Review extends Model
      * @var array
      */
     protected $fillable = ['star', 'title', 'description', 'name'];
+    protected static $logAttributes = ['star', 'title', 'description', 'name'];
 
     
 }

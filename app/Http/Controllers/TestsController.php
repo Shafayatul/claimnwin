@@ -19,7 +19,7 @@ use Artisan;
 class TestsController extends Controller
 {
     public function test_forword(){
-        $cPanel = new cPanel(env('CPANEL_USERNAME'), env('CPANEL_PASSWORD'), env('CPANEL_IP'));
+/*        $cPanel = new cPanel(env('CPANEL_USERNAME'), env('CPANEL_PASSWORD_NEW'), env('CPANEL_IP'));
         // Forward mail from forwardme@example.com to fwdtome@example.com
         $add_mail_forwarder = $cPanel->api2(
             'Email', 'addforward',
@@ -27,17 +27,21 @@ class TestsController extends Controller
                 'domain'          => 'claimnwin.com',
                 'email'           => 'md082@claimnwin.com',
                 'fwdopt'          => 'fwd',
-                'fwdemail'        => 'info@claimnwin.com',
+                'fwdemail'       ` => 'info@claimnwin.com',
             )
-        );
+        );*/
     }
     public function test(Request $request){
-        $claim = Claim::where('id', '10000022')->first();
-        $user = User::where('id', '84')->first();
-        $ittDetails = ItineraryDetail::where('claim_id',$claim->id)->where('is_selected','1')->first();
-        $passengers = Passenger::where('claim_id',$claim->id)->get();
-        // dd(Mail::to('sharafat.sohan047@gmail.com')->send(new ClaimCompleted($user, $ittDetails, $passengers)));
-        return view('email.test', compact('user', 'ittDetails', 'passengers'));
+
+        // echo "for test:";
+        // dd(env('CPANEL_PASSWORD'));
+        // $claim = Claim::where('id', '10000022')->first();
+        // $user = User::where('id', '84')->first();
+        // $ittDetails = ItineraryDetail::where('claim_id',$claim->id)->where('is_selected','1')->first();
+        // $passengers = Passenger::where('claim_id',$claim->id)->get();
+        // // dd(Mail::to('sharafat.sohan047@gmail.com')->send(new ClaimCompleted($user, $ittDetails, $passengers)));
+        // return view('email.test', compact('user', 'ittDetails', 'passengers'));
+        // 87TYT%^R^%Rduyt
     }
 
 

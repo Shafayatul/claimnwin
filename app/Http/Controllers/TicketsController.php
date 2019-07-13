@@ -30,6 +30,12 @@ class TicketsController extends Controller
 
     public function ticketInbox(Request $request)
     {
+
+
+        // $MAIL_USERNAME = "info@claimnwin.com";
+        // $MAIL_PASSWORD = "(%1]zwl8Iini66";
+
+
         $perPage = 25;
         if ($request->has('submit')){
             $contact                    = $request->get('contact');
@@ -67,8 +73,6 @@ class TicketsController extends Controller
             'validate_cert' => true,
             'username'      => env('MAIL_USERNAME'),
             'password'      => env('MAIL_PASSWORD'),
-            // 'username'      =>'rtwh095@freeflightclaim.com',
-            // 'password'      => 'olMpHjWv',
             'protocol'      => 'imap'
         ]);
         $oClient->connect();

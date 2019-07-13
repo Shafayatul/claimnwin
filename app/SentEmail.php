@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\Traits\LogsActivity;
+
 
 class SentEmail extends Model
 {
@@ -26,6 +28,7 @@ class SentEmail extends Model
      * @var array
      */
     protected $fillable = ['body', 'claim_id','subject'];
+    protected static $logAttributes = ['body', 'claim_id','subject'];
 
 
 }

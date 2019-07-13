@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\Traits\LogsActivity;
+
 
 class Faq extends Model
 {
@@ -26,6 +28,7 @@ class Faq extends Model
      * @var array
      */
     protected $fillable = ['title', 'content'];
+    protected static $logAttributes = ['title', 'content'];
 
     
 }

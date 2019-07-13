@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class EmailTemplate extends Model
 {
@@ -26,6 +27,7 @@ class EmailTemplate extends Model
      * @var array
      */
     protected $fillable = ['id', 'title', 'content'];
+    protected static $logAttributes = ['id', 'title', 'content'];
 
     
 }

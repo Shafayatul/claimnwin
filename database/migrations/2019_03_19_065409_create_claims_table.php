@@ -93,7 +93,7 @@ class CreateClaimsTable extends Migration
 
             $table->boolean('is_contacted_airline')->default(0)->nullable();
 
-            $table->string('what_happened')->nullable();
+            $table->text('what_happened')->nullable();
 
             $table->string('correspondence_ids_file')->nullable();
 

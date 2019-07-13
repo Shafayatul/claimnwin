@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class Contact extends Model
 {
@@ -26,6 +27,7 @@ class Contact extends Model
      * @var array
      */
     protected $fillable = ['name', 'email', 'subject', 'message'];
+    protected static $logAttributes = ['name', 'email', 'subject', 'message'];
 
     
 }

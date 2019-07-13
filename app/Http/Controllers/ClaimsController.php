@@ -58,6 +58,7 @@ class ClaimsController extends Controller
     }
 
     public function create_cpanel_email($email_name, $password){
+
         $cPanel = new cPanel(env('CPANEL_USERNAME'), env('CPANEL_PASSWORD'), env('CPANEL_IP'));
         $parameters = [
                 'email'         => $email_name,
