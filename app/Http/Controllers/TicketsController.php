@@ -107,16 +107,16 @@ class TicketsController extends Controller
                 $sub =$oMessage->getSubject();
                 $date = $oMessage->getDate();
                 $longMsg=$oMessage->getHTMLBody(true);
-                $textMsg=  $oMessage->getTextBody(true);
-                if (strpos($textMsg, "\r\n") !== false) {
-                    $lines=explode("\r\n", $longMsg)[0];
-                }elseif (strpos($textMsg, "\n") !== false) {
-                    $lines=explode("\n", $longMsg)[0];
-                }elseif (strpos($textMsg, "\r") !== false) {
-                    $lines=explode("\r", $longMsg)[0];
-                }else{
-                    $lines= $textMsg;
-                }
+                // $textMsg=  $oMessage->getTextBody(true);
+                // if (strpos($textMsg, "\r\n") !== false) {
+                //     $lines=explode("\r\n", $longMsg)[0];
+                // }elseif (strpos($textMsg, "\n") !== false) {
+                //     $lines=explode("\n", $longMsg)[0];
+                // }elseif (strpos($textMsg, "\r") !== false) {
+                //     $lines=explode("\r", $longMsg)[0];
+                // }else{
+                //     $lines= $textMsg;
+                // }
                 $ticket                 = new Ticket;
                 $ticket->subject        = $sub;
                 $ticket->claim_id       = $old_claim_id;
@@ -125,7 +125,7 @@ class TicketsController extends Controller
                 $ticket->from_email     = $from_email;
                 $ticket->from_name      = $from_name;
                 $ticket->imap_msg_no    = $imap_msg_no;
-                $ticket->text           = $lines;
+                // $ticket->text           = $lines;
                 $ticket->email_date     = $date;
                 $ticket->save();
 
