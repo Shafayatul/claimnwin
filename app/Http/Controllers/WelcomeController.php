@@ -90,7 +90,7 @@ class WelcomeController extends Controller
         $text[9] = "Up to";
         $text[10] = "compensation";
         $text[11] = "Trusted";
-        $text[12] = "by millions";
+        $text[12] = "by thousands";
         $text[13] = "8 Billion EUR";
         $text[14] = "available to claim";
         $text[15] = "HOW IT WORKS";
