@@ -11,6 +11,39 @@
             <div class="form-body">
                 <div class="card">
                     <div class="card-body">
+
+                        {!! Form::open(['method' => 'GET', 'url' => url('/activity/index'), 'class' => 'form-inline my-2 my-lg-0 float-right', 'role' => 'search']) !!}
+                              <div class="row">
+                                <div class="col-md-2">
+                                  <div class="input-group">
+                                      <input type="text" class="form-control" name="id" placeholder="Id" value="{{ request('id') }}">
+                                  </div>
+                                </div>
+                                <div class="col-md-2">
+                                  <div class="input-group">
+                                      <input type="text" class="form-control" name="log_name" placeholder="Log Name" value="{{ request('log_name') }}">
+                                  </div>
+                                </div>
+                                <div class="col-md-2">
+                                  <div class="input-group">
+                                      <input type="text" class="form-control" name="model_name" placeholder="Model Name" value="{{ request('model_name') }}">
+                                  </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <span class="input-group-append">
+                                        <button class="btn btn-secondary" type="submit" name="submit">
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                    </span>
+                                </div>
+
+                              </div>
+                              {!! Form::close() !!}
+
+                              <br>
+                              <br>
+
+
                         <div class=" table-responsive">
                             <table class="table table-borderless"  id="users-table">
                                 <thead>

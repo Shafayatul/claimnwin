@@ -39,6 +39,7 @@ use App\Mail\AirlineCompose;
 use App\Mail\AirlineReply;
 use App\Mail\CustomerReply;
 use App\Affiliate;
+use PDF;
 
 class ClaimBackController extends Controller
 {
@@ -387,6 +388,23 @@ class ClaimBackController extends Controller
         $file_path = public_path('uploads'.'/'.$claimId.'/'.$Claimfile->file_name);
         return response()->download($file_path,$file_name);
 
+    }
+
+    public function deleteClaimFile($id)
+    {
+        $claimfile= ClaimFile::findOrfail($id);
+        if($claimfile != null){
+            $file_name = 'uploads/'.$claimfile->claim_id.'/'.$claimfile->file_name;
+            unlink($file_name);
+        }
+        ClaimFile::where('id',$id)->delete();
+        return redirect()->back()->with('success','File Delete');
+    }
+
+    public function viewClaimFile($id){
+        $claimfile= ClaimFile::findOrfail($id);
+        $pdf = PDF::loadFile(public_path('uploads/').$claimfile->claim_id.'/'.$claimfile->file_name);
+        return $pdf->stram('test1.pdf');
     }
 
 

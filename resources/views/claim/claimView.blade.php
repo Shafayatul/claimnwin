@@ -350,7 +350,7 @@
                                                                             <th>File Name</th>
                                                                             <th>Upload Date</th>
                                                                             <th>Uploaded By</th>
-                                                                            <th>Delete</th>
+                                                                            <th>Action</th>
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
@@ -360,8 +360,21 @@
                                                                             <td>{{Carbon\Carbon::parse($claimFile->created_at)->format('d-m-Y')}}</td>
                                                                             <td>{{$claimFile->user_id}}</td>
                                                                             <td>
-                                                                                <a href="{{URL::to('/claim-file/'.$claimFile->id)}}" class="btn btn-sm btn-primary"><i class="fa fa-download"></i> Download</a>
-                                                                                <a href="#" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> Delete</a>
+                                                                                <a href="{{URL::to('/claim-file/'.$claimFile->id)}}" class="btn btn-sm btn-primary">
+                                                                                    <i class="fa fa-download"></i> Download
+                                                                                </a>
+                                                                                <a href="{{URL::to('/claim-file-delete/'.$claimFile->id)}}" class="btn btn-sm btn-danger">
+                                                                                    <i class="fa fa-trash"></i> Delete
+                                                                                </a>
+                                                                                @php
+                                                                                    $file_name = $claimFile->file_name;
+                                                                                    $ext = explode('.',$file_name);
+                                                                                @endphp
+                                                                                @if($ext[1] == 'pdf')
+                                                                                    <a href="{{URL::to('uploads/'.$claimFile->claim_id.'/'.$claimFile->file_name)}}" target="_blank" class="btn btn-sm btn-primary">
+                                                                                        <i class="fa fa-pdf"></i> PDF
+                                                                                    </a>
+                                                                                @endif
                                                                             </td>
                                                                         </tr>
                                                                         @endforeach

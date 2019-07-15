@@ -151,6 +151,8 @@ Route::group(['middleware' => ['auth']], function() {
         Route::post('/claim-nextstep-status-change', 'ClaimBackController@claimNextstepStatusChange')->name('claim-nextstep-status-change');
         Route::post('/required-details', 'ClaimBackController@requiredDetailsUpdate')->name('required-details');
         Route::get('/claim-file/{id}', 'ClaimBackController@downloadClaimFile');
+        Route::get('/claim-file-delete/{id}', 'ClaimBackController@deleteClaimFile');
+        Route::get('/claim-file-view/{id}', 'ClaimBackController@viewClaimFile');
         Route::get('/claim-archive/{id}', 'ClaimBackController@claimArchiveOrReopen');
         Route::resource('notes', 'NotesController');
         Route::post('/save-note', 'NotesController@store')->name('save-note');
