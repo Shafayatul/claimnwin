@@ -156,6 +156,7 @@ class ClaimBackController extends Controller
     {
         $perPage = 10;
         if ($request->has('submit')){
+            $claimId                = $request->get('claim_id');
             $first_name             = $request->get('first_name');
             $last_name              = $request->get('last_name');
             $email                  = $request->get('email');
@@ -167,6 +168,9 @@ class ClaimBackController extends Controller
             $court_no               = $request->get('court_no');
 
             $claims = Claim::whereNotNull('id');
+            if(!empty($claimId)){
+                $claims = $claims->where('id',$claimId);
+            }
             if(!empty($first_name)){
                 $claim_id=Passenger::where('first_name', 'LIKE', "%$first_name%")->select('claim_id')->get();
 

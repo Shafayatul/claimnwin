@@ -15,11 +15,11 @@
 
                               {!! Form::open(['method' => 'GET', 'url' => url('/manage-claim'), 'class' => 'form-inline my-2 my-lg-0 float-right', 'role' => 'search']) !!}
                               <div class="row">
-                                {{-- <div class="col-md-2">
+                                <div class="col-md-2">
                                   <div class="input-group">
-                                      <input type="text" class="form-control" name="alias" placeholder="Alias" value="{{ request('alias') }}">
+                                      <input type="text" class="form-control" name="claim_id" placeholder="Claim Id" value="{{ request('claim_id') }}">
                                   </div>
-                                </div> --}}
+                                </div>
                                 <div class="col-md-2">
                                   <div class="input-group">
                                       <input type="text" class="form-control" name="first_name" placeholder="First Name" value="{{ request('first_name') }}">
@@ -48,14 +48,14 @@
                                     </div>
                                 </div>
 
+                              </div>
+                              <div class="row">
+
                                 <div class="col-md-2">
                                 <div class="input-group">
                                     <input type="text" class="form-control" name="airline_ref" placeholder="Airline Reference" value="{{ request('airline_ref') }}">
                                 </div>
                                 </div>
-
-                              </div>
-                              <div class="row">
 
                                 <div class="col-md-2">
                                   <div class="input-group">
