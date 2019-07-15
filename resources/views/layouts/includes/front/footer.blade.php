@@ -137,7 +137,7 @@
                                 </h2>
                             <ul class="social">
                                 <li>
-                                    <a href="#">
+                                    <a href="https://www.facebook.com/claimn.win" target="_blank">
                                         <span><i class="fab fa-facebook-f"></i></span>
                                         @if ($translated_menu)
                                           {{ $translated_menu['data']['translations'][22]['translatedText']}}
@@ -147,7 +147,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#">
+                                    <a href="https://twitter.com/claim_win" target="_blank">
                                         <span><i class="fab fa-twitter"></i></span>
                                         @if ($translated_menu)
                                           {{ $translated_menu['data']['translations'][23]['translatedText']}}
@@ -167,7 +167,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#">
+                                    <a href="https://www.linkedin.com/company/claim-n-win-ltd" target="_blank">
                                         <span><i class="fab fa-linkedin"></i></span>
                                         @if ($translated_menu)
                                           {{ $translated_menu['data']['translations'][25]['translatedText']}}
