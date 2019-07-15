@@ -11,3 +11,4 @@
 <link  href="{{asset('front_asset/front_pages_asset/css/slick.css')}}" rel="stylesheet">
 <link  href="{{asset('front_asset/front_pages_asset/css/slick-theme.css')}}" rel="stylesheet">
 <link href="{{asset('autocomplete/jquery.auto-complete.css')}}" rel="stylesheet">
+

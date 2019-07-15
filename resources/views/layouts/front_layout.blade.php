@@ -22,8 +22,6 @@ var tlJsHost = ((window.location.protocol == "https:") ? "https://secure.trust-p
 document.write(unescape("%3Cscript src='" + tlJsHost + "trustlogo/javascript/trustlogo.js' type='text/javascript'%3E%3C/script%3E"));
 //]]>
 </script> --}}
-
-
 </head>
 
 <body>
@@ -70,7 +68,6 @@ s0.parentNode.insertBefore(s1,s0);
 })();
 </script>
 <!--End of Tawk.to Script-->
-
 
 </body>
 
