@@ -103,41 +103,41 @@
                     <h1 class="text-center">Reply Email Start Here</h1><br>
                     @foreach($ticket_reply as $row)
                     <div class="row">
-                            <div class="col-md-12">
-                                <div class="panel-group">
-                                    <div class="panel">
-                                        <div class="panel-heading" style="height: auto!important;">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    @php
-                                                        $date=Carbon\Carbon::parse($row->created_at)->format("D, d M Y");
-                                                        $time = Carbon\Carbon::parse($row->created_at)->format("h:i A");
-                                                    @endphp
-                                                    <h6><strong>{{$row->from_name}}</strong> reported via email ({{$date}} at {{$time}})</h6><br>
+                        <div class="col-md-12">
+                            <div class="panel-group">
+                                <div class="panel">
+                                    <div class="panel-heading" style="height: auto!important;">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                @php
+                                                    $date=Carbon\Carbon::parse($row->created_at)->format("D, d M Y");
+                                                    $time = Carbon\Carbon::parse($row->created_at)->format("h:i A");
+                                                @endphp
+                                                <h6><strong>{{$row->from_name}}</strong> reported via email ({{$date}} at {{$time}})</h6><br>
 
 
-                                                    <h6><strong>To: </strong> {{$row->to_email}}</h6>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <ul class="reply pull-right">
-                                                    <li><a href="{{URL::to('/ticket-reply-view/'.$row->ticket_id)}}"><i class="fa fa-share"></i></a></li>
-                                                    <li><a href="{{URL::to('/reply-email-view-pdf/'.$row->ticket_id)}}"><i class="fa fa-file-pdf-o"></i></a></li>
-                                                    </ul>
-                                                </div>
+                                                <h6><strong>To: </strong> {{$row->to_email}}</h6>
                                             </div>
+                                            <div class="col-md-6">
+                                                <ul class="reply pull-right">
+                                                <li><a href="{{URL::to('/ticket-reply-view/'.$row->ticket_id)}}"><i class="fa fa-share"></i></a></li>
+                                                <li><a href="{{URL::to('/reply-email-view-pdf/'.$row->ticket_id)}}"><i class="fa fa-file-pdf-o"></i></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
 
-                                        </div>
-                                        <div class="panel-body">
-                                            {!! $row->ticket_reply_note !!}
-                                        </div>
-                                        <div class="panel-footer">
+                                    </div>
+                                    <div class="panel-body">
+                                        {!! $row->ticket_reply_note !!}
+                                    </div>
+                                    <div class="panel-footer">
 
-                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        @endforeach
+                    </div>
+                    @endforeach
 <!-------------------------------End Reply Email--------------------------->
                 </div>
             </div>

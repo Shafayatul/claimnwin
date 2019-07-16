@@ -398,11 +398,24 @@ class TicketsController extends Controller
         $ticket=Ticket::find($id);
         $ticket_note = TicketNote::where('ticket_id',$ticket->id)->first();
         $ticket_reply = TicketReplyEmail::where('ticket_id',$id)->latest()->get();
-
         $email_date = substr($ticket->email_date,8,2).'.'.substr($ticket->email_date,5,2).'.'.substr($ticket->email_date,0,4);
 
 
         $perPage = 25;
+        $imap_msg_no = $ticket->imap_msg_no;
+        // dd($imap_msg_no);
+        if($imap_msg_no == null){
+            
+            $sub            = $ticket->subject;
+            $date           = Carbon::parse($ticket->email_date)->format("D, d M Y");
+            $time           = Carbon::parse($ticket->email_date)->format("h:i A");
+            $from           = $ticket->from_email;
+            $to             = $ticket->to_email;
+            $from_name      = null;
+            $to_name        = null;
+            $attachments    = null;
+        }else{
+
         $oClient = new Client([
             'host'          => 'premium39.web-hosting.com',
             'port'          => 993,
@@ -416,12 +429,9 @@ class TicketsController extends Controller
         ]);
         $oClient->connect();
         $oFolder = $oClient->getFolder('INBOX');
-        // dd($oFolder);
-        // $aMessage = $oFolder->search()->get();
         $aMessage = $oFolder->search()->from($ticket->from_email)->since($email_date)->get();
 
         foreach ($aMessage as $oMessage) {
-// dd($oMessage);
             if ($oMessage->getUid() == $ticket->imap_msg_no) {
                 $attachments = $oMessage->attachments;
                 $oMessage = $oFolder->getMessage($ticket->imap_msg_no);
@@ -434,6 +444,8 @@ class TicketsController extends Controller
                 $to_name = $oMessage->getTo()[0]->personal;
             }
         }
+
+    }
 // dd($attachments);
         return view('tickets.ticket-email-view',compact('ticket_reply','ticket_note','time','ticket','sub','date','from','to','from_name','to_name', 'attachments'));
     }
