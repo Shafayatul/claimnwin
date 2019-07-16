@@ -230,7 +230,7 @@
 
                             </div>
                             <div class="user_message">
-                                <form class="user_message_form single-submit" action="{{ route('user-ticket-message') }}" method="post">
+                                <form class="user_message_form single-submit" action="{{ route('user-ticket-message') }}" method="post" id="ticket-submit">
                                     @csrf
                                     <i class="fas fa-pencil-alt prefix"></i>
                                     <textarea id="" class="" name="description" placeholder="Write a message"></textarea>
