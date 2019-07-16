@@ -260,6 +260,14 @@ class ClaimsController extends Controller
             return 0;
         }
     }
+    public function get_airport_from_iata_code($iata_code){
+        $airline_id = Airport::WHERE('iata_code', $iata_code)->first()->id;
+        if ($airline_id) {
+            return $airline_id;
+        }else{
+            return 0;
+        }
+    }
     public function get_airline_id_name_and_iata_code($sting){
         $iata_code =  rtrim(substr($sting, strrpos($sting,"(")+1), ')'); // LON
         $airline_id = Airline::WHERE('iata_code', $iata_code)->first()->id;
@@ -1282,19 +1290,21 @@ class ClaimsController extends Controller
 
         $airline = $this->get_airport_from_iata_or_icao_code($request->flight_code);
 
-
-
-
-
         $departed_from = Airport::WHERE('id', $departed_from_id)->first();
         $final_destination = Airport::WHERE('id', $final_destination_id)->first();
 
 
         $distance = $this->distance($departed_from->latitude, $departed_from->longitude, $final_destination->latitude, $final_destination->longitude, 'K');
 
+
+        $selected_connection_iata_codes = explode('-', $request->selected_connection_iata_codes);
+        $departed_from_id       = $this->get_airport_from_iata_code($selected_connection_iata_codes[0]);
+        $final_destination_id   = $this->get_airport_from_iata_code($selected_connection_iata_codes[1]);
+        $departed_from          = Airport::WHERE('id', $departed_from_id)->first();
+        $final_destination      = Airport::WHERE('id', $final_destination_id)->first();
+
         // stated from Europe
         if ((in_array(strtolower($departed_from->country), $this->europe_countries)) || (in_array(strtolower($departed_from->country), $this->europe_countries_code))) {
-
             // europe to europe
             if ((in_array(strtolower($final_destination->country), $this->europe_countries)) || (in_array(strtolower($final_destination->country), $this->europe_countries_code))) {
 
@@ -1416,7 +1426,6 @@ class ClaimsController extends Controller
 
           // started from other country
           }else{
-
             // other country to europe
             if ((in_array(strtolower($final_destination->country), $this->europe_countries)) || (in_array(strtolower($final_destination->country), $this->europe_countries_code))) {
               // europe airline
@@ -2069,6 +2078,14 @@ class ClaimsController extends Controller
 
 
         $distance = $this->distance($departed_from->latitude, $departed_from->longitude, $final_destination->latitude, $final_destination->longitude, 'K');
+
+
+
+        $departed_from_id       = $this->get_airport_from_iata_code($selected_connection_iata_codes[0]);
+        $final_destination_id   = $this->get_airport_from_iata_code($selected_connection_iata_codes[1]);
+        $departed_from          = Airport::WHERE('id', $departed_from_id)->first();
+        $final_destination      = Airport::WHERE('id', $final_destination_id)->first();
+
 
         // stated from Europe
         if ((in_array(strtolower($departed_from->country), $this->europe_countries)) || (in_array(strtolower($departed_from->country), $this->europe_countries_code))) {
