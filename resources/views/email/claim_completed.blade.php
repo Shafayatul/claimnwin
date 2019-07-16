@@ -18,7 +18,7 @@
       }
     </style>
 </head>
-<body>
+<body style="background-color: white;">
 
 <div><p style="margin-top: 0pt; margin-bottom: 14pt; font-size: 11pt;"><span style="font-family: Calibri;">Dear </span><span style="font-family: Calibri; ">{{$user->name}},</span></p><p style="margin-top: 14pt; margin-bottom: 14pt; font-size: 11pt;"><span style="font-family: Calibri;">You are receiving this email as confirmation of receipt of your recent flight claim made online at </span><a style="text-decoration: none;" href="http://www.claimnwin.com"><u><span style="font-family: Calibri; color: #0563c1;">www.claimnwin.com</span></u></a><span style="font-family: Calibri;">&nbsp; </span><span style="font-family: Calibri;">for flight </span><span style="font-family: Calibri; ">{{$ittDetails->flight_number}} </span><span style="font-family: Calibri;">on </span><span style="font-family: Calibri; ">{{Carbon\Carbon::parse($ittDetails->created_at)->format('d/m/Y')}}</span></p><p style="margin-top: 14pt; margin-bottom: 14pt; font-size: 11pt;"><span style="font-family: Calibri;">Thank you for submitting your flight claim with Claim&rsquo;N Win using our 100% no-win no-fee service. Your enquiry reference number is </span><span style="font-family: Calibri; ">CLAIM/{{$ittDetails->claim_id}}</span></p><p style="margin-top: 14pt; margin-bottom: 14pt; font-size: 11pt;"><span style="font-family: Calibri;">We'll now work on verifying the flight information you've provided and will confirm the status of your claim by email shortly.</span></p><p style="margin-top: 14pt; margin-bottom: 14pt; font-size: 11pt;"><span style="font-family: Calibri;">We can see you have submitted Claims for:</span></p>
         @foreach($passengers as $passenger)

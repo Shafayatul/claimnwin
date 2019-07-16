@@ -2,7 +2,7 @@
 <html>
 	<head>
 	</head>
-	<body>
+	<body style="background-color: white;">
 		{!!$composeData!!}
 	</body>
 </html>

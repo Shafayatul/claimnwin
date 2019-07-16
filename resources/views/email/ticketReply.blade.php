@@ -3,7 +3,7 @@
 <head>
 	    <meta charset="utf-8">
 </head>
-<body>
+<body style="background-color: white;">
 {{-- 	<h1>Name cheap</h1>
 	<img src="https://claimnwin.com/TrustL.png">
 	<h2>GOdaddy hosting</h2>

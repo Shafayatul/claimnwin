@@ -3,7 +3,7 @@
 <head>
 	<title></title>
 </head>
-<body>
+<body style="background-color: white;">
 
 	<h2>
 		<b>Form : </b> {{$from}}
