@@ -482,6 +482,8 @@ $(document).ready(function(){
           loop_cnt++;
       });
 
+      var selected_connection_iata_codes =  $('input[name="selected_connection_iata_codes"]:checked').val();
+
       $.ajax({
         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
         type: 'POST',
@@ -490,7 +492,8 @@ $(document).ready(function(){
           departed_from: departed_from,
           final_destination: final_destination,
           total_delay: total_delay,
-          flight_code: flight_code
+          flight_code: flight_code,
+          selected_connection_iata_codes: selected_connection_iata_codes
         },
         success: function (data){
           if (data == '0') {
