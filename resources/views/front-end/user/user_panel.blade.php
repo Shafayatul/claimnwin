@@ -163,11 +163,3 @@
   </div>
 
 @endsection
-@section('footer-script')
-<script>
-  $('#ticket-submit').submit(function(e){
-    alert("Form submitted!");
-    e.preventDefault(); // Prevent the original submit
-});
-</script>
-@endsection

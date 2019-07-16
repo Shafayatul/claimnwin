@@ -56,6 +56,13 @@ document.write(unescape("%3Cscript src='" + tlJsHost + "trustlogo/javascript/tru
   $(document).ready(function(e){
     $('#signArea').signaturePad({drawOnly:true, drawBezierCurves:true, lineTop:90});
     $(".dropdown-toggle").dropdown();
+
+
+
+     $("#ticket-submit").submit(function(e){
+        alert("Form submitted!");
+        e.preventDefault(); // Prevent the original submit
+    });
   });
   </script>
 {{-- signature ends --}}

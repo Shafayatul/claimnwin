@@ -122,7 +122,6 @@ document.write(unescape("%3Cscript src='" + tlJsHost + "trustlogo/javascript/tru
     });
     </script>
     <script src="{{ asset('js/share.js') }}"></script>
-
 </body>
 
 </html>
