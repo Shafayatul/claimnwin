@@ -2080,7 +2080,7 @@ class ClaimsController extends Controller
         $distance = $this->distance($departed_from->latitude, $departed_from->longitude, $final_destination->latitude, $final_destination->longitude, 'K');
 
 
-
+        $selected_connection_iata_codes = explode('-', $selected_connection_iata_codes);
         $departed_from_id       = $this->get_airport_from_iata_code($selected_connection_iata_codes[0]);
         $final_destination_id   = $this->get_airport_from_iata_code($selected_connection_iata_codes[1]);
         $departed_from          = Airport::WHERE('id', $departed_from_id)->first();
