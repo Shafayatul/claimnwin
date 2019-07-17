@@ -17,6 +17,13 @@
   color: #0077B5;
 }
 
+.sticky {
+  position:fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index:100;
+}
 
 /* Chrome 29+ */
 @media screen and (-webkit-min-device-pixel-ratio:0)
