@@ -28,5 +28,6 @@
 		<b style="color: green">Eligibility: </b> Eligible
 	</h2>
 	@endif
+	{!! $a_html !!}
 </body>
 </html>

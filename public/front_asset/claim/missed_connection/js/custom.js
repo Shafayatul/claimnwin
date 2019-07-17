@@ -525,21 +525,118 @@ $(document).ready(function(){
 
           }
 
-          $.ajax({
-            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-            type: 'POST',
-            url: '/ajax/send-email-for-new-claim',
-            data: {
-              from: departed_from,
-              to: final_destination,
-              client_email: $('input[name="email_address"]').val(),
-              flight_code: flight_code,
-              data: data
-            },
-            success: function (data){
-              console.log(data)
-            }
+          var a_html = '';
+          a_html = a_html+'<p><b>Reason: </b>'+$('input[name="reason"]').val()+'</p>';
+          a_html = a_html+'<p><b>Delay: </b>'+$('input[name="total_delay"]:checked').val()+'</p>';
+          a_html = a_html+'<p><b>Is erouted: </b>'+$('input[name="is_rerouted"]:checked').val()+'</p>';
+          a_html = a_html+'<p><b>DID YOU OBTAIN A FULL REIMBURSEMENT OF YOUR ORIGINAL TICKET?: </b>'+$('input[name="is_obtained_full_reimbursement"]:checked').val()+'</p>';
+          a_html = a_html+'<p><b>TELL US THE PRICE OF THE ORIGINAL TICKET: </b>'+$('input[name="ticket_price_original_ticket"]').val()+" "+$('input[name="ticket_currency_original_ticket"]').val()+'</p>';
+          a_html = a_html+'<p><b>DID YOU PAY FOR YOUR RE-ROUTING FLIGHT?: </b>'+$('input[name="is_paid_for_rerouting"]:checked').val()+'</p>';
+          a_html = a_html+'<p><b>TELL US THE PRICE OF THE RE-ROUTING TICKET FOR ALL PASSENGERS TELL US THE PRICE OF THE ORIGINAL TICKET.: </b>'+$('input[name="ticket_price_rerouting"]').val()+" "+$('input[name="ticket_currency_rerouting"]').val()+'</p>';
+          a_html = a_html+'<p><b>OPTIONAL: DID YOU SPEND ON ACCOMMODATION, FOOD OR TAXI WHILE WAITING FOR YOUR REROUTING FLIGHT?: </b>'+$('input[name="ticket_currency_rerouting"]').val()+'</p>';
+
+          a_html = a_html+'<p><b>What happened to the flight: </b>'+$('input[name="what_happened_to_the_flight"]:checked').val()+'</p>';
+          a_html = a_html+'<p><b>Other connections: </b>';
+          $(".connection").each(function(){
+            a_html = a_html+$(this).val()+', ';
           });
+          a_html = a_html+'</p>';
+
+
+          var a_airline_1 = [];
+          var a_airline_2 = [];
+          var a_airline_3 = [];
+          var a_airline_4 = [];
+          var a_airline_5 = [];
+          $('input[name="airline[]"]').each(function(){
+            a_airline_1.push($(this).val());
+          });
+          $('input[name="flight_segment[]"]').each(function(){
+            a_airline_2.push($(this).val());
+          });
+          $('input[name="flight_code[]"]').each(function(){
+            a_airline_3.push($(this).val());
+          });
+          $('input[name="flight_number[]"]').each(function(){
+            a_airline_4.push($(this).val());
+          });
+          $('input[name="departure_date[]"]').each(function(){
+            a_airline_5.push($(this).val());
+          });
+          var a_cnt = 0;
+          var a_airline = '<p><b>Airlines: </b>';
+          $('.airline').each(function(){
+            a_airline = a_airline+'<ul>';
+            a_airline = a_airline+'<li><b> Flight segment: </b>'+a_airline_2[a_cnt]+'</li>';
+            a_airline = a_airline+'<li><b> Flight: </b>'+a_airline_1[a_cnt]+'</li>';
+            a_airline = a_airline+'<li><b> Code: </b>'+a_airline_3[a_cnt]+'</li>';
+            a_airline = a_airline+'<li><b> Flight number: </b>'+a_airline_4[a_cnt]+'</li>';
+            a_airline = a_airline+'<li><b> Departure date: </b>'+a_airline_5[a_cnt]+'</li>';
+            a_airline = a_airline+'</ul>';
+            a_cnt++;
+          });
+          a_airline = a_airline+'</p>';
+          a_html = a_html+a_airline;
+
+
+
+
+          var a_expense_1 = [];
+          var a_expense_2 = [];
+          var a_expense_3 = [];
+          var a_expense_4 = [];
+          $('input[name="expense_name[]"]').each(function(){
+            a_expense_1.push($(this).val());
+          });
+          $('input[name="expense_price[]"]').each(function(){
+            a_expense_2.push($(this).val());
+            a_expense_3.push($(this).parent().next(".expense_currency_select_option").val()); 
+          });
+          // $('input[name="expense_currency[]"]  option:selected').each(function(){
+          //   // if($(this).is(":visible")){
+          //     a_expense_3.push($(this).val());
+          //   // }
+          // });
+          $('input[name="is_receipt[]"]').each(function(){
+            // if($(this).is(":visible")){
+              a_expense_4.push($(this).val());
+            // }
+          });
+          console.log(a_expense_1);
+          console.log(a_expense_2);
+          console.log(a_expense_3);
+          console.log(a_expense_4);
+
+          a_cnt=0;
+          var a_expense = '<p><b>Expenses: </b>';
+          $('input[name="expense_price[]"]').each(function(){
+            a_expense = a_expense+'<ul>';
+            a_expense = a_expense+'<li><b> Type: </b>'+a_expense_1[a_cnt]+'</li>';
+            a_expense = a_expense+'<li><b> Price: </b>'+a_expense_2[a_cnt]+'</li>';
+            a_expense = a_expense+'<li><b> Currency: </b>'+a_expense_3[a_cnt]+'</li>';
+            a_expense = a_expense+'<li><b> Is receipt: </b>'+a_expense_4[a_cnt]+'</li>';
+            a_expense = a_expense+'</ul>';
+            a_cnt++;
+          });
+          a_expense = a_expense+'</p>';
+          a_html = a_html+a_expense;
+
+          // $.ajax({
+          //   headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+          //   type: 'POST',
+          //   url: '/ajax/send-email-for-new-claim',
+          //   data: {
+          //     from: departed_from,
+          //     to: final_destination,
+          //     client_email: $('input[name="email_address"]').val(),
+          //     flight_code: flight_code,
+          //     a_html: a_html,
+          //     data: data
+          //   },
+          //   success: function (data){
+          //     console.log(data)
+          //   }
+          // });
 
 
         },

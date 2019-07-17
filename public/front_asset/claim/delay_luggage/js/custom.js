@@ -8,7 +8,7 @@ $(document).ready(function() {
       window.localStorage.removeItem('airport2');
     }
 
-    $(document).on('click', '#continue_9', function(){
+    $(document).on('click', '#continue_8', function(){
         $("#step-form").submit();
     });
 
@@ -278,25 +278,23 @@ $(document).ready(function() {
                 $("#continue_3").addClass('active_button');
                 return true;
             }
-        } else if (step == 3) {
-          return true;
-        }else if (step == 4) {
-            $("#continue_4").removeClass('active_button');
+        }else if (step == 3) {
+            $("#continue_3").removeClass('active_button');
             if ($("input[name='received_luggage_date']").val() != "") {
-                $("#continue_4").addClass('active_button');
+                $("#continue_3").addClass('active_button');
                 return true;
             }
-        } else if (step == 5) {
-            $("#continue_5").removeClass('active_button');
+        } else if (step == 4) {
+            $("#continue_4").removeClass('active_button');
         if (($("input[name='email_address']").val() != "")){
+                $("#continue_4").addClass('active_button');
                 $("#continue_5").addClass('active_button');
-                $("#continue_6").addClass('active_button');
                 return true;
             }
-          } else if (step == 6) {
+          } else if (step == 5) {
           return true;
-        }else if (step == 7) {
-        $("#continue_7").removeClass('active_button');
+        }else if (step == 6) {
+        $("#continue_6").removeClass('active_button');
 
         var is_first_name_empty = false;
         var is_last_name_empty = false;
@@ -338,7 +336,7 @@ $(document).ready(function() {
         });
 
         if (!is_phone_empty && !is_first_name_empty && !is_last_name_empty && !is_address_empty && !is_post_code_empty && !is_date_of_birth_empty) {
-            $("#continue_7").addClass('active_button');
+            $("#continue_6").addClass('active_button');
             return true;
           // setTimeout(function(){
 
@@ -366,11 +364,11 @@ $(document).ready(function() {
         }else {
           return false;
         }
-      } else if (step == 8) {
-            $("#continue_8").removeClass('active_button');
+      } else if (step == 7) {
+            $("#continue_7").removeClass('active_button');
             if (($("input[name='is_signed_permission']").is(':checked'))) {
+                $("#continue_7").addClass('active_button');
                 $("#continue_8").addClass('active_button');
-                $("#continue_9").addClass('active_button');
                 return true;
             }
         }
@@ -381,7 +379,7 @@ $(document).ready(function() {
 
     function next() {
         if (check_next_step()) {
-            if(step==5){
+            if(step==3){
                 ajax_calculation();
                 step++;
               }else{
