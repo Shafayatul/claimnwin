@@ -230,16 +230,16 @@
 
                             </div>
                             <div class="user_message">
-                                <form class="user_message_form single-submit" action="{{ route('user-ticket-message') }}" method="post" id="ticket-submit">
+                                {{-- <form class="user_message_form single-submit" action="{{ route('user-ticket-message') }}" method="post" id="ticket-submit"> --}}
                                     @csrf
                                     <i class="fas fa-pencil-alt prefix"></i>
-                                    <textarea id="" class="" name="description" placeholder="Write a message"></textarea>
-                                    <input type="hidden" name="ticket_id" value="{{ $ticket->id }}">
-                                    <input type="hidden" name="claim_id" value="{{ $claims->id }}">
-                                    <input type="hidden" name="cpanel_email" value="{{ $claims->cpanel_email }}">
+                                    <textarea class="" id="description" placeholder="Write a message"></textarea>
+                                    <input type="hidden" id="ticket_id" value="{{ $ticket->id }}">
+                                    <input type="hidden" id="claim_id" value="{{ $claims->id }}">
+                                    <input type="hidden" id="cpanel_email" value="{{ $claims->cpanel_email }}">
                                     <div class="row">
                                         <div class="col-md-12 text-right">
-                                            <button type="submit" name="button" class="disable-after-first-click">
+                                            <button type="button" id="ticket-submit-button" class="disable-after-first-click">
                                               @if ($responseDecoded)
                                                 {!! $responseDecoded['data']['translations'][15]['translatedText'] !!}
                                               @else
@@ -248,7 +248,7 @@
                                             </button>
                                         </div>
                                     </div>
-                                </form>
+                                {{-- </form> --}}
                             </div>
                           @endif
                         @endif
@@ -267,7 +267,6 @@
                         @foreach ($ticket_notes as $ticket_note)
                         @if ($ticket_note->user_id == $claims->user_id)
                         <div class="container_message">
-                            {{-- <img src="{{ asset('/front_asset/user_panel/img/avatar-user.png') }}" alt="Avatar" style="width:100%;"> --}}
                             <div style="width: 50px; height: 50px; border-radius: 50%; border: 1px solid black; float: left; position: relative; margin-right: 20px;"><p style="font-size: 12px;  font-weight: bold; position: absolute; top: 30%; left: 35%;">
                               @if ($responseDecoded)
                                 {!! $responseDecoded['data']['translations'][17]['translatedText'] !!}
@@ -296,37 +295,7 @@
                         @endif
                         @endforeach
 
-{{--                         <div class="parent_div">
-                            <div class="ticket_table">
-                                <table class="table">
-                                    <tbody>
-                                        <tr>
-                                            <th scope="col" class="text-center">Ticket ID:</th>
-                                            <td class="text-center">{{ $claims->ticket_id}}</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="col" class="text-center">Ticket Subject:</th>
-                                            <td class="text-center">{{ str_replace('_', ' ', ucfirst( $claims->subject)) }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="col" class="text-center">Ticket Status:</th>
-                                            <td class="text-center">
-                                                @if ($claims->ticket_status == '1')
-                                                Pending
-                                                @elseif ($claims->ticket_status == '2')
-                                                In progress
-                                                @else
-                                                Closed
-                                                @endif
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div> --}}
-
-
-
+                        <div class="appended-ticket"></div>
 
                     </div>
                 </div>
@@ -433,16 +402,61 @@
 </div>
 </div>
 </div>
-
-
-
-
-
-
-
-
-
-
 </div>
 </div>
+<input type="hidden" id="hidden-me" value="@if ($responseDecoded) {!! $responseDecoded['data']['translations'][18]['translatedText'] !!} @else {!! $text[17] !!} @endif">
+@endsection
+
+
+
+@section('footer-script')
+<script type="text/javascript">
+  $(document).ready(function(){
+
+    $("#ticket-submit-button").click(function(){
+      formSubmit();
+    });
+
+    $(document).keypress(function(event){
+
+        var keycode = (event.keyCode ? event.keyCode : event.which);
+        if(keycode == '13'){
+            if ($("#ticket").is(":visible")) {
+              formSubmit();
+            }
+        }
+    });
+
+    function formSubmit(){
+
+      if ($("#description").val() !='') {
+        $.ajax({
+          type:'POST',
+          url:'{{ route('user-ticket-message') }}',
+          headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+          data:{
+            'description'     : $("#description").val(),
+            'ticket_id'       : $("#ticket_id").val(),
+            'claim_id'        : $("#claim_id").val(),
+            'cpanel_email'    : $("#cpanel_email").val()
+          },
+          success:function(data){
+              var p_msg = data.msg;
+              var p_date = data.date;
+              var p_hiddenMe = $("#hidden-me").val();
+
+              var html = '<div class="container_message"><div style="width: 50px; height: 50px; border-radius: 50%; border: 1px solid black; float: left; position: relative; margin-right: 20px;"><p style="font-size: 12px;  font-weight: bold; position: absolute; top: 30%; left: 35%;">'+p_hiddenMe+'</p></div><p>'+p_msg+'</p><span class="time-right">'+p_date+'</span></div>';
+
+              $(".appended-ticket").html(html);
+              $("#description").val('')
+
+          }
+        });        
+      }
+
+    }
+  });
+
+</script>
+
 @endsection

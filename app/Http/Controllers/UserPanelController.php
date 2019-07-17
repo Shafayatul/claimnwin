@@ -281,38 +281,33 @@ class UserPanelController extends Controller
 
     public function user_ticket_message(Request $request)
     {
-
+\Log::debug($request);
       $reqData = $request->all();
       TicketNote::create($reqData + ['user_id'=>Auth::user()->id]);
       $ticket=Ticket::find($request->ticket_id);
       $ticket->status =  1;
       $ticket->save;
 
+      $ticket                     = new Ticket;
+      $ticket->subject            = 'Message within claim';
+      $ticket->status             = "1";
+      // $ticket->from_email         = Auth::user()->email;
+      $ticket->to_email           = $request->cpanel_email;
+      $ticket->text               = $request->description;
+      $ticket->claim_id           = $request->claim_id;
+      $ticket->from_name          = Auth::user()->name;
+      $ticket->save();
 
 
+      $ticket_note                = new TicketNote;
+      $ticket_note->ticket_id     = $ticket->id;
+      $ticket_note->description   = $request->description;
+      $ticket_note->save();
 
-        $ticket                     = new Ticket;
-        $ticket->subject            = 'Message within claim';
-        $ticket->status             = "1";
-        // $ticket->from_email         = Auth::user()->email;
-        $ticket->to_email           = $request->cpanel_email;
-        $ticket->text               = $request->description;
-        $ticket->claim_id           = $request->claim_id;
-        $ticket->from_name          = Auth::user()->name;
-        $ticket->save();
-
-
-        $ticket_note                = new TicketNote;
-        $ticket_note->ticket_id     = $ticket->id;
-        $ticket_note->description   = $request->description;
-        $ticket_note->save();
-
-
-
-
-      return redirect()->back()->with('success','Message Send Successfully.');
-
-
+      return response()->json([
+        'msg' => $ticket_note->description, 
+        'date' => Carbon::parse($ticket_note->created_at)->format('d-m-Y h:m A')
+      ]);
    }
 
    public function affiliateInfoShow()

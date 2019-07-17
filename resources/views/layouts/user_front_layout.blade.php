@@ -3,7 +3,7 @@
 <head>
   @include('layouts.includes.front.meta')
   <title>Claim'n Win</title>
-  <link rel="shortcut icon" href="favicon.png">
+  <link rel="shortcut icon" href="{{asset('favicon.png')}}">
   @include('layouts.includes.front.all-css')
   <link rel="stylesheet" href="{{asset('front_asset/user_panel/css/style.css')}}">
   @yield('header-script')
@@ -56,13 +56,6 @@ document.write(unescape("%3Cscript src='" + tlJsHost + "trustlogo/javascript/tru
   $(document).ready(function(e){
     $('#signArea').signaturePad({drawOnly:true, drawBezierCurves:true, lineTop:90});
     $(".dropdown-toggle").dropdown();
-
-
-
-     $("#ticket-submit").submit(function(e){
-        alert("Form submitted!");
-        e.preventDefault(); // Prevent the original submit
-    });
   });
   </script>
 {{-- signature ends --}}
