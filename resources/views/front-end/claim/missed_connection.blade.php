@@ -453,8 +453,7 @@
                                   </div>
                                   <div class="child_price_currency_div">
                                     <div class="select_reason_class">
-                                      <select class="form-control custom_select expense_currency_select_option" name="ticket_currency_original_ticket">
-                                        <option hidden>Select currency</option>
+                                      <select class="form-control custom_select expense_currency_select_option abc" name="ticket_currency_original_ticket">
                                           @foreach($currencies as $key=>$value)
                                           <option value="{{$key}}">{{$key}}</option>
                                           @endforeach
