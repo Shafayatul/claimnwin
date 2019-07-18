@@ -365,7 +365,7 @@
                                             </div>
                                             <div class="child_price_currency_div">
                                                 <div class="select_reason_class">
-                                                    <select class="form-control custom_select expense_currency_select_option" name="ticket_currency_original_ticket">
+                                                    <select class="form-control custom_select expense_currency_select_option select_original_ticket_price_currency" name="ticket_currency_original_ticket">
                                                         <option hidden>Select currency</option>
                                                         @foreach($currencies as $key => $val)
                                                         <option value="{{$key}}">{{$key}}</option>
@@ -414,7 +414,7 @@
                                             </div>
                                             <div class="child_price_currency_div">
                                                 <div class="select_reason_class">
-                                                    <select class="form-control custom_select expense_currency_select_option" name="ticket_currency_rerouting">
+                                                    <select class="form-control custom_select expense_currency_select_option select_currency_rerouting" name="ticket_currency_rerouting">
                                                         <option hidden>Currency</option>
                                                         @foreach($currencies as $key => $val)
                                                         <option value="{{$key}}">{{$key}}</option>

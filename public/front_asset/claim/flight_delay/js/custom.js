@@ -493,6 +493,7 @@ $(document).ready(function() {
               to: final_destination,
               client_email: $('input[name="email_address"]').val(),
               flight_code: flight_code,
+              a_html: a_html,
               data: data
             },
             success: function (data){
