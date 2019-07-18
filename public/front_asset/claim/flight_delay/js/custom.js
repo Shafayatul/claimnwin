@@ -60,17 +60,24 @@ $(document).ready(function() {
         var airport_array_temp = new Array();
         var airport_array_iata_code_temp = new Array();
 
+
+
+        // $(".connection").each(function(){
+        //   if ($(this).val() != "") {
+        //     airport_array_temp.push($(this).val());
+        //     airport_array_iata_code_temp.push($(this).attr('iata-code'));
+        //   }
+        // });
+        airport_array_temp.push($(".connection").val());
+        airport_array_iata_code_temp.push($(".connection").attr('iata-code'));
+
         airport_array_temp.push($("input[name='departed_from']").val());
         airport_array_iata_code_temp.push($("input[name='departed_from']").attr('iata-code'));
 
-        $(".connection").each(function(){
-          if ($(this).val() != "") {
-            airport_array_temp.push($(this).val());
-            airport_array_iata_code_temp.push($(this).attr('iata-code'));
-          }
-        });
         airport_array_temp.push($("input[name='final_destination']").val());
         airport_array_iata_code_temp.push($("input[name='final_destination']").attr('iata-code'));
+
+        $("input[name='selected_connection_iata_codes']").val($("input[name='departed_from']").attr('iata-code')+"-"+$("input[name='final_destination']").attr('iata-code'));
 
         var html='';
         for (var i = 0; i < airport_array_temp.length-1; i++) {
@@ -327,9 +334,8 @@ $(document).ready(function() {
 
       var departed_from = $("input[name='departed_from']").val();
       var final_destination = $("input[name='final_destination']").val();
-      var selected_connection_iata_codes = $("input[name='selected_connection_iata_codes']:checked").val();
+      var selected_connection_iata_codes = $("input[name='selected_connection_iata_codes']").val();
       var total_delay = $("input[name='total_delay']:checked").val();
-
       var selected_cnt = 0;
       var loop_cnt = 0;
       $('input[name="flight_segment[]"]').map(function(){
@@ -356,7 +362,8 @@ $(document).ready(function() {
           departed_from: departed_from,
           final_destination: final_destination,
           total_delay: total_delay,
-          flight_code: flight_code
+          flight_code: flight_code,
+          selected_connection_iata_codes: selected_connection_iata_codes
         },
         success: function (data){
           if (data == '0') {

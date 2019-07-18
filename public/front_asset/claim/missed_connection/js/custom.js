@@ -529,7 +529,7 @@ $(document).ready(function(){
           * To get HTML
           */
           var a_html = '';
-          a_html = a_html+'<p><b>Reason: </b>'+$('.reason"]').val()+'</p>';
+          a_html = a_html+'<p><b>Reason: </b>'+$(".reason").val()+'</p>';
           a_html = a_html+'<p><b>Delay: </b>'+$('input[name="total_delay"]:checked').val()+'</p>';
           a_html = a_html+'<p><b>Is erouted: </b>'+$('input[name="is_rerouted"]:checked').val()+'</p>';
           a_html = a_html+'<p><b>DID YOU OBTAIN A FULL REIMBURSEMENT OF YOUR ORIGINAL TICKET?: </b>'+$('input[name="is_obtained_full_reimbursement"]:checked').val()+'</p>';
