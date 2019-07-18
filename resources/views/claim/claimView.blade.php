@@ -278,6 +278,29 @@
                                                                             @endif
                                                                         </td>
                                                                     </tr>
+                                                                    <tr class="odd gradeX">
+                                                                        <th>PIR</th>
+                                                                        <td>
+                                                                            {{$claims->pir}}
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="odd gradeX">
+                                                                        <th>Received Luggage date</th>
+                                                                        <td>
+                                                                            {{$claims->received_luggage_date}}
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="odd gradeX">
+                                                                        <th>Is luggage received?</th>
+                                                                        <td>
+                                                                            @if($claims->is_luggage_received == 1)
+                                                                                Yes
+                                                                            @else
+                                                                                No
+                                                                            @endif
+                                                                        </td>
+                                                                    </tr>
+                                                                    
                                                                 </tbody>
                                                             </table>
                                                         </div>

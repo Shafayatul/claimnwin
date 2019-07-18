@@ -403,7 +403,6 @@ class TicketsController extends Controller
 
         $perPage = 25;
         $imap_msg_no = $ticket->imap_msg_no;
-        // dd($imap_msg_no);
         if($imap_msg_no == null){
             
             $sub            = $ticket->subject;
@@ -413,9 +412,8 @@ class TicketsController extends Controller
             $to             = $ticket->to_email;
             $from_name      = null;
             $to_name        = null;
-            $attachments    = null;
+            $attachments    = [];
         }else{
-
         $oClient = new Client([
             'host'          => 'premium39.web-hosting.com',
             'port'          => 993,
@@ -446,7 +444,6 @@ class TicketsController extends Controller
         }
 
     }
-// dd($attachments);
         return view('tickets.ticket-email-view',compact('ticket_reply','ticket_note','time','ticket','sub','date','from','to','from_name','to_name', 'attachments'));
     }
 
