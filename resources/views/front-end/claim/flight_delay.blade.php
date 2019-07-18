@@ -1137,7 +1137,7 @@
 
 @section('footer-script')
 <script type="text/javascript">
-      var ajax_cal_url = "{{url('/ajax/calculate/missed_calculation')}}";
+      var ajax_cal_url = "{{url('/ajax/calculate/fight_delay_calculation')}}";
       var currency_converter_url = "{{url('/ajax/currency_converter_url')}}";
       auto_airport_complete();
       function auto_airport_complete(){

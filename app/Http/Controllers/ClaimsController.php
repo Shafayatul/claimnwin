@@ -838,7 +838,7 @@ class ClaimsController extends Controller
 
     }
     public function ajax_fight_delay_calculation(Request $request){
-
+\Log::debug($request);
         $total_delay = $request->total_delay;
         $departed_from_id = $this->get_airport_id_name_and_iata_code($request->departed_from);
         $final_destination_id = $this->get_airport_id_name_and_iata_code($request->final_destination);

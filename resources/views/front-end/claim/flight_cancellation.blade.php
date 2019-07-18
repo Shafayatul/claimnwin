@@ -137,7 +137,7 @@
 
                                   </div>
                                 </div>
-                                <div class="parent_div">
+                                <div class="parent_div" style="display: none;">
                                   <button type="button" name="button" id="add_connection" class="add_connection" ><i class="fas fa-plus"></i></button>
                                 </div>
                               </div>
