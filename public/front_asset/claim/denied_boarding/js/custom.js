@@ -435,7 +435,7 @@ $(document).ready(function() {
           var a_html = '';
           a_html = a_html+'<p><b>Is any other airports involved: </b>'+$('input[name="is_direct_flight"]:checked').val()+'</p>';
           a_html = a_html+'<p><b>Delay: </b>'+$('input[name="total_delay"]:checked').val()+'</p>';
-          a_html = a_html+'<p><b>Reason: </b>'+$('input[name="reason]').val()+'</p>';
+          a_html = a_html+'<p><b>Reason: </b>'+$('input[name="reason"]').val()+'</p>';
           a_html = a_html+'<p><b>Is erouted: </b>'+$('input[name="is_rerouted"]:checked').val()+'</p>';
           a_html = a_html+'<p><b>DID YOU OBTAIN A FULL REIMBURSEMENT OF YOUR ORIGINAL TICKET?: </b>'+$('input[name="is_obtained_full_reimbursement"]:checked').val()+'</p>';
           a_html = a_html+'<p><b>TELL US THE PRICE OF THE ORIGINAL TICKET: </b>'+$('input[name="ticket_price_original_ticket"]').val()+" "+$('.select_original_ticket_price_currency').val()+'</p>';

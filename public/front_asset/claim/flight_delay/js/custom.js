@@ -396,7 +396,7 @@ $(document).ready(function() {
 
           a_html = a_html+'<p><b>IS TRIP WAS NOT A DIRECT FLIGHT: </b>'+$('input[name="is_direct_flight"]:checked').val()+'</p>';
           a_html = a_html+'<p><b>Delay: </b>'+$('input[name="total_delay"]:checked').val()+'</p>';
-          a_html = a_html+'<p><b>Reason: </b>'+$('.reason]').val()+'</p>';
+          a_html = a_html+'<p><b>Reason: </b>'+$('.reason').val()+'</p>';
           a_html = a_html+'<p><b>OPTIONAL: DID YOU SPEND ON ACCOMMODATION, FOOD OR TAXI WHILE WAITING FOR YOUR REROUTING FLIGHT?: </b>'+$('input[name="ticket_currency_rerouting"]').val()+'</p>';
           a_html = a_html+'<p><b>Other connections: </b>';
 
