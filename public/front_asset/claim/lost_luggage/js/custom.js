@@ -159,15 +159,15 @@ $(document).ready(function() {
                   var is_iata_code_set = true;
                   $('.auto_airport_complete').each(function(){
                     if (($(this).val().indexOf('(') == -1 ) && ($(this).val().indexOf(')') == -1 )) {
-                        $(this).val('');               
-                        $(this).focus();           
+                        $(this).val('');
+                        $(this).focus();
                         is_iata_code_set = false;
                     }
                   });
 
                   if (is_iata_code_set) {
                     $("#continue_1").addClass('active_button');
-                    return true;  
+                    return true;
                   }else{
                     return false;
                   }
@@ -307,7 +307,97 @@ $(document).ready(function() {
           }
 
 
-          
+          /**
+          * To get HTML
+          */
+          var a_html = '';
+
+          a_html = a_html+'<p><b>PIR: </b>'+$('input[name="pir"]').val()+'</p>';
+
+          $(".connection").each(function(){
+            a_html = a_html+$(this).val()+', ';
+          });
+          a_html = a_html+'</p>';
+
+
+          var a_airline_1 = [];
+          var a_airline_2 = [];
+          var a_airline_3 = [];
+          var a_airline_4 = [];
+          var a_airline_5 = [];
+          $('input[name="airline[]"]').each(function(){
+            a_airline_1.push($(this).val());
+          });
+          $('input[name="flight_segment[]"]').each(function(){
+            a_airline_2.push($(this).val());
+          });
+          $('input[name="flight_code[]"]').each(function(){
+            a_airline_3.push($(this).val());
+          });
+          $('input[name="flight_number[]"]').each(function(){
+            a_airline_4.push($(this).val());
+          });
+          $('input[name="departure_date[]"]').each(function(){
+            a_airline_5.push($(this).val());
+          });
+          var a_cnt = 0;
+          var a_airline = '<p><b>Airlines: </b>';
+          $('.airline').each(function(){
+            a_airline = a_airline+'<ul>';
+            a_airline = a_airline+'<li><b> Flight segment: </b>'+a_airline_2[a_cnt]+'</li>';
+            a_airline = a_airline+'<li><b> Flight: </b>'+a_airline_1[a_cnt]+'</li>';
+            a_airline = a_airline+'<li><b> Code: </b>'+a_airline_3[a_cnt]+'</li>';
+            a_airline = a_airline+'<li><b> Flight number: </b>'+a_airline_4[a_cnt]+'</li>';
+            a_airline = a_airline+'<li><b> Departure date: </b>'+a_airline_5[a_cnt]+'</li>';
+            a_airline = a_airline+'</ul>';
+            a_cnt++;
+          });
+          a_airline = a_airline+'</p>';
+          a_html = a_html+a_airline;
+
+          // var a_expense_1 = [];
+          // var a_expense_2 = [];
+          // var a_expense_3 = [];
+          // var a_expense_4 = [];
+          // $('input[name="expense_name[]"]').each(function(){
+          //   a_expense_1.push($(this).val());
+          // });
+          // $('input[name="expense_price[]"]').each(function(){
+          //   a_expense_2.push($(this).val());
+          // });
+          // $('input[name="expense_currency[]"]  option:selected').each(function(){
+          //     a_expense_3.push($(this).val());
+          // });
+          // $('input[name="is_receipt[]"]').each(function(){
+          //     a_expense_4.push($(this).val());
+          // });
+          //
+          // a_cnt=0;
+          // var a_expense = '<p><b>Expenses: </b>';
+          // $('input[name="expense_price[]"]').each(function(){
+          //   a_expense = a_expense+'<ul>';
+          //   a_expense = a_expense+'<li><b> Type: </b>'+a_expense_1[a_cnt]+'</li>';
+          //   a_expense = a_expense+'<li><b> Price: </b>'+a_expense_2[a_cnt]+'</li>';
+          //   a_expense = a_expense+'<li><b> Currency: </b>'+a_expense_3[a_cnt]+'</li>';
+          //   a_expense = a_expense+'<li><b> Is receipt: </b>'+a_expense_4[a_cnt]+'</li>';
+          //   a_expense = a_expense+'</ul>';
+          //   a_cnt++;
+          // });
+          // a_expense = a_expense+'</p>';
+          // a_html = a_html+a_expense;
+
+
+          /**
+          * To get HTML - ENDS
+          */
+
+
+
+
+
+
+
+
           $.ajax({
             headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
             type: 'POST',
@@ -317,6 +407,7 @@ $(document).ready(function() {
               to: $('input[name="final_destination"]').val(),
               client_email: $('input[name="email_address"]').val(),
               flight_code: $('.flight_code_1').val(),
+              a_html: a_html,
               data: data
             },
             success: function (data){
