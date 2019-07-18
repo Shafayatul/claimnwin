@@ -175,8 +175,8 @@ $(document).ready(function(){
                 var is_iata_code_set = true;
                 $('.auto_airport_complete').each(function(){
                   if (($(this).val().indexOf('(') == -1 ) && ($(this).val().indexOf(')') == -1 )) {
-                      $(this).val('');               
-                      $(this).focus();           
+                      $(this).val('');
+                      $(this).focus();
                       is_iata_code_set = false;
                       $('.parent_div_check_list').html('');
                   }
@@ -200,14 +200,14 @@ $(document).ready(function(){
                 $('.auto_airport_complete').each(function(){
                   if (cntr < 3) {
                     if (($(this).val().indexOf('(') == -1 ) && ($(this).val().indexOf(')') == -1 )) {
-                        $(this).val('');               
-                        $(this).focus();           
+                        $(this).val('');
+                        $(this).focus();
                         is_iata_code_set = false;
                         $('.parent_div_check_list').html('');
-                    }  
+                    }
                     cntr++;
                   }
-                  
+
                 });
                 if (is_iata_code_set) {
                   $("#continue_1").addClass('active_button');
@@ -511,9 +511,9 @@ $(document).ready(function(){
               },
               success: function (newData){
                 if (newData == '') {
-                  var finalAmount = data;   
+                  var finalAmount = data;
                 }else{
-                  var finalAmount = data+' ('+newData+')';                  
+                  var finalAmount = data+' ('+newData+')';
                 }
 
                 $("#continue_5").show();
@@ -529,17 +529,18 @@ $(document).ready(function(){
           * To get HTML
           */
           var a_html = '';
-          a_html = a_html+'<p><b>Reason: </b>'+$('input[name="reason"]').val()+'</p>';
+          a_html = a_html+'<p><b>Reason: </b>'+$('.reason"]').val()+'</p>';
           a_html = a_html+'<p><b>Delay: </b>'+$('input[name="total_delay"]:checked').val()+'</p>';
           a_html = a_html+'<p><b>Is erouted: </b>'+$('input[name="is_rerouted"]:checked').val()+'</p>';
           a_html = a_html+'<p><b>DID YOU OBTAIN A FULL REIMBURSEMENT OF YOUR ORIGINAL TICKET?: </b>'+$('input[name="is_obtained_full_reimbursement"]:checked').val()+'</p>';
-          a_html = a_html+'<p><b>TELL US THE PRICE OF THE ORIGINAL TICKET: </b>'+$('input[name="ticket_price_original_ticket"]').val()+" "+$('input[name="ticket_currency_original_ticket"]').val()+'</p>';
+          a_html = a_html+'<p><b>TELL US THE PRICE OF THE ORIGINAL TICKET: </b>'+$('input[name="ticket_price_original_ticket"]').val()+" "+$('.select_original_ticket_price_currency').val()+'</p>';
           a_html = a_html+'<p><b>DID YOU PAY FOR YOUR RE-ROUTING FLIGHT?: </b>'+$('input[name="is_paid_for_rerouting"]:checked').val()+'</p>';
-          a_html = a_html+'<p><b>TELL US THE PRICE OF THE RE-ROUTING TICKET FOR ALL PASSENGERS TELL US THE PRICE OF THE ORIGINAL TICKET.: </b>'+$('input[name="ticket_price_rerouting"]').val()+" "+$('input[name="ticket_currency_rerouting"]').attr('value')+'</p>';
+          a_html = a_html+'<p><b>TELL US THE PRICE OF THE RE-ROUTING TICKET FOR ALL PASSENGERS TELL US THE PRICE OF THE ORIGINAL TICKET.: </b>'+$('input[name="ticket_price_rerouting"]').val()+" "+$('.select_currency_rerouting').attr('value')+'</p>';
           a_html = a_html+'<p><b>OPTIONAL: DID YOU SPEND ON ACCOMMODATION, FOOD OR TAXI WHILE WAITING FOR YOUR REROUTING FLIGHT?: </b>'+$('input[name="ticket_currency_rerouting"]').val()+'</p>';
 
           a_html = a_html+'<p><b>What happened to the flight: </b>'+$('input[name="what_happened_to_the_flight"]:checked').val()+'</p>';
           a_html = a_html+'<p><b>Other connections: </b>';
+
           $(".connection").each(function(){
             a_html = a_html+$(this).val()+', ';
           });
@@ -582,38 +583,39 @@ $(document).ready(function(){
           a_html = a_html+a_airline;
 
 
+          //
+          // var a_expense_1 = [];
+          // var a_expense_2 = [];
+          // var a_expense_3 = [];
+          // var a_expense_4 = [];
+          // $('input[name="expense_name[]"]').each(function(){
+          //   a_expense_1.push($(this).val());
+          // });
+          // $('input[name="expense_price[]"]').each(function(){
+          //   a_expense_2.push($(this).val());
+          // });
+          // $('input[name="expense_currency[]"]  option:selected').each(function(){
+          //     a_expense_3.push($(this).val());
+          // });
+          // $('input[name="is_receipt[]"]').each(function(){
+          //     a_expense_4.push($(this).val());
+          // });
+          //
+          // a_cnt=0;
+          // var a_expense = '<p><b>Expenses: </b>';
+          // $('input[name="expense_price[]"]').each(function(){
+          //   a_expense = a_expense+'<ul>';
+          //   a_expense = a_expense+'<li><b> Type: </b>'+a_expense_1[a_cnt]+'</li>';
+          //   a_expense = a_expense+'<li><b> Price: </b>'+a_expense_2[a_cnt]+'</li>';
+          //   a_expense = a_expense+'<li><b> Currency: </b>'+a_expense_3[a_cnt]+'</li>';
+          //   a_expense = a_expense+'<li><b> Is receipt: </b>'+a_expense_4[a_cnt]+'</li>';
+          //   a_expense = a_expense+'</ul>';
+          //   a_cnt++;
+          // });
+          // a_expense = a_expense+'</p>';
+          // a_html = a_html+a_expense;
 
-
-          var a_expense_1 = [];
-          var a_expense_2 = [];
-          var a_expense_3 = [];
-          var a_expense_4 = [];
-          $('input[name="expense_name[]"]').each(function(){
-            a_expense_1.push($(this).val());
-          });
-          $('input[name="expense_price[]"]').each(function(){
-            a_expense_2.push($(this).val());
-          });
-          $('input[name="expense_currency[]"]  option:selected').each(function(){
-              a_expense_3.push($(this).val());
-          });
-          $('input[name="is_receipt[]"]').each(function(){
-              a_expense_4.push($(this).val());
-          });
-
-          a_cnt=0;
-          var a_expense = '<p><b>Expenses: </b>';
-          $('input[name="expense_price[]"]').each(function(){
-            a_expense = a_expense+'<ul>';
-            a_expense = a_expense+'<li><b> Type: </b>'+a_expense_1[a_cnt]+'</li>';
-            a_expense = a_expense+'<li><b> Price: </b>'+a_expense_2[a_cnt]+'</li>';
-            a_expense = a_expense+'<li><b> Currency: </b>'+a_expense_3[a_cnt]+'</li>';
-            a_expense = a_expense+'<li><b> Is receipt: </b>'+a_expense_4[a_cnt]+'</li>';
-            a_expense = a_expense+'</ul>';
-            a_cnt++;
-          });
-          a_expense = a_expense+'</p>';
-          a_html = a_html+a_expense;
+          
           /**
           * To get HTML - ENDS
           */
