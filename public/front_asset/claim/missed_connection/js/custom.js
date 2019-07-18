@@ -615,7 +615,7 @@ $(document).ready(function(){
           // a_expense = a_expense+'</p>';
           // a_html = a_html+a_expense;
 
-          
+
           /**
           * To get HTML - ENDS
           */
