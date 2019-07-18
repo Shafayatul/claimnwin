@@ -366,13 +366,13 @@ $(document).ready(function() {
           // $('input[name="expense_price[]"]').each(function(){
           //   a_expense_2.push($(this).val());
           // });
-          // $('input[name="expense_currency[]"]  option:selected').each(function(){
+          // $('.select_accomodation_currency  option:selected').each(function(){
           //     a_expense_3.push($(this).val());
           // });
           // $('input[name="is_receipt[]"]').each(function(){
           //     a_expense_4.push($(this).val());
           // });
-          //
+          
           // a_cnt=0;
           // var a_expense = '<p><b>Expenses: </b>';
           // $('input[name="expense_price[]"]').each(function(){
@@ -391,13 +391,6 @@ $(document).ready(function() {
           /**
           * To get HTML - ENDS
           */
-
-
-
-
-
-
-
 
           $.ajax({
             headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},

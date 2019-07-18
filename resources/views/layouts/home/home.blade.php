@@ -654,7 +654,7 @@ html{font-family:sans-serif;-webkit-text-size-adjust:100%;-ms-text-size-adjust:1
       });
 
       $(window).scroll(function(){
-          if($(window).scrollTop() > 20){
+          if($(window).scrollTop() > 1){
               $(".sticky").css({"background-color":"#fff"});
           }
           else{

@@ -575,7 +575,7 @@
                                               </div>
                                               <div class="col-md-6  fifty_percent_width">
                                                 <div class="select_reason_class">
-                                                  <select class="form-control custom_select expense_currency_select_option" name="expense_currency[]">
+                                                  <select class="form-control custom_select expense_currency_select_option select_accomodation_currency" name="expense_currency[]">
                                                     <option hidden>Currency</option>
                                                     @foreach($currencies as $key => $val)
                                                       <option value="{{$key}}">{{$key}}</option>
@@ -587,9 +587,9 @@
                                           </td>
                                           <td>
                                             <div class="group">
-                                              <input id="is_receipt_accommodation_yes" name="is_receipt[0]" type="radio" value="1" checked="checked">
+                                              <input id="is_receipt_accommodation_yes" class="radio_is_receipt" name="is_receipt[0]" type="radio" value="1" checked="checked">
                                               <label class="label" for="is_receipt_accommodation_yes">Yes</label>
-                                              <input id="is_receipt_accommodation_no" name="is_receipt[0]" type="radio" value="0" >
+                                              <input id="is_receipt_accommodation_no" class="radio_is_receipt" name="is_receipt[0]" type="radio" value="0" >
                                               <label class="center label" for="is_receipt_accommodation_no">No</label>
                                             </div>
                                           </td>
@@ -605,7 +605,7 @@
                                               </div>
                                               <div class="col-md-6 fifty_percent_width">
                                                 <div class="select_reason_class">
-                                                  <select class="form-control custom_select expense_currency_select_option" name="expense_currency[]">
+                                                  <select class="form-control custom_select expense_currency_select_option select_accomodation_currency" name="expense_currency[]">
                                                     <option hidden>Currency</option>
                                                     @foreach($currencies as $key => $val)
                                                       <option value="{{$key}}">{{$key}}</option>
@@ -618,9 +618,9 @@
                                           <td>
                                             <div class="input-group yes_no_center">
                                               <div class="group">
-                                                <input id="is_receipt_transportation_yes" name="is_receipt[1]" type="radio" value="1" checked="checked">
+                                                <input id="is_receipt_transportation_yes" class="radio_is_receipt" name="is_receipt[1]" type="radio" value="1" checked="checked">
                                                 <label class="label" for="is_receipt_transportation_yes">Yes</label>
-                                                <input id="is_receipt_transportation_no" name="is_receipt[1]" type="radio" value="0" >
+                                                <input id="is_receipt_transportation_no" class="radio_is_receipt" name="is_receipt[1]" type="radio" value="0" >
                                                 <label class="center label" for="is_receipt_transportation_no">No</label>
                                               </div>
 
@@ -638,7 +638,7 @@
                                               </div>
                                               <div class="col-md-6 fifty_percent_width">
                                                 <div class="select_reason_class">
-                                                  <select class="form-control custom_select expense_currency_select_option" name="expense_currency[]">
+                                                  <select class="form-control custom_select expense_currency_select_option select_accomodation_currency" name="expense_currency[]">
                                                     <option hidden>Currency</option>
                                                     @foreach($currencies as $key => $val)
                                                       <option value="{{$key}}">{{$key}}</option>
@@ -651,9 +651,9 @@
                                           <td>
                                             <div class="input-group yes_no_center">
                                               <div class="group">
-                                                <input id="is_receipt_food_yes" name="is_receipt[2]" type="radio" value="1" checked="checked">
+                                                <input id="is_receipt_food_yes" class="radio_is_receipt" name="is_receipt[2]" type="radio" value="1" checked="checked">
                                                 <label class="label" for="is_receipt_food_yes">Yes</label>
-                                                <input id="is_receipt_food_no" name="is_receipt[2]" type="radio" value="0" >
+                                                <input id="is_receipt_food_no" class="radio_is_receipt" name="is_receipt[2]" type="radio" value="0" >
                                                 <label class="center label" for="is_receipt_food_no">No</label>
                                               </div>
                                             </div>
@@ -670,7 +670,7 @@
                                               </div>
                                               <div class="col-md-6 fifty_percent_width">
                                                 <div class="select_reason_class">
-                                                  <select class="form-control custom_select expense_currency_select_option" name="expense_currency[]">
+                                                  <select class="form-control custom_select expense_currency_select_option select_accomodation_currency" name="expense_currency[]">
                                                     <option hidden>Currency</option>
                                                     @foreach($currencies as $key => $val)
                                                       <option value="{{$key}}">{{$key}}</option>
@@ -683,9 +683,9 @@
                                           <td>
                                             <div class="input-group yes_no_center">
                                               <div class="group">
-                                                <input id="is_receipt_others_yes" name="is_receipt[3]" type="radio" value="1" checked="checked">
+                                                <input id="is_receipt_others_yes" class="radio_is_receipt" name="is_receipt[3]" type="radio" value="1" checked="checked">
                                                 <label class="label" for="is_receipt_others_yes">Yes</label>
-                                                <input id="is_receipt_others_no" name="is_receipt[3]" type="radio" value="0" >
+                                                <input id="is_receipt_others_no" class="radio_is_receipt" name="is_receipt[3]" type="radio" value="0" >
                                                 <label class="center label" for="is_receipt_others_no">No</label>
                                               </div>
                                             </div>
@@ -722,7 +722,7 @@
                                             </div>
                                             <div class="col-md-6">
                                               <div class="select_reason_class">
-                                                <select class="form-control custom_select expense_currency_select_option" name="expense_currency[]">
+                                                <select class="form-control custom_select expense_currency_select_option select_accomodation_currency" name="expense_currency[]">
                                                   <option hidden>Currency</option>
                                                   @foreach($currencies as $key => $val)
                                                     <option value="{{$key}}">{{$key}}</option>
@@ -757,7 +757,7 @@
                                             </div>
                                             <div class="col-md-6">
                                               <div class="select_reason_class">
-                                                <select class="form-control custom_select expense_currency_select_option" name="expense_currency[]">
+                                                <select class="form-control custom_select expense_currency_select_option select_accomodation_currency" name="expense_currency[]">
                                                   <option hidden>Currency</option>
                                                   @foreach($currencies as $key => $val)
                                                     <option value="{{$key}}">{{$key}}</option>
@@ -795,7 +795,7 @@
                                             </div>
                                             <div class="col-md-6">
                                               <div class="select_reason_class">
-                                                <select class="form-control custom_select expense_currency_select_option" name="expense_currency[]">
+                                                <select class="form-control custom_select expense_currency_select_option select_accomodation_currency" name="expense_currency[]">
                                                   <option hidden>Currency</option>
                                                   @foreach($currencies as $key => $val)
                                                     <option value="{{$key}}">{{$key}}</option>
@@ -832,7 +832,7 @@
                                             </div>
                                             <div class="col-md-6">
                                               <div class="select_reason_class">
-                                                <select class="form-control custom_select expense_currency_select_option" name="expense_currency[]">
+                                                <select class="form-control custom_select expense_currency_select_option select_accomodation_currency" name="expense_currency[]">
                                                   <option hidden>Currency</option>
                                                   @foreach($currencies as $key => $val)
                                                     <option value="{{$key}}">{{$key}}</option>

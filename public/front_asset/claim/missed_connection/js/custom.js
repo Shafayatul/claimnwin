@@ -535,8 +535,8 @@ $(document).ready(function(){
           a_html = a_html+'<p><b>DID YOU OBTAIN A FULL REIMBURSEMENT OF YOUR ORIGINAL TICKET?: </b>'+$('input[name="is_obtained_full_reimbursement"]:checked').val()+'</p>';
           a_html = a_html+'<p><b>TELL US THE PRICE OF THE ORIGINAL TICKET: </b>'+$('input[name="ticket_price_original_ticket"]').val()+" "+$('.select_original_ticket_price_currency').val()+'</p>';
           a_html = a_html+'<p><b>DID YOU PAY FOR YOUR RE-ROUTING FLIGHT?: </b>'+$('input[name="is_paid_for_rerouting"]:checked').val()+'</p>';
-          a_html = a_html+'<p><b>TELL US THE PRICE OF THE RE-ROUTING TICKET FOR ALL PASSENGERS TELL US THE PRICE OF THE ORIGINAL TICKET.: </b>'+$('input[name="ticket_price_rerouting"]').val()+" "+$('.select_currency_rerouting').attr('value')+'</p>';
-          a_html = a_html+'<p><b>OPTIONAL: DID YOU SPEND ON ACCOMMODATION, FOOD OR TAXI WHILE WAITING FOR YOUR REROUTING FLIGHT?: </b>'+$('input[name="ticket_currency_rerouting"]').val()+'</p>';
+          a_html = a_html+'<p><b>TELL US THE PRICE OF THE RE-ROUTING TICKET FOR ALL PASSENGERS TELL US THE PRICE OF THE ORIGINAL TICKET.: </b>'+$('input[name="ticket_price_rerouting"]').val()+" "+$('.select_currency_rerouting').val()+'</p>';
+          a_html = a_html+'<p><b>OPTIONAL: DID YOU SPEND ON ACCOMMODATION, FOOD OR TAXI WHILE WAITING FOR YOUR REROUTING FLIGHT?: </b>'+$('input[name="is_spend_on_accommodation"]:checked').val()+'</p>';
 
           a_html = a_html+'<p><b>What happened to the flight: </b>'+$('input[name="what_happened_to_the_flight"]:checked').val()+'</p>';
           a_html = a_html+'<p><b>Other connections: </b>';
@@ -583,37 +583,37 @@ $(document).ready(function(){
           a_html = a_html+a_airline;
 
 
-          //
-          // var a_expense_1 = [];
-          // var a_expense_2 = [];
-          // var a_expense_3 = [];
-          // var a_expense_4 = [];
-          // $('input[name="expense_name[]"]').each(function(){
-          //   a_expense_1.push($(this).val());
-          // });
-          // $('input[name="expense_price[]"]').each(function(){
-          //   a_expense_2.push($(this).val());
-          // });
-          // $('input[name="expense_currency[]"]  option:selected').each(function(){
-          //     a_expense_3.push($(this).val());
-          // });
-          // $('input[name="is_receipt[]"]').each(function(){
+          
+          var a_expense_1 = [];
+          var a_expense_2 = [];
+          var a_expense_3 = [];
+          var a_expense_4 = [];
+          $('input[name="expense_name[]"]').each(function(){
+            a_expense_1.push($(this).val());
+          });
+          $('input[name="expense_price[]"]').each(function(){
+            a_expense_2.push($(this).val());
+          });
+          $('.select_accomodation_currency  option:selected').each(function(){
+              a_expense_3.push($(this).val());
+          });
+          // $('.radio_is_receipt').each(function(){
           //     a_expense_4.push($(this).val());
           // });
-          //
-          // a_cnt=0;
-          // var a_expense = '<p><b>Expenses: </b>';
-          // $('input[name="expense_price[]"]').each(function(){
-          //   a_expense = a_expense+'<ul>';
-          //   a_expense = a_expense+'<li><b> Type: </b>'+a_expense_1[a_cnt]+'</li>';
-          //   a_expense = a_expense+'<li><b> Price: </b>'+a_expense_2[a_cnt]+'</li>';
-          //   a_expense = a_expense+'<li><b> Currency: </b>'+a_expense_3[a_cnt]+'</li>';
-          //   a_expense = a_expense+'<li><b> Is receipt: </b>'+a_expense_4[a_cnt]+'</li>';
-          //   a_expense = a_expense+'</ul>';
-          //   a_cnt++;
-          // });
-          // a_expense = a_expense+'</p>';
-          // a_html = a_html+a_expense;
+          
+          a_cnt=0;
+          var a_expense = '<p><b>Expenses: </b>';
+          $('input[name="expense_price[]"]').each(function(){
+            a_expense = a_expense+'<ul>';
+            a_expense = a_expense+'<li><b> Type: </b>'+a_expense_1[a_cnt]+'</li>';
+            a_expense = a_expense+'<li><b> Price: </b>'+a_expense_2[a_cnt]+'</li>';
+            a_expense = a_expense+'<li><b> Currency: </b>'+a_expense_3[a_cnt]+'</li>';
+            // a_expense = a_expense+'<li><b> Is receipt: </b>'+a_expense_4[a_cnt]+'</li>';
+            a_expense = a_expense+'</ul>';
+            a_cnt++;
+          });
+          a_expense = a_expense+'</p>';
+          a_html = a_html+a_expense;
 
 
           /**

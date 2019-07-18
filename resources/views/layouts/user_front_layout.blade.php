@@ -57,7 +57,7 @@ document.write(unescape("%3Cscript src='" + tlJsHost + "trustlogo/javascript/tru
     $('#signArea').signaturePad({drawOnly:true, drawBezierCurves:true, lineTop:90});
     $(".dropdown-toggle").dropdown();
     $(window).scroll(function(){
-        if($(window).scrollTop() > 20){
+        if($(window).scrollTop() > 1){
             $(".sticky").css({"background-color":"#fff"});
         }
         else{

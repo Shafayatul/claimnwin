@@ -489,7 +489,7 @@
                                                                     </div>
                                                                     <div class="col-md-6 fifty_percent_width">
                                                                         <div class="select_reason_class">
-                                                                            <select class="form-control custom_select expense_currency_select_option" name="expense_currency[]">
+                                                                            <select class="form-control custom_select expense_currency_select_option select_accomodation_currency" name="expense_currency[]">
                                                                                 <option hidden>Currency</option>
                                                                                 @foreach($currencies as $key => $val)
                                                                                     <option value="{{$key}}">{{$key}}</option>
@@ -519,7 +519,7 @@
                                                                     </div>
                                                                     <div class="col-md-6 fifty_percent_width">
                                                                         <div class="select_reason_class">
-                                                                            <select class="form-control custom_select expense_currency_select_option" name="expense_currency[]">
+                                                                            <select class="form-control custom_select expense_currency_select_option select_accomodation_currency" name="expense_currency[]">
                                                                                 <option hidden>Currency</option>
                                                                                 @foreach($currencies as $key => $val)
                                                                                     <option value="{{$key}}">{{$key}}</option>
@@ -552,7 +552,7 @@
                                                                     </div>
                                                                     <div class="col-md-6 fifty_percent_width">
                                                                         <div class="select_reason_class">
-                                                                            <select class="form-control custom_select expense_currency_select_option" name="expense_currency[]">
+                                                                            <select class="form-control custom_select expense_currency_select_option select_accomodation_currency" name="expense_currency[]">
                                                                                 <option hidden>Currency</option>
                                                                                 @foreach($currencies as $key => $val)
                                                                                     <option value="{{$key}}">{{$key}}</option>
@@ -584,7 +584,7 @@
                                                                     </div>
                                                                     <div class="col-md-6 fifty_percent_width">
                                                                         <div class="select_reason_class">
-                                                                            <select class="form-control custom_select expense_currency_select_option" name="expense_currency[]">
+                                                                            <select class="form-control custom_select expense_currency_select_option select_accomodation_currency" name="expense_currency[]">
                                                                                 <option hidden>Currency</option>
                                                                                 @foreach($currencies as $key => $val)
                                                                                     <option value="{{$key}}">{{$key}}</option>
@@ -636,7 +636,7 @@
                                                                 </div>
                                                                 <div class="col-md-6">
                                                                     <div class="select_reason_class">
-                                                                        <select class="form-control custom_select expense_currency_select_option" name="expense_currency[]">
+                                                                        <select class="form-control custom_select expense_currency_select_option select_accomodation_currency" name="expense_currency[]">
                                                                             <option hidden>Currency</option>
                                                                             @foreach($currencies as $key => $val)
                                                                                 <option value="{{$key}}">{{$key}}</option>
@@ -671,7 +671,7 @@
                                                                 </div>
                                                                 <div class="col-md-6">
                                                                     <div class="select_reason_class">
-                                                                        <select class="form-control custom_select expense_currency_select_option" name="expense_currency[]">
+                                                                        <select class="form-control custom_select expense_currency_select_option select_accomodation_currency" name="expense_currency[]">
                                                                             <option hidden>Currency</option>
                                                                             @foreach($currencies as $key => $val)
                                                                                 <option value="{{$key}}">{{$key}}</option>
@@ -709,7 +709,7 @@
                                                                 </div>
                                                                 <div class="col-md-6">
                                                                     <div class="select_reason_class">
-                                                                        <select class="form-control custom_select expense_currency_select_option" name="expense_currency[]">
+                                                                        <select class="form-control custom_select expense_currency_select_option select_accomodation_currency" name="expense_currency[]">
                                                                             <option hidden>Currency</option>
                                                                             @foreach($currencies as $key => $val)
                                                                                 <option value="{{$key}}">{{$key}}</option>
@@ -746,7 +746,7 @@
                                                                 </div>
                                                                 <div class="col-md-6">
                                                                     <div class="select_reason_class">
-                                                                        <select class="form-control custom_select expense_currency_select_option" name="expense_currency[]">
+                                                                        <select class="form-control custom_select expense_currency_select_option select_accomodation_currency" name="expense_currency[]">
                                                                             <option hidden>Currency</option>
                                                                             @foreach($currencies as $key => $val)
                                                                                 <option value="{{$key}}">{{$key}}</option>
