@@ -1,7 +1,8 @@
 <header class="bgf">
     <div class="main_nav_container">
         <nav class="navbar main-nav">
-            <div class="container sticky">
+          <div class="container-fluid sticky">
+            <div class="container">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
                     <button class="hamburger hamburger--collapse navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#mainMenu" aria-expanded="false">
@@ -195,8 +196,8 @@
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
+          <div>
         </nav>
-
         @yield('page-title')
     </div>
 

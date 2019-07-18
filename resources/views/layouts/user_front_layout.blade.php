@@ -26,7 +26,7 @@ document.write(unescape("%3Cscript src='" + tlJsHost + "trustlogo/javascript/tru
 //]]>
 </script>
 
-  
+
 </head>
 
 <body>
@@ -56,6 +56,15 @@ document.write(unescape("%3Cscript src='" + tlJsHost + "trustlogo/javascript/tru
   $(document).ready(function(e){
     $('#signArea').signaturePad({drawOnly:true, drawBezierCurves:true, lineTop:90});
     $(".dropdown-toggle").dropdown();
+    $(window).scroll(function(){
+        if($(window).scrollTop() > 20){
+            $(".sticky").css({"background-color":"#fff"});
+        }
+        else{
+            $(".sticky").css({"background-color":"transparent"});
+        }
+
+    });
   });
   </script>
 {{-- signature ends --}}

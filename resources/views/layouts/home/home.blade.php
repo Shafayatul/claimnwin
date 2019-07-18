@@ -652,6 +652,16 @@ html{font-family:sans-serif;-webkit-text-size-adjust:100%;-ms-text-size-adjust:1
       $('.set_cache_claim').click(function(){
           window.location.href = "{{url('/form-claim')}}";
       });
+
+      $(window).scroll(function(){
+          if($(window).scrollTop() > 20){
+              $(".sticky").css({"background-color":"#fff"});
+          }
+          else{
+              $(".sticky").css({"background-color":"transparent"});
+          }
+
+      });
     });
   </script>
 @endsection
