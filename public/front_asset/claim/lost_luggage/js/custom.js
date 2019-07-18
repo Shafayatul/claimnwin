@@ -313,6 +313,7 @@ $(document).ready(function() {
           var a_html = '';
 
           a_html = a_html+'<p><b>PIR: </b>'+$('input[name="pir"]').val()+'</p>';
+          a_html = a_html+'<p><b>Other connections: </b>';
 
           $(".connection").each(function(){
             a_html = a_html+$(this).val()+', ';
