@@ -1,1 +1,200 @@
-@media(max-width:1199px){[data-target="#mainMenu"]{display:block;-webkit-transform:translateY(14px);-ms-transform:translateY(14px);-o-transform:translateY(14px);transform:translateY(14px)}.navbar-header{float:none}.navbar-left,.navbar-right{float:none!important}.navbar-toggle{display:block}.navbar-fixed-top{top:0;border-width:0 0 1px}.navbar-collapse.collapse{display:none!important}.navbar-nav{float:none!important}.navbar-nav>li{float:none}.collapse.in{display:block!important}#mainMenu>ul{text-align:center}#mainMenu>ul:first-of-type{padding-right:10px}.dropdown.country .dropdown-menu{position:absolute!important;left:calc(50% - 5px)}.dropdown.country .dropdown-menu li+li{margin:0!important;padding:0!important}.footer-middle{padding:95px 0 50px}.footer-col{margin-bottom:50px}}@media(max-width:991px){.inner-banner{padding:50px 0}.features{padding:30px 0 0}.feature-card{margin-bottom:30px}.feature-card h2{font-size:18px;padding-bottom:0}.footer-bottom,.footer-bottom .text-right{text-align:center}.footer-bottom .text-right{margin-top:30px}.footer-bottom a+a{margin-left:15px}}@media(max-width:767px){.main-nav{padding-bottom:5px}.main-nav .navbar-brand{padding-top:5px;padding-left:15px;padding-bottom:5px}.mainBanner{height:auto;padding:30px 0}.banner-content>h1{margin-top:30px}.banner-content>h2{margin:30px 0}.banner-content>a+a{margin-left:0;margin-top:10px}.banner-content>a{width:200px;display:block;margin-left:auto;margin-right:auto}.intro{padding:50px 0}.inner-banner h1{font-size:26px}.inner-banner p{font-size:16px;line-height:25px;padding:15px 30px}.inner-banner a{padding:11px 15px 15px}#mainMenu{margin-top:20px;overflow-x:hidden}}@media(max-width:575px){.banner-content>h1{font-size:28px;margin-top:15px}.banner-content>h2{font-size:22px;margin:15px 0}.banner-content>a{width:150px}.intro section h2{font-size:24px}.intro section p{font-size:15px;padding-bottom:15px}.intro section h3{font-size:18px;padding-bottom:5px}.inner-banner h1{font-size:22px}.inner-banner a{padding:11px 15px 12px}.footer-middle{padding:50px 0 0}.footer-middle .col-xs-6{float:none;width:100%}}@media(max-width:414px){.banner-content>h1{font-size:24px;margin-top:12px}.banner-content>h2{font-size:18px;margin:12px 0}.inner-banner h1{font-size:20px}.inner-banner a{padding:11px 14px 12px}.inner-banner p{font-size:15px;padding:15px}.footer-bottom .col-md-6{padding:0}.footer-bottom .col-md-6 a{width:100px;display:block;margin-left:auto;margin-right:auto;margin-bottom:20px}}
+@media(max-width:1199px) {
+    [data-target="#mainMenu"] {
+        display: block;
+        -webkit-transform: translateY(14px);
+        -ms-transform: translateY(14px);
+        -o-transform: translateY(14px);
+        transform: translateY(14px)
+    }
+    .navbar-header {
+        float: none
+    }
+    .navbar-left,
+    .navbar-right {
+        float: none!important
+    }
+    .navbar-toggle {
+        display: block
+    }
+    .navbar-fixed-top {
+        top: 0;
+        border-width: 0 0 1px
+    }
+    .navbar-collapse.collapse {
+        display: none!important
+    }
+    .navbar-nav {
+        float: none!important
+    }
+    .navbar-nav>li {
+        float: none
+    }
+    .collapse.in {
+        display: block!important
+    }
+    #mainMenu>ul {
+        text-align: center
+    }
+    #mainMenu>ul:first-of-type {
+        padding-right: 10px
+    }
+    .dropdown.country .dropdown-menu {
+        position: absolute!important;
+        left: calc(50% - 5px)
+    }
+    .dropdown.country .dropdown-menu li+li {
+        margin: 0!important;
+        padding: 0!important
+    }
+    .footer-middle {
+        padding: 95px 0 50px
+    }
+    .footer-col {
+        margin-bottom: 50px
+    }
+}
+
+@media(max-width:991px) {
+    .inner-banner {
+        padding: 50px 0
+    }
+    .features {
+        padding: 30px 0 0
+    }
+    .feature-card {
+        margin-bottom: 30px
+    }
+    .feature-card h2 {
+        font-size: 18px;
+        padding-bottom: 0
+    }
+    .footer-bottom,
+    .footer-bottom .text-right {
+        text-align: center
+    }
+    .footer-bottom .text-right {
+        margin-top: 30px
+    }
+    .footer-bottom a+a {
+        margin-left: 15px
+    }
+}
+
+@media(max-width:767px) {
+    .main-nav {
+        padding-bottom: 5px
+    }
+    .main-nav .navbar-brand {
+        padding-top: 5px;
+        padding-left: 15px;
+        padding-bottom: 5px
+    }
+    .mainBanner {
+        height: auto;
+        padding: 30px 0
+    }
+    .banner-content>h1 {
+        margin-top: 30px
+    }
+    .banner-content>h2 {
+        margin: 30px 0
+    }
+    .banner-content>a+a {
+        margin-left: 0;
+        margin-top: 10px
+    }
+    .banner-content>a {
+        width: 200px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto
+    }
+    .intro {
+        padding: 50px 0
+    }
+    .inner-banner h1 {
+        font-size: 26px
+    }
+    .inner-banner p {
+        font-size: 16px;
+        line-height: 25px;
+        padding: 15px 30px
+    }
+    .inner-banner a {
+        padding: 11px 15px 15px
+    }
+    #mainMenu {
+        margin-top: 20px;
+        overflow-x: hidden;
+        background-color: white;
+    }
+}
+
+@media(max-width:575px) {
+    .banner-content>h1 {
+        font-size: 28px;
+        margin-top: 15px
+    }
+    .banner-content>h2 {
+        font-size: 22px;
+        margin: 15px 0
+    }
+    .banner-content>a {
+        width: 150px
+    }
+    .intro section h2 {
+        font-size: 24px
+    }
+    .intro section p {
+        font-size: 15px;
+        padding-bottom: 15px
+    }
+    .intro section h3 {
+        font-size: 18px;
+        padding-bottom: 5px
+    }
+    .inner-banner h1 {
+        font-size: 22px
+    }
+    .inner-banner a {
+        padding: 11px 15px 12px
+    }
+    .footer-middle {
+        padding: 50px 0 0
+    }
+    .footer-middle .col-xs-6 {
+        float: none;
+        width: 100%
+    }
+}
+
+@media(max-width:414px) {
+    .banner-content>h1 {
+        font-size: 24px;
+        margin-top: 12px
+    }
+    .banner-content>h2 {
+        font-size: 18px;
+        margin: 12px 0
+    }
+    .inner-banner h1 {
+        font-size: 20px
+    }
+    .inner-banner a {
+        padding: 11px 14px 12px
+    }
+    .inner-banner p {
+        font-size: 15px;
+        padding: 15px
+    }
+    .footer-bottom .col-md-6 {
+        padding: 0
+    }
+    .footer-bottom .col-md-6 a {
+        width: 100px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 20px
+    }
+}
