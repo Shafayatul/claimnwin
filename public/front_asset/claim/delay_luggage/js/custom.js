@@ -22,9 +22,9 @@ $(document).ready(function() {
 
     /*HIDE MOBILE TABLE*/
     if($(window).width() > 768){
-      $('.table_show_on_small_screen').remove();
+      $('.table_show_on_small_screen').hide();
     }else{
-      $('.show_on_is_obtained_full_reimbursement_no').remove();
+      $('.show_on_is_obtained_full_reimbursement_no').hide();
     }
     /**
     * flight list dynamic checkbox
@@ -225,7 +225,7 @@ $(document).ready(function() {
           a_html = a_html+a_airline;
 
 
-          
+
           var a_expense_1 = [];
           var a_expense_2 = [];
           var a_expense_3 = [];
@@ -242,7 +242,7 @@ $(document).ready(function() {
           // $('input[name="is_receipt[]"]').each(function(){
           //     a_expense_4.push($(this).val());
           // });
-          
+
           a_cnt=0;
           var a_expense = '<p><b>Expenses: </b>';
           $('input[name="expense_price[]"]').each(function(){
