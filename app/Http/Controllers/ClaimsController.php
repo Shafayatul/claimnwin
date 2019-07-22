@@ -280,8 +280,10 @@ class ClaimsController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request->flight_code);
-        // dd($request);
+        $this->validate($request, [
+            'flight_code'   => 'required|max:3',
+            'email_address' => 'required',
+        ]);
         $user_agent = Agent::all();
 
         $departed_from_id = $this->get_airport_id_name_and_iata_code($request->departed_from);
