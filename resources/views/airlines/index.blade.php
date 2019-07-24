@@ -77,7 +77,7 @@
                         <table class="table table-borderless">
                             <thead>
                                 <tr>
-                                    <th>#</th>
+                                    <th>ID</th>
                                     <th>Name</th>
                                     <th>Alias</th>
                                     <th>Iata Code</th>
@@ -92,7 +92,7 @@
                             <tbody>
                                 @foreach($airlines as $item)
                                 <tr>
-                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $item->id }}</td>
                                     <td>{{ $item->name }}</td>
                                     <td>{{ $item->alias }}</td>
                                     <td>{{ $item->iata_code }}</td>
