@@ -17,19 +17,26 @@ class ActivityController extends Controller
             $id                     = $request->get('id');
             $log_name               = $request->get('log_name');
             $model_name             = $request->get('model_name');
+            $user_email             = $request->get('user_email');
 
-            $activities = Activity::whereNotNull('id');
-            if(!empty($id)){
-                $activities = $activities->where('id', 'LIKE', "%$id%");
-            }
-            if(!empty($log_name)){
-                $activities = $activities->where('log_name', 'LIKE', "%$log_name%");
-            }
-            if(!empty($model_name)){
-                $activities = $activities->where('subject_type', 'LIKE', "%$model_name%");
+            if (!empty($user_email)) {
+                $user_id = User::where('email', $user_email)->first()->id;
+                $activities = Activity::where('causer_id', $user_id)->latest()->paginate(200000);   
+            }else{
+                $activities = Activity::whereNotNull('id');
+                if(!empty($id)){
+                    $activities = $activities->where('id', 'LIKE', "%$id%");
+                }
+                if(!empty($log_name)){
+                    $activities = $activities->where('log_name', 'LIKE', "%$log_name%");
+                }
+                if(!empty($model_name)){
+                    $activities = $activities->where('subject_type', 'LIKE', "%$model_name%");
+                }
+
+                $activities = $activities->latest()->paginate($perPage);                
             }
 
-            $activities = $activities->latest()->paginate($perPage);
 
         }else{
             $activities = Activity::latest()->paginate($perPage);

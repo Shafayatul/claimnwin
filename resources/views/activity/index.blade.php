@@ -30,6 +30,12 @@
                                   </div>
                                 </div>
                                 <div class="col-md-2">
+                                  <div class="input-group">
+                                      <input type="text" class="form-control" name="user_email" placeholder="User Email" value="{{ request('user_email') }}">
+                                  </div>
+                                </div>
+                                
+                                <div class="col-md-2">
                                     <span class="input-group-append">
                                         <button class="btn btn-secondary" type="submit" name="submit">
                                             <i class="fa fa-search"></i>

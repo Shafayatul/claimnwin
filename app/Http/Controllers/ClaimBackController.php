@@ -234,6 +234,8 @@ class ClaimBackController extends Controller
         $passenger = Passenger::whereIn('claim_id', $claim_id_array)->orderBy('id', 'DESC')->get()->keyBy('claim_id');
         $airport = Airport::whereIn('id', $necessary_airport_id_array)->pluck('name','id');
         $airline = Airline::whereIn('id', $necessary_airline_ids)->pluck('name','id');
+
+        // dd($passenger);
         return view('claim.manage_claim',compact('claims','airport', 'airline', 'passenger', 'claim_and_airline_array'));
     }
     public function index_by_user(Request $request, $id)

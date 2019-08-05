@@ -86,7 +86,8 @@ class ClaimsController extends Controller
     }
 
     public function claim(){
-       return view('front-end.claim.claim');
+       // return view('front-end.claim.claim');
+        return redirect('/user-home');
     }
 
     public function get_airline_for_auto_complete(){
