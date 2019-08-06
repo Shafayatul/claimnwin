@@ -1,6 +1,14 @@
 $(document).ready(function() {
 
 
+    // is canvas signed
+    var is_signed = false;
+    $('canvas').on('mouseup', function() {
+       is_signed = true;
+       check_next_step();
+    })
+
+
     if ((window.localStorage.getItem('airport1') !== null) && (window.localStorage.getItem('airport2') !== null)) {
       $("input[name='departed_from']").val(window.localStorage.getItem('airport1'));
       $("input[name='final_destination']").val(window.localStorage.getItem('airport2'));
@@ -242,7 +250,7 @@ $(document).ready(function() {
             }
         } else if (step == 6) {
             $("#continue_6").removeClass('active_button');
-            if (($("input[name='is_signed_permission']").is(':checked'))) {
+            if (($("input[name='is_signed_permission']").is(':checked')) && (is_signed)) {
                 $("#continue_6").addClass('active_button');
                 $("#continue_7").addClass('active_button');
                 return true;

@@ -13,6 +13,14 @@
 
 @endsection
 @include('layouts.includes.partial.alert')
+
+{{-- Datatable --}}
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css">
+
+
+
 <div class="forms">
     <div class="form-grids row widget-shadow" data-example-id="basic-forms">
         <div class="form-body">
@@ -64,7 +72,13 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-md-2 text-right">
+                    <a href="{{url('claim-archive/'.$claims->id)}}" class="btn btn-md btn-danger">
+                        <i class="fa fa-trash" aria-hidden="true"></i>  Close
+                    </a>
                 </div>
+                </div>
+
 
                 <div class="row">
                 <div class="col-md-12 widget-shadow">
@@ -2465,7 +2479,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="table-responsive">
-                                <table class="table table-bordered">
+                                <table id="example" class="table table-striped table-bordered" style="width:100%">
                                     <thead>
                                         <th>#</th>
                                         <th>Note</th>
@@ -2499,6 +2513,23 @@
                                                 {!! Form::close() !!}
                                                 <a class="btn btn-primary btn-sm" data-toggle="modal" data-target="#viewNote-{{$note->id}}"><i class="fa fa-eye"></i></a>
                                                 <a class="btn btn-info btn-sm" data-toggle="modal" data-target="#editNote-{{$note->id}}"><i class="fa fa-edit"></i></a>
+                                            
+                                                @php
+                                                    if($note->note_files != null){
+                                                    $noteFiles = explode("|",$note->note_files);
+                                                @endphp
+                                                    @foreach($noteFiles as $key=>$value)
+                                                        @if(strpos(strtolower($value), 'pdf') !== false)                                                            
+                                                            <a href="{{URL::to($value)}}" target="_blank" class="btn btn-success btn-sm">
+                                                                PDF
+                                                            </a>
+                                                        @endif
+                                                    @endforeach
+                                                @php
+                                                    }
+                                                @endphp
+
+
                                             </td>
                                         </tr>
                                         @php
@@ -2901,6 +2932,11 @@ $(function() {
 
 </script>
 <script type="text/javascript">
+
+$(document).ready(function() {
+    $('#example').DataTable();
+} );
+    
 function printDiv(divName) {
      var printContents = document.getElementById(divName).innerHTML;
      var originalContents = document.body.innerHTML;

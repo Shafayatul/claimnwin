@@ -482,6 +482,11 @@ class ClaimBackController extends Controller
             $claim->is_deleted = "0";
         }
         $claim->save();
+
+        $previous_url = url()->previous();
+        if (strpos($previous_url, 'claim-view') !== false) {
+            return redirect('/manage-claim')->with('success','Claim Archived!');
+        }
         return redirect()->back()->with('success','Claim Archived!');
     }
 
