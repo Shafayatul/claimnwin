@@ -347,10 +347,10 @@ class ClaimBackController extends Controller
                 'port'          => 993,
                 'encryption'    => 'ssl',
                 'validate_cert' => true,
-                'username'      => $claims->cpanel_email,
-                'password'      => $claims->cpanel_password,
-                // 'username'      =>'rtwh095@freeflightclaim.com',
-                // 'password'      => 'olMpHjWv',
+                // 'username'      => $claims->cpanel_email,
+                // 'password'      => $claims->cpanel_password,
+                'username'      =>'rtwh095@freeflightclaim.com',
+                'password'      => 'olMpHjWv',
                 'protocol'      => 'imap'
             ]);
             $oClient->connect();
@@ -451,6 +451,7 @@ class ClaimBackController extends Controller
 
     public function requiredDetailsUpdate(Request $request)
     {
+        // dd($request);
         $claim_id                           = $request->claim_id;
         $claim                              = Claim::where('id',$claim_id)->first();
         $claim->bank_details_id             = $request->bank_details_id;
@@ -464,6 +465,7 @@ class ClaimBackController extends Controller
         $claim->airline_ref                 = $request->airline_ref;
         $claim->court_no                    = $request->court_no;
         $claim->save();
+        // dd($claim);
         return redirect('/claim-view/'.$claim_id)->with('success','Required Details Updated');
     }
 

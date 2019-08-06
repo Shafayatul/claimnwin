@@ -64,6 +64,7 @@ class LoginController extends Controller
      */
     public function authenticated()
     {
+        event(new \App\Events\LogEvent(Auth::user(), 'Authentication', 'Successfully logged in.'));
         if(auth()->user()->hasRole('User')){
             return redirect('/user-home');
         }else{

@@ -103,7 +103,7 @@
                                  <input type="text" name="selected_connection_iata_codes" class="selected_connection_iata_codes">
                               </div>
 
-                            <div class="common_row">
+                            <div style="display: none;" class="common_row">
                               <div class="form_h3">
                                 <h3>Were any other airports involved in this trip?</h3>
                               </div>
@@ -126,7 +126,7 @@
                               </div>
                             </div>
 
-                            <div class="common_row" id="connection_div">
+                            <div style="display: none;" class="common_row" id="connection_div">
                               <div class="form_h3">
                                 <h3>What airports were involved?</h3>
                               </div>

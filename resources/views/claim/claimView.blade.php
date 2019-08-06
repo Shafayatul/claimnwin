@@ -2022,7 +2022,7 @@
             <div class="col-sm-4">
                 <div class="form-group">
                     <label> Admin Commision </label>
-                    <input type="text" class="form-control" name="admin_commision" id="" value="{{$adminComm->fieldValue}}">
+                    <input type="text" class="form-control" name="admin_commision" id="" value="{{$claims->admin_commision}}">
                 </div>
             </div>
             <div class="clearfix"></div>
