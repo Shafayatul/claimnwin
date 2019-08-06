@@ -374,6 +374,7 @@ class TicketsController extends Controller
        $ticketReplySubject = $request->sub;
 
         $toEmail = $request->to_email;
+        $toEmail = explode(',', $toEmail);
         Mail::to($toEmail)->send(new TicketReply($file_names,$composeData,$toEmail,$from_email,$from_name,$ticketReplySubject));
         $file = new TicketReplyEmail;
         $file->ticket_reply_note    = $request->ticket_reply_note;

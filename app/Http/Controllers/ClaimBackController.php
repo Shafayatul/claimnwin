@@ -183,8 +183,7 @@ class ClaimBackController extends Controller
                 $claims = $claims->whereIn('id',$claim_id);
             }
             if(!empty($email)){
-                $claim_id=Passenger::where('email', 'LIKE', "%$email%")->select('claim_id')->get();
-
+                $claim_id=Passenger::where('email', $email)->pluck('claim_id');
                 $claims = $claims->whereIn('id',$claim_id);
             }
             if(!empty($phone)){
@@ -638,8 +637,8 @@ class ClaimBackController extends Controller
 
         $userName =$request->to_email;
         $customerComposeSubject = $request->sub;
-
-        Mail::to($request->to_email)->send(new CustomerCompose($file__names,$composeData,$userName,$from_email,$from_name,$customerComposeSubject));
+        $send_email_to_multiple_email = explode(',', $request->to_email);
+        Mail::to($send_email_to_multiple_email)->send(new CustomerCompose($file__names,$composeData,$userName,$from_email,$from_name,$customerComposeSubject));
         $file= new CustomerComposerFile();
         $file->compose_text = $request->compose_text;
         $file->from_email = $request->from_email;
@@ -681,7 +680,8 @@ class ClaimBackController extends Controller
 
        $airlineComposeSubject = $request->sub;
         $userName = $request->to_email;
-        Mail::to($request->to_email)->send(new AirlineCompose($file_names,$composeData,$userName,$from_email,$from_name,$airlineComposeSubject));
+        $send_email_to_multiple_email = explode(',', $request->to_email);
+        Mail::to($send_email_to_multiple_email)->send(new AirlineCompose($file_names,$composeData,$userName,$from_email,$from_name,$airlineComposeSubject));
         $file = new AirlineComposeFile();
         $file->airline_compose_text = $request->airline_compose_text;
         $file->from_email           = $request->from_email;
@@ -735,7 +735,8 @@ class ClaimBackController extends Controller
        $airlineReplySubject = $request->sub;
 
         $userName = $request->to_email;
-        Mail::to($request->to_email)->send(new AirlineReply($file_names,$composeData,$userName,$from_email,$from_name,$airlineReplySubject));
+        $send_email_to_multiple_email = explode(',', $request->to_email);
+        Mail::to($send_email_to_multiple_email)->send(new AirlineReply($file_names,$composeData,$userName,$from_email,$from_name,$airlineReplySubject));
         $file = new AirlineComposeFile();
         $file->airline_compose_text = $request->airline_compose_text;
         $file->from_email           = $request->from_email;
@@ -778,8 +779,8 @@ class ClaimBackController extends Controller
 
 
         $userName =$request->to_email;
-
-        Mail::to($request->to_email)->send(new CustomerReply($file__names,$composeData,$userName,$from_email,$from_name,$customerReplySubject));
+        $send_email_to_multiple_email = explode(',', $request->to_email);
+        Mail::to($send_email_to_multiple_email)->send(new CustomerReply($file__names,$composeData,$userName,$from_email,$from_name,$customerReplySubject));
         $file= new CustomerComposerFile();
         $file->compose_text = $request->compose_text;
         $file->from_email = $request->from_email;

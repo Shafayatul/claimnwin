@@ -136,8 +136,8 @@ class UserPanelController extends Controller
 
     public function claimFileUpload(Request $request)
     {
-        $claim_id = $request->claim_id;
-        $file = $request->file('file_name');
+      $claim_id = $request->claim_id;
+      $file = $request->file('file_name');
       $file_name = sha1(date('YmdHis') . str_random(30));
       $name = $file_name . '.' . $file->getClientOriginalExtension();
       if(!File::exists(public_path('/uploads').'/'.$claim_id)) {
@@ -150,6 +150,19 @@ class UserPanelController extends Controller
       $claim_file->user_id = Auth::user()->id;
       $claim_file->claim_id = $claim_id;
       $claim_file->save();
+
+      // create new ticket
+      $ticket                     = new Ticket;
+      $ticket->subject            = 'New File.';
+      $ticket->status             = "1";
+      $ticket->to_email           = $request->cpanel_email;
+      $ticket->text               = 'New file uploaded.';
+      $ticket->claim_id           = $request->claim_id;
+      $ticket->from_name          = Auth::user()->name;
+      $ticket->save();
+
+
+
       return redirect(url('/user-my-claim/'.$claim_id))->with('success','File Added');
     }
 

@@ -368,6 +368,7 @@
                         <div class="document_submit_div text-center">
                             <div class="input-file-container">
                                 <input type="hidden" name="claim_id" value="{{ $claims->id }}">
+                                <input type="hidden" name="cpanel_email" value="{{ $claims->cpanel_email }}">
                                 <input class="input-file" id="my-file" name="file_name" type="file" required="required">
                                 <label tabindex="0" for="my-file" class="input-file-trigger">Choose Document</label>
                             </div>
