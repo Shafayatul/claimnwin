@@ -1,13 +1,13 @@
-@component('mail::message')
-<div style="background-color: white;">
-Hello ,
-<br>
-<h4 style="font-weight: bolder;">{{$userName}}</h4>
-<br>
-<p>{!!$composeData!!}</p>
-<br>
-<br>
-Regards,<br>
-Claim'N Win
-</div>
-@endcomponent
+<!DOCTYPE html>
+<html>
+<head>
+	    <meta charset="utf-8">
+</head>
+<body style="background-color: white;">
+{{-- 	<h1>Name cheap</h1>
+	<img src="https://claimnwin.com/TrustL.png">
+	<h2>GOdaddy hosting</h2>
+	<img src="http://webencoder.net/wp-content/uploads/2017/12/39.png"> --}}
+	{!! $composeData !!}
+</body>
+</html>

@@ -1240,7 +1240,7 @@
 
                             <div class="form-group">
                                 <div class="col-md-12">
-                                <input type="text" name="to_email" id="to_email" value="{{$airlineData->email}}" class="form-control" placeholder="To Email" readonly/>
+                                <input type="text" name="to_email" id="to_email" value="{{$airlineData->email}}" class="form-control" placeholder="To Email"/>
                                 </div>
                             </div>
 
@@ -2388,7 +2388,7 @@
                                                             <h2 class="panel-title pull-right">{{Carbon\Carbon::parse($row->created_at)->format('d-m-Y')}} at {{Carbon\Carbon::parse($row->created_at)->format('H:i A')}}</h2>
                                                         </div>
                                                         <div class="panel-body">
-                                                            {{$row->description}}
+                                                            {!! $row->description !!}
                                                         </div>
                                                     </article>
 

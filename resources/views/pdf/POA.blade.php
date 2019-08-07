@@ -94,7 +94,7 @@
           <p class="fs-16 tc pr">Signature</p>
         </div>
         <div class="date-div">
-          <p class="vb-c">{{Carbon\Carbon::today()}}</p>
+          <p class="vb-c">{{Carbon\Carbon::today()->format('jS F, Y')}}</p>
           <p class="fs-16 tc pr-2">Date</p>
         </div>
 {{--         <div class="left">
@@ -116,10 +116,14 @@
       <div class="wrapper">
         <div class="parent-div">
           <div class="left">
-            <p class="fb">Got questions? Ask here info@claimnwin.com</p>
+            <p class="fb">
+              Got questions? Ask here info@claimnwin.com
+              <br>
+              www.claimnwin.com
+            </p>
           </div>
           <div class="right">
-            <p class="fb tr">www.claimnwin.com</p>
+            <p class="fb tr"></p>
           </div>
         </div>
         <p class="nm">Registered Office: 39 Montefiore Court, 69 Stamford Hill, London N16 5TY / Registered in England Company No: 9748199</p>
