@@ -19,6 +19,7 @@ use App\Mail\TicketReply;
 use Carbon\Carbon;
 use App\EmailTemplate;
 use PDF;
+use App\Mail\CustomerCompose;
 
 class TicketsController extends Controller
 {
@@ -445,8 +446,47 @@ class TicketsController extends Controller
         }
 
     }
-        return view('tickets.ticket-email-view',compact('ticket_reply','ticket_note','time','ticket','sub','date','from','to','from_name','to_name', 'attachments'));
+        $users = User::role('Admin')->pluck('email','id');
+        return view('tickets.ticket-email-view',compact('ticket_reply','ticket_note','time','ticket','sub','date','from','to','from_name','to_name', 'attachments', 'users'));
     }
+
+
+    public function singleEmailView($u_id, $email, $date)
+    {
+
+        $oClient = new Client([
+            'host'          => 'premium39.web-hosting.com',
+            'port'          => 993,
+            'encryption'    => 'ssl',
+            'validate_cert' => true,
+            'username'      => env('MAIL_USERNAME'),
+            'password'      => env('MAIL_PASSWORD'),
+            // 'username'      =>'rtwh095@freeflightclaim.com',
+            // 'password'      => 'olMpHjWv',
+            'protocol'      => 'imap'
+        ]);
+        $oClient->connect();
+        $oFolder = $oClient->getFolder('INBOX');
+        $aMessage = $oFolder->search()->from($email)->since($date)->get();
+
+        foreach ($aMessage as $oMessage) {
+            if ($oMessage->getUid() == $u_id) {
+                $attachments = $oMessage->attachments;
+                $oMessage = $oFolder->getMessage($u_id);
+                $sub = $oMessage->getSubject();
+                $longMsg=$oMessage->getHTMLBody(true);
+                $date=Carbon::parse($oMessage->getDate())->format("D, d M Y");
+                $time = Carbon::parse($oMessage->getDate())->format("h:i A");
+                $from = $oMessage->getFrom()[0]->mail;
+                $to = $oMessage->getTo()[0]->mail;
+                $from_name = $oMessage->getFrom()[0]->personal;
+                $to_name = $oMessage->getTo()[0]->personal;
+            }
+        }
+
+        return view('single-email-view',compact('time','sub','date','from','to','from_name','to_name', 'attachments', 'longMsg'));
+    }
+
 
     public function ticketReplyView($id)
     {
@@ -455,6 +495,46 @@ class TicketsController extends Controller
         $main_email = TicketNote::where('ticket_id', $id)->first()->description;
         // dd($main_email);
         return view('tickets.ticket-email-reply',compact('ticket', 'EmailTemplate', 'main_email'));
+    }
+
+    public function newEmail()
+    {
+        $EmailTemplate = EmailTemplate::all()->pluck('title', 'id');
+        return view('new-email',compact('EmailTemplate'));
+    }
+
+    public function newEmailSend(Request $request)
+    {
+
+        $composeData = $request->ticket_reply_note;
+
+        if($request->hasFile('ticket_reply_files')){
+            $files = $request->file('ticket_reply_files');
+            // dd($files);
+            foreach($files as $file){
+                $fileName = uniqid().'.'.$file->getClientOriginalExtension();
+                $filePath = 'ticket_reply_files/';
+                $fileUrl = $filePath.$fileName;
+                $file->move($filePath,$fileName);
+                // $file__name[] = $fileName;
+                $images[]=$fileUrl;
+            }
+
+        }else{
+            $images= [];
+        }
+
+
+        $file__names                  = $images;
+        $from_email                   = $request->from_email;
+        $from_name                    = $request->from_name;
+        $userName                     = $request->to_email;
+        $customerComposeSubject       = $request->sub;
+        $send_email_to_multiple_email = explode(',', $request->to_email);
+
+        Mail::to($send_email_to_multiple_email)->send(new CustomerCompose($file__names,$composeData,$userName,$from_email,$from_name,$customerComposeSubject));
+
+        return redirect()->back()->with('flash_message', 'Email sent!');
     }
 
     public function fromEmailViewPdf($id)

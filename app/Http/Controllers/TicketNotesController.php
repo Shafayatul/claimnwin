@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\TicketNote;
 use Illuminate\Http\Request;
 use App\Ticket;
+use Auth;
 
 
 class TicketNotesController extends Controller
@@ -22,7 +23,7 @@ class TicketNotesController extends Controller
     {
         $requestData = $request->all();
 
-        TicketNote::create($requestData);
+        TicketNote::create($requestData+["user_id"=>Auth::id()]);
         // return redirect('tickets')->with('success', 'TicketNote added!');
         $ticket = Ticket::find($request->ticket_id);
         $ticket->update(['status'=>2]);

@@ -92,7 +92,7 @@ class UserPanelController extends Controller
       $ticket = Ticket::where('claim_id', $claims->id)->first();
       // dd($ticket->id);
       if ($ticket) {
-        $ticket_notes = TicketNote::where('ticket_id', $ticket->id)->get();
+        $ticket_notes = TicketNote::whereNotNull('user_id')->where('ticket_id', $ticket->id)->get();
       }else{
         $ticket_notes = [];
       }
@@ -325,16 +325,17 @@ class UserPanelController extends Controller
 
    public function affiliateInfoShow()
    {
-        $user_id=Auth::user()->id;
-        $encrypt_user_id = '09Xohf'.$user_id;
-        $referral_ids=Affiliate::where('affiliate_user_id',$user_id)->limit(5)->get();
-        $referral_count_data = Affiliate::where('affiliate_user_id',$user_id)->count();
-        $comsion_all_amount = Affiliate::where('affiliate_user_id',$user_id)->get();
-        $commision_sum_amount = ''; //$comsion_all_amount->sum('commision_amount');
-        $payments=Affiliate::where('affiliate_user_id',$user_id)->where('approved',1)->limit(5)->get();
-        $all_payments=Affiliate::where('affiliate_user_id',$user_id)->where('approved',1)->get();
-        $last_payments = Affiliate::where('affiliate_user_id',$user_id)->where('approved',1)->latest()->first();
-        $pending_payments=Affiliate::where('affiliate_user_id',$user_id)->where('approved',0)->limit(5)->get();
+        $user_id              = Auth::user()->id;
+        $encrypt_user_id      = '09Xohf'.$user_id;
+        $referral_ids         = Affiliate::where('affiliate_user_id',$user_id)->limit(5)->get();
+        $referral_count_data  = Affiliate::where('affiliate_user_id',$user_id)->count();
+        $comsion_all_amount   = Affiliate::where('affiliate_user_id',$user_id)->get();
+        $commision_sum_amount = ''; //$comsion_all_amount->sum('commision_amount'); dropColumn
+        $payments             = Affiliate::where('affiliate_user_id',$user_id)->where('is_payment_done',1)->limit(5)->get();
+        $all_payments         = Affiliate::where('affiliate_user_id',$user_id)->where('is_payment_done',1)->get();
+        $last_payments        = Affiliate::where('affiliate_user_id',$user_id)->where('is_payment_done',1)->latest()->first();
+        $pending_payments     = Affiliate::where('affiliate_user_id',$user_id)->where('approved',1)->where('is_payment_done',0)->limit(5)->get();
+        $latest_refferals     = Affiliate::where('affiliate_user_id',$user_id)->where('approved',1)->limit(5)->get();
 
 
         $link = url('user/signup/'.$encrypt_user_id);
@@ -362,17 +363,17 @@ class UserPanelController extends Controller
         $text[14] = "Last Payment";
         $text[15] = "Terms & Condition";
         $text[16] = "We may collect personal identification information from Users, including but not limited to, when Users visit our site, register their information on the website by completing, ...";
-        $text[17] = "More Information";
+        $text[17] = "Email Us";
         $text[18] = "Contact Us";
         $text[19] = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's.";
 
         if (Session::has('locale')) {
           $responseDecoded = $this->get_translation($text);
-          return view('front-end.user.user_panel_affiliate_info',compact('last_payments','all_payments','commision_sum_amount','referral_count_data','referral_ids','payments','pending_payments', 'encrypt_user_id', 'responseDecoded', 'text','facebook','twitter','linkedin','whatsapp'));
+          return view('front-end.user.user_panel_affiliate_info',compact('last_payments','all_payments','commision_sum_amount','referral_count_data','referral_ids','payments','pending_payments', 'encrypt_user_id', 'responseDecoded', 'text','facebook','twitter','linkedin','whatsapp', 'latest_refferals'));
 
         }else {
           $responseDecoded = null;
-          return view('front-end.user.user_panel_affiliate_info',compact('last_payments','all_payments','commision_sum_amount','referral_count_data','referral_ids','payments','pending_payments', 'encrypt_user_id', 'responseDecoded', 'text','facebook','twitter','linkedin','whatsapp'));
+          return view('front-end.user.user_panel_affiliate_info',compact('last_payments','all_payments','commision_sum_amount','referral_count_data','referral_ids','payments','pending_payments', 'encrypt_user_id', 'responseDecoded', 'text','facebook','twitter','linkedin','whatsapp', 'latest_refferals'));
         }
    }
 

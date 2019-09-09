@@ -443,7 +443,8 @@ class ClaimsController extends Controller
             $selected_connection_iata_codes = "";
         }
 
-
+        $new_user = false;
+        $do_not_count_affiliate = false;
 
         if (Auth::user()) {
             $user = Auth::user();
@@ -460,6 +461,7 @@ class ClaimsController extends Controller
                     ]);
 
                 $user->syncRoles('User');
+                $new_user = true;
 
                 if (Cache::get($request->ip()) != null ) {
                     $affiliate_user_id = Cache::get($request->ip());
@@ -482,8 +484,39 @@ class ClaimsController extends Controller
             }
         }
 
+
+        /**
+        * Admin Commision
+        */
         $adminCom=Setting::where('fieldKey','_admin_comm')->where('status',1)->first();
-        $affiliateCom=Setting::where('fieldKey','_affiliate_comm')->where('status',1)->first();
+
+
+        /**
+        * Affiliate commition
+        */
+        $affiliateCom = Setting::where('fieldKey','_affiliate_comm')->where('status',1)->first()->fieldValue;
+        // special commition
+        if (!isset($affiliate_user_id)) {
+            $affiliate_user_id = $user->affiliate_user_id;
+        }
+        if ($affiliate_user_id  != '') {
+            $info_of_affiliate_user = User::where('id', $affiliate_user_id)->first();
+            if($info_of_affiliate_user->add_special_affiliate_offer != null){
+                $affiliateCom = $info_of_affiliate_user->add_special_affiliate_offer;
+            }
+
+            /**
+            * Affiliate only first time or not
+            */
+            if (!$new_user) {
+                if ($info_of_affiliate_user->is_affiliate_first_time == 1) {
+                    $affiliateCom = 0;
+                    $do_not_count_affiliate = true;
+                }
+            }
+
+        }
+
 
 
 
@@ -527,15 +560,15 @@ class ClaimsController extends Controller
         $claim->claim_next_step_id                      = '1';
 
 
-        $claim->affiliate_commision                     = $affiliateCom->fieldValue;
+        $claim->affiliate_commision                     = $affiliateCom;
         $claim->admin_commision                         = $adminCom->fieldValue;
         $claim->claim_table_type                        = $claim_table_type;
 
 
-        $claim->ip                                      =    $user_agent->ip;
-        $claim->browser                                 =    $user_agent->browser->name;
-        $claim->language                                =    $request->server('HTTP_ACCEPT_LANGUAGE');
-        $claim->os                                      =    $user_agent->platform->name;
+        $claim->ip                                      = $user_agent->ip;
+        $claim->browser                                 = $user_agent->browser->name;
+        $claim->language                                = $request->server('HTTP_ACCEPT_LANGUAGE');
+        $claim->os                                      = $user_agent->platform->name;
 
         $claim->save();
 
@@ -693,7 +726,7 @@ class ClaimsController extends Controller
         * Create custom email
         */
         $cpanel_password  = $this->randomPassword();
-        $this->create_cpanel_email($cpanel_email_name, $cpanel_password);
+        // $this->create_cpanel_email($cpanel_email_name, $cpanel_password);
         $cpanel_email     = $cpanel_email_name.'@claimnwin.com';
 
 
@@ -752,14 +785,14 @@ class ClaimsController extends Controller
 
 
 
-        $commision_amount = round(($just_amount[0]*$affiliateCom->fieldValue)/100);
+        $commision_amount = round(($just_amount[0]*$affiliateCom)/100);
 
-        if ($user->affiliate_user_id != null) {
+        if (($user->affiliate_user_id != null) && ($do_not_count_affiliate == false)) {
             $affiliate = new Affiliate;
             $affiliate->affiliate_user_id       = $user->affiliate_user_id;
             $affiliate->claim_id                = $claim->id;
             $affiliate->commision_amount        = $commision_amount. ' ' . $just_amount[1];
-            $affiliate->percentage              = $affiliateCom->fieldValue;
+            $affiliate->percentage              = $affiliateCom;
             $affiliate->approved                = 0;
             $affiliate->save();
         }

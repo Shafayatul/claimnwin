@@ -346,10 +346,10 @@ class ClaimBackController extends Controller
                 'port'          => 993,
                 'encryption'    => 'ssl',
                 'validate_cert' => true,
-                'username'      => $claims->cpanel_email,
-                'password'      => $claims->cpanel_password,
-                // 'username'      =>'rtwh095@freeflightclaim.com',
-                // 'password'      => 'olMpHjWv',
+                // 'username'      => $claims->cpanel_email,
+                // 'password'      => $claims->cpanel_password,
+                'username'      =>'rtwh095@freeflightclaim.com',
+                'password'      => 'olMpHjWv',
                 'protocol'      => 'imap'
             ]);
             $oClient->connect();
@@ -793,18 +793,56 @@ class ClaimBackController extends Controller
         return redirect('/claim-view/'.$id)->with('success','Sent Email Successfully!');
     }
 
+    public function deleteAffilite(Request $request){
+        Affiliate::find($request->affiliate_id)->delete();
+        
+        $claim                    = Claim::find($request->claim_id);
+        $claim->affiliate_user_id = '';
+        $claim->save();
+
+        return redirect('/claim-view/'.$request->claim_id)->with('success','Affiliate deleted Successfully!');
+
+    }
     public function updateAffiliteInfoData(Request $request)
     {
-        $id = $request->affiliate_id;
-        $claim_id = $request->claim_id;
-        $affiliate = Affiliate::where('id',$id)->first();
-        $affiliate->commision_amount = $request->commision_amount;
-        $affiliate->percentage = $request->percentage;
-        $affiliate->received_amount = $request->received_amount;
-        $affiliate->payment_method = $request->payment_method;
-        $affiliate->addition_description = $request->addition_description;
-        $affiliate->approved = $request->approved;
-        $affiliate->save();
+        if (isset($request->affi_user_owner)) {
+            $affiliate_user_id = User::where('email', $request->affi_user_owner)->first()->id;
+
+
+            $claim_id                        = $request->claim_id;
+
+            $affiliate                       = new Affiliate;
+            $affiliate->claim_id             = $request->claim_id;
+            $affiliate->commision_amount     = $request->commision_amount;
+            $affiliate->percentage           = $request->percentage;
+            $affiliate->received_amount      = $request->received_amount;
+            $affiliate->payment_method       = $request->payment_method;
+            $affiliate->addition_description = $request->addition_description;
+            $affiliate->approved             = $request->approved;
+            $affiliate->is_payment_done      = $request->is_payment_done;
+            $affiliate->affiliate_user_id    = $affiliate_user_id;
+            $affiliate->save();
+
+            $claim                    = Claim::find($request->claim_id);
+            $claim->affiliate_user_id = $affiliate_user_id;
+            $claim->save();
+
+        }else{
+
+            $id                              = $request->affiliate_id;
+            $claim_id                        = $request->claim_id;
+            $affiliate                       = Affiliate::where('id',$id)->first();
+            $affiliate->commision_amount     = $request->commision_amount;
+            $affiliate->percentage           = $request->percentage;
+            $affiliate->received_amount      = $request->received_amount;
+            $affiliate->payment_method       = $request->payment_method;
+            $affiliate->addition_description = $request->addition_description;
+            $affiliate->approved             = $request->approved;
+            $affiliate->is_payment_done      = $request->is_payment_done;
+            $affiliate->save();
+        }
+
+
         return redirect('/claim-view/'.$claim_id)->with('success','Affiliate Info Update Successfully!');
     }
 

@@ -151,12 +151,12 @@
                     @php
                     $i = 1;
                     @endphp
-                    @foreach($pending_payments as $pending_payment)
+                    @foreach($latest_refferals as $latest_refferal)
                     <tr>
                         <td>{{$i}}</td>
-                        <td>{{Carbon\Carbon::parse($pending_payment->created_at)->format('d-m-Y h:i:s')}}</td>
-                        <td>{{$pending_payment->claim_id}}</td>
-                        <td>{{$pending_payment->commision_amount}}</td>
+                        <td>{{Carbon\Carbon::parse($latest_refferal->created_at)->format('d-m-Y h:i:s')}}</td>
+                        <td>{{$latest_refferal->claim_id}}</td>
+                        <td>{{$latest_refferal->commision_amount}}</td>
                     </tr>
                     @php
                         $i++;

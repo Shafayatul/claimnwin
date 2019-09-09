@@ -38,6 +38,7 @@ class AffiliatesController extends Controller
         $affiliate->payment_method          = $request->payment_method;
         $affiliate->addition_description    = $request->addition_description;
         $affiliate->approved                = $request->approved;
+        $affiliate->is_payment_done         = $request->is_payment_done;
         $affiliate->save();
         return redirect('/affiliates')->with('success','Affiliate Updated!');
     }

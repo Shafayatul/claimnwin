@@ -56,13 +56,50 @@
                             <h6><strong>{{$from_name}}</strong> reported via email</h6>
                         </div>
                     </div> --}}
-                    {{-- <div class="row">
+                    <div class="row">
                         <div class="col-md-12">
-                            @if($ticket->ticket_status != null)
-                            <span style="background-color: #00E6DE; font-weight: bold;" class="btn btn-default btn-sm">{{$ticket->ticket_status}}</span>
-                            @endif
+                            <div class="table-responsive">
+                                <table class="table table-borderd table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Agent</th>
+                                            <th>Priority</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                            <td>
+                                            <select name="assign_user_id" id="user" class="form-control select_assigned_user" ticket-id="{{$ticket->id}}">
+                                                    <option> Please select </option>
+                                                    @foreach($users as $key=>$value)
+                                                    <option value="{{$key}}" @if($key == $ticket->assign_user_id) selected @endif>{{$value}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <select name="priority" id="priority" class="form-control select_priority" ticket-id="{{$ticket->id}}">
+                                                    <option> Please select </option>
+                                                    <option value="Low" @if("Low" == $ticket->priority) selected @endif>Low</option>
+                                                    <option value="Medium" @if("Medium" == $ticket->priority) selected @endif>Medium</option>
+                                                    <option value="High" @if("High" == $ticket->priority) selected @endif>High</option>
+                                                    <option value="Urgent" @if("Urgent" == $ticket->priority) selected @endif>Urgent</option>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <select name="ticket_status" id="" class=" form-control select_ticket_status" ticket-id="{{$ticket->id}}">
+                                                    <option> Please select </option>
+                                                    <option value="Open"  @if("Open" == $ticket->ticket_status) selected @endif>Open</option>
+                                                    <option value="Pending"  @if("Pending" == $ticket->ticket_status) selected @endif>Pending</option>
+                                                    <option value="Resolved"  @if("Resolved" == $ticket->ticket_status) selected @endif>Resolved</option>
+                                                    <option value="Closed"  @if("Closed" == $ticket->ticket_status) selected @endif>Closed</option>
+                                                </select>
+                                            </td>
+                                        </tbody>
+                                    </table>
+                                </div>
                         </div>
-                    </div> --}}
+                    </div>
+                    <hr>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="panel-group">
@@ -147,4 +184,74 @@
 <!-- side nav css file -->
 <link href='{{ asset('admin_asset/css/SidebarNav.min.css')}}' media='all' rel='stylesheet' type='text/css'/>
 <!-- //side nav css file -->
+@endsection
+
+
+
+@section('footer-script')
+<script>
+$(function() {
+
+
+    $(".sidebar-menu a").css('color','#b8c7ce');
+    $(".sidebar-menu a").hover(function() {
+      $(this).css("color",'#b8c7ce')
+    });
+
+
+    $(document).on('change', '.select_assigned_user', function(){
+        var ticket_id           = $(this).attr('ticket-id');
+        var assign_user_id      = $(this).val();
+        $.ajax({
+                type:'POST',
+                url:'{{ url("/ajax/ticket/assign") }}',
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                data:{
+                'ticket_id'          : ticket_id,
+                'assign_user_id'     : assign_user_id
+                },
+                success:function(data){
+                console.log(data);
+                }
+        });
+    });
+
+    $(document).on('change', '.select_priority', function(){
+        var ticket_id     = $(this).attr('ticket-id');
+        var priority      = $(this).val();
+        $.ajax({
+                type:'POST',
+                url:'{{ url("/ajax/ticket/priority") }}',
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                data:{
+                'ticket_id'    : ticket_id,
+                'priority'     : priority
+                },
+                success:function(data){
+                console.log(data);
+                }
+        });
+    });
+
+    $(document).on('change', '.select_ticket_status', function(){
+        var ticket_id           = $(this).attr('ticket-id');
+        var ticket_status      = $(this).val();
+        $.ajax({
+                type:'POST',
+                url:'{{ url("/ajax/ticket/ticket_status") }}',
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                data:{
+                'ticket_id'          : ticket_id,
+                'ticket_status'      : ticket_status
+                },
+                success:function(data){
+                console.log(data);
+                }
+        });
+    });
+
+
+
+});
+</script>
 @endsection

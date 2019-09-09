@@ -37,6 +37,26 @@
                                 </div>
                             </div>
                             <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="add_special_affiliate_offer" class="col-md-12 control-label">Add special affiliate offer(%)</label>
+                                        <input type="add_special_affiliate_offer" class="form-control" name="add_special_affiliate_offer" value="{{$user->add_special_affiliate_offer}}" id="add_special_affiliate_offer">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="add_special_affiliate_offer" class="col-md-12 control-label">Affiliate option</label>
+                                        <div class="input-group">
+                                            <select class="form-control" id="is_affiliate_first_time" name="is_affiliate_first_time">
+                                              <option value="1" @if($user->is_affiliate_first_time ==1) selected @endif>Only First Time</option>
+                                              <option value="0" @if($user->is_affiliate_first_time==0) selected @endif>All The Time</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <div class="row">
                                 <div class="col-md-12">
                                     <button type="submit" class="btn btn-sm btn-primary">Update</button>
                                 </div>

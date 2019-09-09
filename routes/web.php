@@ -169,6 +169,7 @@ Route::group(['middleware' => ['auth']], function() {
         Route::post('/ajax/ticket/ticket_status', 'TicketsController@ajax_ticket_ticket_status');
 
         Route::get('/my-tickets','TicketsController@myTickets');
+        Route::get('/single-email-view/{u_id}/{email}/{date}', 'TicketsController@singleEmailView');
         Route::get('/tickets-inbox', 'TicketsController@ticketInbox');
         Route::get('/ticket-single-email/{id}','TicketsController@ticketSingleEmailView');
         // Route::get('/contact-messages','TicketsController@contactMessages');
@@ -196,12 +197,15 @@ Route::group(['middleware' => ['auth']], function() {
 
         Route::post('/airline-reply-data', 'ClaimBackController@airlineReplyDataSave')->name('airline-reply-data');
         Route::post('/reply-customer-data', 'ClaimBackController@customerReplyDataSave')->name('reply-customer-data');
+        Route::post('/new-email', 'TicketsController@newEmailSend');
+        Route::get('/new-email', 'TicketsController@newEmail');
         Route::get('/ticket-reply-view/{id}', 'TicketsController@ticketReplyView');
         Route::get('/from-email-view-pdf/{id}', 'TicketsController@fromEmailViewPdf');
         Route::get('/reply-email-view-pdf/{id}','TicketsController@replyEmailViewPdf');
 
 
         Route::post('/update-affilite-info-data', 'ClaimBackController@updateAffiliteInfoData')->name('update-affilite-info-data');
+        Route::post('/delete-affilite', 'ClaimBackController@deleteAffilite')->name('delete-affilite');
 
         Route::get('/affiliates', 'AffiliatesController@manageAffiliate');
         Route::delete('/affiliate/{id}', 'AffiliatesController@destroy');

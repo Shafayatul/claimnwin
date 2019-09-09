@@ -41,6 +41,7 @@
                                 <tr>
                                     <th>Name</th>
                                     <th>Email</th>
+                                    <th>Offer(%)</th>
                                     <th>Status</th>
                                     <th>Role</th>
                                     <th>Action</th>
@@ -51,6 +52,7 @@
                                 <tr>
                                 <td>{{$row->name}}</td>
                                 <td>{{$row->email}}</td>
+                                <td>{{$row->add_special_affiliate_offer}}</td>
                                 <td>
                                     @if($row->status == 0)
                                         <span class="badge badge-dark">Blocked</span>
