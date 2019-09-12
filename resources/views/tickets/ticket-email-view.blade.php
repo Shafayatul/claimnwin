@@ -30,6 +30,8 @@
 @section('main_content')
 
 @include('layouts.includes.partial.alert')
+<link href='{{ asset('admin_asset/css/SidebarNav.min.css')}}' media='all' rel='stylesheet' type='text/css'/>
+
 <div class="forms">
     <div class="form-grids row widget-shadow" data-example-id="basic-forms">
         <div class="form-body">
@@ -254,4 +256,11 @@ $(function() {
 
 });
 </script>
+<style type="text/css">
+a, a:link, a:visited, a:hover, a:active
+{
+  color: #b8c7ce !important;
+  text-decoration: none !important;
+}
+</style>
 @endsection

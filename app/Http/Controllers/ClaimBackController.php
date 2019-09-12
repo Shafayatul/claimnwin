@@ -54,8 +54,10 @@ class ClaimBackController extends Controller
         if ((!empty($s_airline)) || (!empty($s_claim_status)) || (!empty($s_starting_date)) || (!empty($s_end_date))) {
             $claims = Claim::whereNotNull('id');
             if(!empty($s_airline)){
-                $airline_id = Airline::where('name', $s_airline)->first()->id;
-                $claims = $claims->Where('airline_id', $airline_id);
+                $airline_id = Airline::where('name', $s_airline)->first();
+                if ($airline_id) {
+                    $claims = $claims->Where('airline_id', $airline_id->id);
+                }
             }
             if(!empty($s_claim_status)){
                 $claims = $claims->Where('claim_status_id', $s_claim_status);
