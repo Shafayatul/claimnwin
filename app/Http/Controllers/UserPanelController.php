@@ -337,13 +337,13 @@ class UserPanelController extends Controller
         $pending_payments     = Affiliate::where('affiliate_user_id',$user_id)->where('approved',1)->where('is_payment_done',0)->limit(5)->get();
         $latest_refferals     = Affiliate::where('affiliate_user_id',$user_id)->where('approved',1)->limit(5)->get();
 
-
         $link = url('user/signup/'.$encrypt_user_id);
         $facebook = Share::page($link,null,['id' => 'facebook'])->facebook();
         $twitter  = Share::page($link,null,['id' => 'twitter'])->twitter();
         $linkedin = Share::page($link,null,['id' => 'linkedin'])->linkedin();
         // $linkedin = Share::page($link,null,['id' => 'linkedin'])->linkedin('Extra linkedin summary can be passed here');
         $whatsapp = Share::page($link,null,['id' => 'whatsapp'])->whatsapp();
+
 
 
         $text[0] = "Hello";
@@ -366,6 +366,8 @@ class UserPanelController extends Controller
         $text[17] = "Email Us";
         $text[18] = "Contact Us";
         $text[19] = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's.";
+
+
 
         if (Session::has('locale')) {
           $responseDecoded = $this->get_translation($text);
