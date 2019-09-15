@@ -1,6 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+</head>
+<body>
+    <div style="height: auto!important; display: block; overflow: hidden;">
+        <div class="row">
+            <div class="col-md-12">
+                @php
+                    $date=Carbon\Carbon::parse($ticket_reply->created_at)->format("D, d M Y");
+                    $time = Carbon\Carbon::parse($ticket_reply->created_at)->format("h:i A");
+                @endphp
+                <h6>
+                    <strong>{{$ticket_reply->from_name}}</strong> reported via email ({{$date}} at {{$time}})
+                    <br>
+                    <strong>from: </strong> {{$ticket_reply->from_email}}
+                    <br>
+                    <strong>to: </strong> {{$ticket_reply->to_email}}
+                </h6>
+            </div>
+        </div>
+    </div>
+    <div style="height: auto!important; display: block; overflow: hidden;">
+        {!! $ticket_reply->ticket_reply_note !!}
+        {{-- {{ $ticket_reply->ticket_reply_note }} --}}
+    </div>
+</body>
+</html>
+
+
+
+{{-- <!DOCTYPE html>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -49,3 +81,4 @@
 </html>
 
 
+ --}}

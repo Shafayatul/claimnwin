@@ -160,7 +160,7 @@
                                             <div class="col-md-6">
                                                 <ul class="reply pull-right">
                                                 <li><a href="{{URL::to('/ticket-reply-view/'.$row->ticket_id)}}"><i class="fa fa-share"></i></a></li>
-                                                <li><a href="{{URL::to('/reply-email-view-pdf/'.$row->ticket_id)}}"><i class="fa fa-file-pdf-o"></i></a></li>
+                                                <li><a href="{{URL::to('/reply-email-view-pdf/'.$row->ticket_id)}}" target="_blank"><i class="fa fa-file-pdf-o"></i></a></li>
                                                 </ul>
                                             </div>
                                         </div>

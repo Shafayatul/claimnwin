@@ -243,7 +243,40 @@ $(document).ready(function(){
       }else if (step == 3) {
 
         $("#continue_3").removeClass('active_button');
-        var step_three_airline = false;
+            var step_three_airline = true;
+            var step_three_flight_number = true;
+            var step_three_flight_code   = true;
+            var step_three_departure_date = true;
+            $("input[name^='airline']").each(function() {
+                if ($(this).val() == "") {
+                    step_three_airline = false;
+                }
+            });
+
+            $("input[name^='flight_number']").each(function() {
+                if ($(this).val() == "") {
+                    step_three_flight_number = false;
+                }
+            });
+            $("input[name^='flight_code']").each(function() {
+                if ($(this).val() == "") {
+                    step_three_flight_code = false;
+                }
+            });
+
+            $("input[name^='departure_date']").each(function() {
+                if ($(this).val() == "") {
+                    step_three_departure_date = false;
+                }
+            });
+
+            if (step_three_airline && step_three_flight_number && step_three_departure_date && step_three_flight_code) {
+                $("#continue_3").addClass('active_button');
+                return true;
+            }
+
+        
+/*        var step_three_airline = false;
         var step_three_flight_number = false;
         var step_three_departure_date = false;
         $("input[name^='airline']").each(function(){
@@ -276,7 +309,7 @@ $(document).ready(function(){
         if (step_three_airline == true && step_three_flight_number == true && step_three_departure_date == true) {
           $("#continue_3").addClass('active_button');
           return true;
-        }
+        }*/
       }else if (step == 4) {
         $("#continue_4").removeClass('active_button');
 

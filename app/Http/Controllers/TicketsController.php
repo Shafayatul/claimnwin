@@ -33,11 +33,6 @@ class TicketsController extends Controller
     public function ticketInbox(Request $request)
     {
 
-
-        // $MAIL_USERNAME = "info@claimnwin.com";
-        // $MAIL_PASSWORD = "(%1]zwl8Iini66";
-
-
         $perPage = 25;
         if ($request->has('submit')){
             $contact                    = $request->get('contact');
@@ -66,7 +61,7 @@ class TicketsController extends Controller
             if(!empty($status)){
                 $tickets=$tickets->where('ticket_status',$status);
             }
-            $tickets = $tickets->latest()->paginate($perPage);
+            $tickets = $tickets->latest()->paginate(100000);
         }else {
         $oClient = new Client([
             'host'          => 'premium39.web-hosting.com',
@@ -589,8 +584,10 @@ class TicketsController extends Controller
     public function replyEmailViewPdf($id)
     {
         $ticket_reply = TicketReplyEmail::where('ticket_id',$id)->first();
-        $pdf = PDF::loadView('pdf.reply_email_view',['ticket_reply'=>$ticket_reply]);
-        return $pdf->download($ticket_reply->from_name.'-email'.'.'.'pdf');
+        // $pdf   = PDF::loadView('pdf.reply_email_view',['ticket_reply'=>$ticket_reply])->setPaper('a4', 'landscape')->setWarnings(false);
+        // return $pdf->download($ticket_reply->from_name.'-email'.'.'.'pdf');
+        return view('pdf.reply_email_view', compact('ticket_reply'));
+
     }
 
     public function send_new_email_view()
