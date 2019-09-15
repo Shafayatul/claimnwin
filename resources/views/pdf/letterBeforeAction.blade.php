@@ -397,7 +397,8 @@
         </div>
     </form>
 {{-- Tinymce with file upload option --}}
-<script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+{{-- <script src="//cdn.tinymce.com/4/tinymce.min.js"></script> --}}
+<script src="{{ asset('admin_asset/tinymce/tinymce.min.js') }}"></script>
 <script>
     var editor_config = {
         path_absolute : "{{url('/').'/'}}",
@@ -406,9 +407,10 @@
         "advlist autolink lists link image charmap print preview hr anchor pagebreak",
         "searchreplace wordcount visualblocks visualchars code fullscreen",
         "insertdatetime media nonbreaking save table contextmenu directionality",
-        "emoticons template paste textcolor colorpicker textpattern"
+        "emoticons template paste textcolor colorpicker textpattern",
+        "ExportToDoc"
         ],
-        toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media | forecolor backcolor",
+        toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media | forecolor backcolor | ExportToDoc",
         relative_urls: false,
         file_browser_callback : function(field_name, url, type, win) {
         var x = window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth;
