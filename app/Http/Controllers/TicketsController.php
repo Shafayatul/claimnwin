@@ -16,6 +16,7 @@ use Webklex\IMAP\Client;
 use App\TicketReplyEmail;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\TicketReply;
+use App\Mail\sendNewEmail;
 use Carbon\Carbon;
 use App\EmailTemplate;
 use PDF;
@@ -590,5 +591,41 @@ class TicketsController extends Controller
         $ticket_reply = TicketReplyEmail::where('ticket_id',$id)->first();
         $pdf = PDF::loadView('pdf.reply_email_view',['ticket_reply'=>$ticket_reply]);
         return $pdf->download($ticket_reply->from_name.'-email'.'.'.'pdf');
+    }
+
+    public function send_new_email_view()
+    {
+        $EmailTemplate = EmailTemplate::all()->pluck('title', 'id');
+        return view('tickets.send-new-email', compact('EmailTemplate'));
+    }
+
+    public function send_new_email(Request $request)
+    {
+        $composeData = $request->description;
+        if($request->hasFile('new_email_files')){
+            $files = $request->file('new_email_files');
+            // dd($files);
+            foreach($files as $file){
+                $fileName = uniqid().'.'.$file->getClientOriginalExtension();
+                $filePath = 'new-email/';
+                $fileUrl = $filePath.$fileName;
+                $file->move($filePath,$fileName);
+                // $file__name[] = $fileName;
+                $images[]=$fileUrl;
+            }
+
+        }else{
+            $images= [];
+        }
+        $file_names =$images;
+
+       $from_email  = $request->from_email;
+       $from_name   = $request->from_name;
+
+       $subject = $request->sub;
+
+       $toEmail = explode(',', $request->to_email);
+        Mail::to($toEmail)->send(new sendNewEmail($file_names,$composeData,$toEmail,$from_email,$from_name,$subject));
+        return redirect()->back()->with('success', 'Send Email Successfully');
     }
 }

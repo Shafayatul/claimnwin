@@ -10,7 +10,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 class CustomerCompose extends Mailable
 {
     use Queueable, SerializesModels;
-   public $file__names,$composeData,$userName,$from_email,$from_name,$customerComposeSubject;
+    public $file__names,$composeData,$userName,$from_email,$from_name,$customerComposeSubject;
 
     /**
      * Create a new message instance.

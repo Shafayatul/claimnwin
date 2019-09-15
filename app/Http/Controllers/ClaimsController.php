@@ -808,7 +808,8 @@ class ClaimsController extends Controller
         // 
         $ittDetails = ItineraryDetail::where('claim_id',$claim->id)->where('is_selected','1')->first();
         $passengers = Passenger::where('claim_id',$claim->id)->get();
-        Mail::to($user->email)->send(new ClaimCompleted($user, $ittDetails, $passengers));
+        $airline    = Airline::where('id', $ittDetails->airline_id)->first();
+        Mail::to($user->email)->send(new ClaimCompleted($user, $ittDetails, $passengers, $airline));
 
 
 

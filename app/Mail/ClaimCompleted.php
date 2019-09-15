@@ -10,18 +10,19 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 class ClaimCompleted extends Mailable
 {
     use Queueable, SerializesModels;
-    public $user, $ittDetails, $passengers;
+    public $user, $ittDetails, $passengers, $airline;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($user,$ittDetails, $passengers)
+    public function __construct($user,$ittDetails, $passengers, $airline)
     {
-        $this->user         = $user;
-        $this->ittDetails   = $ittDetails;
-        $this->passengers    = $passengers;
+        $this->user       = $user;
+        $this->ittDetails = $ittDetails;
+        $this->passengers = $passengers;
+        $this->airline    = $airline;
     }
 
     /**

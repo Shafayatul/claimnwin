@@ -411,6 +411,7 @@
         "ExportToDoc"
         ],
         toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media | forecolor backcolor | ExportToDoc",
+        etd_file_name: "Letter-Before-Action-"+{{ $claim->id  }},
         relative_urls: false,
         file_browser_callback : function(field_name, url, type, win) {
         var x = window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth;

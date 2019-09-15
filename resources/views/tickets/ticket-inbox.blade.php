@@ -87,6 +87,13 @@
                                 </button>
                             </span>
                         </div>
+                        <div class="col-md-4">
+                            <span class="input-group-append">
+                                <a  href="{{ url('/send-new-email') }}" class="btn btn-lg btn-block btn-success" type="submit" name="submit">
+                                    <i class="fab fa-telegram-plane"></i> Send New Email
+                                </a>
+                            </span>
+                        </div>
                     </div>
                     {!! Form::close() !!}
                     <div class="table-responsive">

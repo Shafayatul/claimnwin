@@ -1,43 +1,35 @@
 @component('mail::message')
 <div>
-
-Dear {{$user->name}},
-<br>
-<p>
-    You are receiving this email as confirmation of receipt of your recent flight claim made online at www.claimnwin.com for flight {{$ittDetails->flight_number}} on {{Carbon\Carbon::parse($ittDetails->created_at)->format('d/m/Y')}}
-</p>
-
-<p>
-    Thank you for submitting your flight claim with Bott and Co using our 100% no-win no-fee service. Your enquiry reference number is CLAIM/{{$ittDetails->claim_id}}.
-</p>
-
-<p>
-    We'll now work on verifying the flight information you've provided and will confirm the status of your claim by email shortly.
-</p>
-
-<p>
-    We can see you have submitted Claims for: <br>
-    <strong>{{$user->name}}</strong>
-</p>
-
-<p>
-    If you need to add any other passengers into this claim, please email us with their:
-</p>
-
-<ul>
-    <li>full name</li>
-    <li>postal address</li>
-    <li>date of birth</li>
-    <li>email address</li>
-</ul>
-
-<p>
-    We've secured payments from Airlines in as little as a few hours and in others we've gone all the way to court. No other flight Claims company or law firm will do this in the; Claim’N Win are the industry leaders by a considerable distance.
-</p>
-
-Kind regrads,
-<br>
-Claim’N Win
+    Dear {{$user->name}},
+    <br>
+    <p>
+        You are receiving this email as confirmation of receipt of your recent flight claim made online at www.claimnwin.com for flight {{$ittDetails->flight_number}} on {{Carbon\Carbon::parse($ittDetails->created_at)->format('d/m/Y')}}
+    </p>
+    <p>
+        Thank you for submitting your flight claim with Bott and Co using our 100% no-win no-fee service. Your enquiry reference number is CLAIM/{{$ittDetails->claim_id}}.
+    </p>
+    <p>
+        We'll now work on verifying the flight information you've provided and will confirm the status of your claim by email shortly.
+    </p>
+    <p>
+        We can see you have submitted Claims for: <br>
+        <strong>{{$user->name}}</strong>
+    </p>
+    <p>
+        If you need to add any other passengers into this claim, please email us with their:
+    </p>
+    <ul>
+        <li>full name</li>
+        <li>postal address</li>
+        <li>date of birth</li>
+        <li>email address</li>
+    </ul>
+    <p>
+        We've secured payments from Airlines in as little as a few hours and in others we've gone all the way to court. No other flight Claims company or law firm will do this in the; Claim’N Win are the industry leaders by a considerable distance.
+    </p>
+    Kind regrads,
+    <br>
+    Claim’N Win
 </div>
 <br><br><br><br>
 <div>
