@@ -27,7 +27,7 @@ $(document).ready(function() {
     $(document).on('click', '#continue_8', function(){
         $("#step-form").submit();
     });
-    $(document).on('change', '.airline', function(){
+    $(document).on('focusout', '.airline', function(){
       console.log('working');
       var iata_code = $(this).attr('iata_code');
       var serial = $(this).attr('serial');
@@ -36,7 +36,7 @@ $(document).ready(function() {
       console.log($(".flight_code_"+serial).val(iata_code));
     });
 
-    $(document).on('change', "input[name='departed_from'], input[name='final_destination'], input[name='is_direct_flight'], .connection", function(){
+    $(document).on('focusout', "input[name='departed_from'], input[name='final_destination'], input[name='is_direct_flight'], .connection", function(){
         if ($("input[name='is_direct_flight']:checked").val() == '1') {
            var is_connection_empty = true;
            $(".connection").each(function(){
@@ -333,7 +333,7 @@ $(document).ready(function() {
         return false;
     }
 
-    $(document).on("change", "input, select", function() {
+    $(document).on("focusout", "input, select", function() {
         check_next_step();
     });
 
@@ -660,7 +660,7 @@ $(document).ready(function() {
     });
 
     /* Booking Reference   */
-    $(document).on('change', '.passenger_is_booking_checkbox', function() {
+    $(document).on('focusout', '.passenger_is_booking_checkbox', function() {
         var count = $(this).attr('count');
         if ($(this).attr("value") == "1") {
             $(".show_on_is_booking_reference_yes_" + count).show(500);
@@ -699,7 +699,7 @@ $(document).ready(function() {
         fileInput.focus();
         return false;
     });
-    fileInput.addEventListener("change", function(event) {
+    fileInput.addEventListener("focusout", function(event) {
         the_return.innerHTML = this.value;
     });
 
@@ -718,7 +718,7 @@ $(document).ready(function() {
         fileInput1.focus();
         return false;
     });
-    fileInput1.addEventListener("change", function(event) {
+    fileInput1.addEventListener("focusout", function(event) {
         the_return1.innerHTML = this.value;
     });
 
@@ -737,7 +737,7 @@ $(document).ready(function() {
         fileInput2.focus();
         return false;
     });
-    fileInput2.addEventListener("change", function(event) {
+    fileInput2.addEventListener("focusout", function(event) {
         the_return2.innerHTML = this.value;
     });
 
@@ -756,7 +756,7 @@ $(document).ready(function() {
         fileInput3.focus();
         return false;
     });
-    fileInput3.addEventListener("change", function(event) {
+    fileInput3.addEventListener("focusout", function(event) {
         the_return3.innerHTML = this.value;
     });
 
