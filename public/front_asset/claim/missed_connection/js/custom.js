@@ -1,5 +1,5 @@
 $(document).ready(function(){
-// $(window).on ( "load", function() {
+
     // is canvas signed
     var is_signed = false;
     $('canvas').on('mouseup', function() {
