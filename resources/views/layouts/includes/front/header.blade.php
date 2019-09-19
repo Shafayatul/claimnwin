@@ -11,7 +11,8 @@
                   </span>
               </button>
               <a class="navbar-brand" href="{{url('/')}}">
-                  <img src="{{asset('front_asset/')}}/img/logo.webp"  id="main-logo-top" alt="Logo">
+                  <img src="{{asset('front_asset/')}}/img/logo.webp" class="main-logo-top"  id="main-logo-top" alt="Logo">
+                  <img src="{{asset('front_asset/')}}/img/logo.png" style="display: none;" class="main-logo-top"  id="main-logo-top" alt="Logo">
               </a>
           </div>
 

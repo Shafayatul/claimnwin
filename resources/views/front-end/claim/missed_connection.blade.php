@@ -79,6 +79,7 @@
                               <div class="form_h3">
                                 <h3>Where did you fly?</h3>
                               </div>
+                                
                               <div class="parent_div">
                                 <div class="two_child_div_left">
                                   <div class="label_field">
@@ -1407,6 +1408,7 @@
           </div>
       </div>
   </div>
+<input type="hidden" id="is-airport-changed" value="0">
 
 @endsection
 
@@ -1436,6 +1438,9 @@
                 // console.log('Item "'+item.data('langname')+' ('+item.data('lang')+')" selected by '+(e.type == 'keydown' ? 'pressing enter or tab' : 'mouse click')+'.');
                 $(':focus').val(item.data('langname')+' ('+item.data('lang')+')').attr('iata-code',item.data('lang'));
                 $(':focus').blur();
+                var inputVal = parseInt(document.getElementById("is-airport-changed").value);
+                document.getElementById("is-airport-changed").value = inputVal+1;
+
             }
         });
       }
@@ -1458,11 +1463,16 @@
             },
             onSelect: function(e, term, item){
                 $(':focus').val(item.data('langname')).attr('iata_code',item.data('lang'));
+                // setting value
+                var iata_code = $(':focus').attr('iata_code');
+                var serial = $(':focus').attr('serial');
+                console.log(iata_code);
+                console.log(serial);
+                console.log($(".flight_code_"+serial).val(iata_code));
                 $(':focus').blur();
             }
         });
       }
-
   </script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

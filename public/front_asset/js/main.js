@@ -69,6 +69,14 @@ jQuery(document).on('ready', function() {
         owlCarouselActivation();
         hamburger();
     })(jQuery);
+
+
+    var is_chrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
+    if(!is_chrome){  
+        $(".main-logo-top").toggle();
+    }
+
+
 });
 
 // instance of fuction while Window Load event

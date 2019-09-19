@@ -1225,7 +1225,7 @@
           </div>
       </div>
   </div>
-
+<input type="hidden" id="is-airport-changed" value="0">
 @endsection
 
 
@@ -1254,6 +1254,9 @@
                 // console.log('Item "'+item.data('langname')+' ('+item.data('lang')+')" selected by '+(e.type == 'keydown' ? 'pressing enter or tab' : 'mouse click')+'.');
                 $(':focus').val(item.data('langname')+' ('+item.data('lang')+')').attr('iata-code',item.data('lang'));
                 $(':focus').blur();
+                var inputVal = parseInt(document.getElementById("is-airport-changed").value);
+                document.getElementById("is-airport-changed").value = inputVal+1;
+
             }
         });
       }
@@ -1276,11 +1279,16 @@
             },
             onSelect: function(e, term, item){
                 $(':focus').val(item.data('langname')).attr('iata_code',item.data('lang'));
+                // setting value
+                var iata_code = $(':focus').attr('iata_code');
+                var serial = $(':focus').attr('serial');
+                console.log(iata_code);
+                console.log(serial);
+                console.log($(".flight_code_"+serial).val(iata_code));
                 $(':focus').blur();
             }
         });
       }
-
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>

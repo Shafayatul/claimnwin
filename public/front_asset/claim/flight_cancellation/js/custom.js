@@ -2,7 +2,30 @@ $(document).ready(function() {
 
 
     // is canvas signed
-    var is_signed = false;
+    function iOS() {
+
+      var iDevices = [
+        'iPad Simulator',
+        'iPhone Simulator',
+        'iPod Simulator',
+        'iPad',
+        'iPhone',
+        'iPod'
+      ];
+
+      if (!!navigator.platform) {
+        while (iDevices.length) {
+          if (navigator.platform === iDevices.pop()){ return true; }
+        }
+      }
+
+      return false;
+    }
+    if (iOS()) {
+      var is_signed = true;
+    }else{
+      var is_signed = false;
+    }
     $('canvas').on('mouseup', function() {
        is_signed = true;
        check_next_step();
@@ -29,19 +52,19 @@ $(document).ready(function() {
     });
 
 
-    $(document).on('change', '.airline', function(){
-      console.log('working');
-      var iata_code = $(this).attr('iata_code');
-      var serial = $(this).attr('serial');
-      console.log(iata_code);
-      console.log(serial);
-      console.log($(".flight_code_"+serial).val(iata_code));
-    });
 
     /**
     * flight list dynamic checkbox
     */
     $(document).on('change', "input[name='departed_from'], input[name='final_destination'], input[name='is_direct_flight'], .connection", function(){
+
+    });
+
+    /**
+    * flight list dynamic checkbox
+    */
+    $(".show_on_airport_selected").hide();
+    function airportChange(){
        if ($("input[name='is_direct_flight']:checked").val() == '1') {
           var is_connection_empty = true;
           $(".connection").each(function(){
@@ -55,7 +78,24 @@ $(document).ready(function() {
         }else{
           itinerary_details_for_your_disrupted_flight_html('single');
         }
-    });
+    }
+
+    var current_is_airport_changed = $("#is-airport-changed").val();
+    setInterval(function(){
+      if ($("#is-airport-changed").val() != current_is_airport_changed) {
+        current_is_airport_changed = $("#is-airport-changed").val();
+        airportChange();
+      }
+    },400);
+
+    // $(document).on('change', '.airline', function(){
+    //   console.log('working');
+    //   var iata_code = $(this).attr('iata_code');
+    //   var serial = $(this).attr('serial');
+    //   console.log(iata_code);
+    //   console.log(serial);
+    //   console.log($(".flight_code_"+serial).val(iata_code));
+    // });
 
     function itinerary_details_for_your_disrupted_flight_html(type){
 

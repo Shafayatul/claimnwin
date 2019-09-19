@@ -726,7 +726,7 @@ class ClaimsController extends Controller
         * Create custom email
         */
         $cpanel_password  = $this->randomPassword();
-        $this->create_cpanel_email($cpanel_email_name, $cpanel_password);
+        // $this->create_cpanel_email($cpanel_email_name, $cpanel_password);
         $cpanel_email     = $cpanel_email_name.'@claimnwin.com';
 
 
@@ -809,7 +809,7 @@ class ClaimsController extends Controller
         $ittDetails = ItineraryDetail::where('claim_id',$claim->id)->where('is_selected','1')->first();
         $passengers = Passenger::where('claim_id',$claim->id)->get();
         $airline    = Airline::where('id', $ittDetails->airline_id)->first();
-        Mail::to($user->email)->send(new ClaimCompleted($user, $ittDetails, $passengers, $airline));
+        // Mail::to($user->email)->send(new ClaimCompleted($user, $ittDetails, $passengers, $airline));
 
 
 
