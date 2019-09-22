@@ -39,8 +39,8 @@
       </div>
       <div class="right-child">
         <p class="vb">
-          @if ($passenger->booking_refernece != "")
-            {{$passenger->booking_refernece." - ".$passenger->created_at}}</h5>
+          @if ($passenger->booking_refernece != 0)
+            {{ $passenger->booking_refernece." - ".Carbon\Carbon::parse($passenger->created_at)->format('jS F, Y') }}</h5>
           @else
             {{"No Reference Found"}}
           @endif
@@ -90,7 +90,11 @@
     <div class="parent-div">
       <div class="signature-date-div">
         <div class="signature-div">
-          <img class="vb" src="{{ asset('/uploads/sig/'.$claim->id.'.png') }}" alt="">
+          @if($empty_sig)
+            <img class="vb" src="{{ asset('empty-sig.png') }}" alt="">
+          @else
+            <img class="vb" src="{{ asset('/uploads/sig/'.$claim->id.'.png') }}" alt="">
+          @endif
           <p class="fs-16 tc pr">Signature</p>
         </div>
         <div class="date-div">

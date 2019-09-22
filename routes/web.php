@@ -178,7 +178,7 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get('flights/from-claim/{claim_id}/{airline_id}/{flight_number}/{date}', 'FlightsController@create_from_claim');
         Route::resource('flights', 'FlightsController');
         Route::get('/letter-before-action/{id}', 'PdfController@letterBeforeActionView');
-        Route::get('/poa-pdf/{id}', 'PdfController@pdfView');
+        Route::get('/poa-pdf/{id}/{passenger_id}', 'PdfController@pdfView');
 
         // Route::resource('claim-files', 'ClaimFilesController');
         Route::get('/archive-manage-claim', 'ClaimBackController@archiveIndex');

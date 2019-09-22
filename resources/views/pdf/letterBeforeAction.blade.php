@@ -75,28 +75,27 @@
         <input type="hidden" name="airline_id" value="{{$claim->airline_id}}" />
         <input type="hidden" name="cpanel_email" value="{{$claim->cpanel_email}}" />
         <textarea id="pdf" name="letter_before_content" class="tinymce-editor" rows="50">
-            @php
-                $claim_type = ucwords(str_replace("_"," ",$claim->claim_table_type));
-            @endphp
-            <div class="container">
+  @php
+      $claim_type = ucwords(str_replace("_"," ",$claim->claim_table_type));
+  @endphp
+  <div class="container">
 
-            <div class="total_div" style="width: 100%; display: block; overflow: hidden;">
-              <div class="logo_div" style="width: 50%;  float: left; padding-top: 20px; ">
-                <div class="logo_img_div">
-                  <img src="{{asset('front_asset/img/logo.png')}}" alt="" >
-                </div>
-              </div>
-              <div class="text_div text-right" style="width: 50%;  float: left; text-align: right">
-                <h4 style="color: #76A154;">Claim'n Win Ltd</h4>
-                <h4 style="color: #76A154;">T: <span style="color: #000000;font-size: 15px; font-weight:bold;">020 3808 6632</span></h4>
-                <h4 style="color: #76A154;">E: <span style="color: #000000;font-size: 15px; font-weight:bold;">info@claimnwin@co.uk</span></h4>
-              </div>
-            </div>
-
+  <div class="total_div" style="width: 100%; display: block; overflow: hidden;">
+    <div class="logo_div" style="width: 50%;  float: left; padding-top: 20px; ">
+      <div class="logo_img_div">
+        <img src="{{asset('front_asset/img/logo.png')}}" alt="" >
+      </div>
+    </div>
+    <div class="text_div text-right" style="width: 50%;  float: left; text-align: justify;">
+      <h4 style="color: #76A154; margin-left: 50%;">Claim'n Win Ltd</h4>
+      <h4 style="color: #76A154; margin-left: 50%;">T: <span style="color: #000000;font-size: 15px; font-weight:bold;">020 3808 6632</span></h4>
+      <h4 style="color: #76A154; margin-left: 50%;">E: <span style="color: #000000;font-size: 15px; font-weight:bold;">info@claimnwin@co.uk</span></h4>
+    </div>
+  </div>
 
 
   <div class="total_div">
-    <h5 style="font-size: 15px;font-weight:bold; text-align: right;">Private and Confidential</h5>
+    <h5 style="font-size: 15px;font-weight:bold; text-align: left;">Private and Confidential</h5>
   </div>
   <div class="total_div" style="width: 100%; display: block; overflow: hidden;">
     <div class="address_div" style="width: 50%;  float: left;">
@@ -123,11 +122,11 @@
       {{-- <h5>{{$airline->address_line_2}}</h5> --}}
       {{-- <h5>{{$airline->country}}</h5> --}}
     </div>
-    <div class="date_time_div text-right"  style="width: 50%;  float: left; text-align: right">
+    <div class="date_time_div text-right"  style="width: 50%;  float: left; text-align: left;">
       <!-- <h5>Date: {{Carbon\Carbon::today()}}</h5> -->
-      <h5>Date: {{$itt_details->departure_date}}</h5>
-      <h5>Our Ref: CLAIM/000{{$claim->id}}</h5>
-      <h5>Your Ref: Your Ref: {{$current_passenger->booking_refernece == null ? 'No Reference Found' : $current_passenger->booking_refernece}}
+      <h5 style="margin-left: 50%;">Date: {{$itt_details->departure_date}}</h5>
+      <h5 style="margin-left: 50%;">Our Ref: CLAIM/000{{$claim->id}}</h5>
+      <h5 style="margin-left: 50%;">Your Ref: Your Ref: {{$current_passenger->booking_refernece == null ? 'No Reference Found' : $current_passenger->booking_refernece}}
     </div>
   </div>
 
@@ -368,7 +367,13 @@
         <p>{{$passenger_row->first_name.' '.$passenger_row->last_name}}</p>
       </div>
       <div class="second_child">
-        <p class="text-center">656</p>
+        <p class="text-center">
+          @if($passenger->is_booking == 1)
+            {{ $passenger->booking_refernece }}
+          @else
+            {{ 'No booking reference' }}
+          @endif
+        </p>
       </div>
   </div>
   @endforeach
@@ -383,17 +388,7 @@
 
 
 </textarea>
-        {{-- <div class="col-md-4 col-md-offset-4">
-            <br>
-            <br>
-            <button type="submit" class="btn btn-lg btn-success btn-block"> <i class="fa fa-envelope"></i> Email</button>
-        </div>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br> --}}
+
         </div>
     </form>
 {{-- Tinymce with file upload option --}}

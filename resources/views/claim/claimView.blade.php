@@ -354,7 +354,9 @@ overflow-y: auto;
                                                             @else
                                                             <a class="btn btn-success btn-sm time-input-required" >Download Pdf</a>
                                                             @endif
-                                                            <a href="{{URL::to('/poa-pdf/'.$claims->id)}}" class="btn btn-primary btn-sm">Download POA Pdf</a>
+                                                            @foreach($passengers as $single_passenger)
+                                                                <a href="{{URL::to('/poa-pdf/'.$claims->id.'/'.$single_passenger->id)}}" class="btn btn-primary btn-sm">Download POA Pdf-{{ $single_passenger->first_name.' '.$single_passenger->last_name }}</a>
+                                                            @endforeach
                                                             <div class="panel panel-default">
                                                                 <!-- /.panel-heading -->
                                                                 <div class="panel-body">

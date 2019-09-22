@@ -138,16 +138,22 @@ class PdfController extends Controller
 
     }
 
-    public function pdfView($id)
+    public function pdfView($id, $passenger_id)
     {
-        // $claim=Claim::find($id);
-        $claim=Claim::where('id',$id)->first();
-        $airport_from=Airport::where('id', $claim->departed_from_id)->first();
-        $airport_to=Airport::where('id', $claim->final_destination_id)->first();
+        $empty_sig         = true;
+        $claim             = Claim::where('id',$id)->first();
+        $airport_from      = Airport::where('id', $claim->departed_from_id)->first();
+        $airport_to        = Airport::where('id', $claim->final_destination_id)->first();
         $itinerary_details = ItineraryDetail::where('claim_id',$id)->first();
-        $passenger = Passenger::where('claim_id',$id)->first();
-        // dd($passenger);
-        return view('pdf.POA',compact('claim','passenger', 'itinerary_details', 'airport_from', 'airport_to'));
+        $passenger         = Passenger::where('id',$passenger_id)->first();
+        $first_passenger   = Passenger::first();
+        
+        if ($passenger->id == $first_passenger->id) {
+            $empty_sig = false;
+        }
+
+
+        return view('pdf.POA',compact('claim','passenger', 'itinerary_details', 'airport_from', 'airport_to', 'empty_sig'));
     }
 
     public function letterBeforeActionEmail(Request $request)
