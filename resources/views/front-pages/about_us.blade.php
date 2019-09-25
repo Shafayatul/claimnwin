@@ -128,21 +128,21 @@
                       <img src="{{ asset('/front_asset/front_pages_asset/img/airlines_image/american_airlines.JPG') }}" alt="">
                     </div>
                   </div>
-                  <div class="sliding_div">
+                  {{-- <div class="sliding_div">
                     <div class="sliding_img_container">
                       <img src="{{ asset('/front_asset/front_pages_asset/img/airlines_image/austrian_airlines.JPG') }}" alt="">
                     </div>
-                  </div>
+                  </div> --}}
                   <div class="sliding_div">
                     <div class="sliding_img_container">
                       <img src="{{ asset('/front_asset/front_pages_asset/img/airlines_image/British_airways.JPG') }}" alt="">
                     </div>
                   </div>
-                  <div class="sliding_div">
+                  {{-- <div class="sliding_div">
                     <div class="sliding_img_container">
                       <img src="{{ asset('/front_asset/front_pages_asset/img/airlines_image/brussels_airlines.JPG') }}" alt="">
                     </div>
-                  </div>
+                  </div> --}}
                   <div class="sliding_div">
                     <div class="sliding_img_container">
                       <img src="{{ asset('/front_asset/front_pages_asset/img/airlines_image/delta_airlines.JPG') }}" alt="">
@@ -158,11 +158,11 @@
                       <img src="{{ asset('/front_asset/front_pages_asset/img/airlines_image/lot_polish_airlines.JPG') }}" alt="">
                     </div>
                   </div>
-                  <div class="sliding_div">
+                  {{-- <div class="sliding_div">
                     <div class="sliding_img_container">
                       <img src="{{ asset('/front_asset/front_pages_asset/img/airlines_image/Lufthansa.JPG') }}" alt="">
                     </div>
-                  </div>
+                  </div> --}}
                   <div class="sliding_div">
                     <div class="sliding_img_container">
                       <img src="{{ asset('/front_asset/front_pages_asset/img/airlines_image/Norwegian_airlines.JPG') }}" alt="">
@@ -173,11 +173,11 @@
                       <img src="{{ asset('/front_asset/front_pages_asset/img/airlines_image/ryanair.JPG') }}" alt="">
                     </div>
                   </div>
-                  <div class="sliding_div">
+                  {{-- <div class="sliding_div">
                     <div class="sliding_img_container">
                       <img src="{{ asset('/front_asset/front_pages_asset/img/airlines_image/Swiss_airlines.JPG') }}" alt="">
                     </div>
-                  </div>
+                  </div> --}}
                   <div class="sliding_div">
                     <div class="sliding_img_container">
                       <img src="{{ asset('/front_asset/front_pages_asset/img/airlines_image/virgin_attlantic.JPG') }}" alt="">
