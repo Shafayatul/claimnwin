@@ -621,7 +621,7 @@
                                                 <tbody>
                                                     <tr>
                                                         <td class="align-middle">Clothing
-                                                            <input type="hidden" value="accommodation" class="common_input expense_name" id="common_input expense_name" name="expense_name[]">
+                                                            <input type="hidden" value="clothing" class="common_input expense_name" id="common_input expense_name" name="expense_name[]">
                                                         </td>
                                                         <td class="align-middle">
                                                             <div class="row">
@@ -651,7 +651,7 @@
                                                     </tr>
                                                     <tr>
                                                         <td class="align-baseline">Toiletries
-                                                            <input type="hidden" value="accommodation" class="common_input expense_name" id="common_input expense_name" name="expense_name[]">
+                                                            <input type="hidden" value="toiletries" class="common_input expense_name" id="common_input expense_name" name="expense_name[]">
                                                         </td>
                                                         <td>
                                                             <div class="row">
@@ -681,7 +681,7 @@
                                                     </tr>
                                                     <tr>
                                                         <td class="align-baseline">Others
-                                                            <input type="hidden" value="accommodation" class="common_input expense_name" id="common_input expense_name" name="expense_name[]">
+                                                            <input type="hidden" value="other" class="common_input expense_name" id="common_input expense_name" name="expense_name[]">
                                                         </td>
                                                         <td>
                                                             <div class="row">
@@ -751,7 +751,7 @@
                                                 <tr>
                                                     <th scope="col">Expense</th>
                                                     <td class="align-baseline">Clothing
-                                                        <input type="hidden" value="accommodation" class="common_input expense_name" id="common_input expense_name" name="expense_name[]">
+                                                        <input type="hidden" value="clothing" class="common_input expense_name" id="common_input expense_name" name="expense_name[]">
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -788,7 +788,7 @@
                                                 <tr>
                                                     <th scope="col">Expense</th>
                                                     <td class="align-baseline">Toiletries
-                                                        <input type="hidden" value="accommodation" class="common_input expense_name" id="common_input expense_name" name="expense_name[]">
+                                                        <input type="hidden" value="toiletries" class="common_input expense_name" id="common_input expense_name" name="expense_name[]">
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -825,7 +825,7 @@
                                                 <tr>
                                                     <th scope="col">Expense</th>
                                                     <td class="align-baseline">Others
-                                                        <input type="hidden" value="accommodation" class="common_input expense_name" id="common_input expense_name" name="expense_name[]">
+                                                        <input type="hidden" value="other" class="common_input expense_name" id="common_input expense_name" name="expense_name[]">
                                                     </td>
                                                 </tr>
                                                 <tr>

@@ -596,7 +596,7 @@ overflow-y: auto;
                                                                                 <tr>
                                                                                     <th>Have you contacted the airline regarding the claim?</th>
                                                                                     <td>
-                                                                                        @if($claims->is_contacted_airline == 1)
+                                                                                        @if($claims->is_already_written_airline == 1)
                                                                                         Yes {{-- <a href="">Download previous correspondence</a> --}}
                                                                                         @else
                                                                                         No
