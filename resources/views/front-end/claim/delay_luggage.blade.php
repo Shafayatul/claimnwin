@@ -260,7 +260,30 @@
                             .................................................................... -->
 
                             <div class="single_step" id="step_3" style="display:none;">
+                              <div class="common_row">
+                                {{-- <div class="form_h3">
+                                    <h3>Have You received your luggage?</h3>
+                                </div> --}}
+                                <div class="label_field only_label_without_input">
+                                  <label>HAVE YOU RECEIVED YOUR LUGGAGE?</label>
+                                </div>
                                 <div class="parent_div">
+                                    <div class="two_child_radio_div first_child">
+                                        <label class="container_radio">Yes
+                                            <input class="common_input is_luggage_received" type="radio" id="common_input is_luggage_received_yes" name="is_luggage_received" value="1">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </div>
+                                    <div class="two_child_radio_div">
+                                        <label class="container_radio">No
+                                            <input class="common_input is_luggage_received" type="radio" id="common_input is_luggage_received_no" name="is_luggage_received" value="0" checked>
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                              </div>
+
+                                <div class="parent_div" id="date_received">
                                     <div class="label_field">
                                         <label for="departure_airport">When did you receive your luggage?</label>
                                     </div>

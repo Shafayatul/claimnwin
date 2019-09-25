@@ -762,6 +762,15 @@ $(document).ready(function() {
     };
     date_input.datepicker(options);
   }
-
+$("#date_received").hide();
 $(".expense_currency_select_option").val('USD');
+  $(document).on('click', '.is_luggage_received', function(){
+    var is_luggage_received_val = $(this).val();
+    if(is_luggage_received_val == "1"){
+      $("#date_received").show(500);
+    }else{
+      $(".received_luggage_date").val(' ');
+      $("#date_received").hide(500);
+    }
+  });
 });

@@ -271,9 +271,9 @@ overflow-y: auto;
                                                                                 <th>Did notify before 14 days?</th>
                                                                                 <td>
                                                                                     @if($claims->is_notify_before_forteen_days == 1)
-                                                                                    Yes
-                                                                                    @else
                                                                                     No
+                                                                                    @else
+                                                                                    Yes
                                                                                     @endif
                                                                                 </td>
                                                                             </tr>
