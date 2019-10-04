@@ -11,7 +11,6 @@ overflow-y: auto;
 </style>
 @endsection
 @include('layouts.includes.partial.alert')
-{{-- Datatable --}}
 <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css">
@@ -77,7 +76,6 @@ overflow-y: auto;
                                 <li role="presentation" class="active"><a href="#claim_overview" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="false"><i class="fa fa-bookmark" aria-hidden="true"></i> Claim Overview</a></li>
                                 <li role="presentation"><a href="#messaging" role="tab" id="messaging-tab" data-toggle="tab" aria-controls="messaging" aria-expanded="true"><i class="fa fa-envelope" aria-hidden="true"></i> Messaging</a></li>
                                 <li role="presentation"><a href="#airline_response" role="tab" id="airline_response-tab" data-toggle="tab" aria-controls="airline_response" aria-expanded="true"><i class="fa fa-info-circle" aria-hidden="true"></i> Airline Response</a></li>
-                                {{-- <li role="presentation"><a href="#customer_final_comm" role="tab" id="customer_final_comm-tab" data-toggle="tab" aria-controls="customer_final_comm" aria-expanded="true"><i class="fa fa-info-circle" aria-hidden="true"></i> Customer Final Comments</a></li> --}}
                                 <li role="presentation"><a href="#reminder" role="tab" id="reminder-tab" data-toggle="tab" aria-controls="reminder" aria-expanded="true"><i class="fa fa-bell" aria-hidden="true"></i> Reminders</a></li>
                                 <li role="presentation"><a href="#required-details" role="tab" id="required-details-tab" data-toggle="tab" aria-controls="required-details" aria-expanded="true"><i class="fa fa-bell" aria-hidden="true"></i> Required Details</a></li>
                                 <li role="presentation"><a href="#claim-status" role="tab" id="claim-status-tab" data-toggle="tab" aria-controls="claim-status" aria-expanded="true"><i class="fa fa-bell" aria-hidden="true"></i> Status</a></li>
@@ -108,9 +106,6 @@ overflow-y: auto;
                                                 <li class="nav-item">
                                                     <a class="nav-link" data-toggle="tab" href="#view_claim_files" role="tab" aria-controls="settings">View Claim Files</a>
                                                 </li>
-                                                {{-- <li class="nav-item">
-                                                    <a class="nav-link" data-toggle="tab" href="#claim_eligib" role="tab" aria-controls="settings">Claim Eligibility</a>
-                                                </li> --}}
                                                 <li class="nav-item">
                                                     <a class="nav-link" data-toggle="tab" href="#passengers" role="tab" aria-controls="settings">Passengers</a>
                                                 </li>
@@ -131,7 +126,6 @@ overflow-y: auto;
                                                                 <div class="panel-heading">
                                                                     <i class="fa fa-comments"></i> Claims Overview
                                                                 </div>
-                                                                <!-- /.panel-heading -->
                                                                 <div class="panel-body">
                                                                     <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                                                         <tbody>
@@ -162,15 +156,11 @@ overflow-y: auto;
                                                                         </tbody>
                                                                     </table>
                                                                 </div>
-                                                                <!-- /.panel-body -->
                                                             </div>
-                                                            <!-- /.panel -->
                                                         </div>
-                                                        <!-- /.col-lg-12 -->
                                                     </div>
                                                 </div>
                                                 <div class="tab-pane" id="flight_detail" role="tabpanel">
-                                                    {{-- now working --}}
                                                     @foreach($intinerary_details as $single_intinerary_detail)
                                                     <div class="row">
                                                         <div class="col-lg-12">
@@ -183,7 +173,6 @@ overflow-y: auto;
                                                                     <a href="{{url('flights/'.$all_flights[$single_intinerary_detail->flight_number]["id"].'/edit')}}"><button class="btn btn-danger btn-sm">Update Time</button></a>
                                                                     @endif
                                                                 </div>
-                                                                <!-- /.panel-heading -->
                                                                 <div class="panel-body">
                                                                     <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                                                         <tbody>
@@ -232,11 +221,8 @@ overflow-y: auto;
                                                                         </tbody>
                                                                     </table>
                                                                 </div>
-                                                                <!-- /.panel-body -->
                                                             </div>
-                                                            <!-- /.panel -->
                                                         </div>
-                                                        <!-- /.col-lg-12 -->
                                                     </div>
                                                     @endforeach
                                                 </div>
@@ -247,7 +233,6 @@ overflow-y: auto;
                                                                 <div class="panel-heading">
                                                                     <i class="fa fa-comments"></i> Claim Details
                                                                 </div>
-                                                                <!-- /.panel-heading -->
                                                                 <div class="panel-body">
                                                                     <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                                                         <tbody>
@@ -303,11 +288,8 @@ overflow-y: auto;
                                                                         </tbody>
                                                                     </table>
                                                                 </div>
-                                                                <!-- /.panel-body -->
                                                             </div>
-                                                            <!-- /.panel -->
                                                         </div>
-                                                        <!-- /.col-lg-12 -->
                                                     </div>
                                                 </div>
                                                 <div class="tab-pane" id="add_claim_files" role="tabpanel">
@@ -355,10 +337,9 @@ overflow-y: auto;
                                                             <a class="btn btn-success btn-sm time-input-required" >Download Pdf</a>
                                                             @endif
                                                             @foreach($passengers as $single_passenger)
-                                                                <a href="{{URL::to('/poa-pdf/'.$claims->id.'/'.$single_passenger->id)}}" class="btn btn-primary btn-sm">Download POA Pdf-{{ $single_passenger->first_name.' '.$single_passenger->last_name }}</a>
+                                                            <a href="{{URL::to('/poa-pdf/'.$claims->id.'/'.$single_passenger->id)}}" class="btn btn-primary btn-sm">Download POA Pdf-{{ $single_passenger->first_name.' '.$single_passenger->last_name }}</a>
                                                             @endforeach
                                                             <div class="panel panel-default">
-                                                                <!-- /.panel-heading -->
                                                                 <div class="panel-body">
                                                                     <div class="table-responsive">
                                                                         <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
@@ -399,9 +380,7 @@ overflow-y: auto;
                                                                         </table>
                                                                     </div>
                                                                 </div>
-                                                                <!-- /.panel-body -->
                                                             </div>
-                                                            <!-- /.panel -->
                                                         </div>
                                                     </div>
                                                 </div>
@@ -412,7 +391,6 @@ overflow-y: auto;
                                                                 <div class="panel-heading">
                                                                     <i class="fa fa-comments"></i> Claim Eligibility
                                                                 </div>
-                                                                <!-- /.panel-heading -->
                                                                 <div class="panel-body">
                                                                     <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                                                         <tbody>
@@ -433,11 +411,8 @@ overflow-y: auto;
                                                                         </tbody>
                                                                     </table>
                                                                 </div>
-                                                                <!-- /.panel-body -->
                                                             </div>
-                                                            <!-- /.panel -->
                                                         </div>
-                                                        <!-- /.col-lg-12 -->
                                                     </div>
                                                 </div>
                                                 <div class="tab-pane" id="passengers" role="tabpanel">
@@ -450,7 +425,6 @@ overflow-y: auto;
                                                                         Add New
                                                                     </a>
                                                                 </div>
-                                                                <!-- /.panel-heading -->
                                                                 <div class="panel-body">
                                                                     <div class="table-responsive">
                                                                         @if($passengers)
@@ -497,11 +471,8 @@ overflow-y: auto;
                                                                         @endif
                                                                     </div>
                                                                 </div>
-                                                                <!-- /.panel-body -->
                                                             </div>
-                                                            <!-- /.panel -->
                                                         </div>
-                                                        <!-- /.col-lg-12 -->
                                                     </div>
                                                 </div>
                                                 <div class="tab-pane" id="claim_user_info" role="tabpanel">
@@ -511,7 +482,6 @@ overflow-y: auto;
                                                                 <div class="panel-heading">
                                                                     <i class="fa fa-comments"></i> User Others Info
                                                                 </div>
-                                                                <!-- /.panel-heading -->
                                                                 <div class="panel-body">
                                                                     <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                                                         <tbody>
@@ -584,7 +554,6 @@ overflow-y: auto;
                                                                 <div class="panel-heading">
                                                                     <i class="fa fa-comments"></i> Additional Info
                                                                 </div>
-                                                                <!-- /.panel-heading -->
                                                                 <div class="panel-body">
                                                                     <div class="table-responsive">
                                                                         <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
@@ -597,7 +566,7 @@ overflow-y: auto;
                                                                                     <th>Have you contacted the airline regarding the claim?</th>
                                                                                     <td>
                                                                                         @if($claims->is_already_written_airline == 1)
-                                                                                        Yes {{-- <a href="">Download previous correspondence</a> --}}
+                                                                                        Yes 
                                                                                         @else
                                                                                         No
                                                                                         @endif
@@ -622,7 +591,6 @@ overflow-y: auto;
                                 <div role="tabpanel" class="tab-pane " id="messaging" aria-labelledby="messaging-tab">
                                     <div class="row">
                                         <div class="col-md-2" style="margin-top: 5px;">
-                                            {{-- <a class="btn btn-primary btn-lg" href="#">Compose</a> --}}
                                             <ul class="nav nav-tabs message" id="myTab" role="tablist">
                                                 <li class="nav-item">
                                                     <a class="nav-link btn btn-block btn-primary" data-toggle="tab" href="#compose"role="tab" aria-controls="compose">Compose</a>
@@ -645,8 +613,7 @@ overflow-y: auto;
                                             </ul>
                                         </div>
                                         <div class="col-md-10" style="margin-top: 5px;">
-                                            {{-- <h3 class="text-center" style="padding-top: 20px; color:seagreen;">Sent Email</h3>
-                                            <br> --}}
+                                            
                                             <div class="tab-content">
                                                 <div class="tab-pane active" id="compose" role="tabpanel">
                                                     <div class="row">
@@ -805,12 +772,10 @@ overflow-y: auto;
                                                                             <td>
                                                                                 <a class="btn btn-info btn-sm" title="inbox-{{$id}}" data-toggle="modal" data-target="#inbox{{$id}}">View</a>
                                                                                 <a class="btn btn-info btn-sm" title="inbox-{{$id}}" data-toggle="modal" data-target="#inbox_reply{{$id}}">Reply</a>
-                                                                                <!-- Modal -->
                                                                             </td>
                                                                         </tr>
                                                                         <div id="inbox{{$id}}" class="modal fade" role="dialog" style="width: 100%;">
                                                                             <div class="modal-dialog modal-wide modal-lg">
-                                                                                <!-- Modal content-->
                                                                                 <div class="modal-content">
                                                                                     <div class="modal-header">
                                                                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -821,10 +786,17 @@ overflow-y: auto;
                                                                                         <p>
                                                                                             {!! $msg !!}
                                                                                         </p>
-                                                                                        @foreach($attachFile as $key => $value)
+
+                                                                                        @foreach($attachFile as $attachment)
+                                                                                            <a class="btn btn-success btn-xs" href='{{ 'data:'.$attachment->content_type.';base64,'.base64_encode($attachment->content) }}' download='{{$attachment->name}}'>
+                                                                                                <i class="fa fa-download" aria-hidden="true"></i>
+                                                                                                <b>Attachment - {{$loop->iteration}}</b>
+                                                                                            </a>
+                                                                                        @endforeach
+                                                                                        {{-- @foreach($attachFile as $key => $value)
                                                                                         <a href="{{URL::to($value)}}" download class="btn btn-sm btn-info">Download File-{{$loop->iteration}}</a>
                                                                                         &nbsp; &nbsp; &nbsp;
-                                                                                        @endforeach
+                                                                                        @endforeach --}}
                                                                                     </div>
                                                                                     <div class="modal-footer">
                                                                                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -834,7 +806,6 @@ overflow-y: auto;
                                                                         </div>
                                                                         <div id="inbox_reply{{$id}}" class="modal fade" role="dialog">
                                                                             <div class="modal-dialog modal-wide">
-                                                                                <!-- Modal content-->
                                                                                 <div class="modal-content">
                                                                                     <div class="modal-header">
                                                                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -933,7 +904,6 @@ overflow-y: auto;
                                                                                 <a class="btn btn-info btn-sm" title="sent-{{$cutomSent->id}}" data-toggle="modal" data-target="#sent{{$cutomSent->id}}">View</a>
                                                                                 <div id="sent{{$cutomSent->id}}" class="modal fade" role="dialog">
                                                                                     <div class="modal-dialog">
-                                                                                        <!-- Modal content-->
                                                                                         <div class="modal-content">
                                                                                             <div class="modal-header">
                                                                                                 <button type="button" onclick="printDiv('sent_msgs')" class="btn btn-sm btn-primary"><i class="fa fa-print"></i> Print</button>
@@ -1001,11 +971,8 @@ overflow-y: auto;
                                                                             <td></td>
                                                                             <td></td>
                                                                             <td>
-                                                                                {{-- <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#SentEmailShow">View Email</button> --}}
-                                                                                <!-- Modal -->
                                                                                 <div id="SentEmailShow" class="modal modal-wide fade" role="dialog">
                                                                                     <div class="modal-dialog">
-                                                                                        <!-- Modal content-->
                                                                                         <div class="modal-content">
                                                                                             <div class="modal-header">
                                                                                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -1043,10 +1010,8 @@ overflow-y: auto;
                                                                             <td></td>
                                                                             <td>
                                                                                 <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#SentEmailShow">View Email</button>
-                                                                                <!-- Modal -->
                                                                                 <div id="SentEmailShow" class="modal modal-wide fade" role="dialog">
                                                                                     <div class="modal-dialog">
-                                                                                        <!-- Modal content-->
                                                                                         <div class="modal-content">
                                                                                             <div class="modal-header">
                                                                                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -1075,7 +1040,6 @@ overflow-y: auto;
                                 <div role="tabpanel" class="tab-pane" id="airline_response" aria-labelledby="airline_response-tab">
                                     <div class="row">
                                         <div class="col-md-2" style="margin-top: 5px;">
-                                            {{-- <a class="btn btn-primary btn-lg" href="#">Compose</a> --}}
                                             <ul class="nav nav-tabs message" id="myTab" role="tablist">
                                                 <li class="nav-item">
                                                     <a class="nav-link btn btn-block btn-primary" data-toggle="tab" href="#airline_compose"role="tab" aria-controls="airline_compose">Compose</a>
@@ -1098,8 +1062,6 @@ overflow-y: auto;
                                             </ul>
                                         </div>
                                         <div class="col-md-10" style="margin-top: 5px;">
-                                            {{-- <h3 class="text-center" style="padding-top: 20px; color:seagreen;">Sent Email</h3>
-                                            <br> --}}
                                             <div class="tab-content">
                                                 <div class="tab-pane active" id="airline_compose" role="tabpanel">
                                                     <div class="row">
@@ -1260,7 +1222,6 @@ overflow-y: auto;
                                                                                 <a class="btn btn-info btn-sm" title="airline_inbox-{{$id}}" data-toggle="modal" data-target="#airline_reply{{$id}}">Reply</a>
                                                                                 <div id="airline_inbox{{$id}}" class="modal fade" role="dialog">
                                                                                     <div class="modal-dialog modal-wide">
-                                                                                        <!-- Modal content-->
                                                                                         <div class="modal-content">
                                                                                             <div class="modal-header">
                                                                                                 <button type="button" onclick="printDiv('airlineInbox')" class="btn btn-sm btn-primary"><i class="fa fa-print"></i> Print</button>
@@ -1274,10 +1235,17 @@ overflow-y: auto;
                                                                                                     </p>
                                                                                                 </div>
                                                                                                 <div class="row">
-                                                                                                    @foreach($attachFiles as $key => $value)
+                                                                                                    @foreach($attachFiles as $attachment)
+                                                                                                        <a class="btn btn-success btn-xs" href='{{ 'data:'.$attachment->content_type.';base64,'.base64_encode($attachment->content) }}' download='{{$attachment->name}}'>
+                                                                                                            <i class="fa fa-download" aria-hidden="true"></i>
+                                                                                                            <b>Attachment - {{$loop->iteration}}</b>
+                                                                                                        </a>
+                                                                                                    @endforeach
+                                                                                                    
+                                                                                                   {{--  @foreach($attachFiles as $key => $value)
                                                                                                     <a href="{{URL::to($value)}}" download class="btn btn-sm btn-info">Download File-{{$loop->iteration}}</a>
                                                                                                     &nbsp; &nbsp; &nbsp;
-                                                                                                    @endforeach
+                                                                                                    @endforeach --}}
                                                                                                 </div>
                                                                                             </div>
                                                                                             <div class="modal-footer">
@@ -1288,7 +1256,6 @@ overflow-y: auto;
                                                                                 </div>
                                                                                 <div id="airline_reply{{$id}}" class="modal fade" role="dialog">
                                                                                     <div class="modal-dialog modal-wide">
-                                                                                        <!-- Modal content-->
                                                                                         <div class="modal-content">
                                                                                             <div class="modal-header">
                                                                                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -1383,7 +1350,6 @@ overflow-y: auto;
                                                                                 <a class="btn btn-info btn-sm" title="airline_sent-{{$airlineSent->id}}" data-toggle="modal" data-target="#airline_sent{{$airlineSent->id}}">View</a>
                                                                                 <div id="airline_sent{{$airlineSent->id}}" class="modal fade" role="dialog">
                                                                                     <div class="modal-dialog">
-                                                                                        <!-- Modal content-->
                                                                                         <div class="modal-content">
                                                                                             <div class="modal-header">
                                                                                                 <button type="button" onclick="printDiv('airline_sent_msgs')" class="btn btn-sm btn-primary"><i class="fa fa-print"></i> Print</button>
@@ -1451,11 +1417,8 @@ overflow-y: auto;
                                                                             <td></td>
                                                                             <td></td>
                                                                             <td>
-                                                                                {{-- <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#SentEmailShow">View Email</button> --}}
-                                                                                <!-- Modal -->
                                                                                 <div id="SentEmailShow" class="modal modal-wide fade" role="dialog">
                                                                                     <div class="modal-dialog">
-                                                                                        <!-- Modal content-->
                                                                                         <div class="modal-content">
                                                                                             <div class="modal-header">
                                                                                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -1493,10 +1456,8 @@ overflow-y: auto;
                                                                             <td></td>
                                                                             <td>
                                                                                 <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#SentEmailShow">View Email</button>
-                                                                                <!-- Modal -->
                                                                                 <div id="SentEmailShow" class="modal modal-wide fade" role="dialog">
                                                                                     <div class="modal-dialog">
-                                                                                        <!-- Modal content-->
                                                                                         <div class="modal-content">
                                                                                             <div class="modal-header">
                                                                                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -1531,7 +1492,6 @@ overflow-y: auto;
                                             <button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#myModal">Reminder</button>
                                             <div id="myModal" class="modal fade" role="dialog">
                                                 <div class="modal-dialog">
-                                                    <!-- Modal content-->
                                                     <div class="modal-content">
                                                         <div class="modal-header">
                                                             <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -1601,7 +1561,6 @@ overflow-y: auto;
                                                             <td>{{$item->note}}</td>
                                                             <td>
                                                                 <a type="button" data-toggle="modal" class="btn btn-sm btn-primary" title="View Reminder" data-target="#reminder-model-{{$item->id}}"><i class="fa fa-eye" aria-hidden="true"></i> View</a>
-                                                                {{--View modal --}}
                                                                 <div id="reminder-model-{{$item->id}}" class="modal fade" role="dialog">
                                                                     <?php
                                                                     $reminder_claims=DB::table('claims')->where('id',$item->claim_id)->first();
@@ -1612,7 +1571,6 @@ overflow-y: auto;
                                                                     $reminderfinalDestination = DB::table('airports')->where('id',$reminder_claims->final_destination_id)->first();
                                                                     ?>
                                                                     <div class="modal-dialog">
-                                                                        <!-- Modal content-->
                                                                         <div class="modal-content">
                                                                             <div class="modal-header">
                                                                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -1656,14 +1614,6 @@ overflow-y: auto;
                                                                                             </div>
                                                                                         </div>
                                                                                         <p style="font-weight:bold;">Status:  <span style="font-weight:normal;">{{$item->status}}</span></p>
-                                                                                        {{-- <hr>
-                                                                                        <p style="font-weight:bold;">DEPARTURE COUNTRY: <span style="font-weight:normal;"></span></p>
-                                                                                        <p style="font-weight:bold;">ARRIVAL COUNTRY: <span style="font-weight:normal;"></span></p>
-                                                                                        <p style="font-weight:bold;">DEPARTURE CONTINENTS: <span style="font-weight:normal;"></span></p>
-                                                                                        <p style="font-weight:bold;">ARRIVAL CONTINENTS: <span style="font-weight:normal;"></span></p>
-                                                                                        <p style="font-weight:bold;">AIRLINE CONTINENTS: <span style="font-weight:normal;"></span></p>
-                                                                                        <p style="font-weight:bold;">DISTANCE:  <span style="font-weight:normal;"></span></p>
-                                                                                        <p style="font-weight:bold;">COMPENSATION AMOUNT:  <span style="font-weight:normal;"></span></p> --}}
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -1673,12 +1623,9 @@ overflow-y: auto;
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <!--------------------End View Modal-------------------->
                                                                 <a  type="button" data-toggle="modal" title="Edit Reminder" class="btn btn-sm btn-dark reminder-edit-view" data-target="#reminder-edit-model-{{$item->id}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
-                                                                <!--------------------Edit Modal-------------------->
                                                                 <div id="reminder-edit-model-{{$item->id}}" class="modal fade" role="dialog">
                                                                     <div class="modal-dialog">
-                                                                        <!-- Modal content-->
                                                                         <div class="modal-content">
                                                                             <div class="modal-header">
                                                                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -1722,10 +1669,8 @@ overflow-y: auto;
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <!--------------------End Edit Modal----------------->
                                                                 <div id="myModal-{{$item->id}}" class="modal fade" role="dialog">
                                                                     <div class="modal-dialog">
-                                                                        <!-- Modal content-->
                                                                         <div class="modal-content">
                                                                             <div class="modal-header">
                                                                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -1901,17 +1846,6 @@ overflow-y: auto;
                                                     <input type="hidden" name="claim_id" value="{{$claims->id}}">
                                                 </div>
                                             </div>
-                                            {{--  <div class="col-sm-4">
-                                                <div class="form-group">
-                                                    <label> Next Step </label>
-                                                    <select class="form-control" id="next_step" name="nextstep_status">
-                                                        <option value="">Select Next Step</option>
-                                                        @foreach($nextSteps as $nextStep)
-                                                        <option value="{{$nextStep->id}}">{{$nextStep->name}}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div> --}}
                                             <div class="col-sm-6">
                                                 <button type="submit" class="btn btn-success" id="status_btn">Submit</button>
                                             </div>
@@ -1936,7 +1870,7 @@ overflow-y: auto;
                                                             <div class="col-md-9 col-md-offset-3">
                                                                 <button type="submit" class="btn btn-md btn-danger">Delete Affiliate For This Claim</button>
                                                             </div>
-                                                        </div>   
+                                                        </div>
                                                     </form>
                                                     <form action="{{route('update-affilite-info-data')}}" method="post" class="form-horizontal" name="affiliate_infos">
                                                         @csrf
@@ -2061,7 +1995,6 @@ overflow-y: auto;
                                                             </div>
                                                         </div>
                                                     </form>
-                                                    {{-- here --}}
                                                     @endif
                                                 </div>
                                             </div>
@@ -2073,7 +2006,6 @@ overflow-y: auto;
                                                 <div class="panel-heading">
                                                     <i class="fa fa-comments"></i> Affiliate Info
                                                 </div>
-                                                <!-- /.panel-heading -->
                                                 <div class="panel-body">
                                                     @if(!$affiliate_user)
                                                     <h2>No affiliation in this claim</h2>
@@ -2096,11 +2028,8 @@ overflow-y: auto;
                                                     </table>
                                                     @endif
                                                 </div>
-                                                <!-- /.panel-body -->
                                             </div>
-                                            <!-- /.panel -->
                                         </div>
-                                        <!-- /.col-lg-12 -->
                                     </div>
                                 </div>
                                 <div role="tabpanel" class="tab-pane" id="ticket-info" aria-labelledby="ticket-info-tab">
@@ -2110,7 +2039,6 @@ overflow-y: auto;
                                                 <div class="panel-heading">
                                                     <i class="fa fa-comments"></i> Ticket Info
                                                 </div>
-                                                <!-- /.panel-heading -->
                                                 <div class="panel-body">
                                                     <style>
                                                     .timeline {
@@ -2202,7 +2130,6 @@ overflow-y: auto;
                                                                         <div class="row">
                                                                             <div class="col-md-12">
                                                                                 @if(count($ticket_notes) > 0)
-                                                                                <!-- Timeline -->
                                                                                 <div class="timeline">
                                                                                     @foreach($ticket_notes as $row)
                                                                                     <article class="panel panel-primary">
@@ -2267,11 +2194,8 @@ overflow-y: auto;
                                                     </div>
                                                 </div>
                                             </div>
-                                            <!-- /.panel-body -->
                                         </div>
-                                        <!-- /.panel -->
                                     </div>
-                                    <!-- /.col-lg-12 -->
                                 </div>
                                 <div role="tabpanel" class="tab-pane" id="note" aria-labelledby="note-tab" style="margin-top: 15px;">
                                     <div class="row">
@@ -2360,7 +2284,6 @@ overflow-y: auto;
                                                                         @endphp
                                                                         <div class="modal fade" id="editNote-{{$note->id}}" role="dialog">
                                                                             <div class="modal-dialog modal-lg">
-                                                                                <!-- Modal content-->
                                                                                 <div class="modal-content">
                                                                                     <form action="{{route('update-note')}}" method="post" class="form-horizontal">
                                                                                         @csrf
@@ -2385,7 +2308,6 @@ overflow-y: auto;
                                                                         </div>
                                                                         <div class="modal fade" id="viewNote-{{$note->id}}" role="dialog">
                                                                             <div class="modal-dialog modal-lg">
-                                                                                <!-- Modal content-->
                                                                                 <div class="modal-content">
                                                                                     <div class="panel panel-default">
                                                                                         <div class="panel-heading">
@@ -2404,7 +2326,7 @@ overflow-y: auto;
                                                                                                     $noteFiles = explode("|",$note->note_files);
                                                                                                     ?>
                                                                                                     @foreach($noteFiles as $key=>$value)
-                                                                                                    {{-- <a href="{{URL::to('/note-file-download')}}" download>File-{{$loop->iteration}}</a><br> --}}
+                                                                                                   
                                                                                                     <a href="{{URL::to($value)}}" download class="btn btn-success btn-sm">Download File-{{$loop->iteration}}</a>
                                                                                                     &nbsp; &nbsp; &nbsp;
                                                                                                     @endforeach
@@ -2431,7 +2353,6 @@ overflow-y: auto;
                                         </div>
                                     </div>
                                 </div>
-                                <!------------------------------------Start Affiliate Note Info------------------------------->
                                 <div role="tabpanel" class="tab-pane" id="affiliate-note" aria-labelledby="affiliate-note-tab" style="margin-top: 15px;">
                                     <div class="row">
                                         <div class="col-lg-12">
@@ -2490,7 +2411,6 @@ overflow-y: auto;
                                                                             </td>
                                                                             <div class="modal fade" id="editAffiliateNote-{{$affiliateNote->id}}" role="dialog">
                                                                                 <div class="modal-dialog">
-                                                                                    <!-- Modal content-->
                                                                                     <div class="modal-content">
                                                                                         <form action="{{route('update-affiliate-note')}}" method="post" class="form-horizontal">
                                                                                             @csrf
@@ -2531,8 +2451,6 @@ overflow-y: auto;
                                         </div>
                                     </div>
                                 </div>
-                                <!-----------------------------------End Affiliate Note Info---------------------------------->
-                                <!--------------------------Start Expanse Info---------------------->
                                 <div role="tabpanel" class="tab-pane" id="expanse" aria-labelledby="expanse-tab">
                                     <div class="row">
                                         <div class="col-lg-12">
@@ -2540,7 +2458,6 @@ overflow-y: auto;
                                                 <div class="panel-heading">
                                                     <i class="fa fa-comments"></i> Expense Info
                                                 </div>
-                                                <!-- /.panel-heading -->
                                                 <div class="panel-body">
                                                     @if(!$expanses)
                                                     <h2>No expanse in this claim</h2>
@@ -2579,15 +2496,10 @@ overflow-y: auto;
                                                     </table>
                                                     @endif
                                                 </div>
-                                                <!-- /.panel-body -->
                                             </div>
-                                            <!-- /.panel -->
                                         </div>
-                                        <!-- /.col-lg-12 -->
                                     </div>
                                 </div>
-                                <!--------------------------End Expanse Info------------------------>
-                                <!--------------------------Start Airline Info Tab------------------->
                                 <div role="tabpanel" class="tab-pane" id="airline" aria-labelledby="airline-tab" style="margin-top: 15px;">
                                     <div class="row">
                                         <div class="col-md-12">
@@ -2663,7 +2575,6 @@ overflow-y: auto;
                                         </div>
                                     </div>
                                 </div>
-                                <!--------------------------End Airline Info Tab--------------------->
                             </div>
                         </div>
                     </div>
@@ -2676,7 +2587,6 @@ overflow-y: auto;
 </div>
 <script>
 document.forms['clam_nextstep_status'].elements['claim_status'].value="{{$claimStatusData->id}}";
-{{-- document.forms['clam_nextstep_status'].elements['nextstep_status'].value="{{$NextStepData->id}}"; --}}
 document.forms['required_details'].elements['bank_details_id'].value="{{$claims->bank_details_id}}";
 </script>
 @endsection
@@ -2703,7 +2613,6 @@ data:{
 'id'          : current_option_value
 },
 success:function(data){
-// console.log(data);
 tinyMCE.get('my_editor').setContent(data);
 tinyMCE.get('airline_editor').setContent(data);
 }
@@ -2728,4 +2637,3 @@ location.reload();
 }
 </script>
 @endsection
-<!-- Modal -->
