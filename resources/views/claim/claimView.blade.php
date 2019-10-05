@@ -2599,6 +2599,12 @@ $(this).find(".modal-body").css("max-height", height);
 </script>
 <script>
 $(function() {
+
+$(".sidebar-menu a").css('color','#b8c7ce');
+$(".sidebar-menu a").hover(function() {
+  $(this).css("color",'#b8c7ce')
+});
+
 $('.time-input-required').click(function(){
 alert("You have to input all flights time.");
 });
@@ -2636,4 +2642,11 @@ location.reload();
 }, 1000);
 }
 </script>
+<style type="text/css">
+a, a:link, a:visited, a:hover, a:active
+{
+  /*color: #b8c7ce !important;*/
+  text-decoration: none !important;
+}
+</style>
 @endsection
