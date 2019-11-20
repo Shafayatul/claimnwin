@@ -1710,7 +1710,7 @@ overflow-y: auto;
                                                                 </div>
                                                                 {!! Form::open([
                                                                 'method'=>'DELETE',
-                                                                'url' => ['/reminders-delete/', $item->id],
+                                                                'url' => ['/reminders-delete', $item->id],
                                                                 'style' => 'display:inline'
                                                                 ]) !!}
                                                                 {!! Form::button('<i class="fa fa-trash" aria-hidden="true"></i> Delete', array(

@@ -14,6 +14,7 @@ use App\User;
 use App\ItineraryDetail;
 use App\Passenger;
 use App\Mail\ClaimCompleted;
+use App\Airline;
 use Artisan;
 
 class TestsController extends Controller
@@ -32,16 +33,18 @@ class TestsController extends Controller
         );*/
     }
     public function test(Request $request){
+        $airlines = Airline::select('icao_code')->where('icao_code', '!=', '')->get();
 
-        // echo "for test:";
-        // dd(env('CPANEL_PASSWORD'));
-        // $claim = Claim::where('id', '10000022')->first();
-        // $user = User::where('id', '84')->first();
-        // $ittDetails = ItineraryDetail::where('claim_id',$claim->id)->where('is_selected','1')->first();
-        // $passengers = Passenger::where('claim_id',$claim->id)->get();
-        // // dd(Mail::to('sharafat.sohan047@gmail.com')->send(new ClaimCompleted($user, $ittDetails, $passengers)));
-        // return view('email.test', compact('user', 'ittDetails', 'passengers'));
-        // 87TYT%^R^%Rduyt
+        foreach ($airlines as $airline) {
+            if (Airline::where('icao_code', $airline->icao_code)->count() >1) {
+                foreach(Airline::select('name', 'icao_code')->where('icao_code', $airline->icao_code)->get() as $row){
+                    echo $row->name.'-'.$row->icao_code;
+                    echo "<br>";
+                }
+                echo "<hr>";
+            }
+        }
+
     }
 
 

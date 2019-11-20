@@ -140,6 +140,6 @@ class RemindersController extends Controller
     {
         Reminder::destroy($id);
 
-        return redirect('reminders')->with('success', 'Reminder deleted!');
+        return redirect()->back()->with('success', 'Reminder deleted!');
     }
 }
