@@ -70,6 +70,9 @@ overflow-y: auto;
                             </a>
                         </div>
                     </div>
+
+
+
                     <div class="row">
                         <div class="col-md-12 widget-shadow">
                             <ul id="myTabs" class="nav nav-tabs" role="tablist">
@@ -793,10 +796,6 @@ overflow-y: auto;
                                                                                                 <b>Attachment - {{$loop->iteration}}</b>
                                                                                             </a>
                                                                                         @endforeach
-                                                                                        {{-- @foreach($attachFile as $key => $value)
-                                                                                        <a href="{{URL::to($value)}}" download class="btn btn-sm btn-info">Download File-{{$loop->iteration}}</a>
-                                                                                        &nbsp; &nbsp; &nbsp;
-                                                                                        @endforeach --}}
                                                                                     </div>
                                                                                     <div class="modal-footer">
                                                                                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -1241,11 +1240,6 @@ overflow-y: auto;
                                                                                                             <b>Attachment - {{$loop->iteration}}</b>
                                                                                                         </a>
                                                                                                     @endforeach
-                                                                                                    
-                                                                                                   {{--  @foreach($attachFiles as $key => $value)
-                                                                                                    <a href="{{URL::to($value)}}" download class="btn btn-sm btn-info">Download File-{{$loop->iteration}}</a>
-                                                                                                    &nbsp; &nbsp; &nbsp;
-                                                                                                    @endforeach --}}
                                                                                                 </div>
                                                                                             </div>
                                                                                             <div class="modal-footer">
@@ -2578,6 +2572,7 @@ overflow-y: auto;
                             </div>
                         </div>
                     </div>
+
                     <div class="clearfix"> </div>
                 </div>
             </div>

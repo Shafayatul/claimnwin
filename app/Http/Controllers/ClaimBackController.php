@@ -377,6 +377,7 @@ class ClaimBackController extends Controller
             $affilaite_info=Affiliate::where('claim_id',$claims->id)->first();
             $EmailTemplate=EmailTemplate::all()->pluck('title', 'id');
 
+
         return view('claim.claimView',compact('affilaite_info','airlineInfo','airlineSents','inbox','affiliateNotes','expanses','aFolder','sents','notes', 'ticket_notes', 'ticket', 'claimFiles','affiliateComm','adminComm','NextStepData','claimStatusData','flightInfo','airline','departed_airport','destination_airport','reminders','claims','passengers','ittDetails','flightCount','passCount','claimsStatus','nextSteps','banks', 'affiliate_user', 'intinerary_details', 'itinerary_detail_airlines', 'all_flights', 'EmailTemplate', 'is_all_flight_time_exists', 'user_who_created_note'));
     }
 

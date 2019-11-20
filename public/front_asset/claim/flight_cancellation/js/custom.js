@@ -21,15 +21,15 @@ $(document).ready(function() {
 
       return false;
     }
-    if (iOS()) {
-      var is_signed = true;
-    }else{
-      var is_signed = false;
-    }
-    $('canvas').on('mouseup', function() {
-       is_signed = true;
-       check_next_step();
-    })
+    // if (iOS()) {
+    //   var is_signed = true;
+    // }else{
+    //   var is_signed = false;
+    // }
+    // $('canvas').on('mouseup', function() {
+    //    is_signed = true;
+    //    check_next_step();
+    // })
     
     if ((window.localStorage.getItem('airport1') !== null) && (window.localStorage.getItem('airport2') !== null)) {
       $("input[name='departed_from']").val(window.localStorage.getItem('airport1'));
@@ -418,7 +418,7 @@ $(document).ready(function() {
 
         } else if (step == 7) {
             $("#continue_7").removeClass('active_button');
-            if (($("input[name='is_signed_permission']").is(':checked')) && (is_signed)) {
+            if($("input[name='is_signed_permission']").is(':checked')){
                 $("#continue_7").addClass('active_button');
                 $("#continue_8").addClass('active_button');
                 return true;
