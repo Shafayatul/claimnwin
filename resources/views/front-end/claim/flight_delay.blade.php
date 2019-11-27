@@ -1218,7 +1218,7 @@ function horizontalCustomStyle() {
       loadingOut(loading);
     }
 $(document).ready(function() {
-        $('#signArea1').signaturePad({drawOnly:true, drawBezierCurves:true, lineTop:90});
+        $('#signArea1').signaturePad({validateFields:false, drawOnly:true, drawBezierCurves:true, lineTop:90});
         });
 
     $(document).ready(function(e){
