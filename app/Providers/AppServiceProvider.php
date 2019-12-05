@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\View;
 use Victorybiz\GeoIPLocation\GeoIPLocation;
 use Session;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -285,6 +286,7 @@ class AppServiceProvider extends ServiceProvider
                 $flag_url ='front_asset/img/country-flags/flag.png';
             }
             View::share(['translated_menu' => $translated_menu, 'menu_t' => $menu_t, 'flag_url' => $flag_url]);
+            Validator::extend('recaptcha', 'App\\Validators\\ReCaptcha@validate');
         });  
     }
 }

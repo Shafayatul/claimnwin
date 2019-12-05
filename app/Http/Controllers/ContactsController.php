@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 use App\Ticket;
 use App\TicketNote;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ContactUs;
 
 class ContactsController extends Controller
 {
@@ -55,13 +57,19 @@ class ContactsController extends Controller
      */
     public function store(Request $request)
     {
-
+        $this->validate($request,[
+            'g-recaptcha-response' => 'required|recaptcha'
+        ]);
         $requestData                = $request->all();
         $email_date                 = Carbon::now()->format("Y-m-d h:i:s");
 
         Contact::create($requestData);
+        $email = $request->email;
+        $name = $request->name;
+        $subject = $request->subject;
+        $msg = $request->message;
 
-
+        Mail::to("info@claimnwin.com")->send(new ContactUs($email, $name, $subject, $msg));
 
         $ticket                     = new Ticket;
         $ticket->subject            = 'Contact Us: '.$request->subject;

@@ -58,6 +58,19 @@ class ClaimStatusController extends Controller
         return redirect('/claim-status/create')->with('success', 'ClaimStatus added!');
     }
 
+    public function claimAjaxStatusStore(Request $request)
+    {
+        $claimstatus              = new ClaimStatus;
+        $claimstatus->name        = $request->status_name;
+        $claimstatus->description = $request->status_description;
+        $claimstatus->save();
+        
+        return response()->json([
+            'msg' => 'Success',
+            'claim_status' => $claimstatus
+        ]);
+    }
+
     /**
      * Display the specified resource.
      *

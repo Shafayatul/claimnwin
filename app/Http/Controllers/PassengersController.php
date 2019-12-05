@@ -69,6 +69,26 @@ class PassengersController extends Controller
         return redirect('/claim-view/'.$request->input('claim_id'))->with('flash_message', 'Passenger added!');
     }
 
+    public function claimAjaxPassengerAddForClaim(Request $request)
+    {
+        $passenger                       = new Passenger;
+        $passenger->claim_id             = $request->claim_id;
+        $passenger->first_name           = $request->first_name;
+        $passenger->last_name            = $request->last_name;
+        $passenger->address              = $request->address;
+        $passenger->post_code            = $request->post_code;
+        $passenger->date_of_birth        = $request->date_of_birth;
+        $passenger->email                = $request->email;
+        $passenger->is_booking_reference = $request->is_booking_reference;
+        $passenger->booking_refernece    = $request->booking_refernece;
+        $passenger->phone                = $request->phone;
+        $passenger->save();
+        return response()->json([
+            'msg' => 'Success',
+            'passenger' => $passenger
+        ]);
+    }
+
     /**
      * Display the specified resource.
      *
@@ -113,6 +133,29 @@ class PassengersController extends Controller
         $passenger = Passenger::findOrFail($id);
         $passenger->update($requestData);
         return redirect()->back()->with('success', 'Passenger updated!');
+    }
+
+    public function claimAjaxPassengerUpdate(Request $request)
+    {
+        $id                              = $request->passenger_id;
+        $passenger                       = Passenger::findOrFail($id);
+        $passenger->claim_id             = $request->claim_id;
+        $passenger->first_name           = $request->first_name;
+        $passenger->last_name            = $request->last_name;
+        $passenger->address              = $request->address;
+        $passenger->post_code            = $request->post_code;
+        $passenger->date_of_birth        = $request->date_of_birth;
+        $passenger->email                = $request->email;
+        $passenger->is_booking_reference = $request->is_booking_reference;
+        $passenger->booking_refernece    = $request->booking_reference;
+        $passenger->phone                = $request->phone;
+        $passenger->save();
+
+        $passenger_data = Passenger::findOrFail($id);
+        return response()->json([
+            'msg' => 'Success',
+            'passenger' => $passenger_data
+        ]);
     }
 
     /**
