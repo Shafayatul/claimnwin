@@ -501,7 +501,7 @@ class ClaimsController extends Controller
         }
         if ($affiliate_user_id  != '') {
             $info_of_affiliate_user = User::where('id', $affiliate_user_id)->first();
-            if($info_of_affiliate_user->add_special_affiliate_offer != null){
+            if($info_of_affiliate_user != null){
                 $affiliateCom = $info_of_affiliate_user->add_special_affiliate_offer;
             }
 
@@ -509,9 +509,11 @@ class ClaimsController extends Controller
             * Affiliate only first time or not
             */
             if (!$new_user) {
-                if ($info_of_affiliate_user->is_affiliate_first_time == 1) {
-                    $affiliateCom = 0;
-                    $do_not_count_affiliate = true;
+                if($info_of_affiliate_user != null){
+                    if ($info_of_affiliate_user->is_affiliate_first_time == 1) {
+                        $affiliateCom = 0;
+                        $do_not_count_affiliate = true;
+                    }
                 }
             }
 
@@ -670,21 +672,21 @@ class ClaimsController extends Controller
         if (isset($request->expense_name)) {
             $cnt = 0;
             foreach ($request->expense_name as $single_expense_name) {
+                if (isset($request->expense_currency[$cnt])) {
+                    if (isset($request->is_receipt[$cnt])) {
+                        $is_receipt = $request->is_receipt[$cnt];
+                    }else{
+                        $is_receipt = 0;
+                    }
 
-                if (isset($request->is_receipt[$cnt])) {
-                    $is_receipt = $request->is_receipt[$cnt];
-                }else{
-                    $is_receipt = 0;
+                    $expense                    = new Expense();
+                    $expense->claim_id          = $claim->id;
+                    $expense->name              = $request->expense_name[$cnt];
+                    $expense->amount            = $request->expense_price[$cnt];
+                    $expense->currency          = $request->expense_currency[$cnt];
+                    $expense->is_receipt        = $is_receipt;
+                    $expense->save();
                 }
-
-                $expense                    = new Expense();
-                $expense->claim_id          = $claim->id;
-                $expense->name              = $request->expense_name[$cnt];
-                $expense->amount            = $request->expense_price[$cnt];
-                $expense->currency          = $request->expense_currency[$cnt];
-                $expense->is_receipt        = $is_receipt;
-                $expense->save();
-
                 $cnt++;
             }
         }
@@ -1632,6 +1634,12 @@ class ClaimsController extends Controller
 
 
     public function ajax_delay_luggage_calculation(Request $request){
+        if ($request->received_luggage_date == '') {
+            return response()->json([
+                'amount' => '1350 EUR',
+                'msg'    => ''
+            ]);
+        }
         $received_luggage_date          = new \DateTime('20'.substr($request->received_luggage_date,6,2).'-'.substr($request->received_luggage_date,3,2).'-'.substr($request->received_luggage_date,0,2));
         if ($request->is_already_written_airline == 1) {
             $written_airline_date       = new \DateTime('20'.substr($request->written_airline_date,6,2).'-'.substr($request->written_airline_date,3,2).'-'.substr($request->written_airline_date,0,2));
@@ -1740,7 +1748,9 @@ class ClaimsController extends Controller
 
         $distance = $this->distance($departed_from->latitude, $departed_from->longitude, $final_destination->latitude, $final_destination->longitude, 'K');
 
-
+        if ($received_luggage_date == '') {
+            return '1350 EUR'.'-'.$distance;
+        }
 
 
         $received_luggage_date          = new \DateTime('20'.substr($received_luggage_date,6,2).'-'.substr($received_luggage_date,3,2).'-'.substr($received_luggage_date,0,2));
@@ -1778,6 +1788,7 @@ class ClaimsController extends Controller
                 }
             }
         }
+
 
         return '0'.'-'.$distance;
     }

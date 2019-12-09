@@ -1855,7 +1855,7 @@ overflow-y: auto;
                                                     <i class="fa fa-info-circle"></i> Affiliate Info Form
                                                 </div>
                                                 <div class="panel-body">
-                                                    @if($claims->affiliate_user_id !="")
+                                                    @if(($claims->affiliate_user_id !="") && ($affilaite_info != null))
                                                     <form action="{{route('delete-affilite')}}" method="post" class="form-horizontal" name="affiliate_infos">
                                                         @csrf
                                                         <input type="hidden" name="affiliate_id" value="{{$affilaite_info->id}}">
