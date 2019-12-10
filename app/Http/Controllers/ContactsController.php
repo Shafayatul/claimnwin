@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
 use App\Contact;
 use Illuminate\Http\Request;
 use App\Ticket;
@@ -12,6 +11,9 @@ use App\TicketNote;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ContactUs;
+
+
+
 
 class ContactsController extends Controller
 {
@@ -57,8 +59,10 @@ class ContactsController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[
-            'g-recaptcha-response' => 'required|recaptcha'
+        $validatedData = $request->validate([
+            'g-recaptcha-response' => 'required|recaptcha',
+            'email'                => 'required',
+            'name'                 => 'required',
         ]);
         $requestData                = $request->all();
         $email_date                 = Carbon::now()->format("Y-m-d h:i:s");

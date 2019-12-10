@@ -936,6 +936,7 @@ $(document).on('click', '#update-reminder-6', function(){
 
 
     $(document).on('click', '#ticket-submit-btn', function(){
+        // alert();
         var ticket_id          = $("#ticket_id").val();
         var ticket_description = $("#ticket_description").val();
         var claim_user_id      = $("#claim_user_id_for_ticket").val();
@@ -952,12 +953,7 @@ $(document).on('click', '#update-reminder-6', function(){
                 ticket_description : ticket_description
             },
             success: function(response){
-                var html = `<div class="alert alert-success alert-dismissible show" role="alert">
-                    <strong>Success!</strong> `+response.msg+`
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>`;
+                var html = '<div class="alert alert-success alert-dismissible show" role="alert"><strong>Success!</strong> '+response.msg+'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
                 $('#msgs').html(html);
                 $("#ticket_description").val('');
 

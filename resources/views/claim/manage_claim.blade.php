@@ -75,14 +75,41 @@
                                 </div>
 
                                 <div class="col-md-2">
+                                  <div class="input-group">
+                                      <input type="text" class="form-control" name="s_airline" placeholder="Airline Name" value="{{ request('s_airline') }}">
+                                  </div>
+                                </div>
+                                <div class="col-md-2">
+                                  <div class="input-group">
+                                    <select class="form-control" id="status" name="s_claim_status">
+                                      <option value="">-- Please select --</option>
+                                      @foreach($claim_status as $key=>$value)
+                                        <option value="{{$key}}" @if(request('s_claim_status') == $key) selected @endif>{{$value}}</option>
+                                      @endforeach
+                                    </select>
+                                  </div>
+                                </div>
+                                <div class="col-md-3">
+                                  <div class="input-group">
+                                        <label>Starting date:</label>
+                                      <input type="date" class="form-control" name="s_starting_date" placeholder="" value="{{ request('s_starting_date') }}">
+                                  </div>
+                                </div>
+                                <div class="col-md-3">
+                                  <div class="input-group">
+                                        <label>End date:</label>
+                                      <input type="date" class="form-control" name="s_end_date" placeholder="" value="{{ request('s_end_date') }}">
+                                  </div>
+                                </div>
+
+                                <div class="col-md-2">
                                     <span class="input-group-append">
+                                        <br>
                                         <button class="btn btn-secondary" type="submit" name="submit">
                                             <i class="fa fa-search"></i>
                                         </button>
                                     </span>
-                                    </div>
-
-
+                                </div>
                               </div>
                               {!! Form::close() !!}
 

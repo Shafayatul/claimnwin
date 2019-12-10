@@ -68,6 +68,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Validator::extend('recaptcha', 'App\\Validators\\ReCaptcha@validate');
         view()->composer('*', function ($view) 
         {
 
@@ -286,7 +287,7 @@ class AppServiceProvider extends ServiceProvider
                 $flag_url ='front_asset/img/country-flags/flag.png';
             }
             View::share(['translated_menu' => $translated_menu, 'menu_t' => $menu_t, 'flag_url' => $flag_url]);
-            Validator::extend('recaptcha', 'App\\Validators\\ReCaptcha@validate');
+            
         });  
     }
 }

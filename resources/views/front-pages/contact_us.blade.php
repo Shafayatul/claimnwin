@@ -100,7 +100,7 @@
                     </div>
                     <div class="row">
                       <div class="col-md-12">
-                          <div class="contact_us_form_button text-center">
+                          <div class="contact_us_form_button text-center" style="margin-top: 20px">
                             <button type="submit" name="button">@if ($responseDecoded){{ $responseDecoded['data']['translations'][7]['translatedText']}} @else {{ $text[7]}} @endif</button>
                           </div>
                       </div>

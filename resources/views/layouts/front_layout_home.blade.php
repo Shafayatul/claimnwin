@@ -3,6 +3,7 @@
 <head>
   @include('layouts.includes.front.meta')
   <title>Claim'n Win</title>
+  <meta name="google-site-verification" content="xfSGwriENWiJRYePLxbrHZXGAzFlwmkAmMngqGXMkUU" />
   <link rel="shortcut icon" href="{{ asset('favicon.png') }}">
 
   @yield('header-script')

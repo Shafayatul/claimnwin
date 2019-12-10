@@ -48,10 +48,10 @@ class ClaimBackController extends Controller
     public function index_report(Request $request)
     {
 
-        $s_airline        = $request->get('s_airline');
-        $s_claim_status    = $request->get('s_claim_status');
-        $s_starting_date   = $request->get('s_starting_date');
-        $s_end_date        = $request->get('s_end_date');
+        $s_airline       = $request->get('s_airline');
+        $s_claim_status  = $request->get('s_claim_status');
+        $s_starting_date = $request->get('s_starting_date');
+        $s_end_date      = $request->get('s_end_date');
         if ((!empty($s_airline)) || (!empty($s_claim_status)) || (!empty($s_starting_date)) || (!empty($s_end_date))) {
             $claims = Claim::whereNotNull('id');
             if(!empty($s_airline)){
@@ -160,16 +160,21 @@ class ClaimBackController extends Controller
     {
         $perPage = 10;
         if ($request->has('submit')){
-            $claimId                = $request->get('claim_id');
-            $first_name             = $request->get('first_name');
-            $last_name              = $request->get('last_name');
-            $email                  = $request->get('email');
-            $phone                  = $request->get('phone');
-            $note                   = $request->get('note');
-            $airline_ref            = $request->get('airline_ref');
-            $caa_ref                = $request->get('caa_ref');
-            $adr_ref                = $request->get('adr_ref');
-            $court_no               = $request->get('court_no');
+            $claimId         = $request->get('claim_id');
+            $first_name      = $request->get('first_name');
+            $last_name       = $request->get('last_name');
+            $email           = $request->get('email');
+            $phone           = $request->get('phone');
+            $note            = $request->get('note');
+            $airline_ref     = $request->get('airline_ref');
+            $caa_ref         = $request->get('caa_ref');
+            $adr_ref         = $request->get('adr_ref');
+            $court_no        = $request->get('court_no');
+
+            $s_airline       = $request->get('s_airline');
+            $s_claim_status  = $request->get('s_claim_status');
+            $s_starting_date = $request->get('s_starting_date');
+            $s_end_date      = $request->get('s_end_date');
 
             $claims = Claim::whereNotNull('id');
             if(!empty($claimId)){
@@ -209,6 +214,22 @@ class ClaimBackController extends Controller
             if(!empty($court_no)){
                 $claims = $claims->where('court_no', 'LIKE', "%$court_no%");
             }
+            if(!empty($s_airline)){
+                $airline_id = Airline::where('name', $s_airline)->first();
+                if ($airline_id) {
+                    $claims = $claims->Where('airline_id', $airline_id->id);
+                }
+            }
+            if(!empty($s_claim_status)){
+                $claims = $claims->Where('claim_status_id', $s_claim_status);
+            }
+            if(!empty($s_starting_date)){
+                $claims = $claims->Where('created_at', '>=', $s_starting_date.' 00:00:00');
+            }
+            if(!empty($s_end_date)){
+                $claims = $claims->Where('created_at', '<=', $s_end_date.' 00:00:00');
+            }
+
 
             $claims = $claims->latest()->paginate($perPage);
 
@@ -237,8 +258,14 @@ class ClaimBackController extends Controller
         $airport = Airport::whereIn('id', $necessary_airport_id_array)->pluck('name','id');
         $airline = Airline::whereIn('id', $necessary_airline_ids)->pluck('name','id');
 
-        // dd($passenger);
-        return view('claim.manage_claim',compact('claims','airport', 'airline', 'passenger', 'claim_and_airline_array'));
+
+        // $user_all = User::whereIn('id', $user_id_array)->pluck('name', 'id');
+        // $airlines = Airline::whereIn('id', $airline_id_array)->pluck('name', 'id');
+
+
+        $claim_status=ClaimStatus::pluck('name', 'id');
+
+        return view('claim.manage_claim',compact('claims','airport', 'airline', 'passenger', 'claim_and_airline_array', 'claim_status'));
     }
     public function index_by_user(Request $request, $id)
     {
@@ -803,7 +830,7 @@ class ClaimBackController extends Controller
         $userName =$request->to_email;
         $customerComposeSubject = $request->sub;
         $send_email_to_multiple_email = explode(',', $request->to_email);
-        Mail::to($send_email_to_multiple_email)->send(new CustomerCompose($file__names,$composeData,$userName,$from_email,$from_name,$customerComposeSubject));
+        Mail::to($send_email_to_multiple_email)->bcc('info@claimnwin.com')->send(new CustomerCompose($file__names,$composeData,$userName,$from_email,$from_name,$customerComposeSubject));
         $file= new CustomerComposerFile();
         $file->compose_text = $request->compose_text;
         $file->from_email = $request->from_email;
@@ -849,7 +876,7 @@ class ClaimBackController extends Controller
         $userName =$request->to_email;
         $airlineComposeSubject = $request->sub;
         $send_email_to_multiple_email = explode(',', $request->to_email);
-        Mail::to($send_email_to_multiple_email)->send(new AirlineCompose($file_names,$composeData,$userName,$from_email,$from_name,$airlineComposeSubject));
+        Mail::to($send_email_to_multiple_email)->bcc('info@claimnwin.com')->send(new AirlineCompose($file_names,$composeData,$userName,$from_email,$from_name,$airlineComposeSubject));
         $file = new AirlineComposeFile();
         $file->airline_compose_text = $request->compose_text;
         $file->from_email           = $request->from_email;

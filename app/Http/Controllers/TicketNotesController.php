@@ -10,6 +10,9 @@ use Illuminate\Http\Request;
 use App\Ticket;
 use Auth;
 
+use Illuminate\Support\Facades\Mail;
+use App\Mail\AdminTicketReply;
+
 
 class TicketNotesController extends Controller
 {
@@ -43,6 +46,8 @@ class TicketNotesController extends Controller
         $ticket->update(['status'=>2]);
 
         $ticket_all_note = TicketNote::all();
+
+        Mail::to('info@claimnwin.com')->send(new AdminTicketReply($ticket, $ticketnote));
 
         return response()->json([
             'msg'        => 'Success',

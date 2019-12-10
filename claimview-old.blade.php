@@ -2051,6 +2051,133 @@
                                         </div>
                                     </div>
                                 </div>
+<<<<<<< HEAD
+                                <div role="tabpanel" class="tab-pane" id="affiliate-info" aria-labelledby="affiliate-info-tab">
+                                    <div class="row" style="margin-top:1%;">
+                                        <div class="col-md-12">
+                                            <div class="panel panel-primary">
+                                                <div class="panel-heading">
+                                                    <i class="fa fa-info-circle"></i> Affiliate Info Form
+                                                </div>
+                                                <div class="panel-body">
+                                                    @if(($claims->affiliate_user_id !="") && ($affilaite_info != null))
+                                                    <form action="{{route('delete-affilite')}}" method="post" class="form-horizontal" name="affiliate_infos">
+                                                        @csrf
+                                                        <input type="hidden" name="affiliate_id" value="{{$affilaite_info->id}}">
+                                                        <input type="hidden" name="claim_id" value="{{$claims->id}}">
+                                                        <div class="form-group">
+                                                            <div class="col-md-9 col-md-offset-3">
+                                                                <button type="submit" class="btn btn-md btn-danger">Delete Affiliate For This Claim</button>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                    <form action="{{route('update-affilite-info-data')}}" method="post" class="form-horizontal" name="affiliate_infos">
+                                                        @csrf
+                                                        <div class="form-group">
+                                                            <label for="commision-info" class="control-label col-md-3">Commision Amount</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" class="form-control" name="commision_amount" id="commision-info" value="{{$affilaite_info->commision_amount}}">
+                                                                <input type="hidden" name="affiliate_id" value="{{$affilaite_info->id}}">
+                                                                <input type="hidden" name="claim_id" value="{{$claims->id}}">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="percentage" class="control-label col-md-3">Percentage</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" class="form-control" name="percentage" id="percentage" value="{{$affilaite_info->percentage}}">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="received-amount" class="control-label col-md-3">Received Amount</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" class="form-control" name="received_amount" id="received-amount" value="{{$affilaite_info->received_amount}}">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="payment-method" class="control-label col-md-3">Payment Method</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" class="form-control" name="payment_method" id="payment-method" value="{{$affilaite_info->payment_method}}">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="addition-description" class="control-label col-md-3">Additional Description</label>
+                                                            <div class="col-md-9">
+                                                                <textarea class="form-control" name="addition_description" id="addition-description" rows="3" cols="30">{{$affilaite_info->addition_description}}</textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="approved" class="control-label col-md-3">Approved Status</label>
+                                                            <div class="col-md-9">
+                                                                <select name="approved" id="approved" class="form-control">
+                                                                    <option value="0" @if($affilaite_info->approved == "0") selected @endif>No</option>
+                                                                    <option value="1" @if($affilaite_info->approved == "1") selected @endif>Yes</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="is_payment_done" class="control-label col-md-3">Payment Status</label>
+                                                            <div class="col-md-9">
+                                                                <select name="is_payment_done" id="is_payment_done" class="form-control">
+                                                                    <option value="0" @if($affilaite_info->is_payment_done == "0") selected @endif>Not done</option>
+                                                                    <option value="1" @if($affilaite_info->is_payment_done == "1") selected @endif>Complete</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        <div class="form-group">
+                                                            <div class="col-md-9 col-md-offset-3">
+                                                                <button type="submit" class="btn btn-sm btn-success">Submit</button>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                    @else
+                                                    <form action="{{route('update-affilite-info-data')}}" method="post" class="form-horizontal" name="affiliate_infos">
+                                                        @csrf
+                                                        <div class="form-group">
+                                                            <label for="affi_user_owner" class="control-label col-md-3">Affiliate User Owner Email</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" class="form-control" name="affi_user_owner" id="affi_user_owner" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="commision-info" class="control-label col-md-3">Commision Amount</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" class="form-control" name="commision_amount" id="commision-info" value="">
+                                                                <input type="hidden" name="claim_id" value="{{$claims->id}}">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="percentage" class="control-label col-md-3">Percentage</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" class="form-control" name="percentage" id="percentage" value="">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="received-amount" class="control-label col-md-3">Received Amount</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" class="form-control" name="received_amount" id="received-amount" value="">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="payment-method" class="control-label col-md-3">Payment Method</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" class="form-control" name="payment_method" id="payment-method" value="">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="addition-description" class="control-label col-md-3">Additional Description</label>
+                                                            <div class="col-md-9">
+                                                                <textarea class="form-control" name="addition_description" id="addition-description" rows="3" cols="30"></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="approved" class="control-label col-md-3">Approved Status</label>
+                                                            <div class="col-md-9">
+                                                                <select name="approved" id="approved" class="form-control">
+                                                                    <option value="0">No</option>
+                                                                    <option value="1">Yes</option>
+                                                                </select>
+=======
                             </div>
                                 {!! Form::open([
                                 'method'=>'DELETE',
@@ -2533,6 +2660,7 @@
                                                         <article class="panel panel-primary">
                                                             <div class="panel-heading icon">
                                                                 <i class="fa fa-comment"></i>
+>>>>>>> 4f1cc17bfe416acba4723257ee79095ebf776fb9
                                                             </div>
                                                             <div class="panel-heading">
                                                                 <h2 class="panel-title pull-left">
