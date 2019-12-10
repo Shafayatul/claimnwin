@@ -40,6 +40,7 @@ use App\Mail\AirlineReply;
 use App\Mail\CustomerReply;
 use App\Affiliate;
 use PDF;
+use Response;
 
 class ClaimBackController extends Controller
 {
@@ -268,17 +269,24 @@ class ClaimBackController extends Controller
     public function claimView($id)
     {
 
-        $reminders=Reminder::where('claim_id',$id)->get();
+        $reminders=Reminder::where('claim_id',$id)->latest()->get();
 
         $claims = Claim::where('id',$id)->first();
+
         if($claims->claim_status_id != null){
             $claim_status_id = $claims->claim_status_id;
-            $claimStatusData=ClaimStatus::where('id',$claim_status_id)->first();
-        }
 
+            $claimStatusData=ClaimStatus::where('id',$claim_status_id)->first();
+
+        }else{
+            $claimStatusData = false;
+        }
         if($claims->claim_next_step_id != null){
             $claim_next_step_id = $claims->claim_next_step_id;
             $NextStepData=NextStep::where('id',$claim_next_step_id)->first();
+        
+        }else{
+            $NextStepData = false;
         }
 
         if($claims->affiliate_user_id != null){
@@ -376,9 +384,9 @@ class ClaimBackController extends Controller
 
             $affilaite_info=Affiliate::where('claim_id',$claims->id)->first();
             $EmailTemplate=EmailTemplate::all()->pluck('title', 'id');
+            $airlines = Airline::orderBy('name', 'asc')->get()->pluck('name', 'id');
 
-
-        return view('claim.claimView',compact('affilaite_info','airlineInfo','airlineSents','inbox','affiliateNotes','expanses','aFolder','sents','notes', 'ticket_notes', 'ticket', 'claimFiles','affiliateComm','adminComm','NextStepData','claimStatusData','flightInfo','airline','departed_airport','destination_airport','reminders','claims','passengers','ittDetails','flightCount','passCount','claimsStatus','nextSteps','banks', 'affiliate_user', 'intinerary_details', 'itinerary_detail_airlines', 'all_flights', 'EmailTemplate', 'is_all_flight_time_exists', 'user_who_created_note'));
+        return view('claim.claimView',compact('affilaite_info','airlineInfo','airlineSents','inbox','affiliateNotes','expanses','aFolder','sents','notes', 'ticket_notes', 'ticket', 'claimFiles','affiliateComm','adminComm','NextStepData','claimStatusData','flightInfo','airline','departed_airport','destination_airport','reminders','claims','passengers','ittDetails','flightCount','passCount','claimsStatus','nextSteps','banks', 'affiliate_user', 'intinerary_details', 'itinerary_detail_airlines', 'all_flights', 'EmailTemplate', 'is_all_flight_time_exists', 'user_who_created_note', 'airlines'));
     }
 
     public function downloadClaimFile($id)
@@ -392,6 +400,19 @@ class ClaimBackController extends Controller
         $file_path = public_path('uploads'.'/'.$claimId.'/'.$Claimfile->file_name);
         return response()->download($file_path,$file_name);
 
+    }
+
+    public function claimAjaxFileDelete(Request $request){
+        $id = $request->claim_file_id;
+        $claimfile= ClaimFile::findOrfail($id);
+        if($claimfile != null){
+            $file_name = 'uploads/'.$claimfile->claim_id.'/'.$claimfile->file_name;
+            unlink($file_name);
+        }
+        ClaimFile::where('id',$id)->delete();
+        return response()->json([
+            'msg' => 'Success'
+        ]);
     }
 
     public function deleteClaimFile($id)
@@ -440,15 +461,58 @@ class ClaimBackController extends Controller
 
     }
 
+    public function claimAjaxFileUpload(Request $request)
+    {
+        $claim_id = $request->claim_id;
+        $file = $request->file('file_upload');
+
+        
+        $file_name = sha1(date('YmdHis') . str_random(30));
+        $name = $file_name . '.' . $file->getClientOriginalExtension();
+        // $resize_name = $name . str_random(2) . '.' . $photo->getClientOriginalExtension();
+
+
+
+        if(!File::exists(public_path('/uploads').'/'.$claim_id)) {
+            File::makeDirectory(public_path('/uploads').'/'.$claim_id);
+        }
+
+        $file->move(public_path('/uploads').'/'.$claim_id.'/', $name);
+        
+        $claim_file = new ClaimFile();
+        $claim_file->name = $request->file_name;
+        $claim_file->file_name = $name;
+        $claim_file->user_id = Auth::user()->id;
+        $claim_file->claim_id = $claim_id;
+        $claim_file->save();
+
+        return response()->json([
+            'msg' => 'Success',
+            'claim_file' => $claim_file
+        ]);
+    }
+
 
     public function claimNextstepStatusChange(Request $request)
     {
-        $claim_id = $request->claim_id;
-        $claim = Claim::find($claim_id);
-        $claim->claim_status_id = $request->claim_status;
-        $claim->claim_next_step_id = $request->nextstep_status;
+        $claim_id                  = $request->claim_id;
+        $claim                     = Claim::find($claim_id);
+        $claim->claim_status_id    = $request->claim_status;
+        $claim->claim_next_step_id = $claim->claim_next_step_id;
         $claim->save();
         return redirect('/claim-view/'.$claim_id)->with('success','Status Updated');
+    }
+
+    public function claimAjaxNextstepStatusChange(Request $request)
+    {
+        $claim_id                  = $request->claim_id;
+        $claim                     = Claim::find($claim_id);
+        $claim->claim_status_id    = $request->claim_status;
+        $claim->claim_next_step_id = $claim->claim_next_step_id;
+        $claim->save();
+        return response()->json([
+            'msg' => 'Success'
+        ]);
     }
 
     public function requiredDetailsUpdate(Request $request)
@@ -469,6 +533,28 @@ class ClaimBackController extends Controller
         $claim->save();
         // dd($claim);
         return redirect('/claim-view/'.$claim_id)->with('success','Required Details Updated');
+    }
+
+    public function claimAjaxrequiredDetailsUpdate(Request $request){
+        $claim_id                           = $request->claim_id;
+        $claim                              = Claim::where('id',$claim_id)->first();
+        $claim->bank_details_id             = $request->bank_details_id;
+        $claim->affiliate_commision         = $request->affiliate_commision;
+        $claim->admin_commision             = $request->admin_commision;
+        $claim->additional_details_for_lba  = $request->additional_details_for_lba;
+        $claim->amount                      = $request->amount;
+        $claim->received_amount             = $request->received_amount;
+        $claim->caa_ref                     = $request->caa_ref;
+        $claim->adr_ref                     = $request->adr_ref;
+        $claim->airline_ref                 = $request->airline_ref;
+        $claim->court_no                    = $request->court_no;
+        $claim->save();
+
+        return response()->json([
+            'msg' => 'Success',
+            'claim' => $claim
+
+        ]);
     }
 
     public function claimArchiveOrReopen($id)
@@ -594,6 +680,18 @@ class ClaimBackController extends Controller
        return redirect('/claim-view/'.$request->claim_id)->with('success','Note Add Success!');
     }
 
+    public function claimAjaxAffiliateNoteAdd(Request $request)
+    {
+        $affiliateNote = new affiliate_notes;
+        $affiliateNote->claim_id = $request->claim_id;
+        $affiliateNote->affiliate_note = $request->affiliate_note_des;
+        $affiliateNote->save();
+        return response()->json([
+            'msg' => 'Success',
+            'affliatenote' => $affiliateNote
+        ]);
+    }
+
     public function affiliateNoteUpdate(Request $request)
     {
         $id = $request->affiliate_note_id;
@@ -604,6 +702,21 @@ class ClaimBackController extends Controller
         return redirect('/claim-view/'.$claim_id)->with('success','Note Update Success!');
     }
 
+    public function claimAjaxAffiliateNoteUpdate(Request $request)
+    {
+        $id = $request->affiliate_id;
+        $claim_id = $request->claim_id;
+        $affiliateNote = affiliate_notes::where('id',$id)->first();
+        $affiliateNote->affiliate_note = $request->affiliate_note_des;
+        $affiliateNote->save();
+
+
+        return response()->json([
+            'msg' => 'Success',
+            'affliatenote' => $affiliateNote
+        ]);
+    }
+
     public function affiliateNoteDelete(Request $request, $id)
     {
         $claim_id = $request->claim_id;
@@ -611,11 +724,19 @@ class ClaimBackController extends Controller
         return redirect('/claim-view/'.$claim_id)->with('success','Affiliate Note Delete!');
     }
 
+    public function claimAjaxAffiliateNoteDelete(Request $request)
+    {
+        $id = $request->affiliate_id;
+        affiliate_notes::destroy($id);
+        return response()->json([
+            'msg' => 'Success'
+        ]);
+    }
+
     public function customerComposeDataSave(Request $request)
     {
         $id = $request->claim_id;
         $composeData = $request->compose_text;
-
         if($request->hasFile('compose_file')){
             $files = $request->file('compose_file');
             // dd($files);
@@ -627,17 +748,12 @@ class ClaimBackController extends Controller
                 // $file__name[] = $fileName;
                 $images[]=$fileUrl;
             }
-
         }else{
             $images= [];
         }
-
        $file__names =$images;
-
        $from_email  = $request->from_email;
        $from_name   = $request->from_name;
-
-
         $userName =$request->to_email;
         $customerComposeSubject = $request->sub;
         $send_email_to_multiple_email = explode(',', $request->to_email);
@@ -655,12 +771,102 @@ class ClaimBackController extends Controller
 
     }
 
+    public function claimAjaxComposeCustomerData(Request $request)
+    {
+        $id = $request->claim_id;
+        if($request->file('compose_files') != null){
+            $files = count($request->file('compose_files'));
+            if($files > 0){
+                for($index = 0;$index < $files;$index++){
+                    $file = $request->file('compose_files')[$index];
+                    $fileName = uniqid().'.'.$file->getClientOriginalExtension();
+                    $filePath = 'compose_file/';
+                    $fileUrl = $filePath.$fileName;
+                    $file->move($filePath,$fileName);
+                    // $file__name[] = $fileName;
+                    $images[]=$fileUrl;
+                }
+            }else{
+                $images= [];
+            }
+        }else{
+            $images= [];
+        }
+        
+        $file__names = $images;
+        
+
+       $from_email  = $request->from_email;
+       $from_name   = $request->from_name;
+
+
+        $userName =$request->to_email;
+        $customerComposeSubject = $request->sub;
+        $send_email_to_multiple_email = explode(',', $request->to_email);
+        Mail::to($send_email_to_multiple_email)->send(new CustomerCompose($file__names,$composeData,$userName,$from_email,$from_name,$customerComposeSubject));
+        $file= new CustomerComposerFile();
+        $file->compose_text = $request->compose_text;
+        $file->from_email = $request->from_email;
+        $file->from_name = $request->from_name;
+        $file->to_email = $request->to_email;
+        $file->claim_id = $request->claim_id;
+        $file->sub = $request->sub;
+        $file->compose_file= implode('|', $images);
+        $file->save();
+        
+        return response()->json(['msg' => 'Success']);
+
+    }
+
+    public function claimAjaxAirlineCustomerData(Request $request){
+        $id = $request->claim_id;
+        if($request->file('airline_compose_files') != null){
+            $files = count($request->file('airline_compose_files'));
+            if($files > 0){
+                for($index = 0;$index < $files;$index++){
+                    $file = $request->file('airline_compose_files')[$index];
+                    $fileName = uniqid().'.'.$file->getClientOriginalExtension();
+                    $filePath = 'airline_compose_file/';
+                    $fileUrl = $filePath.$fileName;
+                    $file->move($filePath,$fileName);
+                    // $file__name[] = $fileName;
+                    $images[]=$fileUrl;
+                }
+            }else{
+                $images= [];
+            }
+        }else{
+            $images= [];
+        }
+        
+        $file_names =$images;
+        
+
+       $from_email  = $request->from_email;
+       $from_name   = $request->from_name;
+
+        $composeData = $request->compose_text;
+        $userName =$request->to_email;
+        $airlineComposeSubject = $request->sub;
+        $send_email_to_multiple_email = explode(',', $request->to_email);
+        Mail::to($send_email_to_multiple_email)->send(new AirlineCompose($file_names,$composeData,$userName,$from_email,$from_name,$airlineComposeSubject));
+        $file = new AirlineComposeFile();
+        $file->airline_compose_text = $request->compose_text;
+        $file->from_email           = $request->from_email;
+        $file->from_name            = $request->from_name;
+        $file->to_email             = $request->to_email;
+        $file->claim_id             = $request->claim_id;
+        $file->sub                  = $request->sub;
+        $file->airline_compose_file = implode("|",$images);
+        $file->save();
+        
+        return response()->json(['msg' => 'Success']);
+    }
+
     public function airlineComposeDataSave(Request $request)
     {
-
         $id = $request->claim_id;
         $composeData = $request->airline_compose_text;
-
         if($request->hasFile('airline_compose_file')){
             $files = $request->file('airline_compose_file');
             // dd($files);
@@ -672,15 +878,12 @@ class ClaimBackController extends Controller
                 // $file__name[] = $fileName;
                 $images[]=$fileUrl;
             }
-
         }else{
             $images= [];
         }
         $file_names =$images;
-
        $from_email  = $request->from_email;
        $from_name   = $request->from_name;
-
        $airlineComposeSubject = $request->sub;
         $userName = $request->to_email;
         $send_email_to_multiple_email = explode(',', $request->to_email);
@@ -714,7 +917,6 @@ class ClaimBackController extends Controller
     {
         $id = $request->claim_id;
         $composeData = $request->airline_compose_text;
-
         if($request->hasFile('airline_compose_file')){
             $files = $request->file('airline_compose_file');
             // dd($files);
@@ -726,17 +928,13 @@ class ClaimBackController extends Controller
                 // $file__name[] = $fileName;
                 $images[]=$fileUrl;
             }
-
         }else{
             $images= [];
         }
         $file_names =$images;
-
        $from_email  = $request->from_email;
        $from_name   = $request->from_name;
-
        $airlineReplySubject = $request->sub;
-
         $userName = $request->to_email;
         $send_email_to_multiple_email = explode(',', $request->to_email);
         Mail::to($send_email_to_multiple_email)->send(new AirlineReply($file_names,$composeData,$userName,$from_email,$from_name,$airlineReplySubject));
@@ -750,6 +948,53 @@ class ClaimBackController extends Controller
         $file->airline_compose_file = implode("|",$images);
         $file->save();
         return redirect('/claim-view/'.$id)->with('success','Sent Email Successfully!');
+    }
+
+    public function claimAjaxairlineReplyDataSave(Request $request)
+    {
+
+        $id = $request->claim_id;
+        if($request->file('airline_compose_files') != null){
+            $files = count($request->file('airline_compose_files'));
+            if($files > 0){
+                for($index = 0;$index < $files;$index++){
+                    $file = $request->file('airline_compose_files')[$index];
+                    $fileName = uniqid().'.'.$file->getClientOriginalExtension();
+                    $filePath = 'airline_compose_file/';
+                    $fileUrl = $filePath.$fileName;
+                    $file->move($filePath,$fileName);
+                    // $file__name[] = $fileName;
+                    $images[]=$fileUrl;
+                }
+            }else{
+                $images= [];
+            }
+        }else{
+            $images= [];
+        }
+        
+        $file_names =$images;
+        
+
+       $from_email  = $request->from_email;
+       $from_name   = $request->from_name;
+
+        $composeData = $request->compose_text;
+        $userName =$request->to_email;
+        $airlineReplySubject = $request->sub;
+        $send_email_to_multiple_email = explode(',', $request->to_email);
+        Mail::to($send_email_to_multiple_email)->send(new AirlineReply($file_names,$composeData,$userName,$from_email,$from_name,$airlineReplySubject));
+        $file = new AirlineComposeFile();
+        $file->airline_compose_text = $request->airline_compose_text;
+        $file->from_email           = $request->from_email;
+        $file->from_name            = $request->from_name;
+        $file->to_email             = $request->to_email;
+        $file->claim_id             = $request->claim_id;
+        $file->sub                  = $request->sub;
+        $file->airline_compose_file = implode("|",$images);
+        $file->save();
+        
+        return response()->json(['msg' => 'Success']);
     }
 
     public function customerReplyDataSave(Request $request)
@@ -806,6 +1051,69 @@ class ClaimBackController extends Controller
         return redirect('/claim-view/'.$request->claim_id)->with('success','Affiliate deleted Successfully!');
 
     }
+
+    public function claimAjaxDeleteAffiliate(Request $request){
+        Affiliate::find($request->affiliate_id)->delete();
+        
+        $claim                    = Claim::find($request->claim_id);
+        $claim->affiliate_user_id = '';
+        $claim->save();
+        return response()->json([
+            'msg' => 'Success'
+        ]);
+    }
+
+    public function claimAjaxWithUserAffiliateInfo(Request $request){
+        $id                              = $request->affiliate_id;
+        $claim_id                        = $request->claim_id;
+        $affiliate                       = Affiliate::where('id',$id)->first();
+        $affiliate->commision_amount     = $request->commision_amount;
+        $affiliate->percentage           = $request->percentage;
+        $affiliate->received_amount      = $request->received_amount;
+        $affiliate->payment_method       = $request->payment_method;
+        $affiliate->addition_description = $request->addition_description;
+        $affiliate->approved             = $request->approved;
+        $affiliate->is_payment_done      = $request->payment_done;
+        $affiliate->save();
+        return response()->json([
+            'msg' => 'Success',
+            'affiliate' => $affiliate
+        ]);
+    }
+
+    public function claimAjaxWithoutUserAffiliateInfo(Request $request)
+    {
+        $affiliate_user_id = User::where('email', $request->affiliate_user_owner)->first()->id;
+
+
+        $claim_id                        = $request->claim_id;
+
+        $affiliate                       = new Affiliate;
+        $affiliate->claim_id             = $request->claim_id;
+        $affiliate->commision_amount     = $request->commision_amount;
+        $affiliate->percentage           = $request->percentage;
+        $affiliate->received_amount      = $request->received_amount;
+        $affiliate->payment_method       = $request->payment_method;
+        $affiliate->addition_description = $request->addition_description;
+        $affiliate->approved             = $request->approved;
+        $affiliate->is_payment_done      = $request->payment_done;
+        $affiliate->affiliate_user_id    = $affiliate_user_id;
+        $affiliate->save();
+
+        $claim                    = Claim::find($request->claim_id);
+        $claim->affiliate_user_id = $affiliate_user_id;
+        $claim->save();
+
+        $affiliate_user = User::where('email', $request->affiliate_user_owner)->first();
+
+        return response()->json([
+            'msg' => 'Success',
+            'affiliate' => $affiliate,
+            'affiliate_user' => $affiliate_user
+        ]);
+    }
+
+
     public function updateAffiliteInfoData(Request $request)
     {
         if (isset($request->affi_user_owner)) {

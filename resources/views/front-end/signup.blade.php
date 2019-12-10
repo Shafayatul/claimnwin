@@ -74,6 +74,13 @@
             </div>
         </div>
     @include('layouts.includes.partial.alert')
+    @if ($errors->any())
+      <ul class="alert alert-danger">
+          @foreach ($errors->all() as $error)
+              <li>{{ $error }}</li>
+          @endforeach
+      </ul>
+  @endif
     <form class="omb_loginForm" action="{{url('/user/signup')}}" autocomplete="off" method="post">
         @csrf
             <div class="row">
@@ -103,6 +110,15 @@
                         <input type="password" class="form-control" name="confirm_password" placeholder="@if ($responseDecoded) {!! $responseDecoded['data']['translations'][7]['translatedText'] !!} @else {!! $text[7] !!} @endif" required>
                     </div>
                     <span class="help-block"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12">
+                    @if(env('GOOGLE_RECAPTCHA_KEY'))
+                         <div class="g-recaptcha"
+                              data-sitekey="{{env('GOOGLE_RECAPTCHA_KEY')}}">
+                         </div>
+                    @endif
                 </div>
             </div>
             <div class="row text-center">
@@ -138,5 +154,5 @@
 
 
 @section('footer-script')
-
+<script src='https://www.google.com/recaptcha/api.js'></script>
 @endsection

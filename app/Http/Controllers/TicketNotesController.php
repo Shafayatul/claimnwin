@@ -31,6 +31,25 @@ class TicketNotesController extends Controller
         return redirect()->back()->with('success', 'TicketNote added!');
     }
 
+    public function claimAjaxTicketDescription(Request $request)
+    {
+        $ticketnote              = new TicketNote;
+        $ticketnote->user_id     = Auth::id();
+        $ticketnote->ticket_id   = $request->ticket_id;
+        $ticketnote->description = $request->ticket_description;
+        $ticketnote->save();
+
+        $ticket = Ticket::find($request->ticket_id);
+        $ticket->update(['status'=>2]);
+
+        $ticket_all_note = TicketNote::all();
+
+        return response()->json([
+            'msg'        => 'Success',
+            'ticketnote' => $ticket_all_note
+        ]);
+    }
+
 
 
     public function index(Request $request)

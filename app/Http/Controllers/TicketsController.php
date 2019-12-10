@@ -345,6 +345,18 @@ class TicketsController extends Controller
         return redirect()->back()->with('success', 'Ticket Closed!');
     }
 
+    public function claimAjaxCloseTicket(Request $request)
+    {
+        $id = $request->ticket_id;
+        $ticket = Ticket::findOrfail($id);
+        $ticket->status = 3;
+        $ticket->save();
+        return response()->json([
+            'msg' => 'Success',
+            'ticket' => $ticket
+        ]);
+    }
+
     public function ticketReplyDataSave(Request $request)
     {
         $composeData = $request->ticket_reply_note;

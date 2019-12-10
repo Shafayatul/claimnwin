@@ -78,6 +78,40 @@ class FlightsController extends Controller
         
     }
 
+    public function claimAjaxTimeUpdateForClaim(Request $request)
+    {
+        $flight                                    = Flight::where('flight_no', $request->flight_no)->first();
+        $flight->user_id                           = Auth::user()->id;
+        $flight->airline_id                        = $request->airline_id;
+        $flight->flight_no                         = $request->flight_no;
+        $flight->scheduled_departure_time_and_date = $request->scheduled_departure_time_and_date;
+        $flight->actual_departure_time_and_date    = $request->actual_departure_time_and_date;
+        $flight->scheduled_arrival_time_and_date   = $request->scheduled_arrival_time_and_date;
+        $flight->actual_arrival_time_and_date      = $request->actual_arrival_time_and_date;
+        $flight->save();
+        return response()->json([
+            'msg' => 'Success',
+            'flight' => $flight
+        ]);
+    }
+
+    public function claimAjaxTimeSetForClaim(Request $request)
+    {
+        $flight                                    = new Flight;
+        $flight->user_id                           = Auth::user()->id;
+        $flight->airline_id                        = $request->airline_id;
+        $flight->flight_no                         = $request->flight_no;
+        $flight->scheduled_departure_time_and_date = $request->scheduled_departure_time_and_date;
+        $flight->actual_departure_time_and_date    = $request->actual_departure_time_and_date;
+        $flight->scheduled_arrival_time_and_date   = $request->scheduled_arrival_time_and_date;
+        $flight->actual_arrival_time_and_date      = $request->actual_arrival_time_and_date;
+        $flight->save();
+        return response()->json([
+            'msg' => 'Success',
+            'flight' => $flight
+        ]);
+    }
+
     /**
      * Display the specified resource.
      *

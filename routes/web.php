@@ -112,7 +112,9 @@ Route::group(['middleware' => ['auth']], function() {
         Route::resource('currency', 'CurrencyController');
         Route::resource('bank-accounts', 'BankAccountsController');
         Route::resource('reminders', 'RemindersController');
-        Route::post('/reminder-create', 'RemindersController@store')->name('reminder-create');
+        // Route::get('reminder', 'RemindersController@store');
+        
+        Route::get('reminder-data', 'RemindersController@store');
         Route::post('/update-reminder', 'RemindersController@update')->name('update-reminder');
         Route::delete('/reminders-delete/{id}','RemindersController@destroy');
         Route::get('/reminder-status-dismiss/{id}', 'RemindersController@reminderStatusDismiss');
@@ -226,6 +228,34 @@ Route::group(['middleware' => ['auth']], function() {
         Route::resource('reviews', 'ReviewsController');
 
         Route::post('/ticket-reply-data', 'TicketsController@ticketReplyDataSave')->name('ticket-reply-data');
+
+        //Claim Ajax Part
+        Route::post('/claim-ajax-compose-customer-data', 'ClaimBackController@claimAjaxComposeCustomerData');
+        Route::post('/claim-ajax-airline-compose-data', 'ClaimBackController@claimAjaxAirlineCustomerData');
+        Route::post('/claim-ajax-airline-reply-data', 'ClaimBackController@claimAjaxairlineReplyDataSave');
+
+        Route::post('/claim-ajax-reminder-create', 'RemindersController@claimAjaxReminderCreate');
+        Route::post('/claim-ajax-update-reminder', 'RemindersController@claimAjaxReminderUpdate');
+        Route::get('/claim-ajax-delete-reminder', 'RemindersController@claimAjaxReminderDelete');
+        Route::get('/claim-ajax-dismiss-status-reminder', 'RemindersController@claimAjaxReminderDismiss');
+        Route::get('/claim-ajax-markasdone-status-reminder', 'RemindersController@claimAjaxReminderMarkAsDone');
+        Route::post('/claim-ajax-required-details', 'ClaimBackController@claimAjaxrequiredDetailsUpdate');
+        Route::post('/claim-ajax-nextstep-status-change', 'ClaimBackController@claimAjaxNextstepStatusChange');
+        Route::post('/claim-ajax-status-create', 'ClaimStatusController@claimAjaxStatusStore');
+        Route::post('/claim-ajax-delete-affilite', 'ClaimBackController@claimAjaxDeleteAffiliate');
+        Route::post('/claim-ajax-update-with-user-affilite-info', 'ClaimBackController@claimAjaxWithUserAffiliateInfo');
+        Route::post('/claim-ajax-update-without-user-affilite-info', 'ClaimBackController@claimAjaxWithoutUserAffiliateInfo');
+        Route::post('/claim-ajax-ticket-description', 'TicketNotesController@claimAjaxTicketDescription');
+        Route::get('/claim-ajax-close-ticket', 'TicketsController@claimAjaxCloseTicket');
+        Route::post('/claim-ajax-affiliate-note-add', 'ClaimBackController@claimAjaxAffiliateNoteAdd');
+        Route::post('/claim-ajax-affiliate-note-delete', 'ClaimBackController@claimAjaxAffiliateNoteDelete');
+        Route::post('/claim-ajax-update-affiliate-note', 'ClaimBackController@claimAjaxAffiliateNoteUpdate');
+        Route::post('/claim-ajax-file-upload', 'ClaimBackController@claimAjaxFileUpload');
+        Route::get('/claim-ajax-file-delete', 'ClaimBackController@claimAjaxFileDelete');
+        Route::post('/claim-ajax-passenger-add-for-claim', 'PassengersController@claimAjaxPassengerAddForClaim');
+        Route::post('/claim-ajax-passenger-update', 'PassengersController@claimAjaxPassengerUpdate');
+        Route::post('/claim-ajax-time-update-for-claim', 'FlightsController@claimAjaxTimeUpdateForClaim');
+        Route::post('/claim-ajax-time-set-for-claim', 'FlightsController@claimAjaxTimeSetForClaim');
 
     });
 });

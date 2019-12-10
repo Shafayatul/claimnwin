@@ -179,6 +179,9 @@ class UserPanelController extends Controller
 
     public function userSignup(Request $request)
     {
+     $this->validate($request,[
+            'g-recaptcha-response' => 'required|recaptcha'
+        ]); 
       if (Cache::get($request->ip()) != null ) {
         $affiliate_user_id = Cache::get($request->ip());
       }else{

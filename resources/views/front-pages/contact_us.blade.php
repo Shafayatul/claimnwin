@@ -63,6 +63,13 @@
             <div class="row">
               <div class="col-md-12">
                 <div class="contact_us_form">
+                  @if ($errors->any())
+                      <ul class="alert alert-danger">
+                          @foreach ($errors->all() as $error)
+                              <li>{{ $error }}</li>
+                          @endforeach
+                      </ul>
+                  @endif
                   <form class="" action="{{ url('/contacts-create') }}" method="post">
                     @csrf
                     <div class="row" style="padding-bottom:15px;">
@@ -82,6 +89,14 @@
                       <div class="col-md-12">
                         <textarea name="message" rows="8" cols="80" placeholder="@if ($responseDecoded){{ $responseDecoded['data']['translations'][6]['translatedText']}} @else {{ $text[6]}} @endif" required></textarea>
                       </div>
+                    </div>
+                    <div class="row text-center">
+                        <div class="col-xs-12 col-sm-12">
+                            @if(env('GOOGLE_RECAPTCHA_KEY'))
+                                 <div class="g-recaptcha" data-sitekey="{{env('GOOGLE_RECAPTCHA_KEY')}}">
+                                 </div>
+                            @endif
+                        </div>
                     </div>
                     <div class="row">
                       <div class="col-md-12">
@@ -205,4 +220,7 @@
       </div>
     </div>
   </div>
+@endsection
+@section('footer-script')
+<script src='https://www.google.com/recaptcha/api.js'></script>
 @endsection
