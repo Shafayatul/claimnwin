@@ -822,7 +822,7 @@ class ClaimBackController extends Controller
         
         $file__names = $images;
         
-
+        $composeData = $request->compose_text;
        $from_email  = $request->from_email;
        $from_name   = $request->from_name;
 

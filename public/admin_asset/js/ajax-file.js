@@ -351,7 +351,7 @@ $(document).on('click', '.dismiss', function(){
         },
         type : 'GET',
         success:function(response){
-            $("#myModal").modal("hide"); 
+            $("#myModalSchedule").modal("hide"); 
             if (response.msg == "Success") {
                 var html = `<div class="alert alert-success alert-dismissible show" role="alert">
                     <strong>Success!</strong> `+response.msg+`
@@ -377,7 +377,7 @@ $(document).on('click', '.mark-as-done', function(){
         },
         type : 'GET',
         success:function(response){
-            $("#myModal").modal("hide"); 
+            $("#myModalSchedule").modal("hide"); 
             if (response.msg == "Success") {
                 var html = `<div class="alert alert-success alert-dismissible show" role="alert">
                     <strong>Success!</strong> `+response.msg+`
@@ -636,10 +636,10 @@ $.ajax({
                     html1 += '<div id="reminder-model-'+response.reminder.id+'" class="modal fade" role="dialog">';
                     html1 += '<div class="modal-dialog"><div class="modal-content"><div class="modal-header">';
                     html1 += '<button type="button" class="close" data-dismiss="modal">&times;</button>';
-                    html1 += '<a href="/reminder-status-dismiss/'+response.reminder.id+'" class="btn btn-sm btn-success">Dismiss</a>';
-                    html1 += '<a  class="btn btn-sm btn-success" data-toggle="modal" data-target="#myModal-'+response.reminder.id+'" data-dismiss="modal">Reschedule</a>';
+                    html1 += '<a type="button" id="'+response.reminder.id+'" class="btn btn-sm btn-success dismiss">Dismiss</a>';
+                    html1 += '<a  class="btn btn-sm btn-success" data-toggle="modal" data-target="#myModalSchedule-'+response.reminder.id+'" data-dismiss="modal">Reschedule</a>';
                     html1 += '<a href="#" class="btn btn-sm btn-success">Snooze</a>';
-                    html1 += '<a href="/reminder-status-markasdone/'+response.reminder.id+'" class="btn btn-sm btn-success">Mark as done</a>';
+                    html1 += '<a type="button" id="'+response.reminder.id+'" class="btn btn-sm btn-success mark-as-done">Mark as done</a>';
                     html1 += '<a href="/claim-view/'+response.reminder.claim_id+'" class="btn btn-sm btn-primary">View Claim</a></div>';
                     html1 += '<div class="modal-body"><div class="row"><div class="col-md-12">';
                     html1 += '<p style="font-weight:bold;">DEPARTED FROM: <span style="font-weight:normal;">'+response.reminderDeparted.name+'</span></p>';
@@ -669,19 +669,19 @@ $.ajax({
                     html1 += '<div class="modal-body"><form action="/claim-ajax-update-reminder" method="post">';
                     var csrf = $('meta[name="csrf-token"]').attr('content');
                     html1 += '<input type="hidden" name="_token" value="'+csrf+'" >';
-                    html1 += '<div class="row"><div class="col-md-6"><div class="form-group"><label for="exampleInputEmail1">Reminder Date</label><input type="date" name="callback_date" class="form-control" id="exampleInputEmail1" value="'+response.reminder.callback_date+'"  placeholder="Enter email"><input type="hidden" name="id" value="'+response.reminder.id+'"></div></div><div class="col-md-6"><div class="form-group"><label for="exampleInputEmail1">Reminder Time</label><input type="time" name="callback_time" class="form-control" value="'+response.reminder.callback_time+'" id="exampleInputEmail1"  placeholder="Enter email"></div></div></div>';
+                    html1 += '<div class="row"><div class="col-md-6"><div class="form-group"><label for="exampleInputEmail1">Reminder Date</label><input type="date" name="callback_date" class="form-control" id="exampleInputEmail1" value="'+response.reminder.callback_date+'"  placeholder="Enter email"><input type="hidden" name="id" id="reminder_id_'+response.reminder.id+'" value="'+response.reminder.id+'"></div></div><div class="col-md-6"><div class="form-group"><label for="exampleInputEmail1">Reminder Time</label><input type="time" name="callback_time" class="form-control" value="'+response.reminder.callback_time+'" id="exampleInputEmail1"  placeholder="Enter email"></div></div></div>';
                     html1 += '<div class="row"><div class="col-md-12"><div class="form-group"><label for="exampleInputEmail1" class="control-label">Note</label><textarea name="note" class="form-control" id="exampleInputEmail1" cols="30" rows="3">'+response.reminder.note+'</textarea></div></div></div>';
                     html1 += '<div class="row"><div class="col-md-12"><button type="button" id="update-reminder-5" class="btn btn-success">Reminder</button></div></div>';
                     html1 += '</form>';
                     html1 += '</div><div class="modal-footer"></div></div></div></div>';
-                    html1 += '<div id="myModal-'+response.reminder.id+'" class="modal fade" role="dialog">';
+                    html1 += '<div id="myModalSchedule-'+response.reminder.id+'" class="modal fade" role="dialog">';
                     html1 += '<div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal">&times;</button><h4 class="modal-title">Set Reminder</h4></div>';
                     html1 += '<div class="modal-body"><form action="/claim-ajax-update-reminder" method="post">';
                     var csrf1 = $('meta[name="csrf-token"]').attr('content');
                     html1 += '<input type="hidden" name="_token" value="'+csrf1+'" >';
-                    html1 += '<div class="row"><div class="col-md-6"><div class="form-group"><label for="exampleInputEmail1">Reminder Date</label><input type="date" name="callback_date" class="form-control" id="exampleInputEmail1" value="'+response.reminder.callback_date+'"  placeholder="Enter email"><input type="hidden" name="id" value="'+response.reminder.id+'"></div></div><div class="col-md-6"><div class="form-group"><label for="exampleInputEmail1">Reminder Time</label><input type="time" name="callback_time" class="form-control" value="'+response.reminder.callback_time+'" id="exampleInputEmail1"  placeholder="Enter email"></div></div></div>';
-                    html1 += '<div class="row"><div class="col-md-12"><div class="form-group"><label for="exampleInputEmail1" class="control-label">Note</label><textarea name="note" class="form-control" id="exampleInputEmail1" cols="30" rows="3">'+response.reminder.note+'</textarea></div></div></div>';
-                    html1 += '<div class="row"><div class="col-md-12"><button type="button" id="update-reminder-6" class="btn btn-success">Reminder</button></div></div>';
+                    html1 += '<div class="row"><div class="col-md-6"><div class="form-group"><label for="exampleInputEmail1">Reminder Date</label><input type="date" name="callback_date" class="form-control" id="reschedule_callback_date_'+response.reminder.id+'" value="'+response.reminder.callback_date+'"  placeholder="Enter email"><input type="hidden" name="id" value="'+response.reminder.id+'"></div></div><div class="col-md-6"><div class="form-group"><label for="exampleInputEmail1">Reminder Time</label><input type="time" name="callback_time" class="form-control" value="'+response.reminder.callback_time+'" id="reschedule_callback_time_'+response.reminder.id+'"  placeholder="Enter email"></div></div></div>';
+                    html1 += '<div class="row"><div class="col-md-12"><div class="form-group"><label for="exampleInputEmail1" class="control-label">Note</label><textarea name="note" class="form-control" id="reschedule_note_'+response.reminder.id+'" cols="30" rows="3">'+response.reminder.note+'</textarea></div></div></div>';
+                    html1 += '<div class="row"><div class="col-md-12"><button type="button" id="'+response.reminder.id+'" class="btn btn-success reschedule-reminder">Reminder</button></div></div>';
                     html1 += '</form>';
                     html1 += '</div><div class="modal-footer"></div></div></div></div>';                  
                      
@@ -699,12 +699,131 @@ $.ajax({
         }
     });
 
-    $(document).on('click', '#update-reminder-5', function(){
+    $(document).on('click', '.update-reminder', function(){
 
-        var callback_date = $("#callback_date_1").val();
-        var callback_time = $("#callback_time_1").val();
-        var note          = $("#note_1").val();
-        var reminder_id   = $("#reminder_id_1").val();
+        var reminder_id   = $(this).attr('id');
+        var callback_date = $("#callback_date_"+reminder_id).val();
+        var callback_time = $("#callback_time_"+reminder_id).val();
+        var note          = $("#note_"+reminder_id).val();
+        $("#reminder-edit-model-"+reminder_id).modal("hide");
+        console.log(callback_date);
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+            }
+        });
+        if(callback_date !== null){
+        $.ajax({
+            url: "/claim-ajax-update-reminder",
+            type: 'POST',
+            data: {
+                callback_date : callback_date,
+                callback_time : callback_time,
+                note : note,
+                reminder_id : reminder_id,
+            },
+            success: function(response){
+
+                console.log(response);
+                if (response.msg == "Success") {
+
+                 var html = `<div class="alert alert-success alert-dismissible show" role="alert">
+                        <strong>Success!</strong> `+response.msg+`
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>`;
+                    $('#msgs').html(html);
+
+                    if(response.reminder)
+                    {
+
+                var html1 = '<td>'+response.reminder.claim_id+'</td>';
+                    html1 += '<td id="reminder-status-'+response.reminder.id+'">'+response.reminder.status+'</td>';
+                    html1 += '<td>'+response.reminder.callback_date+' '+response.reminder.callback_time+'</td>';
+                    html1 += '<td>'+response.reminder.snooze+'</td>';
+                    html1 += '<td>'+response.reminder.note+'</td>';
+                    html1 += '<td><a type="button" data-toggle="modal" class="btn btn-sm btn-primary" title="View Reminder" data-target="#reminder-model-'+response.reminder.id+'"><i class="fa fa-eye" aria-hidden="true"></i> View</a>';
+                    html1 += '<a  type="button" data-toggle="modal" title="Edit Reminder" class="btn btn-sm btn-dark reminder-edit-view" data-target="#reminder-edit-model-'+response.reminder.id+'"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>';
+                    var csrf2 = $('meta[name="csrf-token"]').attr('content');
+                    html1 += '<form action="/claim-ajax-delete-reminder/'+response.reminder.id+'" method="POST">';
+                    html1 += '<input type="hidden" name="_method" value="DELETE"/>';
+                    html1 += '<input type="hidden" name="_token" value="'+csrf2+'"/>';
+                    html1 += '<button type="button" class="btn btn-sm btn-danger delete-reminder" title="Delete Reminder" id="'+response.reminder.id+'"><i class="fa fa-trash" aria-hidden="true"></i>Delete</button>';
+                    html1 += '</form>';
+
+                    html1 += '<div id="reminder-model-'+response.reminder.id+'" class="modal fade" role="dialog">';
+                    html1 += '<div class="modal-dialog"><div class="modal-content"><div class="modal-header">';
+                    html1 += '<button type="button" class="close" data-dismiss="modal">&times;</button>';
+                    html1 += '<a type="button" id="'+response.reminder.id+'" class="btn btn-sm btn-success dismiss">Dismiss</a>';
+                    html1 += '<a  class="btn btn-sm btn-success" data-toggle="modal" data-target="#myModalSchedule-'+response.reminder.id+'" data-dismiss="modal">Reschedule</a>';
+                    html1 += '<a href="#" class="btn btn-sm btn-success">Snooze</a>';
+                    html1 += '<a type="button" id="'+response.reminder.id+'" class="btn btn-sm btn-success mark-as-done">Mark as done</a>';
+                    html1 += '<a href="/claim-view/'+response.reminder.claim_id+'" class="btn btn-sm btn-primary">View Claim</a></div>';
+                    html1 += '<div class="modal-body"><div class="row"><div class="col-md-12">';
+                    html1 += '<p style="font-weight:bold;">DEPARTED FROM: <span style="font-weight:normal;">'+response.reminderDeparted.name+'</span></p>';
+                    html1 += '<p style="font-weight:bold;">FINAL DESTINATION: <span style="font-weight:normal;">'+response.reminderfinalDestination.name+'</span></p>';
+                    var check = response.reminder_claims.is_direct_flight == 0 ? 'No' : 'Yes';
+                    html1 += '<p style="font-weight:bold;">Did you have any connecting flights?:<span style="font-weight:normal;">'+check+'</span></p>';
+                    html1 += '<p style="font-weight:bold;">What happened to the flight?:<span style="font-weight:normal;">'+response.reminder_claims.what_happened_to_the_flight+'</span></p>';
+                    html1 += '<p style="font-weight:bold;">Date of '+response.reminder_claims.claim_table_type+':  <span style="font-weight:normal;">'+response.reminder_claims.created_at+'</span></p>';
+                    html1 += '<p style="font-weight:bold;">Airline:  <span style="font-weight:normal;">'+response.airline.name+'</span></p>';
+                    html1 += '<p style="font-weight:bold;">Flight no:  <span style="font-weight:normal;">'+response.flightDetails.flight_number+'</span></p>';
+                    html1 += '<p style="font-weight:bold;">Departure date:  <span style="font-weight:normal;">'+response.flightDetails.departure_date+'</span></p><hr>';
+                    html1 += '<div class="row"><div class="col-md-12"><h4 style="font-weight:bold;">Passenger List</h4><table class="table table-borderless table-hover"><thead><th style="font-weight:bold;">First Name</th><th style="font-weight:bold;">Last Name</th><th style="font-weight:bold;">Ticket No</th></thead><tbody>';
+                    $.each(response.passengers, function(i, val){
+                        html1 += '<tr>';
+                        html1 += '<td>'+val.first_name+'</td>';
+                        html1 += '<td>'+val.last_name+'</td>';
+                        html1 += '<td></td>';
+                        html1 += '</tr>';
+                    })
+                    html1 += '</tbody></table></div></div>';
+                    html1 += '<p style="font-weight:bold;">Status:  <span style="font-weight:normal;">'+response.reminder.status+'</span></p>'
+                    html1 += '</div></div></div><div class="modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal">Close</button></div></div></div></div>';
+
+                    
+
+                    html1 += '<div id="reminder-edit-model-'+response.reminder.id+'" class="modal fade" role="dialog"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal">&times;</button><h4 class="modal-title">Set Reminder</h4></div>';
+                    html1 += '<div class="modal-body"><form action="/claim-ajax-update-reminder" method="post">';
+                    var csrf = $('meta[name="csrf-token"]').attr('content');
+                    html1 += '<input type="hidden" name="_token" value="'+csrf+'" >';
+                    html1 += '<div class="row"><div class="col-md-6"><div class="form-group"><label for="exampleInputEmail1">Reminder Date</label><input type="date" name="callback_date" class="form-control" id="callback_date_'+response.reminder.id+'" value="'+response.reminder.callback_date+'"  placeholder="Enter email"></div></div><div class="col-md-6"><div class="form-group"><label for="exampleInputEmail1">Reminder Time</label><input type="time" name="callback_time" class="form-control" value="'+response.reminder.callback_time+'" id="callback_time_'+response.reminder.id+'"  placeholder="Enter email"></div></div></div>';
+                    html1 += '<input type="hidden" id="reminder_id_'+response.reminder.id+'" name="id" value="'+response.reminder.id+'">';
+                    html1 += '<div class="row"><div class="col-md-12"><div class="form-group"><label for="exampleInputEmail1" class="control-label">Note</label><textarea name="note" class="form-control" id="note_'+response.reminder.id+'" cols="30" rows="3">'+response.reminder.note+'</textarea></div></div></div>';
+                    html1 += '<div class="row"><div class="col-md-12"><button type="button" id="'+response.reminder.id+'" class="btn btn-success update-reminder">Reminder</button></div></div>';
+                    html1 += '</form>';
+                    html1 += '</div><div class="modal-footer"></div></div></div></div>';
+                    html1 += '<div id="myModalSchedule-'+response.reminder.id+'" class="modal fade" role="dialog">';
+                    html1 += '<div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal">&times;</button><h4 class="modal-title">Set Reminder</h4></div>';
+                    html1 += '<div class="modal-body"><form action="/claim-ajax-update-reminder" method="post">';
+                    var csrf1 = $('meta[name="csrf-token"]').attr('content');
+                    html1 += '<input type="hidden" name="_token" value="'+csrf1+'" >';
+                    html1 += '<div class="row"><div class="col-md-6"><div class="form-group"><label for="exampleInputEmail1">Reminder Date</label><input type="date" name="callback_date" class="form-control" id="reschedule_callback_date_'+response.reminder.id+'" value="'+response.reminder.callback_date+'"  placeholder="Enter email"><input type="hidden" name="id" value="'+response.reminder.id+'"></div></div><div class="col-md-6"><div class="form-group"><label for="exampleInputEmail1">Reminder Time</label><input type="time" name="callback_time" class="form-control" value="'+response.reminder.callback_time+'" id="reschedule_callback_time_'+response.reminder.id+'"  placeholder="Enter email"></div></div></div>';
+                    html1 += '<div class="row"><div class="col-md-12"><div class="form-group"><label for="exampleInputEmail1" class="control-label">Note</label><textarea name="note" class="form-control" id="reschedule_note_'+response.reminder.id+'" cols="30" rows="3">'+response.reminder.note+'</textarea></div></div></div>';
+                    html1 += '<div class="row"><div class="col-md-12"><button type="button" id="'+response.reminder.id+'" class="btn btn-success reschedule-reminder">Reminder</button></div></div>';
+                    html1 += '</form>';
+                    html1 += '</div><div class="modal-footer"></div></div></div></div>';                  
+                    html1 += '</td>';                  
+                     
+                     $('#reminder-update-'+reminder_id).html(html1);
+                     $('#add_details')[0].reset();
+                    }
+                } else {
+                    $('#msgs').html("<div class='alert alert-success'>Please Insert Vaild Data</div>");
+                }
+            } 
+        });
+        }
+    });
+
+
+$(document).on('click', '.reschedule-reminder', function(){
+        var reminder_id   = $(this).attr('id');
+        var callback_date = $("#reschedule_callback_date_"+reminder_id).val();
+        var callback_time = $("#reschedule_callback_time_"+reminder_id).val();
+        var note          = $("#reschedule_note_"+reminder_id).val();
+        $("#myModalSchedule-"+reminder_id).modal("hide");
         $("#reminder-edit-model-"+reminder_id).modal("hide");
         $.ajaxSetup({
             headers: {
@@ -754,10 +873,10 @@ $.ajax({
                     html1 += '<div id="reminder-model-'+response.reminder.id+'" class="modal fade" role="dialog">';
                     html1 += '<div class="modal-dialog"><div class="modal-content"><div class="modal-header">';
                     html1 += '<button type="button" class="close" data-dismiss="modal">&times;</button>';
-                    html1 += '<a href="/reminder-status-dismiss/'+response.reminder.id+'" class="btn btn-sm btn-success">Dismiss</a>';
-                    html1 += '<a  class="btn btn-sm btn-success" data-toggle="modal" data-target="#myModal-'+response.reminder.id+'" data-dismiss="modal">Reschedule</a>';
+                    html1 += '<a type="button" id="'+response.reminder.id+'" class="btn btn-sm btn-success dismiss">Dismiss</a>';
+                    html1 += '<a  class="btn btn-sm btn-success" data-toggle="modal" data-target="#myModalSchedule-'+response.reminder.id+'" data-dismiss="modal">Reschedule</a>';
                     html1 += '<a href="#" class="btn btn-sm btn-success">Snooze</a>';
-                    html1 += '<a href="/reminder-status-markasdone/'+response.reminder.id+'" class="btn btn-sm btn-success">Mark as done</a>';
+                    html1 += '<a type="button" id="'+response.reminder.id+'" class="btn btn-sm btn-success mark-as-done">Mark as done</a>';
                     html1 += '<a href="/claim-view/'+response.reminder.claim_id+'" class="btn btn-sm btn-primary">View Claim</a></div>';
                     html1 += '<div class="modal-body"><div class="row"><div class="col-md-12">';
                     html1 += '<p style="font-weight:bold;">DEPARTED FROM: <span style="font-weight:normal;">'+response.reminderDeparted.name+'</span></p>';
@@ -792,132 +911,14 @@ $.ajax({
                     html1 += '<div class="row"><div class="col-md-12"><button type="button" id="update-reminder-5" class="btn btn-success">Reminder</button></div></div>';
                     html1 += '</form>';
                     html1 += '</div><div class="modal-footer"></div></div></div></div>';
-                    html1 += '<div id="myModal-'+response.reminder.id+'" class="modal fade" role="dialog">';
+                    html1 += '<div id="myModalSchedule-'+response.reminder.id+'" class="modal fade" role="dialog">';
                     html1 += '<div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal">&times;</button><h4 class="modal-title">Set Reminder</h4></div>';
                     html1 += '<div class="modal-body"><form action="/claim-ajax-update-reminder" method="post">';
                     var csrf1 = $('meta[name="csrf-token"]').attr('content');
                     html1 += '<input type="hidden" name="_token" value="'+csrf1+'" >';
-                    html1 += '<div class="row"><div class="col-md-6"><div class="form-group"><label for="exampleInputEmail1">Reminder Date</label><input type="date" name="callback_date" class="form-control" id="exampleInputEmail1" value="'+response.reminder.callback_date+'"  placeholder="Enter email"><input type="hidden" name="id" value="'+response.reminder.id+'"></div></div><div class="col-md-6"><div class="form-group"><label for="exampleInputEmail1">Reminder Time</label><input type="time" name="callback_time" class="form-control" value="'+response.reminder.callback_time+'" id="exampleInputEmail1"  placeholder="Enter email"></div></div></div>';
-                    html1 += '<div class="row"><div class="col-md-12"><div class="form-group"><label for="exampleInputEmail1" class="control-label">Note</label><textarea name="note" class="form-control" id="exampleInputEmail1" cols="30" rows="3">'+response.reminder.note+'</textarea></div></div></div>';
-                    html1 += '<div class="row"><div class="col-md-12"><button type="button" id="update-reminder-6" class="btn btn-success">Reminder</button></div></div>';
-                    html1 += '</form>';
-                    html1 += '</div><div class="modal-footer"></div></div></div></div>';                  
-                    html1 += '</td>';                  
-                     
-                     $('#reminder-update-'+reminder_id).html(html1);
-                     $('#add_details')[0].reset();
-
-                    }
-                } else {
-                    $('#msgs').html("<div class='alert alert-success'>Please Insert Vaild Data</div>");
-                }
-            } 
-        });
-        }
-    });
-
-
-$(document).on('click', '#update-reminder-6', function(){
-
-        var callback_date = $("#callback_date_2").val();
-        var callback_time = $("#callback_time_2").val();
-        var note          = $("#note_2").val();
-        var reminder_id   = $("#reminder_id_2").val();
-        $("#myModalSchedule-"+reminder_id).modal("hide");
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-            }
-        });
-        if(callback_date !== null){
-        $.ajax({
-            url: "/claim-ajax-update-reminder",
-            type: 'POST',
-            data: {
-                callback_date : callback_date,
-                callback_time : callback_time,
-                note : note,
-                reminder_id : reminder_id,
-            },
-            success: function(response){
-
-                console.log(response);
-                if (response.msg == "Success") {
-
-                 var html = `<div class="alert alert-success alert-dismissible show" role="alert">
-                        <strong>Success!</strong> `+response.msg+`
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>`;
-                    $('#msgs').html(html);
-
-                    if(response.reminder)
-                    {
-
-                var html1 = '<td>'+response.reminder.claim_id+'</td>';
-                    html1 += '<td id="reminder-status-'+response.reminder.id+'">'+response.reminder.status+'</td>';
-                    html1 += '<td>'+response.reminder.callback_date+' '+response.reminder.callback_time+'</td>';
-                    html1 += '<td>'+response.reminder.snooze+'</td>';
-                    html1 += '<td>'+response.reminder.note+'</td>';
-                    html1 += '<td><a type="button" data-toggle="modal" class="btn btn-sm btn-primary" title="View Reminder" data-target="#reminder-model-'+response.reminder.id+'"><i class="fa fa-eye" aria-hidden="true"></i> View</a>';
-                    html1 += '<a  type="button" data-toggle="modal" title="Edit Reminder" class="btn btn-sm btn-dark reminder-edit-view" data-target="#reminder-edit-model-'+response.reminder.id+'"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>';
-                    var csrf2 = $('meta[name="csrf-token"]').attr('content');
-                    html1 += '<form action="/claim-ajax-delete-reminder/'+response.reminder.id+'" method="POST">';
-                    html1 += '<input type="hidden" name="_method" value="DELETE"/>';
-                    html1 += '<input type="hidden" name="_token" value="'+csrf2+'"/>';
-                    html1 += '<button type="button" class="btn btn-sm btn-danger delete-reminder" title="Delete Reminder" id="'+response.reminder.id+'"><i class="fa fa-trash" aria-hidden="true"></i>Delete</button>';
-                    html1 += '</form>';
-
-                    html1 += '<div id="reminder-model-'+response.reminder.id+'" class="modal fade" role="dialog">';
-                    html1 += '<div class="modal-dialog"><div class="modal-content"><div class="modal-header">';
-                    html1 += '<button type="button" class="close" data-dismiss="modal">&times;</button>';
-                    html1 += '<a href="/reminder-status-dismiss/'+response.reminder.id+'" class="btn btn-sm btn-success">Dismiss</a>';
-                    html1 += '<a  class="btn btn-sm btn-success" data-toggle="modal" data-target="#myModal-'+response.reminder.id+'" data-dismiss="modal">Reschedule</a>';
-                    html1 += '<a href="#" class="btn btn-sm btn-success">Snooze</a>';
-                    html1 += '<a href="/reminder-status-markasdone/'+response.reminder.id+'" class="btn btn-sm btn-success">Mark as done</a>';
-                    html1 += '<a href="/claim-view/'+response.reminder.claim_id+'" class="btn btn-sm btn-primary">View Claim</a></div>';
-                    html1 += '<div class="modal-body"><div class="row"><div class="col-md-12">';
-                    html1 += '<p style="font-weight:bold;">DEPARTED FROM: <span style="font-weight:normal;">'+response.reminderDeparted.name+'</span></p>';
-                    html1 += '<p style="font-weight:bold;">FINAL DESTINATION: <span style="font-weight:normal;">'+response.reminderfinalDestination.name+'</span></p>';
-                    var check = response.reminder_claims.is_direct_flight == 0 ? 'No' : 'Yes';
-                    html1 += '<p style="font-weight:bold;">Did you have any connecting flights?:<span style="font-weight:normal;">'+check+'</span></p>';
-                    html1 += '<p style="font-weight:bold;">What happened to the flight?:<span style="font-weight:normal;">'+response.reminder_claims.what_happened_to_the_flight+'</span></p>';
-                    html1 += '<p style="font-weight:bold;">Date of '+response.reminder_claims.claim_table_type+':  <span style="font-weight:normal;">'+response.reminder_claims.created_at+'</span></p>';
-                    html1 += '<p style="font-weight:bold;">Airline:  <span style="font-weight:normal;">'+response.airline.name+'</span></p>';
-                    html1 += '<p style="font-weight:bold;">Flight no:  <span style="font-weight:normal;">'+response.flightDetails.flight_number+'</span></p>';
-                    html1 += '<p style="font-weight:bold;">Departure date:  <span style="font-weight:normal;">'+response.flightDetails.departure_date+'</span></p><hr>';
-                    html1 += '<div class="row"><div class="col-md-12"><h4 style="font-weight:bold;">Passenger List</h4><table class="table table-borderless table-hover"><thead><th style="font-weight:bold;">First Name</th><th style="font-weight:bold;">Last Name</th><th style="font-weight:bold;">Ticket No</th></thead><tbody>';
-                    $.each(response.passengers, function(i, val){
-                        html1 += '<tr>';
-                        html1 += '<td>'+val.first_name+'</td>';
-                        html1 += '<td>'+val.last_name+'</td>';
-                        html1 += '<td></td>';
-                        html1 += '</tr>';
-                    })
-                    html1 += '</tbody></table></div></div>';
-                    html1 += '<p style="font-weight:bold;">Status:  <span style="font-weight:normal;">'+response.reminder.status+'</span></p>'
-                    html1 += '</div></div></div><div class="modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal">Close</button></div></div></div></div>';
-
-                    
-
-                    html1 += '<div id="reminder-edit-model-'+response.reminder.id+'" class="modal fade" role="dialog"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal">&times;</button><h4 class="modal-title">Set Reminder</h4></div>';
-                    html1 += '<div class="modal-body"><form action="/claim-ajax-update-reminder" method="post">';
-                    var csrf = $('meta[name="csrf-token"]').attr('content');
-                    html1 += '<input type="hidden" name="_token" value="'+csrf+'" >';
-                    html1 += '<div class="row"><div class="col-md-6"><div class="form-group"><label for="exampleInputEmail1">Reminder Date</label><input type="date" name="callback_date" class="form-control" id="exampleInputEmail1" value="'+response.reminder.callback_date+'"  placeholder="Enter email"><input type="hidden" name="id" value="'+response.reminder.id+'"></div></div><div class="col-md-6"><div class="form-group"><label for="exampleInputEmail1">Reminder Time</label><input type="time" name="callback_time" class="form-control" value="'+response.reminder.callback_time+'" id="exampleInputEmail1"  placeholder="Enter email"></div></div></div>';
-                    html1 += '<div class="row"><div class="col-md-12"><div class="form-group"><label for="exampleInputEmail1" class="control-label">Note</label><textarea name="note" class="form-control" id="exampleInputEmail1" cols="30" rows="3">'+response.reminder.note+'</textarea></div></div></div>';
-                    html1 += '<div class="row"><div class="col-md-12"><button type="button" id="update-reminder-5" class="btn btn-success">Reminder</button></div></div>';
-                    html1 += '</form>';
-                    html1 += '</div><div class="modal-footer"></div></div></div></div>';
-                    html1 += '<div id="myModal-'+response.reminder.id+'" class="modal fade" role="dialog">';
-                    html1 += '<div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal">&times;</button><h4 class="modal-title">Set Reminder</h4></div>';
-                    html1 += '<div class="modal-body"><form action="/claim-ajax-update-reminder" method="post">';
-                    var csrf1 = $('meta[name="csrf-token"]').attr('content');
-                    html1 += '<input type="hidden" name="_token" value="'+csrf1+'" >';
-                    html1 += '<div class="row"><div class="col-md-6"><div class="form-group"><label for="exampleInputEmail1">Reminder Date</label><input type="date" name="callback_date" class="form-control" id="exampleInputEmail1" value="'+response.reminder.callback_date+'"  placeholder="Enter email"><input type="hidden" name="id" value="'+response.reminder.id+'"></div></div><div class="col-md-6"><div class="form-group"><label for="exampleInputEmail1">Reminder Time</label><input type="time" name="callback_time" class="form-control" value="'+response.reminder.callback_time+'" id="exampleInputEmail1"  placeholder="Enter email"></div></div></div>';
-                    html1 += '<div class="row"><div class="col-md-12"><div class="form-group"><label for="exampleInputEmail1" class="control-label">Note</label><textarea name="note" class="form-control" id="exampleInputEmail1" cols="30" rows="3">'+response.reminder.note+'</textarea></div></div></div>';
-                    html1 += '<div class="row"><div class="col-md-12"><button type="button" id="update-reminder-6" class="btn btn-success">Reminder</button></div></div>';
+                    html1 += '<div class="row"><div class="col-md-6"><div class="form-group"><label for="exampleInputEmail1">Reminder Date</label><input type="date" name="callback_date" class="form-control" id="reschedule_callback_date_'+response.reminder.id+'" value="'+response.reminder.callback_date+'"  placeholder="Enter email"><input type="hidden" name="id" value="'+response.reminder.id+'"></div></div><div class="col-md-6"><div class="form-group"><label for="exampleInputEmail1">Reminder Time</label><input type="time" name="callback_time" class="form-control" value="'+response.reminder.callback_time+'" id="reschedule_callback_time_'+response.reminder.id+'"  placeholder="Enter email"></div></div></div>';
+                    html1 += '<div class="row"><div class="col-md-12"><div class="form-group"><label for="exampleInputEmail1" class="control-label">Note</label><textarea name="note" class="form-control" id="reschedule_note_'+response.reminder.id+'" cols="30" rows="3">'+response.reminder.note+'</textarea></div></div></div>';
+                    html1 += '<div class="row"><div class="col-md-12"><button type="button" id="'+response.reminder.id+'" class="btn btn-success reschedule-reminder">Reminder</button></div></div>';
                     html1 += '</form>';
                     html1 += '</div><div class="modal-footer"></div></div></div></div>';                  
                     html1 += '</td>';                  
@@ -1052,14 +1053,15 @@ $(document).on('click', '#update-reminder-6', function(){
                 html1 += '<input type="hidden" name="_token" value="'+csrf2+'" >';
                 html1 += '<div class="modal-header"><button type="button" class="close" data-dismiss="modal">&times;</button><h4 class="modal-title">Edit Note Data</h4></div>';
                 html1 += '<div class="modal-body"><div class="form-group">';
-                html1 += '<textarea name="affiliate_note" id="affiliate-update-note" cols="30" rows="5" class="form-control">'+response.affliatenote.affiliate_note+'</textarea>';
+                html1 += '<textarea name="affiliate_note" id="affiliate-update-note-'+response.affliatenote.id+'" cols="30" rows="5" class="form-control">'+response.affliatenote.affiliate_note+'</textarea>';
                 html1 += '<input type="hidden" name="affiliate_note_id" id="affiliate_note_id" value="'+response.affliatenote.id+'">';
                 html1 += '<input type="hidden" name="claim_id" value="'+response.affliatenote.claim_id+'" id="claim_id_update_affiliate_note" />';
                 html1 += '</div></div>';
-                html1 += '<div class="modal-footer"><button type="button" class="btn btn-info" id="affiliate-note-update-btn"><i class="fa fa-save"></i> Update</button><button type="button" class="btn btn-default" data-dismiss="modal">Close</button></div>';
+                html1 += '<div class="modal-footer"><button type="button" class="btn btn-info affiliate-note-update-btn" id="'+response.affliatenote.id+'"><i class="fa fa-save"></i> Update</button></div>';
                 html1 += '</form></div></div></div>';
                 html1 += '</td></tr>'
                 $("#affliate-note-info-table").append(html1);
+                $("#affiliate-note-des").val('');
             }
         });
     });
@@ -1146,7 +1148,7 @@ $(document).on('click', '#update-reminder-6', function(){
                     html1 += '<input type="hidden" name="affiliate_note_id" id="affiliate_note_id_'+response.affliatenote.id+'" value="'+response.affliatenote.id+'">';
                     html1 += '<input type="hidden" name="claim_id" value="'+response.affliatenote.claim_id+'" id="claim_id_update_affiliate_note_'+response.affliatenote.id+'" />';
                     html1 += '</div></div>';
-                    html1 += '<div class="modal-footer"><button type="button" class="btn btn-info affiliate-note-update-btn" id="'+response.affliatenote.id+'"><i class="fa fa-save"></i> Update</button><button type="button" class="btn btn-default" data-dismiss="modal">Close</button></div>';
+                    html1 += '<div class="modal-footer"><button type="button" class="btn btn-info affiliate-note-update-btn" id="'+response.affliatenote.id+'"><i class="fa fa-save"></i> Update</button></div>';
                     html1 += '</form></div></div></div>';
                     html1 += '</td>';
                 $("#affiliate-note-update-"+response.affliatenote.id).html(html1);

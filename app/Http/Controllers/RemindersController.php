@@ -143,7 +143,7 @@ class RemindersController extends Controller
         $reminder_old->note          = $request->note;
         $reminder_old->snooze        = $reminder_old->snooze;
         $reminder_old->status        = $reminder_old->status;
-        $reminder_old->save();
+        // $reminder_old->save();
 
         $reminder_claims          = DB::table('claims')->where('id',$reminder_old->claim_id)->first();
         $flightDetails            = DB::table('itinerary_details')->where('claim_id',$reminder_claims->id)->where('is_selected','1')->first();

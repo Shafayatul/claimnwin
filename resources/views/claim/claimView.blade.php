@@ -1976,14 +1976,14 @@
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label for="exampleInputEmail1">Reminder Date</label>
-                                                            <input type="date" name="callback_date" class="form-control" id="callback_date_1" value="{{$item->callback_date}}"  placeholder="Enter email">
-                                                            <input type="hidden" id="reminder_id_1" name="id" value="{{$item->id}}">
+                                                            <input type="date" name="callback_date" class="form-control" id="callback_date_{{$item->id}}" value="{{$item->callback_date}}"  placeholder="Enter email">
+                                                            <input type="hidden" id="reminder_id_{{$item->id}}" name="id" value="{{$item->id}}">
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label for="exampleInputEmail1">Reminder Time</label>
-                                                            <input type="time" name="callback_time" class="form-control" value="{{$item->callback_time}}" id="callback_time_1"  placeholder="Enter email">
+                                                            <input type="time" name="callback_time" class="form-control" value="{{$item->callback_time}}" id="callback_time_{{$item->id}}"  placeholder="Enter email">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1991,13 +1991,13 @@
                                                     <div class="col-md-12">
                                                         <div class="form-group">
                                                             <label for="exampleInputEmail1" class="control-label">Note</label>
-                                                            <textarea name="note" class="form-control" id="note_1" cols="30" rows="3">{{$item->note}}</textarea>
+                                                            <textarea name="note" class="form-control" id="note_{{$item->id}}" cols="30" rows="3">{{$item->note}}</textarea>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-12">
-                                                        <button type="button" class="btn btn-success" id="update-reminder-5">Reminder</button>
+                                                        <button type="button" class="btn btn-success update-reminder" id="{{$item->id}}">Reminder</button>
                                                     </div>
                                                 </div>
                                             </form>
@@ -2021,14 +2021,14 @@
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label for="exampleInputEmail1">Reminder Date</label>
-                                                            <input type="date" name="callback_date" class="form-control" id="callback_date_2"  placeholder="Enter email">
-                                                            <input type="hidden" name="id" id="reminder_id_2" value="{{$item->id}}">
+                                                            <input type="date" name="callback_date" class="form-control" id="reschedule_callback_date_{{$item->id}}"  placeholder="Enter email">
+                                                            <input type="hidden" name="id" id="reschedule_reminder_id_{{$item->id}}" value="{{$item->id}}">
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label for="exampleInputEmail1">Reminder Time</label>
-                                                            <input type="time" name="callback_time" class="form-control" id="callback_time_2"  placeholder="Enter email">
+                                                            <input type="time" name="callback_time" class="form-control" id="reschedule_callback_time_{{$item->id}}"  placeholder="Enter email">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -2036,13 +2036,13 @@
                                                     <div class="col-md-12">
                                                         <div class="form-group">
                                                             <label for="exampleInputEmail1" class="control-label">Note</label>
-                                                            <textarea name="note" class="form-control" id="note_2" cols="30" rows="3"></textarea>
+                                                            <textarea name="note" class="form-control" id="reschedule_note_{{$item->id}}" cols="30" rows="3"></textarea>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-12">
-                                                        <button type="button" class="btn btn-success" id="update-reminder-6">Reminder</button>
+                                                        <button type="button" class="btn btn-success reschedule-reminder" id="{{$item->id}}">Reminder</button>
                                                     </div>
                                                 </div>
                                             </form>
@@ -2824,7 +2824,7 @@
                                                                     <textarea name="affiliate_note" id="affiliate-update-note-{{ $affiliateNote->id }}" cols="30" rows="5" class="form-control">{{$affiliateNote->affiliate_note}}</textarea>
                                                                     <input type="hidden" id="new_descript_{{ $affiliateNote->id }}">
 
-                                                                    <input type="text" name="affiliate_note_id" value="{{$affiliateNote->id}}" id="affiliate_note_id_{{ $affiliateNote->id }}">
+                                                                    <input type="hidden" name="affiliate_note_id" value="{{$affiliateNote->id}}" id="affiliate_note_id_{{ $affiliateNote->id }}">
                                                                     <input type="hidden" name="claim_id" value="{{$affiliateNote->claim_id}}" id="claim_id_update_affiliate_note_{{ $affiliateNote->id }}" />
                                                                 </div>
                                                             </div>
