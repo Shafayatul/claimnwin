@@ -85,7 +85,7 @@
                                     <li role="presentation"><a href="#claim-status" role="tab" id="claim-status-tab" data-toggle="tab" aria-controls="claim-status" aria-expanded="true"><i class="fa fa-bell" aria-hidden="true"></i> Status</a></li>
                                     <li role="presentation"><a href="#affiliate-info" role="tab" id="affiliate-info-tab" data-toggle="tab" aria-controls="affiliate-info" aria-expanded="true"><i class="fa fa-bell" aria-hidden="true"></i> Affiliate Info</a></li>
                                     <li role="presentation"><a href="#ticket-info" role="tab" id="ticket-info-tab" data-toggle="tab" aria-controls="ticket-info" aria-expanded="true"><i class="fas fa-ticket-alt" aria-hidden="true"></i> Ticket Info</a></li>
-                                    <li role="presentation"><a href="#note" role="tab" id="note-tab" data-toggle="tab" aria-controls="note" aria-expanded="true"><i class="fas fa-ticket-alt" aria-hidden="true"></i> Note Info</a></li>
+                                    <li role="presentation"><a href="#note_panel" role="tab" id="note-tab" data-toggle="tab" aria-controls="note" aria-expanded="true"><i class="fas fa-ticket-alt" aria-hidden="true"></i> Note Info</a></li>
                                     <li role="presentation"><a href="#affiliate-note" role="tab" id="affiliate-note-tab" data-toggle="tab" aria-controls="affiliate-note" aria-expanded="true"><i class="fas fa-ticket-alt" aria-hidden="true"></i> Affiliate Note Info</a></li>
                                     <li role="presentation"><a href="#expanse" role="tab" id="expanse-tab" data-toggle="tab" aria-controls="expanse" aria-expanded="true"><i class="fas fa-money-bill-alt" aria-hidden="true"></i> Expense Info</a></li>
                                     <li role="presentation"><a href="#airline" role="tab" id="airline-tab" data-toggle="tab" aria-controls="airline" aria-expanded="true"><i class="fas fa-plane" aria-hidden="true"></i> Airline Info</a></li>
@@ -2599,7 +2599,8 @@
         </div>
     </div>
 </div>
-<div role="tabpanel" class="tab-pane" id="note" aria-labelledby="note-tab" style="margin-top: 15px;">
+
+<div role="tabpanel" class="tab-pane" id="note_panel" aria-labelledby="note-tab" style="margin-top: 15px;">
     <div class="row">
         <div class="col-lg-12">
             <div class="panel panel-default">
@@ -2611,18 +2612,17 @@
                         @csrf
                         <div class="form-group">
                             <div class="col-md-12">
-                                <textarea name="note"  cols="30" rows="5" class="form-control tinymce-editor"></textarea>
-                                <input type="hidden" name="claim_id" value="{{$claims->id}}">
+                                <textarea name="note"  cols="30" rows="5" class="form-control tinymce-editor" id="note-editor"></textarea>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-md-12">
-                                <input type="file" class="form-control" name="note_files[]" id="note_file" multiple>
+                                <input type="file" class="form-control" name="note_files[]" id="note_files" multiple>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-md-12">
-                                <button type="submit" class="btn btn-sm btn-success"><i class="fa fa-save"></i> Save</button>
+                                <button type="button" class="btn btn-sm btn-success"  id="note-data-submit" claim_id="{{$claims->id}}"><i class="fa fa-save"></i> Save</button>
                             </div>
                         </div>
                     </form>
@@ -2630,21 +2630,20 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="table-responsive">
-                                <table id="example" class="table table-striped table-bordered" style="width:100%">
+                                <table class="table table-striped table-bordered" style="width:100%">
                                     <thead>
-                                        <th>#</th>
                                         <th>Note</th>
                                         <th>Created by</th>
                                         <th>Date</th>
                                         <th>Action</th>
                                     </thead>
-                                    <tbody>
+                                    <tbody id="note_all_table">
                                         @php
                                         $i = 1;
                                         @endphp
                                         @foreach($notes as $note)
-                                        <tr>
-                                            <td>{{$i}}</td>
+                                        <tr id="note_single_{{ $note->id }}">
+                                           
                                             <td>{!! $note->note !!}</td>
                                             <td>{{ $user_who_created_note[$note->user_id] }}</td>
                                             <td>{{ $note->created_at }}</td>
@@ -2654,16 +2653,15 @@
                                                 'url' => ['/notes', $note->id],
                                                 'style' => 'display:inline'
                                                 ]) !!}
-                                                <input type="hidden" name="claim_id" value="{{$note->claim_id}}" />
                                                 {!! Form::button('<i class="fa fa-trash" aria-hidden="true"></i> Delete', array(
-                                                'type' => 'submit',
-                                                'class' => 'btn btn-danger btn-sm',
-                                                'title' => 'Delete Ticket',
-                                                'onclick'=>'return confirm("Confirm delete?")'
+                                                'type' => 'button',
+                                                'class' => 'btn btn-danger btn-sm delete-note',
+                                                'title' => 'Delete Note',
+                                                'id' => $note->id
                                                 )) !!}
                                                 {!! Form::close() !!}
                                                 <a class="btn btn-primary btn-sm" data-toggle="modal" data-target="#viewNote-{{$note->id}}"><i class="fa fa-eye"></i></a>
-                                                <a class="btn btn-info btn-sm" data-toggle="modal" data-target="#editNote-{{$note->id}}"><i class="fa fa-edit"></i></a>
+                                                {{-- <a class="btn btn-info btn-sm" data-toggle="modal" data-target="#editNote-{{$note->id}}"><i class="fa fa-edit"></i></a> --}}
                                                 
                                                 @php
                                                 if($note->note_files != null){
@@ -2695,14 +2693,12 @@
                                                         </div>
                                                         <div class="modal-body">
                                                             <div class="form-group">
-                                                                <textarea name="note" cols="30" rows="5" class="form-control edit-note tinymce-editor">{{$note->note}}</textarea>
-                                                                <input type="hidden" name="note_id" value="{{$note->id}}">
-                                                                <input type="hidden" name="claim_id" value="{{$note->claim_id}}" />
+                                                                <textarea name="note" cols="30" rows="5" class="form-control edit-note tinymce-editor" id="edit-note-{{ $note->id }}">{{$note->note}}</textarea>
                                                             </div>
                                                         </div>
                                                         <div class="modal-footer">
-                                                            <button type="submit" class="btn btn-info"><i class="fa fa-save"></i> Update</button>
-                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                            <button type="button" id="{{$note->id}}" class="btn btn-info update-note"><i class="fa fa-save"></i> Update</button>
+                                                            
                                                         </div>
                                                     </form>
                                                 </div>
@@ -2755,6 +2751,7 @@
         </div>
     </div>
 </div>
+
 <div role="tabpanel" class="tab-pane" id="affiliate-note" aria-labelledby="affiliate-note-tab" style="margin-top: 15px;">
     <div class="row">
         <div class="col-lg-12">

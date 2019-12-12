@@ -80,6 +80,40 @@ class NotesController extends Controller
         return redirect('/claim-view/'.$claim_id)->with(['success'=>'Note added!']);
     }
 
+    public function claimAjaxNoteStore(Request $request)
+    {
+        $claim_id = $request->claim_id;
+        if($request->file('note_files') != null){
+            $files = count($request->file('note_files'));
+            if($files > 0){
+                for($index = 0;$index < $files;$index++){
+                    $file = $request->file('note_files')[$index];
+                    $fileName = uniqid().'.'.$file->getClientOriginalExtension();
+                    $filePath = 'claim_note_files/';
+                    $fileUrl = $filePath.$fileName;
+                    $file->move($filePath,$fileName);
+                    $images[] = $fileUrl;
+                }
+            }else{
+                $images = [];
+            }
+        }else{
+            $images = [];
+        }
+
+        $note             = new Note;
+        $note->claim_id   = $claim_id;
+        $note->note       = $request->note_text;
+        $note->user_id    = Auth::user()->id;
+        $note->note_files = implode("|",$images);
+        $note->save();
+        return response()->json([
+            'msg' => 'Success',
+            'note' => $note,
+            'name' => Auth::user()->name
+        ]);
+    }
+
     /**
      * Display the specified resource.
      *
@@ -151,5 +185,24 @@ class NotesController extends Controller
         Note::destroy($id);
 
         return redirect('/claim-view/'.$claim_id)->with(['success'=>'Note deleted!']);
+    }
+
+    public function claimAjaxNoteDelete(Request $request)
+    {
+        $id = $request->note_id;
+        $note=Note::find($id);
+        
+        if($note->note_files != null){
+        $noteFiles = explode("|",$note->note_files);
+
+            foreach($noteFiles as $key=>$value){
+                unlink($value);
+            }
+        }
+
+        Note::destroy($id);
+        return response()->json([
+            'msg' => 'Success'
+        ]);
     }
 }

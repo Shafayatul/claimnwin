@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
     console.log(window.location.pathname);
-
+    var base_url = 'http://localhost:8000/';
     var itter_val = $("#check_itter").val();
     if(itter_val != ''){
         $("#itter").show(500);
@@ -1534,7 +1534,132 @@ $(document).on('click', '#time-set-for-claim', function(){
     });
 });
 
+$(document).on('click', '#note-data-submit', function(){
+    var claim_id     = $(this).attr('claim_id');
+    var note_text = tinyMCE.get('note-editor').getContent();
+    var form_data = new FormData();
+    var totalfiles = document.getElementById('note_files').files.length;
+    for (var index = 0; index < totalfiles; index++) {
+        form_data.append("note_files[]", document.getElementById('note_files').files[index]);
+    }
+    form_data.append('claim_id', claim_id);
+    form_data.append('note_text', note_text);
 
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+        }
+    });
+    $.ajax({
+        url: "/claim-ajax-note-data-save",
+        type: 'POST',
+        data: form_data,
+        contentType: false,
+        processData: false,
+        success: function(response){
+            if (response.msg == "Success") {
+
+             var html = `<div class="alert alert-success alert-dismissible show" role="alert">
+                    <strong>Success!</strong> `+response.msg+`
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>`;
+                var date = moment(response.note.created_at);
+                var html1 = '<tr id="note_single_'+response.note.id+'">';
+                    html1 += '<td>'+response.note.note+'</td>';
+                    html1 += '<td>'+response.name+'</td>';
+                    html1 += '<td>'+date.format('DD-MM-YYYY')+'</td>';
+                    html1 += '<td>';
+                    var note_files = response.note.note_files;
+                     var ext = note_files.split("|");
+                     var onlypdf = '';
+                    $.each(ext, function(i, val){
+                        var ftype = val.substr(val.lastIndexOf('.') + 1);
+                        if(ftype == 'pdf'){
+                            var pdf_url = base_url+val;
+                            onlypdf += '<a href="'+pdf_url+'" target="_blank" class="btn btn-sm btn-primary"><i class="fa fa-pdf"></i> Download-'+i+'</a>';
+                        }
+                    });
+
+                    var csrf1 = $('meta[name="csrf-token"]').attr('content');
+                    html1 += '<form action="/claim-ajax-delete-note/'+response.note.id+'" method="POST">';
+                    html1 += '<input type="hidden" name="_method" value="DELETE"/>';
+                    html1 += '<input type="hidden" name="_token" value="'+csrf1+'"/>';
+                    html1 += '<button type="button" class="btn btn-sm btn-danger delete-note" title="Delete Note" id="'+response.note.id+'"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button>';
+                    html1 += '</form>';
+                    html1 += '<a class="btn btn-primary btn-sm" data-toggle="modal" data-target="#viewNote-'+response.note.id+'"><i class="fa fa-eye"></i> view</a>';
+                    html1 += onlypdf;
+                    // html1 += '<a class="btn btn-info btn-sm" data-toggle="modal" data-target="#editNote-'+response.note.id+'"><i class="fa fa-edit"></i></a>';
+
+                    html1 += '<div class="modal fade" id="editNote-'+response.note.id+'" role="dialog"><div class="modal-dialog modal-lg"><div class="modal-content"><form class="form-horizontal">';
+                    var csrf2 = $('meta[name="csrf-token"]').attr('content');
+                    html1 += '<input type="hidden" name="_token" value="'+csrf2+'" >';
+                    html1 += '<div class="modal-header"><button type="button" class="close" data-dismiss="modal">&times;</button><h4 class="modal-title">Edit Note Data</h4></div>';
+                    html1 += '<div class="modal-body"><div class="form-group"><textarea name="note" cols="30" rows="5" class="form-control edit-note tinymce-editor" id="edit-note-'+response.note.id+'">'+response.note.note+'</textarea><input type="hidden" name="note_id" value="'+response.note.id+'"></div></div>';
+                    html1 += '<div class="modal-footer"><button type="button" id="'+response.note.id+'" class="btn btn-info update-note"><i class="fa fa-save"></i> Update</button></div>';
+                    html1 += '</form></div></div></div>';
+
+                    html1 += '<div class="modal fade" id="viewNote-'+response.note.id+'" role="dialog"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="panel panel-default"><div class="panel-heading"><h3 class="text-center">Note Data</h3></div>';
+                    html1 += '<div class="panel-body"><div class="row"><div class="col-md-12"><h4>User Name: '+response.name+'</h4> <br><h4>Claim Id: '+response.note.claim_id+'</h4> <br><p>'+response.note.note+'</p><br>';
+                    var note_files = response.note.note_files;
+                    var ext = note_files.split("|");
+                    $.each(ext, function(i, val){
+                        var ftype = val.substr(val.lastIndexOf('.') + 1);
+                        if(ftype == 'pdf'){
+                            var pdf_url = base_url+val;
+                            html1 += '<a href="'+pdf_url+'" target="_blank" class="btn btn-sm btn-primary"><i class="fa fa-pdf"></i> Download-'+i+'</a>';
+                        }else{
+                            var pdf_url = base_url+val;
+                            html1 += '<a href="'+pdf_url+'" download class="btn btn-sm btn-primary"><i class="fa fa-pdf"></i> Download-'+i+'</a>';
+                        }
+                    });
+                    html1 += '</div></div></div></div></div></div></div>';
+                    html1 += '</td></tr>';
+                    
+                $("#note_all_table").append(html1);    
+                $('#msgs').html(html);
+                $("#compose_files").val('');
+                tinymce.get('note-editor').setContent('');
+
+
+
+            } else {
+                $('#msgs').html("<div class='alert alert-success'>Please Insert Vaild Data</div>");
+            }
+        }
+    });
+});
+
+$(document).on('click', '.delete-note', function(){
+    var note_id = $(this).attr('id');
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+        }
+    });
+    $.ajax({
+        url : '/claim-ajax-delete-note',
+        type : 'POST',
+        data : {
+            note_id : note_id
+        },
+        success: function(response){
+            if(response.msg == 'Success'){
+                var html = `<div class="alert alert-success alert-dismissible show" role="alert">
+                    <strong>Success!</strong> `+response.msg+`
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>`;
+                $("#note_single_"+note_id).hide(500);
+                $('#msgs').html(html);
+            }else{
+                $("#msg").val('No Id Found...');
+            }
+        }
+    });
+});
 
 
 });
