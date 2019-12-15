@@ -258,7 +258,7 @@ Route::group(['middleware' => ['auth']], function() {
         Route::post('/claim-ajax-time-set-for-claim', 'FlightsController@claimAjaxTimeSetForClaim');
         Route::post('/claim-ajax-note-data-save', 'NotesController@claimAjaxNoteStore');
         Route::post('/claim-ajax-delete-note', 'NotesController@claimAjaxNoteDelete');
-
+        Route::post('/claim-ajax-update-note', 'NotesController@claimAjaxNoteUpdate');
     });
 });
 

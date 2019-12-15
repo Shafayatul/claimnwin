@@ -162,6 +162,19 @@ class NotesController extends Controller
         return redirect('/claim-view/'.$claim_id)->with(['success'=>'Note Updated!']);
     }
 
+    public function claimAjaxNoteUpdate(Request $request)
+    {
+        $id = $request->note_id;
+        $note = Note::find($id);
+        $note->note   = $request->note_text;
+        $note->save();
+        return response()->json([
+            'msg' => 'Success',
+            'note' => $note,
+            'name' => Auth::user()->name
+        ]);
+    }
+
     /**
      * Remove the specified resource from storage.
      *

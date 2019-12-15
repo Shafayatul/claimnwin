@@ -8,6 +8,16 @@
     .modal-wide .modal-body {
     overflow-y: auto;
     }
+    .delete-note{
+        float: left;
+        margin-right: 5px;
+    }
+    .viewnote{
+        margin-right: 5px;
+    }
+    .noteedit{
+        margin-right: 5px;
+    }
     </style>
     @endsection
     @include('layouts.includes.partial.alert')
@@ -2661,7 +2671,7 @@
                                                 )) !!}
                                                 {!! Form::close() !!}
                                                 <a class="btn btn-primary btn-sm" data-toggle="modal" data-target="#viewNote-{{$note->id}}"><i class="fa fa-eye"></i></a>
-                                                {{-- <a class="btn btn-info btn-sm" data-toggle="modal" data-target="#editNote-{{$note->id}}"><i class="fa fa-edit"></i></a> --}}
+                                                <a class="btn btn-info btn-sm" data-toggle="modal" data-target="#editNote-{{$note->id}}"><i class="fa fa-edit"></i></a>
                                                 
                                                 @php
                                                 if($note->note_files != null){
