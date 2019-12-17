@@ -1604,15 +1604,19 @@ $(document).on('click', '#note-data-submit', function(){
                     html1 += '<div class="panel-body"><div class="row"><div class="col-md-12"><h4>User Name: '+response.name+'</h4> <br><h4>Claim Id: '+response.note.claim_id+'</h4> <br><p>'+response.note.note+'</p><br>';
                     var note_files = response.note.note_files;
                     var ext = note_files.split("|");
+                    console.log(ext);
                     $.each(ext, function(i, val){
-                        var ftype = val.substr(val.lastIndexOf('.') + 1);
-                        if(ftype == 'pdf'){
-                            var pdf_url = base_url+val;
-                            html1 += '<a href="'+pdf_url+'" target="_blank" class="btn btn-sm btn-primary"><i class="fa fa-pdf"></i> Pdf-'+i+'</a>';
-                        }else{
-                            var pdf_url = base_url+val;
-                            html1 += '<a href="'+pdf_url+'" download class="btn btn-sm btn-primary"><i class="fa fa-pdf"></i> Download-'+i+'</a>';
+                        if(val != ''){
+                            var ftype = val.substr(val.lastIndexOf('.') + 1);
+                            if(ftype == 'pdf'){
+                                var pdf_url = base_url+val;
+                                html1 += '<a href="'+pdf_url+'" target="_blank" class="btn btn-sm btn-primary"><i class="fa fa-pdf"></i> Pdf-'+i+'</a>';
+                            }else{
+                                var pdf_url = base_url+val;
+                                html1 += '<a href="'+pdf_url+'" download class="btn btn-sm btn-primary"><i class="fa fa-pdf"></i> Download-'+i+'</a>';
+                            } 
                         }
+
                     });
                     html1 += '</div></div></div></div></div></div></div>';
                     html1 += '</td></tr>';
