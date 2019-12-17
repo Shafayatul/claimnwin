@@ -45,7 +45,7 @@ class TicketNotesController extends Controller
         $ticket = Ticket::find($request->ticket_id);
         $ticket->update(['status'=>2]);
 
-        $ticket_all_note = TicketNote::all();
+        $ticket_all_note = TicketNote::where('ticket_id', $request->ticket_id)->get();
 
         Mail::to('info@claimnwin.com')->send(new AdminTicketReply($ticket, $ticketnote));
 
