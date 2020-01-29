@@ -608,7 +608,7 @@ class ClaimsController extends Controller
                         $passenger_address      = $request->address[$cnt];
                         $passenger_email        = $email;
                     }else{
-                        $passenger_email        = $request->additional_email_address[$cnt];
+                        $passenger_email        = $request->additional_email_address[$cnt-1];
                         $passenger_address      = '';
                     }
                     $passenger                          = new Passenger();

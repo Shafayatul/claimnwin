@@ -996,13 +996,13 @@
                                     <div class="parent_div">
                                         <div class="two_child_radio_div first_child">
                                             <label class="container_radio">Add Now
-                                                <input class="common_input passenger_is_booking_checkbox" type="radio" count="1" id="common_input is_booking_reference_yes" name="is_booking_reference" value="1">
+                                                <input class="common_input passenger_is_booking_checkbox" type="radio" count="1" id="common_input is_booking_reference_yes" name="is_booking_reference[0]" value="1">
                                                 <span class="checkmark"></span>
                                             </label>
                                         </div>
                                         <div class="two_child_radio_div">
                                             <label class="container_radio">Add Later
-                                                <input class="common_input passenger_is_booking_checkbox" type="radio" count="1" id="common_input is_booking_reference_no" name="is_booking_reference" value="0" checked>
+                                                <input class="common_input passenger_is_booking_checkbox" type="radio" count="1" id="common_input is_booking_reference_no" name="is_booking_reference[0]" value="0" checked>
                                                 <span class="checkmark"></span>
                                             </label>
                                         </div>
@@ -1347,8 +1347,8 @@
 
 <script>
 function loadingOut(loading) {
-				setTimeout(() => loading.out(), 2000);
-			}
+                setTimeout(() => loading.out(), 2000);
+            }
 
 function horizontalCustomStyle() {
 
@@ -1356,7 +1356,7 @@ function horizontalCustomStyle() {
         title: ' Please wait',
         direction: 'hor',
         discription: 'Calculating...',
-          defaultApply: 	true,
+          defaultApply:     true,
       });
 
       loadingOut(loading);

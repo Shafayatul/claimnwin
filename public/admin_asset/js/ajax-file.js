@@ -1588,9 +1588,9 @@ $(document).on('click', '#note-data-submit', function(){
                     html1 += '<input type="hidden" name="_token" value="'+csrf1+'"/>';
                     html1 += '<button type="button" class="btn btn-sm btn-danger delete-note" title="Delete Note" id="'+response.note.id+'"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button>';
                     html1 += '</form>';
-                    html1 += '<a class="btn btn-primary btn-sm" data-toggle="modal" data-target="#viewNote-'+response.note.id+'"><i class="fa fa-eye"></i> view</a>';
+                    html1 += '<a class="btn btn-primary btn-sm viewnote" data-toggle="modal" data-target="#viewNote-'+response.note.id+'"><i class="fa fa-eye"></i></a>';
                     html1 += onlypdf;
-                    // html1 += '<a class="btn btn-info btn-sm" data-toggle="modal" data-target="#editNote-'+response.note.id+'"><i class="fa fa-edit"></i></a>';
+                    html1 += '<a class="btn btn-info btn-sm" data-toggle="modal" data-target="#editNote-'+response.note.id+'"><i class="fa fa-edit"></i></a>';
 
                     html1 += '<div class="modal fade" id="editNote-'+response.note.id+'" role="dialog"><div class="modal-dialog modal-lg"><div class="modal-content"><form class="form-horizontal">';
                     var csrf2 = $('meta[name="csrf-token"]').attr('content');
@@ -1604,20 +1604,24 @@ $(document).on('click', '#note-data-submit', function(){
                     html1 += '<div class="panel-body"><div class="row"><div class="col-md-12"><h4>User Name: '+response.name+'</h4> <br><h4>Claim Id: '+response.note.claim_id+'</h4> <br><p>'+response.note.note+'</p><br>';
                     var note_files = response.note.note_files;
                     var ext = note_files.split("|");
+                    console.log(ext);
                     $.each(ext, function(i, val){
-                        var ftype = val.substr(val.lastIndexOf('.') + 1);
-                        if(ftype == 'pdf'){
-                            var pdf_url = base_url+val;
-                            html1 += '<a href="'+pdf_url+'" target="_blank" class="btn btn-sm btn-primary"><i class="fa fa-pdf"></i> Download-'+i+'</a>';
-                        }else{
-                            var pdf_url = base_url+val;
-                            html1 += '<a href="'+pdf_url+'" download class="btn btn-sm btn-primary"><i class="fa fa-pdf"></i> Download-'+i+'</a>';
+                        if(val != ''){
+                            var ftype = val.substr(val.lastIndexOf('.') + 1);
+                            if(ftype == 'pdf'){
+                                var pdf_url = base_url+val;
+                                html1 += '<a href="'+pdf_url+'" target="_blank" class="btn btn-sm btn-primary"><i class="fa fa-pdf"></i> Pdf-'+i+'</a>';
+                            }else{
+                                var pdf_url = base_url+val;
+                                html1 += '<a href="'+pdf_url+'" download class="btn btn-sm btn-primary"><i class="fa fa-pdf"></i> Download-'+i+'</a>';
+                            } 
                         }
+
                     });
                     html1 += '</div></div></div></div></div></div></div>';
                     html1 += '</td></tr>';
                     
-                $("#note_all_table").append(html1);    
+                $("#note_all_table").prepend(html1);    
                 $('#msgs').html(html);
                 $("#compose_files").val('');
                 tinymce.get('note-editor').setContent('');
