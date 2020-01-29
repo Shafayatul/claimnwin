@@ -728,7 +728,7 @@ class ClaimsController extends Controller
         * Create custom email
         */
         $cpanel_password  = $this->randomPassword();
-        // $this->create_cpanel_email($cpanel_email_name, $cpanel_password);
+        $this->create_cpanel_email($cpanel_email_name, $cpanel_password);
         $cpanel_email     = $cpanel_email_name.'@claimnwin.com';
 
 

@@ -44,7 +44,17 @@
 <link href="{{ asset('front_asset/user_panel/style.css')}}" rel="stylesheet">
 <link href="{{ asset('admin_asset/css/custom.css')}}" rel="stylesheet">
 @yield('header-css')
-
+<!-- Begin Inspectlet Asynchronous Code -->
+<script type="text/javascript">
+(function() {
+window.__insp = window.__insp || [];
+__insp.push(['wid', 327549546]);
+var ldinsp = function(){
+if(typeof window.__inspld != "undefined") return; window.__inspld = 1; var insp = document.createElement('script'); insp.type = 'text/javascript'; insp.async = true; insp.id = "inspsync"; insp.src = ('https:' == document.location.protocol ? 'https' : 'http') + '://cdn.inspectlet.com/inspectlet.js?wid=327549546&r=' + Math.floor(new Date().getTime()/3600000); var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(insp, x); };
+setTimeout(ldinsp, 0);
+})();
+</script>
+<!-- End Inspectlet Asynchronous Code -->
 </head>
 <body class="cbp-spmenu-push">
 	<div class="main-content">
