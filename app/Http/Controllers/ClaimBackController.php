@@ -231,9 +231,12 @@ class ClaimBackController extends Controller
             }
 
 
-            $claims = $claims->latest()->paginate($perPage);
+            $claims = $claims->latest()->get();
+
+            $is_paginate = false;
 
         }else{
+            $is_paginate = true;
             $claims = Claim::where('is_deleted',0)->latest()->paginate($perPage);
         }
 
@@ -266,7 +269,7 @@ class ClaimBackController extends Controller
         $claim_status=ClaimStatus::pluck('name', 'id');
 
 
-        return view('claim.manage_claim',compact('claims','airport', 'airline', 'passenger', 'claim_and_airline_array', 'claim_status'));
+        return view('claim.manage_claim',compact('claims','airport', 'airline', 'passenger', 'claim_and_airline_array', 'claim_status', 'is_paginate'));
     }
     public function index_by_user(Request $request, $id)
     {

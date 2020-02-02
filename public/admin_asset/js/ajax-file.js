@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
     console.log(window.location.pathname);
-    var base_url = 'http://localhost:8000/';
+    var base_url = 'https://claimnwin.com/';
     var itter_val = $("#check_itter").val();
     if(itter_val != ''){
         $("#itter").show(500);
@@ -1635,34 +1635,44 @@ $(document).on('click', '#note-data-submit', function(){
     });
 });
 
-$(document).on('click', '.delete-note', function(){
-    var note_id = $(this).attr('id');
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-        }
-    });
-    $.ajax({
-        url : '/claim-ajax-delete-note',
-        type : 'POST',
-        data : {
-            note_id : note_id
-        },
-        success: function(response){
-            if(response.msg == 'Success'){
-                var html = `<div class="alert alert-success alert-dismissible show" role="alert">
-                    <strong>Success!</strong> `+response.msg+`
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>`;
-                $("#note_single_"+note_id).hide(500);
-                $('#msgs').html(html);
-            }else{
-                $("#msg").val('No Id Found...');
+$(document).on('click', '.delete-note', function(e){
+
+    e.preventDefault();
+    var answer=confirm('Do you want to delete?');
+    if(answer){
+        var note_id = $(this).attr('id');
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
             }
-        }
-    });
+        });
+        $.ajax({
+            url : '/claim-ajax-delete-note',
+            type : 'POST',
+            data : {
+                note_id : note_id
+            },
+            success: function(response){
+                if(response.msg == 'Success'){
+                    var html = `<div class="alert alert-success alert-dismissible show" role="alert">
+                        <strong>Success!</strong> `+response.msg+`
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>`;
+                    $("#note_single_"+note_id).hide(500);
+                    $('#msgs').html(html);
+                }else{
+                    $("#msg").val('No Id Found...');
+                }
+            }
+        });
+    }
+    // else{
+    //     alert('Not Deleted');      
+    // }
+    
+
 });
 
 
