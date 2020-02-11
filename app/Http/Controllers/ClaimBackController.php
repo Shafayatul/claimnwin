@@ -172,6 +172,7 @@ class ClaimBackController extends Controller
             $court_no        = $request->get('court_no');
 
             $s_airline       = $request->get('s_airline');
+            $flight_number   = $request->get('flight_number');
             $s_claim_status  = $request->get('s_claim_status');
             $s_starting_date = $request->get('s_starting_date');
             $s_end_date      = $request->get('s_end_date');
@@ -218,6 +219,12 @@ class ClaimBackController extends Controller
                 $airline_id = Airline::where('name', $s_airline)->first();
                 if ($airline_id) {
                     $claims = $claims->Where('airline_id', $airline_id->id);
+                }
+            }
+            if(!empty($flight_number)){
+                $claim_id_array = ItineraryDetail::where('flight_number', $flight_number)->pluck('claim_id')->toArray();
+                if (count($claim_id_array)>0) {
+                    $claims = $claims->WhereIn('id', $claim_id_array);
                 }
             }
             if(!empty($s_claim_status)){
@@ -268,9 +275,33 @@ class ClaimBackController extends Controller
 
         $claim_status=ClaimStatus::pluck('name', 'id');
 
+        $airline_object = $this->get_airline_for_auto_complete();
 
-        return view('claim.manage_claim',compact('claims','airport', 'airline', 'passenger', 'claim_and_airline_array', 'claim_status', 'is_paginate'));
+
+        return view('claim.manage_claim',compact('claims','airport', 'airline', 'passenger', 'claim_and_airline_array', 'claim_status', 'is_paginate', 'airline_object'));
     }
+
+
+    public function get_airline_for_auto_complete(){
+        $airlines_with_icao_code = Airline::where('icao_code', '!=', '')->select('name', 'icao_code')->get()->toArray();
+        $airlines_with_iata_code = Airline::where('icao_code', '=', '')->where('iata_code', '!=', '')->select('name', 'iata_code')->get()->toArray();
+
+        $airline_object = '[';
+
+
+        foreach ($airlines_with_icao_code as $airline) {
+            $airline_object .= "['".addslashes($airline['name'])."', '".addslashes($airline['icao_code'])."'],";
+        }
+        foreach ($airlines_with_iata_code as $airline2) {
+            $airline_object .= "['".addslashes($airline2['name'])."', '".addslashes($airline2['iata_code'])."'],";
+        }
+
+
+        $airline_object = rtrim($airline_object, ',');
+        $airline_object .= ']';
+        return $airline_object;
+    }
+    
     public function index_by_user(Request $request, $id)
     {
 

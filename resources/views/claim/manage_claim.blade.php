@@ -1,3 +1,4 @@
+
 @extends('layouts.admin_layout')
 
 @section('main_content')
@@ -76,7 +77,12 @@
 
                         <div class="col-md-2">
                           <div class="input-group">
-                              <input type="text" class="form-control" name="s_airline" placeholder="Airline Name" value="{{ request('s_airline') }}">
+                              <input type="text" class="form-control auto_airport_complete common_input connection" name="s_airline" placeholder="East-West Paris Airport" value="{{ request('s_airline') }}" autocomplete="off">
+                          </div>
+                        </div>
+                        <div class="col-md-2">
+                          <div class="input-group">
+                              <input type="text" class="form-control " name="flight_number" placeholder="flight_number" value="{{ request('flight_number') }}" autocomplete="off">
                           </div>
                         </div>
                         <div class="col-md-2">
@@ -196,4 +202,46 @@
             </div>
         </div>
     </div>
+@endsection
+
+
+@section('footer-script')
+<style type="text/css" href="{{asset('autocomplete/jquery.auto-complete.css')}}"></style>
+<script src="{{asset('autocomplete/jquery.auto-complete.js')}}"></script>
+<script type="text/javascript">
+  // $(document).ready(function(){
+      auto_airline_complete();
+      function auto_airline_complete(){
+        alert('00');
+        $('.auto_airline_complete').autoComplete({
+            minChars: 3,
+            source: function(term, suggest){
+              alert('22');
+                term = term.toLowerCase();
+                var choices = {!! $airline_object !!};
+                var suggestions = [];
+                for (i=0;i<choices.length;i++)
+                    if (~(choices[i][0]+' '+choices[i][1]).toLowerCase().indexOf(term)) suggestions.push(choices[i]);
+                suggest(suggestions);
+            },
+            renderItem: function (item, search){
+              alert('33');
+                search = search.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+                var re = new RegExp("(" + search.split(' ').join('|') + ")", "gi");
+                return '<div class="autocomplete-suggestion" data-langname="'+item[0]+'" data-lang="'+item[1]+'" data-val="'+search+'"> '+item[0].replace(re, "<b>$1</b>")+'</div>';
+            },
+            onSelect: function(e, term, item){
+                $(':focus').val(item.data('langname')).attr('iata_code',item.data('lang'));
+                // setting value
+                var iata_code = $(':focus').attr('iata_code');
+                var serial = $(':focus').attr('serial');
+                console.log(iata_code);
+                console.log(serial);
+                console.log($(".flight_code_"+serial).val(iata_code));
+                $(':focus').blur();
+            }
+        });
+      }
+  // });
+</script>
 @endsection
