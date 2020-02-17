@@ -284,6 +284,7 @@ class ClaimsController extends Controller
         $this->validate($request, [
             'flight_code'   => 'required|max:3',
             'email_address' => 'required',
+            'file_name'     => 'mimes:jpeg,bmp,png,jpeg,doc,pdf'
         ]);
         $user_agent = Agent::all();
 

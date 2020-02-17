@@ -89,6 +89,10 @@ class UserPanelController extends Controller
     {
       $claims = Claim::where('claims.id', $id)->first();
 
+      if ($claims->user_id != Auth::id()) {
+        dd("You are not authorized to see the page.");
+      }
+
       $ticket = Ticket::where('claim_id', $claims->id)->first();
       // dd($ticket->id);
       if ($ticket) {
@@ -136,6 +140,11 @@ class UserPanelController extends Controller
 
     public function claimFileUpload(Request $request)
     {
+
+      $validatedData = $request->validate([
+        'file_name' => 'mimes:jpeg,bmp,png,jpeg,doc,pdf'
+      ]);
+
       $claim_id = $request->claim_id;
       $file = $request->file('file_name');
       $file_name = sha1(date('YmdHis') . str_random(30));
