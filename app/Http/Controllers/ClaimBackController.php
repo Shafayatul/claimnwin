@@ -283,7 +283,7 @@ class ClaimBackController extends Controller
 
 
     public function get_airline_for_auto_complete(){
-        $data = Airline::where('icao_code', '=', '')->where('iata_code', '!=', '')->pluck('name')->toArray();
+        $data = Airline::pluck('name')->toArray();
 
         return $data;
     }
@@ -291,7 +291,95 @@ class ClaimBackController extends Controller
     public function index_by_user(Request $request, $id)
     {
 
-        $claims = Claim::where('user_id', $id)->where('is_deleted',0)->paginate(10);
+        if ($request->has('submit')){
+            $claimId         = $request->get('claim_id');
+            $first_name      = $request->get('first_name');
+            $last_name       = $request->get('last_name');
+            $email           = $request->get('email');
+            $phone           = $request->get('phone');
+            $note            = $request->get('note');
+            $airline_ref     = $request->get('airline_ref');
+            $caa_ref         = $request->get('caa_ref');
+            $adr_ref         = $request->get('adr_ref');
+            $court_no        = $request->get('court_no');
+
+            $s_airline       = $request->get('s_airline');
+            $flight_number   = $request->get('flight_number');
+            $s_claim_status  = $request->get('s_claim_status');
+            $s_starting_date = $request->get('s_starting_date');
+            $s_end_date      = $request->get('s_end_date');
+
+            $claims = Claim::where('user_id', $id);
+            if(!empty($claimId)){
+                $claims = $claims->where('id',$claimId);
+            }
+            if(!empty($first_name)){
+                $claim_id=Passenger::where('first_name', 'LIKE', "%$first_name%")->select('claim_id')->get();
+
+                $claims = $claims->whereIn('id',$claim_id);
+            }
+            if(!empty($last_name)){
+                $claim_id=Passenger::where('last_name', 'LIKE', "%$last_name%")->select('claim_id')->get();
+
+                $claims = $claims->whereIn('id',$claim_id);
+            }
+            if(!empty($email)){
+                $claim_id=Passenger::where('email', $email)->pluck('claim_id');
+                $claims = $claims->whereIn('id',$claim_id);
+            }
+            if(!empty($phone)){
+                $claim_id=Passenger::where('phone', 'LIKE', "%$phone%")->select('claim_id')->get();
+                $claims = $claims->whereIn('id',$claim_id);
+            }
+            if(!empty($note)){
+                $notes = Note::where('note', 'LIKE', "%$note%")->select('claim_id')->get();
+                $claims = $claims->whereIn('id',$notes);
+            }
+            if(!empty($airline_ref)){
+                $claims = $claims->where('airline_ref', 'LIKE', "%$airline_ref%");
+            }
+            if(!empty($caa_ref)){
+                $claims = $claims->where('caa_ref', 'LIKE', "%$caa_ref%");
+            }
+            if(!empty($adr_ref)){
+                $claims = $claims->where('adr_ref', 'LIKE', "%$adr_ref%");
+            }
+            if(!empty($court_no)){
+                $claims = $claims->where('court_no', 'LIKE', "%$court_no%");
+            }
+            if(!empty($s_airline)){
+                $airline_id = Airline::where('name', $s_airline)->first();
+                if ($airline_id) {
+                    $claims = $claims->Where('airline_id', $airline_id->id);
+                }
+            }
+            if(!empty($flight_number)){
+                $claim_id_array = ItineraryDetail::where('flight_number', $flight_number)->pluck('claim_id')->toArray();
+                if (count($claim_id_array)>0) {
+                    $claims = $claims->WhereIn('id', $claim_id_array);
+                }
+            }
+            if(!empty($s_claim_status)){
+                $claims = $claims->Where('claim_status_id', $s_claim_status);
+            }
+            if(!empty($s_starting_date)){
+                $claims = $claims->Where('created_at', '>=', $s_starting_date.' 00:00:00');
+            }
+            if(!empty($s_end_date)){
+                $claims = $claims->Where('created_at', '<=', $s_end_date.' 00:00:00');
+            }
+
+
+            $claims = $claims->latest()->get();
+
+            $is_paginate = false;
+
+        }else{
+            $is_paginate = true;
+            $claims = Claim::where('user_id', $id)->where('is_deleted',0)->latest()->paginate(10);
+        }
+
+
         $claim_id_array = [];
         foreach($claims as $claim){
             array_push($claim_id_array, $claim->id);
@@ -311,7 +399,10 @@ class ClaimBackController extends Controller
         $passenger = Passenger::whereIn('claim_id', $claim_id_array)->orderBy('id', 'DESC')->get()->keyBy('claim_id');
         $airport = Airport::whereIn('id', $necessary_airport_id_array)->pluck('name','id');
         $airline = Airline::whereIn('id', $necessary_airline_ids)->pluck('name','id');
-        return view('claim.manage_claim',compact('claims','airport', 'airline', 'passenger', 'claim_and_airline_array'));
+        // $is_paginate = true;
+        $airline_array = $this->get_airline_for_auto_complete();
+        $claim_status=ClaimStatus::pluck('name', 'id');
+        return view('claim.manage_claim',compact('claims','airport', 'airline', 'passenger', 'claim_and_airline_array', 'is_paginate', 'airline_array','claim_status'));
     }
 
     public function claimView($id)
@@ -719,7 +810,10 @@ class ClaimBackController extends Controller
 
         $claim_status=ClaimStatus::pluck('name', 'id');
 
-        return view('claim.manage_claim',compact('claims','airport', 'airline', 'passenger', 'claim_and_airline_array', 'claim_status'));
+        $is_paginate = true;
+        $airline_array = $this->get_airline_for_auto_complete();
+
+        return view('claim.manage_claim',compact('claims','airport', 'airline', 'passenger', 'claim_and_airline_array', 'claim_status', 'is_paginate', 'airline_array'));
     }
 
     public function affiliateNoteAdd(Request $request)
