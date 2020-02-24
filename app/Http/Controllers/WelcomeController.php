@@ -38,10 +38,10 @@ class WelcomeController extends Controller
     }
     public function index()
     {
-    	$amount1 = $this->currency_converter_url('1300 EUR');
-    	$amount2 = $this->currency_converter_url('3400 EUR');
-    	$amount3 = $this->currency_converter_url('7000 EUR');
-        $amount4 = $this->currency_converter_url('600 EUR');
+    	$amount1 = $this->currency_converter_url('800 EUR');
+    	$amount2 = $this->currency_converter_url('3300 EUR');
+    	$amount3 = $this->currency_converter_url('6000 EUR');
+        $amount4 = $this->currency_converter_url('800 EUR');
 
         $reviews = Review::limit(7)->latest()->get();
 
