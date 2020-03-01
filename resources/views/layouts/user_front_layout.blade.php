@@ -37,6 +37,15 @@ setTimeout(ldinsp, 0);
 })();
 </script>
 <!-- End Inspectlet Asynchronous Code -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-158784107-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-158784107-1');
+</script>
 </head>
 
 <body>
