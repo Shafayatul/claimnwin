@@ -62,19 +62,19 @@
                         <div class="modal-dialog" role="document">
                           <div class="modal-content">
                             <div class="modal-header">
-                              <h5 class="modal-title" id="exampleModalLabel">Suggested Language</h5>
+                              <h5 class="modal-title" id="exampleModalLabel">WWSuggested Language</h5>
                               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                               </button>
                               <div class="" style="padding-top: 20px; padding-bottom: 20px;">
                                 <ul>
-                                  <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/en')}}"> British (en)</a></li>
-                                  <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/fr')}}"> French (fr)</a></li>
-                                  <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/de')}}"> German (de)</a></li>
-                                  <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/iw')}}"> Hebrew (iw)</a></li>
-                                  <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/pt')}}">
-                                  Portuguese (pt)</a></li>
-                                  <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/es')}}"> Spanish (es)</a></li>
+                                  <li style="width: 180px; display:inline-block; padding: 5px 10px;" class="js-change-lang" lang="en"> British (en)</li>
+                                  <li style="width: 180px; display:inline-block; padding: 5px 10px;" class="js-change-lang" lang="fr"> French (fr)</li>
+                                  <li style="width: 180px; display:inline-block; padding: 5px 10px;" class="js-change-lang" lang="de"> German (de)</li>
+                                  <li style="width: 180px; display:inline-block; padding: 5px 10px;" class="js-change-lang" lang="iw"> Hebrew (iw)</li>
+                                  <li style="width: 180px; display:inline-block; padding: 5px 10px;" class="js-change-lang" lang="pt">
+                                  Portuguese (pt)</li>
+                                  <li style="width: 180px; display:inline-block; padding: 5px 10px;" class="js-change-lang" lang="es"> Spanish (es)</li>
 
                                 </ul>
                               </div>
@@ -82,64 +82,64 @@
                             <div class="modal-body">
                               <h5 class="modal-title" id="exampleModalLabel">Select Language</h5>
                               <ul style="overflow-y:scroll; padding-bottom: 80px; padding-top: 20px;">
-                                <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/af')}}"> Afrikaans (af)</a></li>
-                                <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/sq')}}"> Albanian (sq)</a></li>
-                                <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/ar')}}"> Arabic (ar)</a></li>
-                                <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/az')}}"> Azerbaijani (az)</a></li>
-                                <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/eu')}}"> Basque (eu)</a></li>
-                                <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/be')}}"> Belarusian (be)</a></li>
-                                <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/bn')}}"> Bengali (bn)</a></li>
-                                <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/en')}}"> British (en)</a></li>
-                                <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/bg')}}">  Bulgarian (bg)</a></li>
-                                <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/zh-CN')}}"> Chinese Simplified/(zh-CN)</a></li>
-                                <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/zh-TW')}}"> Chinese Traditional/(zh-TW)</a></li>
-                                <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/hr')}}"> Croatian (hr)</a></li>
-                                <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/cs')}}">  Czech (cs)</a></li>
-                                <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/da')}}"> Danish (da)</a></li>
-                                <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/nl')}}">  Dutch (nl)</a></li>
-                                <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/et')}}"> Estonian (et)</a></li>
-                                <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/tl')}}">  Filipino (tl)</a></li>
-                                <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/fi')}}"> Finnish (fi)</a></li>
-                                <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/fr')}}"> French (fr)</a></li>
-                                <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/ka')}}"> Georgian (ka)</a></li>
-                                <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/de')}}"> German (de)</a></li>
-                                <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/el')}}"> Greek (el)</a></li>
-                                <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/ht')}}"> Haitian (ht)</a></li>
-                                <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/iw')}}"> Hebrew (iw)</a></li>
-                                <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/hi')}}"> Hindi (hi)</a></li>
-                                <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/hu')}}"> Hungarian (hu)</a></li>
-                                <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/is')}}"> Icelandic (is)</a></li>
-                                <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/id')}}"> Indonesian (id)</a></li>
-                                <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/ga')}}"> Irish (ga)</a></li>
-                                <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/it')}}"> Italian (it)</a></li>
-                                <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/ja')}}"> Japanese (ja)</a></li>
-                                <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/kn')}}"> Kannada (kn)</a></li>
-                                <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/ko')}}">  Korean (ko)</a></li>
-                                <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/la')}}">  Latin (la)</a></li>
-                                <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/lv')}}">  Latvian (lv)</a></li>
-                                <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/lt')}}">  Lithuanian (lt)</a></li>
-                                <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/mk')}}"> Macedonian (mk)</a></li>
-                                <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/ms')}}"> Malay (ms)</a></li>
-                                <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/mt')}}"> Maltese (mt)</a></li>
-                                <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/no')}}"> Norwegian (no)</a></li>
-                                <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/fa')}}"> Persian (fa)</a></li>
-                                <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/pl')}}"> Polish (pl)</a></li>
-                                <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/pt')}}">
-                                Portuguese (pt)</a></li>
-                                <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/ro')}}"> Romanian (ro)</a></li>
-                                <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/ru')}}"> Russian (ru)</a></li>
-                                <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/sr')}}"> Serbian (sr)</a></li>
-                                <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/sk')}}"> Slovak (sk)</a></li>
-                                <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/sl')}}"> Slovenian (sl)</a></li>
-                                <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/es')}}"> Spanish (es)</a></li>
-                                <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/sw')}}"> Swahili (sw)</a></li>
-                                <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/sv')}}"> Swedish (sv)</a></li>
-                                <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/th')}}"> Thai (th)</a></li>
-                                <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/tr')}}"> Turkish (tr)</a></li>
-                                <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/uk')}}"> Ukrainian (uk)</a></li>
-                                <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/ur')}}"> Urdu (ur)</a></li>
-                                <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/vi')}}"> Vietnamese (vi)</a></li>
-                                <li style="width: 180px; display:inline-block; padding: 5px 10px;"><a href="{{url('change-language/yi')}}"> Yiddish (yi)</a></li>
+                                <li style="width: 180px; display:inline-block; padding: 5px 10px;" class="js-change-lang" lang="af"> Afrikaans (af)</li>
+                                <li style="width: 180px; display:inline-block; padding: 5px 10px;" class="js-change-lang" lang="sq"> Albanian (sq)</li>
+                                <li style="width: 180px; display:inline-block; padding: 5px 10px;" class="js-change-lang" lang="ar"> Arabic (ar)</li>
+                                <li style="width: 180px; display:inline-block; padding: 5px 10px;" class="js-change-lang" lang="az"> Azerbaijani (az)</li>
+                                <li style="width: 180px; display:inline-block; padding: 5px 10px;" class="js-change-lang" lang="eu"> Basque (eu)</li>
+                                <li style="width: 180px; display:inline-block; padding: 5px 10px;" class="js-change-lang" lang="be"> Belarusian (be)</li>
+                                <li style="width: 180px; display:inline-block; padding: 5px 10px;" class="js-change-lang" lang="bn"> Bengali (bn)</li>
+                                <li style="width: 180px; display:inline-block; padding: 5px 10px;" class="js-change-lang" lang="en"> British (en)</li>
+                                <li style="width: 180px; display:inline-block; padding: 5px 10px;" class="js-change-lang" lang="bg">  Bulgarian (bg)</li>
+                                <li style="width: 180px; display:inline-block; padding: 5px 10px;" class="js-change-lang" lang="zh-CN"> Chinese Simplified/(zh-CN)</li>
+                                <li style="width: 180px; display:inline-block; padding: 5px 10px;" class="js-change-lang" lang="zh-TW"> Chinese Traditional/(zh-TW)</li>
+                                <li style="width: 180px; display:inline-block; padding: 5px 10px;" class="js-change-lang" lang="hr"> Croatian (hr)</li>
+                                <li style="width: 180px; display:inline-block; padding: 5px 10px;" class="js-change-lang" lang="cs">  Czech (cs)</li>
+                                <li style="width: 180px; display:inline-block; padding: 5px 10px;" class="js-change-lang" lang="da"> Danish (da)</li>
+                                <li style="width: 180px; display:inline-block; padding: 5px 10px;" class="js-change-lang" lang="nl">  Dutch (nl)</li>
+                                <li style="width: 180px; display:inline-block; padding: 5px 10px;" class="js-change-lang" lang="et"> Estonian (et)</li>
+                                <li style="width: 180px; display:inline-block; padding: 5px 10px;" class="js-change-lang" lang="tl">  Filipino (tl)</li>
+                                <li style="width: 180px; display:inline-block; padding: 5px 10px;" class="js-change-lang" lang="fi"> Finnish (fi)</li>
+                                <li style="width: 180px; display:inline-block; padding: 5px 10px;" class="js-change-lang" lang="fr"> French (fr)</li>
+                                <li style="width: 180px; display:inline-block; padding: 5px 10px;" class="js-change-lang" lang="ka"> Georgian (ka)</li>
+                                <li style="width: 180px; display:inline-block; padding: 5px 10px;" class="js-change-lang" lang="de"> German (de)</li>
+                                <li style="width: 180px; display:inline-block; padding: 5px 10px;" class="js-change-lang" lang="el"> Greek (el)</li>
+                                <li style="width: 180px; display:inline-block; padding: 5px 10px;" class="js-change-lang" lang="ht"> Haitian (ht)</li>
+                                <li style="width: 180px; display:inline-block; padding: 5px 10px;" class="js-change-lang" lang="iw"> Hebrew (iw)</li>
+                                <li style="width: 180px; display:inline-block; padding: 5px 10px;" class="js-change-lang" lang="hi"> Hindi (hi)</li>
+                                <li style="width: 180px; display:inline-block; padding: 5px 10px;" class="js-change-lang" lang="hu"> Hungarian (hu)</li>
+                                <li style="width: 180px; display:inline-block; padding: 5px 10px;" class="js-change-lang" lang="is"> Icelandic (is)</li>
+                                <li style="width: 180px; display:inline-block; padding: 5px 10px;" class="js-change-lang" lang="id"> Indonesian (id)</li>
+                                <li style="width: 180px; display:inline-block; padding: 5px 10px;" class="js-change-lang" lang="ga"> Irish (ga)</li>
+                                <li style="width: 180px; display:inline-block; padding: 5px 10px;" class="js-change-lang" lang="it"> Italian (it)</li>
+                                <li style="width: 180px; display:inline-block; padding: 5px 10px;" class="js-change-lang" lang="ja"> Japanese (ja)</li>
+                                <li style="width: 180px; display:inline-block; padding: 5px 10px;" class="js-change-lang" lang="kn"> Kannada (kn)</li>
+                                <li style="width: 180px; display:inline-block; padding: 5px 10px;" class="js-change-lang" lang="ko">  Korean (ko)</li>
+                                <li style="width: 180px; display:inline-block; padding: 5px 10px;" class="js-change-lang" lang="la">  Latin (la)</li>
+                                <li style="width: 180px; display:inline-block; padding: 5px 10px;" class="js-change-lang" lang="lv">  Latvian (lv)</li>
+                                <li style="width: 180px; display:inline-block; padding: 5px 10px;" class="js-change-lang" lang="lt">  Lithuanian (lt)</li>
+                                <li style="width: 180px; display:inline-block; padding: 5px 10px;" class="js-change-lang" lang="mk"> Macedonian (mk)</li>
+                                <li style="width: 180px; display:inline-block; padding: 5px 10px;" class="js-change-lang" lang="ms"> Malay (ms)</li>
+                                <li style="width: 180px; display:inline-block; padding: 5px 10px;" class="js-change-lang" lang="mt"> Maltese (mt)</li>
+                                <li style="width: 180px; display:inline-block; padding: 5px 10px;" class="js-change-lang" lang="no"> Norwegian (no)</li>
+                                <li style="width: 180px; display:inline-block; padding: 5px 10px;" class="js-change-lang" lang="fa"> Persian (fa)</li>
+                                <li style="width: 180px; display:inline-block; padding: 5px 10px;" class="js-change-lang" lang="pl"> Polish (pl)</li>
+                                <li style="width: 180px; display:inline-block; padding: 5px 10px;" class="js-change-lang" lang="pt">
+                                Portuguese (pt)</li>
+                                <li style="width: 180px; display:inline-block; padding: 5px 10px;" class="js-change-lang" lang="ro"> Romanian (ro)</li>
+                                <li style="width: 180px; display:inline-block; padding: 5px 10px;" class="js-change-lang" lang="ru"> Russian (ru)</li>
+                                <li style="width: 180px; display:inline-block; padding: 5px 10px;" class="js-change-lang" lang="sr"> Serbian (sr)</li>
+                                <li style="width: 180px; display:inline-block; padding: 5px 10px;" class="js-change-lang" lang="sk"> Slovak (sk)</li>
+                                <li style="width: 180px; display:inline-block; padding: 5px 10px;" class="js-change-lang" lang="sl"> Slovenian (sl)</li>
+                                <li style="width: 180px; display:inline-block; padding: 5px 10px;" class="js-change-lang" lang="es"> Spanish (es)</li>
+                                <li style="width: 180px; display:inline-block; padding: 5px 10px;" class="js-change-lang" lang="sw"> Swahili (sw)</li>
+                                <li style="width: 180px; display:inline-block; padding: 5px 10px;" class="js-change-lang" lang="sv"> Swedish (sv)</li>
+                                <li style="width: 180px; display:inline-block; padding: 5px 10px;" class="js-change-lang" lang="th"> Thai (th)</li>
+                                <li style="width: 180px; display:inline-block; padding: 5px 10px;" class="js-change-lang" lang="tr"> Turkish (tr)</li>
+                                <li style="width: 180px; display:inline-block; padding: 5px 10px;" class="js-change-lang" lang="uk"> Ukrainian (uk)</li>
+                                <li style="width: 180px; display:inline-block; padding: 5px 10px;" class="js-change-lang" lang="ur"> Urdu (ur)</li>
+                                <li style="width: 180px; display:inline-block; padding: 5px 10px;" class="js-change-lang" lang="vi"> Vietnamese (vi)</li>
+                                <li style="width: 180px; display:inline-block; padding: 5px 10px;" class="js-change-lang" lang="yi"> Yiddish (yi)</li>
 
                               </ul>
                             </div>

@@ -15,7 +15,7 @@
 */
 
 
-Route::get('/test', 'TestsController@test');
+// Route::get('/test', 'TestsController@test');
 
 /* ----- Access by all - not logged ----- */
 

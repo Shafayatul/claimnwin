@@ -82,7 +82,6 @@ document.write(unescape("%3Cscript src='" + tlJsHost + "trustlogo/javascript/tru
       <p>Copyright © 2019 Claim'N Win</p>
     </footer>
     <script type="text/javascript">
-
       document.querySelector("html").classList.add('js');
       var fileInput  = document.querySelector( ".input-file" ),
         button     = document.querySelector( ".input-file-trigger" ),
@@ -102,11 +101,7 @@ document.write(unescape("%3Cscript src='" + tlJsHost + "trustlogo/javascript/tru
       });
 
     $(function(){
-        // $('.single-submit').trigger('submit');
-        // $('.disable-after-first-click').click(function(){
-        //     $('.single-submit').submit();
-        //     $(this).attr("disabled", true);
-        // });
+
         $('.disable-after-first-click').click(function (e) {
             console.log('ssssssssssss');
 

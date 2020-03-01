@@ -225,4 +225,13 @@
     function change_logo_type(){
         document.getElementById("main-logo-top").src = "{{asset('front_asset/')}}/img/logo.png";
     }
+
+        // $('.single-submit').trigger('submit');
+        // $('.disable-after-first-click').click(function(){
+        //     $('.single-submit').submit();
+        //     $(this).attr("disabled", true);
+        // });
+        // $('.js-change-lang').click(function (e) {
+
+
     </script>

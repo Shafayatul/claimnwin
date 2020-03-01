@@ -85,6 +85,13 @@ s1.charset='UTF-8';
 s1.setAttribute('crossorigin','*');
 s0.parentNode.insertBefore(s1,s0);
 })();
+
+$(document).ready(function() {
+  $(document).on('click', '.js-change-lang', function (e) {
+      var lang = $(this).attr('lang');
+      window.location.href = window.location.hostname+'/change-language/'+lang;
+  });
+});
 </script>
 <!--End of Tawk.to Script-->
 
