@@ -52,6 +52,11 @@
     .footer-col {
         margin-bottom: 50px
     }
+
+    #mainMenu {
+        background-color: white;
+    }
+    
 }
 
 @media(max-width:991px) {
@@ -78,6 +83,11 @@
     .footer-bottom a+a {
         margin-left: 15px
     }
+
+    #mainMenu {
+        background-color: white;
+    }
+
 }
 
 @media(max-width:767px) {

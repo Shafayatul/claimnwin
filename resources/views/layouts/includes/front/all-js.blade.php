@@ -11,10 +11,10 @@
 <script src="{{asset('front_asset/front_pages_asset/js/slick.js')}}"></script>
 <script src="{{asset('autocomplete/jquery.auto-complete.js')}}"></script>
 <script type="text/javascript">
-	$(document).ready(function() {
-	  $(document).on('click', '.js-change-lang', function (e) {
-	      var lang = $(this).attr('lang');
-	      window.location.href = window.location.hostname+'/change-language/'+lang;
-	  });
-	});
+$(document).ready(function() {
+  $(document).on('click', '.js-change-lang', function (e) {
+      var lang = $(this).attr('lang');
+      window.location.href = 'https://claimnwin.com/change-language/'+lang;
+  });
+});
 </script>

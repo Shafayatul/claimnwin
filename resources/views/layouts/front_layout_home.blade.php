@@ -89,7 +89,7 @@ s0.parentNode.insertBefore(s1,s0);
 $(document).ready(function() {
   $(document).on('click', '.js-change-lang', function (e) {
       var lang = $(this).attr('lang');
-      window.location.href = window.location.hostname+'/change-language/'+lang;
+      window.location.href = 'https://claimnwin.com/change-language/'+lang;
   });
 });
 </script>
